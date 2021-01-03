@@ -1,0 +1,8 @@
+.app {
+  margin: 0;
+  padding: 10px;
+  width: 100vw;
+  height: 50vw;
+  font-family: "Caladea", serif;
+  background: url("./bg-4.jpg") no-repeat;
+}

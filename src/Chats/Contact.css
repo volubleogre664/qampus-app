@@ -1,0 +1,23 @@
+.contact {
+  width: 100%;
+  background: rgb(21, 161, 242);
+  margin-bottom: 10px;
+  border-radius: 4px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.contact > .contact__iconContainer {
+  background: gray;
+  height: 30px !important;
+  width: 30px !important;
+  margin-right: 3px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.contact > .contact__name {
+  font-size: 0.7rem;
+}

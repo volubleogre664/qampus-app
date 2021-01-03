@@ -1,0 +1,28 @@
+.message {
+  width: fit-content;
+  height: fit-content;
+  margin-bottom: 20px;
+}
+
+.rec {
+  margin-left: auto;
+  position: relative;
+}
+
+.message > .message__text {
+  padding: 8px;
+  max-width: 80%;
+  background: pink;
+}
+
+.message > .message__time {
+  font-weight: bold;
+}
+
+.rec > .message__text {
+  background: rgb(29, 161, 242);
+}
+
+.rec > .message__time {
+  margin-left: auto;
+}

@@ -1,0 +1,116 @@
+.home {
+  padding: 0;
+  width: 100vw;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.home > .home__header{
+  width: 55vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: auto;
+  margin-top: 40px;
+}
+
+.home > .home__header > .home__logo{
+  width: fit-content;
+  padding: 5px;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.home > .home__header > .home__logo > .home__logoName{
+  font-family: "Lobster", cursive;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+.home > .home__header > .home__logo > .home__smallCaps {
+  font-weight: 900;
+  font-size: 0.6rem;
+}
+
+.home > .home__header > .home__avatar{
+  padding: 3.5px;
+  display: flex;
+  margin-right: 20px;
+  background: lightgray;
+}
+
+.home > .home__header > .home__avatar > .home__avatarIcon > * {
+  font-size: 2rem;
+  color: white;
+}
+
+.home > .home__header > .home__avatar > .home__avatarName {
+  font-size: .9rem;
+  font-weight: 600;
+}
+
+.home > .home__searchSection > .home__title {
+  width: fit-content;
+  margin: 0 auto;
+  margin-top: 40px;
+  font-size: 1rem;
+}
+
+.home > .home__searchSection > .home__subtitle {
+  margin: 0 auto;
+  font-size: 0.8rem;
+  width: fit-content;
+}
+
+.home > .home__searchSection > .home__searchContainer {
+  margin: 0 auto;
+  margin-top: 3px;
+  width: fit-content;
+  height: fit-content;
+  padding: 2px;
+  background: lightblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home > .home__searchSection > .home__searchContainer > .home__searchInput {
+  height: 25px;
+  margin-right: 3px;
+  border: none;
+}
+
+.home > .home__searchSection > .home__searchContainer > .MuiSvgIcon-root {
+  color: #ffffff;
+}
+
+.home > .home__menu {
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home > .home__menu > .home__arrowIcon {
+  width: 40px;
+  height: 30px;
+  border-radius: 50%;
+  background: lightblue;
+  display: grid;
+  place-items: center;
+}
+
+.home > .home__menu > .home__arrowIcon > .MuiSvgIcon-root {
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.home > .home__menu > .home__menuItems {
+  padding: 10px;
+  margin: 20px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: auto;
+}

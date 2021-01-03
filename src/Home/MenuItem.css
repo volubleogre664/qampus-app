@@ -1,0 +1,30 @@
+.menuItem {
+  margin: 8px;
+  padding: 10px;
+  width: 220px !important;
+  min-width: 220px !important;
+  height: 200px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, 0.3), -2px -2px 3px 0 rgba(220, 220, 220, 0.6);
+}
+
+.menuItem > .menuItem__icon > *{
+  font-size: 3rem;
+  color: darkgray;
+}
+
+.menuItem > .menuItem__title {
+  font-size: 1.9rem;
+  font-weight: 800;
+  font-family: "Segoe UI", arial, sans-serif;
+}
+
+.menuItem > .menuItem__subtitle {
+  font-size: 0.9rem;
+  text-align: center;
+}
