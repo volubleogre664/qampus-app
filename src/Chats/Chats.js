@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import SearchIcon from "@material-ui/icons/Search";
@@ -12,6 +12,22 @@ import Message from "./Message.js";
 import "./Chats.css";
 
 function Chats() {
+ const [textMsg, setMsg] = useState("");
+ const [messages, setMsgs] = useState([]);
+
+ const handleChange = (e) => setMsg(e.target.value);
+
+ const showMsg = (e) => {
+   e.preventDefault();
+   const regex = / /gi;
+   const str = textMsg.replace(regex, "");
+   if (textMsg === "" || str === "") return;
+   
+   setMsgs([...messages, textMsg]);
+   setMsg("");
+   document.querySelector(".sendMsgInput").value = ""; 
+ }
+
  return (
    <div className="chats">
      <div className="chats__sidebar">
@@ -59,29 +75,23 @@ function Chats() {
        </div>
 
        <div className="chats__mainBody">
-         <Message 
-           text="This is a dummy message placed here for front end testing so yeah mate lets see."
-	   time="13:46"
-	   state={true}
-	 />
-
-	 <Message 
-           text="This is a second dummy message also aimed at texting."
-	   time="13:14"
-           state={false}
-	 />
+         <Message messages={messages} />
        </div>
 
        <div className="chats__mainFooter">
-         <AttachmentIcon />
+	 <form>
+           <AttachmentIcon />
 
-	 <EmojiEmotionsIcon />
+	   <EmojiEmotionsIcon />
 
-	 <input placeholder="Type message..." className="sendMsgInput" />
+	   <input placeholder="Type message..." className="sendMsgInput" onChange={handleChange} />
 
-	 <SendIcon />
+	   <button type="submit" onClick={showMsg}>
+	     <SendIcon />
+	   </button>
 
-	 <MicIcon />
+	   <MicIcon />
+	 </form>
        </div>
      </div>
    </div>

@@ -1,18 +1,19 @@
 .message {
   width: fit-content;
-  height: fit-content;
-  margin-bottom: 20px;
+  max-width: 75%;
+  height: auto;
+  margin-bottom: 10px;
 }
 
 .rec {
   margin-left: auto;
-  position: relative;
 }
 
 .message > .message__text {
   padding: 8px;
-  max-width: 80%;
   background: pink;
+  border-radius: 10px;
+  width: fit-content;
 }
 
 .message > .message__time {

@@ -1,19 +1,24 @@
 import React from "react";
 import "./Message.css";
 
-function Message({text, time, state}) {
+function Message({messages}) {
+  const state = false;
+  const time = "12:00";
+
   return(
-    <div className={state ? "message" : "message rec"}>
-      <div className="message__text">
+    messages.map(text => (
+      <div className={state ? "message" : "message rec"}>
+        <p className="message__text">
 	  {text}
-      </div>
+        </p>
 
-      <div className="message__time">
+        <div className="message__time">
 	  {time}
-      </div>
+        </div>
 
-      <div className="message__state">{state}</div>
-    </div>
+        <div className="message__state">{state}</div>
+      </div>
+    )) 
   );
 }
 
