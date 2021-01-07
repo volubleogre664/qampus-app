@@ -1,0 +1,132 @@
+.login {
+  box-sizing: border-box;
+  overflow: hidden;
+  color: #fff;
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  margin-top: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, 0.8), -1px -2px 2px 0 rgba(255, 255, 255, 0.4);
+}
+
+.login > .login__header {
+  display: grid;
+  place-items: center;
+}
+
+.login > .login__header > .login__headerLogo {
+  width: 180px;
+  height: 80px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.login > .login__main {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.login > .login__main > .login__mainLeft {
+  padding-top: 10px;
+}
+
+.login > .login__main > .login__mainLeft > .title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.login > .login__main > .login__mainLeft > form > div {
+  margin-bottom: 15px;
+}
+
+.login > .login__main > .login__mainLeft > form > div > p {
+  font-size: 1.2rem;
+  margin-left: 2px;
+}
+
+.login > .login__main > .login__mainLeft > form > div > input {
+  width: 85%;
+}
+
+.login > .login__main > .login__mainLeft > form > .form__btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: -25px;
+}
+
+.login > .login__main > .login__mainLeft > form > .form__btns > .form__btnSubmit {
+  width: 120px;
+  padding: 4px 0;
+  background: rgb(21, 141, 242);
+  font-weight: bold;
+}
+
+.login > .login__main > .login__mainLeft > form > .form__btns > p {
+  margin: 3px 0;
+}
+
+.login > .login__main > .login__mainLeft > form > .form__btns > .form__signupLink {
+  color: #fff;
+}
+
+.login > .login__main > .login__mainSeparator {
+  height: 250px;
+  width: 2px;
+  background: #fff;
+  position: relative;
+  left: -40px;
+}
+
+.login > .login__main > .login__mainRight {
+  width: auto;
+  align-self: flex-start;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login > .login__main > .login__mainRight > .title {
+  font-size: 1.3rem;
+}
+
+.login > .login__main > .login__mainRight > .homeLink > .container {
+  width: 130px;
+  height: 120px;
+  background: #fff;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 30px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.login > .login__main > .login__mainRight > .homeLink > .container > .MuiSvgIcon-root {
+  font-size: 5rem;
+  padding: 0;
+}
+
+.login > .login__main > .login__mainRight > .homeLink > .container > p {
+  margin-top: -10px;
+  font-size: 1.1rem;
+  text-decoration: none !important;
+  color: #000;
+}
+
+.login > .login__footer {
+  width: 100%;
+  font-size: 0.8rem;
+  display: grid;
+  place-items: center;
+}
+

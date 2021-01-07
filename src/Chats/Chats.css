@@ -25,16 +25,15 @@
 
 .chats > .chats__sidebar > .chats__sidebarHeader > .icon__container {
   background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center;
   padding-left: 8px;
   box-shadow: .3px .3px 1.3px 0 rgba(0, 0, 0, 0.6), -.3px -.3px 1.3px 0 rgba(0, 0, 0, 0.6);
 }
 
-.chats > .chats__sidebar > .chats__sidebarHeader > .icon__container > .MuiSvgIcon-root {
-  font-size: 1rem;
+.chats > .chats__sidebar > .chats__sidebarHeader > .icon__container > * > .MuiSvgIcon-root {
   color: gray;
+  margin-top: 2px;
 }
 
 .chats > .chats__sidebar > .chats__sidebarBody {
@@ -173,6 +172,9 @@
 .chats > .chats__main > .chats__mainFooter > form > button {
   background: transparent;
   border: none;
+  display: grid;
+  place-items: center;
+  outline-width: 0;
 }
 
 .chats > .chats__main > .chats__mainFooter > form > button > * {

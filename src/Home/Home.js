@@ -5,6 +5,7 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import PersonIcon from "@material-ui/icons/Person";
 import MenuItem from "./MenuItem.js";
 import {Link} from "react-router-dom";
+import logo from "../logo.png";
 import './Home.css';
 
 function Home() {
@@ -12,7 +13,7 @@ function Home() {
     <div className='home'>
       <div className="home__header">
         <div className="home__logo">
-          <span className="home__logoName">Qampus</span><sup className="home__smallCaps">TM</sup>
+          <img className="home__logoImg" src={logo} alt="qampus logo" />
 	</div>
 
 	<div className="home__avatar">

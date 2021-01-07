@@ -5,6 +5,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import PersonIcon from "@material-ui/icons/Person";
 import AttachmentIcon from "@material-ui/icons/Attachment";
 import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
+import {Link} from "react-router-dom";
 import SendIcon from "@material-ui/icons/Send";
 import MicIcon from "@material-ui/icons/Mic";
 import Contact from "./Contact.js";
@@ -35,7 +36,9 @@ function Chats() {
          <h2 className="title">Chats</h2>
 
 	 <span className="icon__container">
-           <ArrowBackIosIcon /> 
+           <Link className="icon__containerLink" to="/"> 
+	     <ArrowBackIosIcon />
+	   </Link>
 	 </span>
        </div>
 
