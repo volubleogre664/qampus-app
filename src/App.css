@@ -5,4 +5,10 @@
   height: 50vw;
   font-family: "Caladea", serif;
   background: url("./bg-4.jpg") no-repeat;
+  display: flex;
+  overflow: hidden;
+}
+
+.app * {
+  transition: all ease-in-out 0.4s;
 }

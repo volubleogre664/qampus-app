@@ -4,21 +4,20 @@ import Chats from "./Chats/Chats.js";
 import Profile from  "./Profile/Profile.js";
 import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import Login from "./Login/Login.js";
+import SideMenu from "./SideMenu/SideMenu.js"; 
 import './App.css';
 
 function App() {
-  const [loggedIn] = useState(true);
-
   return (
     <div className="app">
       <Router>
         <Switch>
-          <Route exact path="/login">
+          <Route path="/login">
             <Login />
 	  </Route>
 
 	  <Route exact path="/">
-	    {!loggedIn ? <Redirect to="/login" /> : <Home />}
+	    <Home />
 	  </Route>
 
 	  <Route path="/profile">
@@ -26,7 +25,9 @@ function App() {
 	  </Route>
 
 	  <Route path="/chats">
+	    <SideMenu />
 	    <Chats />
+	    <Profile />
 	  </Route>
 	</Switch>
       </Router>

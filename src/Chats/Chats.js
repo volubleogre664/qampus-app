@@ -14,9 +14,12 @@ import "./Chats.css";
 
 function Chats() {
  const [textMsg, setMsg] = useState("");
+ const [isChecked, setIsChecked] = useState(false);
  const [messages, setMsgs] = useState([]);
 
  const handleChange = (e) => setMsg(e.target.value);
+
+ const checked = e => setIsChecked(!isChecked);
 
  const showMsg = (e) => {
    e.preventDefault();
@@ -34,6 +37,8 @@ function Chats() {
      <div className="chats__sidebar">
        <div className="chats__sidebarHeader">
          <h2 className="title">Chats</h2>
+         
+         <input type="checkbox" onChange={checked} />
 
 	 <span className="icon__container">
            <Link className="icon__containerLink" to="/"> 
@@ -78,7 +83,7 @@ function Chats() {
        </div>
 
        <div className="chats__mainBody">
-         <Message messages={messages} />
+         <Message messages={messages} state={isChecked} />
        </div>
 
        <div className="chats__mainFooter">

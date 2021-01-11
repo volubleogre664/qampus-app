@@ -1,6 +1,8 @@
 .chats {
   display: flex;
   height: 95%;
+  flex: 1;
+  transition: all ease-in-out .6s;
 }
 
 .chats > .chats__sidebar {

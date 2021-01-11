@@ -4,11 +4,20 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import PersonIcon from "@material-ui/icons/Person";
 import MenuItem from "./MenuItem.js";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import logo from "../logo.png";
+import { connect, useSelector } from "react-redux";
+import { logIn } from "../actions.js";
 import './Home.css';
 
 function Home() {
+  const loggedIn = useSelector(state => state.loggedIn);
+  const handleClick = () => logIn(false);
+
+  if (!loggedIn) {
+    <Redirect to="/login" />
+  }
+
   return (
     <div className='home'>
       <div className="home__header">
@@ -16,7 +25,7 @@ function Home() {
           <img className="home__logoImg" src={logo} alt="qampus logo" />
 	</div>
 
-	<div className="home__avatar">
+	<Link to="/login" className="home__avatar" onClick={handleClick}>
           <div className="home__avatarIcon">
             <PersonIcon />
 	  </div>
@@ -24,7 +33,7 @@ function Home() {
 	  <div className="home__avatarName">
 	    Shabalala<br />Nduduzo
 	  </div>
-	</div>
+	</Link>
       </div>
 
       <div className="home__searchSection">
@@ -87,4 +96,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default connect(null, { logIn })(Home);

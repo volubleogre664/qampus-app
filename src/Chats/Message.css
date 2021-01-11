@@ -19,8 +19,7 @@
 .message > .message__time {
   font-weight: bold;
   width: fit-content;
-  margin-left: auto;
-  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .rec > .message__text {
@@ -29,4 +28,5 @@
 
 .rec > .message__time {
   margin-left: auto;
+  margin-right: 5px
 }
