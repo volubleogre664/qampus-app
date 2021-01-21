@@ -3,13 +3,9 @@ import {Button} from "@material-ui/core";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import {Link} from "react-router-dom";
 import logo from "../logo.png";
-import { logIn } from "../actions.js";
-import { connect } from "react-redux";
 import "./Login.css";
 
 function Login() {
-  const handleHomeClick = () => logIn(true);
-
   return (
     <div className="login">
       <header className="login__header">
@@ -50,7 +46,7 @@ function Login() {
             Continue as guest
 	  </h3>
 
-	  <Link onClick={handleHomeClick} className="homeLink" to="/">
+	  <Link className="homeLink" to="/">
 	    <div className="container">
               <HomeOutlinedIcon />
 
@@ -72,4 +68,4 @@ function Login() {
   );
 }
 
-export default connect(null, { logIn })(Login);
+export default Login;
