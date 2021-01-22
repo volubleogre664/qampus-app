@@ -8,7 +8,6 @@ import MenuItem from "./MenuItem.js";
 import {Link} from "react-router-dom";
 import logo from "../logo.png";
 import searchIcon from "../searchIcon.png";
-import backgroundImage from "../1080x2400-BG.png"
 import './Home.css';
 
 function Home() {
