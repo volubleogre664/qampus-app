@@ -33,7 +33,7 @@ function Login() {
               <Button className="form__btnSubmit">
 	        Login
 	      </Button>
-	      <p>Or</p>
+	      <p>or</p>
 	      <Link className="form__signupLink" to="/sign-up">Sign Up</Link> 
 	    </div>
 	  </form>
@@ -50,7 +50,7 @@ function Login() {
 	    <div className="container">
               <HomeOutlinedIcon />
 
-	      <p>Go to home page</p>
+	      <p>Home page</p>
 	    </div>
 	  </Link>
 	</section>
@@ -62,7 +62,7 @@ function Login() {
 	</span>
 
 	<span className="login__footerSeparator"></span>
-	<span>Developed by Nuclear Software (Pty) Ltd</span>
+	<span>Developed by Nuclear Software (Pty) Ltd.</span>
       </footer>
     </div>
   );
