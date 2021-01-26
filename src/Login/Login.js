@@ -11,7 +11,10 @@ function Login() {
       <header className="login__header">
         <img className="login__headerLogo" src={logo} alt="qampus logo" />
       </header>
-
+	  <div className="welcome__text">
+		<p>Welcome to Qampus,<br></br>
+		  please select an option to continue.</p>
+	  </div>
       <main className="login__main">
         <section className="login__mainLeft">
           <h3 className="title">
