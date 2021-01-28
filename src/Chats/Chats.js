@@ -29,75 +29,75 @@ function Chats() {
    document.querySelector(".sendMsgInput").value = ""; 
  }
 
- return (
-   <div className="chats">
-     <div className="chats__sidebar">
-       <div className="chats__sidebarHeader">
-         <h2 className="title">Chats</h2>
+  return (
+    <div className="chats">
+      <div className="chats__sidebar">
+        <div className="chats__sidebarHeader">
+          <h2 className="title">Chats</h2>
 
-	 <span className="icon__container">
-           <Link className="icon__containerLink" to="/"> 
-	     <ArrowBackIosIcon />
-	   </Link>
-	 </span>
-       </div>
+          <span className="icon__container">
+            <Link className="icon__containerLink" to="/"> 
+            <ArrowBackIosIcon />
+            </Link>
+          </span>
+        </div>
 
-       <div className="chats__sidebarBody">
-         <div className="search__container">
-           <input className="search__input" placeholder="Search chats..." />
+        <div className="chats__sidebarBody">
+          <div className="search__container">
+            <input className="search__input" placeholder="Search chats..." />
+	          <SearchIcon />
+	        </div>
 
-	   <SearchIcon />
-	 </div>
+          <div className="contactSection">
+            <Contact name="James King" />
+	          <Contact name="Mason Monroe" />
+	        </div>
 
-         <div className="contactSection">
-           <Contact name="James King" />
+        </div>
 
-	   <Contact name="Mason Monroe" />
-	 </div>
-       </div>
+        <div className="chats__sidebarFooter">
+          <span className="text">Find a study buddy</span>
+      	  <ArrowForwardIosIcon />
+        </div>
 
-       <div className="chats__sidebarFooter">
-         <span className="text">Find a study buddy</span>
-	 <ArrowForwardIosIcon />
-       </div>
-     </div>
+      </div>
 
-     <div className="chats__main">
-       <div className="chats__mainHeader">
-	 <div className="left">
-           <span className="iconContainer">
-	     <PersonIcon />
-	   </span>
+      <div className="chats__main">
+        <div className="chats__mainHeader">
+          <div className="left">
+            <span className="iconContainer">
+              <PersonIcon />
+            </span>
 
-	   <span className="name">Elon</span>
-         </div>
+            <span className="name">Elon</span>
+          </div>
 
-	 <div className="right">
-           Offline <br /> Last seen now
-	 </div>
-       </div>
+          <div className="right">
+          Offline <br /> Last seen now
+          </div>
+        </div>
 
-       <div className="chats__mainBody">
-         <Message messages={messages} />
-       </div>
+        <div className="chats__mainBody">
+          <Message messages={messages} />
+        </div>
 
-       <div className="chats__mainFooter">
-	 <form>
-           <AttachmentIcon />
+        <div className="chats__mainFooter">
+          <form>
+            <AttachmentIcon />
 
-	   <EmojiEmotionsIcon />
+            <EmojiEmotionsIcon />
 
-	   <input placeholder="Type message..." className="sendMsgInput" onChange={handleChange} />
+            <input placeholder="Type message..." className="sendMsgInput" onChange={handleChange} />
 
-	   <button type="submit" onClick={showMsg}>
-	     <SendIcon />
-	   </button>
+            <button type="submit" onClick={showMsg}>
+              <SendIcon />
+            </button>
 
-	   <MicIcon />
-	 </form>
-       </div>
-     </div>
-   </div>
+            <MicIcon />
+          </form>
+        </div>
+      </div>
+    </div>
  );
 }
 

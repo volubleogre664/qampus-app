@@ -13,13 +13,13 @@
   justify-content: space-between;
   align-items: center;
   margin-left: auto;  margin-left: auto;
-  margin-top: 5px;
+  margin-top: 0;
 }
 
 .home > .home__header > .home__logo{
   width: fit-content;
   padding: 5px;
-  
+  filter: drop-shadow(2px 4px 4px #000000);
 }
 
 .home > .home__header > .home__logo > .home__logoImg {
@@ -273,7 +273,7 @@
   .home > .home__header > .home__logo{
     padding-top: 5px;
     width: fit-content;
-    padding-right: 10vw;
+    padding-right: 10vw;    
   }
   
   .home > .home__header > .home__logo > .home__logoImg {
