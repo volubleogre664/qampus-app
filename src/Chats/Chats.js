@@ -69,11 +69,11 @@ function Chats() {
               <PersonIcon />
             </span>
 
-            <span className="name">Elon</span>
           </div>
 
           <div className="right">
-          Offline <br /> Last seen now
+          <label className="online__status">Offline</label>
+          <label className="last__seen">Last seen: Now</label>
           </div>
         </div>
 
