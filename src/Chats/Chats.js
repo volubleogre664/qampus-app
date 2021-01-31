@@ -68,7 +68,7 @@ function Chats() {
             <span className="iconContainer">
               <PersonIcon />
             </span>
-
+            <span className="name">Elon</span>
           </div>
 
           <div className="right">
@@ -83,17 +83,26 @@ function Chats() {
 
         <div className="chats__mainFooter">
           <form>
-            <AttachmentIcon />
+            
+            <button className="btnAttach">
+              <AttachmentIcon />
+            </button>
 
-            <EmojiEmotionsIcon />
+            <button className="btnEmoji">
+              <EmojiEmotionsIcon />
+            </button>
+
 
             <input placeholder="Type message..." className="sendMsgInput" onChange={handleChange} />
 
-            <button type="submit" onClick={showMsg}>
+            <button className="btnSend" type="submit" onClick={showMsg}>
               <SendIcon />
             </button>
 
-            <MicIcon />
+            <button className="btnRecord">
+              <MicIcon />
+            </button>
+
           </form>
         </div>
       </div>
