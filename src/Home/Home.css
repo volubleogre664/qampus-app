@@ -256,7 +256,9 @@
   align-items: center;
   justify-content: center;
   overflow-x: auto;
+  overflow-y: hidden;
 }
+
 
 .searchBook:focus{
   border:2px solid white;

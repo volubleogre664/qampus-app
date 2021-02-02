@@ -64,14 +64,12 @@ function Home() {
 	    	subtitle="Here you will find a collection of all the books you have uploaded."
 	  		/>
 
-	  		<Link to="/chats">
 	  		<MenuItem
 			class="chat"
 			icon="chat"
 			title="Chats"
 			subtitle="Connect with other students who are registered on Qampus."
 			/> 
-			</Link>
 
 			<MenuItem
 			class="navigation"

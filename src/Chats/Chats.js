@@ -30,7 +30,25 @@ function Chats() {
  }
 
   return (
+    <body>
+    <div className="nav__section">
+    <img className="nav__logo" src="../logo.png"></img>
+    <nav>
+    <ul class="nav_links">
+    <li className="link__home"><a href="/">Home</a></li>
+    <li><a href="#">Upload</a></li>
+    <li><a href="#">Book Collection</a></li>
+    <li className="link__chat"><a href="./Chats">Chats</a></li>
+    <li><a href="#">Navigation</a></li>
+    <li><a href="#">Settings</a></li>
+    <li><a href="#">Help</a></li>
+    <li><a href="#">Profile</a></li>
+    <li><a href="./Login">Logout</a></li>
+    </ul>
+    </nav>
+    </div>
     <div className="chats">
+    
       <div className="chats__sidebar">
         <div className="chats__sidebarHeader">
           <h2 className="title">Chats</h2>
@@ -107,6 +125,7 @@ function Chats() {
         </div>
       </div>
     </div>
+    </body>
  );
 }
 
