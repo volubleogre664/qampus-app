@@ -3,6 +3,8 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import SearchIcon from "@material-ui/icons/Search";
 import PersonIcon from "@material-ui/icons/Person";
+import MenuIcon from "@material-ui/icons/MenuRounded";
+import CloseIcon from "@material-ui/icons/CloseRounded";
 import AttachmentIcon from "@material-ui/icons/Attachment";
 import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
 import {Link} from "react-router-dom";
@@ -34,6 +36,14 @@ function Chats() {
     <div className="nav__section">
     <img className="nav__logo" src="../logo.png"></img>
     <nav>
+     
+      <label for="mycheckbox" className="menu__button"> 
+      <MenuIcon className="menu__icon"/>
+      {/* <CloseIcon className="close__icon"/> */}
+       </label>
+      <input type="checkbox" id="mycheckbox">
+
+      </input>
     <ul class="nav_links">
     <li className="link__home"><a href="/">Home</a></li>
     <li><a href="#">Upload</a></li>
@@ -62,7 +72,7 @@ function Chats() {
 
         <div className="chats__sidebarBody">
           <div className="search__container">
-            <input className="search__input" placeholder="Search chats..." />
+            <input className="search__input" placeholder="" />
 	          <SearchIcon />
 	        </div>
 
@@ -111,7 +121,7 @@ function Chats() {
             </button>
 
 
-            <input placeholder="Type message..." className="sendMsgInput" onChange={handleChange} />
+            <input placeholder="" className="sendMsgInput" onChange={handleChange} />
 
             <button className="btnSend" type="submit" onClick={showMsg}>
               <SendIcon />

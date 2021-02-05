@@ -45,3 +45,24 @@
   font-weight: 300;
 
 }
+@media only screen and (max-width:850px)
+{
+  .rec > .message__text {
+    font-size: 1em;
+    background:
+    rgba( 29, 161, 242, 0.55 );
+    box-shadow:
+    0 2px 8px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter:
+    blur( 11.0px );
+    -webkit-backdrop-filter:
+    blur( 11.0px );
+    border-radius:
+    10px;
+  }
+  .rec > .message__time {
+    margin-left: auto;
+    font-size: .8em;
+    font-weight: 300;
+  }
+}

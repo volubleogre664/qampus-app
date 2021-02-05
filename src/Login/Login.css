@@ -342,6 +342,7 @@ margin-top:20%;
     position: center;
     left: 25%;
     padding-top: 0;
+    padding-bottom: 0;
     margin-top: 30px;
   }
   
@@ -397,7 +398,8 @@ margin-top:20%;
   .login > .login__footer {
     width: 90%;
     font-size: 1rem;
-    display:4flex;
+    font-weight: 300;
+    display:flex;
     flex-direction: column;
     align-items:center;
     margin-top: 30px;
@@ -590,6 +592,7 @@ margin-top:20%;
     position: center;
     left: 25%;
     padding-top: 0;
+    padding-bottom: 0;
     margin-top: 30px;
   }
   
@@ -643,6 +646,7 @@ margin-top:20%;
   .login > .login__footer {
     width: 90%;
     font-size: 1rem;
+    font-weight: 300;
     display:flex;
     flex-direction: column;
     align-items:center;
