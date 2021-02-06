@@ -6,7 +6,7 @@ function Contact({name}) {
   return (
     <div className="contact">
       <span className="contact__iconContainer">
-	<PersonIcon className="contact__icon" />
+	      <PersonIcon className="contact__icon" />
       </span>
 
       <span className="contact__name">{name}</span>

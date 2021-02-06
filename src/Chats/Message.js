@@ -1,7 +1,8 @@
 import React from "react";
 import "./Message.css";
 
-function Message({messages, state}) {
+function Message({messages}) {
+  const state = false;
   const time = "12:00";
 
   return(

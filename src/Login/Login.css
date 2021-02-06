@@ -2,17 +2,18 @@
   box-sizing: border-box;
   overflow: hidden;
   color: #fff;
-  width: 80%;
+  width: 100%;
   margin: auto;
-  padding: 20px;
-  margin-top: 20px;
-  background: rgba(0, 0, 0, 0.3);
-  box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, 0.8), -1px -2px 2px 0 rgba(255, 255, 255, 0.4);
+  margin-top: 0;
+  /*background: rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, 0.8), -1px -2px 2px 0 rgba(255, 255, 255, 0.4);*/
+  background-color: transparent;
 }
 
 .login > .login__header {
   display: grid;
   place-items: center;
+  margin-top: 13vh;
 }
 
 .login > .login__header > .login__headerLogo {
@@ -20,24 +21,38 @@
   height: 80px;
   object-fit: contain;
   margin: 0 auto;
+  filter: drop-shadow(2px 4px 4px #000000);
+}
+
+.login > .welcome__text{
+  text-align: center;
+  margin-top: 30px;
+  font-size: 2.2em;
+  font-weight: 300;
+  padding-left: 10px;
+  padding-right: 10px;
+  filter: drop-shadow(2px 4px 8px #585858);
+
 }
 
 .login > .login__main {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content:center;
   margin-top: 30px;
 }
 
 .login > .login__main > .login__mainLeft {
-  padding-top: 10px;
+  margin-top: 0;
+  margin-right: 180px;
 }
 
 .login > .login__main > .login__mainLeft > .title {
-  font-size: 1.3rem;
-  font-weight: 800;
+  font-size: 1.9rem;
+  font-weight: 700;
   margin-bottom: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .login > .login__main > .login__mainLeft > form > div {
@@ -45,12 +60,15 @@
 }
 
 .login > .login__main > .login__mainLeft > form > div > p {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin-left: 2px;
+  font-weight: 300;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .login > .login__main > .login__mainLeft > form > div > input {
   width: 85%;
+
 }
 
 .login > .login__main > .login__mainLeft > form > .form__btns {
@@ -64,8 +82,12 @@
 .login > .login__main > .login__mainLeft > form > .form__btns > .form__btnSubmit {
   width: 120px;
   padding: 4px 0;
-  background: rgb(21, 141, 242);
-  font-weight: bold;
+  background: #03A9F4;
+  font-weight: 300;
+  color: #fff;
+  text-transform: lowercase;
+  font-size: 1.4em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .login > .login__main > .login__mainLeft > form > .form__btns > p {
@@ -74,27 +96,35 @@
 
 .login > .login__main > .login__mainLeft > form > .form__btns > .form__signupLink {
   color: #fff;
+  font-size: 1.4em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 300;
 }
 
 .login > .login__main > .login__mainSeparator {
-  height: 250px;
+  height: 40vh;
   width: 2px;
   background: #fff;
   position: relative;
-  left: -40px;
+  left: -100px;
+  padding-top: 30px;
+  padding-bottom: 10px;
 }
 
 .login > .login__main > .login__mainRight {
   width: auto;
   align-self: flex-start;
-  margin-top: 15px;
+  margin-top: 5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .login > .login__main > .login__mainRight > .title {
-  font-size: 1.3rem;
+  margin-top: 20px;
+  font-size: 1.9rem;
+  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .login > .login__main > .login__mainRight > .homeLink > .container {
@@ -107,26 +137,572 @@
   justify-content: space-evenly;
   align-items: center;
   margin-top: 30px;
-  position: relative;
+  margin-bottom: 50px;
   box-sizing: border-box;
+  border: #fff solid 1px;
+  border-radius: 3px;
+  pointer-events: none;
 }
 
 .login > .login__main > .login__mainRight > .homeLink > .container > .MuiSvgIcon-root {
   font-size: 5rem;
   padding: 0;
+  color: rgb(81, 84, 85);
+margin-top:20%;
 }
 
 .login > .login__main > .login__mainRight > .homeLink > .container > p {
-  margin-top: -10px;
-  font-size: 1.1rem;
+  margin-top: 0px;
+  font-size: 1.2rem;
   text-decoration: none !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: #000;
+  height: 100%;
+  justify-content: center;
 }
 
 .login > .login__footer {
   width: 100%;
-  font-size: 0.8rem;
-  display: grid;
+  font-size: 1.5rem;
+  font-weight:800;
+  margin-top: 10vh;
+  display:grid;
   place-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  padding-left: 30px;
 }
 
+.login > .login__main > .login__mainLeft > form > .form__id > .form__idInput{
+  border-bottom: lightgray solid 4px;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+  border-radius: 2px;
+  height: 30px;
+  width: 240px;
+  padding-left: 4px;
+} 
+.login > .login__main > .login__mainLeft > form > .form__id > .form__idInput:focus{
+  border-bottom: #03A9F4 solid 4px;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+  border-radius: 2px;
+  height: 30px;
+} 
+
+.login > .login__main > .login__mainLeft > form > .form__password > .form__passwordInput{
+  border-bottom: lightgray solid 4px;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+  border-radius: 2px;
+  height: 30px;
+  width: 240px;
+  padding-left: 4px;
+} 
+.login > .login__main > .login__mainLeft > form > .form__password > .form__passwordInput:focus{
+  border-bottom: #03A9F4 solid 4px;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+  border-radius: 2px;
+  height: 30px;
+} 
+
+@media screen and (max-width: 550px){
+  .login {
+    box-sizing: inherit;
+    display: inline-block;
+    color: #fff;
+    width: 100%;
+    margin: auto;
+    margin-top: 0;
+    /*background: rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+    /*box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, 0.8), -1px -2px 2px 0 rgba(255, 255, 255, 0.4);
+    background-color: transparent;*/
+    background:
+    rgba( 0, 0, 0, 0.10 );
+    box-shadow:
+    0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter:
+    blur( 2.5px );
+    -webkit-backdrop-filter:
+    blur( 2.5px );
+    border-radius:
+    10px;
+    overflow-y: hidden;
+  }
+  
+  .login > .login__header {
+    display: flex;
+    place-items: center;
+    margin-top: 5vh;
+  }
+  
+  .login > .login__header > .login__headerLogo {
+    width: 180px;
+    height: 80px;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+  
+  .login > .welcome__text{
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.5em;
+    font-weight: 300;
+    padding-left: 10px;
+    padding-right: 10px;
+    filter: drop-shadow(2px 4px 8px #585858);
+
+  }
+  .login > .login__main {
+    width: 90%;
+    display: inline-block;
+    align-items: center;
+    justify-content:center;
+    margin-left: 5%;
+    margin-top: 7vh;
+    border-radius: 2px;
+    border-top: rgb(255, 255, 255) solid 1px;
+  }
+  
+  .login > .login__main > .login__mainLeft {
+    width: 80%;
+    margin-top: 5vh;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items:stretch;
+  }
+  
+  .login > .login__main > .login__mainLeft > .title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .login > .login__main > .login__mainLeft > form > div {
+    margin-bottom: 15px;
+  }
+  
+  .login > .login__main > .login__mainLeft > form > div > p {
+    font-size: 1.2rem;
+    margin-left: 2px;
+    font-weight: 300;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .login > .login__main > .login__mainLeft > form > div > input {
+    width: 100%;
+  
+  }
+  
+  .login > .login__main > .login__mainLeft > form > .form__btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 5vh;
+  }
+  
+  .login > .login__main > .login__mainLeft > form > .form__btns > .form__btnSubmit {
+    width: 120px;
+    padding: 4px 0;
+    background: #03A9F4;
+    font-weight: 300;
+    color: #fff;
+    text-transform: lowercase;
+    left: 5vw;
+    font-size: 1.2em;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .login > .login__main > .login__mainLeft > form > .form__btns > p {
+    margin-left: 10vw;
+    
+  }
+  
+  .login > .login__main > .login__mainLeft > form > .form__btns > .form__signupLink {
+    color: #fff;
+    font-size: 1.2em;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+    margin-left: 10vw;
+  }
+  
+  .login > .login__main > .login__mainSeparator {
+    height: 1px;
+    width: 50%;
+    background: rgb(255, 255, 255);
+    position: center;
+    left: 25%;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 30px;
+  }
+  
+  .login > .login__main > .login__mainRight {
+    width: auto;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .login > .login__main > .login__mainRight > .title {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .login > .login__main > .login__mainRight > .homeLink > .container {
+    width: 130px;
+    height: 120px;
+    background: #fff;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 30px;
+    box-sizing: border-box;
+    border: #fff solid 1px;
+    border-radius: 3px;
+    pointer-events: none;
+    box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, 0.8), -1px -2px 2px 0 rgba(255, 255, 255, 0.4);
+
+  }
+  
+
+  .login > .login__main > .login__mainRight > .homeLink > .container > .MuiSvgIcon-root {
+    font-size: 4rem;
+    padding: 0;
+    color: rgb(81, 84, 85);
+  }
+  
+  .login > .login__main > .login__mainRight > .homeLink > .container > p {
+    margin-top: 0px;
+    font-size: 1.2rem;
+    text-decoration: none !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #000;
+  }
+
+
+  .login > .login__footer {
+    width: 90%;
+    font-size: 1rem;
+    font-weight: 300;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: -2vw;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif  ;
+  }
+  
+  .login > .login__main > .login__mainLeft > form > .form__id > .form__idInput{
+    border-bottom: lightgray solid 4px;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-radius: 2px;
+    height: 30px;
+    width: 100%;
+    flex: 1;
+    padding-left: 4px;
+    font-size: 1.1em;
+
+  } 
+  .login > .login__main > .login__mainLeft > form > .form__id > .form__idInput:focus{
+    border-bottom: #03A9F4 solid 4px;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-radius: 2px;
+    height: 30px;
+    flex: 1;
+    padding-left: 4px;
+    font-size: 1.1em;
+    outline-style: none;
+
+  } 
+  
+  .login > .login__main > .login__mainLeft > form > .form__password > .form__passwordInput{
+    border-bottom: lightgray solid 4px;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-radius: 2px;
+    height: 30px;
+    width: 100%;
+    padding-left: 4px;
+    font-size: 1.1em;
+    
+  } 
+  .login > .login__main > .login__mainLeft > form > .form__password > .form__passwordInput:focus{
+    border-bottom: #03A9F4 solid 4px;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-radius: 2px;
+    height: 30px;
+    font-size: 1.1em;
+    outline-style: none;
+  } 
+}
+
+@media screen and (max-width: 800px) and (min-width: 550px){
+  .login {
+    box-sizing: inherit;
+    display: inline-block;
+    color: #fff;
+    width: 100%;
+    margin: auto;
+    margin-top: 0;
+    /*background: rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+    /*box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, 0.8), -1px -2px 2px 0 rgba(255, 255, 255, 0.4);
+    background-color: transparent;*/
+    background:
+    rgba( 0, 0, 0, 0.10 );
+    box-shadow:
+    0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter:
+    blur( 2.5px );
+    -webkit-backdrop-filter:
+    blur( 2.5px );
+    border-radius:
+    10px;
+    overflow-y: hidden;
+  }
+  
+  .login > .login__header {
+    display: flex;
+    place-items: center;
+    margin-top: 5vh;
+  }
+  
+  .login > .login__header > .login__headerLogo {
+    width: 180px;
+    height: 80px;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+  
+  .login > .welcome__text{
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.5em;
+    font-weight: 300;
+    padding-left: 10px;
+    padding-right: 10px;
+    filter: drop-shadow(2px 4px 8px #585858);
+
+  }
+  .login > .login__main {
+    width: 90%;
+    display: inline-block;
+    align-items: center;
+    justify-content:center;
+    margin-left: 5%;
+    margin-top: 7vh;
+    border-radius: 2px;
+    border-top: rgb(255, 255, 255) solid 2px;
+  }
+  
+  .login > .login__main > .login__mainLeft {
+    width: 80%;
+    margin-top: 5vh;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items:stretch;
+  }
+  
+  .login > .login__main > .login__mainLeft > .title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-left: 20vw;
+  }
+  
+  .login > .login__main > .login__mainLeft > form > div {
+    margin-bottom: 15px;
+  }
+  
+  .login > .login__main > .login__mainLeft > form > div > p {
+    font-size: 1.2rem;
+    margin-left: 10vw;
+    font-weight: 300;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .login > .login__main > .login__mainLeft > form > div > input {
+    max-width: 50vw;
+    margin-left:10vw;
+  }
+  
+  .login > .login__main > .login__mainLeft > form > .form__btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 5vh;
+    margin-left: 1vh;
+  }
+  
+  .login > .login__main > .login__mainLeft > form > .form__btns > .form__btnSubmit {
+    width: 120px;
+    padding: 4px 0;
+    background: #03A9F4;
+    font-weight: 300;
+    color: #fff;
+    text-transform: lowercase;
+    font-size: 1.2em;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .login > .login__main > .login__mainLeft > form > .form__btns > p {
+    margin-left: 0vw;
+    
+  }
+  
+  .login > .login__main > .login__mainLeft > form > .form__btns > .form__signupLink {
+    color: #fff;
+    font-size: 1.2em;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+  }
+  
+  .login > .login__main > .login__mainSeparator {
+    height: 1px;
+    width: 50%;
+    background: rgb(255, 255, 255);
+    position: center;
+    left: 25%;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 30px;
+  }
+  
+  .login > .login__main > .login__mainRight {
+    width: auto;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .login > .login__main > .login__mainRight > .title {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .login > .login__main > .login__mainRight > .homeLink > .container {
+    width: 130px;
+    height: 120px;
+    background: #fff;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 30px;
+    box-sizing: border-box;
+    border: #fff solid 1px;
+    border-radius: 3px;
+    pointer-events: none;
+    box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, 0.8), -1px -2px 2px 0 rgba(255, 255, 255, 0.4);
+
+  }
+  
+  .login > .login__main > .login__mainRight > .homeLink > .container > .MuiSvgIcon-root {
+    font-size: 4rem;
+    padding: 0;
+    color: rgb(81, 84, 85);
+  }
+  
+  .login > .login__main > .login__mainRight > .homeLink > .container > p {
+    margin-top: 0px;
+    font-size: 1.2rem;
+    text-decoration: none !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #000;
+  }
+  
+  .login > .login__footer {
+    width: 90%;
+    font-size: 1rem;
+    font-weight: 300;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 0vw;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif  ;
+  }
+  
+  .login > .login__main > .login__mainLeft > form > .form__id > .form__idInput{
+    border-bottom: lightgray solid 4px;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-radius: 2px;
+    height: 30px;
+    width: 100%;
+    flex: 1;
+    padding-left: 4px;
+    font-size: 1.1em;
+
+  } 
+  .login > .login__main > .login__mainLeft > form > .form__id > .form__idInput:focus{
+    border-bottom: #03A9F4 solid 4px;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-radius: 2px;
+    height: 30px;
+    flex: 1;
+    padding-left: 4px;
+    font-size: 1.1em;
+    outline-style: none;
+
+  } 
+  
+  .login > .login__main > .login__mainLeft > form > .form__password > .form__passwordInput{
+    border-bottom: lightgray solid 4px;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-radius: 2px;
+    height: 30px;
+    width: 100%;
+    padding-left: 4px;
+    font-size: 1.1em;
+    
+  } 
+  .login > .login__main > .login__mainLeft > form > .form__password > .form__passwordInput:focus{
+    border-bottom: #03A9F4 solid 4px;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-radius: 2px;
+    height: 30px;
+    font-size: 1.1em;
+    outline-style: none;
+  } 
+}
