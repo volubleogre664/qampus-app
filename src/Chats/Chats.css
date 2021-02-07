@@ -1,21 +1,28 @@
+
 .nav__section{
   display: flex;
-  padding-left: 20px;
-  padding-right: 20px;
   justify-content:center;
   width: 96%;
   padding-left: 2%;
+  
 }
 
+body{
+  width: 100vw;
+  max-width: 1920px;
+  height: 95vh;
+  max-height: 1080px;
+  
+}
 .chats {
   display: flex;
-  height: 90vh;
-  width: 96vw;
+  height: 90%;
+  width: 96%;
   overflow: hidden;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
-  padding-left: 2vw;
-  padding-right: 2vw;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-left: 2%;
+  padding-right: 2%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -24,12 +31,15 @@
 .nav_links > li, a {
   font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: 300;
-  font-size: 1.4em;
+  font-size: 1.5rem;
   color: black;
   text-decoration: none;
   outline: none;
 }
 
+#mycheckbox{
+  display: none;
+}
 .nav__logo{
   height: 46px;
   width: 150px;
@@ -81,7 +91,8 @@ nav {
 
 .chats > .chats__sidebar {
   flex: 0.25;
-  height: 100%;
+  height: 95%;
+  min-width: 300px;
   max-width: 350px;
   color: #fff;
   padding: 10px;
@@ -103,17 +114,18 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 5vh;
-  margin-bottom: 2vh;
+  margin-top: 5%;
+  margin-bottom: 2%;
   max-width: 80%;
   margin-left: 10%;
   border-bottom: 2px solid white;
-  padding-bottom: 2vh;
+  padding-bottom: 2%;
 }
 
 .chats > .chats__sidebar > .chats__sidebarHeader > .title {
   font-weight: 300;
-  font-size: 2.2em;
+  font-size: 1.7rem;
+  margin-bottom: 5px;
 }
 
 .chats > .chats__sidebar > .chats__sidebarHeader > .icon__container {
@@ -130,7 +142,7 @@ nav {
 .chats > .chats__sidebar > .chats__sidebarHeader > .icon__container > * > .MuiSvgIcon-root {
   color: gray;
   margin-top: 5px;
-  font-size: 1.5em;
+  font-size: 1.5rem;
 }
 
 .chats > .chats__sidebar > .chats__sidebarBody {
@@ -149,7 +161,7 @@ nav {
   align-self: center;
   height: 25px;
   border-radius: 5px;
-  margin-bottom: 2vh;
+  margin-bottom: 2%;
 }
 
 .chats > .chats__sidebar > .chats__sidebarBody > .search__container > .search__input {
@@ -157,13 +169,13 @@ nav {
   outline: none;
   border-bottom: 2px solid gray;
   padding: 3px;
-  font-size: 1.4em;
+  font-size: 1.4rem;
   display: flex;
   width: 100%
 }
 
 .chats > .chats__sidebar > .chats__sidebarBody > .search__container > .MuiSvgIcon-root {
-  font-size: 2.2em;
+  font-size: 2.2rem;
 }
 
 .chats > .chats__sidebar > .chats__sidebarBody > .contactSection {
@@ -175,13 +187,13 @@ nav {
 
 .chats > .chats__sidebar > .chats__sidebarFooter {
   position: absolute;
-  bottom: 20px;
+  bottom: 10px;
   display: flex;
-  padding-top: 20px;
+  padding-top: 10px;
   justify-content: left;
   width: 80%;
   margin-left: 10%;
-  font-size: 1.5em;
+  font-size: 1.4rem;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: 300;
 }
@@ -191,14 +203,14 @@ nav {
 }
 
 .chats > .chats__sidebar > .chats__sidebarFooter > .MuiSvgIcon-root {
-  font-size: 1.4em;
-  margin-left: 10px;
+  font-size: 1.4rem;
+  margin: auto 1%;
 }
 
 .chats > .chats__main {
   flex: 1;
   margin-left: 10px;
-  height: 100%;
+  height: 95%;
   padding: 10px;
   color: #fff;
   display: flex;
@@ -220,30 +232,30 @@ nav {
   display: flex;
   justify-content: space-between;
   position:relative;
-  margin-top: 3vh;
   width: 96%;
   max-width:96%;
   margin-left: 2%;
   padding-bottom: 0px;
+  border: none;
+  border-bottom: 2px solid white;
   
 }
-
+/* //Removee to add bottom border
 .chats > .chats__main > .chats__mainHeader::after{
   position: absolute;
   content: "";
-  bottom: -10px;
   height: 2px;
   width: 100%;
   background: #ffff;
-}
+} */
 
 .chats > .chats__main > .chats__mainHeader > .right {
-  font-size: 1.6em;
+  font-size: 1.4rem;
   font-weight: 300;
   display: flex;
   flex-direction: column;
   text-align: right;
-  
+  padding-right: 2%;
 }
 
 .chats > .chats__main > .chats__mainHeader > .left {
@@ -253,29 +265,31 @@ nav {
   max-width: 100%;
 }
 .chats > .chats__main > .chats__mainHeader > .left > .name {
-  font-size: 2.1em;
+  font-size: 1.6rem;
   font-size: 300;
-  padding-top: 10px;
+  padding-top:10px;
 }
 
 .chats > .chats__main > .chats__mainHeader > .left  > .iconContainer {
-  height: 50px;
-  width: 50px;
+  box-sizing: border-box;
+  height: 45px;
+  width: 45px;
   border-radius: 50%;
   background: gray;
   display: flex;
   align-items:center;
   justify-content:center;
   margin-right: 5px;
+  margin-bottom: 5px;
 }
 .chats > .chats__main > .chats__mainHeader > .left > .iconContainer > * {
-  font-size:3em ;
+  font-size:3rem ;
 }
 .chats > .chats__main > .chats__mainBody {
   flex: 1;
   width: 94%;
   margin-left: 3%;
-  margin-top: 20px;
+  margin-top: 5px;
   overflow:auto;
   scroll-behavior: smooth;
 }
@@ -287,7 +301,7 @@ nav {
   width: 94%;
   margin-left: 2%;
   margin-bottom: 1%;
-  margin-top: 20px;
+  margin-top: 1%;
   background: rgba( 0, 0, 0, 0.4);
   border-radius: 7px;
 }
@@ -310,7 +324,16 @@ nav {
   border-radius: 5px;
   outline-width: 0;
   border: transparent solid 2px;
-  font-size: 1.6em;
+  font-size: 1.5rem;
+}
+.chats > .chats__main > .chats__mainFooter > form > .sendMsgInput {
+  flex: 1;
+  padding: 3px;
+  padding-left: 4px;
+  border-radius: 5px;
+  outline-width: 0;
+  border: transparent solid 2px;
+  font-size: 1.5rem;
 }
 
 .chats > .chats__main > .chats__mainFooter > form > button {
@@ -323,17 +346,31 @@ nav {
 
 .chats > .chats__main > .chats__mainFooter > form > button > *{
   color: white;
-  font-size: 2.2em;
+  font-size: 2rem;
+  transition: .2s ease-in;
 }
 
 .chats > .chats__main > .chats__mainFooter > form > button > *:hover{
-  color: #03A9F4;
-  font-size: 2.2em;
+  color: #fff;
+  font-size: 2.3rem;
+  filter: drop-shadow(4px 4px 8px dodgerblue);
 
 }
 nav > .menu__button {
   display: none;
 }
+/*Adjust navbar font*/
+/* @media only screen and (max-width: 1024px)and (min-width: 850px){
+  .nav_links > li, a {
+    font-size: 1.3vw;
+  }
+
+ 
+  .chats > * {
+    font-size: 1vw;
+  }
+} */
+
 @media screen and (max-width:850px){
 
   body{
@@ -359,6 +396,7 @@ nav > .menu__button {
   .chats {
     display: flex;
     width: 190%;
+    max-width: 1024px;
     height: 88vh;
     margin-top: 60px;
     overflow-x: scroll;
@@ -397,9 +435,7 @@ nav > .menu__button {
     font-size: 3.5em;
 
   }
-  #mycheckbox{
-    display: none;
-  }
+  
  
 
   nav > .menu__button:focus,:hover ~ .nav_links{
@@ -579,7 +615,7 @@ nav > .menu__button {
   }
   
   .chats > .chats__sidebar > .chats__sidebarFooter {
-    position: fixed;
+    position:absolute;
     bottom: 20px;
     display: flex;
     padding-top: 20px;

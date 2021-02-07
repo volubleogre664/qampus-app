@@ -1,7 +1,8 @@
 .contact {
   width: 100%;
-  background:
-  rgba( 29, 161, 242, 0.55 );
+  background: linear-gradient(275deg, rgba( 29, 161, 242, .55), rgba(47, 40, 74, .55));
+  /* background:
+  rgba( 29, 161, 242, 0.55 ); */
   box-shadow:
   0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter:
