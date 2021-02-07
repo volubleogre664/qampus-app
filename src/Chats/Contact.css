@@ -1,15 +1,16 @@
 .contact {
   width: 100%;
-  background:
-  rgba( 29, 161, 242, 0.55 );
-  box-shadow:
-  0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter:
-  blur( 11.0px );
-  -webkit-backdrop-filter:
-  blur( 11.0px );
-  border-radius:
-  10px; 
+  background: linear-gradient(
+    275deg,
+    rgba(29, 161, 242, 0.55),
+    rgba(47, 40, 74, 0.55)
+  );
+  /* background:
+  rgba( 29, 161, 242, 0.55 ); */
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(11px);
+  -webkit-backdrop-filter: blur(11px);
+  border-radius: 10px;
   margin-bottom: 10px;
   border-radius: 4px;
   padding: 5px;
@@ -31,22 +32,19 @@
 }
 
 .contact > .contact__name {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 300;
   padding-left: 5px;
 }
 
-.contact > .contact__iconContainer > .contact__icon{
-  font-size: 1.7em;
+.contact > .contact__iconContainer > .contact__icon {
+  font-size: 1.5rem;
 }
 
-@media only screen and (max-width:850px)
-{
+@media only screen and (max-width: 850px) {
   .contact > .contact__name {
     font-size: 1.2rem;
     font-weight: 300;
     padding-left: 5px;
   }
-
-
 }

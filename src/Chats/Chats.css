@@ -1,45 +1,45 @@
-.nav__section{
+.nav__section {
   display: flex;
-  padding-left: 20px;
-  padding-right: 20px;
-  justify-content:center;
+  justify-content: center;
   width: 96%;
   padding-left: 2%;
 }
 
+/* I set the app to be display flex. so here no longer set width and height
+   flex: 1; does that for us. */
 .chats {
+  flex: 1;
+  box-sizing: border-box;
   display: flex;
-  height: 90vh;
-  width: 96vw;
   overflow: hidden;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
-  padding-left: 2vw;
-  padding-right: 2vw;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  padding: 2%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-
-
-.nav_links > li, a {
-  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+.nav_links > li,
+a {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: 300;
-  font-size: 1.4em;
+  font-size: 1.2rem;
   color: black;
   text-decoration: none;
   outline: none;
 }
 
-.nav__logo{
+#mycheckbox {
+  display: none;
+}
+.nav__logo {
   height: 46px;
   width: 150px;
   margin-right: 10px;
-  display:flex;
+  display: flex;
   margin-top: 5px;
   order: 2;
   margin-left: -20px;
   filter: drop-shadow(2px 4px 4px #000000);
-
 }
 
 nav {
@@ -57,7 +57,7 @@ nav {
 }
 
 .nav_links {
-  list-style: none; 
+  list-style: none;
 }
 
 .nav_links > li {
@@ -65,16 +65,15 @@ nav {
   padding: 0px 20px;
 }
 
-.nav_links  > li > a {
+.nav_links > li > a {
   transition: all 0.1s ease 0s;
-
 }
 
 .nav_links > li > a:hover {
   color: rgb(21, 161, 242);
 }
 
-.nav_links > .link__chat > *{
+.nav_links > .link__chat > * {
   color: gray;
   font-weight: 300;
 }
@@ -82,20 +81,16 @@ nav {
 .chats > .chats__sidebar {
   flex: 0.25;
   height: 100%;
+  min-width: 300px;
   max-width: 350px;
   color: #fff;
   padding: 10px;
   position: relative;
-  background:
-  rgba( 0, 0, 0, 0.30 );
-  box-shadow:
-  0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter:
-  blur( 2.5px );
-  -webkit-backdrop-filter:
-  blur( 2.5px );
-  border-radius:
-  10px;
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-radius: 10px;
   overflow-y: hidden;
 }
 
@@ -103,17 +98,18 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 5vh;
-  margin-bottom: 2vh;
+  margin-top: 5%;
+  margin-bottom: 2%;
   max-width: 80%;
   margin-left: 10%;
   border-bottom: 2px solid white;
-  padding-bottom: 2vh;
+  padding-bottom: 2%;
 }
 
 .chats > .chats__sidebar > .chats__sidebarHeader > .title {
   font-weight: 300;
-  font-size: 2.2em;
+  font-size: 1.3rem;
+  margin-bottom: 5px;
 }
 
 .chats > .chats__sidebar > .chats__sidebarHeader > .icon__container {
@@ -127,17 +123,22 @@ nav {
   display: none;
 }
 
-.chats > .chats__sidebar > .chats__sidebarHeader > .icon__container > * > .MuiSvgIcon-root {
+.chats
+  > .chats__sidebar
+  > .chats__sidebarHeader
+  > .icon__container
+  > *
+  > .MuiSvgIcon-root {
   color: gray;
   margin-top: 5px;
-  font-size: 1.5em;
+  font-size: 1.3rem;
 }
 
 .chats > .chats__sidebar > .chats__sidebarBody {
-  display:flex;
+  display: flex;
   flex-direction: column;
   width: 85%;
-  margin-left: 7.5%;
+  margin: auto;
 }
 
 .chats > .chats__sidebar > .chats__sidebarBody > .search__container {
@@ -145,44 +146,53 @@ nav {
   background: #fff;
   padding: 5px;
   color: black;
-  width:90%;
+  width: 90%;
   align-self: center;
   height: 25px;
   border-radius: 5px;
-  margin-bottom: 2vh;
+  margin-bottom: 2%;
 }
 
-.chats > .chats__sidebar > .chats__sidebarBody > .search__container > .search__input {
+.chats
+  > .chats__sidebar
+  > .chats__sidebarBody
+  > .search__container
+  > .search__input {
   border: none;
   outline: none;
   border-bottom: 2px solid gray;
   padding: 3px;
-  font-size: 1.4em;
+  font-size: 1.2rem;
   display: flex;
-  width: 100%
+  width: 100%;
 }
 
-.chats > .chats__sidebar > .chats__sidebarBody > .search__container > .MuiSvgIcon-root {
-  font-size: 2.2em;
+.chats
+  > .chats__sidebar
+  > .chats__sidebarBody
+  > .search__container
+  > .MuiSvgIcon-root {
+  font-size: 2rem;
 }
 
 .chats > .chats__sidebar > .chats__sidebarBody > .contactSection {
   flex: 1;
+  margin: auto;
   margin-top: 15px;
   width: 87%;
-  margin-left: 5%;
 }
 
 .chats > .chats__sidebar > .chats__sidebarFooter {
   position: absolute;
-  bottom: 20px;
+  bottom: 10px;
   display: flex;
-  padding-top: 20px;
+  padding-top: 10px;
   justify-content: left;
   width: 80%;
   margin-left: 10%;
-  font-size: 1.5em;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1.1rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: 300;
 }
 
@@ -191,8 +201,8 @@ nav {
 }
 
 .chats > .chats__sidebar > .chats__sidebarFooter > .MuiSvgIcon-root {
-  font-size: 1.4em;
-  margin-left: 10px;
+  font-size: 1.4rem;
+  margin: auto 1%;
 }
 
 .chats > .chats__main {
@@ -203,92 +213,84 @@ nav {
   color: #fff;
   display: flex;
   flex-direction: column;
-  background:
-  rgba( 0, 0, 0, 0.30 );
-  box-shadow:
-  0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter:
-  blur( 2.5px );
-  -webkit-backdrop-filter:
-  blur( 2.5px );
-  border-radius:
-  10px;
-  overflow-y: hidden;
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-radius: 10px;
+  overflow-y: auto;
 }
 
 .chats > .chats__main > .chats__mainHeader {
   display: flex;
   justify-content: space-between;
-  position:relative;
-  margin-top: 3vh;
+  position: relative;
   width: 96%;
-  max-width:96%;
-  margin-left: 2%;
+  margin: auto;
   padding-bottom: 0px;
-  
+  border: none;
+  border-bottom: 2px solid white;
 }
-
+/* //Removee to add bottom border
 .chats > .chats__main > .chats__mainHeader::after{
   position: absolute;
   content: "";
-  bottom: -10px;
   height: 2px;
   width: 100%;
   background: #ffff;
-}
+} */
 
 .chats > .chats__main > .chats__mainHeader > .right {
-  font-size: 1.6em;
+  font-size: 1rem;
   font-weight: 300;
   display: flex;
   flex-direction: column;
   text-align: right;
-  
+  padding-right: 2%;
 }
 
 .chats > .chats__main > .chats__mainHeader > .left {
   flex: 1;
   display: flex;
   justify-content: left;
-  max-width: 100%;
 }
 .chats > .chats__main > .chats__mainHeader > .left > .name {
-  font-size: 2.1em;
-  font-size: 300;
+  font-size: 1.2rem;
+  /* font-size: 300; */
   padding-top: 10px;
 }
 
-.chats > .chats__main > .chats__mainHeader > .left  > .iconContainer {
-  height: 50px;
-  width: 50px;
+.chats > .chats__main > .chats__mainHeader > .left > .iconContainer {
+  box-sizing: border-box;
+  height: 45px;
+  width: 45px;
   border-radius: 50%;
   background: gray;
   display: flex;
-  align-items:center;
-  justify-content:center;
+  align-items: center;
+  justify-content: center;
   margin-right: 5px;
+  margin-bottom: 5px;
 }
 .chats > .chats__main > .chats__mainHeader > .left > .iconContainer > * {
-  font-size:3em ;
+  font-size: 2.2rem;
 }
 .chats > .chats__main > .chats__mainBody {
   flex: 1;
-  width: 94%;
-  margin-left: 3%;
+  width: 100%;
+  margin: 5px auto;
   margin-top: 20px;
-  overflow:auto;
+  overflow-y: auto;
   scroll-behavior: smooth;
 }
 
 .chats > .chats__main > .chats__mainFooter {
   display: flex;
   align-items: center;
-  padding: 10px 10px 10px 10px;
+  padding: 10px;
   width: 94%;
-  margin-left: 2%;
-  margin-bottom: 1%;
-  margin-top: 20px;
-  background: rgba( 0, 0, 0, 0.4);
+  margin: 1% auto;
+  background: rgba(0, 0, 0, 0.4);
   border-radius: 7px;
 }
 
@@ -299,10 +301,8 @@ nav {
 }
 
 .chats > .chats__main > .chats__mainFooter > form > * {
-  margin: 3px 5px;
+  margin: 3px;
 }
-
-
 .chats > .chats__main > .chats__mainFooter > form > .sendMsgInput {
   flex: 1;
   padding: 3px;
@@ -310,7 +310,7 @@ nav {
   border-radius: 5px;
   outline-width: 0;
   border: transparent solid 2px;
-  font-size: 1.6em;
+  font-size: 1.2rem;
 }
 
 .chats > .chats__main > .chats__mainFooter > form > button {
@@ -321,33 +321,45 @@ nav {
   outline-width: 0;
 }
 
-.chats > .chats__main > .chats__mainFooter > form > button > *{
+.chats > .chats__main > .chats__mainFooter > form > button > * {
   color: white;
-  font-size: 2.2em;
+  font-size: 1.8rem;
+  transition: 0.2s ease-in;
 }
 
-.chats > .chats__main > .chats__mainFooter > form > button > *:hover{
-  color: #03A9F4;
-  font-size: 2.2em;
-
+.chats > .chats__main > .chats__mainFooter > form > button > *:hover {
+  color: #fff;
+  font-size: 1.95rem;
+  filter: drop-shadow(4px 4px 8px dodgerblue);
 }
 nav > .menu__button {
   display: none;
 }
-@media screen and (max-width:850px){
+/*Adjust navbar font*/
+/* @media only screen and (max-width: 1024px)and (min-width: 850px){
+  .nav_links > li, a {
+    font-size: 1.3vw;
+  }
 
-  body{
+ 
+  .chats > * {
+    font-size: 1vw;
+  }
+} */
+
+@media screen and (max-width: 850px) {
+  body {
     overflow: scroll;
     box-sizing: border-box;
     align-self: center;
     scroll-behavior: smooth;
   }
-  
-  .nav__section{
+
+  .nav__section {
     display: flex;
     padding-left: 20px;
     padding-right: 20px;
-    justify-content:space-between;
+    justify-content: space-between;
     width: 95%;
     padding-left: 4%;
     position: fixed;
@@ -355,33 +367,36 @@ nav > .menu__button {
     z-index: 99;
     height: fit-content;
   }
-  
+
   .chats {
     display: flex;
     width: 190%;
+    max-width: 1024px;
     height: 88vh;
     margin-top: 60px;
     overflow-x: scroll;
-		-ms-overflow-style: scrollbar;
+    -ms-overflow-style: scrollbar;
     padding-top: 2%;
     padding-left: 2%;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   }
-  
-  
-  .nav_links > li, a {
-    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  .nav_links > li,
+  a {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-weight: 300;
     font-size: 1.4em;
-    color:#585858;
+    color: #585858;
     text-decoration: none;
     outline: none;
   }
 
   nav > .menu__button {
-    display:flex;
+    display: flex;
     background-color: transparent;
-    border:0;
+    border: 0;
     color: #fff;
     filter: drop-shadow(2px 4px 4px #000000);
     cursor: pointer;
@@ -389,44 +404,38 @@ nav > .menu__button {
     max-width: 50px;
     position: sticky;
   }
- 
-  nav > .menu__button>.menu__icon {
+
+  nav > .menu__button > .menu__icon {
     font-size: 3.5em;
   }
-  nav > .menu__button>.close__icon{
+  nav > .menu__button > .close__icon {
     font-size: 3.5em;
+  }
 
+  nav > .menu__button:focus,
+  :hover ~ .nav_links {
+    /*#mycheckbox:checked ~ .nav_links{*/
+    left: 40%;
+    position: absolute;
   }
-  #mycheckbox{
-    display: none;
-  }
- 
 
-  nav > .menu__button:focus,:hover ~ .nav_links{
-  /*#mycheckbox:checked ~ .nav_links{*/
-    left:40%;
-    position:absolute;
-    
-  }
- 
-  .nav__logo{
+  .nav__logo {
     height: 50px;
     width: 150px;
     margin-left: 5px;
-    display:flex;
+    display: flex;
     margin-top: 20px;
     order: 0;
     filter: drop-shadow(2px 4px 4px #000000);
-  
   }
-  
+
   nav {
     display: flex;
     justify-content: left;
     align-items: center;
-    background:transparent;
+    background: transparent;
     height: 30px;
-    width:fit-content;
+    width: fit-content;
     padding-top: 5px;
     margin-top: 20px;
     padding-bottom: 5px;
@@ -434,9 +443,9 @@ nav > .menu__button {
     padding-left: 10px;
     padding-right: 10px;
   }
-  
+
   .nav_links {
-    position:fixed;
+    position: fixed;
     box-sizing: border-box;
     width: 60%;
     height: fit-content;
@@ -454,28 +463,27 @@ nav > .menu__button {
     transition: all 500ms ease-in-out;
     filter: drop-shadow(2px 4px 4px #000000);
   }
-  
+
   .nav_links > li {
     display: block;
     padding: 10px;
     font-size: 1em;
     font-weight: 300;
   }
-  
-  .nav_links  > li > a {
+
+  .nav_links > li > a {
     transition: all 200ms ease-in-out;
-    
   }
-  
+
   .nav_links > li > a:hover {
     color: rgb(21, 161, 242);
   }
 
-  .nav_links > .link__chat > *{
+  .nav_links > .link__chat > * {
     color: rgb(21, 161, 242);
     font-weight: 300;
   }
-  
+
   .chats > .chats__sidebar {
     box-sizing: border-box;
     flex: 1;
@@ -483,19 +491,14 @@ nav > .menu__button {
     color: #fff;
     padding: 10px;
     position: relative;
-    background:
-    rgba( 0, 0, 0, 0.30 );
-    box-shadow:
-    0 4px 16px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter:
-    blur( 2.5px );
-    -webkit-backdrop-filter:
-    blur( 2.5px );
-    border-radius:
-    10px;
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(2.5px);
+    -webkit-backdrop-filter: blur(2.5px);
+    border-radius: 10px;
     overflow-y: hidden;
   }
-  
+
   .chats > .chats__sidebar > .chats__sidebarHeader {
     display: flex;
     justify-content: space-between;
@@ -507,13 +510,12 @@ nav > .menu__button {
     border-bottom: 2px solid white;
     padding-bottom: 10px;
   }
-  
+
   .chats > .chats__sidebar > .chats__sidebarHeader > .title {
     font-weight: 300;
     font-size: 1.5em;
-    
   }
-  
+
   .chats > .chats__sidebar > .chats__sidebarHeader > .icon__container {
     background: rgba(0, 0, 0, 0.6);
     display: flex;
@@ -524,62 +526,77 @@ nav > .menu__button {
     width: 25px;
     display: none;
   }
-  
-  .chats > .chats__sidebar > .chats__sidebarHeader > .icon__container > * > .MuiSvgIcon-root {
+
+  .chats
+    > .chats__sidebar
+    > .chats__sidebarHeader
+    > .icon__container
+    > *
+    > .MuiSvgIcon-root {
     color: gray;
     margin-top: 5px;
     font-size: 1.5em;
   }
-  
+
   .chats > .chats__sidebar > .chats__sidebarBody {
-    display:flex;
+    display: flex;
     flex-direction: column;
     width: 85%;
     margin-left: 7.5%;
   }
-  
+
   .chats > .chats__sidebar > .chats__sidebarBody > .search__container {
     display: flex;
     background: #fff;
     padding: 5px;
     color: black;
-    width:90%;
+    width: 90%;
     align-self: center;
     height: 25px;
     border-radius: 5px;
     margin-bottom: 10px;
     text-decoration: none;
   }
- 
-  .chats > .chats__sidebar > .chats__sidebarBody > .search__container > .search__input {
+
+  .chats
+    > .chats__sidebar
+    > .chats__sidebarBody
+    > .search__container
+    > .search__input {
     border: none;
     outline: none;
     border-bottom: 2px solid gray;
     padding: 3px;
     font-size: 1.1em;
     display: flex;
-    width: 100%
+    width: 100%;
   }
-  .chats > .chats__sidebar > .chats__sidebarBody > .search__container> .search__input:focus {
+  .chats
+    > .chats__sidebar
+    > .chats__sidebarBody
+    > .search__container
+    > .search__input:focus {
     text-decoration: none;
-    border-bottom: 2px solid #03A9F4;
-    
+    border-bottom: 2px solid #03a9f4;
   }
-  .chats > .chats__sidebar > .chats__sidebarBody > .search__container > .MuiSvgIcon-root {
+  .chats
+    > .chats__sidebar
+    > .chats__sidebarBody
+    > .search__container
+    > .MuiSvgIcon-root {
     font-size: 1.7em;
     color: #585858;
   }
-  
+
   .chats > .chats__sidebar > .chats__sidebarBody > .contactSection {
     flex: 1;
     margin-top: 5px;
     width: 97%;
     margin-left: 0%;
-    
   }
-  
+
   .chats > .chats__sidebar > .chats__sidebarFooter {
-    position: fixed;
+    position: absolute;
     bottom: 20px;
     display: flex;
     padding-top: 20px;
@@ -587,19 +604,20 @@ nav > .menu__button {
     width: 80%;
     margin-left: 10%;
     font-size: 1.1em;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-weight: 300;
   }
-  
+
   .chats > .chats__sidebar > .chats__sidebarFooter > .title {
     flex: 1;
   }
-  
+
   .chats > .chats__sidebar > .chats__sidebarFooter > .MuiSvgIcon-root {
     font-size: 1.4em;
     margin-left: 10px;
   }
-  .chats > .chats__main>* {
+  .chats > .chats__main > * {
     box-sizing: border-box;
   }
   .chats > .chats__main {
@@ -610,33 +628,28 @@ nav > .menu__button {
     padding: 10px;
     margin-left: 2px;
     color: #fff;
-    display:flex;
+    display: flex;
     flex-direction: column;
-    background:
-    rgba( 0, 0, 0, 0.30 );
-    box-shadow:
-    0 4px 16px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter:
-    blur( 2.5px );
-    -webkit-backdrop-filter:
-    blur( 2.5px );
-    border-radius:
-    10px;
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(2.5px);
+    -webkit-backdrop-filter: blur(2.5px);
+    border-radius: 10px;
     overflow: hidden;
   }
-  
+
   .chats > .chats__main > .chats__mainHeader {
     display: flex;
     justify-content: space-between;
-    position:relative;
+    position: relative;
     margin-top: 5px;
     width: 96%;
-    max-width:96%;
+    max-width: 96%;
     margin-left: 2%;
     padding-bottom: 0px;
   }
-  
-  .chats > .chats__main > .chats__mainHeader::after{
+
+  .chats > .chats__main > .chats__mainHeader::after {
     position: absolute;
     content: "";
     bottom: -10px;
@@ -645,7 +658,7 @@ nav > .menu__button {
     background: #ffff;
   }
   .chats > .chats__main > .chats__mainHeader > .right {
-    font-size: .7em;
+    font-size: 0.7em;
     font-weight: 300;
     display: flex;
     flex-direction: column;
@@ -663,20 +676,20 @@ nav > .menu__button {
     font-size: 300;
     padding-top: 10px;
   }
-  
-  .chats > .chats__main > .chats__mainHeader > .left  > .iconContainer {
+
+  .chats > .chats__main > .chats__mainHeader > .left > .iconContainer {
     height: 42px;
     width: 42px;
     border-radius: 50%;
     background: white;
     color: #454545;
     display: flex;
-    align-items:center;
-    justify-content:center;
+    align-items: center;
+    justify-content: center;
     margin-right: 5px;
   }
   .chats > .chats__main > .chats__mainHeader > .left > .iconContainer > * {
-    font-size:2em ;
+    font-size: 2em;
   }
   .chats > .chats__main > .chats__mainBody {
     flex: 1;
@@ -685,11 +698,11 @@ nav > .menu__button {
     margin-left: 3%;
     margin-top: 12px;
     margin-bottom: 1px;
-    overflow:hidden;
+    overflow: hidden;
     overflow-y: scroll;
     scroll-behavior: smooth;
   }
-  
+
   .chats > .chats__main > .chats__mainFooter {
     display: flex;
     align-items: center;
@@ -699,22 +712,21 @@ nav > .menu__button {
     margin-left: 0%;
     margin-bottom: 5%;
     margin-top: 0px;
-    background: rgba( 0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.4);
     border-radius: 7px;
     overflow: hidden;
   }
-  
+
   .chats > .chats__main > .chats__mainFooter > form {
     width: 100%;
     display: flex;
     align-items: center;
   }
-  
+
   .chats > .chats__main > .chats__mainFooter > form > * {
     margin-right: 1px;
   }
-  
-  
+
   .chats > .chats__main > .chats__mainFooter > form > .sendMsgInput {
     flex: 1;
     padding: 3px;
@@ -725,7 +737,7 @@ nav > .menu__button {
     font-size: 1em;
     width: 90%;
   }
-  
+
   .chats > .chats__main > .chats__mainFooter > form > button {
     background: transparent;
     border: none;
@@ -733,21 +745,20 @@ nav > .menu__button {
     place-items: center;
     outline-width: 0;
   }
-  
-  .chats > .chats__main > .chats__mainFooter > form > button > *{
+
+  .chats > .chats__main > .chats__mainFooter > form > button > * {
     color: white;
     font-size: 2em;
   }
-  
-  .chats > .chats__main > .chats__mainFooter > form > button > *:hover{
-    color: #03A9F4;
-  
+
+  .chats > .chats__main > .chats__mainFooter > form > button > *:hover {
+    color: #03a9f4;
   }
-  
-  .chats > .chats__main > .chats__mainFooter > form > .btnEmoji{
+
+  .chats > .chats__main > .chats__mainFooter > form > .btnEmoji {
     display: none;
   }
-  .chats > .chats__main > .chats__mainFooter > form > .btnAttach{
+  .chats > .chats__main > .chats__mainFooter > form > .btnAttach {
     margin-left: -3px;
   }
 }
