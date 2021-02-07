@@ -1,12 +1,19 @@
 .app {
-  height:auto;
-  width: auto;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  height: 100vh;
   min-width: 100vw;
-  min-height: 100vh;
   background: url("./wallpaperflare.com_wallpaper.jpg") no-repeat;
-  background-position:center;
+  background-position: center;
   background-size: cover;
   background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+
   /*background-color: #935d8c;
 	background-image: url("./overlay.png"), -moz-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
 	background-image: url("./overlay.png"), -webkit-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
@@ -14,9 +21,9 @@
   background-image: url("./overlay.png"), linear-gradient(45deg, #e37682 15%, #5f4d93 85%);*/
 }
 
-@media only screen and (max-width: 800px) and (min-width: 550px){
+@media only screen and (max-width: 800px) and (min-width: 550px) {
   .app {
-    height:auto;
+    height: auto;
     width: auto;
     min-width: 100vw;
     min-height: 100vh;
@@ -31,9 +38,9 @@
   }
 }
 
-@media only screen and (max-width: 550px){
+@media only screen and (max-width: 550px) {
   .app {
-    height:auto;
+    height: auto;
     width: auto;
     min-width: 100vw;
     min-height: 100vh;
@@ -46,6 +53,4 @@
     background-position:top;
     background-attachment:fixed;*/
   }
-  
 }
-
