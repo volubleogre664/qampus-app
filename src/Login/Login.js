@@ -3,19 +3,18 @@ import {Button} from "@material-ui/core";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import {Link} from "react-router-dom";
 import logo from "../logo.png";
-import { logIn } from "../actions.js";
-import { connect } from "react-redux";
 import "./Login.css";
 
 function Login() {
-  const handleHomeClick = () => logIn(true);
-
   return (
     <div className="login">
       <header className="login__header">
         <img className="login__headerLogo" src={logo} alt="qampus logo" />
       </header>
-
+	  <div className="welcome__text">
+		<p>Welcome to Qampus,<br></br>
+		  please select an option to continue.</p>
+	  </div>
       <main className="login__main">
         <section className="login__mainLeft">
           <h3 className="title">
@@ -37,7 +36,7 @@ function Login() {
               <Button className="form__btnSubmit">
 	        Login
 	      </Button>
-	      <p>Or</p>
+	      <p>or</p>
 	      <Link className="form__signupLink" to="/sign-up">Sign Up</Link> 
 	    </div>
 	  </form>
@@ -50,11 +49,11 @@ function Login() {
             Continue as guest
 	  </h3>
 
-	  <Link onClick={handleHomeClick} className="homeLink" to="/">
+	  <Link className="homeLink" to="/">
 	    <div className="container">
               <HomeOutlinedIcon />
 
-	      <p>Go to home page</p>
+	      <p>Home page</p>
 	    </div>
 	  </Link>
 	</section>
@@ -66,10 +65,10 @@ function Login() {
 	</span>
 
 	<span className="login__footerSeparator"></span>
-	<span>Developed by Nuclear Software (Pty) Ltd</span>
+	<span>Developed by Nuclear Software (Pty) Ltd.</span>
       </footer>
     </div>
   );
 }
 
-export default connect(null, { logIn })(Login);
+export default Login;

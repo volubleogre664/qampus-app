@@ -3,6 +3,8 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import SearchIcon from "@material-ui/icons/Search";
 import PersonIcon from "@material-ui/icons/Person";
+import MenuIcon from "@material-ui/icons/MenuRounded";
+import CloseIcon from "@material-ui/icons/CloseRounded";
 import AttachmentIcon from "@material-ui/icons/Attachment";
 import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
 import {Link} from "react-router-dom";
@@ -14,12 +16,9 @@ import "./Chats.css";
 
 function Chats() {
  const [textMsg, setMsg] = useState("");
- const [isChecked, setIsChecked] = useState(false);
  const [messages, setMsgs] = useState([]);
 
  const handleChange = (e) => setMsg(e.target.value);
-
- const checked = e => setIsChecked(!isChecked);
 
  const showMsg = (e) => {
    e.preventDefault();
@@ -32,77 +31,111 @@ function Chats() {
    document.querySelector(".sendMsgInput").value = ""; 
  }
 
- return (
-   <div className="chats">
-     <div className="chats__sidebar">
-       <div className="chats__sidebarHeader">
-         <h2 className="title">Chats</h2>
-         
-         <input type="checkbox" onChange={checked} />
+  return (
+    <body>
+    <div className="nav__section">
+    <img className="nav__logo" src="../logo.png"></img>
+    <nav>
+     
+      <label for="mycheckbox" className="menu__button"> 
+      <MenuIcon className="menu__icon"/>
+      {/* <CloseIcon className="close__icon"/> */}
+       </label>
+      <input type="checkbox" id="mycheckbox">
 
-	 <span className="icon__container">
-           <Link className="icon__containerLink" to="/"> 
-	     <ArrowBackIosIcon />
-	   </Link>
-	 </span>
-       </div>
+      </input>
+    <ul class="nav_links">
+    <li className="link__home"><a href="/">Home</a></li>
+    <li><a href="#">Upload</a></li>
+    <li><a href="#">Book Collection</a></li>
+    <li className="link__chat"><a href="./Chats">Chats</a></li>
+    <li><a href="#">Navigation</a></li>
+    <li><a href="#">Settings</a></li>
+    <li><a href="#">Help</a></li>
+    <li><a href="#">Profile</a></li>
+    <li><a href="./Login">Logout</a></li>
+    </ul>
+    </nav>
+    </div>
+    <div className="chats">
+    
+      <div className="chats__sidebar">
+        <div className="chats__sidebarHeader">
+          <h2 className="title">Chats</h2>
 
-       <div className="chats__sidebarBody">
-         <div className="search__container">
-           <input className="search__input" placeholder="Search chats..." />
+          <span className="icon__container">
+            <Link className="icon__containerLink" to="/"> 
+            <ArrowBackIosIcon />
+            </Link>
+          </span>
+        </div>
 
-	   <SearchIcon />
-	 </div>
+        <div className="chats__sidebarBody">
+          <div className="search__container">
+            <input className="search__input" placeholder="" />
+	          <SearchIcon />
+	        </div>
 
-         <div className="contactSection">
-           <Contact name="James King" />
+          <div className="contactSection">
+            <Contact name="James King" />
+	          <Contact name="Mason Monroe" />
+	        </div>
 
-	   <Contact name="Mason Monroe" />
-	 </div>
-       </div>
+        </div>
 
-       <div className="chats__sidebarFooter">
-         <span className="text">Find a study buddy</span>
-	 <ArrowForwardIosIcon />
-       </div>
-     </div>
+        <div className="chats__sidebarFooter">
+          <span className="text">Find a study buddy</span>
+      	  <ArrowForwardIosIcon />
+        </div>
 
-     <div className="chats__main">
-       <div className="chats__mainHeader">
-	 <div className="left">
-           <span className="iconContainer">
-	     <PersonIcon />
-	   </span>
+      </div>
 
-	   <span className="name">Elon</span>
-         </div>
+      <div className="chats__main">
+        <div className="chats__mainHeader">
+          <div className="left">
+            <span className="iconContainer">
+              <PersonIcon />
+            </span>
+            <span className="name">Elon</span>
+          </div>
 
-	 <div className="right">
-           Offline <br /> Last seen now
-	 </div>
-       </div>
+          <div className="right">
+          <label className="online__status">Offline</label>
+          <label className="last__seen">Last seen: Now</label>
+          </div>
+        </div>
 
-       <div className="chats__mainBody">
-         <Message messages={messages} state={isChecked} />
-       </div>
+        <div className="chats__mainBody">
+          <Message messages={messages} />
+        </div>
 
-       <div className="chats__mainFooter">
-	 <form>
-           <AttachmentIcon />
+        <div className="chats__mainFooter">
+          <form>
+            
+            <button className="btnAttach">
+              <AttachmentIcon />
+            </button>
 
-	   <EmojiEmotionsIcon />
+            <button className="btnEmoji">
+              <EmojiEmotionsIcon />
+            </button>
 
-	   <input placeholder="Type message..." className="sendMsgInput" onChange={handleChange} />
 
-	   <button type="submit" onClick={showMsg}>
-	     <SendIcon />
-	   </button>
+            <input placeholder="" className="sendMsgInput" onChange={handleChange} />
 
-	   <MicIcon />
-	 </form>
-       </div>
-     </div>
-   </div>
+            <button className="btnSend" type="submit" onClick={showMsg}>
+              <SendIcon />
+            </button>
+
+            <button className="btnRecord">
+              <MicIcon />
+            </button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+    </body>
  );
 }
 

@@ -1,9 +1,9 @@
 import React from "react";
-import ChatIcon from "@material-ui/icons/Chat";
-import SettingsIcon from "@material-ui/icons/Settings";
-import PublishIcon from "@material-ui/icons/Publish";
-import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
+import ChatIcon from "@material-ui/icons/ChatOutlined";
+import SettingsIcon from "@material-ui/icons/SettingsOutlined";
+import PublishIcon from "@material-ui/icons/PublishOutlined";
+import LibraryBooksIcon from "@material-ui/icons/ClassOutlined";
+import LocationOnIcon from "@material-ui/icons/LocationOnOutlined";
 import ErrorIcon from "@material-ui/icons/Error";
 import "./MenuItem.css";
 
@@ -22,11 +22,11 @@ function MenuItem({icon, title, subtitle}) {
   return(
     <div className="menuItem">
       <div className="menuItem__icon">
-	{getIcon(icon) ?? <ErrorIcon />}
+	      {getIcon(icon) ?? <ErrorIcon />}
       </div>
 
       <div className="menuItem__title">
-	{title}
+	      {title}
       </div>
 
       <div className="menuItem__subtitle">
