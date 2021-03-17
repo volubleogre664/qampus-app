@@ -1,0 +1,127 @@
+.chats__sidebar {
+  box-sizing: border-box;
+  width: 25%;
+  max-height: 99% !important;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-radius: 10px;
+  overflow-y: hidden;
+}
+
+.chats__sidebarHeader {
+  width: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px auto;
+  border-bottom: 2px solid white;
+}
+
+.chats__sidebarHeader > .title {
+  font-weight: 300;
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+}
+
+.chats__sidebarHeader > .icon__container > * > .MuiSvgIcon-root {
+  color: lightgray;
+  margin-top: 5px;
+  font-size: 1.3rem;
+}
+
+.chats__sidebarBody {
+  flex: 1 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+}
+
+.chats__sidebarBody > .search__container {
+  display: flex;
+  background: #fff;
+  padding: 5px;
+  color: black;
+  width: 90%;
+  align-self: center;
+  height: 25px;
+  border-radius: 5px;
+  margin-bottom: 2%;
+}
+
+.chats__sidebarBody > .search__container > .search__input {
+  border: none;
+  outline: none;
+  border-bottom: 2px solid gray;
+  padding: 3px;
+  font-size: 1rem;
+  display: flex;
+  width: 100%;
+}
+
+.chats__sidebarBody > .search__container > .MuiSvgIcon-root {
+  font-size: 2rem;
+}
+
+.chats__sidebarBody > .contactSection {
+  flex: 1 !important;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.chats__sidebarFooter {
+  /* position: absolute; */
+  display: flex;
+  padding-top: 10px;
+  justify-content: space-between;
+  width: 80%;
+  height: auto;
+  margin-left: 10%;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.chats__sidebarFooter > .title {
+  flex: 1;
+}
+
+.chats__sidebarFooter > .MuiSvgIcon-root {
+  font-size: 1.2rem;
+  margin: auto 1%;
+}
+
+@media screen and (max-width: 970px) {
+  .chats__sidebar {
+    width: 30%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .chats__sidebar {
+    transition: all ease-in-out 0.5s;
+    width: 35%;
+    height: unset;
+    height: 99%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .chats__sidebar {
+    width: 100%;
+  }
+
+  .chats__sidebar.fadeOut {
+    opacity: 0;
+  }
+
+  .chats__sidebar.fadeIn {
+    opacity: 1;
+  }
+}

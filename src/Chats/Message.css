@@ -13,6 +13,9 @@
   padding: 8px;
   border-radius: 10px;
   width: fit-content;
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  font-weight: 300;
 }
 
 .message > .message__time {
@@ -24,8 +27,6 @@
 }
 
 .rec > .message__text {
-  font-size: 1.2rem;
-  font-weight: 300;
   margin-right: 20px;
   background: rgba(29, 161, 242, 0.55);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -36,9 +37,11 @@
 
 .rec > .message__time {
   margin-left: auto;
-  font-size: 1.1rem;
-  font-weight: 400;
+  font-size: 0.78rem;
+  font-weight: 660;
+  margin-right: 25px;
 }
+
 @media only screen and (max-width: 850px) {
   .rec > .message__text {
     font-size: 1em;

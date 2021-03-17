@@ -7,31 +7,31 @@ import LocationOnIcon from "@material-ui/icons/LocationOnOutlined";
 import ErrorIcon from "@material-ui/icons/Error";
 import "./MenuItem.css";
 
-function MenuItem({icon, title, subtitle}) {
+function MenuItem({ icon, title, subtitle }) {
   const getIcon = (icon) => {
-    switch(icon) {
-      case "chat": return <ChatIcon />;
-      case "settings": return <SettingsIcon />;
-      case "navigation": return <LocationOnIcon />;
-      case "upload": return <PublishIcon />;
-      case "collection": return <LibraryBooksIcon />;
-      default: return undefined;
+    switch (icon) {
+      case "chats":
+        return <ChatIcon />;
+      case "settings":
+        return <SettingsIcon />;
+      case "navigation":
+        return <LocationOnIcon />;
+      case "upload":
+        return <PublishIcon />;
+      case "collection":
+        return <LibraryBooksIcon />;
+      default:
+        return undefined;
     }
-  }
+  };
 
-  return(
+  return (
     <div className="menuItem">
-      <div className="menuItem__icon">
-	      {getIcon(icon) ?? <ErrorIcon />}
-      </div>
+      <div className="menuItem__icon">{getIcon(icon) ?? <ErrorIcon />}</div>
 
-      <div className="menuItem__title">
-	      {title}
-      </div>
+      <div className="menuItem__title">{title}</div>
 
-      <div className="menuItem__subtitle">
-        {subtitle}
-      </div>
+      <div className="menuItem__subtitle">{subtitle}</div>
     </div>
   );
 }

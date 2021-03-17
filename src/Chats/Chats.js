@@ -1,14 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import SearchIcon from "@material-ui/icons/Search";
 import PersonIcon from "@material-ui/icons/Person";
-
-import AttachmentIcon from "@material-ui/icons/Attachment";
-import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
 import { Link } from "react-router-dom";
-import SendIcon from "@material-ui/icons/Send";
-import MicIcon from "@material-ui/icons/Mic";
 import Contact from "./Contact.js";
 import Message from "./Message.js";
 import "./Chats.css";
@@ -16,11 +11,16 @@ import "./Chats.css";
 function Chats() {
   const [textMsg, setMsg] = useState("");
   const [messages, setMsgs] = useState([]);
+  const [height, setHeight] = useState(0); //Height given to the chats main and sidebar
+  const [windowHeight, setWindowHeigt] = useState(window.innerHeight); //Keeps track of screen height
+
+  window.onresize = () => setWindowHeigt(window.innerHeight); //keeps track of changes in screen height
 
   const handleChange = (e) => setMsg(e.target.value);
 
   const showMsg = (e) => {
-    e.preventDefault();
+    console.log(e.preventDefault());
+
     const regex = / /gi;
     const str = textMsg.replace(regex, "");
     if (textMsg === "" || str === "") return;
@@ -30,9 +30,28 @@ function Chats() {
     document.querySelector(".sendMsgInput").value = "";
   };
 
+  const closeChats = () => {
+    document.querySelector(".chats__main").classList.toggle("opening");
+    document.querySelector(".chats__main").classList.toggle("closing");
+
+    const chatsSidebar = document.querySelector(".chats__sidebar");
+    chatsSidebar.classList.toggle("fadeOut");
+    chatsSidebar.classList.toggle("fadeIn");
+  };
+
+  useLayoutEffect(() => {
+    const header = document.querySelector(".app > .header");
+
+    setHeight(windowHeight - header.clientHeight - 15);
+  }, [setHeight, windowHeight]);
+
+  useEffect(() => {
+    document.title = "Qampus | Chats";
+  }, []);
+
   return (
     <div className="chats">
-      <div className="chats__sidebar">
+      <div className="chats__sidebar" style={{ height: height + "px" }}>
         <div className="chats__sidebarHeader">
           <h2 className="title">Chats</h2>
 
@@ -61,9 +80,9 @@ function Chats() {
         </div>
       </div>
 
-      <div className="chats__main">
+      <div className="chats__main" style={{ height: height + "px" }}>
         <div className="chats__mainHeader">
-          <div className="left">
+          <div className="left" onClick={closeChats}>
             <span className="iconContainer">
               <PersonIcon />
             </span>
@@ -81,13 +100,13 @@ function Chats() {
         </div>
 
         <div className="chats__mainFooter">
-          <form>
+          <div>
             <button className="btnAttach">
-              <AttachmentIcon />
+              <i className="fas fa-paperclip"></i>
             </button>
 
             <button className="btnEmoji">
-              <EmojiEmotionsIcon />
+              <i className="fas fa-grin"></i>
             </button>
 
             <input
@@ -97,13 +116,13 @@ function Chats() {
             />
 
             <button className="btnSend" type="submit" onClick={showMsg}>
-              <SendIcon />
+              <i className="fas fa-paper-plane"></i>
             </button>
 
             <button className="btnRecord">
-              <MicIcon />
+              <i className="fas fa-microphone"></i>
             </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>

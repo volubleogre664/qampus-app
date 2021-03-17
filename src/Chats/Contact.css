@@ -1,29 +1,28 @@
 .contact {
-  width: 100%;
+  width: 90%;
+  margin: auto;
+  box-sizing: border-box;
   background: linear-gradient(
     275deg,
     rgba(29, 161, 242, 0.55),
     rgba(47, 40, 74, 0.55)
   );
-  /* background:
-  rgba( 29, 161, 242, 0.55 ); */
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(11px);
   -webkit-backdrop-filter: blur(11px);
-  border-radius: 10px;
+  border-radius: 8px;
   margin-bottom: 10px;
-  border-radius: 4px;
   padding: 5px;
-  padding-left: 10px;
   display: flex;
   align-items: center;
   height: 45px;
+  cursor: pointer;
 }
 
 .contact > .contact__iconContainer {
   background: white;
-  height: 40px !important;
-  width: 40px !important;
+  height: 35px !important;
+  width: 35px !important;
   margin-right: 3px;
   border-radius: 50%;
   display: grid;
@@ -32,18 +31,22 @@
 }
 
 .contact > .contact__name {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 300;
   padding-left: 5px;
+  user-select: none;
+  display: -webkit-inline-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 
 .contact > .contact__iconContainer > .contact__icon {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
 @media only screen and (max-width: 850px) {
   .contact > .contact__name {
-    font-size: 1.2rem;
     font-weight: 300;
     padding-left: 5px;
   }

@@ -1,48 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import MenuIcon from "@material-ui/icons/MenuRounded";
 import CloseIcon from "@material-ui/icons/CloseRounded";
 import "./HeaderMenu.css";
+import { Link } from "react-router-dom";
 
 function HeaderMenu() {
+  const [click, setClick] = useState(false);
+
+  const handleClick = () => {
+    setClick(!click);
+
+    const nav = document.querySelector(".nav__links");
+
+    nav.classList.toggle("opening");
+    nav.classList.contains("closing") && nav.classList.toggle("closing");
+  };
+
   return (
-    <div className="nav__section">
-      <img className="nav__logo" src="../logo.png"></img>
-      <nav>
-        <label for="mycheckbox" className="menu__button">
-          <MenuIcon className="menu__icon" />
-          {/* <CloseIcon className="close__icon"/> */}
-        </label>
-        <input type="checkbox" id="mycheckbox"></input>
-        <ul class="nav_links">
-          <li className="link__home">
-            <a href="/">Home</a>
+    <div className="header">
+      <div className="header__button" onClick={handleClick}>
+        {click ? <CloseIcon /> : <MenuIcon />}
+      </div>
+
+      <nav className="header__nav">
+        <ul className="nav__links">
+          <li className="nav__linksItem">
+            <Link to="/">Home</Link>
           </li>
-          <li>
-            <a href="#">Upload</a>
+          <li className="nav__linksItem">
+            <Link to="/upload">Upload</Link>
           </li>
-          <li>
-            <a href="#">Book Collection</a>
+          <li className="nav__linksItem">
+            <Link to="/library">Book Collection</Link>
           </li>
-          <li className="link__chat">
-            <a href="/Chats">Chats</a>
+          <li className="nav__linksItem">
+            <Link to="/Chats">Chats</Link>
           </li>
-          <li>
-            <a href="#">Navigation</a>
+          <li className="nav__linksItem">
+            <Link to="/navigation">Navigation</Link>
           </li>
-          <li>
-            <a href="#">Settings</a>
+          <li className="nav__linksItem">
+            <Link to="/settings">Settings</Link>
           </li>
-          <li>
-            <a href="#">Help</a>
+          <li className="nav__linksItem">
+            <Link to="/help">Help</Link>
           </li>
-          <li>
-            <a href="#">Profile</a>
+          <li className="nav__linksItem">
+            <Link to="/profile">Profile</Link>
           </li>
-          <li>
-            <a href="./Login">Logout</a>
+          <li className="nav__linksItem">
+            <Link to="/Login">Logout</Link>
           </li>
         </ul>
       </nav>
+      <img className="header__logo" alt="qampus logo" src="../logo.png"></img>
     </div>
   );
 }
