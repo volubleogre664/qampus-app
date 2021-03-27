@@ -81,16 +81,16 @@
   border-radius: 7px;
 }
 
-.chats__mainFooter > div {
+.chats__mainFooter > form {
   width: 100%;
   display: flex;
   align-items: center;
 }
 
-.chats__mainFooter > div > * {
+.chats__mainFooter > form > * {
   margin: 0 5px;
 }
-.chats__mainFooter > div > .sendMsgInput {
+.chats__mainFooter > form > .sendMsgInput {
   flex: 1;
   padding: 3px;
   padding-left: 4px;
@@ -100,7 +100,7 @@
   font-size: 1rem;
 }
 
-.chats__mainFooter > div > button {
+.chats__mainFooter > form > button {
   background: transparent;
   border: none;
   display: grid;
@@ -108,13 +108,13 @@
   outline-width: 0;
 }
 
-.chats__mainFooter > div > button > * {
+.chats__mainFooter > form > button > * {
   color: white;
   font-size: 1.4rem;
   transition: 0.1s ease-in;
 }
 
-.chats__mainFooter > div > button > *:hover {
+.chats__mainFooter > form > button > *:hover {
   transition: transform ease-in-out 0.2s;
   color: #fff;
   transform: scale(1.2);

@@ -1,10 +1,15 @@
 import React from "react";
-import Home from "./Home/Home.js";
-import Chats from "./Chats/Chats.js";
-import Profile from "./Profile/Profile.js";
-import HeaderMenu from "./HeaderMenu/HeaderMenu.js";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from "./Login/Login.js";
+
+import Home from "./pages/Home/Home.js";
+import Chats from "./pages/Chats/Chats.js";
+import Profile from "./pages/Profile/Profile.js";
+import HeaderMenu from "./pages/HeaderMenu/HeaderMenu.js";
+import Login from "./pages/Login/Login.js";
+import Register from "./pages/Register/Register.js";
+
+import AuthRoute from "./utils/AuthRoute.js";
+
 import "./App.css";
 
 function App() {
@@ -12,19 +17,15 @@ function App() {
     <div className="app">
       <Router>
         <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
+          <Route exact path="/" component={Home} />
 
-          <Route exact path="/login">
-            <Login />
-          </Route>
+          <AuthRoute exact path="/login" component={Login} />
 
-          <Route path="/profile">
-            <Profile />
-          </Route>
+          <AuthRoute exact path="/register" component={Register} />
 
-          <Route path="/chats">
+          <Route exact path="/profile" component={Profile} />
+
+          <Route exact path="/chats">
             <HeaderMenu />
             <Chats />
           </Route>

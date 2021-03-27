@@ -27,6 +27,7 @@
   height: 80px;
   object-fit: contain;
   margin: 0 auto;
+  filter: drop-shadow(2px 4px 4px #000000);
 }
 
 .home__avatar {

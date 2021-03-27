@@ -4,15 +4,14 @@ import "./SearchResult.css";
 
 function SearchResult() {
   const [width, setWidth] = useState(0);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  window.onresize = () => setWindowWidth(window.innerWidth);
+  // window.onresize = () =>
+  //   console.log(document.querySelector(".triangle").style.width);
 
+  // let mounted = true;
   useLayoutEffect(() => {
-    // let result = document.querySelector(".searchResult");
-    console.log(windowWidth);
-    setWidth(0.7 * (0.61 * windowWidth));
-  }, [setWidth, windowWidth]);
+    setWidth(0.7 * (0.61 * window.innerWidth));
+  }, [setWidth]);
 
   return (
     <div className="searchResult">
@@ -26,10 +25,7 @@ function SearchResult() {
         Edition: <strong>2nd</strong> <br />
       </div>
       <span className="dateContainer">17/06/2021</span>
-      <span
-        className="triangle"
-        style={{ borderRightWidth: width + "px" }}
-      ></span>
+      <span className="triangle" style={{ width: width + "px" }}></span>
     </div>
   );
 }

@@ -3,31 +3,39 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import SearchIcon from "@material-ui/icons/Search";
 import PersonIcon from "@material-ui/icons/Person";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Contact from "./Contact.js";
 import Message from "./Message.js";
+import { useMessagesHelpers, useUserHelpers } from "../../Redux/getSlices.js";
 import "./Chats.css";
 
 function Chats() {
   const [textMsg, setMsg] = useState("");
-  const [messages, setMsgs] = useState([]);
   const [height, setHeight] = useState(0); //Height given to the chats main and sidebar
   const [windowHeight, setWindowHeigt] = useState(window.innerHeight); //Keeps track of screen height
+  const [messages, messageDispatch] = useMessagesHelpers();
+  const [{ user }, userDispatch] = useUserHelpers();
 
   window.onresize = () => setWindowHeigt(window.innerHeight); //keeps track of changes in screen height
 
   const handleChange = (e) => setMsg(e.target.value);
 
   const showMsg = (e) => {
+    e.preventDefault();
     console.log(e.preventDefault());
 
     const regex = / /gi;
-    const str = textMsg.replace(regex, "");
-    if (textMsg === "" || str === "") return;
+    if (textMsg === "" || textMsg.replace(regex, "") === "") return;
 
-    setMsgs([...messages, textMsg]);
+    messageDispatch({
+      type: "SAVE_MESSAGE",
+      payload: {
+        text: textMsg,
+        time: new Date().toLocaleTimeString(),
+        sent: false,
+      },
+    });
     setMsg("");
-    document.querySelector(".sendMsgInput").value = "";
   };
 
   const closeChats = () => {
@@ -49,11 +57,19 @@ function Chats() {
     document.title = "Qampus | Chats";
   }, []);
 
+  if (!user) {
+    userDispatch({
+      type: "SET_PATH",
+      payload: "/chats",
+    });
+    return <Redirect to="/login" />;
+  }
+
   return (
     <div className="chats">
       <div className="chats__sidebar" style={{ height: height + "px" }}>
         <div className="chats__sidebarHeader">
-          <h2 className="title">Chats</h2>
+          <h2 className="title">Chats {" | " + user.firstName || ""}</h2>
 
           <span className="icon__container">
             <Link className="icon__containerLink" to="/">
@@ -100,7 +116,7 @@ function Chats() {
         </div>
 
         <div className="chats__mainFooter">
-          <div>
+          <form onSubmit={showMsg}>
             <button className="btnAttach">
               <i className="fas fa-paperclip"></i>
             </button>
@@ -113,16 +129,17 @@ function Chats() {
               placeholder=""
               className="sendMsgInput"
               onChange={handleChange}
+              value={textMsg}
             />
 
-            <button className="btnSend" type="submit" onClick={showMsg}>
+            <button className="btnSend" type="submit">
               <i className="fas fa-paper-plane"></i>
             </button>
 
             <button className="btnRecord">
               <i className="fas fa-microphone"></i>
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </div>

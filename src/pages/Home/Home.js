@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-import PersonIcon from "../account-home.png";
+import PersonIcon from "../../account-home.png";
 import MenuItem from "./MenuItem.js";
 import { Link } from "react-router-dom";
-import logo from "../logo.png";
-import "./Home.css";
+import logo from "../../logo.png";
 import SearchResult from "./SearchResult";
+import { useUserHelpers } from "../../Redux/getSlices";
 import { SearchOutlined } from "@material-ui/icons";
+import "./Home.css";
 
-function Home() {
+function Home({ history }) {
   const [results, setResults] = useState([]);
+  const [{ user }] = useUserHelpers();
   // Toggles the results section and the menu section
   const [displays, setDisplays] = useState({
     menu: "flex",
@@ -21,6 +23,14 @@ function Home() {
     if (displays.menu !== "none") {
       setResults([...results, 1, 1]);
       setDisplays({ ...results, menu: "none", results: "flex" });
+    }
+  };
+
+  const handleAvatarClick = (e) => {
+    if (user) {
+      history.push("/profile");
+    } else {
+      history.push("/login");
     }
   };
 
@@ -41,12 +51,12 @@ function Home() {
           <img className="home__logoImg" src={logo} alt="qampus logo" />
         </div>
 
-        <div className="home__avatar">
+        <div className="home__avatar" onClick={handleAvatarClick}>
           <div className="home__avatarIcon">
             <img className="avatarIcon" src={PersonIcon} alt="avatar_icon" />
           </div>
 
-          <div className="home__avatarName">Guest</div>
+          <div className="home__avatarName">{user?.firstName || "Guest"}</div>
         </div>
       </div>
 
@@ -116,8 +126,8 @@ function Home() {
           <button onClick={openMenu}>Back</button>
         </div>
 
-        {results?.map((item) => {
-          return <SearchResult />;
+        {results?.map((_, i) => {
+          return <SearchResult key={i} />;
         })}
       </div>
     </div>
