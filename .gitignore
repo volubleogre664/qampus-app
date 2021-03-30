@@ -4,17 +4,17 @@
 node_modules
 
 package-lock.json
-/.pnp
+.pnp
 .pnp.js
 
 # testing
-/coverage
+coverage
 
 # production
-/build
+build
 
 # vs-code
-/.vs
+.vs
 
 # misc
 .DS_Store

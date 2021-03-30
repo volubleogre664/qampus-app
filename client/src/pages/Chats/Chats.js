@@ -28,7 +28,6 @@ function Chats() {
     if (textMsg === "" || textMsg.replace(regex, "") === "") return;
 
     messageDispatch({
-      type: "SAVE_MESSAGE",
       payload: {
         text: textMsg,
         time: new Date().toLocaleTimeString(),
@@ -69,7 +68,7 @@ function Chats() {
     <div className="chats">
       <div className="chats__sidebar" style={{ height: height + "px" }}>
         <div className="chats__sidebarHeader">
-          <h2 className="title">Chats {" | " + user.firstName || ""}</h2>
+          <h2 className="title">Chats {" | " + user?.firstName || ""}</h2>
 
           <span className="icon__container">
             <Link className="icon__containerLink" to="/">

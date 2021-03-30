@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useMutation } from "@apollo/react-hooks";
+import { Link } from "react-router-dom";
+import { Button } from "@material-ui/core";
 
 import logo from "../../logo.png";
 import { useForm } from "../../utils/hooks";
@@ -17,7 +19,6 @@ function Register({ history }) {
     password: "",
     confirmPassword: "",
   });
-
   const [{ path }, dispatch] = useUserHelpers();
 
   const [register, { loading }] = useMutation(REGISTER_USER, {
@@ -31,8 +32,10 @@ function Register({ history }) {
     },
     variables: values,
     onError(err) {
-      // setErrors(err.graphQLErrors[0].extensions.errors);
-      console.log(err);
+      dispatch({
+        type: "SET_ERRORS",
+        payload: err?.graphQLErrors[0]?.extensions?.errors,
+      });
     },
   });
 
@@ -40,15 +43,47 @@ function Register({ history }) {
     register();
   }
 
+  // This code is for testing
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   dispatch({
+  //     type: "SET_ERRORS",
+  //     payload: {
+  //       name: "Name cannot be empty",
+  //       surname: "surname cannot be empty",
+  //       password: "Password cannot be empty",
+  //       confirmPassword: "This should match with password",
+  //     },
+  //   });
+  // };
+
+  useEffect(() => {
+    document.title = "Qampus | Register Account";
+  }, []);
+
   return (
     <div className="register">
+      <h1 className="title">Welcome to Qampus</h1>
       <aside className="register__aside">
         <img src={logo} alt="qampus app register user" />
+        <h1>Connect with other students</h1>
+        <h1>Have others come to you to buy books</h1>
+        <h1>Easily buy books from other students</h1>
+        <h1>Find your way around your campus</h1>
+        <h1>
+          Create Your Account Now{" "}
+          <span role="img" aria-label="right pointing finger">
+            👉
+          </span>{" "}
+        </h1>
+        <p>
+          Already have an account? <Link to="login">Login</Link>
+        </p>
       </aside>
 
       <main className="register__main">
-        <h1 className="title">Welcome to Qampus</h1>
-        <h4 className="subtitle">Sign up for greater experince</h4>
+        <h4 className="subtitle">Sign up for more features</h4>
 
         <form onSubmit={onSubmit} className="register__mainForm">
           <label htmlFor="firstName">
@@ -130,7 +165,10 @@ function Register({ history }) {
             />
           </label>
 
-          <button type="submit">Register</button>
+          <Button type="submit">Register</Button>
+
+          {/* Below button for testing */}
+          {/* <Button onClick={onSubmit}>Register</Button>  */}
         </form>
       </main>
     </div>

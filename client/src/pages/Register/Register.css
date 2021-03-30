@@ -1,0 +1,142 @@
+@import url("https://fonts.googleapis.com/css?family=Oxygen&display=swap");
+
+.register {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.register .title {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 2.2em;
+  font-weight: 800;
+  color: white;
+  filter: drop-shadow(2px 4px 8px #585858);
+}
+
+.register__aside {
+  flex: 0.5;
+  padding-left: 20px;
+  box-sizing: border-box;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.register__aside img {
+  width: 220px;
+  height: 100px;
+  object-fit: contain;
+  filter: drop-shadow(2px 4px 4px #000000);
+}
+
+.register__aside h1 {
+  font-size: 1.6rem;
+  margin-left: 25px;
+  text-align: center;
+  color: rgb(37, 37, 37);
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.register__aside h1:first-of-type {
+  margin-top: 20px;
+}
+
+.register__aside h1:nth-of-type(even) {
+  color: rgb(230, 230, 230);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.register__aside h1:last-of-type {
+  margin-bottom: 20px;
+  transform: scale(1.2);
+  font-weight: 800;
+  align-items: center;
+}
+
+.register__aside p {
+  font-size: medium;
+  font-style: oblique;
+  font-weight: 500;
+}
+
+.register__aside p a:hover {
+  transition: all ease-in-out 0.2s;
+  color: #03a9f4;
+}
+
+.register__main {
+  flex: 0.5;
+}
+
+.register__main h4 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #03a9f4;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+  filter: drop-shadow(2px 4px 4px rgb(160, 160, 160));
+}
+
+.register__mainForm {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  margin-top: 7px;
+  border-radius: 10px;
+  color: rgb(223, 223, 223);
+  background-color: rgba(155, 155, 155, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 2px 3px 3px 0 rgba(0, 0, 0, 0.3),
+    -2px -3px 3px rgba(87, 87, 87, 0.2);
+}
+
+.register__mainForm label {
+  font-size: 1.1rem;
+  font-weight: 400;
+  font-family: Oxygen, sans-serif;
+  cursor: pointer;
+}
+
+.register__mainForm input {
+  width: 100%;
+  height: 35px;
+  border-radius: 3px;
+  border: none;
+  outline-width: 1px;
+  color: rgb(37, 37, 37);
+  outline-color: #03a9f4;
+  caret-color: #03a9f4;
+  padding-left: 5px;
+  font-size: 1.2rem;
+  background-color: rgb(206, 206, 206);
+}
+
+.register__mainForm button {
+  width: fit-content;
+  margin-left: auto;
+  padding: 7px 30px;
+  border-radius: 3px;
+  background: #03a9f4;
+  font-weight: 600;
+  color: rgb(230, 230, 230);
+  text-transform: capitalize;
+  border: none;
+  font-size: 1.2em;
+}
+
+.register__mainForm button:hover {
+  transition: all ease-in-out 0.2s;
+  background-color: rgb(37, 37, 37);
+}

@@ -1,12 +1,22 @@
 import { useSelector, useDispatch } from "react-redux";
 import { selectMessages, saveMessage } from "./features/messagesSlice";
-import { selectUser, setUser, clearUser, setPath } from "./features/userSlice";
+import {
+  selectUser,
+  setUser,
+  clearUser,
+  setPath,
+  setErrors,
+} from "./features/userSlice";
 
 function useMessagesHelpers() {
   const dispatch = useDispatch();
 
   const dispatchMessage = (action) => {
-    switch (action.type) {
+    switch (action?.type) {
+      case "CLEAR__Messages": {
+        break;
+      }
+
       default:
         dispatch(saveMessage(action.payload));
     }
@@ -21,7 +31,7 @@ function useUserHelpers() {
   const dispatch = useDispatch();
 
   const dispatchUser = (action) => {
-    switch (action.type) {
+    switch (action?.type) {
       case "CLEAR_USER": {
         dispatch(clearUser(action.payload));
         break;
@@ -35,6 +45,11 @@ function useUserHelpers() {
 
       case "SET_PATH": {
         dispatch(setPath(action.payload));
+        break;
+      }
+
+      case "SET_ERRORS": {
+        dispatch(setErrors(action.payload));
         break;
       }
 

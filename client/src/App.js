@@ -7,15 +7,20 @@ import Profile from "./pages/Profile/Profile.js";
 import HeaderMenu from "./pages/HeaderMenu/HeaderMenu.js";
 import Login from "./pages/Login/Login.js";
 import Register from "./pages/Register/Register.js";
-
 import AuthRoute from "./utils/AuthRoute.js";
+import MessageBox from "./components/MessageBox/MessageBox.js";
+
+import { useUserHelpers } from "./Redux/getSlices.js";
 
 import "./App.css";
 
 function App() {
+  const [{ errors }] = useUserHelpers();
+
   return (
     <div className="app">
       <Router>
+        <MessageBox errors={errors} />
         <Switch>
           <Route exact path="/" component={Home} />
 

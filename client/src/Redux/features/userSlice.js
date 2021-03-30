@@ -4,9 +4,10 @@ import jwtDecode from "jwt-decode";
 const initialState = {
   user: null,
   path: "",
+  errors: {},
 };
 
-if (localStorage.getItem("jwtToken")) {
+if (localStorage.getItem("jwtToken").length > 10) {
   const decodedToken = jwtDecode(localStorage.getItem("jwtToken"));
 
   if (decodedToken.exp * 1000 < Date.now()) {
@@ -29,9 +30,12 @@ const userSlice = createSlice({
     setPath(state, action) {
       state.path = action.payload;
     },
+    setErrors(state, action) {
+      state.errors = action.payload;
+    },
   },
 });
 
-export const { setUser, clearUser, setPath } = userSlice.actions;
+export const { setUser, clearUser, setPath, setErrors } = userSlice.actions;
 export const selectUser = (state) => state?.user;
 export default userSlice.reducer;

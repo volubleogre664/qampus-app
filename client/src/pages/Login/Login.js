@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
@@ -30,6 +30,10 @@ function Login({ history }) {
   function loginUser() {
     login();
   }
+
+  useEffect(() => {
+    document.title = "Qampus | Login to Account";
+  }, []);
 
   return (
     <div className="login">
