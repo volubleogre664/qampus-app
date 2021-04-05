@@ -1,32 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Neucha&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 .login {
   box-sizing: border-box;
   padding: 15px;
   width: 60%;
+  min-width: 850px;
   overflow: hidden;
   color: #fff;
   margin: auto;
-  margin-top: 10vh;
-  background-color: transparent;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
 }
 
 .login__header {
-  display: grid;
+  display: grid; 
   place-items: center;
 }
 
 .login__headerLogo {
-  width: 210px;
+  width: 210px;   
   object-fit: contain;
   margin: auto;
-  margin-top: 80px;
-  margin-bottom: 30px;
+  margin-top: 50px;
+  margin-bottom: 50px;
   filter: drop-shadow(2px 4px 4px #000000);
 }
 
@@ -34,8 +33,9 @@
   text-align: center;
   margin-top: 20px;
   font-size: 2.3rem;
-  font-weight: normal;
-  font-family: 'Neucha', cursive;
+  font-weight: 400;
+  font-family: 'Lobster Two', cursive;  
+  font-style: italic;
 }
 
 .separator{
@@ -43,15 +43,16 @@
   border-radius: 5px;
   width: 65%;
   margin: auto;
-  margin-top: 10px;
-  margin-bottom: 50px;
-}
+  margin-top: 20px;
+  margin-bottom: 70px;
+}                                                                                                                                                      
+
 .separator_footer{
   border-top: 1px solid white;
-  border-radius: 5px;
+  border-radius: 5px; 
   width: 50%;
   margin: auto;
-  margin-top: 10px;
+  margin-top: 30px;
   margin-bottom: 10px;
 }
 
@@ -114,17 +115,26 @@
   color: #fff;
   text-transform: capitalize;
   font-size: 1.2em;
+  margin-top: 10px;
 }
 
 .login__main > form > .form__btns > .form__btnSubmit:hover {
   transition: all ease-in-out 0.25s;
-  background-color: rgb(23, 24, 104);
+  /* background-color: rgb(23, 24, 104); */
+  border: 1px solid;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+  outline-color: rgba(255, 255, 255, 0);
+  outline-offset: 15px;
+  text-shadow: 1px 1px 2px #427388;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 
 .login__main > form > .form__btns > .links> .form__signupLink {
   color: #fff;
   font-weight: lighter;
   padding: 2px 7px;
+  
 }
 
 .login__main > form > .form__btns > .links> .form__guestLink {
@@ -133,15 +143,32 @@
   padding: 2px 7px;
 }
 
+:root{
+--neon-text-color: #008799;
+}
 .login__main > form > .form__btns > .links> .form__signupLink:hover {
   transition: all ease-in-out 0.2s;
-  color: #03a9f4;
+  text-shadow:
+            -0.2rem -0.2rem 1rem grey,
+            0.2rem 0.2rem 1rem black,
+            0 0 2rem var(--neon-text-color),
+            0 0 1rem var(--neon-text-color),
+            0 0 2rem var(--neon-text-color),
+            0 0 3rem var(--neon-text-color),
+            0 0 4rem var(--neon-text-color);
 }
 
 
 .login__main > form > .form__btns > .links> .form__guestLink:hover {
   transition: all ease-in-out 0.2s;
-  color: #03a9f4;
+  text-shadow:
+            -0.2rem -0.2rem 1rem grey,
+            0.2rem 0.2rem 1rem black,
+            0 0 2rem var(--neon-text-color),
+            0 0 1rem var(--neon-text-color),
+            0 0 2rem var(--neon-text-color),
+            0 0 3rem var(--neon-text-color),
+            0 0 4rem var(--neon-text-color);
 }
 
 .login__main > form > .form__btns > .links{
@@ -152,7 +179,7 @@
   justify-content: center;
   flex-direction: row;
   font-size: 1.2em;
-  margin-top: 15px;
+  margin-top: 20px;
 }
 .login__footer {
   width: 100%;
@@ -165,3 +192,34 @@
   font-style: normal;
 }
 
+@media only screen and (max-width: 850px) and (min-width: 550px){
+  
+  .login {
+    box-sizing: border-box;
+    padding: 15px;
+    width: 90%;
+    margin: auto;
+    min-width: 350px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border-radius: 15px;
+
+  }
+
+}
+@media only screen and (max-width: 550px){
+  
+  .login {
+    box-sizing: border-box;
+    padding: 15px;
+    width: 90%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    min-width: 350px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border-radius: 25px;
+
+  }
+
+}

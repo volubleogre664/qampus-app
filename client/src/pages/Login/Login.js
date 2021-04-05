@@ -83,11 +83,11 @@ function Login({ history }) {
             
             <div className="links">
               <Link className="form__signupLink" to="/register">
-                Sign Up
+                Sign up
               </Link>
               <p>or</p>
               <Link className="form__guestLink" to="/register">
-                Continue as Guest
+                continue as guest
               </Link>
             </div>
             
