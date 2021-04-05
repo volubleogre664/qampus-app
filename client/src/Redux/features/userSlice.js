@@ -7,7 +7,7 @@ const initialState = {
   errors: {},
 };
 
-if (localStorage.getItem("jwtToken").length > 10) {
+if (localStorage.getItem("jwtToken")) {
   const decodedToken = jwtDecode(localStorage.getItem("jwtToken"));
 
   if (decodedToken.exp * 1000 < Date.now()) {
