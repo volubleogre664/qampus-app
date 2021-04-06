@@ -1,0 +1,6 @@
+.uploadCollection {
+  overflow: hidden;
+  display: flex;
+  padding: 20px;
+  padding-top: 0;
+}

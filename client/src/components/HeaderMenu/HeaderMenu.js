@@ -34,7 +34,7 @@ function HeaderMenu() {
             <Link to="/library">Book Collection</Link>
           </li>
           <li className="nav__linksItem">
-            <Link to="/Chats">Chats</Link>
+            <Link to="/chats">Chats</Link>
           </li>
           <li className="nav__linksItem">
             <Link to="/navigation">Navigation</Link>

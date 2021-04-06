@@ -1,2 +1,11 @@
-.profile{
+.profile {
+}
+
+.profile__body {
+  margin-top: 30px;
+  display: flex;
+}
+
+.profile__bodyAside {
+  width: 50%;
 }

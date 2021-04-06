@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css?family=Oxygen&display=swap");
+
+.finaliseReg {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  margin-top: 7vh;
+  overflow-y: auto;
+}
+
+.finaliseReg__header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.finaliseReg__header img {
+  width: 180px;
+  height: 80px;
+  object-fit: contain;
+  margin: 0 auto;
+  filter: drop-shadow(2px 4px 4px #000000);
+}
+
+.finaliseReg__header h1 {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 2.2em;
+  font-weight: 800;
+  color: #fff;
+  filter: drop-shadow(2px 4px 8px #585858);
+}
+
+.finaliseReg__body {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px !important;
+}
+
+.finaliseReg__bodyAside {
+  flex: 0.55;
+  width: 50%;
+}
+
+.finaliseReg__bodyMain {
+  flex: 0.45;
+}
+
+.finaliseReg__bodyMain h1 {
+  color: #fff;
+  font-size: 1.7rem;
+  font-weight: 500;
+  font-family: "Oxygen", sans-serif;
+  margin-bottom: 10px;
+}
+
+.finaliseReg__bodyMain form {
+  width: 450px;
+  min-width: 400px;
+  /* margin: auto; */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.finaliseReg__bodyMain form label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: Oxygen, sans-serif;
+  cursor: pointer;
+}
+
+.finaliseReg__bodyMain form label .formInput {
+  width: 100%;
+  height: 35px;
+  border-radius: 3px;
+  border: none;
+  outline-width: 1px;
+  outline-color: #03a9f4;
+  caret-color: #03a9f4;
+  padding-left: 5px;
+  font-size: 1.1rem;
+  font-family: "Oxygen", sans-serif;
+}
+
+.finaliseReg__bodyMain form label textarea {
+  padding: 5px;
+  height: 110px !important;
+  resize: none;
+}
+
+.finaliseReg__bodyMain form .formSubmit {
+  padding: 4px 30px;
+  background: #03a9f4;
+  font-weight: 600;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 1.2em;
+  width: fit-content;
+  margin-left: auto;
+}
+
+.finaliseReg__bodyMain form .formSubmit:hover,
+footer .btnSkip:hover {
+  transition: all ease-in-out 0.25s;
+  background-color: rgb(37, 37, 37);
+}
+
+footer {
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+footer .btnSkip {
+  padding: 4px 30px;
+  background: #03a9f4;
+  font-weight: 600;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 1.2em;
+}

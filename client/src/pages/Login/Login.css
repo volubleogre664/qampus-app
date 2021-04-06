@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Neucha&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Neucha&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 .login {
   box-sizing: border-box;
@@ -8,7 +8,7 @@
   width: 55%;
   max-height: 95%;
   min-width: 850px;
-  overflow:auto;
+  overflow: auto;
   color: #fff;
   margin: auto;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -16,16 +16,15 @@
   /* background-color: rgba(0, 0, 15, 0.5);
   border-radius: 12px;
   box-shadow: inset 0 0 10px rgba(0,0,0, 0.1), 0 0 10px rgba(255, 255, 255, 0.3); */
-
 }
 
 .login__header {
-  display: grid; 
+  display: grid;
   place-items: center;
 }
 
 .login__headerLogo {
-  width: 200px;   
+  width: 200px;
   object-fit: contain;
   margin: auto;
   margin-top: 50px;
@@ -40,21 +39,20 @@
   /* font-family: 'Amatic SC', cursive;   */
   font-style: normal;
   font-family: "Amatic SC";
-
 }
 
-.separator{
+.separator {
   border-top: 1px solid white;
   border-radius: 5px;
   width: 50%;
   margin: auto;
   margin-top: 0px;
   margin-bottom: 0px;
-}                                                                                                                                                      
+}
 
-.separator_footer{
+.separator_footer {
   border-top: 1px solid white;
-  border-radius: 5px; 
+  border-radius: 5px;
   width: 30%;
   margin: auto;
   margin-top: 50px;
@@ -106,7 +104,8 @@
 
 .login__main > form > label > input:focus {
   border: #03a9f4 solid 1px;
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, .8), 0 0 10px rgba(255, 255, 255, .8);
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 10px rgba(255, 255, 255, 0.8);
   transition: all ease-in-out 0.2s;
   border-radius: 1px;
 }
@@ -128,67 +127,57 @@
   text-align: center;
   height: 32px;
   color: #fff;
-  text-transform:capitalize;
+  text-transform: capitalize;
   font-size: 1.2em;
   margin-top: 10px;
   margin-bottom: 10px;
   border-radius: 3px;
-
 }
 
 .login__main > form > .form__btns > .form__btnSubmit:hover {
   transition: all ease-in-out 0.2s;
   /* border: 1px rgb(19, 161,242) solid; */
-  box-shadow: inset 0 0 7px rgba(255, 255, 255, 0.5), 0 0 7px rgba(255,255,255, .5);
+  box-shadow: inset 0 0 7px rgba(255, 255, 255, 0.5),
+    0 0 7px rgba(255, 255, 255, 0.5);
   outline-color: rgba(255, 255, 255, 0);
   outline-offset: 15px;
   text-shadow: 1px 1px 2px #427388;
   border-radius: 1px;
 }
 
-.login__main > form > .form__btns > .links> .form__signupLink {
-  color: #fff;
-  font-weight: lighter;
-  padding: 2px 7px;
-  
-}
-
-.login__main > form > .form__btns > .links> .form__guestLink {
+.login__main > form > .form__btns > .links > .form__signupLink {
   color: #fff;
   font-weight: lighter;
   padding: 2px 7px;
 }
 
-:root{
---neon-text-color: #008799;
+.login__main > form > .form__btns > .links > .form__guestLink {
+  color: #fff;
+  font-weight: lighter;
+  padding: 2px 7px;
 }
 
-.login__main > form > .form__btns > .links> .form__signupLink:hover {
+:root {
+  --neon-text-color: #008799;
+}
+
+.login__main > form > .form__btns > .links > .form__signupLink:hover {
   transition: all ease-in-out 0.2s;
-  text-shadow:
-  -0.2rem -0.2rem 2rem white,
-  0.2rem 0.2rem 2rem black,
-  0 0 1px var(--neon-text-color),
-  0 0 1px var(--neon-text-color),
-  0 0 1px var(--neon-text-color),
-  0 0 1px var(--neon-text-color),
-  0 0 1px var(--neon-text-color);
+  text-shadow: -0.2rem -0.2rem 2rem white, 0.2rem 0.2rem 2rem black,
+    0 0 1px var(--neon-text-color), 0 0 1px var(--neon-text-color),
+    0 0 1px var(--neon-text-color), 0 0 1px var(--neon-text-color),
+    0 0 1px var(--neon-text-color);
 }
 
-
-.login__main > form > .form__btns > .links> .form__guestLink:hover {
+.login__main > form > .form__btns > .links > .form__guestLink:hover {
   transition: all ease-in-out 0.2s;
-  text-shadow:
-  -0.2rem -0.2rem 2rem white,
-  0.2rem 0.2rem 2rem black,
-  0 0 1px var(--neon-text-color),
-  0 0 1px var(--neon-text-color),
-  0 0 1px var(--neon-text-color),
-  0 0 1px var(--neon-text-color),
-  0 0 1px var(--neon-text-color);
+  text-shadow: -0.2rem -0.2rem 2rem white, 0.2rem 0.2rem 2rem black,
+    0 0 1px var(--neon-text-color), 0 0 1px var(--neon-text-color),
+    0 0 1px var(--neon-text-color), 0 0 1px var(--neon-text-color),
+    0 0 1px var(--neon-text-color);
 }
 
-.login__main > form > .form__btns > .links{
+.login__main > form > .form__btns > .links {
   width: 100%;
   margin-left: auto;
   display: flex;
@@ -210,31 +199,28 @@
   font-style: normal;
 }
 
-@media only screen and (max-width: 1400px) and (min-width: 550px){
-  
+@media only screen and (max-width: 1400px) and (min-width: 550px) {
   .login {
     padding: 15px;
     width: 75%;
     min-width: 350px;
   }
-  
+
   .login__headerLogo {
     margin-top: 50px;
     margin-bottom: 15px;
   }
- 
-  .separator{
+
+  .separator {
     margin-bottom: 0px;
     width: 60%;
-
-  }   
-  .separator_footer{
+  }
+  .separator_footer {
     margin-top: 0px;
-  } 
+  }
 }
 
-@media only screen and (max-width: 550px){
-  
+@media only screen and (max-width: 550px) {
   .login {
     width: 90%;
     min-width: 350px;
@@ -246,11 +232,11 @@
     margin-top: 35px;
     margin-bottom: 20px;
   }
-  .separator{
+  .separator {
     margin-bottom: 10px;
     margin-top: 30px;
     width: 85%;
-  } 
+  }
   .login__main > .title {
     padding-left: 15px;
     padding-right: 15px;
@@ -262,10 +248,10 @@
   .login__main > form > .form__btns {
     margin-top: 20px;
   }
-  .login__main > form > .form__btns > .links{
+  .login__main > form > .form__btns > .links {
     margin-top: 20px;
   }
-  .separator_footer{
+  .separator_footer {
     width: 70%;
     margin-top: 40px;
   }

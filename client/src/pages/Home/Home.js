@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import PersonIcon from "../../account-home.png";
-import MenuItem from "./MenuItem.js";
+import MenuItem from "../../components/MenuItem/MenuItem.js";
 import { Link } from "react-router-dom";
 import logo from "../../logo.png";
-import SearchResult from "./SearchResult";
+import SearchResult from "../../components/SearchResult/SearchResult";
 import { useUserHelpers } from "../../Redux/getSlices";
 import { SearchOutlined } from "@material-ui/icons";
 import {LinkIcon} from '@material-ui/icons/Link';
@@ -31,12 +31,8 @@ function Home({ history }) {
     }
   };
 
-  const handleAvatarClick = (e) => {
-    if (user) {
-      history.push("/profile");
-    } else {
-      history.push("/login");
-    }
+  const handleAvatarClick = () => {
+    history.push("/profile");
   };
 
   // Helps retturn back to the menu
@@ -53,7 +49,7 @@ function Home({ history }) {
     <div className="home">
       <div className="home__header">
         <div className="home__logo">
-          <img className="home__logoImg" src={logo} alt="qampus logo" />
+          <img className="home__logoImg logo" src={logo} alt="qampus logo" />
         </div>
 
         <div className="home__avatar" onClick={handleAvatarClick}>

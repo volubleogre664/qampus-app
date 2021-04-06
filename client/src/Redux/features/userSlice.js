@@ -5,6 +5,7 @@ const initialState = {
   user: null,
   path: "",
   errors: {},
+  imgCrop: { imgSrc: null, croppedImgUrl: null },
 };
 
 if (localStorage.getItem("jwtToken")) {
@@ -33,9 +34,18 @@ const userSlice = createSlice({
     setErrors(state, action) {
       state.errors = action.payload;
     },
+    setImgSrc(state, action) {
+      state.imgCrop = action.payload;
+    },
   },
 });
 
-export const { setUser, clearUser, setPath, setErrors } = userSlice.actions;
+export const {
+  setUser,
+  clearUser,
+  setPath,
+  setErrors,
+  setImgSrc,
+} = userSlice.actions;
 export const selectUser = (state) => state?.user;
 export default userSlice.reducer;
