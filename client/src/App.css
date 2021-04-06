@@ -18,10 +18,10 @@
   width: 100% !important;
   max-width: 1922px;
   position: relative;
-  /* background: url("./wallpaperflare.com_wallpaper.jpg") no-repeat;
+  background: url("./coffee_and_book.jpg") no-repeat;
   background-position: center;
   background-size: cover;
-  background-attachment: fixed; */
+  background-attachment: fixed;
   display: flex;
   flex-direction: column;
   overflow-x: none;
@@ -33,12 +33,13 @@
   background-image: url("./overlay.png"), linear-gradient(45deg, #e37682 15%, #5f4d93 85%);*/
 }
 
-@media only screen and (max-width: 800px) and (min-width: 550px) {
+@media only screen and (max-width: 1370) and (min-width: 550px) {
   .app {
     height: auto;
     width: auto;
     min-width: 100vw;
     min-height: 100vh;
+    overflow-y: scroll;
     /*background: url("./wallpapesrtip_book-wallpaper-hd_98006.jpg") no-repeat;
     background-color: #935d8c;
     background-image: url("./overlay.png"), -moz-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
