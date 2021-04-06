@@ -13,6 +13,44 @@
   outline-color: #03a9f4;
 }
 
+/* The logo on top of every page has the same styling, just give it className="logo" */
+.logo {
+  width: 180px;
+  height: 80px;
+  object-fit: contain;
+  margin: 0 auto;
+  filter: drop-shadow(2px 4px 4px #000000);
+}
+
+/* All text inputs have the same styling so just pass formInput className to them */
+.formInput {
+  /* width: 100%; */
+  height: 35px;
+  border-radius: 3px;
+  border: none;
+  outline-width: 1px;
+  outline-color: #03a9f4;
+  caret-color: #03a9f4;
+  padding-left: 5px;
+  font-size: 1.1rem;
+}
+
+/* All form submit buttons are the same. This is the class for them */
+button[type="submit"] {
+  padding: 4px 30px;
+  background: #03a9f4;
+  font-weight: 600;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 1.2em;
+  width: fit-content;
+}
+
+button[type="submit"]:hover {
+  transition: all ease-in-out 0.25s;
+  background-color: rgb(37, 37, 37);
+}
+
 .app {
   height: 100vh;
   width: 100% !important;

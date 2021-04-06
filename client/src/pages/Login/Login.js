@@ -9,7 +9,7 @@ import { LOGIN_USER } from "../../utils/graphql";
 import "./Login.css";
 
 function Login({ history }) {
-  const [{ path }, dispatch] = useUserHelpers();
+  const [{ path }, userDispatch] = useUserHelpers();
   const { onChange, onSubmit, values } = useForm(loginUser, {
     studentNumber: "",
     password: "",
@@ -18,12 +18,16 @@ function Login({ history }) {
 
   const [login, { loading }] = useMutation(LOGIN_USER, {
     update(_, { data: { login: userData } }) {
-      dispatch({ type: "SET_USER", payload: userData });
-      (path && history.push(path)) || history.goBack();
+      userDispatch({ type: "SET_USER", payload: userData });
+      path !== "" ? history.push(path) : history.goBack();
     },
     variables: values,
     onError(err) {
       console.log(err);
+      userDispatch({
+        type: "SET_ERRORS",
+        payload: err.graphQLErrors[0].extensions?.errors,
+      });
     },
   });
 

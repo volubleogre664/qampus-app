@@ -6,6 +6,7 @@ import {
   clearUser,
   setPath,
   setErrors,
+  setImgSrc,
 } from "./features/userSlice";
 
 function useMessagesHelpers() {
@@ -50,6 +51,11 @@ function useUserHelpers() {
 
       case "SET_ERRORS": {
         dispatch(setErrors(action.payload));
+        break;
+      }
+
+      case "SET_CROP_IMG": {
+        dispatch(setImgSrc(action.payload));
         break;
       }
 

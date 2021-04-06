@@ -1,0 +1,65 @@
+.cropImg {
+  height: 100vh;
+  overflow-y: scroll;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.cropImg h1 {
+  text-align: center;
+  margin-bottom: 8px;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #fff;
+  filter: drop-shadow(2px 4px 8px #585858);
+}
+
+.cropImg div:last-child {
+  margin: auto;
+  width: fit-content;
+  display: flex;
+  gap: 20px;
+}
+
+.cropImg div:last-child > button {
+  margin-top: 8px;
+  padding: 4px 30px;
+  background: #03a9f4;
+  font-weight: 600;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 1.1em;
+  width: fit-content;
+  margin-left: auto;
+}
+
+.cropImg div:last-child > button:hover {
+  transition: all ease-in-out 0.25s;
+  background-color: rgb(37, 37, 37);
+}
+
+.ReactCrop {
+  flex: 1;
+  position: relative;
+  left: 50%;
+}
+
+.ReactCrop > div {
+  width: fit-content;
+  height: 100%;
+}
+
+.ReactCrop__image {
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}

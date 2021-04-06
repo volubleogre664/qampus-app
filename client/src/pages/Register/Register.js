@@ -19,7 +19,7 @@ function Register({ history }) {
     password: "",
     confirmPassword: "",
   });
-  const [{ path }, dispatch] = useUserHelpers();
+  const [, dispatch] = useUserHelpers();
 
   const [register, { loading }] = useMutation(REGISTER_USER, {
     update(_, { data: { register: userData } }) {
@@ -28,7 +28,7 @@ function Register({ history }) {
         payload: userData,
       });
 
-      (path && history.push(path)) || history.goBack();
+      history.push("/register/finalise");
     },
     variables: values,
     onError(err) {

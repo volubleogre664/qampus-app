@@ -1,0 +1,19 @@
+.upload {
+  overflow-y: scroll !important;
+}
+
+.upload form {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* .upload form .formSubmitBtn {
+  padding: 4px 30px;
+  background: #03a9f4;
+  font-weight: 600;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 1.2em;
+} */

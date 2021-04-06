@@ -22,14 +22,6 @@
   padding: 5px;
 }
 
-.home__logoImg {
-  width: 180px;
-  height: 80px;
-  object-fit: contain;
-  margin: 0 auto;
-  filter: drop-shadow(2px 4px 4px #000000);
-}
-
 .home__avatar {
   padding: 3.5px;
   display: flex;
@@ -39,11 +31,13 @@
   border: 1px solid #ffffff;
   border-radius: 5px;
   margin-right: 7vh;
+  cursor: pointer;
 }
 
 .avatarIcon {
   width: 35px;
   height: 35px;
+  object-fit: contain;
 }
 
 .home__avatarName {

@@ -61,7 +61,7 @@
 .login__main > form > label {
   font-size: 1.2rem;
   font-weight: 600;
-  font-family: Oxygen, sans-serif;
+  font-family: "Oxygen", sans-serif;
   cursor: pointer;
 }
 
@@ -84,20 +84,6 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-}
-
-.login__main > form > .form__btns > .form__btnSubmit {
-  padding: 4px 30px;
-  background: #03a9f4;
-  font-weight: 600;
-  color: #fff;
-  text-transform: capitalize;
-  font-size: 1.2em;
-}
-
-.login__main > form > .form__btns > .form__btnSubmit:hover {
-  transition: all ease-in-out 0.25s;
-  background-color: rgb(37, 37, 37);
 }
 
 .login__main > form > .form__btns > .form__signupLink {
