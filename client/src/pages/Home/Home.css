@@ -1,4 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Oxygen&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root{
+  --logo_padding: 140px;
+}
 
 .home {
   flex: 1;
@@ -10,24 +16,25 @@
 }
 
 .home__header {
-  width: 55%;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin: 10vh 0 0 auto;
 }
 
 .home__logo {
-  width: fit-content;
-  padding: 5px;
+  width: 100%;
+  text-align: center;
+  padding-left: var(--logo_padding);
 }
 
 .home__logoImg {
   width: 180px;
-  height: 80px;
   object-fit: contain;
-  margin: 0 auto;
+  margin: auto;
+  margin-bottom: 15px;
   filter: drop-shadow(2px 4px 4px #000000);
+  
 }
 
 .home__avatar {
@@ -35,10 +42,10 @@
   display: flex;
   align-items: center;
   background: #ffffff;
-  width: 130px;
+  width: var(--logo_padding);
   border: 1px solid #ffffff;
   border-radius: 5px;
-  margin-right: 7vh;
+  margin-right: 35px;
 }
 
 .avatarIcon {
@@ -53,29 +60,54 @@
 
 .home__title {
   width: fit-content;
-  margin: 20px auto;
-  font-size: 2rem;
-  font-family: Arial, Helvetica, sans-serif;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  font-size: 2.3rem;
+  font-family: "Amatic SC";
+  font-weight: 500;
+  color: #ffffff;
+  text-align: center;
+}
+
+.home__searchSection > .separator{
+  border-top: 1px solid white;
+  border-radius: 5px;
+  width: 30%;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.home__title2 {
+  width: fit-content;
+  margin: auto;
+  margin-top: 0px;
+  font-size: 1.4rem;
+  font-family: "Lobster Two";
+  font-weight: normal;
   color: #ffffff;
 }
 
 .home__subtitle {
   margin: 0 auto;
-  font-family: "Oxygen", sans-serif;
-  font-size: 1.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1.1rem;
+  font-weight: lighter;
   width: fit-content;
   color: #ffffff;
   margin-bottom: 5px;
+  margin-top: 40px;
   text-align: center;
 }
 
 .home__searchContainer {
   margin: 0 auto;
   margin-top: 3px;
-  width: 60%;
+  width: 30%;
   max-width: 700px;
-  height: 40px;
-  padding: 5px;
+  height: 35px;
+  padding: 3px;
   background: #03a9f4;
   display: flex;
   align-items: center;
@@ -88,12 +120,22 @@
   flex: 1;
   outline: none;
   margin-right: 2px;
-  border: none;
-  padding: 0 5px;
   height: 100%;
-  border-radius: 3px;
-  font-size: x-large;
   font-weight: normal;
+  border: #03a9f4 solid 1px;
+  outline: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  padding-left: 5px;
+}
+
+
+.home__searchInput:focus {
+  outline: none ;
+  border: white solid 1px;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, .8), 0 0 10px rgba(255, 255, 255, .8);
+  transition: all ease-in-out 0.2s;
+  border-radius: 2px;
 }
 
 .home__searchContainer > button {
@@ -107,9 +149,11 @@
   outline: none;
   cursor: pointer;
 }
-
+.home__searchContainer > button:hover {
+  font-size: 2.3;
+}
 .home__searchContainer > button > .MuiSvgIcon-root {
-  font-size: 2.4rem;
+  font-size: 2rem;
 }
 
 .home__menu {
@@ -122,6 +166,7 @@
 .home__menuItems {
   width: 95%;
   margin: auto;
+  padding-top: 15px;
   display: flex;
   gap: 10px;
   align-items: center;
@@ -154,6 +199,23 @@
   margin-right: 5px;
 }
 
+.reference{
+  padding-top: 25px;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+}
+.reference_link {
+  font-size: 1.1rem;
+  color: #fff;
+  font-weight: lighter;
+  padding: 2px 7px;
+  text-decoration: none;
+  text-align: center;
+  margin-left: -20px;
+
+}
 @media screen and (max-width: 768px) {
   .home__searchContainer {
     width: 80%;

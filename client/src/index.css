@@ -12,7 +12,8 @@ body {
   box-sizing: border-box;
   /* height: 100vh; */
   /* width: 100vw; */
-  background: url("https://drscdn.500px.org/photo/72216333/m%3D900/v2?sig=c100daadc1940a957c5feefebe4fe552608b7b2d35992ac268afe87d5d045a7f") no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.4),
+  rgba(0, 0, 0, 0.3)), url("https://drscdn.500px.org/photo/145947193/m%3D900/v2?sig=c3a49ba0d8ec464571c39720e4d7f0b1f3f03a775fdd0dc7070867771ea503ee") no-repeat;
   background-position: center;
   background-size: cover;
   background-attachment: fixed;

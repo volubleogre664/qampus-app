@@ -6,7 +6,12 @@ import logo from "../../logo.png";
 import SearchResult from "./SearchResult";
 import { useUserHelpers } from "../../Redux/getSlices";
 import { SearchOutlined } from "@material-ui/icons";
+import {LinkIcon} from '@material-ui/icons/Link';
 import "./Home.css";
+
+//change the background reference here
+var ref_link = 'https://500px.com/photo/145947193/Cardinal-captured-in-4K-Video-by-Jinsheng-Xu';
+var ref_name = "Jinsheng Xu";
 
 function Home({ history }) {
   const [results, setResults] = useState([]);
@@ -61,7 +66,9 @@ function Home({ history }) {
       </div>
 
       <div className="home__searchSection">
-        <h4 className="home__title">Search for textbooks</h4>
+        <h4 className="home__title">Welcome to Qampus</h4>
+        <hr className="separator"/>
+        <h3 className="home__title2">here you can sell texbooks, or buy them from other students.</h3>
 
         <p className="home__subtitle">Type the ISBN, title or Module Code.</p>
 
@@ -130,6 +137,11 @@ function Home({ history }) {
           return <SearchResult key={i} />;
         })}
       </div>
+
+      <div className='reference'>
+        <a className="reference_link" href={ref_link}>Do you like this photo? [ by <u>{ref_name}</u> ]</a>
+      </div>
+
     </div>
   );
 }
