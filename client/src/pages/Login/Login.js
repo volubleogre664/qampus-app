@@ -46,7 +46,7 @@ function Login({ history }) {
 
       </div>
       <main className="login__main">
-        <h3 className="title">Please login to access all the features.</h3>
+        <h3 className="title">login to access all the features</h3>
 
         <form className="form" onSubmit={onSubmit}>
           <label htmlFor="studentNum">
@@ -86,8 +86,10 @@ function Login({ history }) {
                 Sign up
               </Link>
               <p>or</p>
-              <Link className="form__guestLink" to="/register">
-                continue as guest
+              <Link className="form__guestLink" to="/">
+                continue as a guest
+                {/* When the user chooses this option, a function 
+                should prevent them from accessing the full featuers*/}
               </Link>
             </div>
             

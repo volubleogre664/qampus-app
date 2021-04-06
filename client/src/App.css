@@ -18,19 +18,18 @@
   width: 100% !important;
   max-width: 1922px;
   position: relative;
-  background: url("./coffee_and_book.jpg") no-repeat;
+  /* background: url("./coffee_and_book.jpg") no-repeat; */
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
   display: flex;
   flex-direction: column;
   overflow-x: none;
-
-  /*background-color: #935d8c;
-	background-image: url("./overlay.png"), -moz-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
-	background-image: url("./overlay.png"), -webkit-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
-	background-image: url("./overlay.png"), -ms-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
-  background-image: url("./overlay.png"), linear-gradient(45deg, #e37682 15%, #5f4d93 85%);*/
+  background-image: none;
+  /* background-color: #935d8c, -webkit-linear-gradient (45deg, #e37682 15%, #5f4d93 85%);
+ -webkit-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+	-ms-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+  linear-gradient(45deg, #e37682 15%, #5f4d93 85%); */
 }
 
 @media only screen and (max-width: 1370) and (min-width: 550px) {
