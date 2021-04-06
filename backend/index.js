@@ -1,8 +1,11 @@
-import { ApolloServer, PubSub } from "apollo-server";
+// import { ApolloServer, PubSub } from "apollo-server";
+import pkg from 'apollo-server';
+const { ApolloServer, PubSub } = pkg;
+
 import mongoose from "mongoose";
 
 import { MONGO_DB } from "./config.js";
-import typeDefs from "./graphql/typeDefs.js";
+import typeDefs from "./graphql/typedefs.js";
 import resolvers from "./graphql/resolvers/index.js";
 
 const pubsub = new PubSub();

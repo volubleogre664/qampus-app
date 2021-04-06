@@ -1,6 +1,8 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { UserInputError } from "apollo-server";
+import pkg from "apollo-server"
+// import { UserInputError } from "apollo-server";
+const {UserInputError} = pkg;
 
 import {
   validateLoginInput,
@@ -102,9 +104,9 @@ const userResolvers = {
         firstName,
         lastName,
         email,
-        picture: picture && picture?.replace(/ /gi, "") ? picture : "",
-        degree: degree && degree?.replace(/ /gi, "") ? degree : "",
-        bio: bio && bio?.replace(/ /gi, "") ? bio : "",
+        picture: picture && picture.replace(/ /gi, "") ? picture : "",
+        degree: degree && degree.replace(/ /gi, "") ? degree : "",
+        bio: bio && bio.replace(/ /gi, "") ? bio : "",
         password,
       });
 

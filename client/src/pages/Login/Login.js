@@ -45,10 +45,12 @@ function Login({ history }) {
         <img className="login__headerLogo" src={logo} alt="qampus logo" />
       </header>
       <div className="welcome__text">
-        <p>Welcome to Qampus</p>
+        <p>Welcome... here you can sell texbooks, or buy them from other students.</p>
+        <hr className="separator"/>
+
       </div>
       <main className="login__main">
-        <h3 className="title">Login to access full features</h3>
+        <h3 className="title">login to access all the features</h3>
 
         <form className="form" onSubmit={onSubmit}>
           <label htmlFor="studentNum">
@@ -77,24 +79,34 @@ function Login({ history }) {
               className="form__passwordInput"
             />
           </label>
-
+          
           <div className="form__btns">
             <Button type="submit" className="form__btnSubmit">
               Login
             </Button>
-            <p>or</p>
-            <Link className="form__signupLink" to="/register">
-              Sign Up
-            </Link>
+            
+            <div className="links">
+              <Link className="form__signupLink" to="/register">
+                Sign up
+              </Link>
+              <p>or</p>
+              <Link className="form__guestLink" to="/">
+                continue as a guest
+                {/* When the user chooses this option, a function 
+                should prevent them from accessing the full featuers*/}
+              </Link>
+            </div>
+            
           </div>
         </form>
       </main>
-
+     
       <footer className="login__footer">
-        <span>Qampus &copy; 2020 All Rights Reserved</span>
+      <hr className="separator_footer"/>
+        <span name="top_footer">Qampus &copy; 2020 | All Rights Reserved.</span>
 
         <span className="login__footerSeparator"></span>
-        <span>Developed by Nuclear Software (Pty) Ltd.</span>
+        <span name="bottom_footer">Developed by Nuclear Software (Pty) Ltd</span>
       </footer>
     </div>
   );
