@@ -9,6 +9,14 @@ import {
   setImgSrc,
 } from "./features/userSlice";
 
+import {
+  selectBooks,
+  setBook,
+  setBookList,
+  setSearchBookList,
+} from "./features/booksSlice";
+
+// Hook for messeges state and all the things related to messages
 function useMessagesHelpers() {
   const dispatch = useDispatch();
 
@@ -28,6 +36,7 @@ function useMessagesHelpers() {
   return [messages, dispatchMessage];
 }
 
+//The hook for handling users state information and everything about them
 function useUserHelpers() {
   const dispatch = useDispatch();
 
@@ -70,4 +79,34 @@ function useUserHelpers() {
   return [user, dispatchUser];
 }
 
-export { useMessagesHelpers, useUserHelpers };
+// Hook for dealing with books state and everything with books around the app
+function useBooksHelpers() {
+  const dispatch = useDispatch();
+
+  const dispatchBooks = (action) => {
+    switch (action?.type) {
+      case "SET_BOOK": {
+        dispatch(setBook(action.payload));
+        break;
+      }
+
+      case "SET_BOOK_LIST": {
+        dispatch(setBookList(action.payload));
+        break;
+      }
+
+      case "SET_SEARCH_BOOK_LIST": {
+        dispatch(setSearchBookList(action.payload));
+        break;
+      }
+
+      default:
+        return;
+    }
+  };
+  const books = useSelector(selectBooks);
+
+  return [books, dispatchBooks];
+}
+
+export { useMessagesHelpers, useUserHelpers, useBooksHelpers };

@@ -1,7 +1,6 @@
 import { Redirect } from "react-router-dom";
 
 import ProfileImage from "../../components/ProfileImage/ProfileImage";
-import appLogo from "../../logo.png";
 import { useUserHelpers } from "../../Redux/getSlices";
 
 import "./Profile.css";

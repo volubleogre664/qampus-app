@@ -19,7 +19,7 @@ function CompleteRegistration({ history }) {
     bio: "",
   });
 
-  const [updateProfile, { loading }] = useMutation(REGISTER_USER, {
+  const [updateProfile] = useMutation(REGISTER_USER, {
     variables: values,
     update(_, { data: { success } }) {
       if (success) {

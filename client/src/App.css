@@ -36,7 +36,7 @@
 }
 
 /* All form submit buttons are the same. This is the class for them */
-button[type="submit"] {
+button[type="submit"].formSubmitBtn {
   padding: 4px 30px;
   background: #03a9f4;
   font-weight: 600;
@@ -46,7 +46,7 @@ button[type="submit"] {
   width: fit-content;
 }
 
-button[type="submit"]:hover {
+button[type="submit"].formSubmitBtn:hover {
   transition: all ease-in-out 0.25s;
   background-color: rgb(37, 37, 37);
 }

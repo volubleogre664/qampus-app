@@ -20,13 +20,15 @@ function Upload() {
     <div className="upload">
       <h1 className="upload__title">Upload a book</h1>
 
-      <form onSubmit={onSubmit}>
-        <div className="bookFrontCover">
-          <input type="file" name="frontCover" multiple="false" />
-        </div>
-        <div className="bookBackCover">
-          <input type="file" name="backCover" multiple="false" />
-        </div>
+      <form onSubmit={onSubmit} className="upload__form">
+        <header className="upload__formHeader">
+          <div className="bookFrontCover">
+            <input type="file" name="frontCover" multiple="false" />
+          </div>
+          <div className="bookBackCover">
+            <input type="file" name="backCover" multiple="false" />
+          </div>
+        </header>
 
         <label htmlFor="isbn">
           Book ISBN: <br />

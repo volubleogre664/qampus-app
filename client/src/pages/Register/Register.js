@@ -21,7 +21,7 @@ function Register({ history }) {
   });
   const [, dispatch] = useUserHelpers();
 
-  const [register, { loading }] = useMutation(REGISTER_USER, {
+  const [register] = useMutation(REGISTER_USER, {
     update(_, { data: { register: userData } }) {
       dispatch({
         type: "SET_USER",

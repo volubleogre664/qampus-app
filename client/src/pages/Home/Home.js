@@ -26,12 +26,8 @@ function Home({ history }) {
     }
   };
 
-  const handleAvatarClick = (e) => {
-    if (user) {
-      history.push("/profile");
-    } else {
-      history.push("/login");
-    }
+  const handleAvatarClick = () => {
+    history.push("/profile");
   };
 
   // Helps retturn back to the menu

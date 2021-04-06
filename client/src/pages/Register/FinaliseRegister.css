@@ -14,6 +14,14 @@
   flex-direction: column;
 }
 
+.finaliseReg__header img {
+  width: 180px;
+  height: 80px;
+  object-fit: contain;
+  margin: 0 auto;
+  filter: drop-shadow(2px 4px 4px #000000);
+}
+
 .finaliseReg__header h1 {
   text-align: center;
   margin-top: 10px;

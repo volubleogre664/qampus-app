@@ -16,7 +16,7 @@ function Login({ history }) {
   });
   // console.log(history);
 
-  const [login, { loading }] = useMutation(LOGIN_USER, {
+  const [login] = useMutation(LOGIN_USER, {
     update(_, { data: { login: userData } }) {
       userDispatch({ type: "SET_USER", payload: userData });
       path !== "" ? history.push(path) : history.goBack();
@@ -45,9 +45,11 @@ function Login({ history }) {
         <img className="login__headerLogo" src={logo} alt="qampus logo" />
       </header>
       <div className="welcome__text">
-        <p>Welcome... here you can sell texbooks, or buy them from other students.</p>
-        <hr className="separator"/>
-
+        <p>
+          Welcome... here you can sell texbooks, or buy them from other
+          students.
+        </p>
+        <hr className="separator" />
       </div>
       <main className="login__main">
         <h3 className="title">login to access all the features</h3>
@@ -79,12 +81,12 @@ function Login({ history }) {
               className="form__passwordInput"
             />
           </label>
-          
+
           <div className="form__btns">
             <Button type="submit" className="form__btnSubmit">
               Login
             </Button>
-            
+
             <div className="links">
               <Link className="form__signupLink" to="/register">
                 Sign up
@@ -96,17 +98,18 @@ function Login({ history }) {
                 should prevent them from accessing the full featuers*/}
               </Link>
             </div>
-            
           </div>
         </form>
       </main>
-     
+
       <footer className="login__footer">
-      <hr className="separator_footer"/>
+        <hr className="separator_footer" />
         <span name="top_footer">Qampus &copy; 2020 | All Rights Reserved.</span>
 
         <span className="login__footerSeparator"></span>
-        <span name="bottom_footer">Developed by Nuclear Software (Pty) Ltd</span>
+        <span name="bottom_footer">
+          Developed by Nuclear Software (Pty) Ltd
+        </span>
       </footer>
     </div>
   );
