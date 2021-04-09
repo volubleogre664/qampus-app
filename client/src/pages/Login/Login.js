@@ -45,7 +45,7 @@ function Login({ history }) {
         <img className="login__headerLogo" src={logo} alt="qampus logo" />
       </header>
       <div className="welcome__text">
-        <p>Welcome to Qampus</p>
+        <p>Welcome</p>
         <hr className="separator" />
       </div>
       <main className="login__main">

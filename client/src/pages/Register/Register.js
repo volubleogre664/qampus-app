@@ -64,25 +64,29 @@ function Register({ history }) {
 
   return (
     <div className="register">
-      <h1 className="title">Welcome to Qampus</h1>
-      <aside className="register__aside">
-        <img src={logo} alt="qampus app register user" />
-        <h1>Connect with other students</h1>
-        <h1>Have others come to you to buy books</h1>
-        <h1>Easily buy books from other students</h1>
-        <h1>Find your way around your campus</h1>
-        <h1>
-          Create Your Account Now{" "}
-          <span role="img" aria-label="right pointing finger">
-            👉
-          </span>{" "}
-        </h1>
-        <p>
-          Already have an account? <Link to="login">Login</Link>
-        </p>
-      </aside>
+      <section className="page_headers">
+        <img  className="logo" src={logo} alt="qampus app register user" />
+        <h1 className="welcome_header">Welcome</h1>
+        <hr className="separator" />
+      </section>
 
-      <main className="register__main">
+      <section className="page_content">
+        <aside className="register__aside">
+          <h1>Connect with other students</h1>
+          <h1>Have others come to you to buy books</h1>
+          <h1>Easily buy books from other students</h1>
+          <h1>Find your way around your campus</h1>
+          <h1>
+            Create Your Account Now{" "}
+            <span role="img" aria-label="right pointing finger">
+              👉
+            </span>{" "}
+          </h1>
+          <p>
+            Already have an account? <Link to="login">Login</Link>
+          </p>
+        </aside>
+        <main className="register__main">
         <h4 className="subtitle">Sign up for more features</h4>
 
         <form onSubmit={onSubmit} className="register__mainForm">
@@ -171,6 +175,7 @@ function Register({ history }) {
           {/* <Button onClick={onSubmit}>Register</Button>  */}
         </form>
       </main>
+      </section>
     </div>
   );
 }

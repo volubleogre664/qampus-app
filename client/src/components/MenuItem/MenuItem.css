@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Oxygen&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 .menuItem {
   padding: 10px;
@@ -7,7 +8,7 @@
   height: 200px;
   background: rgb(225, 245, 255);
   margin: auto;
-  border-radius: 8px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -16,7 +17,7 @@
   cursor: pointer;
   transition: all ease-in-out 0.3s;
   box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, 0.3),
-    -2px -2px 3px 0 rgba(220, 220, 220, 0.6);
+    -2px -2px 3px 0 rgba(0, 0, 0, 0.3);
 }
 
 .menuItem:hover {
@@ -26,16 +27,18 @@
 
 .menuItem > .menuItem__icon > * {
   font-size: 2.9rem;
-  color: rgb(0, 5, 7);
+  color: rgb(19,161,242);
+  /* color: rgb(0, 5, 7); */
   padding-top: 10px;
   padding-bottom: 2px;
-  font-weight: lighter;
+ 
 }
 
 .menuItem > .menuItem__title {
   font-size: 1.3rem;
-  font-weight: lighter;
+  font-weight: normal;
   padding-top: 0;
+  font-family: 'Lato', sans-serif;
 }
 
 .menuItem > .menuItem__subtitle {

@@ -62,11 +62,11 @@ function Home({ history }) {
       </div>
 
       <div className="home__searchSection">
-        <h4 className="home__title">Welcome to Qampus</h4>
+        <h4 className="home__title">Welcome</h4>
         <hr className="separator"/>
-        <h3 className="home__title2">here you can sell texbooks, or buy them from other students.</h3>
+        <h3 className="home__title2">here you can sell your texbooks, or buy them from other students</h3>
 
-        <p className="home__subtitle">Type the ISBN, title or Module Code.</p>
+        <p className="home__subtitle">Type the ISBN, Title or Module Code.</p>
 
         <form className="home__searchContainer">
           <input type="text" name="searchBook" className="home__searchInput" />
@@ -82,7 +82,7 @@ function Home({ history }) {
             <MenuItem
               icon="upload"
               title="Upload"
-              subtitle="Upload your used textbooks and sell them to other students."
+              subtitle="Upload your used textbooks and sell them to other students. "
             />{" "}
           </Link>
 
@@ -90,7 +90,7 @@ function Home({ history }) {
             <MenuItem
               icon="collection"
               title="Book Collection"
-              subtitle="Here you will find a collection of all the books you have uploaded."
+              subtitle="Have a look at a collection of all the books that you've uploaded."
             />{" "}
           </Link>
 
@@ -106,7 +106,7 @@ function Home({ history }) {
             <MenuItem
               icon="navigation"
               title="Navigation"
-              subtitle="Let Qampus Navigator help you find your way around your Campus."
+              subtitle="Find your way around campus with Qampus."
             />{" "}
           </Link>
 
@@ -114,7 +114,7 @@ function Home({ history }) {
             <MenuItem
               icon="settings"
               title="Settings"
-              subtitle="Play around with Qampus settings and customise it to be you."
+              subtitle="Change your profile preferences, etc."
             />{" "}
           </Link>
         </div>
@@ -135,7 +135,7 @@ function Home({ history }) {
       </div>
 
       <div className='reference'>
-        <a className="reference_link" href={ref_link}>Do you like this photo? [ by <u>{ref_name}</u> ]</a>
+        <a className="reference_link" href={ref_link}>Do you like this photo? [ by {ref_name} ]</a>
       </div>
 
     </div>

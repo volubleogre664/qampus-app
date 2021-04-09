@@ -1,9 +1,9 @@
 import React from "react";
-import ChatIcon from "@material-ui/icons/ChatOutlined";
-import SettingsIcon from "@material-ui/icons/SettingsOutlined";
-import PublishIcon from "@material-ui/icons/PublishOutlined";
-import LibraryBooksIcon from "@material-ui/icons/ClassOutlined";
-import LocationOnIcon from "@material-ui/icons/LocationOnOutlined";
+import ChatIcon from "@material-ui/icons/ChatRounded";
+import SettingsIcon from "@material-ui/icons/SettingsRounded";
+import PublishIcon from "@material-ui/icons/PublishRounded";
+import LibraryBooksIcon from "@material-ui/icons/ClassRounded";
+import LocationOnIcon from "@material-ui/icons/LocationOnRounded";
 import ErrorIcon from "@material-ui/icons/Error";
 import "./MenuItem.css";
 
