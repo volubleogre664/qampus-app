@@ -6,7 +6,6 @@ import logo from "../../logo.png";
 import SearchResult from "../../components/SearchResult/SearchResult";
 import { useUserHelpers } from "../../Redux/getSlices";
 import { SearchOutlined } from "@material-ui/icons";
-import {LinkIcon} from '@material-ui/icons/Link';
 import "./Home.css";
 
 //change the background reference here

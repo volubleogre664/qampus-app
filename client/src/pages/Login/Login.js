@@ -46,10 +46,10 @@ function Login({ history }) {
       </header>
       <div className="welcome__text">
         <p>Welcome</p>
-        <hr className="separator" />
+        <hr className="separator"/>
       </div>
       <main className="login__main">
-        <h3 className="title">login to access all the features</h3>
+        <h1 className="title">login to access all the features</h1>
 
         <form className="form" onSubmit={onSubmit}>
           <label htmlFor="studentNum">
