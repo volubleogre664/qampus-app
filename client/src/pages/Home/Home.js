@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import PersonIcon from "../../account-home.png";
+// import PersonIcon from "../../account-home.png";
+import PersonIcon from "@material-ui/icons/Person";
 import MenuItem from "../../components/MenuItem/MenuItem.js";
 import { Link } from "react-router-dom";
 import logo from "../../logo.png";
@@ -9,8 +10,8 @@ import { SearchOutlined } from "@material-ui/icons";
 import "./Home.css";
 
 //change the background reference here
-var ref_link = 'https://500px.com/photo/145947193/Cardinal-captured-in-4K-Video-by-Jinsheng-Xu';
-var ref_name = "Jinsheng Xu";
+var ref_link = 'https://500px.com/photo/294752081/Down-by-the-lakeside-by-S-Luciano-Fredheim';
+var ref_name = "S. Luciano Fredheim";
 
 function Home({ history }) {
   const [results, setResults] = useState([]);
@@ -47,28 +48,25 @@ function Home({ history }) {
   return (
     <div className="home">
       <div className="home__header">
-        <div className="home__logo">
-          <img className="home__logoImg logo" src={logo} alt="qampus logo" />
-        </div>
+       
 
         <div className="home__avatar" onClick={handleAvatarClick}>
-          <div className="home__avatarIcon">
-            <img className="avatarIcon" src={PersonIcon} alt="avatar_icon" />
-          </div>
-
+          <PersonIcon className="avatarIcon"/>
           <div className="home__avatarName">{user?.firstName || "Guest"}</div>
         </div>
       </div>
 
       <div className="home__searchSection">
+      <div className="home__logo">
+          <img className="home__logoImg logo" src={logo} alt="qampus logo" />
+        </div>
         <h4 className="home__title">Welcome</h4>
-        <hr className="separator"/>
         <h3 className="home__title2">here you can sell your texbooks, or buy them from other students</h3>
 
-        <p className="home__subtitle">Type the ISBN, Title or Module Code.</p>
+        <p className="home__subtitle">Search for textbooks</p>
 
         <form className="home__searchContainer">
-          <input type="text" name="searchBook" className="home__searchInput" />
+          <input type="text" name="searchBook" className="home__searchInput" placeholder="Type the title, ISBN or module code."/>
           <button type="submit" onClick={handleSearchClick}>
             <SearchOutlined />
           </button>
@@ -124,17 +122,16 @@ function Home({ history }) {
         style={{ display: displays.results }}
       >
         <div className="heading">
-          <h3>Your search results are: </h3>
-          <button onClick={openMenu}>Back</button>
+          <h3>Search results</h3>
+          <button className="btnBack" onClick={openMenu}>X{/*Close search results*/}</button>
         </div>
-
         {results?.map((_, i) => {
           return <SearchResult key={i} />;
         })}
       </div>
 
       <div className='reference'>
-        <a className="reference_link" href={ref_link}>Do you like this photo? [ by {ref_name} ]</a>
+        <a className="reference_link" target="_blank" href={ref_link}>Do you like this photo? <br/> [ by<u> {ref_name} </u>]</a>
       </div>
 
     </div>

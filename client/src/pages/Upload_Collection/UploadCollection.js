@@ -4,7 +4,7 @@ import "./UploadCollection.css";
 function UploadCollection() {
   return (
     <div className="uploadCollection">
-      <div className="uploadCollection__upload">
+      <div className="upload_section">
         <Upload />
       </div>
 

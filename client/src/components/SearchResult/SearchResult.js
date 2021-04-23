@@ -2,6 +2,10 @@ import React, { useLayoutEffect, useState } from "react";
 import book from "./book.jpg";
 import "./SearchResult.css";
 
+
+var book_descriptio = "book description from DB goes here";
+var date_uploaded = "date from db goes here";
+
 function SearchResult() {
   const [width, setWidth] = useState(0);
 
@@ -17,14 +21,14 @@ function SearchResult() {
     <div className="searchResult">
       <img src={book} alt="book result" className="searchResult__img" />
       <div className="searchResult__description">
-        ISBN: <strong>9781408046634</strong> <br />
-        Title: <strong>Database Principles</strong> <br />
-        Module Code: <strong>CSIS3714</strong> <br />
-        Author: <strong>Stephen Morris, David Smith</strong> <br />
-        Price: <strong>R300,00</strong> <br />
-        Edition: <strong>2nd</strong> <br />
+        <b>ISBN:</b> 9781408046634<br />
+        <b>Title:</b> Database Principles<br />
+        <b>Module Code:</b> CSIS3714 <br />
+        <b>Author:</b> Stephen Morris, David Smith <br />
+        <b>Price:</b> R310,00 <br />
+        <b>Edition: </b>2nd <br />
       </div>
-      <span className="dateContainer">17/06/2021</span>
+      <span className="dateContainer">Uploaded: 17/06/2021</span>
       <span className="triangle" style={{ width: width + "px" }}></span>
     </div>
   );

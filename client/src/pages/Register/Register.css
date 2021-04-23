@@ -12,12 +12,12 @@
   text-align: center;
 }
 .page_headers .logo {
-  width: 200px;
+  width: 170px;
   filter: drop-shadow(2px 4px 4px #000000);
   text-align: center;
   margin: auto;
   margin-bottom: 0px;
-  margin-top: 25px;
+  margin-top: 3vh;
 }
 .welcome_header{
   display: none;
@@ -25,7 +25,7 @@
   margin: auto;
   margin-top: 10px;
   margin-bottom: 0px;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-family: "Lobster Two";
   font-weight: 100;
   color: #ffffff;
@@ -83,7 +83,7 @@
   align-self: center;
   margin: auto;
   margin-bottom: 30px;
-  font: lighter 2.1rem var(--font-head);
+  font: lighter 1.8rem var(--font-head);
 }
 .tilesWrap {
     display: flex;
@@ -98,9 +98,9 @@
     clear: both;
     counter-increment: list;
     padding-bottom: 25px;
-    font: lighter 1.1rem var(--font);
+    font: lighter 1rem var(--font);
     position: relative;
-    max-width: 70%;
+    max-width: 69%;
 
 }
 .tilesWrap li:before {
@@ -154,13 +154,13 @@
   max-width: 300px;
   display: flex;
   flex-flow: column nowrap;
-  padding: 20px;
-  padding-right: 30px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   margin: auto;
-  margin-top: 12px;
-  border-radius: 10px;
+  border-radius: 5px;
   color: white;
-  background-color: rgba(155, 155, 155, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 2px 3px 3px 0 rgba(0, 0, 0, 0.1),
@@ -175,7 +175,7 @@
 .register__mainForm input {
   transition: all ease-in-out 0.2s;
   background: white;
-  width: 100%;
+  width: 95%;
   height: 29px;
   max-height: 29px;
   outline: none;
@@ -184,7 +184,7 @@
   font-size: 1.2rem;
   padding: 2px;
   padding-left: 7px;
-  margin-bottom: 10px;
+  margin-bottom: 9px;
   
 }
 .register__mainForm input:focus {

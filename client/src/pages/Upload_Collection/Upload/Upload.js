@@ -5,7 +5,7 @@ import { useForm } from "../../../utils/hooks";
 
 import "./Upload.css";
 
-function Upload() {
+function Upload() {                              
   const { onChange, onSubmit, values } = useForm({
     isbn: "",
     title: "",
@@ -21,14 +21,23 @@ function Upload() {
       <h1 className="upload__title">Upload a book</h1>
 
       <form onSubmit={onSubmit} className="upload__form">
-        <header className="upload__formHeader">
-          <div className="bookFrontCover">
-            <input type="file" name="frontCover" multiple="false" />
-          </div>
-          <div className="bookBackCover">
+        {/*A*/}
+         
+        {/*B*/}
+        <div className="book">
+          <label className="bookFrontCover">
+            Front Cover
+            <input type="file" name="frontCover" multiple="false" 
+                  accept=".jpg,.jpeg,.gif,.png,.mov,.mp4"/>
+                  {/* onChange={handleImageChange}             /> */}
+            
+          </label>
+          
+          <label className="bookBackCover">
+            Back Cover
             <input type="file" name="backCover" multiple="false" />
-          </div>
-        </header>
+          </label>
+        </div>
 
         <label htmlFor="isbn">
           Book ISBN: <br />
@@ -87,9 +96,9 @@ function Upload() {
         </label>
 
         <label htmlFor="price">
-          Asking Price [R]: <br />
+          Asking Price (R): <br />
           <input
-            type="text"
+            type="number"
             name="price"
             id="price"
             required
@@ -114,11 +123,24 @@ function Upload() {
         </label>
 
         <Button className="formSubmitBtn" type="submit">
-          Upload Book
+          Upload
         </Button>
       </form>
     </div>
   );
 }
+// function handleImageChange(e) {
+  
+//   if (e.target.files && e.target.files[0]) {
+//     setTypeFile(e.target.files[0].type);
+//     let reader = new FileReader();
 
+//     reader.onload = function (e) {
+//       setImage(e.target.result);
+//       setIsUploaded(true);
+//     };
+
+//     reader.readAsDataURL(e.target.files[0]);
+//   }
+// }
 export default Upload;
