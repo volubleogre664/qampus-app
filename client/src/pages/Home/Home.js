@@ -131,7 +131,7 @@ function Home({ history }) {
       </div>
 
       <div className='reference'>
-        <a className="reference_link" target="_blank" href={ref_link}>Do you like this photo? <br/> [ by<u> {ref_name} </u>]</a>
+        <a className="reference_link" target="_blank" rel="noreferrer" href={ref_link}>Do you like this photo? <br/> [ by<u> {ref_name} </u>]</a>
       </div>
 
     </div>

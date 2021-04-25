@@ -3,7 +3,7 @@ import book from "./book.jpg";
 import "./SearchResult.css";
 
 
-var book_descriptio = "book description from DB goes here";
+var book_description = "book description from DB goes here";
 var date_uploaded = "date from db goes here";
 
 function SearchResult() {

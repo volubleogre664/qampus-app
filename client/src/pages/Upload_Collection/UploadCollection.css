@@ -11,3 +11,9 @@
 .upload_section {
   width: 25%;
 }
+
+@media screen and (max-width: 500px) {
+  .upload_section {
+    width: 100%;
+  }
+}
