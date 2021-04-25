@@ -16,7 +16,8 @@ function Upload() {
     studentNumber: "",
   });
   
-
+  
+  // https://codepen.io/BastianAndre/pen/RpwOmp?editors=0010
   function initImageUpload(box) {
   let uploadField = box.querySelector('.image-upload');
 
