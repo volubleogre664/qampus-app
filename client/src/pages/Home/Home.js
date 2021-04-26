@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import PersonIcon from "../../account-home.png";
 import PersonIcon from "@material-ui/icons/Person";
 import MenuItem from "../../components/MenuItem/MenuItem.js";
 import { Link } from "react-router-dom";

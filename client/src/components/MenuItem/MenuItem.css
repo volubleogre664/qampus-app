@@ -6,11 +6,8 @@
   width: 200px;
   max-width: 280px;
   height: 200px;
-  background: rgb(250, 255, 255);
+  background: rgb(225, 245, 255);
   margin: auto;
-  margin-bottom: 10px;
-  margin-left: 5px;
-  margin-right: 5px;
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -29,16 +26,17 @@
 }
 
 .menuItem > .menuItem__icon > * {
-  font-size: 2.5rem;
+  font-size: 2.9rem;
   color: rgb(19,161,242);
   /* color: rgb(0, 5, 7); */
   padding-top: 10px;
   padding-bottom: 2px;
+ 
 }
 
 .menuItem > .menuItem__title {
   font-size: 1.3rem;
-  font-weight: normal; 
+  font-weight: normal;
   padding-top: 0;
   font-family: 'Lato', sans-serif;
 }
@@ -49,25 +47,9 @@
   font-weight: normal;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 470px) {
   .menuItem {
-    width: 6
-    0vw;
-    height: 40vw;
-  }
-  .menuItem > .menuItem__title {
-    font-size: 1.4rem;
-    font-weight: normal; 
-    padding-top: 0;
-    font-family: 'Lato', sans-serif;
-  }
-  
-  .menuItem > .menuItem__subtitle {
-    font-size: 1.1rem;
-    text-align: center;
-    font-weight: normal;
-  }
-  .menuItem > .menuItem__icon > * {
-    font-size: 3rem;
+    width: 70%;
+    height: unset;
   }
 }
