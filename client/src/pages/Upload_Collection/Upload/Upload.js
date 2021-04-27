@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@material-ui/core";
 import { useForm } from "../../../utils/hooks";
-import placeholder from "@material-ui/icons/ClassRounded";
+import placeholder from "../../../images/placeholder.webp";
 import "./Upload.css";
 
 function Upload() {                              
@@ -48,27 +48,31 @@ function Upload() {
 
         <div className="wrapper">
           <div className="box" >
-            <div id="front"className="js--image-preview" >
-              <img src={src1} alt="" className="thumb"/>
-            </div>
-               <div className="upload-options">
+          <div className="upload-options">
                 <label className="front" >
                   Front Cover
                   <input type="file" class="image-upload" className="image-upload" accept="image/*" onChange={handleImg1}/>
                 </label>
             </div>
+
+            <div id="front"className="js--image-preview" >
+              <img src={src1} alt="" className="thumb"/>
+            </div>
+             
           </div>
 
           <div className="box">
-            <div  className="js--image-preview">
-              <img src={src2} alt="" className="thumb"/>
-            </div>
-            <div className="upload-options">
+          <div className="upload-options">
               <label className="back">
                 Back Cover
                 <input type="file" class="image-upload" className="image-upload" accept="image/*"onChange={handleImg2}/>
               </label>
             </div>
+
+            <div  className="js--image-preview">
+              <img src={src2} alt="" className="thumb"/>
+            </div>
+            
           </div>
         </div>
 
@@ -86,7 +90,7 @@ function Upload() {
           />
         </label>
 
-        <label htmlFor="bookTitle">
+        {/* <label htmlFor="bookTitle">
           Book Title: <br />
           <input
             type="text"
@@ -98,7 +102,7 @@ function Upload() {
             className="formInput"
             placeholder=""
           />
-        </label>
+        </label> */}
 
         <label htmlFor="moduleCode">
           Module Code: <br />
@@ -114,7 +118,7 @@ function Upload() {
           />
         </label>
 
-        <label htmlFor="authors">
+        {/* <label htmlFor="authors">
           Authors: <br />
           <input
             type="text"
@@ -126,7 +130,7 @@ function Upload() {
             className="formInput"
             placeholder=""
           />
-        </label>
+        </label> */}
 
         <label htmlFor="price">
           Asking Price (R): <br />
@@ -142,7 +146,7 @@ function Upload() {
           />
         </label>
 
-        <label htmlFor="edition">
+        {/* <label htmlFor="edition">
           Edition: <br />
           <input
             type="number"
@@ -153,7 +157,7 @@ function Upload() {
             className="formInput"
             placeholder=""
           />
-        </label>
+        </label> */} 
 
         <Button className="formSubmitBtn" type="submit">
           Upload

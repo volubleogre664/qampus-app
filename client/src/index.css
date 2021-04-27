@@ -12,12 +12,13 @@ body {
   box-sizing: border-box;
   /* height: 100vh; */
   /* width: 100vw; */
-  background: linear-gradient(rgba(0, 0, 0, 0.1),
-  rgba(0, 0, 0, 0.3)), url("https://drscdn.500px.org/photo/294752081/m%3D900/v2?sig=bc1194c59936cb57ea3e89f70fe9c6c9fcbf8bfbda78e66cf01ca205f440401d") no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.5),
+  rgba(0, 0, 0, 0.3)), url("https://drscdn.500px.org/photo/130079947/m%3D900/v2?sig=3578a211f39b37304c6940c0017ab13cf0d9d511c41d664fa7f99a5c32067052") no-repeat;
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
   width: 100vw !important;
+  
 }
 
 code {

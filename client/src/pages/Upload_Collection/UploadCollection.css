@@ -4,17 +4,48 @@
   padding: 20px;
   padding-top: 0;
   width: 90%;
+  height: 90%;
   margin: auto;
   margin-top: 12px;
 }
 
 .upload_section {
-  width: 25%;
+  width: 35%;
+  background-color: rgba(45, 45, 45,.5);
+  border-radius: 5px;
+  padding-right: 10px;
+}
+
+.bullets{
+  color: white;
+  width: 100%;
+  margin: auto;
+}
+
+.tilesWrap{
+  text-align: left;
+  align-content: flex-start;
+  flex-flow: column wrap;
+  text-align: left;
+  padding-left: 15%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 @media screen and (max-width: 550px) {
   .upload_section {
     width: 100%;
+  }
+  .bullets{
+    margin-top:50px;
+  }
+  .tilesWrap{
+    padding-left: 5%;
+  }
+
+  .uploadCollection {
+    flex-flow: row wrap;
   }
 }
 
@@ -22,10 +53,16 @@
   .upload_section {
     width: 70%;
   }
+  .uploadCollection {
+    flex-flow: row wrap;
+  }
 }
 
 @media screen and (max-width: 1300px) and (min-width:900px){
   .upload_section {
     width: 40%;
   }
+
+  
+
 }

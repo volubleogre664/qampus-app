@@ -154,9 +154,9 @@
   max-width: 300px;
   display: flex;
   flex-flow: column nowrap;
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 20px 0px 15px 20px;
+  gap: 10px;
+  text-align: center;
   margin: auto;
   border-radius: 5px;
   color: white;
@@ -167,15 +167,19 @@
     -2px -3px 3px rgba(87, 87, 87, 0.2);
 }
 .register__mainForm label {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: lighter;
-  cursor: pointer
+  cursor: pointer;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-content: center;
+  text-align: left;
 }
 
 .register__mainForm input {
   transition: all ease-in-out 0.2s;
   background: white;
-  width: 95%;
+  width: 90%;
   height: 29px;
   max-height: 29px;
   outline: none;
@@ -230,9 +234,17 @@
   font-style: normal;
   color: #fff;
 }
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 800px) {
+  .register{
+    width: 105%;
+  }
+  
   .tilesWrap li {
     max-width: 90%;
+  }
+   .register__aside {
+      order: 1;
+      margin-top: 20px;
   }
 }
 @media only screen and (min-width: 900px) {
@@ -243,6 +255,6 @@
     width: 400px;
     min-width: 200px;
     max-width: 400px;
+    order:2;
   }
 }
-
