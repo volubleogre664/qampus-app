@@ -1,8 +1,7 @@
 .profileImage {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
 }
 
@@ -25,21 +24,21 @@
   max-width: 300px;
   min-height: 300px;
   max-height: 300px;
-  border-radius: 10px;
+  border-radius: 10px 10px 0 0;
   object-fit:scale-down;
   background: white;
   filter: drop-shadow(2px 4px 4px #000000);
-
 }
 
 
 .add_span {
-  position: absolute;
-  bottom: -10%;
-  right: auto;
+  /* position: absolute; */
   z-index: 10 !important;
+  width: 280px;
+  order:10;
+  text-align: center;
   padding: 10px;
-  border-radius: 30%;
+  border-radius: 0 0 10px 10px;
   background: #03a9f4;
   filter: drop-shadow(2px 4px 4px #000000);
   color: white;
@@ -61,4 +60,5 @@
   font-size: 2.5rem;
   color: white;
 }
+
 
