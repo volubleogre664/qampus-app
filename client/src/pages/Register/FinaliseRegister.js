@@ -47,13 +47,16 @@ function CompleteRegistration({ history }) {
     <div className="finaliseReg">
       <header className="finaliseReg__header">
         <img cclassName="logo" src={appLogo} alt="campus app logo" />
-        <h1 className="title">Finish setting up your profile</h1>
+        <h1 className="title">Complete your profile</h1>
+        <hr className="separator"/>
+
       </header>
 
       <section className="finaliseReg__body">
         <aside className="finaliseReg__bodyAside">
-          <ProfileImage title="Upload Profile Image" />
+          <ProfileImage />
         </aside>
+        
 
         <main className="finaliseReg__bodyMain">
           <h1>More information about you: </h1>
@@ -61,7 +64,7 @@ function CompleteRegistration({ history }) {
             <label htmlFor="degree">
               Degree: <br />
               <input
-                type="text"
+                type="select"
                 name="degree"
                 className="formInput"
                 placeholder="BSc in IT"
@@ -81,15 +84,16 @@ function CompleteRegistration({ history }) {
               />
             </label>
 
-            <Button type="submit" className="formSubmit">
-              Finish
-            </Button>
+           
           </form>
         </main>
 
         <footer>
-          <Button onClick={finishLaterClick} className="btnSkip">
-            Finish later
+        <Button type="submit" className="formSubmit">
+              Submit
+            </Button>
+            <Button onClick={finishLaterClick} className="btnSkip">
+            Cancel
           </Button>
         </footer>
       </section>

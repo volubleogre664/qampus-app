@@ -77,20 +77,20 @@ function CropImage() {
   return (
     <div className="cropImg">
       <h1>Adjust Your Image</h1>
-
-      {imgCrop.imgSrc && (
-        <ReactCrop
-          src={imgCrop.imgSrc}
-          crop={cropInfo.crop}
-          onImageLoaded={onImageLoaded}
-          onChange={onCropChange}
-          locked
-          onComplete={onCropComplete}
-          style={{ left: `calc(50% - ${cropImage?.clientWidth / 2}px)` }}
-        />
-      )}
-
-      <div>
+      <div className="cropper">
+        {imgCrop.imgSrc && (
+          <ReactCrop
+            src={imgCrop.imgSrc}
+            crop={cropInfo.crop}
+            onImageLoaded={onImageLoaded}
+            onChange={onCropChange}
+            locked
+            onComplete={onCropComplete}
+            // style={{ left: `calc(50% - ${cropImage?.clientWidth / 2}px)` }}
+          />
+        )}
+      </div>
+      <div className="buttons">
         <Button onClick={cancelCrop}>Cancel</Button>
         <Button onClick={() => makeClientCrop(cropInfo.crop)}>Done</Button>
       </div>

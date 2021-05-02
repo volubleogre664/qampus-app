@@ -24,7 +24,6 @@ function ProfileImage({ title }) {
 
   return (
     <div className="profileImage">
-      <h1>{title}</h1>
       <input
         type="file"
         multiple={false}
@@ -34,11 +33,11 @@ function ProfileImage({ title }) {
         style={{ display: "none" }}
       />
 
-      <div onClick={() => fileInputRef.current.click()}>
-        <span>
-          <AddAPhotoOutlinedIcon />
+      <div className="add_div" onClick={() => fileInputRef.current.click()}>
+        <span className="add_span">
+          <AddAPhotoOutlinedIcon className="add"/>
         </span>
-        <img src={imgCrop.croppedImgUrl || defaultImg} alt="" />
+        <img className="image" src={imgCrop.croppedImgUrl || defaultImg} alt="" />
       </div>
     </div>
   );

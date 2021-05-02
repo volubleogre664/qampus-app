@@ -1,11 +1,72 @@
 .profile {
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  margin: auto;
+  margin-top: 0;
+  overflow-y: auto;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
 }
 
-.profile__body {
+.profile_header {
+  width: 100%;
+  color: #ffffff;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 50px;
   margin-top: 30px;
+
+}
+
+.profile_header h1 {
+  text-align: center;
+  margin-top: 20px;
+  margin: auto;
+  font-size: 1.8rem;
+  font-weight: lighter;
+  font-family: "Poiret One";
+
+}
+
+.profile_header .separator {
+  border-top: 1px solid white;
+  border-radius: 5px;
+  width: 100%;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 30px;
+}
+.profile__body {
+  margin-top: 20px;
+  width: 100%;
   display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  color: white;
 }
 
 .profile__bodyAside {
   width: 50%;
+  margin: 0;
+}
+.profile__bodyMain{
+  width: 50%;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.profile__bodyMain > form {
+  max-width: 300px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: white ;
+  text-align: left;
+  font-weight: lighter;
 }

@@ -8,18 +8,19 @@ import "./Profile.css";
 function Profile() {
   const [{ user }, dispatch] = useUserHelpers();
 
-  if (!user) {
-    dispatch({
-      type: "SET_PATH",
-      payload: "/profile",
-    });
-    return <Redirect to="/login" />;
-  }
+  // if (!user) {
+  //   dispatch({
+  //     type: "SET_PATH",
+  //     payload: "/profile",
+  //   });
+  //   return <Redirect to="/login" />;
+  // }
 
   return (
     <div className="profile">
-      <header className="finaliseReg__header">
+      <header className="profile_header">
         <h1 className="title">Your Profile</h1>
+        <hr className="separator"/>
       </header>
 
       <section className="profile__body">
@@ -31,45 +32,47 @@ function Profile() {
           <form>
             <div>
               <h3>Name: </h3>
-              <p>{user.firstName}</p>
+              <p>{user?.firstName || "Mphile"}</p>
             </div>
 
             <div>
               <h3>Surname: </h3>
-              <p>{user.lastName}</p>
+              <p>{user?.lastName || "Mkwanazi"}</p>
             </div>
 
             <div>
               <h3>Email: </h3>
-              <p>{user.email}</p>
+              <p>{user?.email || "email.email.com"}</p>
             </div>
 
             <div>
               <h3>Student Number: </h3>
-              <p>{user.studentNumber}</p>
+              <p>{user?.studentNumber || "2017049467"}</p>
             </div>
 
             <label htmlFor="degree">
-              Degree: <br />
-              <input
+              <h3>Degree:</h3>
+              {/* <input
                 type="text"
                 name="degree"
                 id="degree"
                 value={user?.degree || ""}
                 disabled
                 placeholder="BSc in IT"
-              />
+              /> */}
+              <p>{user?.degree || "Computer Information Systems"}</p>
             </label>
 
             <label htmlFor="degree">
-              Bio: <br />
-              <textarea
+              <h3>Bio:</h3>
+              {/* <textarea
                 name="bio"
                 id="bio"
                 value={user?.bio || ""}
                 disabled
                 placeholder="Tell us a little about your self"
-              />
+              /> */}
+                <p>{user?.bio || "Hello there..."}</p>
             </label>
           </form>
         </main>
