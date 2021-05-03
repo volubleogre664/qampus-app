@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import SearchIcon from "@material-ui/icons/Search";
 import PersonIcon from "@material-ui/icons/Person";
 import { Link, Redirect } from "react-router-dom";
+
+import { useMessagesHelpers, useUserHelpers } from "../../Redux/getSlices.js";
 import Contact from "../../components/Contact/Contact.js";
 import Message from "../../components/Message/Message";
-import { useMessagesHelpers, useUserHelpers } from "../../Redux/getSlices.js";
+
 import "./Chats.css";
 
 function Chats() {

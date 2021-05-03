@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useMutation } from "@apollo/react-hooks";
-// import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
+// import { Link } from "react-router-dom";
 
-import logo from "../../logo.png";
 import { useForm } from "../../utils/hooks";
 import { REGISTER_USER } from "../../utils/graphql";
 import { useUserHelpers } from "../../Redux/getSlices";
+
+import logo from "../../logo.png";
 
 import "./Register.css";
 

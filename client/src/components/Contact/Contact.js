@@ -1,5 +1,5 @@
-import React from "react";
 import PersonIcon from "@material-ui/icons/Person";
+
 import "./Contact.css";
 
 function Contact({ name }) {

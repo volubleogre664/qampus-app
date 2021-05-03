@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
+
 import { useUserHelpers } from "../../Redux/getSlices";
 import { useForm } from "../../utils/hooks";
-import logo from "../../logo.png";
 import { LOGIN_USER } from "../../utils/graphql";
+
+import logo from "../../logo.png";
+
 import "./Login.css";
 
 function Login({ history }) {
@@ -46,7 +49,7 @@ function Login({ history }) {
       </header>
       <div className="welcome__text">
         <p>Welcome</p>
-        <hr className="separator"/>
+        <hr className="separator" />
       </div>
       <main className="login__main">
         <h1 className="title">login to access all the features</h1>

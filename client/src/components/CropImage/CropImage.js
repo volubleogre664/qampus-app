@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Cropper from "react-cropper";
 
+import { useUserHelpers } from "../../Redux/getSlices";
+
 import "cropperjs/dist/cropper.css";
 import "./CropImage.css";
-
-import { useUserHelpers } from "../../Redux/getSlices";
 
 export const CropImage = () => {
   const [{ imgCrop }, dispatch] = useUserHelpers();
@@ -59,29 +59,6 @@ export const CropImage = () => {
           <button onClick={getCropData}>Crop Image</button>
         </div>
       </div>
-
-      {/* <div>
-        <div className="box" style={{ width: "50%", float: "right" }}>
-          <h1>Preview</h1>
-          <div
-            className="img-preview"
-            style={{ width: "100%", float: "left", height: "300px" }}
-          />
-        </div>
-        <div
-          className="box"
-          style={{ width: "50%", float: "right", height: "300px" }}
-        >
-          <h1>
-            <span>Crop</span>
-            <button style={{ float: "right" }} onClick={getCropData}>
-              Crop Image
-            </button>
-          </h1>
-          <img style={{ width: "100%" }} src={cropData} alt="cropped" />
-        </div>
-      </div>
-      <br style={{ clear: "both" }} /> */}
     </div>
   );
 };

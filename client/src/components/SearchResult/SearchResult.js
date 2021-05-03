@@ -1,5 +1,7 @@
 import { useLayoutEffect, useState } from "react";
+
 import book from "./book.jpg";
+
 import "./SearchResult.css";
 
 // var book_description = "book description from DB goes here";

@@ -1,8 +1,9 @@
+import { GoVerified } from "react-icons/go";
 // import { Redirect } from "react-router-dom";
 
 import ProfileImage from "../../components/ProfileImage/ProfileImage";
 import { useUserHelpers } from "../../Redux/getSlices";
-import { GoVerified } from "react-icons/go";
+
 import "./Profile.css";
 
 function Profile() {

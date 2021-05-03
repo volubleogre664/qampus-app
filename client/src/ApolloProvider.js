@@ -1,11 +1,12 @@
 import React from "react";
-import App from "./App";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { createHttpLink } from "apollo-link-http";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { setContext } from "apollo-link-context";
 import { Provider as ReduxProvider } from "react-redux";
+
 import store from "./Redux/store";
+import App from "./App";
 
 const httpLink = createHttpLink({
   uri: "http://localhost:5000",

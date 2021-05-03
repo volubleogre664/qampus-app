@@ -3,6 +3,7 @@ import AddAPhotoOutlinedIcon from "@material-ui/icons/AddAPhotoOutlined";
 
 import { useUserHelpers } from "../../Redux/getSlices";
 import defaultImg from "../../account-home.png";
+
 import "./ProfileImage.css";
 
 function ProfileImage({ title }) {
