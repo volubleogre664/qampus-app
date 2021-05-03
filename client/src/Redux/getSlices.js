@@ -12,6 +12,7 @@ import {
 import {
   selectBooks,
   setBook,
+  setBookCover,
   setBookList,
   setSearchBookList,
 } from "./features/booksSlice";
@@ -87,6 +88,11 @@ function useBooksHelpers() {
     switch (action?.type) {
       case "SET_BOOK": {
         dispatch(setBook(action.payload));
+        break;
+      }
+
+      case "SET_BOOK_COVER": {
+        dispatch(setBookCover(action.payload));
         break;
       }
 
