@@ -2,7 +2,7 @@ import { Redirect } from "react-router-dom";
 
 import ProfileImage from "../../components/ProfileImage/ProfileImage";
 import { useUserHelpers } from "../../Redux/getSlices";
-
+import { GoVerified } from "react-icons/go"
 import "./Profile.css";
 
 function Profile() {
@@ -20,59 +20,60 @@ function Profile() {
     <div className="profile">
       <header className="profile_header">
         <h1 className="title">Your Profile</h1>
-        <hr className="separator"/>
       </header>
 
       <section className="profile__body">
         <aside className="profile__bodyAside">
-          <ProfileImage title="Your Profile Picture" />
+          <ProfileImage className="pic" title="Your Profile Picture" />
         </aside>
 
         <main className="profile__bodyMain">
+           <div className="nameDiv">
+           <p className="name">{user?.firstName || "Nkosingiphile "} {user?.lastName || "Mkwanazi"}</p> <GoVerified id="ico"/>
+              <hr className="separator"/>
+            </div>
+
           <form>
-            <div>
-              <h3>Name: </h3>
-              <p>{user?.firstName || "Mphile"}</p>
-            </div>
-
-            <div>
-              <h3>Surname: </h3>
-              <p>{user?.lastName || "Mkwanazi"}</p>
-            </div>
-
-            <div>
-              <h3>Email: </h3>
-              <p>{user?.email || "email.email.com"}</p>
-            </div>
-
-            <div>
-              <h3>Student Number: </h3>
-              <p>{user?.studentNumber || "2017049467"}</p>
-            </div>
-
+          <label htmlFor="degree">
+              <h3>Student number:</h3>
+              <input
+                className="textBox"
+                type="email"
+                name="studentNo"
+                id="textbox"
+                disabled
+                value={user?.studentNumber || "2017049467"}
+              />
+            </label>
             <label htmlFor="degree">
-              <h3>Degree:</h3>
-              {/* <input
+              <h3>Email:</h3>
+              <input
+                className="textBox"
+                type="email"
+                name="email"
+                id="textbox"
+                value={user?.email || "email.email.com"}
+              />
+            </label>
+            <label htmlFor="degree">
+              <h3>Filed of study:</h3>
+              <input
+                className="textBox"
                 type="text"
                 name="degree"
-                id="degree"
-                value={user?.degree || ""}
-                disabled
-                placeholder="BSc in IT"
-              /> */}
-              <p>{user?.degree || "Computer Information Systems"}</p>
+                id="textbox"
+                value={user?.degree || "Computer Information Systems"}
+              />
             </label>
 
             <label htmlFor="degree">
               <h3>Bio:</h3>
-              {/* <textarea
+              <textarea
+                className="bioBox"
                 name="bio"
                 id="bio"
-                value={user?.bio || ""}
-                disabled
-                placeholder="Tell us a little about your self"
-              /> */}
-                <p>{user?.bio || "Hello there..."}</p>
+                value={user?.bio || "Hello there..."}
+              />
             </label>
           </form>
         </main>
