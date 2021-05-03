@@ -1,101 +1,89 @@
-import React, { useState } from "react";
-import ReactCrop from "react-image-crop";
-import { Button } from "@material-ui/core";
+import { useState } from "react";
+import Cropper from "react-cropper";
 
-import getCroppedImg from "../../utils/getCroppedImage";
-import { useUserHelpers } from "../../Redux/getSlices";
-
-import "react-image-crop/dist/ReactCrop.css";
+import "cropperjs/dist/cropper.css";
 import "./CropImage.css";
 
-function CropImage() {
+import { useUserHelpers } from "../../Redux/getSlices";
+
+export const CropImage = () => {
   const [{ imgCrop }, dispatch] = useUserHelpers();
-  const [cropInfo, setCropInfo] = useState({
-    src: null,
-    crop: { unit: "px", x: 0, y: 0, width: 0, height: 0, aspect: 1 / 1 },
-    croppedImageUrl: null,
-  });
+  const [image] = useState(imgCrop.imgSrc);
+  const [cropper, setCropper] = useState();
 
-  let cropImage = imgCrop.imgSrc
-    ? document.querySelector(".ReactCrop__image")
-    : null;
-
-  const onCropChange = (crop, percentCrop) => {
-    setCropInfo({ ...cropInfo, crop: crop });
-  };
-
-  const onCropComplete = (crop) => {
-    setCropInfo({ ...cropInfo, crop: crop });
-  };
-
-  const onImageLoaded = (image) => {
-    // console.log(image);
-
-    cropImage = image;
-    let primarySide = image.height;
-    if (image.naturalWidth < image.naturalHeight) {
-      primarySide = image.width;
-    }
-
-    setCropInfo({
-      ...cropInfo,
-      crop: {
-        ...cropInfo.crop,
-        x: 0,
-        y: 0,
-        width: primarySide,
-        height: primarySide,
-      },
-    });
-    // console.log(cropImage);
-    return false;
-  };
-
-  async function makeClientCrop(crop) {
-    if (cropImage && crop.width && crop.height) {
-      // console.log(cropImage);
-      const croppedImageUrl = await getCroppedImg({
-        image: cropImage,
-        crop: crop,
-        fileName: "newfile.webp",
-      });
-
+  const getCropData = () => {
+    if (typeof cropper !== "undefined") {
       dispatch({
         type: "SET_CROP_IMG",
-        payload: { ...imgCrop, imgSrc: null, croppedImgUrl: croppedImageUrl },
+        payload: {
+          ...imgCrop,
+          croppedImgUrl: cropper.getCroppedCanvas().toDataURL(),
+          imgSrc: null,
+        },
       });
     }
-  }
-
-  const cancelCrop = () => {
-    dispatch({
-      type: "SET_CROP_IMG",
-      payload: { imgSrc: null, croppedImgUrl: null },
-    });
   };
 
   return (
-    <div className="cropImg">
-      <h1>Adjust Your Image</h1>
-      <div className="cropper">
-        {imgCrop.imgSrc && (
-          <ReactCrop
-            src={imgCrop.imgSrc}
-            crop={cropInfo.crop}
-            onImageLoaded={onImageLoaded}
-            onChange={onCropChange}
-            locked
-            onComplete={onCropComplete}
-            // style={{ left: `calc(50% - ${cropImage?.clientWidth / 2}px)` }}
+    <div>
+      <div
+        style={{
+          width: "100vw",
+          height: "100vh",
+          paddingLeft: "20px",
+          paddingRight: "20px",
+          boxSizing: "border-box",
+        }}
+      >
+        <h1>Adjust Your Image</h1>
+
+        <Cropper
+          style={{ height: 70 + "%", width: "100%" }}
+          initialAspectRatio={1}
+          src={image}
+          viewMode={1}
+          guides={true}
+          minCropBoxHeight={10}
+          minCropBoxWidth={10}
+          background={false}
+          responsive={true}
+          autoCropArea={1}
+          checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
+          onInitialized={(instance) => {
+            setCropper(instance);
+          }}
+        />
+
+        <div className="buttons">
+          <button>Cancel</button>
+          <button onClick={getCropData}>Crop Image</button>
+        </div>
+      </div>
+
+      {/* <div>
+        <div className="box" style={{ width: "50%", float: "right" }}>
+          <h1>Preview</h1>
+          <div
+            className="img-preview"
+            style={{ width: "100%", float: "left", height: "300px" }}
           />
-        )}
+        </div>
+        <div
+          className="box"
+          style={{ width: "50%", float: "right", height: "300px" }}
+        >
+          <h1>
+            <span>Crop</span>
+            <button style={{ float: "right" }} onClick={getCropData}>
+              Crop Image
+            </button>
+          </h1>
+          <img style={{ width: "100%" }} src={cropData} alt="cropped" />
+        </div>
       </div>
-      <div className="buttons">
-        <Button onClick={cancelCrop}>Cancel</Button>
-        <Button onClick={() => makeClientCrop(cropInfo.crop)}>Done</Button>
-      </div>
+      <br style={{ clear: "both" }} /> */}
     </div>
   );
-}
+};
 
 export default CropImage;

@@ -1,12 +1,12 @@
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 
 import ProfileImage from "../../components/ProfileImage/ProfileImage";
 import { useUserHelpers } from "../../Redux/getSlices";
-import { GoVerified } from "react-icons/go"
+import { GoVerified } from "react-icons/go";
 import "./Profile.css";
 
 function Profile() {
-  const [{ user }, dispatch] = useUserHelpers();
+  const [{ user }] = useUserHelpers();
 
   // if (!user) {
   //   dispatch({
@@ -24,17 +24,21 @@ function Profile() {
 
       <section className="profile__body">
         <aside className="profile__bodyAside">
-          <ProfileImage className="pic" title="Your Profile Picture" />
+          <ProfileImage title="Your Profile Picture" />
         </aside>
 
         <main className="profile__bodyMain">
-           <div className="nameDiv">
-           <p className="name">{user?.firstName || "Nkosingiphile "} {user?.lastName || "Mkwanazi"}</p> <GoVerified id="ico"/>
-              <hr className="separator"/>
-            </div>
+          <div className="nameDiv">
+            <p className="name">
+              {user?.firstName || "Nkosingiphile "}{" "}
+              {user?.lastName || "Mkwanazi"}
+            </p>{" "}
+            <GoVerified id="ico" />
+            <hr className="separator" />
+          </div>
 
           <form>
-          <label htmlFor="degree">
+            <label htmlFor="degree">
               <h3>Student number:</h3>
               <input
                 className="textBox"
