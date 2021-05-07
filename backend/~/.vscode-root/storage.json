@@ -1,7 +1,11 @@
 {
     "telemetry.machineId": "63b8491c339c88cec796226757b1bf854268aa36e2a379a1a4a394aa27483929",
     "openedPathsList": {
-        "entries": []
+        "entries": [
+            {
+                "folderUri": "file:///home/mphile/Desktop/repos"
+            }
+        ]
     },
     "lastKnownMenubarData": {
         "menus": {
@@ -37,8 +41,22 @@
                             "items": [
                                 {
                                     "id": "workbench.action.reopenClosedEditor",
-                                    "label": "&&Reopen Closed Editor",
-                                    "enabled": false
+                                    "label": "&&Reopen Closed Editor"
+                                },
+                                {
+                                    "id": "vscode.menubar.separator"
+                                },
+                                {
+                                    "id": "openRecentFolder",
+                                    "uri": {
+                                        "$mid": 1,
+                                        "fsPath": "/home/mphile/Desktop/repos",
+                                        "external": "file:///home/mphile/Desktop/repos",
+                                        "path": "/home/mphile/Desktop/repos",
+                                        "scheme": "file"
+                                    },
+                                    "enabled": true,
+                                    "label": "/home/mphile/Desktop/repos"
                                 },
                                 {
                                     "id": "vscode.menubar.separator"
@@ -164,8 +182,7 @@
                     },
                     {
                         "id": "workbench.action.closeFolder",
-                        "label": "Close &&Folder",
-                        "enabled": false
+                        "label": "Close &&Folder"
                     },
                     {
                         "id": "workbench.action.closeWindow",
@@ -361,8 +378,7 @@
                                 },
                                 {
                                     "id": "workbench.action.toggleSidebarVisibility",
-                                    "label": "Show &&Side Bar",
-                                    "checked": true
+                                    "label": "Show &&Side Bar"
                                 },
                                 {
                                     "id": "workbench.action.toggleStatusbarVisibility",
@@ -529,8 +545,7 @@
                     },
                     {
                         "id": "editor.action.toggleWordWrap",
-                        "label": "Toggle &&Word Wrap",
-                        "enabled": false
+                        "label": "Toggle &&Word Wrap"
                     },
                     {
                         "id": "editor.action.toggleMinimap",
@@ -557,8 +572,7 @@
                 "items": [
                     {
                         "id": "workbench.action.navigateBack",
-                        "label": "&&Back",
-                        "enabled": false
+                        "label": "&&Back"
                     },
                     {
                         "id": "workbench.action.navigateForward",
@@ -567,8 +581,7 @@
                     },
                     {
                         "id": "workbench.action.navigateToLastEditLocation",
-                        "label": "&&Last Edit Location",
-                        "enabled": false
+                        "label": "&&Last Edit Location"
                     },
                     {
                         "id": "vscode.menubar.separator"
@@ -1446,18 +1459,20 @@
         }
     },
     "theme": "vs-dark",
-    "themeBackground": "#1e1e1e",
+    "themeBackground": "#000c18",
     "windowsState": {
         "lastActiveWindow": {
-            "backupPath": "/home/mphile/Desktop/repos/nduduzo/qampus-app/backend/~/.vscode-root/Backups/1617618938980",
+            "folder": "file:///home/mphile/Desktop/repos",
+            "backupPath": "/home/mphile/Desktop/repos/nduduzo/qampus-app/backend/~/.vscode-root/Backups/21ef2a598c8422e90c1e3fae37034f53",
             "uiState": {
-                "mode": 1,
+                "mode": 0,
                 "x": 541,
-                "y": 180,
+                "y": 212,
                 "width": 1024,
                 "height": 749
             }
         },
         "openedWindows": []
-    }
+    },
+    "pickerWorkingDir": "/home/mphile/Desktop"
 }
