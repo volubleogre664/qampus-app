@@ -10,7 +10,7 @@ function UploadCollection() {
       </div>
       <div className="bullets">
         <p className="list_tittle">Frequently asked questions</p>
-        <ul class="tilesWrap">
+        <ul className="tilesWrap">
           <li>
             <h2>01</h2>
             <h3>What if I don't remember the module code?</h3>

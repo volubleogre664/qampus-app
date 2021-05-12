@@ -3,6 +3,8 @@ import { useMutation } from "@apollo/react-hooks";
 import { Button } from "@material-ui/core";
 // import { Link } from "react-router-dom";
 
+import Loader from "../../components/Loader/Loader";
+
 import { useForm } from "../../utils/hooks";
 import { REGISTER_USER } from "../../utils/graphql";
 import { useUserHelpers } from "../../Redux/getSlices";
@@ -22,7 +24,7 @@ function Register({ history }) {
   });
   const [, dispatch] = useUserHelpers();
 
-  const [register] = useMutation(REGISTER_USER, {
+  const [register, { loading }] = useMutation(REGISTER_USER, {
     update(_, { data: { register: userData } }) {
       dispatch({
         type: "SET_USER",
@@ -45,6 +47,7 @@ function Register({ history }) {
   }
 
   // This code is for testing
+
   // const onSubmit = (e) => {
   //   e.preventDefault();
 
@@ -65,6 +68,7 @@ function Register({ history }) {
 
   return (
     <div className="register">
+      {loading && <Loader />}
       <section className="page_headers">
         <img className="logo" src={logo} alt="qampus app register user" />
         <h1 className="welcome_header">Welcome</h1>
@@ -75,7 +79,7 @@ function Register({ history }) {
       <section className="page_content">
         <div className="register__aside">
           <p className="list_tittle">Why should I create an account?</p>
-          <ul class="tilesWrap">
+          <ul className="tilesWrap">
             <li>
               <h2>01</h2>
               <h3>Advertise to the entire campus</h3>

@@ -3,10 +3,13 @@ import MenuIcon from "@material-ui/icons/MenuRounded";
 import CloseIcon from "@material-ui/icons/CloseRounded";
 import { Link } from "react-router-dom";
 
+import { useUserHelpers } from "../../Redux/getSlices";
+
 import "./HeaderMenu.css";
 
 function HeaderMenu() {
   const [click, setClick] = useState(false);
+  const [, dispatchUser] = useUserHelpers();
 
   const handleClick = () => {
     setClick(!click);
@@ -15,6 +18,12 @@ function HeaderMenu() {
 
     nav.classList.toggle("opening");
     nav.classList.contains("closing") && nav.classList.toggle("closing");
+  };
+
+  const handleLogoutClick = () => {
+    dispatchUser({
+      type: "REMOVE_USER",
+    });
   };
 
   return (
@@ -49,8 +58,8 @@ function HeaderMenu() {
           <li className="nav__linksItem">
             <Link to="/profile">Profile</Link>
           </li>
-          <li className="nav__linksItem">
-            <Link to="/Login">Logout</Link>
+          <li onClick={handleLogoutClick} className="nav__linksItem">
+            <span>Logout</span>
           </li>
         </ul>
       </nav>

@@ -1,5 +1,5 @@
 import { GoVerified } from "react-icons/go";
-// import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import ProfileImage from "../../components/ProfileImage/ProfileImage";
 import { useUserHelpers } from "../../Redux/getSlices";
@@ -7,15 +7,15 @@ import { useUserHelpers } from "../../Redux/getSlices";
 import "./Profile.css";
 
 function Profile() {
-  const [{ user }] = useUserHelpers();
+  const [{ user }, dispatch] = useUserHelpers();
 
-  // if (!user) {
-  //   dispatch({
-  //     type: "SET_PATH",
-  //     payload: "/profile",
-  //   });
-  //   return <Redirect to="/login" />;
-  // }
+  if (!user) {
+    dispatch({
+      type: "SET_PATH",
+      payload: "/profile",
+    });
+    return <Redirect to="/login" />;
+  }
 
   return (
     <div className="profile">

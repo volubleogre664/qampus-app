@@ -10,6 +10,7 @@ import { LOGIN_USER } from "../../utils/graphql";
 import logo from "../../logo.png";
 
 import "./Login.css";
+import Loader from "../../components/Loader/Loader";
 
 function Login({ history }) {
   const [{ path }, userDispatch] = useUserHelpers();
@@ -19,7 +20,7 @@ function Login({ history }) {
   });
   // console.log(history);
 
-  const [login] = useMutation(LOGIN_USER, {
+  const [login, { loading }] = useMutation(LOGIN_USER, {
     update(_, { data: { login: userData } }) {
       userDispatch({ type: "SET_USER", payload: userData });
       path !== "" ? history.push(path) : history.goBack();
@@ -44,6 +45,7 @@ function Login({ history }) {
 
   return (
     <div className="login">
+      {loading && <Loader />}
       <header className="login__header">
         <img className="login__headerLogo" src={logo} alt="qampus logo" />
       </header>

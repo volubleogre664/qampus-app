@@ -69,6 +69,12 @@ function useUserHelpers() {
         break;
       }
 
+      case "REMOVE_USER": {
+        localStorage.removeItem("jwtToken");
+        dispatch(setUser(null));
+        break;
+      }
+
       default:
         localStorage.setItem("jwtToken", action.payload.token);
         dispatch(setUser(action.payload));
