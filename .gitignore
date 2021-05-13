@@ -7,6 +7,10 @@ package-lock.json
 .pnp
 .pnp.js
 
+#VSCode ESLinter
+.eslintcache
+.eslintcache~94aafa43fe167e2a6c9531bfab9ce77a3d73c127
+
 # testing
 coverage
 

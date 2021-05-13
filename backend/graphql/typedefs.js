@@ -17,10 +17,11 @@ export default gql`
     id: ID!
     isbn: String!
     title: String!
-    moduleCode: String!
+    subtitle: String
     authors: String!
     price: Float!
-    edition: Int!
+    description: String
+    moduleCode: String
     studentNumber: String!
     frontCover: String
     backCover: String
@@ -49,10 +50,11 @@ export default gql`
   input BookInput {
     isbn: String!
     title: String!
-    moduleCode: String!
-    authors: String!
+    subtitle: String
+    moduleCode: String
+    authors: String
     price: Float!
-    edition: Int!
+    description: String
     studentNumber: String!
     frontCover: String
     backCover: String

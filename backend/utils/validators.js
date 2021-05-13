@@ -21,7 +21,8 @@ const validateRegisterInput = (
   if (email.trim() === "") {
     errors.email = "Email must not be empty";
   } else {
-    const regEx = /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/;
+    const regEx =
+      /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/;
     if (!email.match(regEx)) {
       errors.email = "Email must be a valid email address";
     }
@@ -59,4 +60,28 @@ const validateLoginInput = (studentNumber, password) => {
   };
 };
 
-export { validateLoginInput, validateRegisterInput };
+const validateBookInput = ({ isbn, title, authors, price }) => {
+  const errors = {};
+
+  if (isbn.trim() === "") {
+    errors.isbn = "The book isbn cannot be empty";
+  }
+
+  if (title.trim() === "") {
+    errors.title = "The book title cannot be empty";
+  }
+
+  if (authors.trim() === "") {
+    errors.authors = "The author cannot be empty";
+  }
+
+  if (price.toString().trim() === "") {
+    errors.price = "The book price cannot be empty";
+  } else if (!+price) {
+    errors.price = "The book price has to be a valid number";
+  }
+
+  return { errors, valid: Object.keys(errors).length < 1 };
+};
+
+export { validateLoginInput, validateRegisterInput, validateBookInput };
