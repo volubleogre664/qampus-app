@@ -56,7 +56,7 @@ function Profile() {
               />
             </label>
             <label htmlFor="degree">
-              <h3>Filed of study:</h3>
+              <h3>Field of study:</h3>
               <input
                 className="textBox"
                 type="text"

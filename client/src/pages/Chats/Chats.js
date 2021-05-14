@@ -56,13 +56,13 @@ function Chats() {
     document.title = "Qampus | Chats";
   }, []);
 
-  if (!user) {
-    userDispatch({
-      type: "SET_PATH",
-      payload: "/chats",
-    });
-    return <Redirect to="/login" />;
-  }
+  // if (!user) {
+  //   userDispatch({
+  //     type: "SET_PATH",
+  //     payload: "/chats",
+  //   });
+  //   return <Redirect to="/login" />;
+  // }
 
   return (
     <div className="chats">

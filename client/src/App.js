@@ -16,6 +16,7 @@ import { useUserHelpers } from "./Redux/getSlices.js";
 import "./App.css";
 import CropImage from "./components/CropImage/CropImage.js";
 import UploadCollection from "./pages/Upload_Collection/UploadCollection.js";
+import Collection from "./pages/Upload_Collection/Collection/Collection.js";
 
 function App() {
   const [{ errors, imgCrop }] = useUserHelpers();
@@ -45,6 +46,10 @@ function App() {
           <Route exact path="/upload">
             <HeaderMenu />
             <UploadCollection />
+          </Route>
+          <Route exact path="/collection">
+            <HeaderMenu />
+            {/* <Collection/> */}
           </Route>
         </Switch>
       </Router>
