@@ -15,7 +15,6 @@ function Upload() {
     studentNumber: "",
   });
   
-  //fix this
   const [{src1}, setImg1] = useState({
     src1: placeholder,
   });
