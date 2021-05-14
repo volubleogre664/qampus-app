@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import { Button } from "@material-ui/core";
-import { useForm } from "../../../utils/hooks";
-import placeholder from "../../../images/placeholder.webp";
 import "./Collection.scss";
 
 function Collection() {                              

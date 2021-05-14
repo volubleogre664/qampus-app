@@ -49,7 +49,7 @@ function App() {
           </Route>
           <Route exact path="/collection">
             <HeaderMenu />
-            {/* <Collection/> */}
+            <Collection/>
           </Route>
         </Switch>
       </Router>
