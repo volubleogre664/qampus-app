@@ -14,8 +14,10 @@ function HeaderMenu() {
 
     nav.classList.toggle("opening");
     nav.classList.contains("closing") && nav.classList.toggle("closing");
-  };
 
+  
+  };
+  
   return (
     <div className="header">
       <div className="header__button" onClick={handleClick}>
@@ -31,7 +33,7 @@ function HeaderMenu() {
             <Link to="/upload">Upload</Link>
           </li>
           <li className="nav__linksItem">
-            <Link to="/library">Book Collection</Link>
+            <Link to="/collection">Book Collection</Link>
           </li>
           <li className="nav__linksItem">
             <Link to="/chats">Chats</Link>
