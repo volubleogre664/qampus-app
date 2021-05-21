@@ -28,7 +28,7 @@ function App() {
   return (
     <div className="app">
       <Router>
-        <MessageBox errors={errors} />
+        {/* <MessageBox errors={errors} /> */}
         {imgCrop.imgSrc && <CropImage />}
         <Switch>
           <Route exact path="/" component={Home} />

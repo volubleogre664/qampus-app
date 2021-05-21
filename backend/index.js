@@ -1,5 +1,5 @@
 // import { ApolloServer, PubSub } from "apollo-server";
-import pkg from 'apollo-server';
+import pkg from "apollo-server";
 const { ApolloServer, PubSub } = pkg;
 
 import mongoose from "mongoose";
@@ -12,6 +12,7 @@ const pubsub = new PubSub();
 const PORT = process.env.PORT;
 
 const server = new ApolloServer({
+  subscriptions: { path: "/subscriptions" },
   typeDefs,
   resolvers,
   context: ({ req }) => ({ req, pubsub }),

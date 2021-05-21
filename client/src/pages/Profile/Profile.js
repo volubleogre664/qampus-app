@@ -47,6 +47,7 @@ function Profile() {
                 name="studentNo"
                 id="textbox"
                 disabled
+                readOnly
                 value={user?.studentNumber || "2017049467"}
               />
             </label>
@@ -57,6 +58,7 @@ function Profile() {
                 type="email"
                 name="email"
                 id="textbox"
+                readOnly
                 value={user?.email || "email.email.com"}
               />
             </label>
@@ -67,6 +69,7 @@ function Profile() {
                 type="text"
                 name="degree"
                 id="textbox"
+                readOnly
                 value={user?.degree || "Computer Information Systems"}
               />
             </label>
@@ -77,6 +80,7 @@ function Profile() {
                 className="bioBox"
                 name="bio"
                 id="bio"
+                readOnly
                 value={user?.bio || "Hello there..."}
               />
             </label>

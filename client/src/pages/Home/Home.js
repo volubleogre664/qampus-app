@@ -10,6 +10,7 @@ import { useUserHelpers } from "../../Redux/getSlices";
 import logo from "../../logo.png";
 
 import "./Home.css";
+import isValidISBN from "../../utils/validate.js";
 
 //change the background reference here
 const ref_link =
@@ -19,6 +20,8 @@ const ref_name = "S. Luciano Fredheim";
 function Home({ history }) {
   const [results, setResults] = useState([]);
   const [{ user }] = useUserHelpers();
+  const [searchStr, setSearchStr] = useState("");
+
   // Toggles the results section and the menu section
   const [displays, setDisplays] = useState({
     menu: "flex",
@@ -31,6 +34,20 @@ function Home({ history }) {
     if (displays.menu !== "none") {
       setResults([...results, 1, 1]);
       setDisplays({ ...results, menu: "none", results: "flex" });
+    }
+
+    const isISBN = isValidISBN(searchStr.trim());
+
+    if (!isISBN) {
+      return false;
+    }
+
+    if (isISBN) {
+      setSearchStr("isbn#" + searchStr);
+    } else if (searchStr.length < 10) {
+      setSearchStr("moduleCode#" + searchStr.trim());
+    } else {
+      setSearchStr("title#" + searchStr);
     }
   };
 
@@ -72,6 +89,8 @@ function Home({ history }) {
           <input
             type="text"
             name="searchBook"
+            value={searchStr}
+            onChange={(e) => setSearchStr(e.target.value)}
             className="home__searchInput"
             placeholder="Type the title, ISBN or module code."
           />
@@ -136,7 +155,7 @@ function Home({ history }) {
           </button>
         </div>
         {results?.map((_, i) => {
-          return <SearchResult key={i} />;
+          return <SearchResult history={history} key={i} />;
         })}
       </div>
 

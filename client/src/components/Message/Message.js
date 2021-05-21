@@ -1,17 +1,21 @@
+import dayjs from "dayjs";
 import "./Message.css";
 
-function Message({ messages }) {
-  return messages.map((msg) => (
-    <div className={msg.sent ? "message" : "message rec"}>
-      <p className="message__text">{msg.text}</p>
+function Message({ messages, contact, from }) {
+  return messages
+    .filter((msg) => msg.to === contact || msg.from === contact)
+    .map((msg, i) => (
+      <div key={i} className={msg.from === from ? "message rec" : "message"}>
+        <p className="message__text">{msg.textMsg}</p>
 
-      <div className="message__time">
-        {msg.time.substr(0, msg.time.length - 6)}
+        <div className="message__time">
+          {/* https://day.js.org/docs/en/display/format --> link for time formats */}
+          {dayjs(msg.time).format("HH:mm | DD MMM YYYY")}
+        </div>
+
+        <div className="message__state">{""}</div>
       </div>
-
-      <div className="message__state">{""}</div>
-    </div>
-  ));
+    ));
 }
 
 export default Message;

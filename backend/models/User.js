@@ -9,6 +9,15 @@ const userSchema = new Schema({
   picture: String,
   degree: String,
   bio: String,
+  contacts: [
+    {
+      id: Schema.Types.ObjectId,
+      firstName: String,
+      lastName: String,
+      studentNumber: String,
+      picture: String,
+    },
+  ],
   password: String,
 });
 

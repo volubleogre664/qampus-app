@@ -27,11 +27,11 @@ function Login({ history }) {
     },
     variables: values,
     onError(err) {
-      console.log(err);
-      userDispatch({
-        type: "SET_ERRORS",
-        payload: err.graphQLErrors[0].extensions?.errors,
-      });
+      console.log(err?.graphQLErrors);
+      // userDispatch({
+      //   type: "SET_ERRORS",
+      //   payload: err?.graphQLErrors[0]?.extensions?.errors,
+      // });
     },
   });
 
@@ -45,7 +45,7 @@ function Login({ history }) {
 
   return (
     <div className="login">
-      {loading && <Loader />}
+      {loading && <Loader message={"Loggin in"} />}
       <header className="login__header">
         <img className="login__headerLogo" src={logo} alt="qampus logo" />
       </header>

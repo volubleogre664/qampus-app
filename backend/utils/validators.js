@@ -84,4 +84,27 @@ const validateBookInput = ({ isbn, title, authors, price }) => {
   return { errors, valid: Object.keys(errors).length < 1 };
 };
 
-export { validateLoginInput, validateRegisterInput, validateBookInput };
+const validateUpdateInput = ({ password, newPassword, confirmNewPassword }) => {
+  const errors = {};
+
+  if (password.trim() === "") {
+    errors.password = "Password cannot be empty";
+  }
+
+  if (newPassword && newPassword.trim() === "") {
+    errors.newPassword = "Your new passwords cannot be empty";
+  } else if (confirmNewPassword && confirmNewPassword.trim() === "") {
+    errors.newPassword = "Your new passwords cannot be empty";
+  } else if (newPassword !== confirmNewPassword) {
+    errors.newPassword = "Your new passwords need to match";
+  }
+
+  return { errors, valid: Object.keys(errors).length < 1 };
+};
+
+export {
+  validateLoginInput,
+  validateRegisterInput,
+  validateBookInput,
+  validateUpdateInput,
+};

@@ -54,18 +54,68 @@ const bookResolvers = {
       // console.log(res);
       return res;
     },
+
+    async deleteBook(_, { bookId }, context) {
+      const user = checkAuth(context);
+
+      try {
+        const book = await Book.findById(bookId);
+
+        if (!book) {
+          throw new Error("An error occured while deleting book", {
+            errors: {
+              book: "Requested boook does not exist.",
+            },
+          });
+        }
+
+        if (user?.studentNumber !== book?.studentNumber) {
+          throw new Error("An error occured while deleting book", {
+            errors: {
+              book: "Cannot delete book a you do not own",
+            },
+          });
+        }
+
+        await book.delete();
+
+        return "Deleted#Book deleted successfully";
+      } catch (err) {
+        throw new Error("An error occured while deleting book", {
+          errors: err,
+        });
+      }
+    },
   },
   Query: {
     async getBook(_, { bookId }) {
       try {
         const book = await Book.findById(bookId);
         if (!book) {
-          throw new Error("Could not find required book");
+          throw new Error("Could not find required book", {
+            errors: {
+              book: "Requested book does not exist",
+            },
+          });
         }
 
         return book;
       } catch (err) {
-        throw new Error("Could not find required book", err);
+        throw new Error("Could not find required book", {
+          errors: err,
+        });
+      }
+    },
+
+    async getBooks(_, { studentNumber }) {
+      try {
+        const books = await Book.find({ studentNumber });
+
+        return books;
+      } catch (err) {
+        throw new Error("An error occured while getting the books", {
+          errors: err,
+        });
       }
     },
   },

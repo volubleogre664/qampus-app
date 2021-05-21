@@ -18,7 +18,7 @@ const bookCovers = {};
 function Upload() {
   //Data from redux state, dispatch -> function to update redux state
   const [{ user }] = useUserHelpers();
-  const [{ book }, dispatchBooks] = useBooksHelpers();
+  const [, dispatchBooks] = useBooksHelpers();
 
   //References for input[file] to be accessed since it is hidden and cannot be clicked
   const frontCoverInputRef = useRef(null);
@@ -71,7 +71,7 @@ function Upload() {
     // update -> function to call if api call is successful
     update(_, { data: { uploadBook: book } }) {
       // update takes two args. the first i set to underscore because we dont need it
-      // it won't be recorded in RAM. The second argument is an object and it reads
+      // it won't be recorded in RAM. The second argument is an object and it reads:
       // go inside the object take data, go inside data take uploadBook and rename uploadBook to book
       dispatchBooks({
         type: "SET_BOOK_LIST",
@@ -146,7 +146,7 @@ function Upload() {
               // console.log("File uploaded");
             })
             .catch((err) => {
-              reject("Done");
+              reject("Failed to upload image");
               console.log("Failed to upload Image to cloud", err);
             });
         },
@@ -174,14 +174,14 @@ function Upload() {
       .finally(async () => {
         // Check if you have image url then get it if its not available alredy
         if (!Object.keys(bookCovers).includes(urlContainer)) {
-          console.log("Getting urls from finally");
           await getUploadedUrl(storageRef, urlContainer);
         }
       });
   }
 
   // Gets the image url from firebase and prepare it for saving to database
-  // child -> path to image. urlContainer -> name of variable to send to database
+  // storageRef -> reference to the image in cloud storage
+  // urlContainer -> name of variable to send to database
   async function getUploadedUrl(storageRef, urlContainer) {
     return storageRef
       .getDownloadURL()

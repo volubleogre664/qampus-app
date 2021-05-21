@@ -16,29 +16,27 @@
   font-size: 1.05rem;
   letter-spacing: 0.5px;
   font-weight: 300;
+  background: #e0115f;
+  margin-left: 20px;
 }
 
 .message > .message__time {
-  font-weight: bold;
+  font-weight: bold !important;
   width: fit-content;
-  margin-left: auto;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  font-size: 0.8rem;
+  margin: 5px 20px 20px 22px;
 }
 
 .rec > .message__text {
+  margin-left: auto !important;
   margin-right: 20px;
-  background: rgba(29, 161, 242, 0.55);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(11px);
-  -webkit-backdrop-filter: blur(11px);
   border-radius: 10px;
+  background: rgba(29, 161, 242, 0.55) !important;
 }
 
 .rec > .message__time {
   margin-left: auto;
   font-size: 0.78rem;
-  font-weight: 660;
   margin-right: 25px;
 }
 
