@@ -55,7 +55,8 @@ function HeaderMenu() {
           </li>
         </ul>
       </nav>
-      <img className="header__logo" alt="qampus logo" src="../logo.png"></img>
+      <a href="/"><img className="header__logo" alt="qampus logo" src="../logo.png" ></img></a>
+      <div className="gap"></div>
     </div>
   );
 }
