@@ -19,18 +19,15 @@ function HeaderMenu() {
     nav.classList.toggle("opening");
     nav.classList.contains("closing") && nav.classList.toggle("closing");
 
-<<<<<<< HEAD
   
   };
   
-=======
   const handleLogoutClick = () => {
     dispatchUser({
       type: "REMOVE_USER",
     });
   };
 
->>>>>>> 8696acc175f2369b472a4b4bbf4b184b4d07b96f
   return (
     <div className="header">
       <div className="header__button" onClick={handleClick}>

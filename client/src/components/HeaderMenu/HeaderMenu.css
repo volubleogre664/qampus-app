@@ -33,17 +33,13 @@
   padding: 0px 50px 0px 30px;
 }
 
-<<<<<<< HEAD
 .gap{
   width: 150px;
   height: 100%;
   order: 99;;
 }
 
-.split{
-=======
 .split {
->>>>>>> 8696acc175f2369b472a4b4bbf4b184b4d07b96f
   width: 10%;
   margin: auto;
   display: none;

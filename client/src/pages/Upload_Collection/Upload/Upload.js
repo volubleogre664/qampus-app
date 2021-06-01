@@ -44,11 +44,6 @@ function Upload() {
     frontCover: "",
     backCover: "",
   });
-<<<<<<< HEAD
-  
-  const [{src1}, setImg1] = useState({
-    src1: placeholder,
-=======
 
   // Book cover urls from firebase to send to database
   // Title, subtitle, authors and description will get from google books api
@@ -57,7 +52,6 @@ function Upload() {
     subtitle: "",
     authors: "",
     description: "",
->>>>>>> 8696acc175f2369b472a4b4bbf4b184b4d07b96f
   });
 
   // Sending data to the backend server

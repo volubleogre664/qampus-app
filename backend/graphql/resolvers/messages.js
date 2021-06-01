@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
-import { AuthenticationError, UserInputError, withFilter } from "apollo-server";
+import pkg from 'apollo-server';
+const { AuthenticationError, UserInputError, withFilter } = pkg;
 
 import checkAuth from "../../utils/checkAuth.js";
 import Message from "../../models/Message.js";
@@ -78,15 +79,15 @@ const messageResolvers = {
           studentNumber: user.studentNumber,
         });
 
-        if (!fromUser?.contacts) fromUser.contacts = [];
-        if (!toUser?.contacts) toUser.contacts = [];
+        if (!fromUser.contacts) fromUser.contacts = [];
+        if (!toUser.contacts) toUser.contacts = [];
 
         if (
-          !fromUser?.contacts.filter(
-            (item) => item?.studentNumber === toUser?.studentNumber
+          !fromUser.contacts.filter(
+            (item) => item.studentNumber === toUser.studentNumber
           ).length
         ) {
-          fromUser?.contacts.push({
+          fromUser.contacts.push({
             id: toUser.id,
             firstName: toUser.firstName,
             lastName: toUser.lastName,
@@ -102,11 +103,11 @@ const messageResolvers = {
         }
 
         if (
-          !toUser?.contacts.filter(
-            (item) => item?.studentNumber === fromUser?.studentNumber
+          !toUser.contacts.filter(
+            (item) => item.studentNumber === fromUser.studentNumber
           ).length
         ) {
-          toUser?.contacts.push({
+          toUser.contacts.push({
             id: fromUser.id,
             firstName: fromUser.firstName,
             lastName: fromUser.lastName,
@@ -139,7 +140,7 @@ const messageResolvers = {
     newMessage: {
       subscribe: withFilter(
         (_, __, { pubsub }) => pubsub.asyncIterator("NEW_MESSAGE"),
-        ({ newMessage: message }, variables) => message.to === variables?.to
+        ({ newMessage: message }, variables) => message.to === variables.to
       ),
     },
   },

@@ -164,15 +164,6 @@ function Chats() {
     }
   }, [currentContact, getMessagesQuery, user, messages]);
 
-<<<<<<< HEAD
-  // if (!user) {
-  //   userDispatch({
-  //     type: "SET_PATH",
-  //     payload: "/chats",
-  //   });
-  //   return <Redirect to="/login" />;
-  // }
-=======
   if (!user) {
     userDispatch({
       type: "SET_PATH",
@@ -180,7 +171,6 @@ function Chats() {
     });
     return <Redirect to="/login" />;
   }
->>>>>>> 8696acc175f2369b472a4b4bbf4b184b4d07b96f
 
   return (
     <div className="chats">

@@ -18,15 +18,10 @@ import { useUserHelpers } from "./Redux/getSlices.js";
 import { firebaseConfig } from "./config.js";
 
 import "./App.css";
-<<<<<<< HEAD
-import CropImage from "./components/CropImage/CropImage.js";
-import UploadCollection from "./pages/Upload_Collection/UploadCollection.js";
 import Collection from "./pages/Collection/Collection.js";
-=======
 import "firebase/storage";
 
 firebase.initializeApp(firebaseConfig);
->>>>>>> 8696acc175f2369b472a4b4bbf4b184b4d07b96f
 
 function App() {
   const [{ errors, imgCrop }] = useUserHelpers();
