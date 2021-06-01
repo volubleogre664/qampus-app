@@ -1,9 +1,9 @@
-import React from "react";
 import CloseIcon from "@material-ui/icons/Close";
 import { IconButton } from "@material-ui/core";
 
-import "./MessageBox.css";
 import { useUserHelpers } from "../../Redux/getSlices";
+
+import "./MessageBox.css";
 
 function MessageBox({ errors, isOpen }) {
   const [, dispatch] = useUserHelpers();

@@ -11,6 +11,13 @@ const LOGIN_USER = gql`
       picture
       degree
       bio
+      contacts {
+        id
+        firstName
+        lastName
+        studentNumber
+        picture
+      }
       token
     }
   }
@@ -48,4 +55,108 @@ const REGISTER_USER = gql`
   }
 `;
 
-export { LOGIN_USER, REGISTER_USER };
+const UPLOAD_BOOK = gql`
+  mutation uploadBook(
+    $isbn: String!
+    $title: String!
+    $subtitle: String
+    $moduleCode: String
+    $authors: String
+    $price: Float!
+    $description: String
+    $studentNumber: String!
+    $frontCover: String
+    $backCover: String
+  ) {
+    uploadBook(
+      bookInput: {
+        isbn: $isbn
+        title: $title
+        subtitle: $subtitle
+        moduleCode: $moduleCode
+        authors: $authors
+        price: $price
+        description: $description
+        studentNumber: $studentNumber
+        frontCover: $frontCover
+        backCover: $backCover
+      }
+    ) {
+      id
+      isbn
+      title
+      subtitle
+      authors
+      price
+      description
+      moduleCode
+      studentNumber
+      frontCover
+      backCover
+    }
+  }
+`;
+
+const GET_ONE_BOOK = gql`
+  query getBook($bookId: ID!) {
+    getBook(bookId: $bookId) {
+      id
+      isbn
+      title
+      subtitle
+      authors
+      price
+      description
+      moduleCode
+      studentNumber
+      frontCover
+      backCover
+    }
+  }
+`;
+
+const ADD_MESSAGE = gql`
+  mutation addMessage($to: String!, $textMsg: String!) {
+    addMessage(to: $to, textMsg: $textMsg) {
+      id
+      to
+      from
+      time
+      textMsg
+    }
+  }
+`;
+
+const MESSAGE_SUBSCRIPTION = gql`
+  subscription new_message($to: String!) {
+    newMessage(to: $to) {
+      id
+      to
+      from
+      time
+      textMsg
+    }
+  }
+`;
+
+const GET_MESSAGES_QUERY = gql`
+  query getMessages($to: String!, $from: String!, $messagesLength: Float!) {
+    getMessages(to: $to, from: $from, messagesLength: $messagesLength) {
+      id
+      to
+      from
+      time
+      textMsg
+    }
+  }
+`;
+
+export {
+  LOGIN_USER,
+  REGISTER_USER,
+  UPLOAD_BOOK,
+  GET_ONE_BOOK,
+  ADD_MESSAGE,
+  MESSAGE_SUBSCRIPTION,
+  GET_MESSAGES_QUERY,
+};

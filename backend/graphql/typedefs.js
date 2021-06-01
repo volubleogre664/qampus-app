@@ -7,9 +7,10 @@ export default gql`
     firstName: String!
     lastName: String!
     email: String
-    picture: String!
+    picture: String
     degree: String
     bio: String
+    contacts: [User!]
     token: String
   }
 
@@ -17,10 +18,11 @@ export default gql`
     id: ID!
     isbn: String!
     title: String!
-    moduleCode: String!
+    subtitle: String
     authors: String!
     price: Float!
-    edition: Int!
+    description: String
+    moduleCode: String
     studentNumber: String!
     frontCover: String
     backCover: String
@@ -49,25 +51,45 @@ export default gql`
   input BookInput {
     isbn: String!
     title: String!
-    moduleCode: String!
-    authors: String!
+    subtitle: String
+    moduleCode: String
+    authors: String
     price: Float!
-    edition: Int!
+    description: String
     studentNumber: String!
     frontCover: String
     backCover: String
   }
 
+  input UpdateInput {
+    firstName: String
+    lastName: String
+    email: String
+    picture: String
+    degree: String
+    bio: String
+    newPassword: String
+    confirmNewPassword: String
+    password: String!
+  }
+
   type Query {
-    getMessages(to: String!, from: String!): [Message]
-    getBooks(selector: String!): [Book]
     getBook(bookId: ID!): Book!
+    getBooks(studentNumber: String!): [Book]
+    getMessages(to: String!, from: String!, messagesLength: Float!): [Message]
   }
 
   type Mutation {
     register(registerInput: RegisterInput!): User!
     login(studentNumber: String!, password: String!): User!
+    updateUser(updateInput: UpdateInput!): User!
     uploadBook(bookInput: BookInput!): Book!
     deleteBook(bookId: ID!): String!
+    addMessage(to: String!, textMsg: String!): Message!
+  }
+
+  type Subscription {
+    newMessage(to: String!): Message!
+    userUpdated(id: ID!): User!
   }
 `;

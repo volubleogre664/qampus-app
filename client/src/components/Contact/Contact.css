@@ -45,6 +45,15 @@
   font-size: 1.4rem;
 }
 
+.contact:hover {
+  transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
+  background: linear-gradient(
+    275deg,
+    rgba(47, 40, 74, 0.55),
+    rgba(29, 161, 242, 0.55)
+  );
+}
+
 @media only screen and (max-width: 850px) {
   .contact > .contact__name {
     font-weight: 300;

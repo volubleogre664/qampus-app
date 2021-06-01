@@ -1,12 +1,16 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
+
 import { useUserHelpers } from "../../Redux/getSlices";
 import { useForm } from "../../utils/hooks";
-import logo from "../../logo.png";
 import { LOGIN_USER } from "../../utils/graphql";
+
+import logo from "../../logo.png";
+
 import "./Login.css";
+import Loader from "../../components/Loader/Loader";
 
 function Login({ history }) {
   const [{ path }, userDispatch] = useUserHelpers();
@@ -16,18 +20,18 @@ function Login({ history }) {
   });
   // console.log(history);
 
-  const [login] = useMutation(LOGIN_USER, {
+  const [login, { loading }] = useMutation(LOGIN_USER, {
     update(_, { data: { login: userData } }) {
       userDispatch({ type: "SET_USER", payload: userData });
       path !== "" ? history.push(path) : history.goBack();
     },
     variables: values,
     onError(err) {
-      console.log(err);
-      userDispatch({
-        type: "SET_ERRORS",
-        payload: err.graphQLErrors[0].extensions?.errors,
-      });
+      console.log(err?.graphQLErrors);
+      // userDispatch({
+      //   type: "SET_ERRORS",
+      //   payload: err?.graphQLErrors[0]?.extensions?.errors,
+      // });
     },
   });
 
@@ -41,12 +45,13 @@ function Login({ history }) {
 
   return (
     <div className="login">
+      {loading && <Loader message={"Loggin in"} />}
       <header className="login__header">
         <img className="login__headerLogo" src={logo} alt="qampus logo" />
       </header>
       <div className="welcome__text">
         <p>Welcome</p>
-        <hr className="separator"/>
+        <hr className="separator" />
       </div>
       <main className="login__main">
         <h1 className="title">login to access all the features</h1>

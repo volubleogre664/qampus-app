@@ -1,5 +1,5 @@
-import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import firebase from "firebase/app";
 
 import Home from "./pages/Home/Home.js";
 import Chats from "./pages/Chats/Chats.js";
@@ -8,15 +8,25 @@ import HeaderMenu from "./components/HeaderMenu/HeaderMenu.js";
 import FinaliseRegister from "./pages/Register/FinaliseRegister.js";
 import Login from "./pages/Login/Login.js";
 import Register from "./pages/Register/Register.js";
+import UploadCollection from "./pages/Upload_Collection/UploadCollection.js";
 import AuthRoute from "./utils/AuthRoute.js";
+
 import MessageBox from "./components/MessageBox/MessageBox.js";
+import CropImage from "./components/CropImage/CropImage.js";
 
 import { useUserHelpers } from "./Redux/getSlices.js";
+import { firebaseConfig } from "./config.js";
 
 import "./App.css";
+<<<<<<< HEAD
 import CropImage from "./components/CropImage/CropImage.js";
 import UploadCollection from "./pages/Upload_Collection/UploadCollection.js";
 import Collection from "./pages/Collection/Collection.js";
+=======
+import "firebase/storage";
+
+firebase.initializeApp(firebaseConfig);
+>>>>>>> 8696acc175f2369b472a4b4bbf4b184b4d07b96f
 
 function App() {
   const [{ errors, imgCrop }] = useUserHelpers();
@@ -24,10 +34,12 @@ function App() {
   return (
     <div className="app">
       <Router>
-        <MessageBox errors={errors} />
+        {/* <MessageBox errors={errors} /> */}
         {imgCrop.imgSrc && <CropImage />}
         <Switch>
           <Route exact path="/" component={Home} />
+          {/* AuthRoute checks if someone is logged in and redirects to home if they are logged in */}
+          {/* No one will open login, register and finalise register without loggin out */}
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/register" component={Register} />
           <AuthRoute

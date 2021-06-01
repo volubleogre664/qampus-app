@@ -6,9 +6,11 @@ import { useUserHelpers } from "../../Redux/getSlices";
 import { REGISTER_USER } from "../../utils/graphql";
 import { useForm } from "../../utils/hooks";
 
-import appLogo from "../../logo.png";
-import "./FinaliseRegister.css";
 import ProfileImage from "../../components/ProfileImage/ProfileImage";
+
+import appLogo from "../../logo.png";
+
+import "./FinaliseRegister.css";
 
 function CompleteRegistration({ history }) {
   const [{ path }] = useUserHelpers();
@@ -48,15 +50,13 @@ function CompleteRegistration({ history }) {
       <header className="finaliseReg__header">
         <img cclassName="logo" src={appLogo} alt="campus app logo" />
         <h1 className="title">Complete your profile</h1>
-        <hr className="separator"/>
-
+        <hr className="separator" />
       </header>
 
       <section className="finaliseReg__body">
         <aside className="finaliseReg__bodyAside">
           <ProfileImage />
         </aside>
-        
 
         <main className="finaliseReg__bodyMain">
           <h1>More information about you: </h1>
@@ -83,16 +83,14 @@ function CompleteRegistration({ history }) {
                 placeholder="Tell us a little about you..."
               />
             </label>
-
-           
           </form>
         </main>
 
         <footer>
-        <Button type="submit" className="formSubmit">
-              Submit
-            </Button>
-            <Button onClick={finishLaterClick} className="btnSkip">
+          <Button type="submit" className="formSubmit">
+            Submit
+          </Button>
+          <Button onClick={finishLaterClick} className="btnSkip">
             Cancel
           </Button>
         </footer>

@@ -13,11 +13,16 @@ const booksSlice = createSlice({
     setBook(state, action) {
       state.book = action.payload;
     },
+    setBookCover(state, action) {
+      if (!state.book) state.book = {};
+
+      state.book[action.payload.coverName] = action.payload.file;
+    },
     setBookList(state, action) {
-      if (action.payload) {
+      if (state.bookList.length) {
         state.bookList = [...state.bookList, action.payload];
       } else {
-        state.bookList = action.payload;
+        state.bookList = [action.payload];
       }
     },
     setSearchBookList(state, action) {
@@ -30,6 +35,7 @@ const booksSlice = createSlice({
   },
 });
 
-export const { setBook, setBookList, setSearchBookList } = booksSlice.actions;
-export const selectBooks = (state) => state.books;
+export const { setBook, setBookList, setSearchBookList, setBookCover } =
+  booksSlice.actions;
+export const selectBooks = (state) => state.book;
 export default booksSlice.reducer;

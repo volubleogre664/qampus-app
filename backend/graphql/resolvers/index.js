@@ -1,5 +1,16 @@
 import userResolvers from "./users.js";
+import bookResolvers from "./books.js";
+import messageResolvers from "./messages.js";
 
 export default {
-  Mutation: { ...userResolvers.Mutation },
+  Query: { ...bookResolvers.Query, ...messageResolvers.Query },
+  Mutation: {
+    ...userResolvers.Mutation,
+    ...bookResolvers.Mutation,
+    ...messageResolvers.Mutation,
+  },
+  Subscription: {
+    ...messageResolvers.Subscription,
+    ...userResolvers.Subscription,
+  },
 };

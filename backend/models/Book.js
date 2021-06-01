@@ -4,10 +4,12 @@ const { model, Schema } = mongoose;
 const bookSchema = new Schema({
   isbn: String,
   title: String,
-  noduleCode: String,
+  subtitle: String,
   authors: String,
   price: Number,
-  edition: Number,
+  description: String,
+  moduleCode: String,
+  studentNumber: String,
   frontCover: String,
   backCover: String,
 });

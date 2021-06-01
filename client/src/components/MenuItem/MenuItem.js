@@ -1,10 +1,10 @@
-import React from "react";
 import ChatIcon from "@material-ui/icons/ChatRounded";
 import SettingsIcon from "@material-ui/icons/SettingsRounded";
 import PublishIcon from "@material-ui/icons/PublishRounded";
 import LibraryBooksIcon from "@material-ui/icons/ClassRounded";
 import LocationOnIcon from "@material-ui/icons/LocationOnRounded";
 import ErrorIcon from "@material-ui/icons/Error";
+
 import "./MenuItem.css";
 
 function MenuItem({ icon, title, subtitle }) {

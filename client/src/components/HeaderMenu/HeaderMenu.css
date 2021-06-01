@@ -22,7 +22,7 @@
 .header__nav {
   background: #fff;
   height: 40px;
-  width:fit-content;
+  width: fit-content;
   border-radius: 8px;
   display: grid;
   place-items: center;
@@ -33,6 +33,7 @@
   padding: 0px 50px 0px 30px;
 }
 
+<<<<<<< HEAD
 .gap{
   width: 150px;
   height: 100%;
@@ -40,6 +41,9 @@
 }
 
 .split{
+=======
+.split {
+>>>>>>> 8696acc175f2369b472a4b4bbf4b184b4d07b96f
   width: 10%;
   margin: auto;
   display: none;
@@ -53,6 +57,11 @@
 
 .nav__linksItem {
   list-style: none;
+  cursor: pointer;
+}
+
+.nav__linksItem span:hover {
+  color: rgb(21, 161, 242);
 }
 
 .nav__linksItem > a {
@@ -64,7 +73,6 @@
 .nav__linksItem > a:hover {
   color: rgb(21, 161, 242);
 }
-
 
 @media screen and (max-width: 850px) {
   .header__logo {
@@ -116,7 +124,6 @@
   .nav__linksItem {
     font-size: 1.4rem;
     padding: 14px;
-
   }
 
   /* .nav__linksItem > a {

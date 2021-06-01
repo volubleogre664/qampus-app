@@ -1,29 +1,23 @@
-import React from "react";
 import PersonIcon from "@material-ui/icons/Person";
+
 import "./Contact.css";
 
-function Contact({ name }) {
-  const openChats = () => {
-    if (window.innerWidth <= 550) {
-      const chats = document.querySelector(".chats__main");
-      const chatsSidebar = document.querySelector(".chats__sidebar");
-
-      chats.classList.contains("closing") && chats.classList.toggle("closing");
-      chatsSidebar.classList.contains("fadeIn") &&
-        chatsSidebar.classList.toggle("fadeIn");
-
-      chats.classList.toggle("opening");
-      chatsSidebar.classList.toggle("fadeOut");
-    }
-  };
-
+function Contact({ contact, onClick }) {
   return (
-    <div className="contact" onClick={openChats}>
+    <div className="contact" onClick={onClick}>
       <span className="contact__iconContainer">
-        <PersonIcon className="contact__icon" />
+        {(contact?.profile && (
+          <img
+            className
+            src={contact?.profile}
+            alt={[contact?.firstName, contact?.lastName].join(" ")}
+          />
+        )) || <PersonIcon />}
       </span>
 
-      <span className="contact__name">{name}</span>
+      <span className="contact__name">
+        {[contact?.firstName, contact?.lastName].join(" ")}
+      </span>
       <span className="contact__status"></span>
     </div>
   );
