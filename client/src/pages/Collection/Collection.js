@@ -1,4 +1,7 @@
 import "./Collection.scss"
+import InfoIcon from "@material-ui/icons/InfoOutlined";
+import DeleteIcon from "@material-ui/icons/DeleteRounded";
+import PencilIcon from "@material-ui/icons/EditRounded";
 
 //Book Variables
 const book_title = "Database Principles";
@@ -11,7 +14,12 @@ const book_dateUploaded = "21 April 2021";
 function Collection() {
   return (
     <div className="collection">
-        <div class="wrapper">
+        <div className="coll_header">
+            <p>Your books</p>
+            <hr className="separator"/>
+        </div>
+
+        <div class="coll_wrapper">
             <div class="container">
                 <div class="top"></div>
                 <div class="bottom">
@@ -20,7 +28,10 @@ function Collection() {
                             <h1>{book_title}</h1>
                             <p>{book_price}</p>
                         </div>
-                        <div class="sold">{/* Icon*/}</div>
+                        <div class="buttons">
+                            <PencilIcon className="edit"/>
+                            <DeleteIcon className="del"/>
+                        </div>
                     </div>
 
                     <div class="right">
@@ -29,13 +40,13 @@ function Collection() {
                             <h1>{book_title}</h1>
                             <p>Sold</p>
                         </div>
-                        <div class="remove">{/* Icon*/}</div>
+                        <div class="sold">{/* Icon*/}</div>
                     </div>
                 </div>
             </div>
 
             <div class="inside">
-                <div class="icon">{/* Icon*/}</div>
+                <div class="icon"><InfoIcon/></div>
                 <div class="contents">
                     <p>
                         <b>ISBN: </b>{book_isbn} <br></br>
