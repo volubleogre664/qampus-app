@@ -35,12 +35,13 @@ const messageResolvers = {
         //   from: to,
         // });
 
+        if (messagesLength > 0) {
+          messagesLength--;
+        }
+
         return sentMessages.length === messagesLength
           ? []
           : sentMessages.filter((_, i) => {
-              if (messagesLength > 0) {
-                messagesLength--;
-              }
               return i >= messagesLength;
             });
       } catch (err) {

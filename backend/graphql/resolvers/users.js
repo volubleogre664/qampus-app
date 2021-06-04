@@ -127,7 +127,6 @@ const userResolvers = {
       };
     },
     async updateUser(_, { updateInput }, context) {
-      // Test this in GraphQL PlayGrounds
       const user = checkAuth(context);
 
       const updatedUser = await User.findById(user.id);

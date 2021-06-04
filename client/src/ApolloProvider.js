@@ -25,6 +25,7 @@ const authLink = setContext(() => {
 });
 
 // WebSocket endpoint
+// WebSockects send data in realtime. We use it for messages
 const wsLink = new WebSocketLink({
   uri: "ws://localhost:5000/subscriptions",
   options: {

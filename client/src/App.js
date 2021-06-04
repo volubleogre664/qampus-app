@@ -8,6 +8,7 @@ import HeaderMenu from "./components/HeaderMenu/HeaderMenu.js";
 import FinaliseRegister from "./pages/Register/FinaliseRegister.js";
 import Login from "./pages/Login/Login.js";
 import Register from "./pages/Register/Register.js";
+import Navigation from "./pages/Navigation/Navigation.js";
 import UploadCollection from "./pages/Upload_Collection/UploadCollection.js";
 import AuthRoute from "./utils/AuthRoute.js";
 
@@ -52,6 +53,10 @@ function App() {
           <Route exact path="/upload">
             <HeaderMenu />
             <UploadCollection />
+          </Route>
+          <Route exact path="/navigation">
+            <HeaderMenu />
+            <Navigation />
           </Route>
         </Switch>
       </Router>
