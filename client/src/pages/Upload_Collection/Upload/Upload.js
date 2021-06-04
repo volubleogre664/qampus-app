@@ -292,7 +292,7 @@ function Upload() {
             onChange={onChange}
             value={values.isbn}
             className="formInput"
-            placeholder="9789544007737"
+            // placeholder="9789544007737"
           />
         </label>
 
@@ -364,7 +364,7 @@ function Upload() {
           />
         </label> */}
 
-        <Button className="formSubmitBtn" type="submit">
+        <Button className="form__btnSubmit" type="submit">
           Upload
         </Button>
       </form>

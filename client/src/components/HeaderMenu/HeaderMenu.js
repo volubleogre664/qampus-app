@@ -18,8 +18,10 @@ function HeaderMenu() {
 
     nav.classList.toggle("opening");
     nav.classList.contains("closing") && nav.classList.toggle("closing");
-  };
 
+  
+  };
+  
   const handleLogoutClick = () => {
     dispatchUser({
       type: "REMOVE_USER",
@@ -41,7 +43,7 @@ function HeaderMenu() {
             <Link to="/upload">Upload</Link>
           </li>
           <li className="nav__linksItem">
-            <Link to="/library">Book Collection</Link>
+            <Link to="/collection">Book Collection</Link>
           </li>
           <li className="nav__linksItem">
             <Link to="/chats">Chats</Link>
@@ -63,7 +65,8 @@ function HeaderMenu() {
           </li>
         </ul>
       </nav>
-      <img className="header__logo" alt="qampus logo" src="../logo.png"></img>
+      <a href="/"><img className="header__logo" alt="qampus logo" src="../logo.png" ></img></a>
+      <div className="gap"></div>
     </div>
   );
 }

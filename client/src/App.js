@@ -19,6 +19,7 @@ import { useUserHelpers } from "./Redux/getSlices.js";
 import { firebaseConfig } from "./config.js";
 
 import "./App.css";
+import Collection from "./pages/Collection/Collection.js";
 import "firebase/storage";
 
 firebase.initializeApp(firebaseConfig);
@@ -57,6 +58,10 @@ function App() {
           <Route exact path="/navigation">
             <HeaderMenu />
             <Navigation />
+          </Route>
+          <Route exact path="/collection">
+            <HeaderMenu />
+            <Collection />
           </Route>
         </Switch>
       </Router>

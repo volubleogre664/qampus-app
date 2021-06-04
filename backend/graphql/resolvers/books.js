@@ -39,14 +39,14 @@ const bookResolvers = {
       const newBook = new Book({
         isbn: bookInput.isbn,
         title: bookInput.title,
-        subtitle: bookInput?.subtitle || "",
+        subtitle: bookInput.subtitle || "",
         authors: bookInput.authors,
         price: bookInput.price,
-        description: bookInput?.description || "",
-        moduleCode: bookInput?.moduleCode || "",
+        description: bookInput.description || "",
+        moduleCode: bookInput.moduleCode || "",
         studentNumber: bookInput.studentNumber,
-        frontCover: bookInput?.frontCover || "",
-        backCover: bookInput?.backCover || "",
+        frontCover: bookInput.frontCover || "",
+        backCover: bookInput  .backCover || "",
       });
 
       const res = await newBook.save();
@@ -69,7 +69,7 @@ const bookResolvers = {
           });
         }
 
-        if (user?.studentNumber !== book?.studentNumber) {
+        if (user.studentNumber !== book.studentNumber) {
           throw new Error("An error occured while deleting book", {
             errors: {
               book: "Cannot delete book a you do not own",

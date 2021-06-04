@@ -1,0 +1,203 @@
+.coll_header {
+  margin-top: 35px;
+  color: #fff;
+  p {
+    font-size: 1.8rem;
+    text-align: center;
+    font-family: "Poiret One";
+  }
+  .separator {
+    width: 65%;
+  }
+}
+.coll_wrapper {
+  width: 280px;
+  height: 450px;
+  background: #fff;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  &:hover {
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8),
+      0 0 10px rgba(255, 255, 255, 0.8);
+    transition: all ease-in-out 0.2s;
+    border-radius: 1px;
+  }
+
+  .container {
+    width: 100%;
+    height: 100%;
+    .top {
+      height: 80%;
+      width: 100%;
+      background: url(./20200229_143148.jpg) no-repeat center center;
+      -webkit-background-size: 100%;
+      -moz-background-size: 100%;
+      -o-background-size: 100%;
+      background-size: 100%;
+    }
+
+    .bottom {
+      width: 100%;
+      height: 20%;
+      transition: transform 0.5s;
+
+      .left {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+
+        .details {
+          display: flex;
+          flex-flow: column nowrap;
+          text-align: left;
+          width: fit-content;
+          max-width: 65%;
+          padding: 10px;
+
+          h1 {
+            font-size: 1.2rem;
+            margin: 0;
+            padding: 0;
+          }
+          p {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+              Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+              sans-serif;
+            font-size: 1.1rem;
+            font-weight: lighter;
+            margin: 0;
+            padding: 0;
+          }
+        }
+
+        .buttons {
+          width: fit-content;
+          max-width: 25%;
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: center;
+          overflow: hidden;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          margin-right: 10px;
+          .edit {
+            margin-right: -10px;
+            font-size: 2rem;
+            &:hover {
+              color: rgb(29, 161, 242);
+            }
+          }
+
+          .del {
+            font-size: 2rem;
+            &:hover {
+              color: rgb(29, 161, 242);
+            }
+          }
+        }
+      }
+
+      /*Use this side for when the book has been sold, 
+          --> To preview the side, set display of left to "none" and set right to "flex" */
+      .right {
+        height: 100%;
+        width: 100%;
+        display: none;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+
+        .details {
+          display: flex;
+          flex-flow: column nowrap;
+          text-align: left;
+          width: fit-content;
+          max-width: 65%;
+          padding: 10px;
+          color: #000;
+          h1 {
+            font-size: 1.2rem;
+            margin: 0;
+            padding: 0;
+          }
+        }
+
+        .sold {
+          background: rgb(29, 161, 242);
+          color: white;
+          width: fit-content;
+          padding: 10px;
+          border-radius: 5px 0px 0px 5px;
+
+          p {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+              Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+              sans-serif;
+            font-size: 1.1rem;
+            font-weight: lighter;
+            margin: 0;
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .inside {
+    z-index: 9;
+    background: rgb(19, 161, 242);
+    width: 140px;
+    height: 140px;
+    position: absolute;
+    top: -70px;
+    right: -70px;
+    border-radius: 0px 0px 200px 200px;
+    transition: all 0.5s, border-radius 2s, top 1s;
+    overflow: hidden;
+    .icon {
+      position: absolute;
+      right: 85px;
+      top: 85px;
+      color: white;
+      opacity: 1;
+    }
+    &:hover {
+      width: 100%;
+      right: 0;
+      top: 0;
+      border-radius: 0;
+      height: 60%;
+      .icon {
+        opacity: 0;
+        right: 15px;
+        top: 15px;
+      }
+      .contents {
+        opacity: 1;
+        transform: scale(1);
+        transform: translateY(0);
+      }
+    }
+    .contents {
+      padding: 5%;
+      opacity: 0;
+      transform: scale(0.5);
+      transform: translateY(-200%);
+      transition: opacity 0.2s, transform 0.8s;
+      color: #fff;
+
+      p {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        font-size: 1.1rem;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}

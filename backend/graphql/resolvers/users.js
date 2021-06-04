@@ -23,7 +23,7 @@ function generateToken(user) {
       picture: user.picture,
       degree: user.degree,
       bio: user.bio,
-      contacts: user?.contacts,
+      contacts: user.contacts || [],
     },
     SECRET_KEY,
     { expiresIn: "12h" }
@@ -147,7 +147,7 @@ const userResolvers = {
       const { password, confirmNewPassword, newPassword, ...newUserData } =
         updateInput;
 
-      if (updateInput?.newPassword) {
+      if (updateInput.newPassword !== "") {
         const newPassword = await bcrypt.hash(updateInput.newPassword, 12);
         newUserData.password = newPassword;
       }

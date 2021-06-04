@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
-import { AuthenticationError } from "apollo-server";
+import pkg from 'apollo-server';
+const { AuthenticationError } = pkg;
 
 import { SECRET_KEY } from "../config.js";
 
