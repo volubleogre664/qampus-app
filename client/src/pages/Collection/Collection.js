@@ -2,25 +2,30 @@ import InfoIcon from "@material-ui/icons/InfoOutlined";
 import DeleteIcon from "@material-ui/icons/DeleteRounded";
 import PencilIcon from "@material-ui/icons/EditRounded";
 
-//Book Variables
-const book_title = "Database Principles";
-const book_authors = "Steven Morris, Peter Rob";
-const book_price = "R300,00";
-const book_isbn = "998844212133";
-const book_modCode = "CSIS3744";
-const book_edition = "2nd";
-const book_dateUploaded = "21 April 2021";
-const book_dateSold = "N/A";
+import Book from "../../components/Book/Book.js";
 
-import "./Collection.scss";
+import "./Collection.css";
+
+//Book Variables
 
 function Collection() {
+  const book_title = "Database Principles";
+  const book_authors = "Steven Morris, Peter Rob";
+  const book_price = "R300,00";
+  const book_isbn = "998844212133";
+  const book_modCode = "CSIS3744";
+  const book_edition = "2nd";
+  const book_dateUploaded = "21 April 2021";
+  const book_dateSold = "N/A";
+
   return (
     <div className="collection">
       <div className="coll_header">
         <p>Your books</p>
         <hr className="separator" />
       </div>
+
+      <Book />
 
       <div class="coll_wrapper">
         <div class="container">
