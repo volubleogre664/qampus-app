@@ -5,11 +5,13 @@ import PencilIcon from "@material-ui/icons/EditRounded";
 
 //Book Variables
 const book_title = "Database Principles";
+const book_authors = "Steven Morris, Peter Rob";
 const book_price = "R300,00";
 const book_isbn = "998844212133";
 const book_modCode = "CSIS3744";
 const book_edition = "2nd";
 const book_dateUploaded = "21 April 2021";
+const book_dateSold = "N/A";
 
 function Collection() {
   return (
@@ -35,12 +37,10 @@ function Collection() {
                     </div>
 
                     <div class="right">
-                        <div class="done">{/* Icon*/}</div>
                         <div class="details">
                             <h1>{book_title}</h1>
-                            <p>Sold</p>
                         </div>
-                        <div class="sold">{/* Icon*/}</div>
+                        <div class="sold"> <p>Sold</p></div>
                     </div>
                 </div>
             </div>
@@ -51,10 +51,12 @@ function Collection() {
                     <p>
                         <b>ISBN: </b>{book_isbn} <br></br>
                         <b>Title: </b>{book_title} <br></br>
+                        <b>Author(s): </b>{book_title} <br></br>
                         <b>Module Code: </b>{book_modCode} <br></br>
                         <b>Price: </b>{book_price} <br></br>
                         <b>Edition: </b>{book_edition} <br></br>
                         <b>Date Uploaded: </b>{book_dateUploaded} <br></br>
+                        <b>Date Sold: </b>{book_dateSold} <br></br>
                     </p>
                     
                 </div>
