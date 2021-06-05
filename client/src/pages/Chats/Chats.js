@@ -67,6 +67,8 @@ function Chats() {
       messageDispatch({
         payload: data?.getMessages,
       });
+
+      console.log(data);
     },
     onError(err) {
       console.log(err);
@@ -90,6 +92,9 @@ function Chats() {
 
   // Handles clicking each contact
   const handleContactClick = (contact) => {
+    // Change the current selected contact
+    setCurrentContact(contact);
+
     // Handling the closing and opening of the chats main
     if (window.innerWidth <= 550) {
       const chats = document.querySelector(".chats__main");
@@ -103,9 +108,20 @@ function Chats() {
       chatsSidebar.classList.toggle("fadeOut");
     }
 
-    // Get chats based on the currently selected contact
-    setCurrentContact(contact);
-    // callGetMessages();
+    // Get messages for the newly selected contact
+    getMessagesQuery({
+      variables: {
+        to: contact?.studentNumber,
+        from: user?.studentNumber,
+        messagesLength: messages?.filter(
+          (item) =>
+            (item.from === user?.studentNumber &&
+              item.to === contact?.studentNumber) ||
+            (item.from === contact?.studentNumber &&
+              item.to === user?.studentNumber)
+        ).length,
+      },
+    });
   };
 
   // form submit method
@@ -144,25 +160,19 @@ function Chats() {
     setCurrentContact(user.contacts[0]);
   }, [user, setCurrentContact]);
 
-  // Runs on component render then again whenever currentContact changes.
-  // Ensures the getting of message from database everytime you switch a contact
+  // Runs once on component render
+  // Ensures that when chats open we get the messages for the first contact in your list
   useEffect(() => {
-    if (Object.keys(currentContact).length) {
+    if (user) {
       getMessagesQuery({
         variables: {
-          to: currentContact?.studentNumber,
+          to: user?.contacts[0]?.studentNumber,
           from: user?.studentNumber,
-          messagesLength: messages.filter(
-            (item) =>
-              (item.from === user.studentNumber &&
-                item.to === currentContact.studentNumber) ||
-              (item.from === currentContact.studentNumber &&
-                item.to === user.studentNumber)
-          ).length,
+          messagesLength: 0,
         },
       });
     }
-  }, [currentContact, getMessagesQuery, user, messages]);
+  }, [getMessagesQuery, user]);
 
   if (!user) {
     userDispatch({
@@ -175,8 +185,8 @@ function Chats() {
   return (
     <div className="chats">
       {/* {loading && <Loader />} */}
-      <div className="chats__sidebar" style={{ height: height + "px" }}>
-        <div className="chats__sidebarHeader">
+      <aside className="chats__sidebar" style={{ height: height + "px" }}>
+        <header className="chats__sidebarHeader">
           <h2 className="title">Chats {" | " + user?.firstName || ""}</h2>
 
           <span className="icon__container">
@@ -184,7 +194,7 @@ function Chats() {
               <ArrowBackIosIcon />
             </Link>
           </span>
-        </div>
+        </header>
 
         <div className="chats__sidebarBody">
           <div className="search__container">
@@ -208,10 +218,10 @@ function Chats() {
           <span className="text">Find a study buddy</span>
           <ArrowForwardIosIcon />
         </div>
-      </div>
+      </aside>
 
-      <div className="chats__main" style={{ height: height + "px" }}>
-        <div className="chats__mainHeader">
+      <main className="chats__main" style={{ height: height + "px" }}>
+        <header className="chats__mainHeader">
           <div className="left" onClick={closeChats}>
             <span className="iconContainer">
               {(currentContact?.picture && (
@@ -232,7 +242,7 @@ function Chats() {
             <label className="online__status">Offline</label>
             <label className="last__seen">Last seen: Now</label>
           </div>
-        </div>
+        </header>
 
         <div className="chats__mainBody">
           <Message
@@ -268,7 +278,7 @@ function Chats() {
             </button>
           </form>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import pkg from 'apollo-server';
+import pkg from "apollo-server";
 const { AuthenticationError, UserInputError, withFilter } = pkg;
 
 import checkAuth from "../../utils/checkAuth.js";
@@ -31,20 +31,9 @@ const messageResolvers = {
           },
         ]);
 
-        // const receivedMessages = await Message.find({
-        //   to: from,
-        //   from: to,
-        // });
-
-        if (messagesLength > 0) {
-          messagesLength--;
-        }
-
         return sentMessages.length === messagesLength
           ? []
-          : sentMessages.filter((_, i) => {
-              return i >= messagesLength;
-            });
+          : sentMessages.slice(messagesLength);
       } catch (err) {
         throw new Error("Errors getting your messages", {
           errors: err,

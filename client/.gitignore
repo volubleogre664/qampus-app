@@ -13,6 +13,8 @@ firebase-debug.*.log*
 # Intended to ignore css source mapping files
 *.css.map
 
+client/.eslintcache~*
+
 .eslintcache
 .eslintcache~94aafa43fe167e2a6c9531bfab9ce77a3d73c127
 

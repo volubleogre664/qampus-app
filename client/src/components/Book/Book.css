@@ -2,11 +2,9 @@
   width: 100%;
   max-width: 280px;
   border-radius: 10px;
-  margin: auto;
   position: relative;
   background: #fff;
   overflow: hidden;
-  margin-bottom: 15px;
 }
 
 .book__image {

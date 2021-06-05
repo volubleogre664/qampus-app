@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 
 import MenuItem from "../../components/MenuItem/MenuItem.js";
 import SearchResult from "../../components/SearchResult/SearchResult";
+import Book from "../../components/Book/Book.js";
+
 import { useUserHelpers } from "../../Redux/getSlices";
 
 import logo from "../../logo.png";
@@ -155,7 +157,7 @@ function Home({ history }) {
           </button>
         </div>
         {results?.map((_, i) => {
-          return <SearchResult history={history} key={i} />;
+          return <Book history={history} key={i} />;
         })}
       </div>
 
