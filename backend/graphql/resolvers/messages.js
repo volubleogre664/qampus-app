@@ -5,6 +5,7 @@ const { AuthenticationError, UserInputError, withFilter } = pkg;
 import checkAuth from "../../utils/checkAuth.js";
 import Message from "../../models/Message.js";
 import User from "../../models/User.js";
+import Book from "../../models/Book.js";
 
 const messageResolvers = {
   Query: {
@@ -42,16 +43,10 @@ const messageResolvers = {
     },
   },
   Mutation: {
-    async addMessage(_, { to, textMsg }, context) {
+    async addMessage(_, { to, textMsg, book }, context) {
       const user = checkAuth(context);
 
       try {
-        const message = new Message({
-          to,
-          from: user.studentNumber,
-          time: dayjs().toISOString(),
-          textMsg,
-        });
         let toUser = await User.findOne({ studentNumber: to });
 
         if (!toUser) {
@@ -64,6 +59,19 @@ const messageResolvers = {
             }
           );
         }
+
+        const msgObject = {
+          to,
+          from: user.studentNumber,
+          time: dayjs().toISOString(),
+          textMsg,
+        };
+
+        if (book) {
+          msgObject.book = book;
+        }
+
+        const message = new Message(msgObject);
 
         let fromUser = await User.findOne({
           studentNumber: user.studentNumber,
@@ -114,11 +122,23 @@ const messageResolvers = {
 
         const res = await message.save();
 
+        let bookObj;
+        if (book) {
+          bookObj = await Book.findById(book);
+        }
+
         context.pubsub.publish("NEW_MESSAGE", {
           newMessage: res,
         });
 
-        return res;
+        return {
+          id: res._id,
+          to: res.to,
+          from: res.from,
+          textMsg: res.textMsg,
+          time: res.time,
+          book: bookObj,
+        };
       } catch (err) {
         throw new Error("Error sending message", {
           errors: err,

@@ -17,8 +17,9 @@
 .book__details {
   box-sizing: border-box;
   position: absolute;
-  top: -120px;
+  /* top: -120px; */
   left: calc(100% - 60px);
+  bottom: calc(100% - 60px);
   background: #13a1f2;
   width: 100%;
   border-radius: 40px;
@@ -26,10 +27,12 @@
   padding: 10px;
   cursor: pointer;
   transition: all 0.4s ease-in-out;
+  z-index: 10;
 }
 
 .book__details:hover {
   top: 0;
+  bottom: auto;
   left: 0;
   border-radius: 0;
   border-top-left-radius: 10px;
@@ -68,6 +71,12 @@
   top: -100%;
 }
 
+.book__detailsBody > span {
+  display: -webkit-inline-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
 .book__footer {
   display: flex;
   gap: 10px;
@@ -80,6 +89,10 @@
 .book__footerLeft h1 {
   margin: 0;
   flex: 1;
+  /* display: -webkit-inline-box; */
+  /* -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden; */
 }
 
 .book__footerRight {
@@ -90,6 +103,7 @@
 
 .book__footerRight span .MuiSvgIcon-root {
   font-size: 2rem;
+  color: #000;
   cursor: pointer;
 }
 

@@ -34,6 +34,12 @@ export default gql`
     from: String!
     to: String!
     textMsg: String!
+    book: Book
+  }
+
+  type BookTitle {
+    id: ID!
+    title: String!
   }
 
   input RegisterInput {
@@ -74,8 +80,10 @@ export default gql`
   }
 
   type Query {
+    getUserData(studentNumber: String!): User!
     getBook(bookId: ID!): Book!
     getBooks(studentNumber: String!): [Book]
+    getBookTitles: [BookTitle]
     getMessages(to: String!, from: String!, messagesLength: Float!): [Message]
   }
 
@@ -85,7 +93,7 @@ export default gql`
     updateUser(updateInput: UpdateInput!): User!
     uploadBook(bookInput: BookInput!): Book!
     deleteBook(bookId: ID!): String!
-    addMessage(to: String!, textMsg: String!): Message!
+    addMessage(to: String!, textMsg: String!, book: ID): Message!
   }
 
   type Subscription {

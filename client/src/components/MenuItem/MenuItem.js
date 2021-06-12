@@ -7,7 +7,7 @@ import ErrorIcon from "@material-ui/icons/Error";
 
 import "./MenuItem.css";
 
-function MenuItem({ icon, title, subtitle }) {
+function MenuItem({ icon, title, subtitle, path, history }) {
   const getIcon = (icon) => {
     switch (icon) {
       case "chats":
@@ -26,7 +26,7 @@ function MenuItem({ icon, title, subtitle }) {
   };
 
   return (
-    <div className="menuItem">
+    <div className="menuItem" onClick={() => history.push(path)}>
       <div className="menuItem__icon">{getIcon(icon) ?? <ErrorIcon />}</div>
 
       <div className="menuItem__title">{title}</div>

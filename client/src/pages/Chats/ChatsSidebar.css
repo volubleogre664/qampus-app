@@ -118,13 +118,14 @@
 @media screen and (max-width: 550px) {
   .chats__sidebar {
     width: 100%;
+    opacity: 1;
   }
 
   .chats__sidebar.fadeOut {
     opacity: 0;
   }
 
-  .chats__sidebar.fadeIn {
+  /* .chats__sidebar.fadeIn {
     opacity: 1;
-  }
+  } */
 }

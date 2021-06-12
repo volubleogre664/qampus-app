@@ -47,7 +47,7 @@ function App() {
             <HeaderMenu />
             <Profile />
           </Route>
-          <Route exact path="/chats">
+          <Route exact path="/chats*">
             <HeaderMenu />
             <Chats />
           </Route>

@@ -17,8 +17,13 @@ import {
   ADD_MESSAGE,
   GET_MESSAGES_QUERY,
   MESSAGE_SUBSCRIPTION,
+  GET_USER_DATA,
 } from "../../utils/graphql";
-import { useMessagesHelpers, useUserHelpers } from "../../Redux/getSlices.js";
+import {
+  useBooksHelpers,
+  useMessagesHelpers,
+  useUserHelpers,
+} from "../../Redux/getSlices.js";
 
 import "./Chats.css";
 
@@ -29,6 +34,8 @@ function Chats() {
   const [messages, messageDispatch] = useMessagesHelpers();
   const [currentContact, setCurrentContact] = useState({});
   const [{ user }, userDispatch] = useUserHelpers();
+  const [{ searchBookList }] = useBooksHelpers();
+  const [book, setBook] = useState({});
 
   window.onresize = () => setWindowHeigt(window.innerHeight); //keeps track of changes in screen height
 
@@ -39,6 +46,7 @@ function Chats() {
   const [addMessage] = useMutation(ADD_MESSAGE, {
     varaibles: { to: currentContact?.studentNumber, textMsg: textMsg },
     update(_, { data: { addMessage: msg } }) {
+      window.location.search = "";
       messageDispatch({
         payload: msg,
       });
@@ -50,19 +58,41 @@ function Chats() {
     },
   });
 
+  // * Getting user data from data base after buying the book from them
+  // * This is part of preparing of sending the book
+  const [getUserData] = useLazyQuery(GET_USER_DATA, {
+    onCompleted(data) {
+      const userData = user.contacts.find(
+        (item) => item.studentNumber === book.bookOwner
+      );
+
+      if (!userData) {
+        window.location.search = "";
+        userDispatch({
+          type: "ADD_USER_CONTACT",
+          payload: data.getUserData,
+        });
+      }
+
+      // console.log(data);
+
+      setCurrentContact(data.getUserData);
+      handleContactClick(data.getUserData);
+      addMessage({
+        variables: {
+          to: data.getUserData.studentNumber,
+          textMsg: `Hi ${data.getUserData.firstName} I would like to purchase this book`,
+          book: book.bookId,
+        },
+      });
+    },
+    onError(err) {
+      console.log(err);
+    },
+  });
+
   // Get messages as you move between contacts
   const [getMessagesQuery] = useLazyQuery(GET_MESSAGES_QUERY, {
-    variables: {
-      to: currentContact?.studentNumber,
-      from: user?.studentNumber,
-      messagesLength: messages?.filter(
-        (item) =>
-          (item.from === user?.studentNumber &&
-            item.to === currentContact?.studentNumber) ||
-          (item.from === currentContact?.studentNumber &&
-            item.to === user?.studentNumber)
-      ).length,
-    },
     onCompleted(data) {
       messageDispatch({
         payload: data?.getMessages,
@@ -97,28 +127,23 @@ function Chats() {
 
     // Handling the closing and opening of the chats main
     if (window.innerWidth <= 550) {
-      const chats = document.querySelector(".chats__main");
-      const chatsSidebar = document.querySelector(".chats__sidebar");
-
-      chats.classList.contains("closing") && chats.classList.toggle("closing");
-      chatsSidebar.classList.contains("fadeIn") &&
-        chatsSidebar.classList.toggle("fadeIn");
-
-      chats.classList.toggle("opening");
-      chatsSidebar.classList.toggle("fadeOut");
+      document.querySelector(".chats__sidebar").classList.toggle("fadeOut");
+      document.querySelector(".chats__main").classList.toggle("opening");
     }
 
     // Get messages for the newly selected contact
+    // messagesLength ensures that the current number of messages between user and current contact
+    //  -> equals the one in the database.
     getMessagesQuery({
       variables: {
         to: contact?.studentNumber,
         from: user?.studentNumber,
         messagesLength: messages?.filter(
           (item) =>
-            (item.from === user?.studentNumber &&
-              item.to === contact?.studentNumber) ||
-            (item.from === contact?.studentNumber &&
-              item.to === user?.studentNumber)
+            (item?.from === user?.studentNumber &&
+              item?.to === contact?.studentNumber) ||
+            (item?.from === contact?.studentNumber &&
+              item?.to === user?.studentNumber)
         ).length,
       },
     });
@@ -134,14 +159,12 @@ function Chats() {
     addMessage({ variables: { to: currentContact?.studentNumber, textMsg } });
   };
 
-  // close chats animation controller
+  // For closing the chats
   const closeChats = () => {
-    document.querySelector(".chats__main").classList.toggle("opening");
-    document.querySelector(".chats__main").classList.toggle("closing");
+    if (window.innerWidth > 550) return;
 
-    const chatsSidebar = document.querySelector(".chats__sidebar");
-    chatsSidebar.classList.toggle("fadeOut");
-    chatsSidebar.classList.toggle("fadeIn");
+    document.querySelector(".chats__main").classList.toggle("opening");
+    document.querySelector(".chats__sidebar").classList.toggle("fadeOut");
   };
 
   // Fix inconsistent CSS with the sidebar and main heights
@@ -163,7 +186,7 @@ function Chats() {
   // Runs once on component render
   // Ensures that when chats open we get the messages for the first contact in your list
   useEffect(() => {
-    if (user) {
+    if (user && !window.location.search) {
       getMessagesQuery({
         variables: {
           to: user?.contacts[0]?.studentNumber,
@@ -174,10 +197,30 @@ function Chats() {
     }
   }, [getMessagesQuery, user]);
 
+  // ! Still need to work on this and fix everything about the book message process
+  useEffect(() => {
+    if (!window.location.search) {
+      return;
+    }
+
+    const bookId = window.location.search.substring(1);
+
+    const bookOwner = searchBookList.find(
+      (item) => item.id === bookId
+    )?.studentNumber;
+
+    setBook({
+      bookId,
+      bookOwner,
+    });
+
+    getUserData({ variables: { studentNumber: bookOwner } });
+  }, [searchBookList, setBook, getUserData, user]);
+
   if (!user) {
     userDispatch({
       type: "SET_PATH",
-      payload: document.location.pathname,
+      payload: document.location.pathname + document.location.search,
     });
     return <Redirect to="/login" />;
   }
@@ -204,10 +247,10 @@ function Chats() {
 
           <div className="contactSection">
             {user?.contacts &&
-              user.contacts.map((contact) => (
+              user.contacts.map((contact, i) => (
                 <Contact
                   onClick={() => handleContactClick(contact)}
-                  key={contact.id}
+                  key={contact?.id + i}
                   contact={contact}
                 />
               ))}
@@ -247,7 +290,7 @@ function Chats() {
         <div className="chats__mainBody">
           <Message
             from={user?.studentNumber}
-            contact={currentContact.studentNumber}
+            contact={currentContact?.studentNumber}
             messages={messages}
           />
         </div>

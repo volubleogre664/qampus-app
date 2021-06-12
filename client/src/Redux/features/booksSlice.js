@@ -26,11 +26,7 @@ const booksSlice = createSlice({
       }
     },
     setSearchBookList(state, action) {
-      if (action.payload) {
-        state.searchBookList = [...state.searchBookList, action.payload];
-      } else {
-        state.searchBookList = action.payload;
-      }
+      state.searchBookList = [...state.searchBookList, action.payload];
     },
   },
 });

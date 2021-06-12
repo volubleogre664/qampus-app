@@ -118,8 +118,8 @@ function Upload() {
     const frontCoverRef = storageRef.child(`${user.id}/book/frontCover.jpg`);
     const backCoverRef = storageRef.child(`${user.id}/book/backCover.jpg`);
 
-    // Makes sure that files are not uploaded if the alredy exist
-    // If they don't exit then it is uploaded
+    // Makes sure that files are not uploaded if the already exist
+    // If they don't exit then they're uploaded
     await validateFilesInCloud(frontCoverRef, frontCoverInputRef, "frontCover");
     await validateFilesInCloud(backCoverRef, backCoverInputRef, "backCover");
 
