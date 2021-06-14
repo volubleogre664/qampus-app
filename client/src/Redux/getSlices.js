@@ -1,5 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
-import { selectMessages, saveMessage } from "./features/messagesSlice";
+import {
+  selectMessages,
+  saveMessage,
+  removeMessages,
+} from "./features/messagesSlice";
 import {
   selectUser,
   setUser,
@@ -7,6 +11,7 @@ import {
   setPath,
   setErrors,
   setImgSrc,
+  addUserContact,
 } from "./features/userSlice";
 
 import {
@@ -23,7 +28,8 @@ function useMessagesHelpers() {
 
   const dispatchMessage = (action) => {
     switch (action?.type) {
-      case "CLEAR__Messages": {
+      case "CLEAR_Messages": {
+        dispatch(removeMessages);
         break;
       }
 
@@ -71,7 +77,14 @@ function useUserHelpers() {
 
       case "REMOVE_USER": {
         localStorage.removeItem("jwtToken");
+        localStorage.removeItem("user");
         dispatch(setUser(null));
+        break;
+      }
+
+      case "ADD_USER_CONTACT": {
+        dispatch(addUserContact(action.payload));
+
         break;
       }
 
@@ -102,7 +115,7 @@ function useBooksHelpers() {
         break;
       }
 
-      case "SET_BOOK_LIST": {
+      case "SET_LIBRARY_BOOK_LIST": {
         dispatch(setBookList(action.payload));
         break;
       }

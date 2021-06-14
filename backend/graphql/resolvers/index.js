@@ -3,7 +3,11 @@ import bookResolvers from "./books.js";
 import messageResolvers from "./messages.js";
 
 export default {
-  Query: { ...bookResolvers.Query, ...messageResolvers.Query },
+  Query: {
+    ...bookResolvers.Query,
+    ...messageResolvers.Query,
+    ...userResolvers.Query,
+  },
   Mutation: {
     ...userResolvers.Mutation,
     ...bookResolvers.Mutation,

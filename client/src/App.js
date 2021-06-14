@@ -8,17 +8,18 @@ import HeaderMenu from "./components/HeaderMenu/HeaderMenu.js";
 import FinaliseRegister from "./pages/Register/FinaliseRegister.js";
 import Login from "./pages/Login/Login.js";
 import Register from "./pages/Register/Register.js";
+import Collection from "./pages/Collection/Collection.js";
+import Navigation from "./pages/Navigation/Navigation.js";
 import UploadCollection from "./pages/Upload_Collection/UploadCollection.js";
-import AuthRoute from "./utils/AuthRoute.js";
 
 import MessageBox from "./components/MessageBox/MessageBox.js";
 import CropImage from "./components/CropImage/CropImage.js";
+import AuthRoute from "./utils/AuthRoute.js";
 
 import { useUserHelpers } from "./Redux/getSlices.js";
 import { firebaseConfig } from "./config.js";
 
 import "./App.css";
-import Collection from "./pages/Collection/Collection.js";
 import "firebase/storage";
 
 firebase.initializeApp(firebaseConfig);
@@ -46,7 +47,7 @@ function App() {
             <HeaderMenu />
             <Profile />
           </Route>
-          <Route exact path="/chats">
+          <Route exact path="/chats*">
             <HeaderMenu />
             <Chats />
           </Route>
@@ -54,9 +55,13 @@ function App() {
             <HeaderMenu />
             <UploadCollection />
           </Route>
+          <Route exact path="/navigation">
+            <HeaderMenu />
+            <Navigation />
+          </Route>
           <Route exact path="/collection">
             <HeaderMenu />
-            <Collection/>
+            <Collection />
           </Route>
         </Switch>
       </Router>

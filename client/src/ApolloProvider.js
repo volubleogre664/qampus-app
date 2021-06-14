@@ -10,9 +10,11 @@ import { Provider as ReduxProvider } from "react-redux";
 import store from "./Redux/store";
 import App from "./App";
 
+const serverURL = "localhost:5000";
+
 // Rest of features eendpoint
 const httpLink = createHttpLink({
-  uri: "http://localhost:5000",
+  uri: `http://localhost:5000`,
 });
 
 const authLink = setContext(() => {
@@ -25,8 +27,9 @@ const authLink = setContext(() => {
 });
 
 // WebSocket endpoint
+// WebSockects send data in realtime. We use it for messages
 const wsLink = new WebSocketLink({
-  uri: "ws://localhost:5000/subscriptions",
+  uri: `ws://${serverURL}/subscriptions`,
   options: {
     reconnect: true,
   },

@@ -1,15 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Oxygen&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
 .menuItem {
   padding: 10px;
   width: 210px;
-  max-width: 280px;
+  max-width: 280px !important;
   min-height: 180px;
   min-width: 210px;
   height: 200px;
   background: rgb(245, 245, 255);
-  margin: auto;
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -29,18 +28,17 @@
 
 .menuItem > .menuItem__icon > * {
   font-size: 2.9rem;
-  color: rgb(19,161,242);
+  color: rgb(19, 161, 242);
   /* color: rgb(0, 5, 7); */
   padding-top: 10px;
   padding-bottom: 2px;
- 
 }
 
 .menuItem > .menuItem__title {
   font-size: 1.3rem;
   font-weight: normal;
   padding-top: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .menuItem > .menuItem__subtitle {
@@ -49,21 +47,9 @@
   font-weight: normal;
 }
 
-
 @media screen and (max-width: 900px) {
   .menuItem {
     width: 70%;
     height: unset;
-    margin: auto;
-    margin-bottom: 15px;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .menuItem {
-    width: 70%;
-    height: unset;
-    margin: auto;
-    margin-bottom: 15px;
   }
 }

@@ -3,10 +3,14 @@
   max-width: 80%;
   height: auto;
   margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .rec {
   margin-left: auto;
+  align-items: flex-end;
 }
 
 .message > .message__text {
@@ -17,19 +21,17 @@
   letter-spacing: 0.5px;
   font-weight: 300;
   background: #e0115f;
-  margin-left: 20px;
 }
 
 .message > .message__time {
   font-weight: bold !important;
   width: fit-content;
   font-size: 0.8rem;
-  margin: 5px 20px 20px 22px;
+  margin-left: 5px;
 }
 
 .rec > .message__text {
   margin-left: auto !important;
-  margin-right: 20px;
   border-radius: 10px;
   background: rgba(29, 161, 242, 0.55) !important;
 }
@@ -37,7 +39,7 @@
 .rec > .message__time {
   margin-left: auto;
   font-size: 0.78rem;
-  margin-right: 25px;
+  margin-right: 5px;
 }
 
 @media only screen and (max-width: 850px) {

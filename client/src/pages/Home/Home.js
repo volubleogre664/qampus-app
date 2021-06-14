@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
 import PersonIcon from "@material-ui/icons/Person";
+import { useQuery, useLazyQuery } from "@apollo/react-hooks";
 import { SearchOutlined } from "@material-ui/icons";
-import { Link } from "react-router-dom";
 
-import MenuItem from "../../components/MenuItem/MenuItem.js";
-import SearchResult from "../../components/SearchResult/SearchResult";
-import { useUserHelpers } from "../../Redux/getSlices";
+import MenuItem from "../../components/MenuItem/MenuItem";
+import Book from "../../components/Book/Book.js";
+import Loader from "../../components/Loader/Loader";
+
+import { useUserHelpers, useBooksHelpers } from "../../Redux/getSlices";
+import { GET_BOOK_TITLES, GET_ONE_BOOK } from "../../utils/graphql";
 
 import logo from "../../logo.png";
 
+// import isValidISBN from "../../utils/validate.js";
+
 import "./Home.css";
-import isValidISBN from "../../utils/validate.js";
 
 //change the background reference here
 const ref_link =
@@ -18,14 +22,44 @@ const ref_link =
 const ref_name = "S. Luciano Fredheim";
 
 function Home({ history }) {
-  const [results, setResults] = useState([]);
   const [{ user }] = useUserHelpers();
+  const [, dispatchBook] = useBooksHelpers();
+  const [results, setResults] = useState([]);
   const [searchStr, setSearchStr] = useState("");
+  const [book, setBook] = useState({});
+  const [bookTitles, setBookTitles] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // Toggles the results section and the menu section
   const [displays, setDisplays] = useState({
     menu: "flex",
     results: "none",
+  });
+
+  // Get the titles of books from mongoDB
+  useQuery(GET_BOOK_TITLES, {
+    onCompleted(data) {
+      setBookTitles(data?.getBookTitles);
+      setLoading(false);
+    },
+    onError(err) {
+      console.log(err);
+      setLoading(false);
+    },
+  });
+
+  // Getting one book from database
+  const [getOneBook] = useLazyQuery(GET_ONE_BOOK, {
+    onCompleted(data) {
+      setBook(data?.getBook);
+      dispatchBook({
+        type: "SET_SEARCH_BOOK_LIST",
+        payload: data?.getBook,
+      });
+    },
+    onError(err) {
+      console.log(err);
+    },
   });
 
   // Handles click of search button
@@ -36,19 +70,11 @@ function Home({ history }) {
       setDisplays({ ...results, menu: "none", results: "flex" });
     }
 
-    const isISBN = isValidISBN(searchStr.trim());
+    const bookId = bookTitles.filter((item) => item.title === searchStr)[0].id;
 
-    if (!isISBN) {
-      return false;
-    }
+    // console.log(bookId);
 
-    if (isISBN) {
-      setSearchStr("isbn#" + searchStr);
-    } else if (searchStr.length < 10) {
-      setSearchStr("moduleCode#" + searchStr.trim());
-    } else {
-      setSearchStr("title#" + searchStr);
-    }
+    getOneBook({ variables: { bookId } });
   };
 
   const handleAvatarClick = () => {
@@ -67,6 +93,7 @@ function Home({ history }) {
 
   return (
     <div className="home">
+      {loading && <Loader message="Getting books" />}
       <div className="home__header">
         <div className="home__avatar" onClick={handleAvatarClick}>
           <PersonIcon className="avatarIcon" />
@@ -85,16 +112,26 @@ function Home({ history }) {
 
         <p className="home__subtitle">Search for textbooks</p>
 
-        <form className="home__searchContainer">
+        <form className="home__searchContainer" onSubmit={handleSearchClick}>
           <input
             type="text"
             name="searchBook"
             value={searchStr}
             onChange={(e) => setSearchStr(e.target.value)}
             className="home__searchInput"
+            list="home__books"
             placeholder="Type the title, ISBN or module code."
           />
-          <button type="submit" onClick={handleSearchClick}>
+
+          {/* Use the book titles for auto complete here */}
+          <datalist id="home__books">
+            {!loading &&
+              bookTitles.map((item) => (
+                <option key={item.id} value={item.title} />
+              ))}
+          </datalist>
+
+          <button type="submit">
             <SearchOutlined />
           </button>
         </form>
@@ -102,45 +139,45 @@ function Home({ history }) {
 
       <div className="home__menu" style={{ display: displays.menu }}>
         <div className="home__menuItems">
-          <Link to="/upload">
-            <MenuItem
-              icon="upload"
-              title="Upload"
-              subtitle="Upload your used textbooks and sell them to other students. "
-            />{" "}
-          </Link>
+          <MenuItem
+            history={history}
+            path="/upload"
+            icon="upload"
+            title="Upload"
+            subtitle="Upload your used textbooks and sell them to other students. "
+          />
 
-          <Link to="/collection">
-            <MenuItem
-              icon="collection"
-              title="Book Collection"
-              subtitle="Have a look at a collection of all the books that you've uploaded."
-            />{" "}
-          </Link>
+          <MenuItem
+            history={history}
+            path="/collection"
+            icon="collection"
+            title="Book Collection"
+            subtitle="Have a look at a collection of all the books that you've uploaded."
+          />
 
-          <Link to="chats">
-            <MenuItem
-              icon="chats"
-              title="Chats"
-              subtitle="Connect with other students who are registered on Qampus."
-            />{" "}
-          </Link>
+          <MenuItem
+            history={history}
+            path="/chats"
+            icon="chats"
+            title="Chats"
+            subtitle="Connect with other students who are registered on Qampus."
+          />
 
-          <Link to="navigation">
-            <MenuItem
-              icon="navigation"
-              title="Navigation"
-              subtitle="Find your way around campus with Qampus."
-            />{" "}
-          </Link>
+          <MenuItem
+            history={history}
+            path="/navigation"
+            icon="navigation"
+            title="Navigation"
+            subtitle="Find your way around campus with Qampus."
+          />
 
-          <Link to="/setting">
-            <MenuItem
-              icon="settings"
-              title="Settings"
-              subtitle="Change your profile preferences, etc."
-            />{" "}
-          </Link>
+          <MenuItem
+            history={history}
+            path="/settings"
+            icon="settings"
+            title="Settings"
+            subtitle="Change your profile preferences, etc."
+          />
         </div>
       </div>
 
@@ -154,9 +191,14 @@ function Home({ history }) {
             X{/*Close search results*/}
           </button>
         </div>
-        {results?.map((_, i) => {
-          return <SearchResult history={history} key={i} />;
-        })}
+        {/* TODO: Still working on the book stuff mate */}
+
+        {Object.values(book).length && (
+          <Book state="home_book_result" book={book} history={history} />
+        )}
+        {/* {results?.map((_, i) => {
+          return <Book history={history} key={i} />;
+        })} */}
       </div>
 
       <div className="reference">

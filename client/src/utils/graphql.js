@@ -116,13 +116,26 @@ const GET_ONE_BOOK = gql`
 `;
 
 const ADD_MESSAGE = gql`
-  mutation addMessage($to: String!, $textMsg: String!) {
-    addMessage(to: $to, textMsg: $textMsg) {
+  mutation addMessage($to: String!, $textMsg: String!, $book: ID) {
+    addMessage(to: $to, textMsg: $textMsg, book: $book) {
       id
       to
       from
       time
       textMsg
+      book {
+        id
+        isbn
+        title
+        subtitle
+        authors
+        price
+        description
+        moduleCode
+        studentNumber
+        frontCover
+        backCover
+      }
     }
   }
 `;
@@ -151,6 +164,27 @@ const GET_MESSAGES_QUERY = gql`
   }
 `;
 
+const GET_BOOK_TITLES = gql`
+  query getBookTitles {
+    getBookTitles {
+      id
+      title
+    }
+  }
+`;
+
+const GET_USER_DATA = gql`
+  query getUserData($studentNumber: String!) {
+    getUserData(studentNumber: $studentNumber) {
+      id
+      studentNumber
+      firstName
+      lastName
+      picture
+    }
+  }
+`;
+
 export {
   LOGIN_USER,
   REGISTER_USER,
@@ -159,4 +193,6 @@ export {
   ADD_MESSAGE,
   MESSAGE_SUBSCRIPTION,
   GET_MESSAGES_QUERY,
+  GET_BOOK_TITLES,
+  GET_USER_DATA,
 };

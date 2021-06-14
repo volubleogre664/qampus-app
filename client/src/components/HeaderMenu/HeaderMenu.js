@@ -3,13 +3,14 @@ import MenuIcon from "@material-ui/icons/MenuRounded";
 import CloseIcon from "@material-ui/icons/CloseRounded";
 import { Link } from "react-router-dom";
 
-import { useUserHelpers } from "../../Redux/getSlices";
+import { useUserHelpers, useMessagesHelpers } from "../../Redux/getSlices";
 
 import "./HeaderMenu.css";
 
 function HeaderMenu() {
   const [click, setClick] = useState(false);
   const [, dispatchUser] = useUserHelpers();
+  const [, dispatchMessages] = useMessagesHelpers();
 
   const handleClick = () => {
     setClick(!click);
@@ -18,13 +19,15 @@ function HeaderMenu() {
 
     nav.classList.toggle("opening");
     nav.classList.contains("closing") && nav.classList.toggle("closing");
-
-  
   };
-  
+
   const handleLogoutClick = () => {
     dispatchUser({
       type: "REMOVE_USER",
+    });
+
+    dispatchMessages({
+      type: "CLEAR_MESSAGES",
     });
   };
 
@@ -65,7 +68,9 @@ function HeaderMenu() {
           </li>
         </ul>
       </nav>
-      <a href="/"><img className="header__logo" alt="qampus logo" src="../logo.png" ></img></a>
+      <a href="/">
+        <img className="header__logo" alt="qampus logo" src="../logo.png"></img>
+      </a>
       <div className="gap"></div>
     </div>
   );

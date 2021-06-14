@@ -6,6 +6,7 @@ const msgSchema = new Schema({
   from: String,
   time: String,
   textMsg: String,
+  book: Schema.Types.ObjectId,
 });
 
 export default model("Message", msgSchema);

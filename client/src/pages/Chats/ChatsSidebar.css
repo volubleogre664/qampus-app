@@ -11,7 +11,7 @@
   backdrop-filter: blur(2.5px);
   -webkit-backdrop-filter: blur(2.5px);
   border-radius: 10px;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 .chats__sidebarHeader {
@@ -54,6 +54,9 @@
   height: 25px;
   border-radius: 5px;
   margin-bottom: 2%;
+  position: sticky;
+  z-index: 10;
+  top: 10px;
 }
 
 .chats__sidebarBody > .search__container > .search__input {
@@ -115,13 +118,14 @@
 @media screen and (max-width: 550px) {
   .chats__sidebar {
     width: 100%;
+    opacity: 1;
   }
 
   .chats__sidebar.fadeOut {
     opacity: 0;
   }
 
-  .chats__sidebar.fadeIn {
+  /* .chats__sidebar.fadeIn {
     opacity: 1;
-  }
+  } */
 }

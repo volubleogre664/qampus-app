@@ -23,7 +23,6 @@ function generateToken(user) {
       picture: user.picture,
       degree: user.degree,
       bio: user.bio,
-      contacts: user.contacts || [],
     },
     SECRET_KEY,
     { expiresIn: "12h" }
@@ -127,7 +126,6 @@ const userResolvers = {
       };
     },
     async updateUser(_, { updateInput }, context) {
-      // Test this in GraphQL PlayGrounds
       const user = checkAuth(context);
 
       const updatedUser = await User.findById(user.id);
@@ -166,6 +164,23 @@ const userResolvers = {
         id: res._id,
         token,
       };
+    },
+  },
+  Query: {
+    async getUserData(_, { studentNumber }) {
+      try {
+        const user = await User.findOne({ studentNumber });
+
+        return {
+          id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          studentNumber: user.studentNumber,
+          picture: user.picture,
+        };
+      } catch (err) {
+        throw new Error("No user found");
+      }
     },
   },
 

@@ -46,7 +46,7 @@ const bookResolvers = {
         moduleCode: bookInput.moduleCode || "",
         studentNumber: bookInput.studentNumber,
         frontCover: bookInput.frontCover || "",
-        backCover: bookInput  .backCover || "",
+        backCover: bookInput.backCover || "",
       });
 
       const res = await newBook.save();
@@ -114,6 +114,18 @@ const bookResolvers = {
         return books;
       } catch (err) {
         throw new Error("An error occured while getting the books", {
+          errors: err,
+        });
+      }
+    },
+
+    async getBookTitles() {
+      try {
+        const bookTitles = await Book.find({}, { title: 1 });
+
+        return bookTitles;
+      } catch (err) {
+        throw new Error("Could not find the book titles", {
           errors: err,
         });
       }
