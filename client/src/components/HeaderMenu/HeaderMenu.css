@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
+  width: 95%;
   padding: 20px;
   box-sizing: border-box;
   margin: 0 auto;
@@ -132,5 +132,15 @@
 
   .nav__links.closing {
     left: 110%;
+  }
+}
+
+@media screen and (max-width: 1600px)  {
+  .header__nav{
+    width: fit-content;
+  }
+  .header
+  {
+    justify-content: space-between;
   }
 }
