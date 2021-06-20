@@ -50,7 +50,7 @@
   transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
   transition: transform 0.5s, -webkit-transform 0.5s;
-  /*Use this side for when the book has been sold, 
+  /*Use this side for when the book has been sold,
           --> To preview the side, set display of left to "none" and set right to "flex" */
 }
 
@@ -206,8 +206,8 @@
   top: -70px;
   right: -70px;
   border-radius: 0px 0px 200px 200px;
-  -webkit-transition: all 0.5s, border-radius 2s, top 1s;
-  transition: all 0.5s, border-radius 2s, top 1s;
+  -webkit-transition: all 0.25s, border-radius 0.5s, top 0.25s;
+  transition: all 0.25s, border-radius 0.5s, top 0.25s;
   overflow: hidden;
 }
 

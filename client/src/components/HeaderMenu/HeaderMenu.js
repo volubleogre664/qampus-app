@@ -63,6 +63,10 @@ function HeaderMenu() {
           <li className="nav__linksItem">
             <Link to="/profile">Profile</Link>
           </li>
+
+          <li className="nav__linksItem">
+            <p>|</p>
+          </li>
           <li onClick={handleLogoutClick} className="nav__linksItem">
             <span>Logout</span>
           </li>

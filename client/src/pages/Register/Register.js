@@ -70,7 +70,9 @@ function Register({ history }) {
     <div className="register">
       {loading && <Loader message="Creating account" />}
       <section className="page_headers">
-        <img className="logo" src={logo} alt="qampus app register user" />
+        <a href="/">
+          <img className="logo" src={logo} alt="qampus app register user" />
+        </a>
         <h1 className="welcome_header">Welcome</h1>
         <hr className="separator" />
         <h2 className="title">please register to access all the features</h2>

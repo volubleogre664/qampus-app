@@ -1,24 +1,24 @@
 import InfoIcon from "@material-ui/icons/InfoOutlined";
 import DeleteIcon from "@material-ui/icons/DeleteRounded";
 import PencilIcon from "@material-ui/icons/EditRounded";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingBasketOutlined";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 import imgSrc from "./img.jpg";
 
 import "./Book.css";
 
-function Book({ state, book, history }) {
+function Book({ state, history }) {
   // * Remove book above and use the one below when testing the component
-  // const book = {
-  //   title: "Design Principles",
-  //   isbn: "998844212133",
-  //   modCode: "CSIS1664",
-  //   price: "300.00",
-  //   edition: "2nd",
-  //   dateUploaded: "21 April 2021",
-  //   authors: "Steven Morris, Peter Rob",
-  //   frontCover: imgSrc,
-  // };
+  const book = {
+    title: "Design Principles",
+    isbn: "998844212133",
+    modCode: "CSIS1664",
+    price: "300.00",
+    edition: "2nd",
+    dateUploaded: "21 April 2021",
+    authors: "Steven Morris, Peter Rob",
+    frontCover: imgSrc,
+  };
 
   const book_details = {
     title: "Title",
@@ -111,7 +111,7 @@ function Book({ state, book, history }) {
       {/* Book pop up details */}
       <div className="book__details">
         <span className="book__detailsToggle">
-          <InfoIcon />
+          <InfoIcon className="infoIcon"/>
         </span>
 
         <div className="book__detailsBody">
@@ -119,9 +119,11 @@ function Book({ state, book, history }) {
             Object.keys(book_details).map((key) => {
               if (book[key]) {
                 return (
-                  <span key={key}>
-                    <strong>{book_details[key]}:</strong>{" "}
-                    {key === "price" ? "R" + book[key] : book[key]}
+                    <span key={key}>
+                      <p>
+                      {book_details[key]}:{" "}
+                      {key === "price" ? "R" + book[key] : book[key]}
+                      </p>
                   </span>
                 );
               }

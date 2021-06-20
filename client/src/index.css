@@ -12,8 +12,8 @@ body {
   box-sizing: border-box;
   /* height: 100vh; */
   /* width: 100vw; */
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
-    url("https://drscdn.500px.org/photo/130079947/m%3D900/v2?sig=3578a211f39b37304c6940c0017ab13cf0d9d511c41d664fa7f99a5c32067052")
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.0)),
+    url("https://images.squarespace-cdn.com/content/v1/59440628b3db2b2f36a66f10/1612628664987-H934DKH4TLOZIV1SLKYK/ke17ZwdGBToddI8pDm48kHH9S2ID7_bpupQnTdrPcoF7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0nQwvinDXPV4EYh2MRzm-RRB5rUELEv7EY2n0AZOrEupxpSyqbqKSgmzcCPWV5WMiQ/DSC_8575.jpeg?format=2500w")
       no-repeat;
   background-position: center;
   background-size: cover;

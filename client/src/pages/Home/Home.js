@@ -18,8 +18,8 @@ import "./Home.css";
 
 //change the background reference here
 const ref_link =
-  "https://500px.com/photo/294752081/Down-by-the-lakeside-by-S-Luciano-Fredheim";
-const ref_name = "S. Luciano Fredheim";
+  "https://www.smoorevisuals.com/landscapes/";
+const ref_name = "Spencer Moore";
 
 function Home({ history }) {
   const [{ user }] = useUserHelpers();
@@ -126,8 +126,8 @@ function Home({ history }) {
           {/* Use the book titles for auto complete here */}
           <datalist id="home__books">
             {!loading &&
-              bookTitles.map((item) => (
-                <option key={item.id} value={item.title} />
+              bookTitles?.map((item) => (
+                <option key={item?.id} value={item?.title} />
               ))}
           </datalist>
 
@@ -191,14 +191,16 @@ function Home({ history }) {
             X{/*Close search results*/}
           </button>
         </div>
-        {/* TODO: Still working on the book stuff mate */}
+        <div className="_results">
+          {/* TODO: Still working on the book stuff mate */}
 
-        {Object.values(book).length && (
-          <Book state="home_book_result" book={book} history={history} />
-        )}
-        {/* {results?.map((_, i) => {
-          return <Book history={history} key={i} />;
-        })} */}
+          {Object.values(book).length && (
+            <Book state="home_book_result" book={book} history={history} />
+          )}
+          {/* {results?.map((_, i) => {
+            return <Book history={history} key={i} />;
+          })} */}
+        </div>
       </div>
 
       <div className="reference">
