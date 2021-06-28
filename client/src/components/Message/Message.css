@@ -2,7 +2,8 @@
   width: fit-content;
   max-width: 80%;
   height: auto;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  margin-right: 30px;
   display: flex;
   flex-direction: column;
   gap: 5px;

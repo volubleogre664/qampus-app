@@ -29,8 +29,8 @@
   top: -70px;
   right: -70px;
   border-radius: 0px 0px 200px 200px;
-  -webkit-transition: all 0.25s, border-radius 0.5s, top 0.25s;
-  transition: all 0.25s, border-radius 0.5s, top 0.25s;
+  -webkit-transition: all 0.35s, border-radius 0.5s, top 0.1s;
+  transition: all 0.35s, border-radius 0.5s, top 0.1s;
   overflow: hidden;
 }
 
