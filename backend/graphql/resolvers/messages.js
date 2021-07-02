@@ -65,11 +65,8 @@ const messageResolvers = {
           from: user.studentNumber,
           time: dayjs().toISOString(),
           textMsg,
+          book,
         };
-
-        if (book) {
-          msgObject.book = book;
-        }
 
         const message = new Message(msgObject);
 
@@ -87,10 +84,6 @@ const messageResolvers = {
         ) {
           fromUser.contacts.push({
             id: toUser.id,
-            firstName: toUser.firstName,
-            lastName: toUser.lastName,
-            studentNumber: toUser.studentNumber,
-            picture: toUser.picture,
           });
 
           fromUser = await fromUser.save();
@@ -107,10 +100,6 @@ const messageResolvers = {
         ) {
           toUser.contacts.push({
             id: fromUser.id,
-            firstName: fromUser.firstName,
-            lastName: fromUser.lastName,
-            studentNumber: fromUser.studentNumber,
-            picture: fromUser.picture,
           });
 
           toUser = await toUser.save();
@@ -122,13 +111,13 @@ const messageResolvers = {
 
         const res = await message.save();
 
-        let bookObj;
+        let bookObj = {};
         if (book) {
           bookObj = await Book.findById(book);
         }
 
         context.pubsub.publish("NEW_MESSAGE", {
-          newMessage: res,
+          newMessage: {...res, book: bookObj},
         });
 
         return {
