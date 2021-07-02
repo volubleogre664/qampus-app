@@ -230,7 +230,7 @@ function Upload() {
     <div className="upload">
       {loading.isLoading && <Loader message={loading.message} />}
       <h1 className="upload__title">Upload a book</h1>
-
+      <hr className="upload_separator" />
       <form onSubmit={uploadImagesToCloud} className="upload__form">
         <div className="wrapper">
           <div

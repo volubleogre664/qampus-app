@@ -27,7 +27,7 @@ function Collection() {
 
       <Book />
 
-      <div class="coll_wrapper">
+      {/*<div class="coll_wrapper">
         <div class="container">
           <div class="top"></div>
           <div class="bottom">
@@ -79,7 +79,7 @@ function Collection() {
             </p>
           </div>
         </div>
-      </div>
+      </div>*/}
     </div>
   );
 }

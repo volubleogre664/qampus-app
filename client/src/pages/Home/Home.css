@@ -17,7 +17,7 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  margin: 7vh 0 0 auto;
+  margin: 5vh 0 0 auto;
 }
 
 .home__logo {
@@ -37,7 +37,7 @@
 .home__avatar {
   user-select: none;
   transition: all ease-in-out 0.2s;
-  padding-right: 7px;
+  padding-right: 15px;
   padding-left: 2px;
   padding-top: 3px;
   display: flex;
@@ -48,7 +48,7 @@
   min-width: 100px;
   border: none;
   border-radius: 5px;
-  margin-right: 35px;
+  margin-right: 10%;
   max-height: 35px;
 }
 
@@ -197,6 +197,7 @@
   padding: 30px 30px;
   /* padding-top: 0; */
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
@@ -211,7 +212,7 @@
   text-align: center;
   align-content: center;
   margin-bottom: 0;
-  width: 100%;
+  width: 60%;
   padding: 0;
   position: sticky;
   top: 20px;

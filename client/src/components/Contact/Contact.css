@@ -1,11 +1,11 @@
 .contact {
-  width: 90%;
+  width: 85%;
   margin: auto;
   box-sizing: border-box;
   background: linear-gradient(
     275deg,
     rgba(29, 161, 242, 0.55),
-    rgba(47, 40, 74, 0.55)
+    rgba(29, 161, 242, 0.75)
   );
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(11px);

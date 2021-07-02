@@ -170,7 +170,6 @@ function Chats() {
   // Fix inconsistent CSS with the sidebar and main heights
   useLayoutEffect(() => {
     const header = document.querySelector(".app > .header");
-
     setHeight(windowHeight - header.clientHeight - 15);
   }, [setHeight, windowHeight]);
 
@@ -229,15 +228,15 @@ function Chats() {
     <div className="chats">
       {/* {loading && <Loader />} */}
       <aside className="chats__sidebar" style={{ height: height + "px" }}>
-        <header className="chats__sidebarHeader">
-          <h2 className="title">Chats {" | " + user?.firstName || ""}</h2>
-
+        <div className="chats__sidebarHeader">
+        {/*<h2 className="title">Chats {" | " + user?.firstName || ""}</h2>
           <span className="icon__container">
             <Link className="icon__containerLink" to="/">
               <ArrowBackIosIcon />
             </Link>
-          </span>
-        </header>
+          </span>*/}
+          <p>Your chats</p><br/>
+        </div>
 
         <div className="chats__sidebarBody">
           <div className="search__container">

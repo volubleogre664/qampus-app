@@ -1,39 +1,39 @@
 .chats__sidebar {
   box-sizing: border-box;
   width: 25%;
+  max-width: 350px;
   max-height: 99% !important;
   color: #fff;
   display: flex;
   flex-direction: column;
   padding-bottom: 10px;
-  background: rgba(0, 0, 0, 0.3);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(2.5px);
-  -webkit-backdrop-filter: blur(2.5px);
+  background: rgba( 0, 0, 0, 0.40 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 7.5px );
+  -webkit-backdrop-filter: blur( 7.5px );
   border-radius: 10px;
   overflow-y: auto;
 }
 
 .chats__sidebarHeader {
   width: 85%;
-  display: flex;
+  display: flex ;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin: 15px auto;
   border-bottom: 2px solid white;
 }
 
-.chats__sidebarHeader > .title {
-  font-weight: 300;
-  font-size: 1.3rem;
-  margin-bottom: 5px;
+.chats__sidebarHeader > p {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  font-family: "Poiret One";
 }
 
-.chats__sidebarHeader > .icon__container > * > .MuiSvgIcon-root {
+/* .chats__sidebarHeader > .icon__container > * > .MuiSvgIcon-root {
   color: lightgray;
   margin-top: 5px;
-  font-size: 1.3rem;
-}
+  font-size: 1.3rem;} */
 
 .chats__sidebarBody {
   flex: 1 !important;
@@ -49,11 +49,12 @@
   background: #fff;
   padding: 5px;
   color: black;
-  width: 90%;
+  width: 85%;
   align-self: center;
   height: 25px;
   border-radius: 5px;
-  margin-bottom: 2%;
+  margin-top:5px;
+  margin-bottom: 20px;
   position: sticky;
   z-index: 10;
   top: 10px;
@@ -66,11 +67,13 @@
   padding: 3px;
   font-size: 1rem;
   display: flex;
-  width: 100%;
+  width: 85%;
+  margin-left: 2%;
 }
 
 .chats__sidebarBody > .search__container > .MuiSvgIcon-root {
-  font-size: 2rem;
+  font-size: 1.8rem;
+  color: #000000;
 }
 
 .chats__sidebarBody > .contactSection {
@@ -79,9 +82,11 @@
   width: 100%;
 }
 
+
+/*Make it visible after the feature has been implented.*/
 .chats__sidebarFooter {
   /* position: absolute; */
-  display: flex;
+  display: none;
   padding-top: 10px;
   justify-content: space-between;
   width: 80%;
