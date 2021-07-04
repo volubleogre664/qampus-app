@@ -173,7 +173,7 @@ function Home({ history }) {
 
           <MenuItem
             history={history}
-            path="/settings"
+            path="/profile"
             icon="settings"
             title="Settings"
             subtitle="Change your profile preferences, etc."

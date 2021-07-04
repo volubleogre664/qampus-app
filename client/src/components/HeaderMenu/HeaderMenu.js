@@ -55,14 +55,12 @@ function HeaderMenu() {
             <Link to="/navigation">Navigation</Link>
           </li>
           <li className="nav__linksItem">
-            <Link to="/settings">Settings</Link>
+            <Link to="/profile">Settings</Link>
           </li>
           <li className="nav__linksItem">
             <Link to="/help">Help</Link>
           </li>
-          <li className="nav__linksItem">
-            <Link to="/profile">Profile</Link>
-          </li>
+        
 
           <li className="nav__linksItem">
             <p>|</p>
