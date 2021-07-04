@@ -358,7 +358,8 @@
                             "items": [
                                 {
                                     "id": "workbench.action.toggleFullScreen",
-                                    "label": "&&Full Screen"
+                                    "label": "&&Full Screen",
+                                    "checked": true
                                 },
                                 {
                                     "id": "workbench.action.toggleZenMode",
@@ -392,8 +393,7 @@
                                 },
                                 {
                                     "id": "workbench.action.togglePanel",
-                                    "label": "Show &&Panel",
-                                    "checked": true
+                                    "label": "Show &&Panel"
                                 },
                                 {
                                     "id": "workbench.action.toggleEditorVisibility",
@@ -1475,15 +1475,6 @@
             "sideBarBackground": "#060621",
             "statusBarBackground": "#10192c",
             "statusBarNoFolderBackground": "#10192c"
-        },
-        "layoutInfo": {
-            "sideBarSide": "left",
-            "editorPartMinWidth": 220,
-            "titleBarHeight": 0,
-            "activityBarWidth": 48,
-            "sideBarWidth": 0,
-            "statusBarHeight": 22,
-            "windowBorder": false
         }
     },
     "windowsState": {
@@ -1491,11 +1482,12 @@
             "folder": "file:///home/mphile/Desktop/repos/nduduzo/qampus-app",
             "backupPath": "/home/mphile/Desktop/repos/nduduzo/qampus-app/Backups/aafada811b50d830ccb1735157921d51",
             "uiState": {
-                "mode": 0,
-                "x": 0,
-                "y": 60,
+                "mode": 3,
+                "display": 1252124593448003,
                 "width": 1920,
-                "height": 1020
+                "height": 1020,
+                "x": 0,
+                "y": 60
             }
         },
         "openedWindows": []
