@@ -29,12 +29,13 @@
 }
 
 .sepatator{
-    width: 85%;
-    margin-top: 0;
+  width: 85%;
+  margin-top: 0;
 
 }
 .navigation__form {
   width: 80%;
+  height: 50%;
   margin: auto;
   margin-top: 30px;
   display: flex;
@@ -101,12 +102,11 @@
 
 .get_directions {
   transition: all ease-in-out 0.2s;
-  background: #03a9f4;
+  background-color: #03a9f4;
   padding: 5px 15px 5px;
   margin: auto;
   max-height: 32px;
   color: #fff;
-  text-transform: capitalize;
   font-weight: lighter;
   font-size: 1.2em;
   margin-top: 10px;
