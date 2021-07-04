@@ -378,8 +378,7 @@
                                 },
                                 {
                                     "id": "workbench.action.toggleSidebarVisibility",
-                                    "label": "Show &&Side Bar",
-                                    "checked": true
+                                    "label": "Show &&Side Bar"
                                 },
                                 {
                                     "id": "workbench.action.toggleStatusbarVisibility",
@@ -1481,7 +1480,7 @@
             "editorPartMinWidth": 220,
             "titleBarHeight": 0,
             "activityBarWidth": 48,
-            "sideBarWidth": 256,
+            "sideBarWidth": 0,
             "statusBarHeight": 22,
             "windowBorder": false
         }
@@ -1492,10 +1491,10 @@
             "backupPath": "/home/mphile/Desktop/repos/nduduzo/qampus-app/Backups/aafada811b50d830ccb1735157921d51",
             "uiState": {
                 "mode": 0,
-                "x": 0,
-                "y": 60,
-                "width": 1920,
-                "height": 1020
+                "x": -221,
+                "y": 252,
+                "width": 1440,
+                "height": 757
             }
         },
         "openedWindows": []

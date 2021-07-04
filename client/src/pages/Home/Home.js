@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import PersonIcon from "@material-ui/icons/Person";
 import { useQuery, useLazyQuery } from "@apollo/react-hooks";
 import { SearchOutlined } from "@material-ui/icons";
-
 import MenuItem from "../../components/MenuItem/MenuItem";
 import Book from "../../components/Book/Book.js";
 import Loader from "../../components/Loader/Loader";
-
-import { useUserHelpers, useBooksHelpers } from "../../Redux/getSlices";
+import { useUserHelpers, useBooksHelpers, useMessagesHelpers } from "../../Redux/getSlices";
 import { GET_BOOK_TITLES, GET_ONE_BOOK } from "../../utils/graphql";
-
 import logo from "../../logo.png";
+import mbox from 'sweetalert';
+
+
 
 // import isValidISBN from "../../utils/validate.js";
 
@@ -29,6 +29,8 @@ function Home({ history }) {
   const [book, setBook] = useState({});
   const [bookTitles, setBookTitles] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [, dispatchUser] = useUserHelpers();
+  const [, dispatchMessages] = useMessagesHelpers();
 
   // Toggles the results section and the menu section
   const [displays, setDisplays] = useState({
@@ -78,9 +80,48 @@ function Home({ history }) {
   };
 
   const handleAvatarClick = () => {
-    history.push("/profile");
+    const name = document.querySelector('.home__avatarName');
+    if(name.textContent === "Guest"){
+      history.push("/login");
+    }
+    else {
+      mbox(
+        {
+          className: "mbox",
+          title: "Logging out.",
+          icon:"info",
+          text: "Are you sure you want to logout?",
+          buttons: {
+            cancel: {
+            text: "No, cancel",
+            value: false,
+            visible: true,
+            className: "mbox_button",
+          },
+          confirm: {
+            text: "Yes, logout!",
+            value: true,
+            visible: true,
+            className: "mbox_button",
+          }
+          },   
+          
+        }
+      ).then((answer) => { 
+        if(answer === true)
+        {
+          dispatchUser({
+            type: "REMOVE_USER",
+          });
+      
+          dispatchMessages({
+            type: "CLEAR_MESSAGES",
+          });
+        }
+      });
+    }
   };
-
+ 
   // Helps retturn back to the menu
   const openMenu = () => {
     setDisplays({ menu: "flex", results: "none" });
