@@ -3,6 +3,9 @@
     "openedPathsList": {
         "entries": [
             {
+                "folderUri": "file:///home/mphile/Desktop/repos/nduduzo/qampus-app/client/src/components/SearchResult"
+            },
+            {
                 "folderUri": "file:///home/mphile/Desktop/repos/nduduzo/qampus-app"
             }
         ]
@@ -57,6 +60,17 @@
                                     },
                                     "enabled": true,
                                     "label": "/home/mphile/Desktop/repos/nduduzo/qampus-app"
+                                },
+                                {
+                                    "id": "openRecentFolder",
+                                    "uri": {
+                                        "$mid": 1,
+                                        "external": "file:///home/mphile/Desktop/repos/nduduzo/qampus-app/client/src/components/SearchResult",
+                                        "path": "/home/mphile/Desktop/repos/nduduzo/qampus-app/client/src/components/SearchResult",
+                                        "scheme": "file"
+                                    },
+                                    "enabled": true,
+                                    "label": "/home/mphile/Desktop/repos/nduduzo/qampus-app/client/src/components/SearchResult"
                                 },
                                 {
                                     "id": "vscode.menubar.separator"
@@ -546,8 +560,7 @@
                     },
                     {
                         "id": "editor.action.toggleWordWrap",
-                        "label": "&&Word Wrap",
-                        "enabled": false
+                        "label": "&&Word Wrap"
                     },
                     {
                         "id": "editor.action.toggleMinimap",

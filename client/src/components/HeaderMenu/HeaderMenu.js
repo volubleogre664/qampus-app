@@ -9,6 +9,7 @@ import "./HeaderMenu.css";
 
 function HeaderMenu() {
   const [click, setClick] = useState(false);
+  const [isVisit, setVisit] = useState("");
   const [, dispatchUser] = useUserHelpers();
   const [, dispatchMessages] = useMessagesHelpers();
 
@@ -31,6 +32,21 @@ function HeaderMenu() {
     });
   };
 
+  const handleVisit = (e) => {
+    const id = e.target.id;
+    if(isVisit !== id){
+      const link = document.querySelector(id);
+      link.style.color = "babyblue";
+
+      if(isVisit !== ""){
+        const link1 = document.querySelector(isVisit);
+        link.style.color = "black";
+      }
+     
+    }
+    setVisit(id);
+  };
+
   return (
     <div className="header">
       <div className="header__button" onClick={handleClick}>
@@ -43,22 +59,22 @@ function HeaderMenu() {
             <Link to="/">Home</Link>
           </li>
           <li className="nav__linksItem">
-            <Link to="/upload">Upload</Link>
+            <Link id="Upload" onClick={handleVisit} to="/upload" >Upload</Link>
           </li>
           <li className="nav__linksItem">
-            <Link to="/collection">Book Collection</Link>
+            <Link id="Books" onClick={handleVisit} to="/collection">Book Collection</Link>
           </li>
           <li className="nav__linksItem">
-            <Link to="/chats">Chats</Link>
+            <Link id="Chats" onClick={handleVisit} to="/chats">Chats</Link>
           </li>
           <li className="nav__linksItem">
-            <Link to="/navigation">Navigation</Link>
+            <Link id="Navigation" onClick={handleVisit} to="/navigation">Navigation</Link>
           </li>
           <li className="nav__linksItem">
-            <Link to="/profile">Settings</Link>
+            <Link id="Settings" onClick={handleVisit} to="/profile">Settings</Link>
           </li>
           <li className="nav__linksItem">
-            <Link to="/help">Help</Link>
+            <Link id="Help" onClick={handleVisit} to="/help">Help</Link>
           </li>
         
 
