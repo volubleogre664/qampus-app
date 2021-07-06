@@ -1,7 +1,7 @@
 import { useState } from "react";
 import MenuIcon from "@material-ui/icons/MenuRounded";
 import CloseIcon from "@material-ui/icons/CloseRounded";
-import { Link } from "react-router-dom";
+import { useRouteMatch, Link } from "react-router-dom";
 
 import { useUserHelpers, useMessagesHelpers } from "../../Redux/getSlices";
 
@@ -9,17 +9,13 @@ import "./HeaderMenu.css";
 
 function HeaderMenu() {
   const [click, setClick] = useState(false);
-  const [isVisit, setVisit] = useState("");
+  // const [isVisit, setVisit] = useState("");
   const [, dispatchUser] = useUserHelpers();
   const [, dispatchMessages] = useMessagesHelpers();
 
   const handleClick = () => {
     setClick(!click);
-
-    const nav = document.querySelector(".nav__links");
-
-    nav.classList.toggle("opening");
-    nav.classList.contains("closing") && nav.classList.toggle("closing");
+    document.querySelector(".nav__links").classList.toggle("opening");
   };
 
   const handleLogoutClick = () => {
@@ -32,20 +28,19 @@ function HeaderMenu() {
     });
   };
 
-  const handleVisit = (e) => {
-    const id = e.target.id;
-    if(isVisit !== id){
-      const link = document.querySelector(id);
-      link.style.color = "babyblue";
+  // const handleVisit = (e) => {
+  //   const id = e.target.id;
+  //   if (isVisit !== id) {
+  //     const link = document.querySelector(id);
+  //     link.style.color = "babyblue";
 
-      if(isVisit !== ""){
-        const link1 = document.querySelector(isVisit);
-        link.style.color = "black";
-      }
-     
-    }
-    setVisit(id);
-  };
+  //     if (isVisit !== "") {
+  //       const link1 = document.querySelector(isVisit);
+  //       link.style.color = "black";
+  //     }
+  //   }
+  //   setVisit(id);
+  // };
 
   return (
     <div className="header">
@@ -55,28 +50,14 @@ function HeaderMenu() {
 
       <nav className="header__nav">
         <ul className="nav__links">
-          <li className="nav__linksItem">
-            <Link to="/">Home</Link>
-          </li>
-          <li className="nav__linksItem">
-            <Link id="Upload" onClick={handleVisit} to="/upload" >Upload</Link>
-          </li>
-          <li className="nav__linksItem">
-            <Link id="Books" onClick={handleVisit} to="/collection">Book Collection</Link>
-          </li>
-          <li className="nav__linksItem">
-            <Link id="Chats" onClick={handleVisit} to="/chats">Chats</Link>
-          </li>
-          <li className="nav__linksItem">
-            <Link id="Navigation" onClick={handleVisit} to="/navigation">Navigation</Link>
-          </li>
-          <li className="nav__linksItem">
-            <Link id="Settings" onClick={handleVisit} to="/profile">Settings</Link>
-          </li>
-          <li className="nav__linksItem">
-            <Link id="Help" onClick={handleVisit} to="/help">Help</Link>
-          </li>
-        
+          <NavLink to="/" label="home" />
+          <NavLink to="/upload" label="upload" />
+          <NavLink to="/collection" label="collection" />
+          <NavLink to="/chats" label="chats" />
+          <NavLink to="/navigation" label="navigation" />
+          <NavLink to="/profile" label="profile" />
+          <NavLink to="/settings" label="settings" />
+          <NavLink to="/help" label="help" />
 
           <li className="nav__linksItem">
             <p>|</p>
@@ -87,10 +68,29 @@ function HeaderMenu() {
         </ul>
       </nav>
       <a href="/">
-        <img className="header__logo" alt="qampus logo" src="../../logo.png"></img>
+        <img
+          className="header__logo"
+          alt="qampus logo"
+          src="../../logo.png"
+        ></img>
       </a>
       <div className="gap"></div>
     </div>
+  );
+}
+
+function NavLink({ to, label }) {
+  const match = useRouteMatch({
+    path: to,
+    exact: true,
+  });
+
+  console.log(match);
+
+  return (
+    <li className={`nav__linksItem ${match?.isExact ? "active" : ""}`}>
+      <Link to={to}>{label}</Link>
+    </li>
   );
 }
 

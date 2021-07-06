@@ -1,32 +1,32 @@
 .uploadCollection {
   overflow: hidden;
+  flex: 1;
   display: flex;
   padding: 20px;
   padding-top: 0;
   width: 90%;
-  height: 90%;
   margin: auto;
   margin-top: 12px;
 }
 
 .upload_section {
   width: 35%;
-  background: rgba( 0, 0, 0, 0.40 );
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter: blur( 7.5px );
-  -webkit-backdrop-filter: blur( 7.5px );
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(7.5px);
+  -webkit-backdrop-filter: blur(7.5px);
   border-radius: 5px;
   padding-right: 10px;
   padding-top: 20px;
 }
 
-.bullets{
+.bullets {
   color: white;
   width: 100%;
   margin: auto;
 }
 
-.tilesWrap{
+.tilesWrap {
   text-align: left;
   align-content: flex-start;
   flex-flow: column wrap;
@@ -41,10 +41,10 @@
   .upload_section {
     width: 100%;
   }
-  .bullets{
-    margin-top:50px;
+  .bullets {
+    margin-top: 50px;
   }
-  .tilesWrap{
+  .tilesWrap {
     padding-left: 5%;
   }
 
@@ -53,7 +53,7 @@
   }
 }
 
-@media screen and (max-width: 900px) and (min-width:550px) {
+@media screen and (max-width: 900px) and (min-width: 550px) {
   .upload_section {
     width: 70%;
   }
@@ -62,11 +62,8 @@
   }
 }
 
-@media screen and (max-width: 1300px) and (min-width:900px){
+@media screen and (max-width: 1300px) and (min-width: 900px) {
   .upload_section {
     width: 40%;
   }
-
-
-
 }
