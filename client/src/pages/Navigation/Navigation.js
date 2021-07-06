@@ -1,14 +1,35 @@
+<<<<<<< HEAD
 import React from "react";
 import Iframe from "react-iframe";
 import { Button } from "@material-ui/core";
 
 import "./Navigation.css";
+=======
+import "./Navigation.css";
+import React, { useState } from "react";
+import Iframe from 'react-iframe'
 
-const _start_longitude = "19°6’41.81”S";
-const _start_latitude = "26°11’9.66”E";
-const _end_longitude = "29°6’41.95”S";
-const _end_latitude = "16°11’3.05”E";
+function Navigation() {
+  const [active , setActive] = useState(() => { return "https://www.google.com/maps/embed"});
+  /*Get these values from the database */
+  var _start_latitude = "29°6’33.75”S";
+  var _start_longitude = "26°11’26.48”E";
+  var _end_latitude = "29°6’19.89”S";
+  var _end_longitude = "26°11’18.08”E";
 
+ 
+  function GetDirections(start_longitude, start_latitude, end_longitude, end_latitude)
+  {
+    var start_deg_long = GetLong(start_longitude);    
+    var start_deg_lat = GetLat(start_latitude);
+    var end_deg_long = GetLong(end_longitude);
+    var end_deg_lat = GetLat(end_latitude);
+>>>>>>> a27e8f969bf79f7bc821d24a44146a0f5337f829
+
+    var markerA = btoa(unescape(encodeURIComponent(start_latitude + ' ' + start_longitude)));
+    var markerB = btoa(unescape(encodeURIComponent(end_latitude + ' ' + end_longitude)));
+
+<<<<<<< HEAD
 function GoogleMapsURLToEmbedURL(
   start_longitude,
   start_latitude,
@@ -37,22 +58,83 @@ function GoogleMapsURLToEmbedURL(
     return 0;
   }
 }
+=======
+    var _result = "https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d0!2d26.187284!3d-29.107376!2m3!1f0!2f0"+
+                  "!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m4!2z"+markerA+"!3m2!1d"
+                  +start_deg_lat+"!2d"+start_deg_long+"!4m4!2z"+markerB+"!3m2!1d"
+                  +end_deg_lat+"!2d"+end_deg_long+"!5e0!3m2!1sen!2sza!4v1625379191755!5m2!1sen!2sza";
+    return _result;
+  }
 
-function Navigation() {
+  function GetLong(longitude){
+
+    if(longitude.trim()){}
+    var parts = longitude.split('°');
+    var deg = parts[0];
+    var min_sec = parts[1].split('’');
+    var min = min_sec[0];
+    var sec_dir = min_sec[0].split('”');
+    var sec = sec_dir[0];
+    var dir = sec_dir[1];
+    
+    var decimalDegrees = deg + "." + (min/60) + (sec/3600);
+
+    if(dir==="W"){
+      decimalDegrees = decimalDegrees * -1;
+    }
+>>>>>>> a27e8f969bf79f7bc821d24a44146a0f5337f829
+
+    return decimalDegrees;
+  }
+  
+  function GetLat(latitude){
+    var parts = latitude.split('°');
+    var deg = parts[0];
+    var min_sec = parts[1].split('’');
+    var min = min_sec[0];
+    var sec_dir = min_sec[0].split('”');
+    var sec = sec_dir[0];
+    var dir = sec_dir[1];
+    
+    var decimalDegrees = deg + "." + (min/60) + (sec/3600);
+
+    if(dir==="S"){
+      decimalDegrees = decimalDegrees * -1;
+    }
+    return decimalDegrees;
+  }
+
+  function changeState(){
+    setActive(() => {return GetDirections(_start_longitude, _start_latitude, _end_longitude, _end_latitude)});
+  }
+
   return (
     <div className="navigation">
       <div className="nav_input">
+<<<<<<< HEAD
         <p>Navigator</p>
         <br />
+=======
+        <p>Navigator</p><br/>
+>>>>>>> a27e8f969bf79f7bc821d24a44146a0f5337f829
         <hr className="sepatator" />
         <form className="navigation__form">
           <label>
             Starting location <br />
+<<<<<<< HEAD
             <input type="text" name="Starting location" className="formInput" />
+=======
+            <input
+              type="text"
+              name="StartLocation"
+              className="formInput"
+            />
+>>>>>>> a27e8f969bf79f7bc821d24a44146a0f5337f829
           </label>
 
           <label>
             Destination <br />
+<<<<<<< HEAD
             <input type="text" name="Destination" className="formInput" />
           </label>
 
@@ -68,17 +150,40 @@ function Navigation() {
             GetDirections
           </button>
         </form>
+=======
+            <input
+              type="text"
+              name="Destination"
+              className="formInput"
+            />
+          </label>
+        </form>
+        <button onClick={changeState} className="get_directions" >Get Directions</button>
+
+>>>>>>> a27e8f969bf79f7bc821d24a44146a0f5337f829
       </div>
+
       <div className="nav_results" id="map">
+<<<<<<< HEAD
         <Iframe
           className="frame"
           url="https://www.google.com/maps/embed?pb=!1m22!1m8!1m3!1d3485.83893509228!2d26.184412365631186!3d-29.110436082231697!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m4!2zMjnCsDbigJk0MS44MeKAnVMgMjbCsDEx4oCZOS42NuKAnUU!3m2!1d-29.1116139!2d26.1860167!4m4!2zMjnCsDA2JzMzLjAiUyAgMjbCsDExJzE0LjAiRQ!3m2!1d-29.1091667!2d26.187222199999997!5e0!3m2!1sen!2sza!4v1625048320489!5m2!1sen!2sza"
           allowfullscreen=""
           loading="lazy"
         />
+=======
+        <Iframe 
+          className="frame"
+          id="frame"
+          url= {active}
+          loading="lazy"
+        ></Iframe>
+>>>>>>> a27e8f969bf79f7bc821d24a44146a0f5337f829
       </div>
     </div>
   );
 }
+
+
 
 export default Navigation;

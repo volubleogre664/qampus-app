@@ -66,9 +66,6 @@
   text-decoration: none;
 }
 
-.nav__linksItem > a:hover {
-  color: rgb(21, 161, 242);
-}
 
 @media screen and (max-width: 850px) {
   .header__logo {
