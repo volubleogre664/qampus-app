@@ -229,13 +229,14 @@ function Chats() {
       {/* {loading && <Loader />} */}
       <aside className="chats__sidebar" style={{ height: height + "px" }}>
         <div className="chats__sidebarHeader">
-        {/*<h2 className="title">Chats {" | " + user?.firstName || ""}</h2>
+          {/*<h2 className="title">Chats {" | " + user?.firstName || ""}</h2>
           <span className="icon__container">
             <Link className="icon__containerLink" to="/">
               <ArrowBackIosIcon />
             </Link>
           </span>*/}
-          <p>Your chats</p><br/>
+          <p>Your chats</p>
+          <br />
         </div>
 
         <div className="chats__sidebarBody">
