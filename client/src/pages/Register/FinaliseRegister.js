@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { Button } from "@material-ui/core";
+import { useHistory, useLocation } from "react-router-dom";
 
-import { useUserHelpers } from "../../Redux/getSlices";
-import { REGISTER_USER } from "../../utils/graphql";
+import { UPDATE_USER } from "../../utils/graphql";
 import { useForm } from "../../utils/hooks";
 
 import ProfileImage from "../../components/ProfileImage/ProfileImage";
@@ -12,8 +12,9 @@ import appLogo from "../../logo.png";
 
 import "./FinaliseRegister.css";
 
-function CompleteRegistration({ history }) {
-  const [{ path }] = useUserHelpers();
+function CompleteRegistration() {
+  const history = useHistory();
+  const location = useLocation();
 
   const { onChange, onSubmit, values } = useForm(updateUser, {
     profile: "",
@@ -21,12 +22,15 @@ function CompleteRegistration({ history }) {
     bio: "",
   });
 
-  const [updateProfile] = useMutation(REGISTER_USER, {
+  const [updateProfile] = useMutation(UPDATE_USER, {
     variables: values,
     update(_, { data: { success } }) {
       if (success) {
         console.log(success);
       }
+
+      const { from } = location.state || { from: { pathname: "/" } };
+      history.replace(from);
     },
     onError(err) {
       console.log(err);
@@ -34,7 +38,8 @@ function CompleteRegistration({ history }) {
   });
 
   const finishLaterClick = () => {
-    (path && history.push(path)) || history.push("/");
+    const { from } = location.state || { from: { pathname: "/" } };
+    history.replace(from);
   };
 
   function updateUser() {

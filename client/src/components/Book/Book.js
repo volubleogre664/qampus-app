@@ -7,9 +7,9 @@ import imgSrc from "./img.jpg";
 
 import "./Book.css";
 
-function Book({ state, book, history }) {
+function Book({ state, book, history, deleteBookClick }) {
   // * Remove book above and use the one below when testing the component
-  if(!book) {
+  if (!book) {
     book = {
       title: "Design Principles",
       isbn: "998844212133",
@@ -37,6 +37,20 @@ function Book({ state, book, history }) {
     history.push("/chats?" + book?.id);
   };
 
+  // TODO: Add your message box here that pops up to confirm with user if they want to delete the book
+  const editBookClicked = () => {};
+
+  const deleteBookClicked = () => {
+    // eslint-disable-next-line no-restricted-globals
+    const isDeleteBook = confirm(
+      "Would you like to delete this book. \nTitle: " + book.title
+    );
+
+    if (isDeleteBook) {
+      deleteBookClick({ variables: { id: book?.id } });
+    }
+  };
+
   // TODO: Still need to work this with regards to chats
   const handleBookState = () => {
     switch (state) {
@@ -59,15 +73,15 @@ function Book({ state, book, history }) {
         );
       }
 
-      // TODO: This is about the book when it is in the library
+      // This is about the book when it is in the library
       default: {
         return (
           <>
-            <span className="editIconContainer">
+            <span className="editIconContainer" onClick={editBookClicked}>
               <PencilIcon />
             </span>
 
-            <span className="deleteIconContainer">
+            <span className="deleteIconContainer" onClick={deleteBookClicked}>
               <DeleteIcon />
             </span>
           </>
@@ -113,7 +127,7 @@ function Book({ state, book, history }) {
       {/* Book pop up details */}
       <div className="book__details">
         <span className="book__detailsToggle">
-          <InfoIcon className="infoIcon"/>
+          <InfoIcon className="infoIcon" />
         </span>
 
         <div className="book__detailsBody">
@@ -121,11 +135,11 @@ function Book({ state, book, history }) {
             Object.keys(book_details).map((key) => {
               if (book[key]) {
                 return (
-                    <span key={key}>
-                      <p>
+                  <span key={key}>
+                    <p>
                       {book_details[key]}:{" "}
                       {key === "price" ? "R" + book[key] : book[key]}
-                      </p>
+                    </p>
                   </span>
                 );
               }

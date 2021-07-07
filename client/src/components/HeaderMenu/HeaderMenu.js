@@ -9,7 +9,6 @@ import "./HeaderMenu.css";
 
 function HeaderMenu() {
   const [click, setClick] = useState(false);
-  // const [isVisit, setVisit] = useState("");
   const [, dispatchUser] = useUserHelpers();
   const [, dispatchMessages] = useMessagesHelpers();
 
@@ -19,28 +18,19 @@ function HeaderMenu() {
   };
 
   const handleLogoutClick = () => {
-    dispatchUser({
-      type: "REMOVE_USER",
-    });
+    // eslint-disable-next-line no-restricted-globals
+    const logout = confirm("Are you sure you want to logout?");
 
-    dispatchMessages({
-      type: "CLEAR_MESSAGES",
-    });
+    if (logout) {
+      dispatchUser({
+        type: "REMOVE_USER",
+      });
+
+      dispatchMessages({
+        type: "CLEAR_MESSAGES",
+      });
+    }
   };
-
-  // const handleVisit = (e) => {
-  //   const id = e.target.id;
-  //   if (isVisit !== id) {
-  //     const link = document.querySelector(id);
-  //     link.style.color = "babyblue";
-
-  //     if (isVisit !== "") {
-  //       const link1 = document.querySelector(isVisit);
-  //       link.style.color = "black";
-  //     }
-  //   }
-  //   setVisit(id);
-  // };
 
   return (
     <div className="header">
@@ -58,37 +48,34 @@ function HeaderMenu() {
           <NavLink to="/profile" label="profile" />
           <NavLink to="/settings" label="settings" />
           <NavLink to="/help" label="help" />
-
-          <li className="nav__linksItem">
-            <p>|</p>
-          </li>
-          <li onClick={handleLogoutClick} className="nav__linksItem">
-            <span>Logout</span>
-          </li>
+          <NavLink label="|" />
+          <NavLink onClick={handleLogoutClick} label="logout" />
         </ul>
       </nav>
-      <a href="/">
+
+      <Link to="/">
         <img
           className="header__logo"
           alt="qampus logo"
           src="../../logo.png"
         ></img>
-      </a>
+      </Link>
       <div className="gap"></div>
     </div>
   );
 }
 
-function NavLink({ to, label }) {
+function NavLink({ to = "", label, ...rest }) {
   const match = useRouteMatch({
     path: to,
     exact: true,
   });
 
-  console.log(match);
-
   return (
-    <li className={`nav__linksItem ${match?.isExact ? "active" : ""}`}>
+    <li
+      className={`nav__linksItem ${match?.isExact ? "active" : ""}`}
+      {...rest}
+    >
       <Link to={to}>{label}</Link>
     </li>
   );

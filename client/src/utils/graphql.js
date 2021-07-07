@@ -55,6 +55,44 @@ const REGISTER_USER = gql`
   }
 `;
 
+const UPDATE_USER = gql`
+  mutation updateBook(
+    $firstName: String
+    $lastName: String
+    $email: String
+    $picture: String
+    $degree: String
+    $bio: String
+    $newPassword: String
+    $confirmNewPassword: String
+    $password: String
+  ) {
+    updateBook(
+      updateInput: {
+        firstName: $firstName
+        lastName: $lastName
+        email: $email
+        picture: $picture
+        degree: $degree
+        bio: $bio
+        newPassword: $newPassword
+        confirmNewPassword: $confirmNewPassword
+        password: $password
+      }
+    ) {
+      id
+      studentNumber
+      firstName
+      lastName
+      email
+      picture
+      degree
+      bio
+      token
+    }
+  }
+`;
+
 const UPLOAD_BOOK = gql`
   mutation uploadBook(
     $isbn: String!
@@ -112,6 +150,12 @@ const GET_ONE_BOOK = gql`
       frontCover
       backCover
     }
+  }
+`;
+
+const DELETE_BOOK = gql`
+  mutation deleteBook($id: ID!) {
+    deleteBook(id: $id)
   }
 `;
 
@@ -188,8 +232,10 @@ const GET_USER_DATA = gql`
 export {
   LOGIN_USER,
   REGISTER_USER,
+  UPDATE_USER,
   UPLOAD_BOOK,
   GET_ONE_BOOK,
+  DELETE_BOOK,
   ADD_MESSAGE,
   MESSAGE_SUBSCRIPTION,
   GET_MESSAGES_QUERY,

@@ -4,7 +4,6 @@ import firebase from "firebase/app";
 import Home from "./pages/Home/Home.js";
 import Chats from "./pages/Chats/Chats.js";
 import Profile from "./pages/Profile/Profile.js";
-import HeaderMenu from "./components/HeaderMenu/HeaderMenu.js";
 import FinaliseRegister from "./pages/Register/FinaliseRegister.js";
 import Login from "./pages/Login/Login.js";
 import Register from "./pages/Register/Register.js";
@@ -13,8 +12,10 @@ import Navigation from "./pages/Navigation/Navigation.js";
 import UploadCollection from "./pages/Upload_Collection/UploadCollection.js";
 
 import MessageBox from "./components/MessageBox/MessageBox.js";
+import HeaderMenu from "./components/HeaderMenu/HeaderMenu.js";
 import CropImage from "./components/CropImage/CropImage.js";
 import AuthRoute from "./utils/AuthRoute.js";
+import PrivateRoute from "./utils/PrivateRoute.js";
 
 import { useUserHelpers } from "./Redux/getSlices.js";
 import { firebaseConfig } from "./config.js";
@@ -34,6 +35,7 @@ function App() {
         {imgCrop.imgSrc && <CropImage />}
         <Switch>
           <Route exact path="/" component={Home} />
+
           {/* AuthRoute checks if someone is logged in and redirects to home if they are logged in */}
           {/* No one will open login, register and finalise register without loggin out */}
           <AuthRoute exact path="/login" component={Login} />
@@ -43,14 +45,18 @@ function App() {
             path="/register/finalise"
             component={FinaliseRegister}
           />
-          <Route exact path="/profile">
+
+          {/* PrivateRoute is for private pages that needs login to be accessed. */}
+          {/* For development purposes just rename PrivateRoute to Route */}
+          <PrivateRoute exact path="/profile">
             <HeaderMenu />
             <Profile />
-          </Route>
-          <Route exact path="/chats*">
+          </PrivateRoute>
+          <PrivateRoute exact path="/chats*">
             <HeaderMenu />
             <Chats />
-          </Route>
+          </PrivateRoute>
+
           <Route exact path="/upload">
             <HeaderMenu />
             <UploadCollection />

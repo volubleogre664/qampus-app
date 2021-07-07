@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
 
 import { useUserHelpers } from "../../Redux/getSlices";
@@ -12,8 +12,10 @@ import logo from "../../logo.png";
 import "./Login.css";
 import Loader from "../../components/Loader/Loader";
 
-function Login({ history }) {
-  const [{ path }, userDispatch] = useUserHelpers();
+function Login() {
+  const history = useHistory();
+  const location = useLocation();
+  const [, userDispatch] = useUserHelpers();
   const { onChange, onSubmit, values } = useForm(loginUser, {
     studentNumber: "",
     password: "",
@@ -23,7 +25,8 @@ function Login({ history }) {
   const [login, { loading }] = useMutation(LOGIN_USER, {
     update(_, { data: { login: userData } }) {
       userDispatch({ type: "SET_USER", payload: userData });
-      path !== "" ? history.push(path) : history.goBack();
+      const { from } = location.state || { from: { pathname: "/" } };
+      history.replace(from);
     },
     variables: values,
     onError(err) {

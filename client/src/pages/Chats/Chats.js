@@ -215,13 +215,13 @@ function Chats() {
     getUserData({ variables: { studentNumber: bookOwner } });
   }, [searchBookList, setBook, getUserData, user]);
 
-  if (!user) {
-    userDispatch({
-      type: "SET_PATH",
-      payload: document.location.pathname + document.location.search,
-    });
-    return <Redirect to="/login" />;
-  }
+  // if (!user) {
+  //   userDispatch({
+  //     type: "SET_PATH",
+  //     payload: document.location.pathname + document.location.search,
+  //   });
+  //   return <Redirect to="/login" />;
+  // }
 
   return (
     <div className="chats">

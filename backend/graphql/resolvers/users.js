@@ -152,7 +152,9 @@ const userResolvers = {
       }
 
       Object.keys(newUserData).forEach((key) => {
-        updatedUser[key] = newUserData[key];
+        if (newUserData[key]) {
+          updatedUser[key] = newUserData[key];
+        }
       });
 
       const res = await updatedUser.save();
