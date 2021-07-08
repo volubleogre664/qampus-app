@@ -66,30 +66,3 @@
   border-radius: 5px;
   border: 3px solid rgb(20, 165, 248);
 }
-
-.get_directions {
-  transition: all ease-in-out 0.2s;
-  background-color: #03a9f4;
-  padding: 5px 15px 5px;
-  margin: auto;
-  max-height: 32px;
-  color: #fff;
-  font-weight: lighter;
-  font-size: 1.2em;
-  margin-top: 0;
-  margin-bottom: 10px;
-  border: none;
-  border-radius: 3px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-}
-
-.get_directions:hover {
-  transition: all ease-in-out 0.2s;
-  box-shadow: inset 0 0 7px rgba(255, 255, 255, 0.5),
-    0 0 7px rgba(255, 255, 255, 0.5);
-  outline-color: rgba(255, 255, 255, 0);
-  outline-offset: 15px;
-  text-shadow: 1px 1px 2px #427388;
-  border-radius: 1px;
-}
