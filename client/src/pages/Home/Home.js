@@ -5,31 +5,30 @@ import { SearchOutlined } from "@material-ui/icons";
 import MenuItem from "../../components/MenuItem/MenuItem";
 import Book from "../../components/Book/Book.js";
 import Loader from "../../components/Loader/Loader";
-import { useUserHelpers, useBooksHelpers, useMessagesHelpers } from "../../Redux/getSlices";
+import {
+  useUserHelpers,
+  useBooksHelpers,
+  useMessagesHelpers,
+} from "../../Redux/getSlices";
 import { GET_BOOK_TITLES, GET_ONE_BOOK } from "../../utils/graphql";
 import logo from "../../logo.png";
-import mbox from 'sweetalert';
-
-
 
 // import isValidISBN from "../../utils/validate.js";
 
 import "./Home.css";
 
 //change the background reference here
-const ref_link =
-  "https://www.smoorevisuals.com/landscapes/";
+const ref_link = "https://www.smoorevisuals.com/landscapes/";
 const ref_name = "Spencer Moore";
 
 function Home({ history }) {
-  const [{ user }] = useUserHelpers();
+  const [{ user }, dispatchUser] = useUserHelpers();
   const [, dispatchBook] = useBooksHelpers();
   const [results, setResults] = useState([]);
   const [searchStr, setSearchStr] = useState("");
   const [book, setBook] = useState({});
   const [bookTitles, setBookTitles] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [, dispatchUser] = useUserHelpers();
   const [, dispatchMessages] = useMessagesHelpers();
 
   // Toggles the results section and the menu section
@@ -80,49 +79,59 @@ function Home({ history }) {
   };
 
   const handleAvatarClick = () => {
-    const name = document.querySelector('.home__avatarName');
-    if(name.textContent === "Guest"){
+    if (!user) {
       history.push("/login");
-    }
-    else {
-      mbox(
-        {
-          className: "mbox",
-          title: "Logging out.",
-          icon:"info",
-          text: "Are you sure you want to logout?",
-          buttons: {
-            cancel: {
-            text: "No, cancel",
-            value: false,
-            visible: true,
-            className: "mbox_button",
-          },
-          confirm: {
-            text: "Yes, logout!",
-            value: true,
-            visible: true,
-            className: "mbox_button",
+    } else {
+      import("../../utils/popUp.js").then((mbox) =>
+        mbox.default(
+          "",
+          "Logging out!",
+          "Are you sure you want to logout?",
+          () => {
+            dispatchUser({
+              type: "REMOVE_USER",
+            });
+
+            dispatchMessages({
+              type: "CLEAR_MESSAGES",
+            });
           }
-          },   
-          
-        }
-      ).then((answer) => { 
-        if(answer === true)
-        {
-          dispatchUser({
-            type: "REMOVE_USER",
-          });
-      
-          dispatchMessages({
-            type: "CLEAR_MESSAGES",
-          });
-        }
-      });
+        )
+      );
+      // mbox({
+      //   className: "mbox",
+      //   title: "Logging out.",
+      //   icon: "info",
+      //   text: "Are you sure you want to logout?",
+      //   buttons: {
+      //     cancel: {
+      //       text: "No, cancel",
+      //       value: false,
+      //       visible: true,
+      //       className: "mbox_button",
+      //     },
+      //     confirm: {
+      //       text: "Yes, logout!",
+      //       value: true,
+      //       visible: true,
+      //       className: "mbox_button",
+      //     },
+      //   },
+      // }).then((answer) => {
+      //   if (answer === true) {
+      //     dispatchUser({
+      //       type: "REMOVE_USER",
+      //     });
+
+      //     dispatchMessages({
+      //       type: "CLEAR_MESSAGES",
+      //     });
+      //   }
+      // });
     }
   };
- 
-  // Helps retturn back to the menu
+
+  // Helps return back to the menu
   const openMenu = () => {
     setDisplays({ menu: "flex", results: "none" });
     setResults([]);

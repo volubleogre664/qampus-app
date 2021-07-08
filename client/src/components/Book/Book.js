@@ -36,22 +36,20 @@ function Book({ state, book, history, deleteBookClick }) {
   const handleBuyBookClick = () => {
     history.push("/chats?" + book?.id);
   };
-
-  // TODO: Add your message box here that pops up to confirm with user if they want to delete the book
   const editBookClicked = () => {};
 
+  // First parameter of mbox.default is empty string to remove the icon
   const deleteBookClicked = () => {
-    // eslint-disable-next-line no-restricted-globals
-    const isDeleteBook = confirm(
-      "Would you like to delete this book. \nTitle: " + book.title
+    import("../../utils/popUp.js").then((mbox) =>
+      mbox.default(
+        "info",
+        "Delete Book!",
+        "Are you sure you want to delete this book?\nTitle: " + book?.title,
+        () => deleteBookClick({ variables: { id: book?.id } })
+      )
     );
-
-    if (isDeleteBook) {
-      deleteBookClick({ variables: { id: book?.id } });
-    }
   };
 
-  // TODO: Still need to work this with regards to chats
   const handleBookState = () => {
     switch (state) {
       case "home_book_result": {
