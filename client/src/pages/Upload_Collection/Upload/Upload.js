@@ -1,10 +1,11 @@
 import { useState, useRef } from "react";
-import { Button } from "@material-ui/core";
+import Button from "../../../components/Button/Button";
 import { useMutation } from "@apollo/react-hooks";
 import Compressor from "compressorjs";
 import firebase from "firebase/app";
 
 import Loader from "../../../components/Loader/Loader";
+import Input from "../../../components/Input/Input";
 
 import { useForm } from "../../../utils/hooks";
 import { useBooksHelpers, useUserHelpers } from "../../../Redux/getSlices";
@@ -282,91 +283,39 @@ function Upload() {
           </div>
         </div>
 
-        <label htmlFor="isbn">
-          Book ISBN: <br />
-          <input
-            type="text"
-            name="isbn"
-            id="isbn"
-            required={true}
-            onChange={onChange}
-            value={values.isbn}
-            className="formInput"
-            // placeholder="9789544007737"
-          />
-        </label>
+        <Input
+          type="text"
+          name="isbn"
+          id="isbn"
+          required={true}
+          onChange={onChange}
+          value={values.isbn}
+          label="Book ISBN"
+          placeholder="9789544007737"
+        />
 
-        {/* <label htmlFor="bookTitle">
-          Book Title: <br />
-          <input
-            type="text"
-            name="title"
-            id="bookTitle"
-            required
-            onChange={onChange}
-            value={values.title}
-            className="formInput"
-            placeholder=""
-          />
-        </label> */}
+        <Input
+          type="text"
+          name="moduleCode"
+          id="moduleCode"
+          onChange={onChange}
+          value={values.moduleCode}
+          label="Module Code"
+          placeholder="CSIS1664"
+        />
 
-        <label htmlFor="moduleCode">
-          Module Code: <br />
-          <input
-            type="text"
-            name="moduleCode"
-            id="moduleCode"
-            onChange={onChange}
-            value={values.moduleCode}
-            className="formInput"
-            placeholder=""
-          />
-        </label>
+        <Input
+          type="number"
+          name="price"
+          id="price"
+          required={true}
+          onChange={onChange}
+          value={values.price}
+          label="Asking Price (R)"
+          placeholder="350"
+        />
 
-        {/* <label htmlFor="authors">
-          Authors: <br />
-          <input
-            type="text"
-            name="authors"
-            id="authors"
-            required
-            onChange={onChange}
-            value={values.authors}
-            className="formInput"
-            placeholder=""
-          />
-        </label> */}
-
-        <label htmlFor="price">
-          Asking Price (R): <br />
-          <input
-            type="number"
-            name="price"
-            id="price"
-            required={true}
-            onChange={onChange}
-            value={values.price}
-            className="formInput"
-            placeholder=""
-          />
-        </label>
-
-        {/* <label htmlFor="edition">
-          Edition: <br />
-          <input
-            type="number"
-            name="title"
-            id="edition"
-            onChange={onChange}
-            value={values.edition}
-            className="formInput"
-            placeholder=""
-          />
-        </label> */}
-
-        <Button className="form__btnSubmit" type="submit">
-          Upload
-        </Button>
+        <Button text="Upload" type="submit" />
       </form>
     </div>
   );

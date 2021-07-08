@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
 .register {
   display: flex;
   justify-content: center;
@@ -6,7 +6,7 @@
   flex-direction: column;
   max-width: 100%;
 }
-.page_headers{
+.page_headers {
   width: 100%;
   flex-direction: column;
   text-align: center;
@@ -19,7 +19,7 @@
   margin-bottom: 0px;
   margin-top: 3vh;
 }
-.welcome_header{
+.welcome_header {
   display: none;
   text-align: center;
   margin: auto;
@@ -49,7 +49,7 @@
   font-weight: normal;
   color: #ffffff;
 }
-.register .page_content{
+.register .page_content {
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
@@ -60,27 +60,29 @@
   margin: auto;
 }
 .register__aside {
-  order:1;
+  order: 1;
   display: flex;
   flex-flow: column nowrap;
-    color: #ffffff;
+  color: #ffffff;
   width: 100%;
   margin: auto;
-  margin-top:30px;
+  margin-top: 30px;
   margin-right: 10%;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 /*Code for list*/
 :root {
-    --bg: #fdfdfd;
-    --highlight1: #03a9f4;
-    --highlight2:purple;
-    --color: #1a1e24;
-    --font-number: "Oxygen";
-    --font-head: "Poiret One";
-    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --bg: #fdfdfd;
+  --highlight1: #03a9f4;
+  --highlight2: purple;
+  --color: #1a1e24;
+  --font-number: "Oxygen";
+  --font-head: "Poiret One";
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
-.list_tittle{
+.list_tittle {
   text-align: center;
   align-self: center;
   margin: auto;
@@ -88,58 +90,57 @@
   font: lighter 1.8rem var(--font-head);
 }
 .tilesWrap {
-    display: flex;
-    flex-flow: column nowrap;
-    list-style: none;
-    align-items: center;
-    margin: auto;
-
+  display: flex;
+  flex-flow: column nowrap;
+  list-style: none;
+  align-items: center;
+  margin: auto;
 }
 .tilesWrap li {
-    display: block;
-    clear: both;
-    counter-increment: list;
-    padding-bottom: 25px;
-    font: lighter 1rem var(--font);
-    position: relative;
-    max-width: 69%;
-
+  display: block;
+  clear: both;
+  counter-increment: list;
+  padding-bottom: 25px;
+  font: lighter 1rem var(--font);
+  position: relative;
+  max-width: 69%;
 }
 .tilesWrap li:before {
-    font: bold 2.25rem/1 var(--font-number);
-    content: counter(list);
-    width: 46px;
-    height: 46px;
-    float: left;
-    margin: 0 1rem 0.7rem 0;
-    color: var(--bg);
-    background: var(--highlight1) linear-gradient(to bottom right, var(--highlight1) 25%, var(--highlight2));
-    text-shadow: 0 0 2px var(--highlight1);
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    shape-outside: ellipse();
-    z-index: 1;
+  font: bold 2.25rem/1 var(--font-number);
+  content: counter(list);
+  width: 46px;
+  height: 46px;
+  float: left;
+  margin: 0 1rem 0.7rem 0;
+  color: var(--bg);
+  background: var(--highlight1)
+    linear-gradient(to bottom right, var(--highlight1) 25%, var(--highlight2));
+  text-shadow: 0 0 2px var(--highlight1);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  shape-outside: ellipse();
+  z-index: 1;
 }
 .tilesWrap li:after {
-    width:  23px;
-    height: 23px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    content: "";
-    background: var(--highlight1);
-    z-index: -1;
-    border-top-left-radius: 3px;
+  width: 23px;
+  height: 23px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  background: var(--highlight1);
+  z-index: -1;
+  border-top-left-radius: 3px;
 }
 .tilesWrap h2 {
   display: none;
 }
 .tilesWrap h3 {
-    padding:0;
-    margin: auto;
-    font: normal 1.5rem var(--font-head);
+  padding: 0;
+  margin: auto;
+  font: normal 1.5rem var(--font-head);
 }
 .register__main {
   width: 100%;
@@ -161,68 +162,12 @@
   margin: auto;
   border-radius: 5px;
   color: white;
-  background: rgba( 0, 0, 0, 0.40 );
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter: blur( 7.5px );
-  -webkit-backdrop-filter: blur( 7.5px );
-}
-.register__mainForm label {
-  font-size: 1.1rem;
-  font-weight: lighter;
-  cursor: pointer;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-content: center;
-  text-align: left;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(7.5px);
+  -webkit-backdrop-filter: blur(7.5px);
 }
 
-.register__mainForm input {
-  transition: all ease-in-out 0.2s;
-  background: white;
-  width: 90%;
-  height: 29px;
-  max-height: 29px;
-  outline: none;
-  border: white solid 1px;
-  border-radius: 3px;
-  font-size: 1.2rem;
-  padding: 2px;
-  padding-left: 7px;
-  margin-bottom: 9px;
-
-}
-.register__mainForm input:focus {
-  border: #03a9f4 solid 1px;
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8),
-    0 0 10px rgba(255, 255, 255, 0.8);
-  transition: all ease-in-out 0.2s;
-  border-radius: 1px;
-}
-.register__mainForm button {
-  transition: all ease-in-out 0.2s;
-  padding: 15px 25px 15px;
-  background: #03a9f4;
-  text-align: center;
-  height: 32px;
-  color: #fff;
-  text-transform: capitalize;
-  margin: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 3px;
-  width: fit-content;
-  font: lighter 1.2rem var(--font);
-}
-.register__mainForm button:hover {
-  background: #03a9f4;
-  transition: all ease-in-out 0.2s;
-  box-shadow: inset 0 0 7px rgba(255, 255, 255, 0.5),
-    0 0 7px rgba(255, 255, 255, 0.5);
-  outline-color: rgba(255, 255, 255, 0);
-  outline-offset: 15px;
-  text-shadow: 1px 1px 2px #427388;
-  border-radius: 1px;
-}
 .register__footer {
   width: 100%;
   font-size: 1rem;
@@ -238,19 +183,19 @@
   .tilesWrap li {
     max-width: 90%;
   }
-   .register__aside {
-      order: 1;
-      margin-top: 20px;
+  .register__aside {
+    order: 1;
+    margin-top: 20px;
   }
 }
 @media only screen and (min-width: 900px) {
-  .register .page_content{
+  .register .page_content {
     flex-flow: row nowrap;
   }
   .register__mainForm {
     width: 400px;
     min-width: 200px;
     max-width: 400px;
-    order:2;
+    order: 2;
   }
 }

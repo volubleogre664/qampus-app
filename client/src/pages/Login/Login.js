@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Button } from "@material-ui/core";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
 
@@ -8,9 +7,11 @@ import { useForm } from "../../utils/hooks";
 import { LOGIN_USER } from "../../utils/graphql";
 
 import logo from "../../logo.png";
+import Loader from "../../components/Loader/Loader";
+import Input from "../../components/Input/Input";
+import Button from "../../components/Button/Button";
 
 import "./Login.css";
-import Loader from "../../components/Loader/Loader";
 
 function Login() {
   const history = useHistory();
@@ -60,37 +61,29 @@ function Login() {
         <h1 className="title">login to access all the features</h1>
 
         <form className="form" onSubmit={onSubmit}>
-          <label htmlFor="studentNum">
-            Student Number: <br />
-            <input
-              type="text"
-              name="studentNumber"
-              className="form__idInput"
-              required
-              maxLength="10"
-              value={values.studentNumber}
-              onChange={onChange}
-              id="studentNum"
-            />
-          </label>
+          <Input
+            type="text"
+            name="studentNumber"
+            required
+            maxLength="10"
+            value={values.studentNumber}
+            onChange={onChange}
+            label="Student Number"
+            id="studentNum"
+          />
 
-          <label htmlFor="password">
-            Password: <br />
-            <input
-              type="password"
-              name="password"
-              id="password"
-              required
-              value={values.password}
-              onChange={onChange}
-              className="form__passwordInput"
-            />
-          </label>
+          <Input
+            type="password"
+            name="password"
+            id="password"
+            required
+            value={values.password}
+            label="Password"
+            onChange={onChange}
+          />
 
           <div className="form__btns">
-            <Button type="submit" className="form__btnSubmit">
-              Login
-            </Button>
+            <Button type="submit" text="Login" />
 
             <div className="links">
               <Link className="form__signupLink" to="/register">

@@ -2,6 +2,9 @@ import "./Navigation.css";
 import React, { useState } from "react";
 import Iframe from "react-iframe";
 
+import Input from "../../components/Input/Input";
+import Button from "../../components/Button/Button";
+
 function Navigation() {
   const [active, setActive] = useState(() => {
     return "https://www.google.com/maps/embed";
@@ -102,20 +105,25 @@ function Navigation() {
         <p>Navigator</p>
         <br />
         <hr className="sepatator" />
-        <form className="navigation__form">
-          <label>
-            Starting location <br />
-            <input type="text" name="StartLocation" className="formInput" />
-          </label>
+        <form onSubmit={changeState} className="navigation__form">
+          <Input
+            type="text"
+            label="Starting location"
+            id="startLocation"
+            name="StartLocation"
+            className="formInput"
+          />
 
-          <label>
-            Destination <br />
-            <input type="text" name="Destination" className="formInput" />
-          </label>
+          <Input
+            type="text"
+            label="Destination"
+            id="destination"
+            name="Destination"
+            className="formInput"
+          />
+
+          <Button text="Get Directions" type="submit" />
         </form>
-        <button onClick={changeState} className="get_directions">
-          Get Directions
-        </button>
       </div>
 
       <div className="nav_results" id="map">

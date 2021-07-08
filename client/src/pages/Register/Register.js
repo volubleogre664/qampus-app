@@ -1,15 +1,16 @@
 import { useEffect } from "react";
 import { useMutation } from "@apollo/react-hooks";
-import { Button } from "@material-ui/core";
 // import { Link } from "react-router-dom";
 
 import Loader from "../../components/Loader/Loader";
+import Input from "../../components/Input/Input";
 
 import { useForm } from "../../utils/hooks";
 import { REGISTER_USER } from "../../utils/graphql";
 import { useUserHelpers } from "../../Redux/getSlices";
 
 import logo from "../../logo.png";
+import Button from "../../components/Button/Button";
 
 import "./Register.css";
 
@@ -120,86 +121,68 @@ function Register({ history }) {
 
         <div className="register__main">
           <form onSubmit={onSubmit} className="register__mainForm">
-            <label htmlFor="firstName">
-              First Name(s): <br />
-              <input
-                type="text"
-                name="firstName"
-                className="formInput"
-                required
-                value={values.firstName}
-                onChange={onChange}
-                id="firstName"
-              />
-            </label>
+            <Input
+              type="text"
+              name="firstName"
+              required
+              value={values.firstName}
+              onChange={onChange}
+              label="First Name(s)"
+              id="firstName"
+            />
 
-            <label htmlFor="lastName">
-              Last Name: <br />
-              <input
-                type="text"
-                name="lastName"
-                className="formInput"
-                required
-                value={values.lastName}
-                onChange={onChange}
-                id="lastName"
-              />
-            </label>
+            <Input
+              type="text"
+              name="lastName"
+              required
+              value={values.lastName}
+              onChange={onChange}
+              label="Last Name"
+              id="lastName"
+            />
 
-            <label htmlFor="email">
-              Email Address: <br />
-              <input
-                type="email"
-                name="email"
-                className="formInput"
-                required
-                value={values.email}
-                onChange={onChange}
-                id="email"
-              />
-            </label>
+            <Input
+              type="email"
+              name="email"
+              required
+              value={values.email}
+              onChange={onChange}
+              label="Email Address"
+              id="email"
+            />
 
-            <label htmlFor="studentNumber">
-              Student Number: <br />
-              <input
-                type="text"
-                name="studentNumber"
-                className="formInput"
-                required
-                maxLength="10"
-                value={values.studentNumber}
-                onChange={onChange}
-                id="studentNumber"
-              />
-            </label>
+            <Input
+              type="text"
+              name="studentNumber"
+              required
+              maxLength="10"
+              value={values.studentNumber}
+              onChange={onChange}
+              label="Student Number"
+              id="studentNumber"
+            />
 
-            <label htmlFor="password">
-              Password: <br />
-              <input
-                type="password"
-                name="password"
-                className="formInput"
-                required
-                value={values.password}
-                onChange={onChange}
-                id="password"
-              />
-            </label>
+            <Input
+              type="password"
+              name="password"
+              required
+              value={values.password}
+              onChange={onChange}
+              label="Password"
+              id="password"
+            />
 
-            <label htmlFor="confirmPassword">
-              Confirm password: <br />
-              <input
-                type="password"
-                name="confirmPassword"
-                className="formInput"
-                required
-                value={values.confirmPassword}
-                onChange={onChange}
-                id="confirmPassword"
-              />
-            </label>
+            <Input
+              type="password"
+              name="confirmPassword"
+              required
+              value={values.confirmPassword}
+              onChange={onChange}
+              label="Confirm password"
+              id="confirmPassword"
+            />
 
-            <Button type="submit">Sign up</Button>
+            <Button type="submit" text="Sign up" />
 
             {/* Below button for testing */}
             {/* <Button onClick={onSubmit}>Register</Button>  */}
