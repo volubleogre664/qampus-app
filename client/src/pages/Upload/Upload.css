@@ -1,3 +1,28 @@
+.uploadCollection {
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  padding: 20px;
+  padding-top: 0;
+  width: 90%;
+  margin: auto;
+  margin-top: 12px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.upload_section {
+  width: 35%;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(7.5px);
+  -webkit-backdrop-filter: blur(7.5px);
+  border-radius: 5px;
+  padding: 20px;
+  height: fit-content;
+  /* box-sizing: border-box; */
+}
+
 .upload {
   padding: 10px;
   padding-top: 0;
@@ -52,7 +77,8 @@
 
 .box {
   display: block;
-  width: 135px;
+  width: 45%;
+  max-width: 135px;
   height: 193px;
   padding-bottom: 0px;
   margin-top: 0;
@@ -108,28 +134,50 @@
 
 /*end of book styling*/
 
-.upload form > .form__btnSubmit {
-  transition: all ease-in-out 0.2s;
-  padding: 15px 25px 15px;
-  background: #03a9f4;
-  text-align: center;
-  height: 28px;
-  color: #fff;
-  text-transform: capitalize;
-  font-weight: lighter;
-  font-size: 1.2em;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 3px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+.bullets {
+  color: white;
+  width: 100%;
+  margin: auto;
 }
-.upload form > .form__btnSubmit:hover {
-  transition: all ease-in-out 0.2s;
-  box-shadow: inset 0 0 7px rgba(255, 255, 255, 0.5),
-    0 0 7px rgba(255, 255, 255, 0.5);
-  outline-color: rgba(255, 255, 255, 0);
-  outline-offset: 15px;
-  text-shadow: 1px 1px 2px #427388;
-  border-radius: 1px;
+
+.tilesWrap {
+  text-align: left;
+  align-content: flex-start;
+  flex-flow: column wrap;
+  text-align: left;
+  padding-left: 15%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+@media screen and (max-width: 550px) {
+  .upload_section {
+    width: 100%;
+  }
+  .bullets {
+    margin-top: 50px;
+  }
+  .tilesWrap {
+    padding-left: 5%;
+  }
+
+  .uploadCollection {
+    flex-flow: row wrap;
+  }
+}
+
+@media screen and (max-width: 900px) and (min-width: 550px) {
+  .upload_section {
+    width: 70%;
+  }
+  .uploadCollection {
+    flex-flow: row wrap;
+  }
+}
+
+@media screen and (max-width: 1300px) and (min-width: 900px) {
+  .upload_section {
+    width: 40%;
+  }
 }

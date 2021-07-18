@@ -86,6 +86,33 @@ const bookResolvers = {
         });
       }
     },
+
+    async editBook(_, { bookId, price, isBought }, context) {
+      checkAuth(context);
+
+      // NOTE: Add some code to make sure that everyone who wants
+      // this book is notified that this book has been sold,
+      // Still need to find a way to actually do that
+
+      try {
+        const book = await Book.findById(bookId);
+
+        if (!book) {
+          throw new Error("Could not find the book you're looking for.");
+        }
+
+        if (book.price !== price) {
+          book.price = price;
+        }
+        if (!book.isBought && isBought) {
+          book.isBought = isBought;
+        }
+
+        return await book.save();
+      } catch (err) {
+        throw new UserInputError("Error finding your book", err);
+      }
+    },
   },
   Query: {
     async getBook(_, { bookId }) {

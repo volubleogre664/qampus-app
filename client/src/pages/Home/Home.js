@@ -98,36 +98,6 @@ function Home({ history }) {
           }
         )
       );
-      // mbox({
-      //   className: "mbox",
-      //   title: "Logging out.",
-      //   icon: "info",
-      //   text: "Are you sure you want to logout?",
-      //   buttons: {
-      //     cancel: {
-      //       text: "No, cancel",
-      //       value: false,
-      //       visible: true,
-      //       className: "mbox_button",
-      //     },
-      //     confirm: {
-      //       text: "Yes, logout!",
-      //       value: true,
-      //       visible: true,
-      //       className: "mbox_button",
-      //     },
-      //   },
-      // }).then((answer) => {
-      //   if (answer === true) {
-      //     dispatchUser({
-      //       type: "REMOVE_USER",
-      //     });
-
-      //     dispatchMessages({
-      //       type: "CLEAR_MESSAGES",
-      //     });
-      //   }
-      // });
     }
   };
 

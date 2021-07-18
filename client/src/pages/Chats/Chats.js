@@ -2,7 +2,6 @@ import { useState, useEffect, useLayoutEffect } from "react";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import SearchIcon from "@material-ui/icons/Search";
 import PersonIcon from "@material-ui/icons/Person";
-import { Redirect } from "react-router-dom";
 import {
   useMutation,
   useLazyQuery,
@@ -215,25 +214,10 @@ function Chats() {
     getUserData({ variables: { studentNumber: bookOwner } });
   }, [searchBookList, setBook, getUserData, user]);
 
-  // if (!user) {
-  //   userDispatch({
-  //     type: "SET_PATH",
-  //     payload: document.location.pathname + document.location.search,
-  //   });
-  //   return <Redirect to="/login" />;
-  // }
-
   return (
     <div className="chats">
-      {/* {loading && <Loader />} */}
       <aside className="chats__sidebar" style={{ height: height + "px" }}>
         <div className="chats__sidebarHeader">
-          {/*<h2 className="title">Chats {" | " + user?.firstName || ""}</h2>
-          <span className="icon__container">
-            <Link className="icon__containerLink" to="/">
-              <ArrowBackIosIcon />
-            </Link>
-          </span>*/}
           <p>Your chats</p>
           <br />
         </div>

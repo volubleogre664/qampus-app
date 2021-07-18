@@ -159,6 +159,24 @@ const DELETE_BOOK = gql`
   }
 `;
 
+const EDIT_BOOK = gql`
+  mutation editBook($id: ID!, $price: Float, $isBought: Boolean) {
+    editBook(id: $id, price: $price, isBought: $isBought) {
+      id
+      isbn
+      title
+      subtitle
+      authors
+      price
+      description
+      moduleCode
+      studentNumber
+      frontCover
+      backCover
+    }
+  }
+`;
+
 const ADD_MESSAGE = gql`
   mutation addMessage($to: String!, $textMsg: String!, $book: ID) {
     addMessage(to: $to, textMsg: $textMsg, book: $book) {
@@ -236,6 +254,7 @@ export {
   UPLOAD_BOOK,
   GET_ONE_BOOK,
   DELETE_BOOK,
+  EDIT_BOOK,
   ADD_MESSAGE,
   MESSAGE_SUBSCRIPTION,
   GET_MESSAGES_QUERY,

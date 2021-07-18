@@ -12,6 +12,7 @@ const bookSchema = new Schema({
   studentNumber: String,
   frontCover: String,
   backCover: String,
+  isBought: Boolean,
 });
 
 export default model("Book", bookSchema);

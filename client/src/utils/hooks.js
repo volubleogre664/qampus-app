@@ -22,6 +22,14 @@ export const useForm = (callback, initialState = {}) => {
         break;
       }
 
+      case "checkbox": {
+        setValues({
+          ...values,
+          [onChangeEvent.target.name]: onChangeEvent.target.checked,
+        });
+        break;
+      }
+
       default: {
         setValues({
           ...values,

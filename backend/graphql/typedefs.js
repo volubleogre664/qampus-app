@@ -93,6 +93,7 @@ export default gql`
     updateUser(updateInput: UpdateInput!): User!
     uploadBook(bookInput: BookInput!): Book!
     deleteBook(bookId: ID!): String!
+    editBook(bookId: ID!, price: Float!, isBought: Boolean): Book!
     addMessage(to: String!, textMsg: String!, book: ID): Message!
   }
 

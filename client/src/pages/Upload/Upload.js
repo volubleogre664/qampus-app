@@ -1,15 +1,16 @@
 import { useState, useRef } from "react";
-import Button from "../../../components/Button/Button";
+import Button from "../../components/Button/Button";
 import { useMutation } from "@apollo/react-hooks";
 import Compressor from "compressorjs";
 import firebase from "firebase/app";
 
-import Loader from "../../../components/Loader/Loader";
-import Input from "../../../components/Input/Input";
+import Loader from "../../components/Loader/Loader";
+import Input from "../../components/Input/Input";
+import ConfirmBook from "./ConfirmBook";
 
-import { useForm } from "../../../utils/hooks";
-import { useBooksHelpers, useUserHelpers } from "../../../Redux/getSlices";
-import { UPLOAD_BOOK } from "../../../utils/graphql";
+import { useForm } from "../../utils/hooks";
+import { useBooksHelpers, useUserHelpers } from "../../Redux/getSlices";
+import { UPLOAD_BOOK } from "../../utils/graphql";
 
 import "./Upload.css";
 
@@ -55,17 +56,20 @@ function Upload() {
     description: "",
   });
 
+  // This is a hook for confirming the book data
+  const [confirmBook, setConfirmBook] = useState(false);
+
   // Sending data to the backend server
   // calling uploadData initiates the sending of data to server
   const [uploadData] = useMutation(UPLOAD_BOOK, {
     // variables -> Data we are sending to server
     variables: {
       ...values,
-      authors: bookUpload?.authors,
+      authors: values.authors || bookUpload?.authors,
       price: Number(values.price),
-      title: bookUpload.title,
-      subtitle: bookUpload.subtitle,
-      description: bookUpload.description,
+      title: values.title || bookUpload.title,
+      subtitle: values.subtitle || bookUpload.subtitle,
+      description: values.description || bookUpload.description,
       frontCover: bookCovers?.frontCover || "",
       backCover: bookCovers?.backCover || "",
     },
@@ -98,9 +102,13 @@ function Upload() {
     },
   });
 
+  // Callback passed to useForm hook
   function callUploadData() {
     uploadData();
   }
+
+  // Cancel book upload
+  const cancelUpload = () => setConfirmBook(false);
 
   // Uploading images to firebase and getting image urls
   // This is called on form submit
@@ -110,14 +118,27 @@ function Upload() {
     // Get book info from google books api
     await searchForBooks();
 
+    setConfirmBook(true);
+  }
+
+  // Confirm the info before upload
+  async function confirmBookDetailsAndUpload(e) {
+    setConfirmBook(false);
+
     // Setting up cloud storage paths for the images
     setLoading({
       isLoading: true,
       message: "Uploading Images",
     });
     const storageRef = firebase.storage().ref();
-    const frontCoverRef = storageRef.child(`${user.id}/book/frontCover.jpg`);
-    const backCoverRef = storageRef.child(`${user.id}/book/backCover.jpg`);
+
+    // TODO: Still need to test this very thorouly because I am not sure about it yet
+    const frontCoverRef = storageRef.child(
+      `${user.id}/books/${bookUpload.title.replace(/ /g, "_")}_front.jpg`
+    );
+    const backCoverRef = storageRef.child(
+      `${user.id}/books/${bookUpload.title.replace(/ /g, "_")}_back.jpg`
+    );
 
     // Makes sure that files are not uploaded if the already exist
     // If they don't exit then they're uploaded
@@ -227,97 +248,150 @@ function Upload() {
     // console.log(bookUpload);
   }
 
+  // TODO: Design the whole form for confirming book details and actually make it work the push (-_-)
+
   return (
-    <div className="upload">
+    <section className="uploadCollection">
+      {confirmBook && (
+        <ConfirmBook
+          values={{ ...values, ...bookUpload }}
+          onChange={onChange}
+          cancelUpload={cancelUpload}
+          uploadBook={confirmBookDetailsAndUpload}
+        />
+      )}
+
       {loading.isLoading && <Loader message={loading.message} />}
-      <h1 className="upload__title">Upload a book</h1>
-      <hr className="upload_separator" />
-      <form onSubmit={uploadImagesToCloud} className="upload__form">
-        <div className="wrapper">
-          <div
-            className="box"
-            onClick={() => frontCoverInputRef.current.click()}
-          >
-            <div className="upload-options">
-              <label className="front">
-                Front Cover
-                <input
-                  type="file"
-                  name="frontCover"
-                  className="image-upload"
-                  accept="image/*"
-                  multiple={false}
-                  ref={frontCoverInputRef}
-                  onChange={onChange}
-                />
-              </label>
+      <aside className="upload_section">
+        <div className="upload">
+          <h1 className="upload__title">Upload a book</h1>
+          <hr className="upload_separator" />
+          <form onSubmit={uploadImagesToCloud} className="upload__form">
+            <div className="wrapper">
+              <div
+                className="box"
+                onClick={() => frontCoverInputRef.current.click()}
+              >
+                <div className="upload-options">
+                  <label className="front">
+                    Front Cover
+                    <input
+                      type="file"
+                      name="frontCover"
+                      className="image-upload"
+                      accept="image/*"
+                      multiple={false}
+                      required={true}
+                      ref={frontCoverInputRef}
+                      onChange={onChange}
+                    />
+                  </label>
+                </div>
+
+                <div id="front" className="js--image-preview">
+                  <img src={values.frontCover} alt="" className="thumb" />
+                </div>
+              </div>
+
+              <div
+                className="box"
+                onClick={() => backCoverInputRef.current.click()}
+              >
+                <div className="upload-options">
+                  <label className="back">
+                    Back Cover
+                    <input
+                      type="file"
+                      name="backCover"
+                      multiple={false}
+                      className="image-upload"
+                      ref={backCoverInputRef}
+                      accept="image/*"
+                      onChange={onChange}
+                    />
+                  </label>
+                </div>
+
+                <div className="js--image-preview">
+                  <img src={values.backCover} alt="" className="thumb" />
+                </div>
+              </div>
             </div>
 
-            <div id="front" className="js--image-preview">
-              <img src={values.frontCover} alt="" className="thumb" />
-            </div>
-          </div>
+            <Input
+              type="text"
+              name="isbn"
+              id="isbn"
+              required={true}
+              onChange={onChange}
+              value={values.isbn}
+              label="Book ISBN"
+              placeholder="9789544007737"
+            />
 
-          <div
-            className="box"
-            onClick={() => backCoverInputRef.current.click()}
-          >
-            <div className="upload-options">
-              <label className="back">
-                Back Cover
-                <input
-                  type="file"
-                  name="backCover"
-                  multiple={false}
-                  className="image-upload"
-                  ref={backCoverInputRef}
-                  accept="image/*"
-                  onChange={onChange}
-                />
-              </label>
-            </div>
+            <Input
+              type="text"
+              name="moduleCode"
+              id="moduleCode"
+              onChange={onChange}
+              value={values.moduleCode}
+              label="Module Code"
+              placeholder="CSIS1664"
+            />
 
-            <div className="js--image-preview">
-              <img src={values.backCover} alt="" className="thumb" />
-            </div>
-          </div>
+            <Input
+              type="number"
+              name="price"
+              id="price"
+              required={true}
+              onChange={onChange}
+              value={values.price}
+              label="Asking Price (R)"
+              placeholder="350"
+            />
+
+            <Button text="Upload" type="submit" />
+          </form>
         </div>
-
-        <Input
-          type="text"
-          name="isbn"
-          id="isbn"
-          required={true}
-          onChange={onChange}
-          value={values.isbn}
-          label="Book ISBN"
-          placeholder="9789544007737"
-        />
-
-        <Input
-          type="text"
-          name="moduleCode"
-          id="moduleCode"
-          onChange={onChange}
-          value={values.moduleCode}
-          label="Module Code"
-          placeholder="CSIS1664"
-        />
-
-        <Input
-          type="number"
-          name="price"
-          id="price"
-          required={true}
-          onChange={onChange}
-          value={values.price}
-          label="Asking Price (R)"
-          placeholder="350"
-        />
-
-        <Button text="Upload" type="submit" />
-      </form>
-    </div>
+      </aside>
+      <main className="bullets">
+        <p className="list_tittle">Frequently asked questions</p>
+        <ul className="tilesWrap">
+          <li>
+            <h2>01</h2>
+            <h3>What if I don't remember the module code?</h3>
+            <p>
+              You can leave out the module code but your book will be harder to
+              find when someone uses it as a search option.
+            </p>
+          </li>
+          <li>
+            <h2>02</h2>
+            <h3>Spend less on textbooks?</h3>
+            <p>
+              Save yourself thousands of rands in texbooks fees by buying used
+              texbooks from students who are on your campus.{" "}
+            </p>
+          </li>
+          <li>
+            <h2>03</h2>
+            <h3>Never get lost on campus?</h3>
+            <p>
+              Do you have an unfamiliar class venue? Find your way around campus
+              by using our navigation system.
+            </p>
+          </li>
+          <li>
+            <h2>04</h2>
+            <h3>Meet more interesting people?</h3>
+            <p>
+              Connect with your peers who are registered on Qampus and get to
+              know them better.
+            </p>
+          </li>
+        </ul>
+      </main>
+    </section>
   );
 }
 

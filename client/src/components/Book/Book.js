@@ -2,15 +2,18 @@ import InfoIcon from "@material-ui/icons/InfoOutlined";
 import DeleteIcon from "@material-ui/icons/DeleteRounded";
 import PencilIcon from "@material-ui/icons/EditRounded";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { useHistory } from "react-router-dom";
 
 import imgSrc from "./img.jpg";
 
 import "./Book.css";
 
-function Book({ state, book, history, deleteBookClick }) {
+function Book({ state, book, deleteBookClick, editBookClick }) {
+  const history = useHistory();
   // * Remove book above and use the one below when testing the component
   if (!book) {
     book = {
+      id: "jdsbjhbsdcjnscb",
       title: "Design Principles",
       isbn: "998844212133",
       modCode: "CSIS1664",
@@ -36,7 +39,9 @@ function Book({ state, book, history, deleteBookClick }) {
   const handleBuyBookClick = () => {
     history.push("/chats?" + book?.id);
   };
-  const editBookClicked = () => {};
+  const editBookClicked = () => {
+    editBookClick(book.id, book.title, book.price);
+  };
 
   // First parameter of mbox.default is empty string to remove the icon
   const deleteBookClicked = () => {

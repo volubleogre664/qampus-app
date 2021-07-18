@@ -9,9 +9,8 @@ import Login from "./pages/Login/Login.js";
 import Register from "./pages/Register/Register.js";
 import Collection from "./pages/Collection/Collection.js";
 import Navigation from "./pages/Navigation/Navigation.js";
-import UploadCollection from "./pages/Upload_Collection/UploadCollection.js";
+import Upload from "./pages/Upload/Upload.js";
 
-import MessageBox from "./components/MessageBox/MessageBox.js";
 import HeaderMenu from "./components/HeaderMenu/HeaderMenu.js";
 import CropImage from "./components/CropImage/CropImage.js";
 import AuthRoute from "./utils/AuthRoute.js";
@@ -26,7 +25,7 @@ import "firebase/storage";
 firebase.initializeApp(firebaseConfig);
 
 function App() {
-  const [{ errors, imgCrop }] = useUserHelpers();
+  const [{ imgCrop }] = useUserHelpers();
 
   return (
     <div className="app">
@@ -57,10 +56,10 @@ function App() {
             <Chats />
           </PrivateRoute>
 
-          <Route exact path="/upload">
+          <PrivateRoute exact path="/upload">
             <HeaderMenu />
-            <UploadCollection />
-          </Route>
+            <Upload />
+          </PrivateRoute>
           <Route exact path="/navigation">
             <HeaderMenu />
             <Navigation />

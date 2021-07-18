@@ -34,6 +34,17 @@
   filter: drop-shadow(2px 4px 4px #000000);
 }
 
+.title--light {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: normal;
+  font-family: "Poiret One";
+  color: #fff;
+  filter: drop-shadow(2px 4px 8px #585858);
+}
+
 /* .app {
   
   background-color: #935d8c, -webkit-linear-gradient (45deg, #e37682 15%, #5f4d93 85%);
