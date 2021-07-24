@@ -1,8 +1,8 @@
 .header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  width: 95%;
+  width: 98%;
   padding: 20px;
   box-sizing: border-box;
   margin: 0 auto;
@@ -36,7 +36,8 @@
 .gap {
   width: 150px;
   height: 100%;
-  order: 99;
+  order: 99; 
+  display: none;
 }
 
 .split {
@@ -73,7 +74,7 @@
   color: rgb(21, 161, 242);
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 1110px) {
   .header__logo {
     margin-right: auto;
     width: 120px !important;

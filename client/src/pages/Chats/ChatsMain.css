@@ -9,8 +9,8 @@
   flex-direction: column;
   background: rgba( 0, 0, 0, 0.40 );
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter: blur( 7.5px );
-  -webkit-backdrop-filter: blur( 7.5px );
+  backdrop-filter: blur( 15px );
+  -webkit-backdrop-filter: blur( 15px );
   border-radius: 10px;
   overflow-y: auto;
 }

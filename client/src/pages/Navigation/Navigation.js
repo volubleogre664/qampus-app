@@ -91,6 +91,7 @@ function Navigation() {
   function changeState() {
     setActive(() => {
       return GetDirections(
+        /*use textbox values*/
         _start_longitude,
         _start_latitude,
         _end_longitude,
@@ -105,7 +106,8 @@ function Navigation() {
         <p>Navigator</p>
         <br />
         <hr className="sepatator" />
-        <form onSubmit={changeState} className="navigation__form">
+        <div className="form_and_button">
+        <form className="navigation__form">
           <Input
             type="text"
             label="Starting location"
@@ -122,8 +124,12 @@ function Navigation() {
             className="formInput"
           />
 
-          <Button text="Get Directions" type="submit" />
+         
         </form>
+
+        {/*Removed from form on purpose - onSubmit does not work properly, onClick works better*/}
+        <Button text="Get Directions" onClick={changeState}/>
+        </div>
       </div>
 
       <div className="nav_results" id="map">

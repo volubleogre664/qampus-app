@@ -292,6 +292,8 @@
   text-align: center;
   padding-bottom: 10px;
 }
+
+/*Hidden because the picture has no identifable owner (made freely available)*/
 .reference_link {
   font-size: 1.1rem;
   color: #fff;
@@ -299,6 +301,7 @@
   padding: 2px 7px;
   text-decoration: none;
   text-align: center;
+  display: none;
 }
 :root {
   --neon-text-color: #008799;
@@ -306,7 +309,7 @@
 
 .reference_link:hover {
   transition: all ease-in-out 0.2s;
-  color: #03a9f4;
+  text-shadow: 0px 1px 1px rgb(81, 182, 240) !important;
 }
 @media screen and (max-width: 800px) {
   .home__searchContainer {
