@@ -10,7 +10,7 @@ export default gql`
     picture: String
     degree: String
     bio: String
-    contacts: [User!]
+    contacts: [User]
     token: String
   }
 
@@ -94,11 +94,11 @@ export default gql`
     uploadBook(bookInput: BookInput!): Book!
     deleteBook(bookId: ID!): String!
     editBook(bookId: ID!, price: Float!, isBought: Boolean): Book!
-    addMessage(to: String!, textMsg: String!, book: ID): Message!
+    addMessage(to: ID!, textMsg: String!, book: ID): Message!
   }
 
   type Subscription {
-    newMessage(to: String!): Message!
+    newMessage(to: ID!): Message!
     userUpdated(id: ID!): User!
   }
 `;

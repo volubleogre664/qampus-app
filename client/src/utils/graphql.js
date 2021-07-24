@@ -178,7 +178,7 @@ const EDIT_BOOK = gql`
 `;
 
 const ADD_MESSAGE = gql`
-  mutation addMessage($to: String!, $textMsg: String!, $book: ID) {
+  mutation addMessage($to: ID!, $textMsg: String!, $book: ID) {
     addMessage(to: $to, textMsg: $textMsg, book: $book) {
       id
       to
@@ -203,13 +203,26 @@ const ADD_MESSAGE = gql`
 `;
 
 const MESSAGE_SUBSCRIPTION = gql`
-  subscription new_message($to: String!) {
+  subscription newMessage($to: ID!) {
     newMessage(to: $to) {
       id
       to
       from
       time
       textMsg
+      book {
+        id
+        isbn
+        title
+        subtitle
+        authors
+        price
+        description
+        moduleCode
+        studentNumber
+        frontCover
+        backCover
+      }
     }
   }
 `;
@@ -222,6 +235,19 @@ const GET_MESSAGES_QUERY = gql`
       from
       time
       textMsg
+      book {
+        id
+        isbn
+        title
+        subtitle
+        authors
+        price
+        description
+        moduleCode
+        studentNumber
+        frontCover
+        backCover
+      }
     }
   }
 `;

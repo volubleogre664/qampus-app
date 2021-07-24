@@ -28,8 +28,8 @@ function useMessagesHelpers() {
 
   const dispatchMessage = (action) => {
     switch (action?.type) {
-      case "CLEAR_Messages": {
-        dispatch(removeMessages);
+      case "CLEAR_MESSAGES": {
+        dispatch(removeMessages());
         break;
       }
 

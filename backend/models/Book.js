@@ -13,6 +13,7 @@ const bookSchema = new Schema({
   frontCover: String,
   backCover: String,
   isBought: Boolean,
+  bookBuyers: [Schema.Types.ObjectId],
 });
 
 export default model("Book", bookSchema);

@@ -8,7 +8,7 @@ import imgSrc from "./img.jpg";
 
 import "./Book.css";
 
-function Book({ state, book, deleteBookClick, editBookClick }) {
+function Book({ state, className, book, deleteBookClick, editBookClick }) {
   const history = useHistory();
   // * Remove book above and use the one below when testing the component
   if (!book) {
@@ -120,15 +120,15 @@ function Book({ state, book, deleteBookClick, editBookClick }) {
       {/* Book footer | part with delete and edit button */}
       <div className="book__footer">
         <div className="book__footerLeft">
-          <h1>{book?.title}</h1>
-          <span>{"R" + book?.price}</span>
+          <h3 className="title--light">{book?.title}</h3>
+          <p>{"R" + book?.price}</p>
         </div>
 
         <div className="book__footerRight">{handleBookState()}</div>
       </div>
 
       {/* Book pop up details */}
-      <div className="book__details">
+      <div className={`book__details ${className && className}`}>
         <span className="book__detailsToggle">
           <InfoIcon className="infoIcon" />
         </span>
