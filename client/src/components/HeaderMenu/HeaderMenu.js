@@ -46,7 +46,6 @@ function HeaderMenu() {
           <NavLink to="/chats" label="chats" />
           <NavLink to="/navigation" label="navigation" />
           <NavLink to="/profile" label="profile" />
-          <NavLink to="/settings" label="settings" />
           <NavLink to="/help" label="help" />
           <NavLink label="|" />
           <NavLink onClick={handleLogoutClick} label="logout" />

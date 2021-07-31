@@ -10,6 +10,7 @@ import Register from "./pages/Register/Register.js";
 import Collection from "./pages/Collection/Collection.js";
 import Navigation from "./pages/Navigation/Navigation.js";
 import Upload from "./pages/Upload/Upload.js";
+import Help from "./pages/Help/Help.js";
 
 import HeaderMenu from "./components/HeaderMenu/HeaderMenu.js";
 import CropImage from "./components/CropImage/CropImage.js";
@@ -47,19 +48,19 @@ function App() {
 
           {/* PrivateRoute is for private pages that needs login to be accessed. */}
           {/* For development purposes just rename PrivateRoute to Route */}
-          <PrivateRoute exact path="/profile">
+          <Route exact path="/profile">
             <HeaderMenu />
             <Profile />
-          </PrivateRoute>
-          <PrivateRoute exact path="/chats*">
+          </Route>
+          <Route exact path="/chats*">
             <HeaderMenu />
             <Chats />
-          </PrivateRoute>
+          </Route>
 
-          <PrivateRoute exact path="/upload">
+          <Route exact path="/upload">
             <HeaderMenu />
             <Upload />
-          </PrivateRoute>
+          </Route>
           <Route exact path="/navigation">
             <HeaderMenu />
             <Navigation />
@@ -67,6 +68,10 @@ function App() {
           <Route exact path="/collection">
             <HeaderMenu />
             <Collection />
+          </Route>
+          <Route exact path="/help">
+            <HeaderMenu />
+            <Help />
           </Route>
         </Switch>
       </Router>

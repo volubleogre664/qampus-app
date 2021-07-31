@@ -24,7 +24,7 @@ function Upload() {
 
   //References for input[file] to be accessed since it is hidden and cannot be clicked
   const frontCoverInputRef = useRef(null);
-  const backCoverInputRef = useRef(null);
+  //const backCoverInputRef = useRef(null);
 
   // control the showing and hiding of loading animation
   const [loading, setLoading] = useState({
@@ -44,7 +44,7 @@ function Upload() {
     moduleCode: "",
     studentNumber: user?.studentNumber || "",
     frontCover: "",
-    backCover: "",
+    // backCover: "",
   });
 
   // Book cover urls from firebase to send to database
@@ -71,7 +71,7 @@ function Upload() {
       subtitle: values.subtitle || bookUpload.subtitle,
       description: values.description || bookUpload.description,
       frontCover: bookCovers?.frontCover || "",
-      backCover: bookCovers?.backCover || "",
+      // backCover: bookCovers?.backCover || "",
     },
     // update -> function to call if api call is successful
     update(_, { data: { uploadBook: book } }) {
@@ -136,14 +136,15 @@ function Upload() {
     const frontCoverRef = storageRef.child(
       `${user.id}/books/${bookUpload.title.replace(/ /g, "_")}_front.jpg`
     );
-    const backCoverRef = storageRef.child(
-      `${user.id}/books/${bookUpload.title.replace(/ /g, "_")}_back.jpg`
-    );
+
+    // const backCoverRef = storageRef.child(
+    //   `${user.id}/books/${bookUpload.title.replace(/ /g, "_")}_back.jpg`
+    // );
 
     // Makes sure that files are not uploaded if the already exist
-    // If they don't exit then they're uploaded
+    // If they don't exist then they're uploaded
     await validateFilesInCloud(frontCoverRef, frontCoverInputRef, "frontCover");
-    await validateFilesInCloud(backCoverRef, backCoverInputRef, "backCover");
+    //wait validateFilesInCloud(backCoverRef, backCoverInputRef, "backCover");
 
     // Sends data to the database
     setLoading({
@@ -251,7 +252,7 @@ function Upload() {
   // TODO: Design the whole form for confirming book details and actually make it work the push (-_-)
 
   return (
-    <section className="uploadCollection">
+    <div className="uploadCollection">
       {confirmBook && (
         <ConfirmBook
           values={{ ...values, ...bookUpload }}
@@ -262,16 +263,16 @@ function Upload() {
       )}
 
       {loading.isLoading && <Loader message={loading.message} />}
-      <aside className="upload_section">
+      <div className="upload_section">
         <div className="upload">
           <h1 className="upload__title">Upload a book</h1>
           <hr className="upload_separator" />
           <form onSubmit={uploadImagesToCloud} className="upload__form">
             <div className="wrapper">
-              <div
-                className="box"
-                onClick={() => frontCoverInputRef.current.click()}
-              >
+              <div className="box" onClick={() => frontCoverInputRef.current.click()} >
+                <div id="front" className="js--image-preview">
+                  <img src={values.frontCover} alt="" className="thumb" />
+                </div>
                 <div className="upload-options">
                   <label className="front">
                     Front Cover
@@ -286,34 +287,6 @@ function Upload() {
                       onChange={onChange}
                     />
                   </label>
-                </div>
-
-                <div id="front" className="js--image-preview">
-                  <img src={values.frontCover} alt="" className="thumb" />
-                </div>
-              </div>
-
-              <div
-                className="box"
-                onClick={() => backCoverInputRef.current.click()}
-              >
-                <div className="upload-options">
-                  <label className="back">
-                    Back Cover
-                    <input
-                      type="file"
-                      name="backCover"
-                      multiple={false}
-                      className="image-upload"
-                      ref={backCoverInputRef}
-                      accept="image/*"
-                      onChange={onChange}
-                    />
-                  </label>
-                </div>
-
-                <div className="js--image-preview">
-                  <img src={values.backCover} alt="" className="thumb" />
                 </div>
               </div>
             </div>
@@ -353,8 +326,8 @@ function Upload() {
             <Button text="Upload" type="submit" />
           </form>
         </div>
-      </aside>
-      <main className="bullets">
+      </div>
+      <div className="bullets">
         <p className="list_tittle">Frequently asked questions</p>
         <ul className="tilesWrap">
           <li>
@@ -367,31 +340,42 @@ function Upload() {
           </li>
           <li>
             <h2>02</h2>
-            <h3>Spend less on textbooks?</h3>
+            <h3>How long will my book stay on Qampus?</h3>
             <p>
-              Save yourself thousands of rands in texbooks fees by buying used
-              texbooks from students who are on your campus.{" "}
+             Your book will stay on the platform for six months, this is to ensure that 
+             unsold textbooks don't remain on our databses for too long.
             </p>
           </li>
           <li>
             <h2>03</h2>
-            <h3>Never get lost on campus?</h3>
+            <h3>How do I know when someone wants to buy my book?</h3>
             <p>
-              Do you have an unfamiliar class venue? Find your way around campus
-              by using our navigation system.
+              When someone chooes to buy your book, you will get a message from them
+              on the Qampus chat system. From there, you can arrange with them where
+              and when to meet in order to make the exchange.
             </p>
           </li>
           <li>
             <h2>04</h2>
-            <h3>Meet more interesting people?</h3>
+            <h3>What happens after I sell my book?</h3>
             <p>
-              Connect with your peers who are registered on Qampus and get to
-              know them better.
+              After selling your book, you should go to your book collection and update
+              it's status to SOLD. After doing so, it will no longer be shown in the search 
+              window and it will be saved on our system to increase your credibility.
+            </p>
+          </li>
+          <li>
+            <h2>05</h2>
+            <h3>How do I get verified?</h3>
+            <p>
+              In order to get verified you must sell ten books on the platform. Alternatively,
+              you can get 20 people to create an account - see the HELP
+              window for more details.
             </p>
           </li>
         </ul>
-      </main>
-    </section>
+      </div>
+    </div>
   );
 }
 
