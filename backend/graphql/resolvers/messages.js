@@ -21,6 +21,20 @@ const messageResolvers = {
           });
         }
 
+        const docCount = await Message.countDocuments([
+          {
+            to: to,
+            from: from,
+          },
+          {
+            to: from,
+            from: to,
+          },
+        ]);
+        if (messagesLength >= docCount) {
+          return [];
+        }
+
         // Get messages from database.
         // In SQL ->
         // SELECT * FROM Message WHERE (Message.to=to AND Message.from=from) OR
@@ -132,7 +146,7 @@ const messageResolvers = {
         const res = await message.save();
 
         // This sends the message to receiver of the message
-        // The message is sent to the client with event NEW_MESSAGE
+        // The message is sent to the receiver's client with event NEW_MESSAGE
         context.pubsub.publish("NEW_MESSAGE", {
           newMessage: { ...res._doc, id: res._id, book: bookObj },
         });

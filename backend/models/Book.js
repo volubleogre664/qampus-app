@@ -11,8 +11,10 @@ const bookSchema = new Schema({
   moduleCode: String,
   studentNumber: String,
   frontCover: String,
-  backCover: String,
-  isBought: Boolean,
+  isBought: {
+    type: Boolean,
+    default: false,
+  },
   bookBuyers: [Schema.Types.ObjectId],
   expireAt: {
     type: Date,

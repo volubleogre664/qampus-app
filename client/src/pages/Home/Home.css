@@ -256,6 +256,13 @@
   display: none;
 }
 
+.home__searchResults .results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
 .btnBack {
   border: none;
   transition: all ease-in-out 0.2s;

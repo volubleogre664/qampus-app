@@ -137,6 +137,32 @@ const bookResolvers = {
         throw new UserInputError("Error finding your book", err);
       }
     },
+
+    async searchBook(_, { searchStr }) {
+      try {
+        // const query = {
+        //   $text: { $search: searchStr },
+        // };
+
+        const res = await Book.aggregate([
+          {
+            $search: {
+              text: {
+                query: searchStr,
+                path: ["title", "isbn", "moduleCode"],
+              },
+            },
+          },
+          {
+            $limit: 10,
+          },
+        ]);
+
+        return res.map((book) => ({ id: book._id, ...book }));
+      } catch (err) {
+        throw new Error("Failed to search for the books");
+      }
+    },
   },
   Query: {
     async getBook(_, { bookId }) {

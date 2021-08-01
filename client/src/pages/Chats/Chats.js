@@ -30,7 +30,7 @@ function Chats() {
   const [height, setHeight] = useState(0); //Height given to the chats main and sidebar
   const [windowHeight, setWindowHeigt] = useState(window.innerHeight); //Keeps track of screen height
   const [messages, messageDispatch] = useMessagesHelpers();
-  const [currentContact, setCurrentContact] = useState({});
+  const [currentContact, setCurrentContact] = useState(null);
   const [{ user }, userDispatch] = useUserHelpers();
   const [{ searchBookList }] = useBooksHelpers();
   const [book, setBook] = useState({});
@@ -114,6 +114,7 @@ function Chats() {
         data: { newMessage },
       },
     }) {
+      console.log(newMessage);
       messageDispatch({
         payload: newMessage,
       });
@@ -187,13 +188,17 @@ function Chats() {
     if (user && user?.contacts?.length && !window.location.search) {
       getMessagesQuery({
         variables: {
-          to: user?.contacts[0]?.id,
+          to: currentContact?.id,
           from: user?.id,
-          messagesLength: messages.length,
+          messagesLength: messages?.filter(
+            (item) =>
+              (item?.from === user?.id && item?.to === currentContact?.id) ||
+              (item?.from === currentContact?.id && item?.to === user?.id)
+          ).length,
         },
       });
     }
-  }, [getMessagesQuery, user, messages]);
+  }, [getMessagesQuery, user, messages, currentContact?.id]);
 
   // Runs only when someone clicked a book to buy
   // Thats why there's an early return
@@ -280,7 +285,7 @@ function Chats() {
                 (msg.from === currentContact?.id && msg.to === user?.id)
             )
             .map((msg) => (
-              <Message from={user?.id} msg={msg} />
+              <Message key={msg?.id} from={user?.id} msg={msg} />
             ))}
         </div>
 

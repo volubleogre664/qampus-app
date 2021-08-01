@@ -50,6 +50,13 @@ const REGISTER_USER = gql`
       picture
       degree
       bio
+      contacts {
+        id
+        firstName
+        lastName
+        studentNumber
+        picture
+      }
       token
     }
   }
@@ -104,7 +111,6 @@ const UPLOAD_BOOK = gql`
     $description: String
     $studentNumber: String!
     $frontCover: String
-    $backCover: String
   ) {
     uploadBook(
       bookInput: {
@@ -117,7 +123,6 @@ const UPLOAD_BOOK = gql`
         description: $description
         studentNumber: $studentNumber
         frontCover: $frontCover
-        backCover: $backCover
       }
     ) {
       id
@@ -130,7 +135,6 @@ const UPLOAD_BOOK = gql`
       moduleCode
       studentNumber
       frontCover
-      backCover
     }
   }
 `;
@@ -148,7 +152,6 @@ const GET_ONE_BOOK = gql`
       moduleCode
       studentNumber
       frontCover
-      backCover
     }
   }
 `;
@@ -172,7 +175,6 @@ const GET_ALL_BOOKS = gql`
       moduleCode
       studentNumber
       frontCover
-      backCover
     }
   }
 `;
@@ -190,7 +192,23 @@ const EDIT_BOOK = gql`
       moduleCode
       studentNumber
       frontCover
-      backCover
+    }
+  }
+`;
+
+const SEARCH_BOOKS = gql`
+  mutation searchBook($searchStr: String!) {
+    searchBook(searchStr: $searchStr) {
+      id
+      isbn
+      title
+      subtitle
+      authors
+      price
+      description
+      moduleCode
+      studentNumber
+      frontCover
     }
   }
 `;
@@ -214,7 +232,6 @@ const ADD_MESSAGE = gql`
         moduleCode
         studentNumber
         frontCover
-        backCover
       }
     }
   }
@@ -239,7 +256,6 @@ const MESSAGE_SUBSCRIPTION = gql`
         moduleCode
         studentNumber
         frontCover
-        backCover
       }
     }
   }
@@ -264,7 +280,6 @@ const GET_MESSAGES_QUERY = gql`
         moduleCode
         studentNumber
         frontCover
-        backCover
       }
     }
   }
@@ -300,6 +315,7 @@ export {
   GET_ALL_BOOKS,
   DELETE_BOOK,
   EDIT_BOOK,
+  SEARCH_BOOKS,
   ADD_MESSAGE,
   MESSAGE_SUBSCRIPTION,
   GET_MESSAGES_QUERY,
