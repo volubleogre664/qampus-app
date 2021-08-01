@@ -128,6 +128,9 @@
 
   .nav__links.opening {
     left: 0%;
+    max-width: 450px; 
+    -webkit-transition: all ease-in-out 0.2s;
+    transition: all ease-in-out 0.2s
   }
 }
 
@@ -135,7 +138,15 @@
   .header__nav {
     width: fit-content;
   }
+
   .header {
     justify-content: space-between;
+  }
+
+  .nav__links.opening {
+    width: 95%;
+    right: 0%;
+    -webkit-transition: all ease-in-out 0.2s;
+    transition: all ease-in-out 0.2s
   }
 }
