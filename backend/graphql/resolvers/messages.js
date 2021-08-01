@@ -23,8 +23,8 @@ const messageResolvers = {
 
         // Get messages from database.
         // In SQL ->
-        // SELECT * FROM Message WHERE Message.to=to AND WHERE Message.from=from OR
-        // WHERE Message.to=from AND WHERE Message.from=to
+        // SELECT * FROM Message WHERE (Message.to=to AND Message.from=from) OR
+        // (Message.to=from AND Message.from=to)
         let messages = await Message.find({}).or([
           {
             to: to,

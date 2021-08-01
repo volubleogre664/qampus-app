@@ -84,7 +84,7 @@ export default gql`
     getBook(bookId: ID!): Book!
     getBooks(studentNumber: String!): [Book]
     getBookTitles: [BookTitle]
-    getMessages(to: String!, from: String!, messagesLength: Float!): [Message]
+    getMessages(to: ID!, from: ID!, messagesLength: Float!): [Message]
   }
 
   type Mutation {

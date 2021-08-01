@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -12,7 +16,7 @@ body {
   box-sizing: border-box;
   /* height: 100vh; */
   /* width: 100vw; */
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.0)),
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)),
     url("https://images.squarespace-cdn.com/content/v1/59440628b3db2b2f36a66f10/1600046127602-M5HPCMBHCV27KF695OCW/5E31C98F-68AA-429D-A6E7-D909E1C056D1.jpeg?format=2500w")
       no-repeat;
   background-position: center;

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Cropper from "react-cropper";
 
 import { useUserHelpers } from "../../Redux/getSlices";
+import Button from "../Button/Button";
 
 import "cropperjs/dist/cropper.css";
 import "./CropImage.css";
@@ -55,8 +56,8 @@ export const CropImage = () => {
         />
 
         <div className="buttons">
-          <button>Cancel</button>
-          <button onClick={getCropData}>Crop Image</button>
+          <Button text="Cancel" />
+          <Button onClick={getCropData} text="Crop Image" />
         </div>
       </div>
     </div>

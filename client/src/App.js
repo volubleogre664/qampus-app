@@ -64,10 +64,10 @@ function App() {
             <HeaderMenu />
             <Navigation />
           </Route>
-          <Route exact path="/collection">
+          <PrivateRoute exact path="/collection">
             <HeaderMenu />
             <Collection />
-          </Route>
+          </PrivateRoute>
         </Switch>
       </Router>
     </div>

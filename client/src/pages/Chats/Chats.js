@@ -45,9 +45,11 @@ function Chats() {
     varaibles: { to: currentContact?.id, textMsg: textMsg },
     update(_, { data: { addMessage: msg } }) {
       // if (window.location.search.length) window.location.search = "";
-      messageDispatch({
-        payload: msg,
-      });
+      if (!messages.find((m) => m.id === msg.id)) {
+        messageDispatch({
+          payload: msg,
+        });
+      }
 
       setMsg("");
     },
@@ -271,11 +273,15 @@ function Chats() {
         </header>
 
         <div className="chats__mainBody">
-          <Message
-            from={user?.id}
-            messages={messages}
-            to={currentContact?.id}
-          />
+          {messages
+            .filter(
+              (msg) =>
+                (msg.from === user?.id && msg.to === currentContact?.id) ||
+                (msg.from === currentContact?.id && msg.to === user?.id)
+            )
+            .map((msg) => (
+              <Message from={user?.id} msg={msg} />
+            ))}
         </div>
 
         <div className="chats__mainFooter">

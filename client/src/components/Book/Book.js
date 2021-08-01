@@ -120,7 +120,7 @@ function Book({ state, className, book, deleteBookClick, editBookClick }) {
       {/* Book footer | part with delete and edit button */}
       <div className="book__footer">
         <div className="book__footerLeft">
-          <h3 className="title--light">{book?.title}</h3>
+          <h4 className="title--light">{book?.title}</h4>
           <p>{"R" + book?.price}</p>
         </div>
 

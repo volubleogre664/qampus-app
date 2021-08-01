@@ -98,7 +98,7 @@
   width: 100%;
 }
 
-.book__footerLeft h3 {
+.book__footerLeft h4 {
   margin: 0;
   flex: 1;
   color: #000 !important;
@@ -110,12 +110,13 @@
 
 .book__footerRight {
   width: fit-content;
-  justify-self: flex-end !important;
+  justify-self: flex-end;
+  display: flex;
   margin-left: auto;
 }
 
 .book__footerRight span .MuiSvgIcon-root {
-  font-size: 2rem;
+  font-size: 1.7rem;
   color: #000;
   cursor: pointer;
 }
