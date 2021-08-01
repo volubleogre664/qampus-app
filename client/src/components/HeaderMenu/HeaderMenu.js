@@ -2,9 +2,7 @@ import { useState } from "react";
 import MenuIcon from "@material-ui/icons/MenuRounded";
 import CloseIcon from "@material-ui/icons/CloseRounded";
 import { useRouteMatch, Link } from "react-router-dom";
-
 import { useUserHelpers, useMessagesHelpers } from "../../Redux/getSlices";
-
 import "./HeaderMenu.css";
 
 function HeaderMenu() {

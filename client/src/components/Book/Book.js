@@ -14,7 +14,7 @@ function Book({ state, book, deleteBookClick, editBookClick }) {
   if (!book) {
     book = {
       id: "jdsbjhbsdcjnscb",
-      title: "Design Principles",
+      title: "Database Principles",
       isbn: "998844212133",
       modCode: "CSIS1664",
       price: "300.00",

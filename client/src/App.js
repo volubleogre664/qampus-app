@@ -57,18 +57,18 @@ function App() {
             <Chats />
           </Route>
 
-          <Route exact path="/upload">
+          <AuthRoute exact path="/upload">
             <HeaderMenu />
             <Upload />
-          </Route>
+          </AuthRoute>
           <Route exact path="/navigation">
             <HeaderMenu />
             <Navigation />
           </Route>
-          <Route exact path="/collection">
+          <AuthRoute exact path="/collection">
             <HeaderMenu />
             <Collection />
-          </Route>
+          </AuthRoute>
           <Route exact path="/help">
             <HeaderMenu />
             <Help />

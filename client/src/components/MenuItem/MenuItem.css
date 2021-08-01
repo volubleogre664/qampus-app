@@ -4,10 +4,11 @@
 .menuItem {
   padding: 10px;
   width: 210px;
-  max-width: 280px !important;
-  min-height: 180px;
   min-width: 210px;
+  max-width: 210px;
   height: 200px;
+  min-height: 200px;
+  max-height: 200px;
   background: rgb(245, 245, 255);
   border-radius: 5px;
   display: flex;
@@ -30,26 +31,27 @@
   font-size: 2.9rem;
   color: rgb(19, 161, 242);
   /* color: rgb(0, 5, 7); */
-  padding-top: 10px;
-  padding-bottom: 2px;
 }
 
 .menuItem > .menuItem__title {
   font-size: 1.3rem;
   font-weight: normal;
-  padding-top: 0;
+  padding: 0px;
   font-family: "Lato", sans-serif;
 }
 
 .menuItem > .menuItem__subtitle {
   font-size: 1rem;
-  text-align: center;
+  text-align: center; 
   font-weight: normal;
+  padding: 15px;
+  padding-top: 0px;
 }
 
 @media screen and (max-width: 900px) {
   .menuItem {
     width: 70%;
     height: unset;
+    margin-bottom: 10px;
   }
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
-
+import Button from "../../components/Button/Button";
 import { DELETE_BOOK } from "../../utils/graphql.js";
 import Book from "../../components/Book/Book.js";
 import EditBook from "../../components/EditBook/EditBook.js";
@@ -65,7 +65,7 @@ function Collection() {
       </section>
 
       <footer className="collection__footer">
-        <button onClick={() => history.push("/upload")}>Add New Book</button>
+        <Button  text="Add New Book" onClick={() => history.push("/upload")}/>
       </footer>
     </div>
   );

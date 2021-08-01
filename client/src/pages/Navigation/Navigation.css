@@ -106,7 +106,9 @@
     width: 100%;
     margin-top: 10px;
   }
-
+  .frame {
+    height: 95%;  
+  }
   @media only screen and (max-width: 550px) {
     .nav_results{
       width: 100%;
@@ -140,5 +142,8 @@
     height: 90vh ;
     margin-top: 10px;
 
+  }
+  .frame {
+  height: 95%;  
   }
 }
