@@ -65,14 +65,14 @@ function App() {
             <HeaderMenu />
             <Navigation />
           </Route>
-          <AuthRoute exact path="/collection">
-            <HeaderMenu />
-            <Collection />
-          </AuthRoute>
           <Route exact path="/help">
             <HeaderMenu />
             <Help />
           </Route>
+          <PrivateRoute exact path="/collection">
+            <HeaderMenu />
+            <Collection />
+          </PrivateRoute>
         </Switch>
       </Router>
     </div>

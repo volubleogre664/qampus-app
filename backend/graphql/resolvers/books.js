@@ -8,14 +8,18 @@ import { validateBookInput } from "../../utils/validators.js";
 const bookResolvers = {
   Mutation: {
     async uploadBook(_, { bookInput }, context) {
+      // Confirm the current logged in user
       const user = checkAuth(context);
 
+      // Validate the Book data sent
       const { errors, valid } = validateBookInput(bookInput);
 
+      // Throw errors if book data is not valid
       if (!valid) {
         throw new UserInputError("Error uploading book data", { errors });
       }
 
+      // Check if the logged in user is the owner of the book  being uploaded
       if (bookInput.studentNumber !== user.studentNumber) {
         throw new UserInputError("Action not allowed", {
           errors: {
@@ -24,10 +28,19 @@ const bookResolvers = {
         });
       }
 
-      const bookExist = await Book.findOne({
-        isbn: bookInput.isbn,
-        studentNumber: bookInput.studentNumber,
-      });
+      // Check if user does not have this book already uploaded
+      // In SQL
+      // SELECT id FROM Book WHERE Book.isbn = bookInput.isbn AND
+      // WHERE Book.studentNumber = bookInput.studentNumber
+      const bookExist = await Book.findOne(
+        {
+          isbn: bookInput.isbn,
+          studentNumber: bookInput.studentNumber,
+        },
+        { id: 1 }
+      );
+
+      // throw error if book already exist
       if (bookExist) {
         throw new UserInputError("You already have this book uploaded", {
           errors: {
@@ -36,6 +49,7 @@ const bookResolvers = {
         });
       }
 
+      // I no error has been throw the create the document or Row in Book table
       const newBook = new Book({
         isbn: bookInput.isbn,
         title: bookInput.title,
@@ -49,18 +63,22 @@ const bookResolvers = {
         backCover: bookInput.backCover || "",
       });
 
+      // Save the book to database
       const res = await newBook.save();
 
-      // console.log(res);
+      // Return the saved book back to the client
       return res;
     },
 
     async deleteBook(_, { bookId }, context) {
+      // Confirm the logged in user
       const user = checkAuth(context);
 
       try {
+        // Find the book to delete based with ID
         const book = await Book.findById(bookId);
 
+        // If we find nothing throw an error
         if (!book) {
           throw new Error("An error occured while deleting book", {
             errors: {
@@ -69,6 +87,7 @@ const bookResolvers = {
           });
         }
 
+        // If user does not own the found book throw error
         if (user.studentNumber !== book.studentNumber) {
           throw new Error("An error occured while deleting book", {
             errors: {
@@ -77,8 +96,10 @@ const bookResolvers = {
           });
         }
 
+        // If no error thrown then delete the book
         await book.delete();
 
+        // return this... Still need to work on errors: like how to structure
         return "Deleted#Book deleted successfully";
       } catch (err) {
         throw new Error("An error occured while deleting book", {
@@ -106,6 +127,9 @@ const bookResolvers = {
         }
         if (!book.isBought && isBought) {
           book.isBought = isBought;
+
+          // TODO: Need to send message to everyone and let them know that the book has been sold
+          // This will be achieved with the help of everyone that is interested in this book
         }
 
         return await book.save();

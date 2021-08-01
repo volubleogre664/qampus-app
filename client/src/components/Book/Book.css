@@ -35,6 +35,10 @@
   overflow: hidden;
 }
 
+.book__details.rec {
+  background-color: #e0115f;
+}
+
 .book__details:hover {
   width: 100%;
   right: 0;
@@ -95,23 +99,25 @@
   width: 100%;
 }
 
-.book__footerLeft h1 {
+.book__footerLeft h4 {
   margin: 0;
   flex: 1;
-  /* display: -webkit-inline-box; */
-  /* -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  overflow: hidden; */
+  color: #000 !important;
+  display: -webkit-inline-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .book__footerRight {
   width: fit-content;
-  justify-self: flex-end !important;
+  justify-self: flex-end;
+  display: flex;
   margin-left: auto;
 }
 
 .book__footerRight span .MuiSvgIcon-root {
-  font-size: 2rem;
+  font-size: 1.7rem;
   color: #000;
   cursor: pointer;
 }

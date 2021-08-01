@@ -159,6 +159,24 @@ const DELETE_BOOK = gql`
   }
 `;
 
+const GET_ALL_BOOKS = gql`
+  query getBooks($studentNumber: String!) {
+    getBooks(studentNumber: $studentNumber) {
+      id
+      isbn
+      title
+      subtitle
+      authors
+      price
+      description
+      moduleCode
+      studentNumber
+      frontCover
+      backCover
+    }
+  }
+`;
+
 const EDIT_BOOK = gql`
   mutation editBook($id: ID!, $price: Float, $isBought: Boolean) {
     editBook(id: $id, price: $price, isBought: $isBought) {
@@ -178,7 +196,7 @@ const EDIT_BOOK = gql`
 `;
 
 const ADD_MESSAGE = gql`
-  mutation addMessage($to: String!, $textMsg: String!, $book: ID) {
+  mutation addMessage($to: ID!, $textMsg: String!, $book: ID) {
     addMessage(to: $to, textMsg: $textMsg, book: $book) {
       id
       to
@@ -203,25 +221,51 @@ const ADD_MESSAGE = gql`
 `;
 
 const MESSAGE_SUBSCRIPTION = gql`
-  subscription new_message($to: String!) {
+  subscription newMessage($to: ID!) {
     newMessage(to: $to) {
       id
       to
       from
       time
       textMsg
+      book {
+        id
+        isbn
+        title
+        subtitle
+        authors
+        price
+        description
+        moduleCode
+        studentNumber
+        frontCover
+        backCover
+      }
     }
   }
 `;
 
 const GET_MESSAGES_QUERY = gql`
-  query getMessages($to: String!, $from: String!, $messagesLength: Float!) {
+  query getMessages($to: ID!, $from: ID!, $messagesLength: Float!) {
     getMessages(to: $to, from: $from, messagesLength: $messagesLength) {
       id
       to
       from
       time
       textMsg
+      book {
+        id
+        isbn
+        title
+        subtitle
+        authors
+        price
+        description
+        moduleCode
+        studentNumber
+        frontCover
+        backCover
+      }
     }
   }
 `;
@@ -253,6 +297,7 @@ export {
   UPDATE_USER,
   UPLOAD_BOOK,
   GET_ONE_BOOK,
+  GET_ALL_BOOKS,
   DELETE_BOOK,
   EDIT_BOOK,
   ADD_MESSAGE,
