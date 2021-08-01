@@ -368,9 +368,8 @@ function Upload() {
             <h2>05</h2>
             <h3>How do I get verified?</h3>
             <p>
-              In order to get verified you must sell ten books on the platform. Alternatively,
-              you can get 20 people to create an account - see the HELP
-              window for more details.
+              In order to get verified you must sell ten books on the platform or get 20 people to create an account - see the HELP
+              tab.
             </p>
           </li>
         </ul>
