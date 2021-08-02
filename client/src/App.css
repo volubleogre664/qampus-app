@@ -43,7 +43,9 @@
   color: #fff;
   filter: drop-shadow(2px 4px 8px #585858);
 }
-
+.app > p {
+  font-weight: 300;
+}
 /* .app {
   
   background-color: #935d8c, -webkit-linear-gradient (45deg, #e37682 15%, #5f4d93 85%);

@@ -1,8 +1,11 @@
 .uploadCollection {
   display: flex;
   width: 80%;
+  height: fit-content;
   margin: auto;
   margin-top: 15px;
+  margin-bottom: 0px;
+  overflow: hidden;
 }
 
 .upload_section {
@@ -23,10 +26,11 @@
   flex-direction: column;
   box-sizing: border-box;
   width: 100%;
-  height: fit-content;
+  height: 100%;
   justify-content: center;
   align-content: center;
   text-align: center;
+
 }
 
 .upload__title {
@@ -51,7 +55,7 @@
   height: 100%;
   color: #fff;
   margin-top: 5px;
-  margin-bottom: 30px;
+  margin-bottom: 5px;
 }
 
 .upload_separator {
@@ -71,7 +75,7 @@
 
 .box {
   display: block;
-  width: 160px;
+  width: 120px;
   height: fit-content;
   margin-top: 0;
   background-color: rgb(21, 161, 242);
@@ -107,7 +111,7 @@
 
 .js--image-preview {
   width: 100%;
-  height: 200px;
+  height: 160px;
   position: relative;
   overflow: hidden;
   background-color: white;
@@ -173,9 +177,10 @@
   }
 }
 
-@media screen and (max-width: 900px) and (min-width: 550px) {
+@media screen and (max-width: 1000px) and (min-width: 550px) {
   .upload_section {
-    width: 70%;
+    width: 90%;
+    margin: auto;
   }
   .uploadCollection {
     flex-flow: row wrap;
@@ -183,8 +188,21 @@
   }
 }
 
-@media screen and (max-width: 1300px) and (min-width: 900px) {
+@media screen and (max-width: 1500px) and (min-width: 900px) {
   .upload_section {
-    width: 40%;
+    width: 90%;
+  }
+  .uploadCollection {
+    margin-top: 0px;
+    height: 100%;
+  }
+  .bullets{
+    margin-top: 0;
+    width: 100%;
+  }
+
+  .list_tittle {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
   }
 }
