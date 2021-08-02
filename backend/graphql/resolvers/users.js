@@ -34,28 +34,38 @@ const userResolvers = {
     async login(_, { studentNumber, password }) {
       const { errors, valid } = validateLoginInput(studentNumber, password);
 
+      // Check for any input errors after validating them
       if (!valid) {
         throw new UserInputError("Errors", { errors });
       }
 
+      // Find the user from database
       const user = await User.findOne({ studentNumber });
 
+      // If user is null then no user is found then return user not found
       if (!user) {
         errors.general = "User not found";
         throw new UserInputError("User not found", { errors });
       }
 
+      // Match passwords and throw user input errors if they're wrong
       const match = await bcrypt.compare(password, user.password);
       if (!match) {
         errors.general = "Wrong Credentials";
         throw new UserInputError("Wrong Credentials", { errors });
       }
 
+      // Getting all the contacts fo the user if there are any
+      let contacts = await User.find({ _id: { $in: user.contacts } });
+
+      // Generate the JWT token for user's authetication
       const token = generateToken(user);
 
+      // Return the final result
       return {
         ...user._doc,
-        id: user._id,
+        id: user.id,
+        contacts: contacts,
         token,
       };
     },
@@ -86,9 +96,12 @@ const userResolvers = {
         password,
         confirmPassword
       );
+
+      // Throw errors if there is an error in the inputs
       if (!valid) {
         throw new UserInputError("Errors", { errors });
       }
+
       // Make sure user doesn't already exist
       const user = await User.findOne({ studentNumber });
       if (user) {
@@ -103,6 +116,7 @@ const userResolvers = {
       // hash password and create user password
       password = await bcrypt.hash(password, 12);
 
+      // Create the mongo object with User schema
       const newUser = new User({
         studentNumber,
         firstName,
@@ -114,27 +128,37 @@ const userResolvers = {
         password,
       });
 
+      // Save user to database
       const res = await newUser.save();
-      // console.log(res);
 
+      // Generate the JWT token for the user's authentication
       const token = generateToken(res);
 
-      return {
+      // Return all the info back to the client
+      const _user = {
         ...res._doc,
         id: res._id,
         token,
       };
+      _user.contacts = [];
+      return _user;
     },
     async updateUser(_, { updateInput }, context) {
+      // Check if user has priviledges for editing the account
       const user = checkAuth(context);
 
+      // Create new user object from database
+      // In SQL
+      // SELECT * FROM User WHERE id = <user.id>
       const updatedUser = await User.findById(user.id);
 
+      // Check if passwords match before doing anything
       const match = await bcrypt.compare(
         updateInput.password,
         updatedUser.password
       );
 
+      // Throw user input error if passwords do not match
       if (!match) {
         throw new UserInputError("Wrong credentials", {
           errors: {
@@ -143,24 +167,36 @@ const userResolvers = {
         });
       }
 
+      // strip password, confirmNewPassword, newPassword off of the updateInput
+      // save the rest to newUserData
       const { password, confirmNewPassword, newPassword, ...newUserData } =
         updateInput;
 
-      if (updateInput.newPassword !== "") {
+      // If user wishes to change the password then this is the code for that
+      // Check if updateInput.newPassword === update.confirmNewPassword
+      // Hash the passwords and map them to newUserData variable.
+      if (
+        updateInput.newPassword &&
+        updateInput.newPassword === updateInput.confirmNewPassword
+      ) {
         const newPassword = await bcrypt.hash(updateInput.newPassword, 12);
         newUserData.password = newPassword;
       }
 
+      // Save the data to updatedUser
       Object.keys(newUserData).forEach((key) => {
         if (newUserData[key]) {
           updatedUser[key] = newUserData[key];
         }
       });
 
+      // Save updatedUser to the database
       const res = await updatedUser.save();
 
+      // Generate the new token with new user data
       const token = generateToken(res);
 
+      // Return the whole info to the client
       return {
         ...res._doc,
         id: res._id,
@@ -170,16 +206,18 @@ const userResolvers = {
   },
   Query: {
     async getUserData(_, { studentNumber }) {
+      // Given the student number, find the user data and return minimal data
       try {
-        const user = await User.findOne({ studentNumber });
+        // In SQL
+        // SELECT id, firstName, lastName, studentNumber, picture
+        //    FROM User WHERE studentNumber = <studentNumber>;
+        const user = await User.findOne(
+          { studentNumber },
+          { firstName: 1, lastName: 1, studentNumber: 1, picture: 1 }
+        );
 
-        return {
-          id: user._id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          studentNumber: user.studentNumber,
-          picture: user.picture,
-        };
+        // Return the user to client
+        return user;
       } catch (err) {
         throw new Error("No user found");
       }

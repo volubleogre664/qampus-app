@@ -47,24 +47,8 @@ function Register({ history }) {
     register();
   }
 
-  // This code is for testing
-
-  // const onSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   dispatch({
-  //     type: "SET_ERRORS",
-  //     payload: {
-  //       name: "Name cannot be empty",
-  //       surname: "surname cannot be empty",
-  //       password: "Password cannot be empty",
-  //       confirmPassword: "This should match with password",
-  //     },
-  //   });
-  // };
-
   useEffect(() => {
-    document.title = "Qampus | Register Account";
+    document.title = "Register Account - Qampus";
   }, []);
 
   return (

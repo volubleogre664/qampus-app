@@ -6,24 +6,27 @@ import defaultImg from "../../account-home.png";
 
 import "./ProfileImage.css";
 
-function ProfileImage({ title }) {
+function ProfileImage() {
   const [{ imgCrop }, dispatch] = useUserHelpers();
   const fileInputRef = useRef(null);
 
-  const handleFileInput = (e) => {
-    const [file] = e.target.files;
+  const handleFileInput = (inputEvent) => {
+    const [file] = inputEvent.target.files;
     if (file) {
       const reader = new FileReader();
-      reader.onload = (e) =>
+      reader.onload = (readerEvent) => {
         dispatch({
           type: "SET_CROP_IMG",
-          payload: { ...imgCrop, imgSrc: e.target.result },
+          payload: { ...imgCrop, imgSrc: readerEvent.target.result },
         });
+      };
 
       window.scrollTo(0, 0);
 
       reader.readAsDataURL(file);
     }
+
+    inputEvent.target.src = "";
   };
 
   return (

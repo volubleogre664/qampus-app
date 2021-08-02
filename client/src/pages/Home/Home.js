@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import PersonIcon from "@material-ui/icons/Person";
-import { useQuery, useLazyQuery } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/react-hooks";
 import { SearchOutlined } from "@material-ui/icons";
 import MenuItem from "../../components/MenuItem/MenuItem";
 import Book from "../../components/Book/Book.js";
@@ -10,10 +10,8 @@ import {
   useBooksHelpers,
   useMessagesHelpers,
 } from "../../Redux/getSlices";
-import { GET_BOOK_TITLES, GET_ONE_BOOK } from "../../utils/graphql";
+import { SEARCH_BOOKS } from "../../utils/graphql";
 import logo from "../../logo.png";
-
-// import isValidISBN from "../../utils/validate.js";
 
 import "./Home.css";
 
@@ -23,12 +21,9 @@ const ref_name = "Spencer Moore";
 
 function Home({ history }) {
   const [{ user }, dispatchUser] = useUserHelpers();
-  const [, dispatchBook] = useBooksHelpers();
-  const [results, setResults] = useState([]);
+  const [{ searchBookList: books }, dispatchBook] = useBooksHelpers();
   const [searchStr, setSearchStr] = useState("");
-  const [book, setBook] = useState({});
-  const [bookTitles, setBookTitles] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [, dispatchMessages] = useMessagesHelpers();
 
   // Toggles the results section and the menu section
@@ -37,47 +32,34 @@ function Home({ history }) {
     results: "none",
   });
 
-  // Get the titles of books from mongoDB
-  useQuery(GET_BOOK_TITLES, {
+  const [searchBook] = useMutation(SEARCH_BOOKS, {
+    variables: { searchStr },
     onCompleted(data) {
-      setBookTitles(data?.getBookTitles);
-      setLoading(false);
-    },
-    onError(err) {
-      console.log(err);
-      setLoading(false);
-    },
-  });
-
-  // Getting one book from database
-  const [getOneBook] = useLazyQuery(GET_ONE_BOOK, {
-    onCompleted(data) {
-      setBook(data?.getBook);
-      dispatchBook({
-        type: "SET_SEARCH_BOOK_LIST",
-        payload: data?.getBook,
-      });
-    },
-    onError(err) {
-      console.log(err);
+      setLoading(!loading);
+      data?.searchBook.forEach((book) =>
+        dispatchBook({
+          type: "SET_SEARCH_BOOK_LIST",
+          payload: book,
+        })
+      );
     },
   });
 
   // Handles click of search button
   const handleSearchClick = (e) => {
     e.preventDefault();
+
+    setLoading(!loading);
+
     if (displays.menu !== "none") {
-      setResults([...results, 1, 1]);
-      setDisplays({ ...results, menu: "none", results: "flex" });
+      setDisplays({ menu: "none", results: "flex" });
     }
 
-    const bookId = bookTitles.filter((item) => item.title === searchStr)[0].id;
-
-    // console.log(bookId);
-
-    getOneBook({ variables: { bookId } });
+    // Search for books in the database
+    searchBook();
   };
 
+  // Clicking the avatar calls the method
   const handleAvatarClick = () => {
     if (!user) {
       history.push("/login");
@@ -104,21 +86,22 @@ function Home({ history }) {
   // Helps return back to the menu
   const openMenu = () => {
     setDisplays({ menu: "flex", results: "none" });
-    setResults([]);
   };
 
   useEffect(() => {
-    document.title = "Qampus | Home";
+    document.title = "Home - Qampus";
   }, []);
+
+  console.log(books);
 
   return (
     <div className="home">
       {loading && <Loader message="Getting books" />}
       <div className="home__header">
-        <div className="home__avatar" onClick={handleAvatarClick}>
+        <button className="home__avatar" onClick={handleAvatarClick}>
           <PersonIcon className="avatarIcon" />
-          <div className="home__avatarName">{user?.firstName || "Guest"}</div>
-        </div>
+          <span className="home__avatarName">{user?.firstName || "Guest"}</span>
+        </button>
       </div>
 
       <div className="home__searchSection">
@@ -142,14 +125,6 @@ function Home({ history }) {
             list="home__books"
             placeholder="Type the title, ISBN or module code."
           />
-
-          {/* Use the book titles for auto complete here */}
-          <datalist id="home__books">
-            {!loading &&
-              bookTitles?.map((item) => (
-                <option key={item?.id} value={item?.title} />
-              ))}
-          </datalist>
 
           <button type="submit">
             <SearchOutlined />
@@ -211,15 +186,16 @@ function Home({ history }) {
             X{/*Close search results*/}
           </button>
         </div>
-        <div className="_results">
-          {/* TODO: Still working on the book stuff mate */}
 
-          {Object.values(book).length && (
-            <Book state="home_book_result" book={book} history={history} />
-          )}
-          {/* {results?.map((_, i) => {
-            return <Book history={history} key={i} />;
-          })} */}
+        <div className="results">
+          {books.map((book) => (
+            <Book
+              key={book?.id}
+              state="home_book_result"
+              book={book}
+              history={history}
+            />
+          ))}
         </div>
       </div>
 
