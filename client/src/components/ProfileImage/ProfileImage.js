@@ -6,24 +6,26 @@ import defaultImg from "../../account-home.png";
 
 import "./ProfileImage.css";
 
-function ProfileImage({ title }) {
+function ProfileImage({ src }) {
   const [{ imgCrop }, dispatch] = useUserHelpers();
   const fileInputRef = useRef(null);
 
-  const handleFileInput = (e) => {
-    const [file] = e.target.files;
+  const handleFileInput = (inputEvent) => {
+    const [file] = inputEvent.target.files;
     if (file) {
       const reader = new FileReader();
-      reader.onload = (e) =>
+      reader.onload = (readerEvent) => {
         dispatch({
           type: "SET_CROP_IMG",
-          payload: { ...imgCrop, imgSrc: e.target.result },
+          payload: { ...imgCrop, imgSrc: readerEvent.target.result },
         });
+      };
 
       window.scrollTo(0, 0);
 
       reader.readAsDataURL(file);
     }
+    fileInputRef.current.value = "";
   };
 
   return (
@@ -37,13 +39,17 @@ function ProfileImage({ title }) {
         style={{ display: "none" }}
       />
 
-      <div className="add_div" onClick={() => fileInputRef.current.click()}>
+      <div
+        role="button"
+        className="add_div"
+        onClick={() => fileInputRef.current.click()}
+      >
         <span className="add_span">
           <AddAPhotoOutlinedIcon className="add" />
         </span>
         <img
           className="image"
-          src={imgCrop.croppedImgUrl || defaultImg}
+          src={imgCrop.croppedImgUrl || src || defaultImg}
           alt=""
         />
       </div>

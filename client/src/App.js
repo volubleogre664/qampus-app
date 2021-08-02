@@ -10,7 +10,7 @@ import Register from "./pages/Register/Register.js";
 import Collection from "./pages/Collection/Collection.js";
 import Navigation from "./pages/Navigation/Navigation.js";
 import Upload from "./pages/Upload/Upload.js";
-import Help from "./pages/Help/Help.js";
+// import Help from "./pages/Help/Help.js";
 
 import HeaderMenu from "./components/HeaderMenu/HeaderMenu.js";
 import CropImage from "./components/CropImage/CropImage.js";
@@ -34,45 +34,47 @@ function App() {
         {/* <MessageBox errors={errors} /> */}
         {imgCrop.imgSrc && <CropImage />}
         <Switch>
+          {/* These are public pages... Accessible to everyone */}
           <Route exact path="/" component={Home} />
+          <Route exact path="/navigation">
+            <HeaderMenu />
+            <Navigation />
+          </Route>
+          {/* <Route exact path="/help">
+            <HeaderMenu />
+            <Help />
+          </Route> */}
 
           {/* AuthRoute checks if someone is logged in and redirects to home if they are logged in */}
           {/* No one will open login, register and finalise register without loggin out */}
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/register" component={Register} />
-          <AuthRoute
-            exact
-            path="/register/finalise"
-            component={FinaliseRegister}
-          />
 
           {/* PrivateRoute is for private pages that needs login to be accessed. */}
           {/* For development purposes just rename PrivateRoute to Route */}
-          <Route exact path="/profile">
+          <PrivateRoute exact path="/register/finalise">
+            <FinaliseRegister />
+          </PrivateRoute>
+
+          <PrivateRoute exact path="/profile">
             <HeaderMenu />
             <Profile />
-          </Route>
-          <Route exact path="/chats*">
+          </PrivateRoute>
+
+          <PrivateRoute exact path="/chats*">
             <HeaderMenu />
             <Chats />
-          </Route>
+          </PrivateRoute>
 
-          <Route exact path="/upload">
+          <PrivateRoute exact path="/upload">
             <HeaderMenu />
             <Upload />
-          </Route>
-          <Route exact path="/navigation">
-            <HeaderMenu />
-            <Navigation />
-          </Route>
-          <Route exact path="/collection">
+          </PrivateRoute>
+
+          <PrivateRoute exact path="/collection">
             <HeaderMenu />
             <Collection />
-          </Route>
-          <Route exact path="/help">
-            <HeaderMenu />
-            <Help />
-          </Route>
+          </PrivateRoute>
         </Switch>
       </Router>
     </div>

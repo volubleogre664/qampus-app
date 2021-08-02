@@ -8,13 +8,13 @@ import imgSrc from "./img.jpg";
 
 import "./Book.css";
 
-function Book({ state, book, deleteBookClick, editBookClick }) {
+function Book({ state, className, book, deleteBookClick, editBookClick }) {
   const history = useHistory();
   // * Remove book above and use the one below when testing the component
   if (!book) {
     book = {
       id: "jdsbjhbsdcjnscb",
-      title: "Design Principles",
+      title: "Database Principles",
       isbn: "998844212133",
       modCode: "CSIS1664",
       price: "300.00",
@@ -46,12 +46,13 @@ function Book({ state, book, deleteBookClick, editBookClick }) {
   // First parameter of mbox.default is empty string to remove the icon
   const deleteBookClicked = () => {
     import("../../utils/popUp.js").then((mbox) =>
-      mbox.default(
-        "info",
-        "Delete Book!",
-        "Are you sure you want to delete this book?\nTitle: " + book?.title,
-        () => deleteBookClick({ variables: { id: book?.id } })
-      )
+      mbox.default({
+        icon: "info",
+        title: "Delete Book!",
+        text:
+          "Are you sure you want to delete this book?\nTitle: " + book?.title,
+        callback: () => deleteBookClick({ variables: { id: book?.id } }),
+      })
     );
   };
 
@@ -120,15 +121,15 @@ function Book({ state, book, deleteBookClick, editBookClick }) {
       {/* Book footer | part with delete and edit button */}
       <div className="book__footer">
         <div className="book__footerLeft">
-          <h1>{book?.title}</h1>
-          <span>{"R" + book?.price}</span>
+          <h4 className="title--light">{book?.title}</h4>
+          <p>{"R" + book?.price}</p>
         </div>
 
         <div className="book__footerRight">{handleBookState()}</div>
       </div>
 
       {/* Book pop up details */}
-      <div className="book__details">
+      <div className={`book__details ${className && className}`}>
         <span className="book__detailsToggle">
           <InfoIcon className="infoIcon" />
         </span>

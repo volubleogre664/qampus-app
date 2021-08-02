@@ -6,11 +6,11 @@ function Contact({ contact, onClick }) {
   return (
     <div className="contact" onClick={onClick}>
       <span className="contact__iconContainer">
-        {(contact?.profile && (
+        {(contact?.picture && (
           <img
-            className
-            src={contact?.profile}
-            alt={[contact?.firstName, contact?.lastName].join(" ")}
+            className="contact__icon"
+            src={contact.picture}
+            alt={[contact.firstName, contact.lastName].join(" ")}
           />
         )) || <PersonIcon />}
       </span>

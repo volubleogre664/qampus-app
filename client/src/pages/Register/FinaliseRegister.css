@@ -10,6 +10,7 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 15px;
+  color: #fff;
 }
 
 .finaliseReg__header {
@@ -22,11 +23,11 @@
 }
 
 .finaliseReg__header .separator {
-  border-top: 1px solid white;
+  border-top: 1px solid #fff;
   border-radius: 5px;
   width: 40%;
   margin: auto;
-  margin-top: 5px;
+  margin-top: 10px;
   margin-bottom: 30px;
 }
 
@@ -39,11 +40,12 @@
 
 .finaliseReg__header h1 {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 30px;
   margin: auto;
   font-family: "Poiret One";
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: lighter;
+  color: #fff;
 }
 
 .finaliseReg__body {
@@ -55,7 +57,7 @@
 
 .finaliseReg__bodyAside {
   width: 100%;
-  margin:auto;
+  margin: auto;
   color: white;
 }
 
@@ -74,12 +76,12 @@
 }
 
 .finaliseReg__bodyMain form {
-  max-width: 300px;
+  max-width: 320px;
   margin: auto;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  color: white ;
+  color: white;
   text-align: left;
   font-weight: lighter;
 }
@@ -87,29 +89,29 @@
 .finaliseReg__bodyMain form label {
   font-size: 1.1rem;
   font-weight: lighter;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   cursor: pointer;
-  
 }
 
-.finaliseReg__bodyMain form label .formInput {
+.finaliseReg__bodyMain form label textarea {
   transition: all ease-in-out 0.2s;
   background: white;
   width: 100%;
-  height: 29px;
   outline: none;
   margin: auto;
   border: white solid 1px;
   border-radius: 3px;
   font-size: 1.2rem;
-  padding-left: 7px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  margin-top: 2px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  padding: 5px;
+  box-sizing: border-box;
+  height: 110px !important;
+  resize: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.finaliseReg__bodyMain form label .formInput:focus {
+.finaliseReg__bodyMain form label textarea:focus {
   border: #03a9f4 solid 1px;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8),
     0 0 10px rgba(255, 255, 255, 0.8);
@@ -117,46 +119,11 @@
   border-radius: 1px;
 }
 
-.finaliseReg__bodyMain form label textarea {
-  padding: 5px;
-  height: 110px !important;
-  resize: none;
-}
-
-footer .formSubmit, footer .btnSkip  {
-  transition: all ease-in-out 0.2s;
-  padding: 15px 25px 15px;
-  background: #03a9f4;
-  height: 32px;
-  color: #fff;
-  text-transform: capitalize;
-  font-weight: lighter;
-  font-size: 1.2em;
-  border-radius: 3px;
-  width: fit-content;
-  margin: auto;
-  margin-left: 5px;
-  margin-right: 5px;
-  width: 100px;
-}
-
-footer .formSubmit:hover,
-footer .btnSkip:hover {
-  transition: all ease-in-out 0.2s;
-  box-shadow: inset 0 0 7px rgba(255, 255, 255, 0.5),
-    0 0 7px rgba(255, 255, 255, 0.5);
-  outline-color: rgba(255, 255, 255, 0);
-  outline-offset: 15px;
-  text-shadow: 1px 1px 2px #427388;
-  background: #03a9f4;
-  border-radius: 1px;
-}
-
 footer {
-  margin-top: 20px;
+  margin: 0 auto;
   width: 100%;
-  text-align: center;
-  
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center !important;
 }
-
-  

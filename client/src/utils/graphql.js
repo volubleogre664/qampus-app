@@ -50,13 +50,20 @@ const REGISTER_USER = gql`
       picture
       degree
       bio
+      contacts {
+        id
+        firstName
+        lastName
+        studentNumber
+        picture
+      }
       token
     }
   }
 `;
 
 const UPDATE_USER = gql`
-  mutation updateBook(
+  mutation updateUser(
     $firstName: String
     $lastName: String
     $email: String
@@ -67,7 +74,7 @@ const UPDATE_USER = gql`
     $confirmNewPassword: String
     $password: String
   ) {
-    updateBook(
+    updateUser(
       updateInput: {
         firstName: $firstName
         lastName: $lastName
@@ -104,7 +111,6 @@ const UPLOAD_BOOK = gql`
     $description: String
     $studentNumber: String!
     $frontCover: String
-    $backCover: String
   ) {
     uploadBook(
       bookInput: {
@@ -117,7 +123,6 @@ const UPLOAD_BOOK = gql`
         description: $description
         studentNumber: $studentNumber
         frontCover: $frontCover
-        backCover: $backCover
       }
     ) {
       id
@@ -130,7 +135,6 @@ const UPLOAD_BOOK = gql`
       moduleCode
       studentNumber
       frontCover
-      backCover
     }
   }
 `;
@@ -148,14 +152,30 @@ const GET_ONE_BOOK = gql`
       moduleCode
       studentNumber
       frontCover
-      backCover
     }
   }
 `;
 
 const DELETE_BOOK = gql`
   mutation deleteBook($id: ID!) {
-    deleteBook(id: $id)
+    deleteBook(bookId: $id)
+  }
+`;
+
+const GET_ALL_BOOKS = gql`
+  query getBooks($studentNumber: String!) {
+    getBooks(studentNumber: $studentNumber) {
+      id
+      isbn
+      title
+      subtitle
+      authors
+      price
+      description
+      moduleCode
+      studentNumber
+      frontCover
+    }
   }
 `;
 
@@ -172,13 +192,29 @@ const EDIT_BOOK = gql`
       moduleCode
       studentNumber
       frontCover
-      backCover
+    }
+  }
+`;
+
+const SEARCH_BOOKS = gql`
+  mutation searchBook($searchStr: String!) {
+    searchBook(searchStr: $searchStr) {
+      id
+      isbn
+      title
+      subtitle
+      authors
+      price
+      description
+      moduleCode
+      studentNumber
+      frontCover
     }
   }
 `;
 
 const ADD_MESSAGE = gql`
-  mutation addMessage($to: String!, $textMsg: String!, $book: ID) {
+  mutation addMessage($to: ID!, $textMsg: String!, $book: ID) {
     addMessage(to: $to, textMsg: $textMsg, book: $book) {
       id
       to
@@ -196,32 +232,55 @@ const ADD_MESSAGE = gql`
         moduleCode
         studentNumber
         frontCover
-        backCover
       }
     }
   }
 `;
 
 const MESSAGE_SUBSCRIPTION = gql`
-  subscription new_message($to: String!) {
+  subscription newMessage($to: ID!) {
     newMessage(to: $to) {
       id
       to
       from
       time
       textMsg
+      book {
+        id
+        isbn
+        title
+        subtitle
+        authors
+        price
+        description
+        moduleCode
+        studentNumber
+        frontCover
+      }
     }
   }
 `;
 
 const GET_MESSAGES_QUERY = gql`
-  query getMessages($to: String!, $from: String!, $messagesLength: Float!) {
+  query getMessages($to: ID!, $from: ID!, $messagesLength: Float!) {
     getMessages(to: $to, from: $from, messagesLength: $messagesLength) {
       id
       to
       from
       time
       textMsg
+      book {
+        id
+        isbn
+        title
+        subtitle
+        authors
+        price
+        description
+        moduleCode
+        studentNumber
+        frontCover
+      }
     }
   }
 `;
@@ -253,8 +312,10 @@ export {
   UPDATE_USER,
   UPLOAD_BOOK,
   GET_ONE_BOOK,
+  GET_ALL_BOOKS,
   DELETE_BOOK,
   EDIT_BOOK,
+  SEARCH_BOOKS,
   ADD_MESSAGE,
   MESSAGE_SUBSCRIPTION,
   GET_MESSAGES_QUERY,

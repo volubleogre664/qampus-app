@@ -45,7 +45,7 @@
   border-radius: 5px;
   width: 50%;
   margin: auto;
-  margin-top: 10  px;
+  margin-top: 10px;
   margin-bottom: 30px;
 }
 
@@ -148,7 +148,7 @@
     overflow-y: scroll;
     border-radius: 20px;
   }
-  .login__headerLogo {
+  .login__header {
     margin-top: 0;
     margin-bottom: 30px;
   }

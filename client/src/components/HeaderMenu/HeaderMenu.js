@@ -2,9 +2,7 @@ import { useState } from "react";
 import MenuIcon from "@material-ui/icons/MenuRounded";
 import CloseIcon from "@material-ui/icons/CloseRounded";
 import { useRouteMatch, Link } from "react-router-dom";
-
 import { useUserHelpers, useMessagesHelpers } from "../../Redux/getSlices";
-
 import "./HeaderMenu.css";
 
 function HeaderMenu() {
@@ -19,17 +17,21 @@ function HeaderMenu() {
 
   const handleLogoutClick = () => {
     // eslint-disable-next-line no-restricted-globals
-    const logout = confirm("Are you sure you want to logout?");
+    import("../../utils/popUp.js").then((mbox) =>
+      mbox.default({
+        title: "Logging out!",
+        text: "Are you sure you want to logout?",
+        callback: () => {
+          dispatchUser({
+            type: "REMOVE_USER",
+          });
 
-    if (logout) {
-      dispatchUser({
-        type: "REMOVE_USER",
-      });
-
-      dispatchMessages({
-        type: "CLEAR_MESSAGES",
-      });
-    }
+          dispatchMessages({
+            type: "CLEAR_MESSAGES",
+          });
+        },
+      })
+    );
   };
 
   return (

@@ -15,6 +15,7 @@ import {
 } from "./features/userSlice";
 
 import {
+  deleteBook,
   selectBooks,
   setBook,
   setBookCover,
@@ -28,8 +29,8 @@ function useMessagesHelpers() {
 
   const dispatchMessage = (action) => {
     switch (action?.type) {
-      case "CLEAR_Messages": {
-        dispatch(removeMessages);
+      case "CLEAR_MESSAGES": {
+        dispatch(removeMessages());
         break;
       }
 
@@ -122,6 +123,10 @@ function useBooksHelpers() {
 
       case "SET_SEARCH_BOOK_LIST": {
         dispatch(setSearchBookList(action.payload));
+        break;
+      }
+      case "DELETE_LIBRARY_BOOK": {
+        dispatch(deleteBook(action.payload));
         break;
       }
 

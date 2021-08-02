@@ -29,19 +29,5 @@
 }
 
 .collection__footer {
-  & > button {
-    padding: 15px 30px;
-    background: rgb(21, 161, 242);
-    border: none;
-    color: #fff;
-    font-size: 1.1rem;
-    border-radius: 8px;
-    cursor: pointer;
-
-    &:hover {
-      transition: all ease-in-out 0.2s;
-      background: #fff;
-      color: #000;
-    }
-  }
+  margin-top: 30px;
 }

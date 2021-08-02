@@ -26,12 +26,26 @@ const booksSlice = createSlice({
       }
     },
     setSearchBookList(state, action) {
-      state.searchBookList = [...state.searchBookList, action.payload];
+      if (!state.searchBookList.find((item) => item.id === action.payload.id)) {
+        state.searchBookList.push(action.payload);
+      }
+    },
+    deleteBook(state, action) {
+      if (state.bookList.find((item) => (item.id = action.payload.id))) {
+        state.bookList = state.bookList.filter(
+          (book) => book.id === action.payload.id
+        );
+      }
     },
   },
 });
 
-export const { setBook, setBookList, setSearchBookList, setBookCover } =
-  booksSlice.actions;
+export const {
+  setBook,
+  setBookList,
+  setSearchBookList,
+  setBookCover,
+  deleteBook,
+} = booksSlice.actions;
 export const selectBooks = (state) => state.book;
 export default booksSlice.reducer;
