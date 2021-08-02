@@ -47,7 +47,7 @@ function CompleteRegistration() {
   }
 
   useEffect(() => {
-    document.title = "Qampus | Finish Signing Up";
+    document.title = "Finish Signing Up - Qampus";
   }, []);
 
   return (

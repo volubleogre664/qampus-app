@@ -10,7 +10,7 @@ export default gql`
     picture: String
     degree: String
     bio: String
-    contacts: [User!]
+    contacts: [User]
     token: String
   }
 
@@ -84,7 +84,7 @@ export default gql`
     getBook(bookId: ID!): Book!
     getBooks(studentNumber: String!): [Book]
     getBookTitles: [BookTitle]
-    getMessages(to: String!, from: String!, messagesLength: Float!): [Message]
+    getMessages(to: ID!, from: ID!, messagesLength: Float!): [Message]
   }
 
   type Mutation {
@@ -93,12 +93,13 @@ export default gql`
     updateUser(updateInput: UpdateInput!): User!
     uploadBook(bookInput: BookInput!): Book!
     deleteBook(bookId: ID!): String!
+    searchBook(searchStr: String!): [Book]
     editBook(bookId: ID!, price: Float!, isBought: Boolean): Book!
-    addMessage(to: String!, textMsg: String!, book: ID): Message!
+    addMessage(to: ID!, textMsg: String!, book: ID): Message!
   }
 
   type Subscription {
-    newMessage(to: String!): Message!
+    newMessage(to: ID!): Message!
     userUpdated(id: ID!): User!
   }
 `;
