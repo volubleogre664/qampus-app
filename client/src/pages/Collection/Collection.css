@@ -36,26 +36,7 @@
   gap: 30px;
 }
 
-.collection__footer > button {
-  padding: 15px 30px;
-  background: #15a1f2;
-  border: none;
-  color: #fff;
-  font-size: 1.1rem;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.collection__footer > button:hover {
-  -webkit-transition: all ease-in-out 0.2s;
-  transition: all ease-in-out 0.2s;
-  background: #fff;
-  color: #000;
-}
-
-@media only screen and (max-width: 550px) {
-  .collection__header > .collection__headerSeparator{
-    width: 100%;
-  }
+.collection__footer {
+  margin-top: 30px;
 }
 /*# sourceMappingURL=Collection.css.map */

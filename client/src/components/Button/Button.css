@@ -6,13 +6,10 @@
   height: 32px !important;
   color: #fff !important;
   text-transform: capitalize !important;
-  margin: auto !important;
-  margin-top: 10px !important;
-  margin-bottom: 10px !important;
   border-radius: 3px !important;
   background: #03a9f4 !important;
   font: lighter 1.2rem var(--font) !important;
-  min-width: 150px !important;;
+  min-width: 150px !important;
 }
 
 .formSubmitBtn:hover {

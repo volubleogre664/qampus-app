@@ -73,6 +73,7 @@ const bookResolvers = {
     async deleteBook(_, { bookId }, context) {
       // Confirm the logged in user
       const user = checkAuth(context);
+      console.log(bookId);
 
       try {
         // Find the book to delete based with ID
@@ -100,7 +101,7 @@ const bookResolvers = {
         await book.delete();
 
         // return this... Still need to work on errors: like how to structure
-        return "Deleted#Book deleted successfully";
+        return `${book._id}`;
       } catch (err) {
         throw new Error("An error occured while deleting book", {
           errors: err,

@@ -6,7 +6,7 @@ import defaultImg from "../../account-home.png";
 
 import "./ProfileImage.css";
 
-function ProfileImage() {
+function ProfileImage({ src }) {
   const [{ imgCrop }, dispatch] = useUserHelpers();
   const fileInputRef = useRef(null);
 
@@ -25,8 +25,7 @@ function ProfileImage() {
 
       reader.readAsDataURL(file);
     }
-
-    inputEvent.target.src = "";
+    fileInputRef.current.value = "";
   };
 
   return (
@@ -40,13 +39,17 @@ function ProfileImage() {
         style={{ display: "none" }}
       />
 
-      <div className="add_div" onClick={() => fileInputRef.current.click()}>
+      <div
+        role="button"
+        className="add_div"
+        onClick={() => fileInputRef.current.click()}
+      >
         <span className="add_span">
           <AddAPhotoOutlinedIcon className="add" />
         </span>
         <img
           className="image"
-          src={imgCrop.croppedImgUrl || defaultImg}
+          src={imgCrop.croppedImgUrl || src || defaultImg}
           alt=""
         />
       </div>

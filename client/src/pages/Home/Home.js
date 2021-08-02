@@ -65,11 +65,10 @@ function Home({ history }) {
       history.push("/login");
     } else {
       import("../../utils/popUp.js").then((mbox) =>
-        mbox.default(
-          "",
-          "Logging out!",
-          "Are you sure you want to logout?",
-          () => {
+        mbox.default({
+          title: "Logging out!",
+          text: "Are you sure you want to logout?",
+          callback: () => {
             dispatchUser({
               type: "REMOVE_USER",
             });
@@ -77,8 +76,8 @@ function Home({ history }) {
             dispatchMessages({
               type: "CLEAR_MESSAGES",
             });
-          }
-        )
+          },
+        })
       );
     }
   };
@@ -92,14 +91,18 @@ function Home({ history }) {
     document.title = "Home - Qampus";
   }, []);
 
-  console.log(books);
-
   return (
     <div className="home">
       {loading && <Loader message="Getting books" />}
       <div className="home__header">
         <button className="home__avatar" onClick={handleAvatarClick}>
-          <PersonIcon className="avatarIcon" />
+          {(user && user?.picture && (
+            <img
+              className="avatarIcon"
+              alt={`${user.firstName} ${user.lastName}`}
+              src={user.picture}
+            />
+          )) || <PersonIcon className="avatarIcon" />}
           <span className="home__avatarName">{user?.firstName || "Guest"}</span>
         </button>
       </div>

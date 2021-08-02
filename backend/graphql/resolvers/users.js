@@ -152,20 +152,10 @@ const userResolvers = {
       // SELECT * FROM User WHERE id = <user.id>
       const updatedUser = await User.findById(user.id);
 
+      // TODO: Come back and here work out the update user with and without the password
       // Check if passwords match before doing anything
-      const match = await bcrypt.compare(
-        updateInput.password,
-        updatedUser.password
-      );
 
-      // Throw user input error if passwords do not match
-      if (!match) {
-        throw new UserInputError("Wrong credentials", {
-          errors: {
-            password: "Wrong password.",
-          },
-        });
-      }
+      console.log(updateInput);
 
       // strip password, confirmNewPassword, newPassword off of the updateInput
       // save the rest to newUserData
@@ -175,11 +165,19 @@ const userResolvers = {
       // If user wishes to change the password then this is the code for that
       // Check if updateInput.newPassword === update.confirmNewPassword
       // Hash the passwords and map them to newUserData variable.
-      if (
-        updateInput.newPassword &&
-        updateInput.newPassword === updateInput.confirmNewPassword
-      ) {
-        const newPassword = await bcrypt.hash(updateInput.newPassword, 12);
+      if (password && newPassword === confirmNewPassword) {
+        const match = await bcrypt.compare(password, updatedUser.password);
+
+        // Throw user input error if passwords do not match
+        if (!match) {
+          throw new UserInputError("Wrong credentials", {
+            errors: {
+              password: "Wrong password.",
+            },
+          });
+        }
+
+        const newHashPassword = await bcrypt.hash(updateInput.newPassword, 12);
         newUserData.password = newPassword;
       }
 

@@ -18,11 +18,10 @@ function HeaderMenu() {
   const handleLogoutClick = () => {
     // eslint-disable-next-line no-restricted-globals
     import("../../utils/popUp.js").then((mbox) =>
-      mbox.default(
-        "",
-        "Logging out!",
-        "Are you sure you want to logout?",
-        () => {
+      mbox.default({
+        title: "Logging out!",
+        text: "Are you sure you want to logout?",
+        callback: () => {
           dispatchUser({
             type: "REMOVE_USER",
           });
@@ -30,8 +29,8 @@ function HeaderMenu() {
           dispatchMessages({
             type: "CLEAR_MESSAGES",
           });
-        }
-      )
+        },
+      })
     );
   };
 

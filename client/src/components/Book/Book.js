@@ -46,12 +46,13 @@ function Book({ state, className, book, deleteBookClick, editBookClick }) {
   // First parameter of mbox.default is empty string to remove the icon
   const deleteBookClicked = () => {
     import("../../utils/popUp.js").then((mbox) =>
-      mbox.default(
-        "info",
-        "Delete Book!",
-        "Are you sure you want to delete this book?\nTitle: " + book?.title,
-        () => deleteBookClick({ variables: { id: book?.id } })
-      )
+      mbox.default({
+        icon: "info",
+        title: "Delete Book!",
+        text:
+          "Are you sure you want to delete this book?\nTitle: " + book?.title,
+        callback: () => deleteBookClick({ variables: { id: book?.id } }),
+      })
     );
   };
 

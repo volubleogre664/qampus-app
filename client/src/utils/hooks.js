@@ -3,6 +3,7 @@ import { useState } from "react";
 export const useForm = (callback, initialState = {}) => {
   const [values, setValues] = useState(initialState);
   const onChange = (onChangeEvent) => {
+    console.log("It works");
     switch (onChangeEvent.target.type) {
       case "file": {
         const [file] = onChangeEvent.target.files;
@@ -31,6 +32,7 @@ export const useForm = (callback, initialState = {}) => {
       }
 
       default: {
+        console.log(onChangeEvent.target.name);
         setValues({
           ...values,
           [onChangeEvent.target.name]: onChangeEvent.target.value,

@@ -63,7 +63,7 @@ const REGISTER_USER = gql`
 `;
 
 const UPDATE_USER = gql`
-  mutation updateBook(
+  mutation updateUser(
     $firstName: String
     $lastName: String
     $email: String
@@ -74,7 +74,7 @@ const UPDATE_USER = gql`
     $confirmNewPassword: String
     $password: String
   ) {
-    updateBook(
+    updateUser(
       updateInput: {
         firstName: $firstName
         lastName: $lastName
@@ -158,7 +158,7 @@ const GET_ONE_BOOK = gql`
 
 const DELETE_BOOK = gql`
   mutation deleteBook($id: ID!) {
-    deleteBook(id: $id)
+    deleteBook(bookId: $id)
   }
 `;
 

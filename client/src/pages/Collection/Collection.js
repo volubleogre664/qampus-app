@@ -44,13 +44,30 @@ function Collection() {
   });
 
   const [deleteBook] = useMutation(DELETE_BOOK, {
-    variables: { id: 2 },
     onCompleted(data) {
-      alert(data.deleteBook);
+      console.log(data);
+      dispatchBook({
+        type: "DELETE_LIBRARY_BOOK",
+        payload: data.deleteBook,
+      });
+      import("../../utils/popUp.js").then((mbox) =>
+        mbox.default({
+          icon: "success",
+          title: "Book Deleted!",
+          text: "Book Deleted Successfully.",
+          buttons: "okay",
+        })
+      );
     },
-    onError(err) {
-      alert("Failed to delete the book \nCheck error in the console.");
-      console.log(err);
+    onError() {
+      import("../../utils/popUp.js").then((mbox) =>
+        mbox.default({
+          icon: "success",
+          title: "Book Not Deleted!",
+          text: "Unable to delete the book... Please Try again",
+          buttons: "okay",
+        })
+      );
     },
   });
 

@@ -16,7 +16,7 @@ function Profile() {
 
       <section className="profile__body">
         <aside className="profile__bodyAside">
-          <ProfileImage title="Your Profile Picture" />
+          <ProfileImage title="Your Profile Picture" src={user?.picture} />
         </aside>
 
         <main className="profile__bodyMain">

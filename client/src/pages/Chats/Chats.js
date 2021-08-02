@@ -259,7 +259,7 @@ function Chats() {
             <span className="iconContainer">
               {(currentContact?.picture && (
                 <img
-                  className
+                  className="iconContainer__image"
                   src={currentContact?.picture || ""}
                   alt={[
                     currentContact?.firstName,
@@ -289,12 +289,8 @@ function Chats() {
             ))}
         </div>
 
-        <div className="chats__mainFooter">
+        <footer className="chats__mainFooter">
           <form onSubmit={onSubmit}>
-            <button className="btnAttach">
-              <i className="fas fa-paperclip"></i>
-            </button>
-
             <button className="btnEmoji">
               <i className="fas fa-grin"></i>
             </button>
@@ -309,12 +305,8 @@ function Chats() {
             <button className="btnSend" type="submit">
               <i className="fas fa-paper-plane"></i>
             </button>
-
-            <button className="btnRecord">
-              <i className="fas fa-microphone"></i>
-            </button>
           </form>
-        </div>
+        </footer>
       </main>
     </div>
   );

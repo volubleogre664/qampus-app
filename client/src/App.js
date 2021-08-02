@@ -49,14 +49,13 @@ function App() {
           {/* No one will open login, register and finalise register without loggin out */}
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/register" component={Register} />
-          <AuthRoute
-            exact
-            path="/register/finalise"
-            component={FinaliseRegister}
-          />
 
           {/* PrivateRoute is for private pages that needs login to be accessed. */}
           {/* For development purposes just rename PrivateRoute to Route */}
+          <PrivateRoute exact path="/register/finalise">
+            <FinaliseRegister />
+          </PrivateRoute>
+
           <PrivateRoute exact path="/profile">
             <HeaderMenu />
             <Profile />

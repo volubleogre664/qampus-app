@@ -47,9 +47,6 @@ export default gql`
     firstName: String!
     lastName: String!
     email: String
-    picture: String
-    degree: String
-    bio: String
     password: String!
     confirmPassword: String!
   }
@@ -76,7 +73,7 @@ export default gql`
     bio: String
     newPassword: String
     confirmNewPassword: String
-    password: String!
+    password: String
   }
 
   type Query {

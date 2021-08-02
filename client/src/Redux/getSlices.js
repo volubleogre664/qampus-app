@@ -15,6 +15,7 @@ import {
 } from "./features/userSlice";
 
 import {
+  deleteBook,
   selectBooks,
   setBook,
   setBookCover,
@@ -122,6 +123,10 @@ function useBooksHelpers() {
 
       case "SET_SEARCH_BOOK_LIST": {
         dispatch(setSearchBookList(action.payload));
+        break;
+      }
+      case "DELETE_LIBRARY_BOOK": {
+        dispatch(deleteBook(action.payload));
         break;
       }
 
