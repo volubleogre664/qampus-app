@@ -1,9 +1,9 @@
 import { useState, useRef } from "react";
-import Button from "../../components/Button/Button";
 import { useMutation } from "@apollo/react-hooks";
-import Compressor from "compressorjs";
+
 import firebase from "firebase/app";
 
+import Button from "../../components/Button/Button";
 import Loader from "../../components/Loader/Loader";
 import Input from "../../components/Input/Input";
 import ConfirmBook from "./ConfirmBook";
@@ -13,6 +13,7 @@ import { useBooksHelpers, useUserHelpers } from "../../Redux/getSlices";
 import { UPLOAD_BOOK } from "../../utils/graphql";
 
 import "./Upload.css";
+import { useEffect } from "react";
 
 // I defined this here because it was not persistent
 const bookCovers = {};
@@ -24,7 +25,6 @@ function Upload() {
 
   //References for input[file] to be accessed since it is hidden and cannot be clicked
   const frontCoverInputRef = useRef(null);
-  //const backCoverInputRef = useRef(null);
 
   // control the showing and hiding of loading animation
   const [loading, setLoading] = useState({
@@ -44,7 +44,6 @@ function Upload() {
     moduleCode: "",
     studentNumber: user?.studentNumber || "",
     frontCover: "",
-    // backCover: "",
   });
 
   // Book cover urls from firebase to send to database
@@ -70,8 +69,7 @@ function Upload() {
       title: values.title || bookUpload.title,
       subtitle: values.subtitle || bookUpload.subtitle,
       description: values.description || bookUpload.description,
-      frontCover: bookCovers?.frontCover || "",
-      // backCover: bookCovers?.backCover || "",
+      frontCover: bookCovers?.frontCover,
     },
     // update -> function to call if api call is successful
     update(_, { data: { uploadBook: book } }) {
@@ -89,6 +87,15 @@ function Upload() {
         isLoading: false,
         message: "",
       });
+
+      import("../../utils/popUp.js").then((mbox) =>
+        mbox.default({
+          icon: "success",
+          title: "Book Uploaded!",
+          text: "Book uploaded successfully",
+          buttons: "okay",
+        })
+      );
     },
     // onError -> function to call if api call returns an error
     onError(err) {
@@ -130,21 +137,13 @@ function Upload() {
       isLoading: true,
       message: "Uploading Images",
     });
-    const storageRef = firebase.storage().ref();
-
-    // TODO: Still need to test this very thorouly because I am not sure about it yet
-    const frontCoverRef = storageRef.child(
-      `${user.id}/books/${bookUpload.title.replace(/ /g, "_")}_front.jpg`
-    );
-
-    // const backCoverRef = storageRef.child(
-    //   `${user.id}/books/${bookUpload.title.replace(/ /g, "_")}_back.jpg`
-    // );
+    const frontCoverRef = firebase
+      .storage()
+      .ref(`${user.id}/books/${bookUpload.title.replace(/ /g, "_")}.jpg`);
 
     // Makes sure that files are not uploaded if the already exist
     // If they don't exist then they're uploaded
     await validateFilesInCloud(frontCoverRef, frontCoverInputRef, "frontCover");
-    //wait validateFilesInCloud(backCoverRef, backCoverInputRef, "backCover");
 
     // Sends data to the database
     setLoading({
@@ -153,32 +152,6 @@ function Upload() {
     });
 
     onSubmit(e);
-  }
-
-  // Compress Images and upload them to cloud storage
-  function compressAndUpload(file, cloudStorageRef) {
-    // Compressing the file and upload it in the async success hook
-    return new Promise(function (resolve, reject) {
-      new Compressor(file, {
-        quality: 0.2,
-        async success(result) {
-          await cloudStorageRef
-            .put(result)
-            .then(() => {
-              resolve("Done");
-              // console.log("File uploaded");
-            })
-            .catch((err) => {
-              reject("Failed to upload image");
-              console.log("Failed to upload Image to cloud", err);
-            });
-        },
-        error(err) {
-          reject("done");
-          console.log(err.message);
-        },
-      });
-    });
   }
 
   // Check if files exist with getMetaData()
@@ -192,7 +165,11 @@ function Upload() {
         await getUploadedUrl(storageRef, urlContainer);
       })
       .catch(async () => {
-        await compressAndUpload(inputRef.current.files[0], storageRef);
+        // More code splitting here with dynamic imports
+        await import("../../utils/compressFilesAndUpload.js").then(
+          async (module) =>
+            await module.default(inputRef.current.files[0], storageRef)
+        );
       })
       .finally(async () => {
         // Check if you have image url then get it if its not available alredy
@@ -244,10 +221,17 @@ function Upload() {
         });
         // console.log(result);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setLoading({ ...loading, isLoading: false, message: "" });
+      });
 
     // console.log(bookUpload);
   }
+
+  useEffect(() => {
+    document.title = "Design - Qampus";
+  });
 
   // TODO: Design the whole form for confirming book details and actually make it work the push (-_-)
 
@@ -269,12 +253,16 @@ function Upload() {
           <hr className="upload_separator" />
           <form onSubmit={uploadImagesToCloud} className="upload__form">
             <div className="wrapper">
-              <div className="box" onClick={() => frontCoverInputRef.current.click()} >
+              <div
+                role="button"
+                className="box"
+                onClick={() => frontCoverInputRef.current.click()}
+              >
                 <div id="front" className="js--image-preview">
                   <img src={values.frontCover} alt="" className="thumb" />
                 </div>
                 <div className="upload-options">
-                  <label className="front">
+                  <label onClick={(e) => e.stopPropagation()} className="front">
                     Front Cover
                     <input
                       type="file"
@@ -285,6 +273,7 @@ function Upload() {
                       required={true}
                       ref={frontCoverInputRef}
                       onChange={onChange}
+                      style={{ display: "none" }}
                     />
                   </label>
                 </div>
@@ -342,34 +331,36 @@ function Upload() {
             <h2>02</h2>
             <h3>How long will my book stay on Qampus?</h3>
             <p>
-             Your book will stay on the platform for six months, this is to ensure that 
-             unsold textbooks don't remain on our databses for too long.
+              Your book will stay on the platform for six months, this is to
+              ensure that unsold textbooks don't remain on our databses for too
+              long.
             </p>
           </li>
           <li>
             <h2>03</h2>
             <h3>How do I know when someone wants to buy my book?</h3>
             <p>
-              When someone chooes to buy your book, you will get a message from them
-              on the Qampus chat system. From there, you can arrange with them where
-              and when to meet in order to make the exchange.
+              When someone chooes to buy your book, you will get a message from
+              them on the Qampus chat system. From there, you can arrange with
+              them where and when to meet in order to make the exchange.
             </p>
           </li>
           <li>
             <h2>04</h2>
             <h3>What happens after I sell my book?</h3>
             <p>
-              After selling your book, you should go to your book collection and update
-              it's status to SOLD. After doing so, it will no longer be shown in the search 
-              window and it will be saved on our system to increase your credibility.
+              After selling your book, you should go to your book collection and
+              update it's status to SOLD. After doing so, it will no longer be
+              shown in the search window and it will be saved on our system to
+              increase your credibility.
             </p>
           </li>
           <li>
             <h2>05</h2>
             <h3>How do I get verified?</h3>
             <p>
-              In order to get verified you must sell ten books on the platform or get 20 people to create an account - see the HELP
-              tab.
+              In order to get verified you must sell ten books on the platform
+              or get 20 people to create an account - see the HELP tab.
             </p>
           </li>
         </ul>

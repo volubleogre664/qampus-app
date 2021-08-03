@@ -30,7 +30,7 @@ function Chats() {
   const [height, setHeight] = useState(0); //Height given to the chats main and sidebar
   const [windowHeight, setWindowHeigt] = useState(window.innerHeight); //Keeps track of screen height
   const [messages, messageDispatch] = useMessagesHelpers();
-  const [currentContact, setCurrentContact] = useState({});
+  const [currentContact, setCurrentContact] = useState(null);
   const [{ user }, userDispatch] = useUserHelpers();
   const [{ searchBookList }] = useBooksHelpers();
   const [book, setBook] = useState({});
@@ -42,12 +42,14 @@ function Chats() {
 
   // Sends message to the server
   const [addMessage] = useMutation(ADD_MESSAGE, {
-    varaibles: { to: currentContact?.studentNumber, textMsg: textMsg },
+    varaibles: { to: currentContact?.id, textMsg: textMsg },
     update(_, { data: { addMessage: msg } }) {
-      window.location.search = "";
-      messageDispatch({
-        payload: msg,
-      });
+      // if (window.location.search.length) window.location.search = "";
+      if (!messages.find((m) => m.id === msg.id)) {
+        messageDispatch({
+          payload: msg,
+        });
+      }
 
       setMsg("");
     },
@@ -60,12 +62,11 @@ function Chats() {
   // * This is part of preparing of sending the book
   const [getUserData] = useLazyQuery(GET_USER_DATA, {
     onCompleted(data) {
-      const userData = user.contacts.find(
-        (item) => item.studentNumber === book.bookOwner
+      const userData = user?.contacts?.find(
+        (item) => item?.studentNumber === book.bookOwner
       );
 
       if (!userData) {
-        window.location.search = "";
         userDispatch({
           type: "ADD_USER_CONTACT",
           payload: data.getUserData,
@@ -74,29 +75,30 @@ function Chats() {
 
       // console.log(data);
 
-      setCurrentContact(data.getUserData);
-      handleContactClick(data.getUserData);
+      setCurrentContact(userData || data.getUserData);
+      handleContactClick(userData || data.getUserData);
       addMessage({
         variables: {
-          to: data.getUserData.studentNumber,
-          textMsg: `Hi ${data.getUserData.firstName} I would like to purchase this book`,
+          to: userData?.id || data.getUserData.id,
+          textMsg: `Hi ${
+            userData?.firstName || data.getUserData.firstName
+          } I would like to purchase this book`,
           book: book.bookId,
         },
       });
     },
     onError(err) {
-      console.log(err);
+      console.log(err.message);
     },
   });
 
   // Get messages as you move between contacts
   const [getMessagesQuery] = useLazyQuery(GET_MESSAGES_QUERY, {
     onCompleted(data) {
+      console.log(data);
       messageDispatch({
         payload: data?.getMessages,
       });
-
-      console.log(data);
     },
     onError(err) {
       console.log(err);
@@ -105,13 +107,14 @@ function Chats() {
 
   // Listens for incoming messages and updates them in realtime
   useSubscription(MESSAGE_SUBSCRIPTION, {
-    variables: { to: user?.studentNumber },
+    variables: { to: user?.id },
     skip: !user,
     onSubscriptionData({
       subscriptionData: {
         data: { newMessage },
       },
     }) {
+      console.log(newMessage);
       messageDispatch({
         payload: newMessage,
       });
@@ -134,27 +137,26 @@ function Chats() {
     //  -> equals the one in the database.
     getMessagesQuery({
       variables: {
-        to: contact?.studentNumber,
-        from: user?.studentNumber,
+        to: contact?.id,
+        from: user?.id,
         messagesLength: messages?.filter(
           (item) =>
-            (item?.from === user?.studentNumber &&
-              item?.to === contact?.studentNumber) ||
-            (item?.from === contact?.studentNumber &&
-              item?.to === user?.studentNumber)
+            (item?.from === user?.id && item?.to === contact?.id) ||
+            (item?.from === contact?.id && item?.to === user?.id)
         ).length,
       },
     });
   };
 
   // form submit method
+  // Runs when sending the messages
   const onSubmit = (e) => {
     e.preventDefault();
 
     const regex = / /gi;
     if (textMsg === "" || textMsg.replace(regex, "") === "") return;
 
-    addMessage({ variables: { to: currentContact?.studentNumber, textMsg } });
+    addMessage({ variables: { to: currentContact?.id, textMsg } });
   };
 
   // For closing the chats
@@ -176,25 +178,30 @@ function Chats() {
   useEffect(() => {
     document.title = "Qampus | Chats";
 
-    if (!user) return;
+    if (!user || !user?.contacts?.length) return;
     setCurrentContact(user.contacts[0]);
   }, [user, setCurrentContact]);
 
   // Runs once on component render
   // Ensures that when chats open we get the messages for the first contact in your list
   useEffect(() => {
-    if (user && !window.location.search) {
+    if (user && user?.contacts?.length && !window.location.search) {
       getMessagesQuery({
         variables: {
-          to: user?.contacts[0]?.studentNumber,
-          from: user?.studentNumber,
-          messagesLength: 0,
+          to: currentContact?.id,
+          from: user?.id,
+          messagesLength: messages?.filter(
+            (item) =>
+              (item?.from === user?.id && item?.to === currentContact?.id) ||
+              (item?.from === currentContact?.id && item?.to === user?.id)
+          ).length,
         },
       });
     }
-  }, [getMessagesQuery, user]);
+  }, [getMessagesQuery, user, messages, currentContact?.id]);
 
-  // ! Still need to work on this and fix everything about the book message process
+  // Runs only when someone clicked a book to buy
+  // Thats why there's an early return
   useEffect(() => {
     if (!window.location.search) {
       return;
@@ -252,7 +259,7 @@ function Chats() {
             <span className="iconContainer">
               {(currentContact?.picture && (
                 <img
-                  className
+                  className="iconContainer__image"
                   src={currentContact?.picture || ""}
                   alt={[
                     currentContact?.firstName,
@@ -271,19 +278,19 @@ function Chats() {
         </header>
 
         <div className="chats__mainBody">
-          <Message
-            from={user?.studentNumber}
-            contact={currentContact?.studentNumber}
-            messages={messages}
-          />
+          {messages
+            .filter(
+              (msg) =>
+                (msg.from === user?.id && msg.to === currentContact?.id) ||
+                (msg.from === currentContact?.id && msg.to === user?.id)
+            )
+            .map((msg) => (
+              <Message key={msg?.id} from={user?.id} msg={msg} />
+            ))}
         </div>
 
-        <div className="chats__mainFooter">
+        <footer className="chats__mainFooter">
           <form onSubmit={onSubmit}>
-            <button className="btnAttach">
-              <i className="fas fa-paperclip"></i>
-            </button>
-
             <button className="btnEmoji">
               <i className="fas fa-grin"></i>
             </button>
@@ -298,12 +305,8 @@ function Chats() {
             <button className="btnSend" type="submit">
               <i className="fas fa-paper-plane"></i>
             </button>
-
-            <button className="btnRecord">
-              <i className="fas fa-microphone"></i>
-            </button>
           </form>
-        </div>
+        </footer>
       </main>
     </div>
   );

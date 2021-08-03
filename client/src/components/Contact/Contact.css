@@ -28,6 +28,7 @@
   display: grid;
   color: #454545;
   place-items: center;
+  overflow: hidden;
 }
 
 .contact > .contact__name {
@@ -43,6 +44,8 @@
 
 .contact > .contact__iconContainer > .contact__icon {
   font-size: 1.4rem;
+  width: 100%;
+  object-fit: contain;
 }
 
 .contact:hover {
