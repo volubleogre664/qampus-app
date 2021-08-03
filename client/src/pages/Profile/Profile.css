@@ -40,7 +40,8 @@
   margin-top: 20px;
   width: 100%;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
+  justify-content: center;
   padding: 0;
   justify-content: flex-start;
   text-align: left  ;
@@ -75,8 +76,9 @@
   text-align: center;
   width: 100%;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   justify-content: center;
+  color: #ffffff;
 }
 .name{
   font-size: 1.7rem;
@@ -86,7 +88,7 @@
 #ico {
   font-size: 1.3rem;
   margin-left: 15px;
-  height: 35px;
+  height: 100%;
 }
 .profile__bodyMain .separator {
   border-top: 1px solid white;
@@ -100,12 +102,12 @@
   width: 100%;
   max-width: 350px;
   margin: auto;
+  padding-left: 5%;
   display: flex;
   flex-direction: column;
   gap: 10px;
   color: white;
   text-align: left;
-  
 }
 .profile__bodyMain > form > label > h3{
   font-family: "Poiret One";
@@ -115,7 +117,7 @@
 #textbox{
   transition: all ease-in-out 0.2s;
   background: transparent;
-  width: 100%;
+  width: 80%;
   height: 29px;
   max-height: 29px;
   outline: none;
@@ -146,7 +148,7 @@
   transition: all ease-in-out 0.2s;
   background: transparent;
   color: white;
-  width: 100%;
+  width: 80%;
   outline: none;
   border: transparent solid 1px;
   border-radius: 3px;
