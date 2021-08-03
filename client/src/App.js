@@ -10,7 +10,7 @@ import Register from "./pages/Register/Register.js";
 import Collection from "./pages/Collection/Collection.js";
 import Navigation from "./pages/Navigation/Navigation.js";
 import Upload from "./pages/Upload/Upload.js";
-// import Help from "./pages/Help/Help.js";
+import Help from "./pages/Help/Help.js";
 
 import HeaderMenu from "./components/HeaderMenu/HeaderMenu.js";
 import CropImage from "./components/CropImage/CropImage.js";
@@ -40,23 +40,19 @@ function App() {
             <HeaderMenu />
             <Navigation />
           </Route>
-          {/* <Route exact path="/help">
-            <HeaderMenu />
-            <Help />
-          </Route> */}
+         
 
           {/* AuthRoute checks if someone is logged in and redirects to home if they are logged in */}
           {/* No one will open login, register and finalise register without loggin out */}
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/register" component={Register} />
-          <AuthRoute
-            exact
-            path="/register/finalise"
-            component={FinaliseRegister}
-          />
 
           {/* PrivateRoute is for private pages that needs login to be accessed. */}
           {/* For development purposes just rename PrivateRoute to Route */}
+          <PrivateRoute exact path="/register/finalise">
+            <FinaliseRegister />
+          </PrivateRoute>
+
           <PrivateRoute exact path="/profile">
             <HeaderMenu />
             <Profile />
@@ -77,6 +73,10 @@ function App() {
             <Collection />
           </PrivateRoute>
         </Switch>
+          <Route exact path="/help">
+              <HeaderMenu />
+              <Help />
+            </Route>
       </Router>
     </div>
   );
