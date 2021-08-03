@@ -10,10 +10,8 @@ function Profile() {
 
   return (
     <div className="profile">
-      <header className="profile_header">
-        <h1 className="title">Your Profile</h1>
-      </header>
-      <div className="nameDiv">
+    
+          <div className="nameDiv">
             <p className="name">
               {user?.firstName || "Nkosingiphile "}{" "}
               {user?.lastName || "Mkwanazi"}
