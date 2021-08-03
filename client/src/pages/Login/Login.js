@@ -21,7 +21,6 @@ function Login() {
     studentNumber: "",
     password: "",
   });
-  // console.log(history);
 
   const [login, { loading }] = useMutation(LOGIN_USER, {
     update(_, { data: { login: userData } }) {

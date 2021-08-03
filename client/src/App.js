@@ -21,7 +21,6 @@ import { useUserHelpers } from "./Redux/getSlices.js";
 import { firebaseConfig } from "./config.js";
 
 import "./App.css";
-import "firebase/storage";
 
 firebase.initializeApp(firebaseConfig);
 
