@@ -179,10 +179,11 @@ label.front {
   }
 }
 
-@media screen and (max-width: 1000px) and (min-width: 550px) {
+@media screen and (max-width: 1500px) and (min-width: 550px) {
   .upload_section {
     width: 90%;
     margin: auto;
+    margin-bottom: 10px;
   }
   .uploadCollection {
     flex-flow: row wrap;
