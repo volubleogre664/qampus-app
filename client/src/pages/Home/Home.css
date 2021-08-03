@@ -37,8 +37,7 @@
 .home__avatar {
   user-select: none;
   transition: all ease-in-out 0.2s;
-  padding: 4px;
-  padding-right: 8px;
+  padding: 3px 15px 0 2px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -61,10 +60,8 @@
 .home__avatar .avatarIcon {
   font-size: 2.1rem;
   color: black;
-  margin: 5px;
-  height: 100%;
-  object-fit: contain;
-  box-sizing: border-box;
+  margin-right: 5px;
+  margin-bottom: 5px;
 }
 
 .home__avatarName {
