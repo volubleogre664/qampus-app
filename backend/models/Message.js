@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 const { model, Schema } = mongoose;
 
 const msgSchema = new Schema({
-  to: String,
-  from: String,
+  to: Schema.Types.ObjectId,
+  from: Schema.Types.ObjectId,
   time: String,
   textMsg: String,
   book: Schema.Types.ObjectId,

@@ -9,15 +9,7 @@ const userSchema = new Schema({
   picture: String,
   degree: String,
   bio: String,
-  contacts: [
-    {
-      id: Schema.Types.ObjectId,
-      firstName: String,
-      lastName: String,
-      studentNumber: String,
-      picture: String,
-    },
-  ],
+  contacts: [Schema.Types.ObjectId],
   password: String,
 });
 

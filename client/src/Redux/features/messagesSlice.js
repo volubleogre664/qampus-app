@@ -13,6 +13,8 @@ const messagesSlice = createSlice({
   initialState,
   reducers: {
     saveMessage(state, action) {
+      if (action.payload === null) return;
+
       if (Array.isArray(action.payload)) {
         state.messages = [...state.messages, ...action.payload];
       } else {
