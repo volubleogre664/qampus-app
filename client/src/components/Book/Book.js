@@ -72,7 +72,7 @@ function Book({ state, className, book, deleteBookClick, editBookClick }) {
       case "chats_book": {
         return (
           <>
-            <span>pending approval</span>
+            <span></span>
           </>
         );
       }
@@ -115,7 +115,12 @@ function Book({ state, className, book, deleteBookClick, editBookClick }) {
     <div className="book">
       {/* Book body | part with image */}
       <div className="book__imageContainer">
-        <img className="book__image" src={book?.frontCover} alt={book?.title} />
+        <img
+          loading="eager"
+          className="book__image"
+          src={book?.frontCover}
+          alt={book?.title}
+        />
       </div>
 
       {/* Book footer | part with delete and edit button */}

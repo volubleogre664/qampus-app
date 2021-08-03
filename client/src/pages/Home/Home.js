@@ -98,6 +98,7 @@ function Home({ history }) {
         <button className="home__avatar" onClick={handleAvatarClick}>
           {(user && user?.picture && (
             <img
+              loading="eager"
               className="avatarIcon"
               alt={`${user.firstName} ${user.lastName}`}
               src={user.picture}

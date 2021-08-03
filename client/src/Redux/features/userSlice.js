@@ -45,7 +45,7 @@ const userSlice = createSlice({
       state.imgCrop = action.payload;
     },
     addUserContact(state, action) {
-      if (state.user?.contacts?.length) {
+      if (state.user?.contacts?.length && action.payload) {
         state.user.contacts.push(action.payload);
       } else {
         state.user.contacts = [action.payloads];

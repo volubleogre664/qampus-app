@@ -1,8 +1,9 @@
 .book {
-  width: 280px;
+  width: 250px;
   background: #fff;
   position: relative;
   overflow: hidden;
+  height: fit-content;
   border-radius: 8px;
 }
 
@@ -107,6 +108,10 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+}
+
+.book__footerLeft p {
+  color: #000;
 }
 
 .book__footerRight {

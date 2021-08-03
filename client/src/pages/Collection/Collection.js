@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 
@@ -45,7 +45,6 @@ function Collection() {
 
   const [deleteBook] = useMutation(DELETE_BOOK, {
     onCompleted(data) {
-      console.log(data);
       dispatchBook({
         type: "DELETE_LIBRARY_BOOK",
         payload: data.deleteBook,
@@ -86,6 +85,10 @@ function Collection() {
   const cancelClicked = () => {
     setEdit({ ...edit, isEdit: false, bookInfo: {} });
   };
+
+  useEffect(() => {
+    document.title = "Book Collections - Qampus";
+  }, []);
 
   return (
     <div className="collection">

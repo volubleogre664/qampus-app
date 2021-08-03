@@ -7,7 +7,7 @@ import defaultImg from "../../account-home.png";
 import "./ProfileImage.css";
 
 function ProfileImage({ src }) {
-  const [{ imgCrop }, dispatch] = useUserHelpers();
+  const [{ user, imgCrop }, dispatch] = useUserHelpers();
   const fileInputRef = useRef(null);
 
   const handleFileInput = (inputEvent) => {
@@ -49,8 +49,9 @@ function ProfileImage({ src }) {
         </span>
         <img
           className="image"
+          loading="eager"
           src={imgCrop.croppedImgUrl || src || defaultImg}
-          alt=""
+          alt={(user && user.firstName + " " + user.lastName) || ""}
         />
       </div>
     </div>

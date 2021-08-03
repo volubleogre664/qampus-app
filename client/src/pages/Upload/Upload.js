@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useMutation } from "@apollo/react-hooks";
 
-import firebase from "firebase/app";
+import firebaseApp from "firebase/app";
 
 import Button from "../../components/Button/Button";
 import Loader from "../../components/Loader/Loader";
@@ -25,6 +25,7 @@ function Upload() {
 
   //References for input[file] to be accessed since it is hidden and cannot be clicked
   const frontCoverInputRef = useRef(null);
+  const firebaseStorage = firebaseApp.app().storage();
 
   // control the showing and hiding of loading animation
   const [loading, setLoading] = useState({
@@ -137,9 +138,10 @@ function Upload() {
       isLoading: true,
       message: "Uploading Images",
     });
-    const frontCoverRef = firebase
-      .storage()
-      .ref(`${user.id}/books/${bookUpload.title.replace(/ /g, "_")}.jpg`);
+
+    const frontCoverRef = firebaseStorage.ref(
+      `${user.id}/books/${bookUpload.title.replace(/ /g, "_")}.jpg`
+    );
 
     // Makes sure that files are not uploaded if the already exist
     // If they don't exist then they're uploaded
@@ -230,7 +232,7 @@ function Upload() {
   }
 
   useEffect(() => {
-    document.title = "Design - Qampus";
+    document.title = "Upload - Qampus";
   });
 
   // TODO: Design the whole form for confirming book details and actually make it work the push (-_-)

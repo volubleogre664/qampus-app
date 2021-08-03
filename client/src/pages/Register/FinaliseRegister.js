@@ -22,6 +22,7 @@ function CompleteRegistration() {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
   const [profile, setProfile] = useState("");
+  const firebaseStorage = firebase.storage();
   const [
     {
       user,
@@ -40,9 +41,9 @@ function CompleteRegistration() {
     e.preventDefault();
 
     setLoading(true);
-    const storageRef = firebase
-      .storage()
-      .ref(`${user.id}/profile/${user.firstName}.jpg`);
+    const storageRef = firebaseStorage.ref(
+      `${user.id}/profile/${user.firstName}.jpg`
+    );
 
     if (croppedImgUrl) {
       await storageRef
@@ -69,7 +70,6 @@ function CompleteRegistration() {
     update(_, { data }) {
       setLoading(false);
       if (data) {
-        console.log(data);
         dispatchUser({
           type: "SET_USER",
           payload: data.updateUser,

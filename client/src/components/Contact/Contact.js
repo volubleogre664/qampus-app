@@ -9,6 +9,7 @@ function Contact({ contact, onClick }) {
         {(contact?.picture && (
           <img
             className="contact__icon"
+            loading="eager"
             src={contact.picture}
             alt={[contact.firstName, contact.lastName].join(" ")}
           />

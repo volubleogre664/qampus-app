@@ -95,7 +95,6 @@ function Chats() {
   // Get messages as you move between contacts
   const [getMessagesQuery] = useLazyQuery(GET_MESSAGES_QUERY, {
     onCompleted(data) {
-      console.log(data);
       messageDispatch({
         payload: data?.getMessages,
       });
