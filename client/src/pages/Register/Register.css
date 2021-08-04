@@ -156,7 +156,8 @@
   max-width: 300px;
   display: flex;
   flex-flow: column nowrap;
-  padding-top: 15px;
+  box-sizing: border-box;
+  padding: 15px;
   gap: 10px;
   text-align: center;
   margin: auto;

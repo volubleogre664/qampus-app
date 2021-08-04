@@ -45,10 +45,14 @@ const userSlice = createSlice({
       state.imgCrop = action.payload;
     },
     addUserContact(state, action) {
-      if (state.user?.contacts?.length && action.payload) {
+      if (!action.payload) {
+        return;
+      }
+
+      if (state.user?.contacts?.length) {
         state.user.contacts.push(action.payload);
       } else {
-        state.user.contacts = [action.payloads];
+        state.user.contacts = [action.payload];
       }
 
       if (localStorage.getItem("user")) {
