@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useMutation } from "@apollo/react-hooks";
 
 import firebaseApp from "firebase/app";
@@ -6,14 +6,15 @@ import firebaseApp from "firebase/app";
 import Button from "../../components/Button/Button";
 import Loader from "../../components/Loader/Loader";
 import Input from "../../components/Input/Input";
+import Bullet from "../../components/Bullet/Bullet";
 import ConfirmBook from "./ConfirmBook";
 
 import { useForm } from "../../utils/hooks";
-import { useBooksHelpers, useUserHelpers } from "../../Redux/getSlices";
 import { UPLOAD_BOOK } from "../../utils/graphql";
+import { useBooksHelpers, useUserHelpers } from "../../Redux/getSlices";
+import { upload as uploadBullets } from "../../text files/bulletPoints";
 
 import "./Upload.css";
-import { useEffect } from "react";
 
 // I defined this here because it was not persistent
 const bookCovers = {};
@@ -319,50 +320,14 @@ function Upload() {
       <div className="bullets">
         <p className="list_tittle">Frequently asked questions</p>
         <ul className="tilesWrap">
-          <li>
-            <h2>01</h2>
-            <h3>What if I don't remember the module code?</h3>
-            <p>
-              You can leave out the module code but your book will be harder to
-              find when someone uses it as a search option.
-            </p>
-          </li>
-          <li>
-            <h2>02</h2>
-            <h3>How long will my book stay on Qampus?</h3>
-            <p>
-              Your book will stay on the platform for six months, this is to
-              ensure that unsold textbooks don't remain on our databses for too
-              long.
-            </p>
-          </li>
-          <li>
-            <h2>03</h2>
-            <h3>How do I know when someone wants to buy my book?</h3>
-            <p>
-              When someone chooes to buy your book, you will get a message from
-              them on the Qampus chat system. From there, you can arrange with
-              them where and when to meet in order to make the exchange.
-            </p>
-          </li>
-          <li>
-            <h2>04</h2>
-            <h3>What happens after I sell my book?</h3>
-            <p>
-              After selling your book, you should go to your book collection and
-              update it's status to SOLD. After doing so, it will no longer be
-              shown in the search window and it will be saved on our system to
-              increase your credibility.
-            </p>
-          </li>
-          <li>
-            <h2>05</h2>
-            <h3>How do I get verified?</h3>
-            <p>
-              In order to get verified you must sell ten books on the platform
-              or get 20 people to create an account - see the HELP tab.
-            </p>
-          </li>
+          {uploadBullets.map((item, i) => (
+            <Bullet
+              key={`${item.title}_${i}`}
+              index={i + 1}
+              title={item.title}
+              content={item.content}
+            />
+          ))}
         </ul>
       </div>
     </div>

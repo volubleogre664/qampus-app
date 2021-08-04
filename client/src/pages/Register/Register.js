@@ -1,13 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 // import { Link } from "react-router-dom";
 
 import Loader from "../../components/Loader/Loader";
 import Input from "../../components/Input/Input";
+import Bullet from "../../components/Bullet/Bullet";
 
 import { useForm } from "../../utils/hooks";
 import { REGISTER_USER } from "../../utils/graphql";
 import { useUserHelpers } from "../../Redux/getSlices";
+import { register as registerBullets } from "../../text files/bulletPoints.js";
 
 import logo from "../../logo.png";
 import Button from "../../components/Button/Button";
@@ -24,6 +26,21 @@ function Register({ history }) {
     confirmPassword: "",
   });
   const [, dispatch] = useUserHelpers();
+  const [testCases] = useState({
+    hasUppercase: new RegExp(/[A-Z]/),
+    hasLowercase: new RegExp(/[a-z]/),
+    hasNumbers: new RegExp(/[0-9]/),
+  });
+
+  const passwordOnChange = (event) => {
+    if (
+      testCases.hasUppercase.test(values.password) &&
+      testCases.hasLowercase.test(values.password) &&
+      testCases.hasNumbers.test(values.password)
+    ) {
+      onChange(event);
+    }
+  };
 
   const [register, { loading }] = useMutation(REGISTER_USER, {
     update(_, { data: { register: userData } }) {
@@ -67,39 +84,14 @@ function Register({ history }) {
         <div className="register__aside">
           <p className="list_tittle">Why should I create an account?</p>
           <ul className="tilesWrap">
-            <li>
-              <h2>01</h2>
-              <h3>Advertise to the entire campus</h3>
-              <p>
-                You can upload your used texbooks and connect with thousands of
-                students who are looking to buy them. When you register you can
-                upload 2 textbooks for FREE.
-              </p>
-            </li>
-            <li>
-              <h2>02</h2>
-              <h3>Spend less on textbooks</h3>
-              <p>
-                Save yourself thousands of rands in texbooks fees by buying used
-                texbooks from students who are on your campus.{" "}
-              </p>
-            </li>
-            <li>
-              <h2>03</h2>
-              <h3>Never get lost on campus</h3>
-              <p>
-                Do you have an unfamiliar class venue? Find your way around
-                campus by using our navigation system.
-              </p>
-            </li>
-            <li>
-              <h2>04</h2>
-              <h3>Meet more interesting people</h3>
-              <p>
-                Connect with your peers who are registered on Qampus and get to
-                know them better.
-              </p>
-            </li>
+            {registerBullets.map((item, i) => (
+              <Bullet
+                key={`${item.title}_${i}`}
+                index={i + 1}
+                title={item.title}
+                content={item.content}
+              />
+            ))}
           </ul>
         </div>
 
@@ -113,6 +105,10 @@ function Register({ history }) {
               onChange={onChange}
               label="First Name(s)"
               id="firstName"
+              onInput={(e) => e.target.setCustomValidity("")}
+              onInvalid={(e) =>
+                e.target.setCustomValidity("Your firstname cannot be empty")
+              }
             />
 
             <Input
@@ -123,6 +119,10 @@ function Register({ history }) {
               onChange={onChange}
               label="Last Name"
               id="lastName"
+              onInput={(e) => e.target.setCustomValidity("")}
+              onInvalid={(e) =>
+                e.target.setCustomValidity("Your lastname cannot be empty")
+              }
             />
 
             <Input
@@ -133,6 +133,12 @@ function Register({ history }) {
               onChange={onChange}
               label="Email Address"
               id="email"
+              onInput={(e) => e.target.setCustomValidity("")}
+              onInvalid={(e) =>
+                e.target.setCustomValidity(
+                  "Your email is not valid, Please re-enter"
+                )
+              }
             />
 
             <Input
@@ -140,18 +146,31 @@ function Register({ history }) {
               name="studentNumber"
               required
               maxLength="10"
+              minLength="10"
               value={values.studentNumber}
               onChange={onChange}
               label="Student Number"
               id="studentNumber"
+              onInput={(e) => e.target.setCustomValidity("")}
+              onInvalid={(e) =>
+                e.target.setCustomValidity(
+                  "Sttudent number must be 10 characters(0-9)"
+                )
+              }
             />
 
             <Input
               type="password"
               name="password"
               required
+              minLength="8"
               value={values.password}
-              onChange={onChange}
+              onChange={passwordOnChange}
+              testCases={{
+                hasUppercase: testCases.hasUppercase.test(values.password),
+                hasLowercase: testCases.hasLowercase.test(values.password),
+                hasNumber: testCases.hasNumbers.test(values.password),
+              }}
               label="Password"
               id="password"
             />
@@ -162,8 +181,15 @@ function Register({ history }) {
               required
               value={values.confirmPassword}
               onChange={onChange}
+              pattern={`/${values.password}/`}
               label="Confirm password"
               id="confirmPassword"
+              onInput={(e) => e.target.setCustomValidity("")}
+              onInvalid={(e) =>
+                e.target.setCustomValidity(
+                  "Make sure your passwords are the same"
+                )
+              }
             />
 
             <Button type="submit" text="Sign up" />
