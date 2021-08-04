@@ -35,8 +35,6 @@ const booksSlice = createSlice({
         state.bookList = state.bookList.filter(
           (book) => book.id !== action.payload
         );
-
-        state.bookList.
       }
     },
   },
