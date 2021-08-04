@@ -78,7 +78,7 @@ function Upload() {
       // it won't be recorded in RAM. The second argument is an object and it reads:
       // go inside the object take data, go inside data take uploadBook and rename uploadBook to book
       dispatchBooks({
-        type: "SET_BOOK_LIST",
+        type: "SET_LIBRARY_BOOK_LIST",
         payload: book,
       });
 
