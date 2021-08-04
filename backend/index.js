@@ -16,27 +16,28 @@ import resolvers from "./graphql/resolvers/index.js";
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 const pubsub = new PubSub();
 const PORT = process.env.PORT || 5000;
-const URL = "https://qampus-app.herokuapp.com";
-// const URL = "http://localhost";
+// const URL = "https://qampus-app.herokuapp.com";
+const URL = "http://localhost";
 const corsOptions = {
-  origin: "https://qampus.co.za",
-  // origin: "http://localhost:3000",
+  // origin: "https://qampus.co.za",
+  origin: "*",
   credentials: true,
 };
 
 const app = express();
+app.get(
+  "/.well-known/pki-validation/9846C84BCF4D037C7AEC39D28E98CB88.txt",
+  async function (req, res) {
+    res.setHeader("Content-Type", "text/txt");
+    res.sendFile("./9846C84BCF4D037C7AEC39D28E98CB88.txt");
+    res.end();
+  }
+);
 const httpServer = createServer(app);
 const server = new ApolloServer({
   schema,
   context: ({ req }) => ({ req, pubsub }),
 });
-
-app.get(
-  "/.well-known/pki-validation/9846C84BCF4D037C7AEC39D28E98CB88.txt",
-  async function (req, res) {
-    res.sendFile("./9846C84BCF4D037C7AEC39D28E98CB88.txt");
-  }
-);
 
 await server.start();
 server.applyMiddleware({ app, cors: corsOptions });
@@ -51,9 +52,9 @@ const subscriptionServer = SubscriptionServer.create(
 
 // Shut down in the case of interrupt and termination signals
 // We expect to handle this more cleanly in the future. See (#5074)[https://github.com/apollographql/apollo-server/issues/5074] for reference.
-["SIGINT", "SIGTERM"].forEach((signal) => {
-  process.on(signal, () => subscriptionServer.close());
-});
+// ["SIGINT", "SIGTERM"].forEach((signal) => {
+//   process.on(signal, () => subscriptionServer.close());
+// });
 
 mongoose
   .connect(MONGO_DB, {
@@ -66,6 +67,6 @@ mongoose
     return httpServer.listen({ port: PORT });
   })
   .then(() => {
-    console.log(`Server running at ${URL}${server.graphqlPath}:${PORT}`);
+    console.log(`Server running at ${URL}:${PORT}${server.graphqlPath}`);
   })
   .catch((err) => console.log("Error: ", err));

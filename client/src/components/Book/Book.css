@@ -3,7 +3,7 @@
   background: #fff;
   position: relative;
   overflow: hidden;
-  height: fit-content;
+  height: auto;
   border-radius: 8px;
 }
 
@@ -19,7 +19,8 @@
 
 .book__image {
   width: 100%;
-  object-fit: contain;
+  max-height: 280px;
+  object-fit: fill;
 }
 
 .book__details {
@@ -106,7 +107,7 @@
   color: #000 !important;
   display: -webkit-inline-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   overflow: hidden;
 }
 

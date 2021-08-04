@@ -249,74 +249,72 @@ function Upload() {
       )}
 
       {loading.isLoading && <Loader message={loading.message} />}
-      <div className="upload_section">
-        <div className="upload">
-          <h1 className="upload__title">Upload a book</h1>
-          <hr className="upload_separator" />
-          <form onSubmit={uploadImagesToCloud} className="upload__form">
-            <div className="wrapper">
-              <div
-                role="button"
-                className="box"
-                onClick={() => frontCoverInputRef.current.click()}
-              >
-                <div id="front" className="js--image-preview">
-                  <img src={values.frontCover} alt="" className="thumb" />
-                </div>
-                <div className="upload-options">
-                  <label onClick={(e) => e.stopPropagation()} className="front">
-                    Front Cover
-                    <input
-                      type="file"
-                      name="frontCover"
-                      className="image-upload"
-                      accept="image/*"
-                      multiple={false}
-                      required={true}
-                      ref={frontCoverInputRef}
-                      onChange={onChange}
-                      style={{ display: "none" }}
-                    />
-                  </label>
-                </div>
+      <div className="upload">
+        <h1 className="upload__title">Upload a book</h1>
+        <hr className="upload_separator" />
+        <form onSubmit={uploadImagesToCloud} className="upload__form">
+          <div className="wrapper">
+            <div
+              role="button"
+              className="box"
+              onClick={() => frontCoverInputRef.current.click()}
+            >
+              <div id="front" className="js--image-preview">
+                <img src={values.frontCover} alt="" className="thumb" />
+              </div>
+              <div className="upload-options">
+                <label onClick={(e) => e.stopPropagation()} className="front">
+                  Front Cover
+                  <input
+                    type="file"
+                    name="frontCover"
+                    className="image-upload"
+                    accept="image/*"
+                    multiple={false}
+                    required={true}
+                    ref={frontCoverInputRef}
+                    onChange={onChange}
+                    style={{ display: "none" }}
+                  />
+                </label>
               </div>
             </div>
+          </div>
 
-            <Input
-              type="text"
-              name="isbn"
-              id="isbn"
-              required={true}
-              onChange={onChange}
-              value={values.isbn}
-              label="Book ISBN"
-              placeholder="9789544007737"
-            />
+          <Input
+            type="text"
+            name="isbn"
+            id="isbn"
+            required={true}
+            onChange={onChange}
+            value={values.isbn}
+            label="Book ISBN"
+            placeholder="9789544007737"
+          />
 
-            <Input
-              type="text"
-              name="moduleCode"
-              id="moduleCode"
-              onChange={onChange}
-              value={values.moduleCode}
-              label="Module Code"
-              placeholder="CSIS1664"
-            />
+          <Input
+            type="text"
+            name="moduleCode"
+            id="moduleCode"
+            onChange={onChange}
+            value={values.moduleCode}
+            label="Module Code"
+            placeholder="CSIS1664"
+          />
 
-            <Input
-              type="number"
-              name="price"
-              id="price"
-              required={true}
-              onChange={onChange}
-              value={values.price}
-              label="Asking Price (R)"
-              placeholder="350"
-            />
+          <Input
+            type="number"
+            name="price"
+            id="price"
+            required={true}
+            onChange={onChange}
+            value={values.price}
+            label="Asking Price (R)"
+            placeholder="350"
+          />
 
-            <Button text="Upload" type="submit" />
-          </form>
-        </div>
+          <Button text="Upload" type="submit" />
+        </form>
       </div>
       <div className="bullets">
         <p className="list_tittle">Frequently asked questions</p>
