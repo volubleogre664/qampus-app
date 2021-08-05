@@ -1,19 +1,20 @@
 .profile {
-  width:65%;
+  width: 60%;
+  max-width: 800px;
   height: fit-content;
   box-sizing: border-box;
   margin: auto;
   margin-top: 50px;
   overflow: hidden;
   overflow-y: auto;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   background: rgba( 0, 0, 0, 0.40 );
   backdrop-filter: blur( 15px );
   -webkit-backdrop-filter: blur( 15px );
   border-radius: 10px;
-  padding: 0px 100px 20px 20px;
+  padding: 0px 50px 0px 50px;
 }
 
 .profile_header {
@@ -38,9 +39,11 @@
 
 .profile__body {
   margin-top: 20px;
-  width: 100%;
+  margin: auto;
+  width:fit-content;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
+  justify-content: center;
   padding: 0;
   justify-content: flex-start;
   text-align: left  ;
@@ -49,8 +52,8 @@
 }
 
 .profile__bodyAside {
-  width: 100%;
-  margin: 0;
+  width: fit-content;
+  margin: auto;
   margin-top: auto;
 }
 
@@ -73,12 +76,16 @@
 
 .nameDiv{
   text-align: center;
-  width: 100%;
+  margin: auto;
+  margin-top: 30px;
+  width: 90%;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   justify-content: center;
+  color: #ffffff;
 }
 .name{
+  margin: auto;
   font-size: 1.7rem;
   font-family: "Poiret One";
 }
@@ -86,9 +93,9 @@
 #ico {
   font-size: 1.3rem;
   margin-left: 15px;
-  height: 35px;
+  height: 100%;
 }
-.profile__bodyMain .separator {
+.nameDiv .separator {
   border-top: 1px solid white;
   border-radius: 5px;
   width: 100%;
@@ -100,12 +107,12 @@
   width: 100%;
   max-width: 350px;
   margin: auto;
+  padding-left: 5%;
   display: flex;
   flex-direction: column;
   gap: 10px;
   color: white;
   text-align: left;
-  
 }
 .profile__bodyMain > form > label > h3{
   font-family: "Poiret One";
@@ -115,7 +122,7 @@
 #textbox{
   transition: all ease-in-out 0.2s;
   background: transparent;
-  width: 100%;
+  width: 80%;
   height: 29px;
   max-height: 29px;
   outline: none;
@@ -146,7 +153,7 @@
   transition: all ease-in-out 0.2s;
   background: transparent;
   color: white;
-  width: 100%;
+  width: 80%;
   outline: none;
   border: transparent solid 1px;
   border-radius: 3px;

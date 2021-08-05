@@ -10,9 +10,15 @@ function Profile() {
 
   return (
     <div className="profile">
-      <header className="profile_header">
-        <h1 className="title">Your Profile</h1>
-      </header>
+    
+          <div className="nameDiv">
+            <p className="name">
+              {user?.firstName || "Nkosingiphile "}{" "}
+              {user?.lastName || "Mkwanazi"}
+              <GoVerified id="ico" />
+            </p>{" "}
+            <hr className="separator" />
+          </div>
 
       <section className="profile__body">
         <aside className="profile__bodyAside">
@@ -20,15 +26,7 @@ function Profile() {
         </aside>
 
         <main className="profile__bodyMain">
-          <div className="nameDiv">
-            <p className="name">
-              {user?.firstName || "Nkosingiphile "}{" "}
-              {user?.lastName || "Mkwanazi"}
-            </p>{" "}
-            <GoVerified id="ico" />
-            <hr className="separator" />
-          </div>
-
+         
           <form>
             <label htmlFor="degree">
               <h3>Student number:</h3>
