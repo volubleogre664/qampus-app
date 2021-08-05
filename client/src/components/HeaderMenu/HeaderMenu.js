@@ -16,7 +16,7 @@ function HeaderMenu() {
   };
 
   const handleLogoutClick = () => {
-    // eslint-disable-next-line no-restricted-globals
+    handleClick();
     import("../../utils/popUp.js").then((mbox) =>
       mbox.default({
         title: "Logging out!",
@@ -42,14 +42,14 @@ function HeaderMenu() {
 
       <nav className="header__nav">
         <ul className="nav__links">
-          <NavLink to="/" label="home" />
-          <NavLink to="/upload" label="upload" />
-          <NavLink to="/collection" label="collection" />
-          <NavLink to="/chats" label="chats" />
-          <NavLink to="/navigation" label="navigation" />
-          <NavLink to="/profile" label="profile" />
-          <NavLink to="/help" label="help" />
-          <NavLink label="|" />
+          <NavLink onClick={handleClick} to="/" label="home" />
+          <NavLink onClick={handleClick} to="/upload" label="upload" />
+          <NavLink onClick={handleClick} to="/collection" label="collection" />
+          <NavLink onClick={handleClick} to="/chats" label="chats" />
+          <NavLink onClick={handleClick} to="/navigation" label="navigation" />
+          <NavLink onClick={handleClick} to="/profile" label="profile" />
+          <NavLink onClick={handleClick} to="/help" label="help" />
+          <NavLink onClick={handleClick} label="|" />
           <NavLink onClick={handleLogoutClick} label="logout" />
         </ul>
       </nav>

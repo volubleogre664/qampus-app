@@ -73,15 +73,9 @@
 }
 /*Code for list*/
 :root {
-  --bg: #fdfdfd;
-  --highlight1: #03a9f4;
-  --highlight2: purple;
-  --color: #1a1e24;
-  --font-number: "Oxygen";
   --font-head: "Poiret One";
-  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
+
 .list_tittle {
   text-align: center;
   align-self: center;
@@ -89,6 +83,7 @@
   margin-bottom: 30px;
   font: lighter 1.8rem var(--font-head);
 }
+
 .tilesWrap {
   display: flex;
   flex-flow: column nowrap;
@@ -96,52 +91,7 @@
   align-items: center;
   margin: auto;
 }
-.tilesWrap li {
-  display: block;
-  clear: both;
-  counter-increment: list;
-  padding-bottom: 25px;
-  font: lighter 1rem var(--font);
-  position: relative;
-  max-width: 69%;
-}
-.tilesWrap li:before {
-  font: bold 2.25rem/1 var(--font-number);
-  content: counter(list);
-  width: 46px;
-  height: 46px;
-  float: left;
-  margin: 0 1rem 0.7rem 0;
-  color: var(--bg);
-  background: var(--highlight1)
-    linear-gradient(to bottom right, var(--highlight1) 25%, var(--highlight2));
-  text-shadow: 0 0 2px var(--highlight1);
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  shape-outside: ellipse();
-  z-index: 1;
-}
-.tilesWrap li:after {
-  width: 23px;
-  height: 23px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: "";
-  background: var(--highlight1);
-  z-index: -1;
-  border-top-left-radius: 3px;
-}
-.tilesWrap h2 {
-  display: none;
-}
-.tilesWrap h3 {
-  padding: 0;
-  margin: auto;
-  font: normal 1.5rem var(--font-head);
-}
+
 .register__main {
   width: 100%;
   margin: auto;
@@ -155,8 +105,9 @@
   min-width: 200px;
   max-width: 300px;
   display: flex;
-  flex-flow: column nowrap;
-  padding-top: 15px;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 20px;
   gap: 10px;
   text-align: center;
   margin: auto;
@@ -167,8 +118,12 @@
   -webkit-backdrop-filter: blur(15px);
 }
 
+.register__mainForm > :last-child {
+  margin-top: 10px;
+}
+
 .register__footer {
-  width: 100%;
+  width: fit-content;
   font-size: 1rem;
   font-weight: normal;
   margin-top: 30px;

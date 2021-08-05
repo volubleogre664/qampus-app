@@ -62,30 +62,29 @@ function Chats() {
   // * This is part of preparing of sending the book
   const [getUserData] = useLazyQuery(GET_USER_DATA, {
     onCompleted(data) {
-      const userData = user?.contacts?.find(
+      let userData = user?.contacts?.find(
         (item) => item?.studentNumber === book.bookOwner
       );
 
-      if (!userData) {
+      if (!userData && data.getUserData) {
+        userData = data.getUserData;
         userDispatch({
           type: "ADD_USER_CONTACT",
-          payload: data.getUserData,
+          payload: userData,
         });
       }
 
-      // console.log(data);
-
-      setCurrentContact(userData || data.getUserData);
-      handleContactClick(userData || data.getUserData);
-      addMessage({
-        variables: {
-          to: userData?.id || data.getUserData.id,
-          textMsg: `Hi ${
-            userData?.firstName || data.getUserData.firstName
-          } I would like to purchase this book`,
-          book: book.bookId,
-        },
-      });
+      if (userData.id) {
+        setCurrentContact(userData);
+        handleContactClick(userData);
+        addMessage({
+          variables: {
+            to: userData?.id,
+            textMsg: `Hi ${userData?.firstName} I would like to purchase this book`,
+            book: book.bookId,
+          },
+        });
+      }
     },
     onError(err) {
       console.log(err.message);
@@ -95,7 +94,6 @@ function Chats() {
   // Get messages as you move between contacts
   const [getMessagesQuery] = useLazyQuery(GET_MESSAGES_QUERY, {
     onCompleted(data) {
-      console.log(data);
       messageDispatch({
         payload: data?.getMessages,
       });

@@ -1,19 +1,20 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useMutation } from "@apollo/react-hooks";
 
-import firebase from "firebase/app";
+import firebaseApp from "firebase/app";
 
 import Button from "../../components/Button/Button";
 import Loader from "../../components/Loader/Loader";
 import Input from "../../components/Input/Input";
+import Bullet from "../../components/Bullet/Bullet";
 import ConfirmBook from "./ConfirmBook";
 
 import { useForm } from "../../utils/hooks";
-import { useBooksHelpers, useUserHelpers } from "../../Redux/getSlices";
 import { UPLOAD_BOOK } from "../../utils/graphql";
+import { useBooksHelpers, useUserHelpers } from "../../Redux/getSlices";
+import { upload as uploadBullets } from "../../text files/bulletPoints";
 
 import "./Upload.css";
-import { useEffect } from "react";
 
 // I defined this here because it was not persistent
 const bookCovers = {};
@@ -25,6 +26,7 @@ function Upload() {
 
   //References for input[file] to be accessed since it is hidden and cannot be clicked
   const frontCoverInputRef = useRef(null);
+  const firebaseStorage = firebaseApp.app().storage();
 
   // control the showing and hiding of loading animation
   const [loading, setLoading] = useState({
@@ -77,7 +79,7 @@ function Upload() {
       // it won't be recorded in RAM. The second argument is an object and it reads:
       // go inside the object take data, go inside data take uploadBook and rename uploadBook to book
       dispatchBooks({
-        type: "SET_BOOK_LIST",
+        type: "SET_LIBRARY_BOOK_LIST",
         payload: book,
       });
 
@@ -137,9 +139,10 @@ function Upload() {
       isLoading: true,
       message: "Uploading Images",
     });
-    const frontCoverRef = firebase
-      .storage()
-      .ref(`${user.id}/books/${bookUpload.title.replace(/ /g, "_")}.jpg`);
+
+    const frontCoverRef = firebaseStorage.ref(
+      `${user.id}/books/${bookUpload.title.replace(/ /g, "_")}.jpg`
+    );
 
     // Makes sure that files are not uploaded if the already exist
     // If they don't exist then they're uploaded
@@ -230,7 +233,7 @@ function Upload() {
   }
 
   useEffect(() => {
-    document.title = "Design - Qampus";
+    document.title = "Upload - Qampus";
   });
 
   // TODO: Design the whole form for confirming book details and actually make it work the push (-_-)
@@ -247,122 +250,84 @@ function Upload() {
       )}
 
       {loading.isLoading && <Loader message={loading.message} />}
-      <div className="upload_section">
-        <div className="upload">
-          <h1 className="upload__title">Upload a book</h1>
-          <hr className="upload_separator" />
-          <form onSubmit={uploadImagesToCloud} className="upload__form">
-            <div className="wrapper">
-              <div
-                role="button"
-                className="box"
-                onClick={() => frontCoverInputRef.current.click()}
-              >
-                <div id="front" className="js--image-preview">
-                  <img src={values.frontCover} alt="" className="thumb" />
-                </div>
-                <div className="upload-options">
-                  <label onClick={(e) => e.stopPropagation()} className="front">
-                    Front Cover
-                    <input
-                      type="file"
-                      name="frontCover"
-                      className="image-upload"
-                      accept="image/*"
-                      multiple={false}
-                      required={true}
-                      ref={frontCoverInputRef}
-                      onChange={onChange}
-                      style={{ display: "none" }}
-                    />
-                  </label>
-                </div>
+      <div className="upload">
+        <h1 className="upload__title">Upload a book</h1>
+        <hr className="upload_separator" />
+        <form onSubmit={uploadImagesToCloud} className="upload__form">
+          <div className="wrapper">
+            <div
+              role="button"
+              className="box"
+              onClick={() => frontCoverInputRef.current.click()}
+            >
+              <div id="front" className="js--image-preview">
+                <img src={values.frontCover} alt="" className="thumb" />
+              </div>
+              <div className="upload-options">
+                <label onClick={(e) => e.stopPropagation()} className="front">
+                  Front Cover
+                  <input
+                    type="file"
+                    name="frontCover"
+                    className="image-upload"
+                    accept="image/*"
+                    multiple={false}
+                    required={true}
+                    ref={frontCoverInputRef}
+                    onChange={onChange}
+                    style={{ display: "none" }}
+                  />
+                </label>
               </div>
             </div>
+          </div>
 
-            <Input
-              type="text"
-              name="isbn"
-              id="isbn"
-              required={true}
-              onChange={onChange}
-              value={values.isbn}
-              label="Book ISBN"
-              placeholder="9789544007737"
-            />
+          <Input
+            type="text"
+            name="isbn"
+            id="isbn"
+            required={true}
+            onChange={onChange}
+            value={values.isbn}
+            label="Book ISBN"
+            placeholder="9789544007737"
+          />
 
-            <Input
-              type="text"
-              name="moduleCode"
-              id="moduleCode"
-              onChange={onChange}
-              value={values.moduleCode}
-              label="Module Code"
-              placeholder="CSIS1664"
-            />
+          <Input
+            type="text"
+            name="moduleCode"
+            id="moduleCode"
+            onChange={onChange}
+            value={values.moduleCode}
+            label="Module Code"
+            placeholder="CSIS1664"
+          />
 
-            <Input
-              type="number"
-              name="price"
-              id="price"
-              required={true}
-              onChange={onChange}
-              value={values.price}
-              label="Asking Price (R)"
-              placeholder="350"
-            />
+          <Input
+            type="number"
+            name="price"
+            id="price"
+            required={true}
+            onChange={onChange}
+            value={values.price}
+            label="Asking Price (R)"
+            placeholder="350"
+          />
 
-            <Button text="Upload" type="submit" />
-          </form>
-        </div>
+          <Button text="Upload" type="submit" />
+        </form>
       </div>
       <div className="bullets">
         <p className="list_tittle">Frequently asked questions</p>
         <ul className="tilesWrap">
-          <li>
-            <h2>01</h2>
-            <h3>What if I don't remember the module code?</h3>
-            <p>
-              You can leave out the module code but your book will be harder to
-              find when someone uses it as a search option.
-            </p>
-          </li>
-          <li>
-            <h2>02</h2>
-            <h3>How long will my book stay on Qampus?</h3>
-            <p>
-              Your book will stay on the platform for six months, this is to
-              ensure that unsold textbooks don't remain on our databses for too
-              long.
-            </p>
-          </li>
-          <li>
-            <h2>03</h2>
-            <h3>How do I know when someone wants to buy my book?</h3>
-            <p>
-              When someone chooes to buy your book, you will get a message from
-              them on the Qampus chat system. From there, you can arrange with
-              them where and when to meet in order to make the exchange.
-            </p>
-          </li>
-          <li>
-            <h2>04</h2>
-            <h3>What happens after I sell my book?</h3>
-            <p>
-              After selling your book, you should go to your book collection and
-              update it's status to SOLD. After doing so, it will no longer be
-              shown in the search window and it will be saved on our system to
-              increase your credibility.
-            </p>
-          </li>
-          <li>
-            <h2>05</h2>
-            <h3>How do I get verified?</h3>
-            <p>
-              In order to get verified you must sell ten books on the platform
-              or get 20 people to create an account - see the HELP tab.
-            </p>
-          </li>
+          {uploadBullets.map((item, i) => (
+            <Bullet
+              key={`${item.title}_${i}`}
+              index={i + 1}
+              title={item.title}
+              content={item.content}
+            />
+          ))}
         </ul>
       </div>
     </div>
