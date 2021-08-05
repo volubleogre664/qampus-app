@@ -105,9 +105,9 @@
   min-width: 200px;
   max-width: 300px;
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   box-sizing: border-box;
-  padding: 15px;
+  padding: 20px;
   gap: 10px;
   text-align: center;
   margin: auto;
@@ -118,8 +118,12 @@
   -webkit-backdrop-filter: blur(15px);
 }
 
+.register__mainForm > :last-child {
+  margin-top: 10px;
+}
+
 .register__footer {
-  width: 100%;
+  width: fit-content;
   font-size: 1rem;
   font-weight: normal;
   margin-top: 30px;

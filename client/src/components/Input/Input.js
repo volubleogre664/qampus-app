@@ -1,10 +1,21 @@
+import { useState } from "react";
 import { useLocation } from "react-router";
 import CheckIcon from "@material-ui/icons/CheckCircleOutlineOutlined";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 
 import "./Input.css";
 
-function Input({ label, id, testCases, ...rest }) {
+function Input({ label, id, type, testCases, ...rest }) {
   const { pathname: path } = useLocation();
+  const [passwordType, setPasswordType] = useState(type);
+
+  const showHidePassword = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (passwordType === type) setPasswordType("text");
+    else setPasswordType(type);
+  };
 
   // I used var to bypass the block scope
   if (testCases) {
@@ -14,8 +25,13 @@ function Input({ label, id, testCases, ...rest }) {
   return (
     <label className="inputLabel" htmlFor={id}>
       {label}: <br />
-      <input className="formInput" id={id} {...rest} />
-      {rest.type === "password" &&
+      <input
+        className="formInput"
+        type={(type === "password" && passwordType) || type}
+        id={id}
+        {...rest}
+      />
+      {type === "password" &&
         !new RegExp(/confirm/).test(rest.name) &&
         path === "/register" && (
           <>
@@ -47,6 +63,13 @@ function Input({ label, id, testCases, ...rest }) {
             <span className="pointer"></span>
           </>
         )}
+      {type === "password" && (
+        <button className="formInput__showPassword" onClick={showHidePassword}>
+          {(passwordType === "password" && (
+            <VisibilityOffIcon className="passwordOff" />
+          )) || <VisibilityIcon className="passwordOn" />}
+        </button>
+      )}
     </label>
   );
 }

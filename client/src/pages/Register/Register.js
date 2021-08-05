@@ -32,13 +32,13 @@ function Register({ history }) {
     hasNumbers: new RegExp(/[0-9]/),
   });
 
-  const passwordOnChange = (event) => {
+  const onSubmitCheck = (event) => {
     if (
       testCases.hasUppercase.test(values.password) &&
       testCases.hasLowercase.test(values.password) &&
       testCases.hasNumbers.test(values.password)
     ) {
-      onChange(event);
+      onSubmit(event);
     }
   };
 
@@ -96,7 +96,7 @@ function Register({ history }) {
         </div>
 
         <div className="register__main">
-          <form onSubmit={onSubmit} className="register__mainForm">
+          <form onSubmit={onSubmitCheck} className="register__mainForm">
             <Input
               type="text"
               name="firstName"
@@ -165,7 +165,7 @@ function Register({ history }) {
               required
               minLength="8"
               value={values.password}
-              onChange={passwordOnChange}
+              onChange={onChange}
               testCases={{
                 hasUppercase: testCases.hasUppercase.test(values.password),
                 hasLowercase: testCases.hasLowercase.test(values.password),
