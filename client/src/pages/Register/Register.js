@@ -26,6 +26,7 @@ function Register({ history }) {
     confirmPassword: "",
   });
   const [, dispatch] = useUserHelpers();
+  const [isEmail, setIsEmail] = useState(false);
   const [testCases] = useState({
     hasUppercase: new RegExp(/[A-Z]/),
     hasLowercase: new RegExp(/[a-z]/),
@@ -36,10 +37,19 @@ function Register({ history }) {
     if (
       testCases.hasUppercase.test(values.password) &&
       testCases.hasLowercase.test(values.password) &&
-      testCases.hasNumbers.test(values.password)
+      testCases.hasNumbers.test(values.password) &&
+      isEmail
     ) {
       onSubmit(event);
     }
+  };
+
+  const onEmailChange = (e) => {
+    const emailRegex = new RegExp(
+      /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/
+    );
+    setIsEmail(emailRegex.test(e.target.value));
+    onChange(e);
   };
 
   const [register, { loading }] = useMutation(REGISTER_USER, {
@@ -126,19 +136,13 @@ function Register({ history }) {
             />
 
             <Input
-              type="email"
               name="email"
-              required
+              type="email"
               value={values.email}
-              onChange={onChange}
+              onChange={onEmailChange}
               label="Email Address"
               id="email"
-              onInput={(e) => e.target.setCustomValidity("")}
-              onInvalid={(e) =>
-                e.target.setCustomValidity(
-                  "Your email is not valid, Please re-enter"
-                )
-              }
+              isValid={isEmail}
             />
 
             <Input
