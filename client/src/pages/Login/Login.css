@@ -31,11 +31,10 @@
   filter: drop-shadow(2px 4px 4px #000000);
 }
 
-.welcome__text {
+.welcome__text > p{
   text-align: center;
   font-size: 2rem;
   font-weight: 400;
-  /* font-family: 'Amatic SC', cursive;   */
   font-style: normal;
   font-family: "Poiret One";
 }
