@@ -1,0 +1,45 @@
+.collection {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  width: 100%;
+  padding: 20px 30px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.collection__header {
+  color: #fff;
+}
+
+.collection__header p {
+  font-size: 1.8rem;
+  text-align: center;
+  font-family: "Poiret One";
+}
+
+.collection__header > .collection__headerSeparator {
+  width: 65%;
+  margin: 5px auto 20px auto;
+}
+
+.collection__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 30px;
+}
+
+.collection__footer {
+  margin-top: 30px;
+}
+/*# sourceMappingURL=Collection.css.map */

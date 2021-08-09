@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css?family=Oxygen&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+.menuItem {
+  padding: 10px;
+  padding-bottom: 0;
+  width: 210px;
+  min-width: 210px;
+  max-width: 210px;
+  height: 200px;
+  min-height: 200px;
+  max-height: 200px;
+  background: rgb(245, 245, 255);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  user-select: none;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+  box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, 0.3),
+    -2px -2px 3px 0 rgba(0, 0, 0, 0.3);
+}
+
+.menuItem:hover {
+  transition: transform ease-out 0.2s;
+  transform: scale(0.95);
+}
+
+.menuItem > .menuItem__icon > * {
+  font-size: 2.9rem;
+  color: rgb(19, 161, 242);
+  /* color: rgb(0, 5, 7); */
+}
+
+.menuItem > .menuItem__title {
+  font-size: 1.3rem;
+  font-weight: normal;
+  padding: 0px;
+  font-family: "Lato", sans-serif;
+}
+
+.menuItem > .menuItem__subtitle {
+  font-size: 1rem;
+  text-align: center; 
+  font-weight: normal;
+  padding: 15px;
+  padding-top: 0px;
+}
+
+@media screen and (max-width: 900px) {
+  .menuItem {
+    width: 70%;
+    height: unset;
+    margin-bottom: 10px;
+  }
+}

@@ -1,0 +1,78 @@
+@keyframes msg {
+  0% {
+    width: 0;
+    height: 0;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+  }
+  30% {
+    border-radius: 40%;
+  }
+  100% {
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.msgContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  display: none;
+  place-items: center;
+  background-color: rgba(3, 169, 244, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 50%;
+}
+
+.messageBox {
+  width: 0;
+  height: 0;
+  padding: 10px;
+  display: none;
+  flex-wrap: wrap;
+  border-radius: 10px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 2px 3px 3px 0 rgba(0, 0, 0, 0.6),
+    -2px -3px 3px rgba(87, 87, 87, 0.2);
+}
+
+.messageBox__errors {
+  width: 100%;
+}
+
+.msgContainer.open {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  animation: msg 0.5s ease-in-out;
+}
+
+.messageBox.open {
+  display: flex;
+  height: auto;
+  width: 450px;
+  border-radius: 10px;
+  transition-delay: 0.2s;
+  transition: all ease-in-out 0.35s;
+}
+
+.messageBox > .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.messageBox h1 {
+  font-size: x-large;
+}
