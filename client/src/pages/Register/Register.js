@@ -33,6 +33,7 @@ function Register({ history }) {
   });
 
   const onSubmitCheck = (event) => {
+    
     if (
       testCases.hasUppercase.test(values.password) &&
       testCases.hasLowercase.test(values.password) &&
