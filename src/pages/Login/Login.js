@@ -57,7 +57,6 @@ function Login() {
         <hr className="separator" />
       </div>
       <main className="login__main">
-        <h1 className="title">login to access all the features</h1>
 
         <form className="form" onSubmit={onSubmit}>
           <Input
@@ -101,12 +100,8 @@ function Login() {
 
       <footer className="login__footer">
         <hr className="separator_footer" />
-        <span name="top_footer">Qampus &copy; 2020 | All Rights Reserved.</span>
-
-        <span className="login__footerSeparator"></span>
-        <span name="bottom_footer">
-          Developed by Nuclear Software (Pty) Ltd
-        </span>
+        <p className="top_footer">Qampus &copy; 2020 | All Rights Reserved.</p>
+        <p className="bottom_footer"> Developed by Nuclear Software (Pty) Ltd.</p>
       </footer>
     </div>
   );

@@ -34,11 +34,11 @@ function Register({ history }) {
   });
 
   const onSubmitCheck = (event) => {
+    
     if (
       testCases.hasUppercase.test(values.password) &&
       testCases.hasLowercase.test(values.password) &&
       testCases.hasNumbers.test(values.password) &&
-      values.password === values.confirmPassword &&
       isEmail
     ) {
       onSubmit(event);
@@ -143,7 +143,7 @@ function Register({ history }) {
               onChange={onEmailChange}
               label="Email Address"
               id="email"
-              isvalid={isEmail ? isEmail : undefined}
+              isValid={isEmail}
             />
 
             <Input
@@ -159,7 +159,7 @@ function Register({ history }) {
               onInput={(e) => e.target.setCustomValidity("")}
               onInvalid={(e) =>
                 e.target.setCustomValidity(
-                  "Student number must be 10 characters(0-9)"
+                  "Sttudent number must be 10 characters(0-9)"
                 )
               }
             />
@@ -186,11 +186,20 @@ function Register({ history }) {
               required
               value={values.confirmPassword}
               onChange={onChange}
+              pattern={`/${values.password}/`}
               label="Confirm password"
               id="confirmPassword"
-              isvalid={values.password === values.confirmPassword}
+              onInput={(e) => e.target.setCustomValidity("")}
+              onInvalid={(e) =>
+                e.target.setCustomValidity(
+                  "Make sure your passwords are the same"
+                )
+              }
             />
-
+            <div class="checkbox_div">
+              <input id="checkbox" type="checkbox"/>
+              <label for="checkbox"> I agree to these <a className="link" target="_blank" href="/help">Terms and Conditions</a>.</label>
+            </div>
             <Button type="submit" text="Sign up" />
 
             {/* Below button for testing */}
@@ -199,13 +208,9 @@ function Register({ history }) {
         </div>
       </section>
       <footer className="register__footer">
-        <hr className="separator_footer" />
-        <span name="top_footer">Qampus &copy; 2020 | All Rights Reserved.</span>
-
-        <span className="register__footerSeparator"></span>
-        <span name="bottom_footer">
-          Developed by Nuclear Software (Pty) Ltd
-        </span>
+      <hr className="separator_footer"/>
+        <p className="top_footer">Qampus &copy; 2020 | All Rights Reserved.</p>
+        <p className="bottom_footer"> Developed by Nuclear Software (Pty) Ltd.</p>
       </footer>
     </div>
   );
