@@ -10,7 +10,7 @@ import { Provider as ReduxProvider } from "react-redux";
 import store from "./Redux/store";
 import App from "./App";
 
-const serverURL = "qampus-app.herokuapp.com/graphql";
+const serverURL = "server.qampus.co.za/graphql";
 
 // Rest of features eendpoint
 const httpLink = createHttpLink({
