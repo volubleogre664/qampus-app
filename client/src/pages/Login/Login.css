@@ -30,47 +30,32 @@
   margin-bottom: 40px;
   filter: drop-shadow(2px 4px 4px #000000);
 }
-
 .welcome__text {
+  width: 100%;
+}
+.welcome__text > p {
   text-align: center;
-  font-size: 2rem;
-  font-weight: 400;
-  /* font-family: 'Amatic SC', cursive;   */
-  font-style: normal;
   font-family: "Poiret One";
+  font-size: 1.5rem;
+  margin: auto;
+  margin-bottom: 10px;
 }
 
 .separator {
-  border-top: 1px solid white;
-  border-radius: 5px;
-  width: 50%;
+  width: 40%;
   margin: auto;
-  margin-top: 10px;
   margin-bottom: 30px;
 }
 
 .separator_footer {
-  border-top: 1px solid white;
-  border-radius: 5px;
-  width: 90%;
+  width: 40%;
   margin: auto;
-  margin-top: 50px;
-  margin-bottom: 10px;
 }
 
 .login__main {
   width: 100%;
 }
 
-.login__main > .title {
-  font-size: 1.4rem;
-  font-weight: lighter;
-  margin-bottom: 60px;
-  color: white;
-  text-align: center;
-  font-family: "Lobster Two";
-  display: none;
-}
 
 .login__main > form {
   display: flex;
@@ -117,17 +102,20 @@
   margin-top: 5px;
   outline: none;
 }
+
 .login__footer {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   font-size: 1rem;
-  font-weight: normal;
-  margin-top: 30px;
+  margin-top: 50px;
   margin-bottom: 10px;
-  display: grid;
-  place-items: center;
-  font-style: normal;
 }
-
+.login__footer> p{
+  font-family: "Oxygen";
+  font-size: 1rem;
+  font-weight: 300;
+}
 @media only screen and (max-width: 1400px) and (min-width: 550px) {
   .login {
     padding: 15px;
