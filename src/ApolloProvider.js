@@ -10,7 +10,7 @@ import { Provider as ReduxProvider } from "react-redux";
 import store from "./Redux/store";
 import App from "./App";
 
-const serverURL = "qampus-app.herokuapp.com/graphql";
+const serverURL = "server.qampus.co.za/graphql";
 
 // Rest of features eendpoint
 const httpLink = createHttpLink({
@@ -29,28 +29,28 @@ const authLink = setContext(() => {
 
 // WebSocket endpoint
 // WebSockects send data in realtime. We use it for messages
-// const wsLink = new WebSocketLink({
-//   uri: `ws://${serverURL}/subscriptions`,
-//   options: {
-//     reconnect: true,
-//   },
-//   webSocketImpl: WebSocket,
-// });
+const wsLink = new WebSocketLink({
+  uri: `wss://${serverURL}/graphql/subscriptions`,
+  options: {
+    reconnect: true,
+  },
+  webSocketImpl: WebSocket,
+});
 
-// const splitLink = split(
-//   ({ query }) => {
-//     const definition = getMainDefinition(query);
-//     return (
-//       definition.kind === "OperationDefinition" &&
-//       definition.operation === "subscription"
-//     );
-//   },
-//   wsLink,
-//   authLink.concat(httpLink)
-// );
+const splitLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === "OperationDefinition" &&
+      definition.operation === "subscription"
+    );
+  },
+  wsLink,
+  authLink.concat(httpLink)
+);
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: splitLink,
   cache: new InMemoryCache(),
 });
 

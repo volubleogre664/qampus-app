@@ -3,7 +3,11 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import SearchIcon from "@material-ui/icons/Search";
 import PersonIcon from "@material-ui/icons/Person";
 import Pusher from "pusher-js";
-import { useMutation, useLazyQuery } from "@apollo/react-hooks";
+import {
+  useMutation,
+  useLazyQuery,
+  useSubscription,
+} from "@apollo/react-hooks";
 
 import Contact from "../../components/Contact/Contact.js";
 import Message from "../../components/Message/Message";
@@ -12,6 +16,7 @@ import {
   ADD_MESSAGE,
   GET_MESSAGES_QUERY,
   GET_USER_DATA,
+  MESSAGE_SUBSCRIPTION,
 } from "../../utils/graphql";
 import {
   useBooksHelpers,
@@ -100,20 +105,20 @@ function Chats() {
   });
 
   // Listens for incoming messages and updates them in realtime
-  // useSubscription(MESSAGE_SUBSCRIPTION, {
-  //   variables: { to: user?.id },
-  //   skip: !user,
-  //   onSubscriptionData({
-  //     subscriptionData: {
-  //       data: { newMessage },
-  //     },
-  //   }) {
-  //     console.log(newMessage);
-  //     messageDispatch({
-  //       payload: newMessage,
-  //     });
-  //   },
-  // });
+  useSubscription(MESSAGE_SUBSCRIPTION, {
+    variables: { to: user?.id },
+    skip: !user,
+    onSubscriptionData({
+      subscriptionData: {
+        data: { newMessage },
+      },
+    }) {
+      console.log(newMessage);
+      messageDispatch({
+        payload: newMessage,
+      });
+    },
+  });
 
   // Handles clicking each contact
   const handleContactClick = (contact) => {
