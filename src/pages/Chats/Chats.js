@@ -2,12 +2,9 @@ import { useState, useEffect, useLayoutEffect } from "react";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import SearchIcon from "@material-ui/icons/Search";
 import PersonIcon from "@material-ui/icons/Person";
-import Pusher from "pusher-js";
-import {
-  useMutation,
-  useLazyQuery,
-  useSubscription,
-} from "@apollo/react-hooks";
+import { io } from "socket.io-client";
+
+import { useMutation, useLazyQuery } from "@apollo/react-hooks";
 
 import Contact from "../../components/Contact/Contact.js";
 import Message from "../../components/Message/Message";
@@ -16,7 +13,6 @@ import {
   ADD_MESSAGE,
   GET_MESSAGES_QUERY,
   GET_USER_DATA,
-  MESSAGE_SUBSCRIPTION,
 } from "../../utils/graphql";
 import {
   useBooksHelpers,
@@ -26,7 +22,7 @@ import {
 
 import "./Chats.css";
 
-function Chats() {
+function Chats({ socket }) {
   const [textMsg, setMsg] = useState("");
   const [height, setHeight] = useState(0); //Height given to the chats main and sidebar
   const [windowHeight, setWindowHeigt] = useState(window.innerHeight); //Keeps track of screen height
@@ -50,6 +46,9 @@ function Chats() {
         messageDispatch({
           payload: msg,
         });
+
+        let chatsDiv = document.querySelector(".chats__mainBody");
+        chatsDiv.scrollTop = chatsDiv.scrollHeight;
       }
 
       setMsg("");
@@ -95,28 +94,19 @@ function Chats() {
   // Get messages as you move between contacts
   const [getMessagesQuery] = useLazyQuery(GET_MESSAGES_QUERY, {
     onCompleted(data) {
-      messageDispatch({
-        payload: data?.getMessages,
+      data.getMessages.forEach((item) => {
+        if (!messages.find((msg) => msg.id === item.id)) {
+          messageDispatch({
+            payload: item,
+          });
+
+          let chatsDiv = document.querySelector(".chats__mainBody");
+          chatsDiv.scrollTop = chatsDiv.scrollHeight;
+        }
       });
     },
     onError(err) {
       console.log(err);
-    },
-  });
-
-  // Listens for incoming messages and updates them in realtime
-  useSubscription(MESSAGE_SUBSCRIPTION, {
-    variables: { to: user?.id },
-    skip: !user,
-    onSubscriptionData({
-      subscriptionData: {
-        data: { newMessage },
-      },
-    }) {
-      console.log(newMessage);
-      messageDispatch({
-        payload: newMessage,
-      });
     },
   });
 
@@ -199,29 +189,6 @@ function Chats() {
     }
   }, [getMessagesQuery, user, messages, currentContact?.id]);
 
-  // Subscribe to messages from pusher
-  useEffect(() => {
-    if (!user?.id) return;
-
-    const pusher = new Pusher("41d4fac173171c8b65aa", {
-      cluster: "ap2",
-    });
-
-    const channel = pusher.subscribe("messages");
-    channel.bind("NEW_MESSAGE", function ({ newMessage: msg }) {
-      if (msg.from !== user.id) {
-        if (msg.from === user.id || msg.to === user.id) {
-          messageDispatch({ payload: msg });
-        }
-      }
-    });
-
-    return () => {
-      channel.unbind_all();
-      channel.unsubscribe();
-    };
-  }, [messageDispatch, user?.id]);
-
   // Runs only when someone clicked a book to buy
   // Thats why there's an early return
   useEffect(() => {
@@ -242,6 +209,25 @@ function Chats() {
 
     getUserData({ variables: { studentNumber: bookOwner } });
   }, [searchBookList, setBook, getUserData, user]);
+
+  useEffect(() => {
+    if (!socket) {
+      var socketIO = io("https://server.qampus.co.za", {
+        query: { user: user.id },
+      });
+    }
+
+    (socket || socketIO).on("NEW_MESSAGE", (message) => {
+      messageDispatch({
+        payload: message.newMessage,
+      });
+
+      let chatsDiv = document.querySelector(".chats__mainBody");
+      chatsDiv.scrollTop = chatsDiv.scrollHeight;
+    });
+
+    return () => socketIO && socketIO.disconnect();
+  }, [user.id, messageDispatch, socket]);
 
   return (
     <div className="chats">

@@ -1,7 +1,4 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { split } from "@apollo/client";
-import { getMainDefinition } from "@apollo/client/utilities";
-import { WebSocketLink } from "@apollo/client/link/ws";
 import { createHttpLink } from "apollo-link-http";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { setContext } from "apollo-link-context";
@@ -11,6 +8,7 @@ import store from "./Redux/store";
 import App from "./App";
 
 const serverURL = "server.qampus.co.za/graphql";
+// const serverURL = "localhost:5500/graphql";
 
 // Rest of features eendpoint
 const httpLink = createHttpLink({
@@ -27,30 +25,8 @@ const authLink = setContext(() => {
   };
 });
 
-// WebSocket endpoint
-// WebSockects send data in realtime. We use it for messages
-const wsLink = new WebSocketLink({
-  uri: `wss://${serverURL}/graphql/subscriptions`,
-  options: {
-    reconnect: true,
-  },
-  webSocketImpl: WebSocket,
-});
-
-const splitLink = split(
-  ({ query }) => {
-    const definition = getMainDefinition(query);
-    return (
-      definition.kind === "OperationDefinition" &&
-      definition.operation === "subscription"
-    );
-  },
-  wsLink,
-  authLink.concat(httpLink)
-);
-
 const client = new ApolloClient({
-  link: splitLink,
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 

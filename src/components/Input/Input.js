@@ -90,7 +90,7 @@ function Input({ label, id, type, testCases, ...rest }) {
                 ))}
             </span>
 
-            {!rest.isvalid && rest.value && (
+            {type === "confirmPassword" && !rest.isvalid && rest.value && (
               <>
                 <div className="formInput__tips">
                   <p>Confirm Password must be equal to Password!</p>
