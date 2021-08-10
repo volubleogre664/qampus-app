@@ -1,0 +1,92 @@
+import Input from "../../components/Input/Input";
+import Button from "../../components/Button/Button";
+
+import "./ConfirmBook.css";
+
+function ConfirmBook({ values, uploadBook, onChange, cancelUpload }) {
+  const confirmBookInfo = (e) => {
+    e.preventDefault();
+    uploadBook(e);
+  };
+
+  return (
+    <div className="confirmBook">
+      <h2>Confirm Book Details</h2>
+      <hr />
+
+      <form onSubmit={confirmBookInfo} className="confirmBook__form">
+        <Input
+          type="text"
+          name="isbn"
+          id="isbn"
+          required={true}
+          onChange={onChange}
+          value={values.isbn}
+          label="Book ISBN"
+          placeholder="9789544007737"
+        />
+
+        <Input
+          type="text"
+          name="title"
+          id="title"
+          required={true}
+          onChange={onChange}
+          value={values.title}
+          label="Book Title"
+          placeholder="Enter book title"
+        />
+
+        <Input
+          type="text"
+          name="subtitle"
+          id="subtitle"
+          onChange={onChange}
+          value={values.subtitle}
+          label="Book Sub-Title"
+          placeholder="Enter book sub-title"
+        />
+
+        <Input
+          type="text"
+          name="authors"
+          id="authors"
+          required={true}
+          onChange={onChange}
+          value={values.authors}
+          label="Book Author(s)"
+          placeholder="Enter book author(s)"
+        />
+
+        <Input
+          type="number"
+          name="price"
+          id="price"
+          required={true}
+          onChange={onChange}
+          value={values.price}
+          label="Book Price"
+          placeholder="300"
+        />
+
+        <Input
+          type="text"
+          name="moduleCode"
+          id="moduleCode"
+          required={true}
+          onChange={onChange}
+          value={values.moduleCode}
+          label="Module Code"
+          placeholder="CSIS1664"
+        />
+
+        <div className="confirmBook__formFooter">
+          <Button text="Cancel Upload" onClick={cancelUpload} />
+          <Button type="submit" text="Confirm Book" />
+        </div>
+      </form>
+    </div>
+  );
+}
+
+export default ConfirmBook;
