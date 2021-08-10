@@ -88,7 +88,7 @@ function Home({ history }) {
   };
 
   useEffect(() => {
-    document.title = "Home - Qampus";
+    document.title = "Qampus";
   }, []);
 
   return (

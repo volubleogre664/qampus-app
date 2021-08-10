@@ -34,6 +34,7 @@ function Register({ history }) {
   });
 
   const onSubmitCheck = (event) => {
+    
     if (
       testCases.hasUppercase.test(values.password) &&
       testCases.hasLowercase.test(values.password) &&
@@ -195,7 +196,10 @@ function Register({ history }) {
                 )
               }
             />
-
+            <div class="checkbox_div">
+              <input id="checkbox" type="checkbox"/>
+              <label for="checkbox"> I agree to these <a className="link" target="_blank" href="/help">Terms and Conditions</a>.</label>
+            </div>
             <Button type="submit" text="Sign up" />
 
             {/* Below button for testing */}
@@ -204,13 +208,9 @@ function Register({ history }) {
         </div>
       </section>
       <footer className="register__footer">
-        <hr className="separator_footer" />
-        <span name="top_footer">Qampus &copy; 2020 | All Rights Reserved.</span>
-
-        <span className="register__footerSeparator"></span>
-        <span name="bottom_footer">
-          Developed by Nuclear Software (Pty) Ltd
-        </span>
+      <hr className="separator_footer"/>
+        <p className="top_footer">Qampus &copy; 2020 | All Rights Reserved.</p>
+        <p className="bottom_footer"> Developed by Nuclear Software (Pty) Ltd.</p>
       </footer>
     </div>
   );
