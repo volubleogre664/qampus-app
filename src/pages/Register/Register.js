@@ -34,7 +34,6 @@ function Register({ history }) {
   });
 
   const onSubmitCheck = (event) => {
-    
     if (
       testCases.hasUppercase.test(values.password) &&
       testCases.hasLowercase.test(values.password) &&
@@ -143,7 +142,7 @@ function Register({ history }) {
               onChange={onEmailChange}
               label="Email Address"
               id="email"
-              isValid={isEmail}
+              isvalid={isEmail}
             />
 
             <Input
@@ -186,19 +185,21 @@ function Register({ history }) {
               required
               value={values.confirmPassword}
               onChange={onChange}
-              pattern={`/${values.password}/`}
               label="Confirm password"
               id="confirmPassword"
-              onInput={(e) => e.target.setCustomValidity("")}
-              onInvalid={(e) =>
-                e.target.setCustomValidity(
-                  "Make sure your passwords are the same"
-                )
-              }
+              isvalid={values.confirmPassword === values.password}
             />
+
             <div class="checkbox_div">
-              <input id="checkbox" type="checkbox"/>
-              <label for="checkbox"> I agree to these <a className="link" target="_blank" href="/help">Terms and Conditions</a>.</label>
+              <input id="checkbox" type="checkbox" />
+              <label for="checkbox">
+                {" "}
+                I agree to these{" "}
+                <a className="link" target="_blank" href="/help">
+                  Terms and Conditions
+                </a>
+                .
+              </label>
             </div>
             <Button type="submit" text="Sign up" />
 
@@ -208,9 +209,12 @@ function Register({ history }) {
         </div>
       </section>
       <footer className="register__footer">
-      <hr className="separator_footer"/>
+        <hr className="separator_footer" />
         <p className="top_footer">Qampus &copy; 2020 | All Rights Reserved.</p>
-        <p className="bottom_footer"> Developed by Nuclear Software (Pty) Ltd.</p>
+        <p className="bottom_footer">
+          {" "}
+          Developed by Nuclear Software (Pty) Ltd.
+        </p>
       </footer>
     </div>
   );
