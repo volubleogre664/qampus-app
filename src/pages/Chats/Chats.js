@@ -210,6 +210,8 @@ function Chats({ socket }) {
     getUserData({ variables: { studentNumber: bookOwner } });
   }, [searchBookList, setBook, getUserData, user]);
 
+  // Here we subscribe to oncoming messages from socket IO.
+  // The socket is created in App.js, if it is not we make a new one
   useEffect(() => {
     if (!socket) {
       var socketIO = io("https://server.qampus.co.za", {
@@ -217,6 +219,8 @@ function Chats({ socket }) {
       });
     }
 
+    // Listen for NEW_MESSAGEs either from the App.js socket or the one we just created
+    // If socket exist then listen from else listen from socketIO
     (socket || socketIO).on("NEW_MESSAGE", (message) => {
       messageDispatch({
         payload: message.newMessage,
@@ -226,9 +230,11 @@ function Chats({ socket }) {
       chatsDiv.scrollTop = chatsDiv.scrollHeight;
     });
 
+    // When you leave the messages page close the socket connect on socketIO
     return () => socketIO && socketIO.disconnect();
   }, [user.id, messageDispatch, socket]);
 
+  // The whole chats page below
   return (
     <div className="chats">
       <aside className="chats__sidebar" style={{ height: height + "px" }}>

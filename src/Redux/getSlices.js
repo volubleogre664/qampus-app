@@ -85,7 +85,6 @@ function useUserHelpers() {
 
       case "ADD_USER_CONTACT": {
         dispatch(addUserContact(action.payload));
-
         break;
       }
 

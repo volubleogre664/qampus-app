@@ -28,7 +28,7 @@ import "firebase/storage";
 firebase.initializeApp(firebaseConfig);
 
 function App() {
-  const [{ imgCrop, user }] = useUserHelpers();
+  const [{ imgCrop, user }, dispatchUser] = useUserHelpers();
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
@@ -38,6 +38,13 @@ function App() {
       query: {
         user: user.id,
       },
+    });
+
+    socket.on("USER_CONTACT_UPDATE", (userContact) => {
+      dispatchUser({
+        type: "ADD_USER_CONTACT",
+        payload: userContact.contact,
+      });
     });
 
     setSocket(socket);
