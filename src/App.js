@@ -1,5 +1,7 @@
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase/app";
+import { io } from "socket.io-client";
 
 import Home from "./pages/Home/Home.js";
 import Chats from "./pages/Chats/Chats.js";
@@ -23,7 +25,29 @@ import "firebase/storage";
 firebase.initializeApp(firebaseConfig);
 
 function App() {
-  const [{ imgCrop }] = useUserHelpers();
+  const [{ imgCrop, user }, dispatchUser] = useUserHelpers();
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    if (!user?.id) return;
+
+    const socket = io("https://server.qampus.co.za", {
+      query: {
+        user: user.id,
+      },
+    });
+
+    socket.on("USER_CONTACT_UPDATE", (userContact) => {
+      dispatchUser({
+        type: "ADD_USER_CONTACT",
+        payload: userContact.contact,
+      });
+    });
+
+    setSocket(socket);
+
+    return () => socket.disconnect();
+  }, [user?.id, setSocket]);
 
   return (
     <div className="app">
@@ -56,7 +80,7 @@ function App() {
 
           <PrivateRoute exact path="/chats*">
             <HeaderMenu />
-            <Chats />
+            <Chats socket={socket} />
           </PrivateRoute>
 
           <PrivateRoute exact path="/upload">

@@ -1,24 +1,34 @@
 .navigation {
+  display: -webkit-flex;
   display: flex;
-  flex-direction: row;
+  -webkit-flex-direction: row;
+          flex-direction: row;
   padding: 15px;
   padding-top: 0;
   height: 100%;
 }
 
 .form_and_button{
+  display: -webkit-flex;
   display: flex;
-    flex-direction: column;
-    justify-content: center;
+    -webkit-flex-direction: column;
+            flex-direction: column;
+    -webkit-justify-content: center;
+            justify-content: center;
     width: 90%;
-    align-items: center;
+    -webkit-align-items: center;
+            align-items: center;
 }
 
 .nav_input {
+  display: -webkit-flex;
   display: flex;
-   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+   -webkit-flex-direction: column;
+           flex-direction: column;
+  -webkit-justify-content: flex-start;
+          justify-content: flex-start;
+  -webkit-align-items: center;
+          align-items: center;
   width: 25%;
   max-width: 300px;
   min-width: 300px;
@@ -42,9 +52,13 @@
   margin-top: 0;
 }
 .navigation__form {
+  display: -webkit-flex;
   display: flex;
-  flex-direction: column;
+  -webkit-flex-direction: column;
+          flex-direction: column;
   width: 90%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   max-height: 50%;
   margin: auto;
@@ -97,10 +111,12 @@
 
 @media only screen and (max-width: 850px) {
   .navigation {
-    flex-direction: column;
+    -webkit-flex-direction: column;
+            flex-direction: column;
   }
 
   .form_and_button{
+    display: -webkit-flex;
     display: flex ;
     flex-direction: column;
     align-content: center;
@@ -111,18 +127,26 @@
   .nav_input{
     width: 100%;
     max-width: none;
-    align-content: center;
+    -webkit-align-content: center;
+            align-content: center;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
     height: fit-content;
     padding-bottom: 30px;
 
   }
 
   .navigation__form {
-    flex-direction: row;
+    -webkit-flex-direction: row;
+            flex-direction: row;
     width: 70%;
     flex-wrap: nowrap;
     align-self: center;
 
+    -webkit-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+    -webkit-align-self: center;
+            align-self: center;
   }
 
   .nav_results{

@@ -8,6 +8,17 @@ In the project directory, you can run:
 
 ### `npm start`
 
+To generate vendor prefixes you can user bash script
+Firs make it executable with chmod below
+
+### `chmod u+x prefix_css.sh`
+
+Then use it as follows
+It will recursively go through all folders to find css files and prefix them
+It uses the postcss package with autoprefixer
+
+### `./prefix_css.sh ./src`
+
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 

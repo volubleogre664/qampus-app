@@ -1,11 +1,14 @@
 /* I set the app to be display flex. so here no longer set width and height
    flex: 1; does that for us. */
 .chats {
-  flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
   height: 100%;
+  display: -webkit-flex;
   display: flex;
   box-sizing: border-box !important;
-  align-items: center;
+  -webkit-align-items: center;
+          align-items: center;
   margin: 0 15px;
   margin-bottom: 15px;
   position: relative;
@@ -22,3 +25,4 @@
     margin: 0 10px;
   }
 }
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkNoYXRzLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTsrQkFDK0I7QUFDL0I7RUFDRSxlQUFPO1VBQVAsT0FBTztFQUNQLFlBQVk7RUFDWixxQkFBYTtFQUFiLGFBQWE7RUFDYixpQ0FBaUM7RUFDakMsMkJBQW1CO1VBQW5CLG1CQUFtQjtFQUNuQixjQUFjO0VBQ2QsbUJBQW1CO0VBQ25CLGtCQUFrQjtFQUNsQixnQkFBZ0I7RUFDaEIsc0JBQXNCO0FBQ3hCOztBQUVBLDRCQUE0Qjs7QUFFNUIseUJBQXlCOztBQUV6QjtFQUNFO0lBQ0UsY0FBYztFQUNoQjtBQUNGIiwiZmlsZSI6IkNoYXRzLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIEkgc2V0IHRoZSBhcHAgdG8gYmUgZGlzcGxheSBmbGV4LiBzbyBoZXJlIG5vIGxvbmdlciBzZXQgd2lkdGggYW5kIGhlaWdodFxuICAgZmxleDogMTsgZG9lcyB0aGF0IGZvciB1cy4gKi9cbi5jaGF0cyB7XG4gIGZsZXg6IDE7XG4gIGhlaWdodDogMTAwJTtcbiAgZGlzcGxheTogZmxleDtcbiAgYm94LXNpemluZzogYm9yZGVyLWJveCAhaW1wb3J0YW50O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBtYXJnaW46IDAgMTVweDtcbiAgbWFyZ2luLWJvdHRvbTogMTVweDtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBvdmVyZmxvdzogaGlkZGVuO1xuICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xufVxuXG5AaW1wb3J0IFwiLi9DaGF0c1NpZGViYXIuY3NzXCI7XG5cbkBpbXBvcnQgXCIuL0NoYXRzTWFpbi5jc3NcIjtcblxuQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNTUwcHgpIHtcbiAgLmNoYXRzIHtcbiAgICBtYXJnaW46IDAgMTBweDtcbiAgfVxufVxuIl19 */
