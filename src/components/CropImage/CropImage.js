@@ -12,6 +12,9 @@ export const CropImage = () => {
   const [image] = useState(imgCrop.imgSrc);
   const [cropper, setCropper] = useState();
 
+  const closeWindow = (e) =>{
+    /*hide crop tool*/
+  }
   const getCropData = () => {
     if (typeof cropper !== "undefined") {
       dispatch({
@@ -56,7 +59,7 @@ export const CropImage = () => {
         />
 
         <div className="buttons">
-          <Button text="Cancel" />
+          <Button text="Cancel" onClick={closeWindow}/>
           <Button onClick={getCropData} text="Crop Image" />
         </div>
       </div>

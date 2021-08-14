@@ -42,7 +42,7 @@
   margin: auto;
   width:fit-content;
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row nowrap;
   justify-content: center;
   padding: 0;
   justify-content: flex-start;
@@ -55,6 +55,7 @@
   width: fit-content;
   margin: auto;
   margin-top: auto;
+  padding-right: 20px;
 }
 
 .profile__bodyMain{
@@ -105,7 +106,7 @@
 }
 .profile__bodyMain > form {
   width: 100%;
-  max-width: 350px;
+  min-width: 350px;
   margin: auto;
   padding-left: 5%;
   display: flex;
@@ -167,7 +168,62 @@
 
 }
 
-@media screen and (max-width:900px) {
+.btnEdit {
+  border: none;
+  transition: all ease-in-out 0.2s;
+  background: rgb(29, 161, 242, 0.9);
+  box-shadow: 5px 5px 5px 0 rgba(0, 0, 0), -2px -3px 3px rgba(87, 87, 87);
+  text-align: center;
+  padding: 5px 5px 5px 5px;
+  color: #fff;
+  font-size: 1.5rem;
+  border-radius: 22px;
+  margin: auto;
+  margin-left: 5px;
+  margin-bottom: 0;
+}
+.btnEdit:hover {
+  transition: all ease-in-out 0.2s;
+  box-shadow: inset 0 0 7px rgba(255, 255, 255, 0.5),
+    0 0 7px rgba(255, 255, 255, 0.5);
+  outline-color: rgba(255, 255, 255, 0);
+  outline-offset: 15px;
+  text-shadow: 1px 1px 2px #427388;
+  border-radius: 5%;
+}
+
+#btnSave {
+  display: none;
+  border: none;
+  transition: all ease-in-out 0.2s;
+  background: rgb(29, 161, 242, 0.9);
+  box-shadow: 5px 5px 5px 0 rgba(0, 0, 0), -2px -3px 3px rgba(87, 87, 87);
+  text-align: center;
+  padding: 5px 5px 5px 5px;
+  color: #fff;
+  font-size: 1.5rem;
+  border-radius: 22px;
+  margin: auto;
+  margin-left: 5px;
+  margin-bottom: 0;
+}
+
+#btnSave:hover {
+  transition: all ease-in-out 0.2s;
+  box-shadow: inset 0 0 7px rgba(255, 255, 255, 0.5),
+    0 0 7px rgba(255, 255, 255, 0.5);
+  outline-color: rgba(255, 255, 255, 0);
+  outline-offset: 15px;
+  text-shadow: 1px 1px 2px #427388;
+  border-radius: 5%;
+}
+.profile__bodyMain > form > label > div{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 35px;
+}
+@media screen and (max-width:1030px) {
   .profile {
     width:95%; 
     margin-top: 0;
@@ -196,4 +252,26 @@
   .profile__body {
   flex-flow: column nowrap;
   }
+
+  @media screen and (max-width:550px) {
+    .profile__bodyMain > form {
+      width: 100%;
+      max-width: 350px;
+      min-width: 50px;
+      padding-left: 0;
+    }
+
+    #textbox{
+      margin-left: 5px;
+    }
+
+    .bioBox{
+      margin-left: 5px;
+    }
+    .btnEdit {
+      margin-left: 5px;
+    }
+  }
+  
 }
+

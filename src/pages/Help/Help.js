@@ -3,6 +3,15 @@ import React, { useState } from "react";
 import Iframe from "react-iframe";
 import terms_text from "../../text files/terms.js";
 import Button from "../../components/Button/Button";
+
+const fileUrl = '../../text files/transcript.txt' // provide file location
+var _terms = " ";
+fetch('../../text files/transcript.txt')
+.then(response => response.text())
+.then(data => {
+  _terms=data;
+});
+
 function FileHelper() {
   FileHelper.readStringFromFileAtPath = function (pathOfFileToReadFrom) {
     var request = new XMLHttpRequest();
@@ -43,7 +52,7 @@ function Help() {
   }
 
   function terms_click() {
-    display = setDisplay(terms);
+    display = setDisplay(_terms);
     indicator = setIndicator("Terms of use");
   }
 

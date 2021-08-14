@@ -11,15 +11,12 @@ import Collection from "./pages/Collection/Collection.js";
 import Navigation from "./pages/Navigation/Navigation.js";
 import Upload from "./pages/Upload/Upload.js";
 import Help from "./pages/Help/Help.js";
-
 import HeaderMenu from "./components/HeaderMenu/HeaderMenu.js";
 import CropImage from "./components/CropImage/CropImage.js";
 import AuthRoute from "./utils/AuthRoute.js";
 import PrivateRoute from "./utils/PrivateRoute.js";
-
 import { useUserHelpers } from "./Redux/getSlices.js";
 import { firebaseConfig } from "./config.js";
-
 import "./App.css";
 import "firebase/storage";
 

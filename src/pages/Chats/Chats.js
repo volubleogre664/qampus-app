@@ -285,7 +285,7 @@ function Chats() {
                 />
               )) || <PersonIcon />}
             </span>
-            <span className="name">{currentContact?.firstName || "Elon"}</span>
+            <span className="name">{currentContact?.firstName || "Name"}</span>
           </div>
 
           <div className="right">

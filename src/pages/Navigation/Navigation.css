@@ -67,14 +67,35 @@
 
 .frame {
   margin: auto;
-  margin-top: 3%;
+  margin-top: 0;
   width: 95%;
   height: 90%;
   border-radius: 5px;
   border: 3px solid rgb(20, 165, 248);
 }
 
-@media only screen and (min-width:450px) and (max-width: 850px) {
+.mapHeader{
+  color:#fff;
+  width: 95%;
+  margin: auto;
+  padding-top: 10px;
+}
+.mapHeader > p{
+  font-size: 1.4rem;
+  color: #fff;
+  font-family: "Poiret One";
+  margin-top: 15px;
+  text-align: center;
+}
+.mapHeader > hr{
+  color:#fff;
+  width: 100%;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 850px) {
   .navigation {
     flex-direction: column;
   }
@@ -83,7 +104,8 @@
     display: flex ;
     flex-direction: column;
     align-content: center;
-    width: 90%;
+    margin: auto;
+    width: 75%;
   }
   
   .nav_input{
@@ -91,6 +113,8 @@
     max-width: none;
     align-content: center;
     height: fit-content;
+    padding-bottom: 30px;
+
   }
 
   .navigation__form {
@@ -98,6 +122,7 @@
     width: 70%;
     flex-wrap: nowrap;
     align-self: center;
+
   }
 
   .nav_results{
@@ -107,41 +132,29 @@
   .frame {
     height: 95%;  
   }
-  @media only screen and (max-width: 550px) {
-    .nav_results{
+
+  @media only screen and (max-width: 560px) {
+    .navigation__form {
       width: 100%;
-      height: 90vh ;
-      margin-top: 10px;
-  
+      flex-direction: column;
+    }
+
+    .nav_results{
+      height: 90vh ;  
     }
   }
- 
+
+  @media only screen and (max-width: 400px) {
+    .nav_input{
+      max-width:100%;
+    }
+    .navigation__form {
+      width: 100%;
+    }
+
+    .nav_results{
+      height: 90vh ;  
+    }
+  }
 }
 
-@media only screen and (max-width: 450px) {
-  .navigation {
-    flex-direction: column;
-  }
-
-  .nav_input{
-    width: 100%;
-    max-width: none;
-    align-content: center;
-    height: fit-content;
-  }
-  .navigation__form {
-    flex-direction: row;
-    width: 100%;
-    flex-wrap: nowrap;
-  }
-
-  .nav_results{
-    width: 100%;
-    height: 90vh ;
-    margin-top: 10px;
-
-  }
-  .frame {
-  height: 95%;  
-  }
-}

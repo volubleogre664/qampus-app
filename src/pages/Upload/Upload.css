@@ -1,5 +1,6 @@
-.uploadCollection {
+.uploadPage {
   display: flex;
+  flex-direction: row;
   gap: 80px;
   width: 80%;
   height: 100%;
@@ -17,6 +18,8 @@
   height: fit-content;
   border-radius: 5px;
   padding: 15px;
+  margin: auto;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -29,7 +32,7 @@
 
 .upload__title {
   text-align: center;
-  margin-top: 0;
+  margin-top: 10px;
   margin-bottom: 10px;
   font-size: 1.5rem;
   font-weight: normal;
@@ -130,6 +133,7 @@ label.front {
   color: white;
   flex: 1;
   margin: auto;
+  margin-top: 30px;
 }
 
 .bullets > ul > li > h3 {
@@ -151,56 +155,38 @@ label.front {
   all: unset;
 } */
 
-@media screen and (max-width: 550px) {
-  .upload {
-    width: 100%;
-    margin: auto;
-  }
-
-  .bullets {
-    margin: auto;
-  }
-
-  .uploadCollection {
-    flex-flow: row wrap;
-    margin-top: 0px;
-  }
-
-  .upload_form > input {
-    margin-bottom: 20px;
-  }
-}
-
-@media screen and (max-width: 1500px) and (min-width: 550px) {
-  .upload_section {
+@media only screen and (max-width: 1000px) {
+  .uploadPage {
+    display: flex;
     width: 90%;
     margin: auto;
-    margin-bottom: 10px;
-  }
-  .uploadCollection {
-    flex-flow: row wrap;
-    margin-top: 0px;
-  }
-}
-
-@media screen and (max-width: 1500px) and (min-width: 900px) {
-  .upload_section {
-    width: 90%;
-  }
-  .uploadCollection {
+    flex-direction: column;
     margin-top: 0px;
     height: 100%;
+    margin-bottom: 10px;
+
   }
+
   .bullets {
     margin-top: 0;
     width: 100%;
   }
 
   .tilesWrap li {
-    width: fit-content !important;
+    width: fit-content;
   }
 
   .list_tittle {
     font-size: 1.4rem;
   }
+  .upload {
+    width: 100%;
+    margin: auto;
+  }
+
+
+  .upload_form > input {
+    margin-bottom: 20px;
+  }
 }
+

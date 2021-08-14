@@ -25,7 +25,7 @@
 
 .chats__mainHeader > .right {
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: normal;
   display: flex;
   flex-direction: column;
   text-align: right;
@@ -34,17 +34,17 @@
 }
 
 .chats__mainHeader > .left {
-  flex: 1;
   display: flex;
   justify-content: left;
   user-select: none;
-  cursor: pointer;
-  font-weight: bold !important;
+  font-weight: normal;
 }
 
 .chats__mainHeader > .left > .name {
   font-size: 1.3rem;
   padding-top: 20px;
+  padding-bottom: 10px;
+  padding-left: 5px;
 }
 
 .chats__mainHeader > .left > .iconContainer {
@@ -132,6 +132,13 @@
   transform: scale(1.2);
   filter: drop-shadow(1px 1px 1px dodgerblue);
 }
+
+
+/*Hiding emoji button until EMOJI COMPONENT is created*/
+.chats__mainFooter > form > .btnEmoji {
+  display: none;
+}
+
 
 @media screen and (max-width: 550px) {
   .chats__main {
