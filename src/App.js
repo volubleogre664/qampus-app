@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase/app";
 import { io } from "socket.io-client";
-
 import Home from "./pages/Home/Home.js";
 import Chats from "./pages/Chats/Chats.js";
 import Profile from "./pages/Profile/Profile.js";
@@ -13,15 +12,12 @@ import Collection from "./pages/Collection/Collection.js";
 import Navigation from "./pages/Navigation/Navigation.js";
 import Upload from "./pages/Upload/Upload.js";
 import Help from "./pages/Help/Help.js";
-
 import HeaderMenu from "./components/HeaderMenu/HeaderMenu.js";
 import CropImage from "./components/CropImage/CropImage.js";
 import AuthRoute from "./utils/AuthRoute.js";
 import PrivateRoute from "./utils/PrivateRoute.js";
-
 import { useUserHelpers } from "./Redux/getSlices.js";
 import { firebaseConfig } from "./config.js";
-
 import "./App.css";
 import "firebase/storage";
 

@@ -30,8 +30,7 @@
 
 .chats__mainHeader > .right {
   font-size: 1rem;
-  font-weight: 300;
-  display: -webkit-flex;
+  font-weight: normal;
   display: flex;
   -webkit-flex-direction: column;
           flex-direction: column;
@@ -41,22 +40,17 @@
 }
 
 .chats__mainHeader > .left {
-  -webkit-flex: 1;
-          flex: 1;
-  display: -webkit-flex;
   display: flex;
-  -webkit-justify-content: left;
-          justify-content: left;
-  -webkit-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  cursor: pointer;
-  font-weight: bold !important;
+  justify-content: left;
+  user-select: none;
+  font-weight: normal;
 }
 
 .chats__mainHeader > .left > .name {
   font-size: 1.3rem;
   padding-top: 20px;
+  padding-bottom: 10px;
+  padding-left: 5px;
 }
 
 .chats__mainHeader > .left > .iconContainer {
@@ -154,6 +148,13 @@
   -webkit-filter: drop-shadow(1px 1px 1px dodgerblue);
           filter: drop-shadow(1px 1px 1px dodgerblue);
 }
+
+
+/*Hiding emoji button until EMOJI COMPONENT is created*/
+.chats__mainFooter > form > .btnEmoji {
+  display: none;
+}
+
 
 @media screen and (max-width: 550px) {
   .chats__main {

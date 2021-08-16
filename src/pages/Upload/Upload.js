@@ -238,7 +238,7 @@ function Upload() {
   // TODO: Design the whole form for confirming book details and actually make it work the push (-_-)
 
   return (
-    <div className="uploadCollection">
+    <div className="uploadPage">
       {confirmBook && (
         <ConfirmBook
           values={{ ...values, ...bookUpload }}
@@ -297,7 +297,7 @@ function Upload() {
             name="moduleCode"
             id="moduleCode"
             onChange={onChange}
-            value={values.moduleCode}
+            value={values.moduleCode }
             label="Module Code"
             placeholder="CSIS1664"
           />

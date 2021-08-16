@@ -1,9 +1,16 @@
 import "./Navigation.css";
 import React, { useState } from "react";
 import Iframe from "react-iframe";
-
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
+
+const fileUrl = '../../text files'
+
+fetch(fileUrl)
+   .then( r => r.text() )
+   .then( t => console.log(t) )
+
+
 
 function Navigation() {
   const [active, setActive] = useState(() => {
@@ -133,6 +140,11 @@ function Navigation() {
       </div>
 
       <div className="nav_results" id="map">
+        <div className="mapHeader">
+          <p>UFS main capmus</p>
+          <hr/>
+        </div>
+
         <Iframe
           className="frame"
           id="frame"
