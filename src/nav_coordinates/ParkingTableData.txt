@@ -1,0 +1,18 @@
+﻿131	P1	Central Campus  Parking  
+132	P2	Callie Human Centre Parking  
+133	P3	Main Building Parking
+134	P4	Odeion Parking
+135	P5	Thakaneng Bridge Parking 1 
+136	P6	Thakaneng Bridge Parking 2  
+137	P7	Library Parking 1
+138	P8	Library Parking 2
+139	P9	Medical Building Parking  
+140	P10	George du Toit Admin Building Parking
+141	P11	Scaena Theatre Parking (Reserved)
+142	P12	Sport Centre Parking
+143	P13	Centenary Complex Parking
+144	P14	Stef Coetzee Building Parking (Reserved)
+145	P15	Stabilis Parking (Reserved)
+146	P16	Flippie Groenewoud Building Parking (Reserved)
+147	P17	Dekaan Street Parking (Reserved)
+148	P18	Main Building Parking (Reserved)

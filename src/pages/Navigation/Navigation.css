@@ -2,33 +2,23 @@
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
   padding: 15px;
   padding-top: 0;
   height: 100%;
+  overflow-x: auto;
+  gap: 20px;
 }
 
-.form_and_button{
+.navigation__sidebar {
   display: -webkit-flex;
   display: flex;
-    -webkit-flex-direction: column;
-            flex-direction: column;
-    -webkit-justify-content: center;
-            justify-content: center;
-    width: 90%;
-    -webkit-align-items: center;
-            align-items: center;
-}
-
-.nav_input {
-  display: -webkit-flex;
-  display: flex;
-   -webkit-flex-direction: column;
-           flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-direction: column;
   -webkit-justify-content: flex-start;
-          justify-content: flex-start;
+  justify-content: flex-start;
   -webkit-align-items: center;
-          align-items: center;
+  align-items: center;
   width: 25%;
   max-width: 300px;
   min-width: 300px;
@@ -37,150 +27,144 @@
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-radius: 10px;
-  margin-right: 10px;
+  padding: 15px 10px;
+  box-sizing: border-box;
 }
 
-.nav_input > p {
+.navigation__sidebarTitle {
   font-size: 1.6rem;
   color: #fff;
   font-family: "Poiret One";
-  margin-top: 15px;
+  font-weight: 300;
+  margin-bottom: 10px;
 }
 
 .sepatator {
-  width: 85%;
+  width: 90%;
   margin-top: 0;
 }
-.navigation__form {
+
+.navigation__sidebarForm {
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: column;
-          flex-direction: column;
-  width: 90%;
+  flex-direction: column;
+  width: 90% !important;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   max-height: 50%;
   margin: auto;
-  margin-bottom: 30px;
   margin-top: 20px;
   gap: 15px;
   color: white;
   text-align: left;
   font-weight: lighter;
 }
-.nav_results {
+
+.navigation__sidebarForm > :last-child {
+  align-self: center;
+}
+
+.navigation__main {
   width: 85%;
   height: 100%;
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
+  display: flex;
+  flex-direction: column;
   border-radius: 10px;
-  margin-right: 10px;
+  box-sizing: border-box;
+  padding: 15px;
 }
 
-.frame {
+.navigation__mainFrame {
+  flex: 1;
   margin: auto;
   margin-top: 0;
   width: 95%;
-  height: 90%;
   border-radius: 5px;
   border: 3px solid rgb(20, 165, 248);
 }
 
-.mapHeader{
-  color:#fff;
+.navigation__mainHeader {
+  color: #fff;
   width: 95%;
   margin: auto;
-  padding-top: 10px;
 }
-.mapHeader > p{
+
+.navigation__mainHeader > h3 {
   font-size: 1.4rem;
-  color: #fff;
   font-family: "Poiret One";
-  margin-top: 15px;
   text-align: center;
-}
-.mapHeader > hr{
-  color:#fff;
-  width: 100%;
-  margin: auto;
-  margin-top: 10px;
   margin-bottom: 10px;
+  font-weight: 300;
+}
+
+.navigation__mainHeader > hr {
+  width: 90%;
+  margin: auto;
+  margin-bottom: 15px;
 }
 
 @media only screen and (max-width: 850px) {
   .navigation {
     -webkit-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
   }
 
-  .form_and_button{
-    display: -webkit-flex;
-    display: flex ;
-    flex-direction: column;
-    align-content: center;
-    margin: auto;
-    width: 75%;
-  }
-  
-  .nav_input{
+  .navigation__sidebar {
     width: 100%;
     max-width: none;
     -webkit-align-content: center;
-            align-content: center;
+    align-content: center;
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
     padding-bottom: 30px;
-
   }
 
-  .navigation__form {
+  .navigation__sidebarForm {
     -webkit-flex-direction: row;
-            flex-direction: row;
+    flex-direction: row;
     width: 70%;
     flex-wrap: nowrap;
     align-self: center;
-
     -webkit-flex-wrap: nowrap;
-            flex-wrap: nowrap;
+    flex-wrap: nowrap;
     -webkit-align-self: center;
-            align-self: center;
+    align-self: center;
   }
 
-  .nav_results{
+  .navigation__main {
     width: 100%;
     margin-top: 10px;
-  }
-  .frame {
-    height: 95%;  
+    height: 100vh !important;
   }
 
   @media only screen and (max-width: 560px) {
-    .navigation__form {
+    .navigation__sidebarForm {
       width: 100%;
       flex-direction: column;
     }
 
-    .nav_results{
-      height: 90vh ;  
+    .navigation__main {
+      height: 90vh;
     }
   }
 
   @media only screen and (max-width: 400px) {
-    .nav_input{
-      max-width:100%;
+    .navigation__sidebar {
+      max-width: 100%;
     }
-    .navigation__form {
+
+    .navigation__sidebarForm {
       width: 100%;
     }
-    .frame {
-      height: 87%;  
-    }
-    .nav_results{
-      height: 90vh ;  
+
+    .navigation__main {
+      height: 90vh;
     }
   }
 }
-
