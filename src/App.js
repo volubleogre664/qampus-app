@@ -72,10 +72,10 @@ function App() {
             <FinaliseRegister />
           </PrivateRoute>
 
-          <Route exact path="/profile">
+          <PrivateRoute exact path="/profile">
             <HeaderMenu />
             <Profile />
-          </Route>
+          </PrivateRoute>
 
           <PrivateRoute exact path="/chats*">
             <HeaderMenu />
