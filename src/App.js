@@ -34,7 +34,7 @@ function App() {
   useEffect(() => {
     if (!user?.id) return;
 
-    const socket = io("https://server.qampus.co.za", {
+    const socket = io("http://server.qampus.co.za:8080", {
       query: {
         user: user.id,
       },
