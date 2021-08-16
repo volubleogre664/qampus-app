@@ -46,7 +46,7 @@ function App() {
     setSocket(socket);
 
     return () => socket.disconnect();
-  }, [user?.id, setSocket]);
+  }, [user?.id, setSocket, dispatchUser]);
 
   return (
     <div className="app">
