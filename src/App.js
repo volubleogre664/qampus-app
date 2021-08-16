@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase/app";
 import { io } from "socket.io-client";
-
 import Home from "./pages/Home/Home.js";
 import Chats from "./pages/Chats/Chats.js";
 import Profile from "./pages/Profile/Profile.js";
@@ -73,10 +72,10 @@ function App() {
             <FinaliseRegister />
           </PrivateRoute>
 
-          <PrivateRoute exact path="/profile">
+          <Route exact path="/profile">
             <HeaderMenu />
             <Profile />
-          </PrivateRoute>
+          </Route>
 
           <PrivateRoute exact path="/chats*">
             <HeaderMenu />

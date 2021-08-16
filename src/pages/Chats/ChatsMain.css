@@ -30,12 +30,7 @@
 
 .chats__mainHeader > .right {
   font-size: 1rem;
-<<<<<<< HEAD
   font-weight: normal;
-=======
-  font-weight: 300;
-  display: -webkit-flex;
->>>>>>> 3b86ac0f5c958dd186757d662753bbb905538271
   display: flex;
   -webkit-flex-direction: column;
           flex-direction: column;
@@ -45,24 +40,10 @@
 }
 
 .chats__mainHeader > .left {
-<<<<<<< HEAD
   display: flex;
   justify-content: left;
   user-select: none;
   font-weight: normal;
-=======
-  -webkit-flex: 1;
-          flex: 1;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-justify-content: left;
-          justify-content: left;
-  -webkit-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  cursor: pointer;
-  font-weight: bold !important;
->>>>>>> 3b86ac0f5c958dd186757d662753bbb905538271
 }
 
 .chats__mainHeader > .left > .name {

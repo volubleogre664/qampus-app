@@ -175,7 +175,9 @@
     .navigation__form {
       width: 100%;
     }
-
+    .frame {
+      height: 87%;  
+    }
     .nav_results{
       height: 90vh ;  
     }

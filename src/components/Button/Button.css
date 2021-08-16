@@ -10,6 +10,7 @@
   background: #03a9f4 !important;
   font: lighter 1rem var(--font) !important;
   min-width: 150px;
+  margin-top: 10px;
 }
 
 .formSubmitBtn:hover {

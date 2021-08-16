@@ -8,53 +8,102 @@ import "./Profile.css";
 
 function Profile() {
   const [{ user }] = useUserHelpers();
-  const editBio = (e) =>{
-      /* 
-        1. Hide edit button.
-        2. Make textbox active.
-        3. Show save button.
-      */
+ 
+  const editBio = () =>{
+    document.getElementById('bioEdit').style.display = "none";
+    document.getElementById('btnSave2').style.display = "inline";
+    document.getElementById('bio').disabled = false;
+    document.getElementById('bio').focus();
+
+
+    const textBox =  document.getElementById('textbox');
+    if(!textBox.disabled){
+      textBox.disabled = true;
+      document.getElementById('btnSave').style.display = "none";
+      document.getElementById('emailEdit').style.display = "inline";
+    }
+
+    const textBox1 =  document.getElementById('textbox1');
+    if(!textBox1.disabled){
+      textBox1.disabled = true;
+      document.getElementById('btnSave1').style.display = "none";
+      document.getElementById('degreeEdit').style.display = "inline";
+    }
+
   }
 
-  const saveBio = (e) =>{
-    /* 
-      1. Hide save button.
-      2. Make textbox inactive.
-      3. Show edit button.
-      4. Save data
-    */
+  const saveBio = () =>{
+    document.getElementById('btnSave2').style.display = "none";
+    document.getElementById('bioEdit').style.display = "inline";
+    document.getElementById('bio').disabled = true;
+    
+    if(user?.bio){
+      user.bio = document.getElementById('bio').textContent;
+    }
   }
   const editDeg = (e) =>{
-    /* 
-      1. Hide edit button.
-      2. Make textbox active.
-      3. Show save button.
-    */
+    document.getElementById('degreeEdit').style.display = "none";
+    document.getElementById('btnSave1').style.display = "inline";
+    document.getElementById('textbox1').disabled = false;
+    document.getElementById('textbox1').focus();
+   
+    const textBox =  document.getElementById('textbox');
+    if(!textBox.disabled){
+      textBox.disabled = true;
+      document.getElementById('btnSave').style.display = "none";
+      document.getElementById('emailEdit').style.display = "inline";
+    }
+   
+    const bioBox =  document.getElementById('bio');
+    if(!bioBox.disabled){
+      bioBox.disabled = true;
+      document.getElementById('btnSave2').style.display = "none";
+      document.getElementById('bioEdit').style.display = "inline";
+    }
+    
   }
   const saveDeg = (e) =>{
-    /* 
-      1. Hide save button.
-      2. Make textbox inactive.
-      3. Show edit button.
-      4. Save data
-    */
+    document.getElementById('btnSave1').style.display = "none";
+    document.getElementById('degreeEdit').style.display = "inline";
+    document.getElementById('textbox1').disabled = true;
+
+    if(user?.degree){
+      user.degree = document.getElementById('textbox1').textContent;
+    }
   }
 
   const editEmail = (e) =>{
-    /* 
-      1. Hide edit button.
-      2. Make textbox active.
-      3. Show save button.
-    */
+    document.getElementById('emailEdit').style.display = "none";
+    document.getElementById('btnSave').style.display = "inline";
+    document.getElementById('textbox').disabled = false;
+    document.getElementById('textbox').focus();
+    
+    const textBox1 =  document.getElementById('textbox1');
+    if(!textBox1.disabled){
+      textBox1.disabled = true;
+      document.getElementById('btnSave1').style.display = "none";
+      document.getElementById('degreeEdit').style.display = "inline";
+    }
+
+    const bioBox =  document.getElementById('bio');
+    if(!bioBox.disabled){
+      bioBox.disabled = true;
+      document.getElementById('btnSave2').style.display = "none";
+      document.getElementById('bioEdit').style.display = "inline";
+    }
   }
+
   const saveEmail = (e) =>{
-    /* 
-      1. Hide save button.
-      2. Make textbox inactive.
-      3. Show edit button.
-      4. Save data
-    */
+    document.getElementById('btnSave').style.display = "none";
+    document.getElementById('emailEdit').style.display = "inline";
+    document.getElementById('textbox').disabled = true;
+
+    if(user?.email){
+      user.email = document.getElementById('textbox').textContent;
+    }
   }
+
+  
   return (
     <div className="profile">
     
@@ -81,7 +130,7 @@ function Profile() {
                 className="textBox"
                 type="email"
                 name="studentNo"
-                id="textbox"
+                id="textbox2"
                 disabled
                 readOnly
                 value={user?.studentNumber || "2017049467"}
@@ -95,10 +144,10 @@ function Profile() {
                 type="email"
                 name="email"
                 id="textbox"
-                readOnly
-                value={user?.email || "email.email.com"}
+                disabled
+                value={user?.email}
               />
-              <PencilIcon className="btnEdit" onClick={editEmail}/>
+              <PencilIcon className="btnEdit" id="emailEdit" onClick={editEmail}/>
               <SaveIcon id="btnSave" onClick={saveEmail}/>
               </div>
             </label>
@@ -109,12 +158,12 @@ function Profile() {
                   className="textBox"
                   type="text"
                   name="degree"
-                  id="textbox"
-                  readOnly
-                  value={user?.degree || "Computer Information Systems"}
+                  id="textbox1"
+                  disabled
+                  value={user?.degree}
                 />
-                <PencilIcon className="btnEdit" onClick={editDeg}/>
-                <SaveIcon id="btnSave" onClick={saveDeg}/>
+                <PencilIcon className="btnEdit" id="degreeEdit" onClick={editDeg}/>
+                <SaveIcon id="btnSave1" onClick={saveDeg}/>
 
               </div>
             </label>
@@ -125,11 +174,11 @@ function Profile() {
                 className="bioBox"
                 name="bio"
                 id="bio"
-                readOnly
-                value={user?.bio || "Hello there..."}
+                disabled
+                value={user?.bio}
               />
-              <PencilIcon className="btnEdit" onClick={editBio}/>
-              <SaveIcon id="btnSave" onClick={saveBio}/>
+              <PencilIcon className="btnEdit" id="bioEdit" onClick={editBio}/>
+              <SaveIcon id="btnSave2" onClick={saveBio}/>
             </label>
           </form>
         </main>
