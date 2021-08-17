@@ -8,16 +8,16 @@ const initialState = {
   imgCrop: { imgSrc: null, croppedImgUrl: null },
 };
 
-if (localStorage.getItem("jwtToken")) {
-  const decodedToken = jwtDecode(localStorage.getItem("jwtToken"));
+// if (localStorage.getItem("jwtToken") !== undefined) {
+//   const decodedToken = jwtDecode(localStorage.getItem("jwtToken"));
 
-  if (decodedToken.exp * 1000 < Date.now()) {
-    localStorage.removeItem("jwtToken");
-    localStorage.removeItem("user");
-  } else {
-    initialState.user = JSON.parse(localStorage.getItem("user"));
-  }
-}
+//   if (decodedToken.exp * 1000 < Date.now()) {
+//     localStorage.removeItem("jwtToken");
+//     localStorage.removeItem("user");
+//   } else {
+//     initialState.user = JSON.parse(localStorage.getItem("user"));
+//   }
+// }
 
 const userSlice = createSlice({
   name: "user",
