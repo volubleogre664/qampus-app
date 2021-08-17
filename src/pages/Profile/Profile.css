@@ -267,8 +267,8 @@
   .profile__bodyMain > form {
     width: 90%;
   }
-  #textbox{
-    margin-bottom: 25px;
+  #textbox,#textbox1,#textbox2{
+    margin-bottom: 10px;
   } 
   .profile__bodyMain .separator {
     width: 90%;
@@ -285,9 +285,10 @@
       max-width: 350px;
       min-width: 50px;
       padding-left: 0;
+      padding-bottom: 20px;
     }
 
-    #textbox{
+    #textbox,#textbox1,#textbox2 {
       margin-left: 5px;
     }
 
