@@ -157,7 +157,6 @@
   font-size: 1.2rem;
   font-weight: 100;
   margin-left: 20px;
-
 }
 
 #textbox:focus,#textbox1:focus,#textbox2:focus, .bioBox:focus{
@@ -203,6 +202,7 @@
   margin-left: 5px;
   margin-bottom: 5px;
 }
+
 .btnEdit:hover {
   transition: all ease-in-out 0.2s;
   box-shadow: inset 0 0 7px rgba(255, 255, 255, 0.5),
