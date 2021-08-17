@@ -30,11 +30,6 @@ function Navigation() {
     })(),
   });
 
-  /*Get these values from the database */
-  // var _start_latitude = "29°6’33.75”S";
-  // var _start_longitude = "26°11’26.48”E";
-  // var _end_latitude = "29°6’19.89”S";
-  // var _end_longitude = "26°11’18.08”E";
 
   // Set the current location by calling getCurrentLocation()
   if (!currentLocation) setCurrentLocation(getCurrentLocation());

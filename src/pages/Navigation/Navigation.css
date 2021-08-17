@@ -130,9 +130,9 @@
   }
 
   .navigation__sidebarForm {
-    -webkit-flex-direction: row;
-    flex-direction: row;
-    width: 70%;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    max-width: 70%;
     flex-wrap: nowrap;
     align-self: center;
     -webkit-flex-wrap: nowrap;
@@ -148,14 +148,13 @@
   }
 
   @media only screen and (max-width: 560px) {
-    .navigation__sidebarForm {
-      width: 100%;
-      -webkit-flex-direction: column;
-              flex-direction: column;
-    }
-
     .navigation__main {
       height: 90vh;
+    }
+
+    .navigation__sidebarForm {
+      max-width: 100%;
+      padding: 0;
     }
   }
 
@@ -163,11 +162,6 @@
     .navigation__sidebar {
       max-width: 100%;
     }
-
-    .navigation__sidebarForm {
-      width: 100%;
-    }
-
     .navigation__main {
       height: 90vh;
     }
