@@ -1,185 +1,185 @@
+import { useState } from "react";
 import { GoVerified } from "react-icons/go";
-import PencilIcon from "@material-ui/icons/EditRounded";
-import SaveIcon from "@material-ui/icons/SaveRounded";
+import { useMutation } from "@apollo/react-hooks";
+import firebase from "firebase/app";
+
+import Input from "../../components/Input/Input";
+import Loader from "../../components/Loader/Loader";
+import Button from "../../components/Button/Button";
 import ProfileImage from "../../components/ProfileImage/ProfileImage";
+
+import { UPDATE_USER } from "../../utils/graphql";
 import { useUserSlice } from "../../Redux/getSlices";
+import { useForm } from "../../utils/hooks";
 
 import "./Profile.css";
 
 function Profile() {
-  const [{ user }] = useUserSlice();
+  const [isEmail, setIsEmail] = useState(true);
+  const [active, setActive] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [profile, setProfile] = useState(null);
+  const firebaseStorage = firebase.storage();
+  const [
+    {
+      user,
+      imgCrop: { croppedImgUrl },
+    },
+    dispatch,
+  ] = useUserSlice();
 
-  const editBio = () => {
-    document.getElementById("bioEdit").style.display = "none";
-    document.getElementById("btnSave2").style.display = "inline";
-    document.getElementById("bio").disabled = false;
-    document.getElementById("bio").focus();
+  const { onSubmit, onChange, values } = useForm(updateUser, user);
 
-    const textBox = document.getElementById("textbox");
-    if (!textBox.disabled) {
-      textBox.disabled = true;
-      document.getElementById("btnSave").style.display = "none";
-      document.getElementById("emailEdit").style.display = "inline";
+  const [updateProfile] = useMutation(UPDATE_USER, {
+    variables: { ...values, picture: profile },
+    update(_, { data }) {
+      setLoading(false);
+      setActive(false);
+      if (data) {
+        dispatch({
+          type: "SET_USER",
+          payload: data.updateUser,
+        });
+      }
+    },
+    onError(err) {
+      console.log(err);
+      setActive(false);
+      setLoading(false);
+    },
+  });
+
+  async function uploadImageUri(e) {
+    e.preventDefault();
+
+    setLoading(true);
+    const storageRef = firebaseStorage.ref(
+      `${user.id}/profile/${user.firstName}.jpg`
+    );
+
+    if (croppedImgUrl) {
+      await storageRef
+        .putString(croppedImgUrl, "data_url")
+        .then(() => {
+          console.log("Image has been uploaded");
+        })
+        .catch((err) => {
+          console.log("Erroruploading image: ", err);
+        });
     }
 
-    const textBox1 = document.getElementById("textbox1");
-    if (!textBox1.disabled) {
-      textBox1.disabled = true;
-      document.getElementById("btnSave1").style.display = "none";
-      document.getElementById("degreeEdit").style.display = "inline";
-    }
-  };
+    await storageRef
+      .getDownloadURL()
+      .then((url) => {
+        if (url) setProfile(url);
+        else setProfile("");
+      })
+      .catch((err) => console.log(err));
 
-  const saveBio = () => {
-    document.getElementById("btnSave2").style.display = "none";
-    document.getElementById("bioEdit").style.display = "inline";
-    document.getElementById("bio").disabled = true;
+    onSubmit(e);
+  }
 
-    if (user?.bio) {
-      user.bio = document.getElementById("bio").textContent;
-    }
-  };
-  const editDeg = (e) => {
-    document.getElementById("degreeEdit").style.display = "none";
-    document.getElementById("btnSave1").style.display = "inline";
-    document.getElementById("textbox1").disabled = false;
-    document.getElementById("textbox1").focus();
-
-    const textBox = document.getElementById("textbox");
-    if (!textBox.disabled) {
-      textBox.disabled = true;
-      document.getElementById("btnSave").style.display = "none";
-      document.getElementById("emailEdit").style.display = "inline";
-    }
-
-    const bioBox = document.getElementById("bio");
-    if (!bioBox.disabled) {
-      bioBox.disabled = true;
-      document.getElementById("btnSave2").style.display = "none";
-      document.getElementById("bioEdit").style.display = "inline";
-    }
-  };
-  const saveDeg = (e) => {
-    document.getElementById("btnSave1").style.display = "none";
-    document.getElementById("degreeEdit").style.display = "inline";
-    document.getElementById("textbox1").disabled = true;
-
-    if (user?.degree) {
-      user.degree = document.getElementById("textbox1").textContent;
-    }
-  };
-
-  const editEmail = (e) => {
-    document.getElementById("emailEdit").style.display = "none";
-    document.getElementById("btnSave").style.display = "inline";
-    document.getElementById("textbox").disabled = false;
-    document.getElementById("textbox").focus();
-
-    const textBox1 = document.getElementById("textbox1");
-    if (!textBox1.disabled) {
-      textBox1.disabled = true;
-      document.getElementById("btnSave1").style.display = "none";
-      document.getElementById("degreeEdit").style.display = "inline";
-    }
-
-    const bioBox = document.getElementById("bio");
-    if (!bioBox.disabled) {
-      bioBox.disabled = true;
-      document.getElementById("btnSave2").style.display = "none";
-      document.getElementById("bioEdit").style.display = "inline";
-    }
-  };
-
-  const saveEmail = (e) => {
-    document.getElementById("btnSave").style.display = "none";
-    document.getElementById("emailEdit").style.display = "inline";
-    document.getElementById("textbox").disabled = true;
-
-    if (user?.email) {
-      user.email = document.getElementById("textbox").textContent;
-    }
-  };
+  function updateUser() {
+    updateProfile();
+  }
 
   return (
     <div className="profile">
-      <div className="nameDiv">
-        <p className="name">
-          {user?.firstName || "Nkosingiphile "} {user?.lastName || "Mkwanazi"}
-          <GoVerified id="ico" />
+      {loading && <Loader message="Updating data" />}
+      <header className="profile__header">
+        <p>
+          {user?.firstName} {user?.lastName}
+          <GoVerified className="profile__headerIcon" />
         </p>{" "}
-        <hr className="separator" />
-      </div>
+        <hr />
+      </header>
 
       <section className="profile__body">
         <aside className="profile__bodyAside">
-          <ProfileImage title="Your Profile Picture" src={user?.picture} />
+          <ProfileImage src={user?.picture} />
         </aside>
 
         <main className="profile__bodyMain">
-          <form>
-            <label htmlFor="degree">
-              <h3>Student number:</h3>
-              <input
-                className="textBox"
-                type="email"
-                name="studentNo"
-                id="textbox2"
-                disabled
-                readOnly
-                value={user?.studentNumber || "2017049467"}
-              />
-            </label>
-            <label htmlFor="degree">
-              <h3>Email:</h3>
-              <div>
-                <input
-                  className="textBox"
-                  type="email"
-                  name="email"
-                  id="textbox"
-                  disabled
-                  value={user?.email}
-                />
-                <PencilIcon
-                  className="btnEdit"
-                  id="emailEdit"
-                  onClick={editEmail}
-                />
-                <SaveIcon id="btnSave" onClick={saveEmail} />
-              </div>
-            </label>
-            <label htmlFor="degree">
-              <h3>Field of study:</h3>
-              <div>
-                <input
-                  className="textBox"
-                  type="text"
-                  name="degree"
-                  id="textbox1"
-                  disabled
-                  value={user?.degree}
-                />
-                <PencilIcon
-                  className="btnEdit"
-                  id="degreeEdit"
-                  onClick={editDeg}
-                />
-                <SaveIcon id="btnSave1" onClick={saveDeg} />
-              </div>
-            </label>
+          <div
+            style={{ display: active ? "none" : "flex" }}
+            className="profile__bodyMainInfo"
+          >
+            <div>
+              <h4>Student number:</h4>
+              <p>{values.studentNumber}</p>
+            </div>
+            <div>
+              <h4>Email:</h4>
+              <p>{values.email}</p>
+            </div>
+            <div>
+              <h4>Field of study:</h4>
+              <p>{values.degree}</p>
+            </div>
+            <div>
+              <h4>Bio:</h4>
+              <p>{values.bio}</p>
+            </div>
+            <Button text="Edit Info" onClick={() => setActive(!active)} />
+          </div>
 
-            <label htmlFor="degree">
-              <h3>Bio:</h3>
+          <form
+            style={{ display: active ? "flex" : "none" }}
+            className="profile__bodyMainForm"
+            onSubmit={uploadImageUri}
+          >
+            <div>
+              <h3>Change your details</h3>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActive(!active);
+                }}
+                className="btnBack"
+              >
+                X
+              </button>
+            </div>
+
+            <Input
+              label="Email"
+              type="email"
+              name="email"
+              id="email"
+              value={values.email}
+              isvalid={isEmail}
+              onChange={(e) => {
+                const emailRegex = new RegExp(
+                  /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/
+                );
+                setIsEmail(emailRegex.test(e.target.value));
+                onChange(e);
+              }}
+            />
+
+            <Input
+              label="Field of study"
+              id="degree"
+              type="text"
+              name="degree"
+              onChange={onChange}
+              value={values.degree}
+            />
+
+            {/* The style for this is in App.css : Generic for all textareas */}
+            <label htmlFor="degree" className="formTextareaLabel">
+              Bio:
               <textarea
-                className="bioBox"
+                className="formTextarea"
                 name="bio"
                 id="bio"
-                disabled
-                value={user?.bio}
+                onChange={onChange}
+                value={values.bio}
               />
-              <PencilIcon className="btnEdit" id="bioEdit" onClick={editBio} />
-              <SaveIcon id="btnSave2" onClick={saveBio} />
             </label>
+
+            {/* <Button type="submit" text="cancel" /> */}
+            <Button type="submit" text="Save" />
           </form>
         </main>
       </section>

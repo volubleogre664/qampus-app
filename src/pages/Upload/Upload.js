@@ -12,7 +12,7 @@ import ConfirmBook from "./ConfirmBook";
 import { useForm } from "../../utils/hooks";
 import { UPLOAD_BOOK } from "../../utils/graphql";
 import { useBooksSlice, useUserSlice } from "../../Redux/getSlices";
-import { upload as uploadBullets } from "../../text files/bulletPoints";
+import { upload as uploadBullets } from "../../text_files/bulletPoints";
 
 import "./Upload.css";
 
@@ -222,8 +222,6 @@ function Upload() {
         console.log(err);
         setLoading({ ...loading, isLoading: false, message: "" });
       });
-
-    // console.log(bookUpload);
   }
 
   useEffect(() => {
@@ -238,8 +236,6 @@ function Upload() {
       },
     });
   }
-
-  // TODO: Design the whole form for confirming book details and actually make it work the push (-_-)
 
   return (
     <div className="uploadPage">

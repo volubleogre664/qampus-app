@@ -1,6 +1,8 @@
+// Be sure to run this file on backend NodeJS server
 import fs from "fs";
 const data = [];
 
+// Be sure to makee this relative path according to how your project structur is set up.
 const coordinates = fs
   .readFileSync("../client/src/nav_coordinates/CoodinateTableData.txt")
   .toString();

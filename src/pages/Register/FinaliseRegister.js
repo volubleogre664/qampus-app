@@ -126,9 +126,10 @@ function CompleteRegistration() {
               label="Degree"
             />
 
-            <label htmlFor="bio">
+            <label htmlFor="bio" className="formTextareaLabel">
               Bio: <br />
               <textarea
+                className="formTextarea"
                 name="bio"
                 id="bio"
                 onChange={onChange}

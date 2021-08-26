@@ -10,7 +10,6 @@ const initialState = {
 // This is where we get a cookie from the browser
 // For getting cookies that have been encoded
 const getCookie = (cookieName) => {
-  console.log("Got here mate");
   let cookie = document.cookie;
   cookieName = cookieName + "=";
 

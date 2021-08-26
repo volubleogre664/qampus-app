@@ -18,8 +18,9 @@ import AuthRoute from "./utils/AuthRoute.js";
 import PrivateRoute from "./utils/PrivateRoute.js";
 import { useMessagesSlice, useUserSlice } from "./Redux/getSlices.js";
 import { firebaseConfig } from "./config.js";
-import "./App.css";
+
 import "firebase/storage";
+import "./App.css";
 
 firebase.initializeApp(firebaseConfig);
 
@@ -75,9 +76,9 @@ function App() {
 
           {/* PrivateRoute is for private pages that needs login to be accessed. */}
           {/* For development purposes just rename PrivateRoute to Route */}
-          <PrivateRoute exact path="/register/finalise">
+          <Route exact path="/register/finalise">
             <FinaliseRegister />
-          </PrivateRoute>
+          </Route>
 
           <Route exact path="/profile">
             <HeaderMenu />

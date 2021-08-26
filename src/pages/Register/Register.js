@@ -9,7 +9,7 @@ import Bullet from "../../components/Bullet/Bullet";
 import { useForm } from "../../utils/hooks";
 import { REGISTER_USER } from "../../utils/graphql";
 import { useUserSlice } from "../../Redux/getSlices";
-import { register as registerBullets } from "../../text files/bulletPoints.js";
+import { register as registerBullets } from "../../text_files/bulletPoints.js";
 
 import logo from "../../logo.png";
 import Button from "../../components/Button/Button";
