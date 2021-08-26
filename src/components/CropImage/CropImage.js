@@ -13,8 +13,16 @@ export const CropImage = () => {
   const [cropper, setCropper] = useState();
 
   const closeWindow = (e) => {
-    /*hide crop tool*/
+    dispatch({
+      type: "SET_CROP_IMG",
+      payload: {
+        ...imgCrop,
+        croppedImgUrl: null,
+        imgSrc: null,
+      },
+    });
   };
+
   const getCropData = () => {
     if (typeof cropper !== "undefined") {
       dispatch({
@@ -29,7 +37,7 @@ export const CropImage = () => {
   };
 
   return (
-    <div>
+    <div id="crop">
       <div
         style={{
           width: "100vw",
@@ -42,8 +50,9 @@ export const CropImage = () => {
         <h1>Adjust Your Image</h1>
 
         <Cropper
-          style={{ height: 70 + "%", width: "100%" }}
+          style={{ height: "70%" }}
           initialAspectRatio={1}
+          aspectRatio={1}
           src={image}
           viewMode={1}
           guides={true}
