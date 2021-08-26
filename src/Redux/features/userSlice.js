@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import jwtDecode from "jwt-decode";
 
 const initialState = {
   user: null,
@@ -8,16 +7,49 @@ const initialState = {
   imgCrop: { imgSrc: null, croppedImgUrl: null },
 };
 
-// if (localStorage.getItem("jwtToken") !== undefined) {
-//   const decodedToken = jwtDecode(localStorage.getItem("jwtToken"));
+// This is where we get a cookie from the browser
+// For getting cookies that have been encoded
+const getCookie = (cookieName) => {
+  console.log("Got here mate");
+  let cookie = document.cookie;
+  cookieName = cookieName + "=";
 
-//   if (decodedToken.exp * 1000 < Date.now()) {
-//     localStorage.removeItem("jwtToken");
-//     localStorage.removeItem("user");
-//   } else {
-//     initialState.user = JSON.parse(localStorage.getItem("user"));
-//   }
-// }
+  if (!cookie) return null;
+
+  let savedItem;
+  cookie = cookie.split(";");
+  cookie.forEach((item) => {
+    if (item.includes(cookieName)) {
+      savedItem = item.substring(cookieName.length + 1, item.length);
+    }
+  });
+
+  if (!savedItem) return null;
+
+  savedItem = new Uint8Array(savedItem.split(","));
+  savedItem = new TextDecoder().decode(savedItem);
+  savedItem = savedItem.replace("", "{");
+  return JSON.parse(savedItem);
+};
+
+// Setting a cookie for saving in the browser
+// This is for items like objects and arrays, encode first then save
+const setCookie = (cookieName, value, expires = 2) => {
+  value = JSON.stringify(value);
+  value = new TextEncoder().encode(value);
+  value = value.toString();
+
+  const date = new Date();
+  expires = date.setDate(date.getDate() + expires * 24 * 60 * 60 * 1000);
+
+  document.cookie = `${cookieName}=${value};expires=${expires.toLocaleString()};path=/`;
+};
+
+// Get the user data from cookies if it is available
+initialState.user = getCookie("user");
+if (initialState.user) {
+  initialState.user.contacts = getCookie("contacts");
+}
 
 const userSlice = createSlice({
   name: "user",
@@ -26,14 +58,14 @@ const userSlice = createSlice({
     setUser(state, action) {
       state.user = action.payload;
 
-      if (localStorage.getItem("user")) {
-        localStorage.removeItem("user");
-      }
-
-      localStorage.setItem("user", JSON.stringify(state.user));
+      const { token, contacts, ...userData } = state.user;
+      setCookie("user", userData);
+      contacts.length && setCookie("contacts", contacts);
     },
     clearUser(state) {
       state.user = null;
+      document.cookie = "user=;max-age=0";
+      document.cookie = "contacts=;max-age=0";
     },
     setPath(state, action) {
       state.path = action.payload;
@@ -55,11 +87,7 @@ const userSlice = createSlice({
         state.user.contacts = [action.payload];
       }
 
-      if (localStorage.getItem("user")) {
-        localStorage.removeItem("user");
-      }
-
-      localStorage.setItem("user", JSON.stringify(state.user));
+      setCookie("contacts", state.user.contacts);
     },
   },
 });

@@ -11,7 +11,7 @@ import ConfirmBook from "./ConfirmBook";
 
 import { useForm } from "../../utils/hooks";
 import { UPLOAD_BOOK } from "../../utils/graphql";
-import { useBooksHelpers, useUserHelpers } from "../../Redux/getSlices";
+import { useBooksSlice, useUserSlice } from "../../Redux/getSlices";
 import { upload as uploadBullets } from "../../text files/bulletPoints";
 
 import "./Upload.css";
@@ -21,8 +21,8 @@ const bookCovers = {};
 
 function Upload() {
   //Data from redux state, dispatch -> function to update redux state
-  const [{ user }] = useUserHelpers();
-  const [, dispatchBooks] = useBooksHelpers();
+  const [{ user }] = useUserSlice();
+  const [, dispatchBooks] = useBooksSlice();
 
   //References for input[file] to be accessed since it is hidden and cannot be clicked
   const frontCoverInputRef = useRef(null);
@@ -39,22 +39,16 @@ function Upload() {
   const { onChange, onSubmit, values } = useForm(callUploadData, {
     isbn: "",
     title: "",
-    subtitle: "",
     authors: "",
     price: "",
-    description: "",
     moduleCode: "",
-    studentNumber: user?.studentNumber || "",
     frontCover: "",
   });
 
-  // Book cover urls from firebase to send to database
   // Title, subtitle, authors and description will get from google books api
   const [bookUpload, setBookUpload] = useState({
     title: "",
-    subtitle: "",
     authors: "",
-    description: "",
   });
 
   // This is a hook for confirming the book data
@@ -69,8 +63,6 @@ function Upload() {
       authors: values.authors || bookUpload?.authors,
       price: Number(values.price),
       title: values.title || bookUpload.title,
-      subtitle: values.subtitle || bookUpload.subtitle,
-      description: values.description || bookUpload.description,
       frontCover: bookCovers?.frontCover,
     },
     // update -> function to call if api call is successful
@@ -215,11 +207,14 @@ function Upload() {
           isLoading: false,
           message: "",
         });
+        onChange({
+          target: {
+            name: "title",
+            value: tempBook.title,
+          },
+        });
         setBookUpload({
           ...bookUpload,
-          title: tempBook.title,
-          description: tempBook?.description || "",
-          subtitle: tempBook?.subtitle || "",
           authors: tempBook?.authors.join(", ") || "",
         });
       })
@@ -235,13 +230,22 @@ function Upload() {
     document.title = "Upload - Qampus";
   });
 
+  if (bookUpload.authors !== "" && values.authors !== bookUpload.authors) {
+    onChange({
+      target: {
+        name: "authors",
+        value: bookUpload.authors,
+      },
+    });
+  }
+
   // TODO: Design the whole form for confirming book details and actually make it work the push (-_-)
 
   return (
     <div className="uploadPage">
       {confirmBook && (
         <ConfirmBook
-          values={{ ...values, ...bookUpload }}
+          values={{ ...values }}
           onChange={onChange}
           cancelUpload={cancelUpload}
           uploadBook={confirmBookDetailsAndUpload}
@@ -297,7 +301,7 @@ function Upload() {
             name="moduleCode"
             id="moduleCode"
             onChange={onChange}
-            value={values.moduleCode }
+            value={values.moduleCode}
             label="Module Code"
             placeholder="CSIS1664"
           />
@@ -312,6 +316,9 @@ function Upload() {
             label="Asking Price (R)"
             placeholder="350"
           />
+
+          <input type="hidden" name="title" value={values.title} />
+          <input type="hidden" name="authors" value={values.authors} />
 
           <Button text="Upload" type="submit" />
         </form>

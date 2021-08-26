@@ -7,12 +7,12 @@ import { Provider as ReduxProvider } from "react-redux";
 import store from "./Redux/store";
 import App from "./App";
 
-const serverURL = "server.qampus.co.za/graphql";
-// const serverURL = "localhost/graphql";
+// const serverURL = "server.qampus.co.za/graphql";
+const serverURL = "127.0.0.1:8080/graphql";
 
 // Rest of features eendpoint
 const httpLink = createHttpLink({
-  uri: `https://${serverURL}`,
+  uri: `http://${serverURL}`,
   credentials: "include",
 });
 
@@ -20,7 +20,7 @@ const authLink = setContext(() => {
   const token = localStorage.getItem("jwtToken");
   return {
     headers: {
-      Authorization: token ? `Bearer ${token}` : "",
+      Authorization: `Bearer ${token || ""}`,
     },
   };
 });

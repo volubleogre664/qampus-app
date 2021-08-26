@@ -11,7 +11,7 @@ import ProfileImage from "../../components/ProfileImage/ProfileImage";
 import Loader from "../../components/Loader/Loader";
 
 import appLogo from "../../logo.png";
-import { useUserHelpers } from "../../Redux/getSlices";
+import { useUserSlice } from "../../Redux/getSlices";
 
 import "./FinaliseRegister.css";
 
@@ -29,7 +29,7 @@ function CompleteRegistration() {
       imgCrop: { croppedImgUrl },
     },
     dispatchUser,
-  ] = useUserHelpers();
+  ] = useUserSlice();
 
   const { onChange, onSubmit, values } = useForm(updateUser, {
     picture: "",

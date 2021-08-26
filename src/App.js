@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase/app";
 import { io } from "socket.io-client";
@@ -16,7 +16,7 @@ import HeaderMenu from "./components/HeaderMenu/HeaderMenu.js";
 import CropImage from "./components/CropImage/CropImage.js";
 import AuthRoute from "./utils/AuthRoute.js";
 import PrivateRoute from "./utils/PrivateRoute.js";
-import { useUserHelpers } from "./Redux/getSlices.js";
+import { useMessagesSlice, useUserSlice } from "./Redux/getSlices.js";
 import { firebaseConfig } from "./config.js";
 import "./App.css";
 import "firebase/storage";
@@ -24,13 +24,13 @@ import "firebase/storage";
 firebase.initializeApp(firebaseConfig);
 
 function App() {
-  const [{ imgCrop, user }, dispatchUser] = useUserHelpers();
-  const [socket, setSocket] = useState(null);
+  const [{ imgCrop, user }, dispatchUser] = useUserSlice();
+  const [, dispatchMessage] = useMessagesSlice();
 
   useEffect(() => {
     if (!user?.id) return;
 
-    const socket = io("http://server.qampus.co.za:8080", {
+    const socket = io("http://127.0.0.1:8080", {
       query: {
         user: user.id,
       },
@@ -43,10 +43,17 @@ function App() {
       });
     });
 
-    setSocket(socket);
+    socket.on("NEW_MESSAGE", (message) => {
+      dispatchMessage({
+        payload: message.newMessage,
+      });
+
+      let chatsDiv = document.querySelector(".chats__mainBody");
+      chatsDiv.scrollTop = chatsDiv.scrollHeight;
+    });
 
     return () => socket.disconnect();
-  }, [user?.id, setSocket, dispatchUser]);
+  }, [user?.id, dispatchUser, dispatchMessage]);
 
   return (
     <div className="app">
@@ -72,14 +79,14 @@ function App() {
             <FinaliseRegister />
           </PrivateRoute>
 
-          <PrivateRoute exact path="/profile">
+          <Route exact path="/profile">
             <HeaderMenu />
             <Profile />
-          </PrivateRoute>
+          </Route>
 
           <PrivateRoute exact path="/chats*">
             <HeaderMenu />
-            <Chats socket={socket} />
+            <Chats />
           </PrivateRoute>
 
           <PrivateRoute exact path="/upload">

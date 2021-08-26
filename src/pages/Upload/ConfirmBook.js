@@ -39,16 +39,6 @@ function ConfirmBook({ values, uploadBook, onChange, cancelUpload }) {
 
         <Input
           type="text"
-          name="subtitle"
-          id="subtitle"
-          onChange={onChange}
-          value={values.subtitle}
-          label="Book Sub-Title"
-          placeholder="Enter book sub-title"
-        />
-
-        <Input
-          type="text"
           name="authors"
           id="authors"
           required={true}

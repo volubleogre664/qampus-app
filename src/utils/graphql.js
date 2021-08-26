@@ -109,7 +109,6 @@ const UPLOAD_BOOK = gql`
     $authors: String
     $price: Float!
     $description: String
-    $studentNumber: String!
     $frontCover: String
   ) {
     uploadBook(
@@ -121,7 +120,6 @@ const UPLOAD_BOOK = gql`
         authors: $authors
         price: $price
         description: $description
-        studentNumber: $studentNumber
         frontCover: $frontCover
       }
     ) {
@@ -132,10 +130,16 @@ const UPLOAD_BOOK = gql`
       authors
       price
       description
+      bookOwner
       moduleCode
-      studentNumber
       frontCover
     }
+  }
+`;
+
+const GET_TOKEN = gql`
+  query getToken {
+    getToken
   }
 `;
 
@@ -149,8 +153,8 @@ const GET_ONE_BOOK = gql`
       authors
       price
       description
+      bookOwner
       moduleCode
-      studentNumber
       frontCover
     }
   }
@@ -163,8 +167,8 @@ const DELETE_BOOK = gql`
 `;
 
 const GET_ALL_BOOKS = gql`
-  query getBooks($studentNumber: String!) {
-    getBooks(studentNumber: $studentNumber) {
+  query getBooks($bookOwner: String!) {
+    getBooks(bookOwner: $bookOwner) {
       id
       isbn
       title
@@ -172,8 +176,8 @@ const GET_ALL_BOOKS = gql`
       authors
       price
       description
+      bookOwner
       moduleCode
-      studentNumber
       frontCover
     }
   }
@@ -189,8 +193,8 @@ const EDIT_BOOK = gql`
       authors
       price
       description
+      bookOwner
       moduleCode
-      studentNumber
       frontCover
     }
   }
@@ -206,8 +210,8 @@ const SEARCH_BOOKS = gql`
       authors
       price
       description
+      bookOwner
       moduleCode
-      studentNumber
       frontCover
     }
   }
@@ -229,8 +233,8 @@ const ADD_MESSAGE = gql`
         authors
         price
         description
+        bookOwner
         moduleCode
-        studentNumber
         frontCover
       }
     }
@@ -253,8 +257,8 @@ const MESSAGE_SUBSCRIPTION = gql`
         authors
         price
         description
+        bookOwner
         moduleCode
-        studentNumber
         frontCover
       }
     }
@@ -277,8 +281,8 @@ const GET_MESSAGES_QUERY = gql`
         authors
         price
         description
+        bookOwner
         moduleCode
-        studentNumber
         frontCover
       }
     }
@@ -295,8 +299,8 @@ const GET_BOOK_TITLES = gql`
 `;
 
 const GET_USER_DATA = gql`
-  query getUserData($studentNumber: String!) {
-    getUserData(studentNumber: $studentNumber) {
+  query getUserData($id: ID!) {
+    getUserData(id: $id) {
       id
       studentNumber
       firstName
@@ -310,6 +314,7 @@ export {
   LOGIN_USER,
   REGISTER_USER,
   UPDATE_USER,
+  GET_TOKEN,
   UPLOAD_BOOK,
   GET_ONE_BOOK,
   GET_ALL_BOOKS,

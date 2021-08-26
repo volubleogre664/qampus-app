@@ -1,20 +1,20 @@
 import { useState } from "react";
 import Cropper from "react-cropper";
 
-import { useUserHelpers } from "../../Redux/getSlices";
+import { useUserSlice } from "../../Redux/getSlices";
 import Button from "../Button/Button";
 
 import "cropperjs/dist/cropper.css";
 import "./CropImage.css";
 
 export const CropImage = () => {
-  const [{ imgCrop }, dispatch] = useUserHelpers();
+  const [{ imgCrop }, dispatch] = useUserSlice();
   const [image] = useState(imgCrop.imgSrc);
   const [cropper, setCropper] = useState();
 
-  const closeWindow = (e) =>{
+  const closeWindow = (e) => {
     /*hide crop tool*/
-  }
+  };
   const getCropData = () => {
     if (typeof cropper !== "undefined") {
       dispatch({
@@ -59,7 +59,7 @@ export const CropImage = () => {
         />
 
         <div className="buttons">
-          <Button text="Cancel" onClick={closeWindow}/>
+          <Button text="Cancel" onClick={closeWindow} />
           <Button onClick={getCropData} text="Crop Image" />
         </div>
       </div>

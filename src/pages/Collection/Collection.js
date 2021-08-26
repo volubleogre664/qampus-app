@@ -9,16 +9,16 @@ import Button from "../../components/Button/Button";
 import EditBook from "../../components/EditBook/EditBook.js";
 
 import "./Collection.css";
-import { useBooksHelpers, useUserHelpers } from "../../Redux/getSlices.js";
+import { useBooksSlice, useUserSlice } from "../../Redux/getSlices.js";
 
 function Collection() {
   const history = useHistory();
-  const [{ bookList: books }, dispatchBook] = useBooksHelpers();
+  const [{ bookList: books }, dispatchBook] = useBooksSlice();
   const [
     {
       user: { studentNumber },
     },
-  ] = useUserHelpers();
+  ] = useUserSlice();
   const [edit, setEdit] = useState({
     isEdit: false,
     bookInfo: {},

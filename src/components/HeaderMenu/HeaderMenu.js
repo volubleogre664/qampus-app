@@ -2,13 +2,13 @@ import { useState } from "react";
 import MenuIcon from "@material-ui/icons/MenuRounded";
 import CloseIcon from "@material-ui/icons/CloseRounded";
 import { useRouteMatch, Link } from "react-router-dom";
-import { useUserHelpers, useMessagesHelpers } from "../../Redux/getSlices";
+import { useUserSlice, useMessagesSlice } from "../../Redux/getSlices";
 import "./HeaderMenu.css";
 
 function HeaderMenu() {
   const [click, setClick] = useState(false);
-  const [, dispatchUser] = useUserHelpers();
-  const [, dispatchMessages] = useMessagesHelpers();
+  const [, dispatchUser] = useUserSlice();
+  const [, dispatchMessages] = useMessagesSlice();
 
   const handleClick = () => {
     setClick(!click);
