@@ -209,30 +209,6 @@ function Chats() {
     getUserData({ variables: { id: bookOwner } });
   }, [searchBookList, setBook, getUserData, user]);
 
-  // Here we subscribe to oncoming messages from socket IO.
-  // The socket is created in App.js, if it is not we make a new one
-  // useEffect(() => {
-  //   if (!socket) {
-  //     var socketIO = io("http://127.0.0.1:8080", {
-  //       query: { user: user.id },
-  //     });
-  //   }
-
-  //   // Listen for NEW_MESSAGEs either from the App.js socket or the one we just created
-  //   // If socket exist then listen from else listen from socketIO
-  //   (socket || socketIO).on("NEW_MESSAGE", (message) => {
-  //     messageDispatch({
-  //       payload: message.newMessage,
-  //     });
-
-  //     let chatsDiv = document.querySelector(".chats__mainBody");
-  //     chatsDiv.scrollTop = chatsDiv.scrollHeight;
-  //   });
-
-  //   // When you leave the messages page close the socket connect on socketIO
-  //   return () => socketIO && socketIO.disconnect();
-  // }, [user.id, messageDispatch, socket]);
-
   // The whole chats page below
   return (
     <div className="chats">
