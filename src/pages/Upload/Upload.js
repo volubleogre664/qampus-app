@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useMutation } from "@apollo/react-hooks";
+import imageDataUrl from "image-data-uri";
 
 import firebaseApp from "firebase/app";
 
@@ -10,6 +11,7 @@ import Bullet from "../../components/Bullet/Bullet";
 import ConfirmBook from "./ConfirmBook";
 
 import { useForm } from "../../utils/hooks";
+// import blobFromURL from "../../utils/imageDataUriToBlob";
 import { UPLOAD_BOOK } from "../../utils/graphql";
 import { useBooksSlice, useUserSlice } from "../../Redux/getSlices";
 import { upload as uploadBullets } from "../../text_files/bulletPoints";
@@ -21,7 +23,7 @@ const bookCovers = {};
 
 function Upload() {
   //Data from redux state, dispatch -> function to update redux state
-  const [{ user }] = useUserSlice();
+  const [{ user, imgCrop }, dispatchUser] = useUserSlice();
   const [, dispatchBooks] = useBooksSlice();
 
   //References for input[file] to be accessed since it is hidden and cannot be clicked
@@ -133,12 +135,16 @@ function Upload() {
     });
 
     const frontCoverRef = firebaseStorage.ref(
-      `${user.id}/books/${bookUpload.title.replace(/ /g, "_")}.jpg`
+      `${user.id}/books/${values.title.replace(/ /g, "_")}.jpg`
     );
 
     // Makes sure that files are not uploaded if the already exist
     // If they don't exist then they're uploaded
-    await validateFilesInCloud(frontCoverRef, frontCoverInputRef, "frontCover");
+    await validateFilesInCloud(
+      frontCoverRef,
+      imgCrop.croppedImgUrl,
+      "frontCover"
+    );
 
     // Sends data to the database
     setLoading({
@@ -149,11 +155,33 @@ function Upload() {
     onSubmit(e);
   }
 
+  // Select Image and open the crop tool
+  const openCropTool = (e) => {
+    const [file] = frontCoverInputRef.current.files;
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = (readerEvent) => {
+      dispatchUser({
+        type: "SET_CROP_IMG",
+        payload: {
+          ...imgCrop,
+          imgSrc: readerEvent.target.result,
+          aspect: 1 / 1.4142,
+        },
+      });
+    };
+
+    reader.readAsDataURL(file);
+  };
+
   // Check if files exist with getMetaData()
   // File exists -> calls .then()
   // File does not exist -> calls .catch()
   // .finally() is always called
-  async function validateFilesInCloud(storageRef, inputRef, urlContainer) {
+  async function validateFilesInCloud(storageRef, imageDataUrl, urlContainer) {
     return storageRef
       .getMetadata()
       .then(async () => {
@@ -161,10 +189,21 @@ function Upload() {
       })
       .catch(async () => {
         // More code splitting here with dynamic imports
-        await import("../../utils/compressFilesAndUpload.js").then(
-          async (module) =>
-            await module.default(inputRef.current.files[0], storageRef)
-        );
+        // await import("../../utils/compressFilesAndUpload.js").then(
+        //   async (module) => {
+        //     let image;
+        //     await module.default(image, storageRef);
+        //   }
+        // );
+
+        await storageRef
+          .putString(imageDataUrl, "data_url")
+          .then(() => {
+            console.log("Image has been uploaded");
+          })
+          .catch((err) => {
+            console.log("Error uploading image: ", err);
+          });
       })
       .finally(async () => {
         // Check if you have image url then get it if its not available alredy
@@ -260,7 +299,7 @@ function Upload() {
               onClick={() => frontCoverInputRef.current.click()}
             >
               <div id="front" className="js--image-preview">
-                <img src={values.frontCover} alt="" className="thumb" />
+                <img src={imgCrop?.croppedImgUrl} alt="" className="thumb" />
               </div>
               <div className="upload-options">
                 <label onClick={(e) => e.stopPropagation()} className="front">
@@ -273,7 +312,7 @@ function Upload() {
                     multiple={false}
                     required={true}
                     ref={frontCoverInputRef}
-                    onChange={onChange}
+                    onChange={openCropTool}
                     style={{ display: "none" }}
                   />
                 </label>

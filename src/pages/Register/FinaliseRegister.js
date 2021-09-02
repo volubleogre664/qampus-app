@@ -37,6 +37,8 @@ function CompleteRegistration() {
     bio: "",
   });
 
+  // We upload the image URI string to firebase we got from the crop tool
+  // Image is only uploaded if user did select an image
   async function uploadImageUri(e) {
     e.preventDefault();
 
@@ -52,7 +54,7 @@ function CompleteRegistration() {
           console.log("Image has been uploaded");
         })
         .catch((err) => {
-          console.log("Erroruploading image: ", err);
+          console.log("Error uploading image: ", err);
         });
     }
 

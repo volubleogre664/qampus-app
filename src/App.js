@@ -31,7 +31,7 @@ function App() {
   useEffect(() => {
     if (!user?.id) return;
 
-    const socket = io("http://127.0.0.1:8080", {
+    const socket = io("http://127.0.0.1:8080/graphql", {
       query: {
         user: user.id,
       },
@@ -80,10 +80,10 @@ function App() {
             <FinaliseRegister />
           </Route>
 
-          <Route exact path="/profile">
+          <PrivateRoute exact path="/profile">
             <HeaderMenu />
             <Profile />
-          </Route>
+          </PrivateRoute>
 
           <PrivateRoute exact path="/chats*">
             <HeaderMenu />

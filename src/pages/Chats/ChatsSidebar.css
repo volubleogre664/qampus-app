@@ -7,11 +7,11 @@
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   padding-bottom: 10px;
-  background: rgba( 0, 0, 0, 0.40 );
-  backdrop-filter: blur( 15px );
-  -webkit-backdrop-filter: blur( 15px );
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   border-radius: 10px;
   overflow-y: auto;
 }
@@ -19,11 +19,11 @@
 .chats__sidebarHeader {
   width: 85%;
   display: -webkit-flex;
-  display: flex ;
+  display: flex;
   -webkit-align-items: center;
-          align-items: center;
+  align-items: center;
   -webkit-justify-content: center;
-          justify-content: center;
+  justify-content: center;
   margin: 15px auto;
   border-bottom: 2px solid white;
 }
@@ -41,13 +41,13 @@
 
 .chats__sidebarBody {
   -webkit-flex: 1 !important;
-          flex: 1 !important;
+  flex: 1 !important;
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   -webkit-align-items: center;
-          align-items: center;
+  align-items: center;
   width: 90%;
   margin: auto;
 }
@@ -60,10 +60,10 @@
   color: black;
   width: 85%;
   -webkit-align-self: center;
-          align-self: center;
+  align-self: center;
   height: 25px;
   border-radius: 5px;
-  margin-top:5px;
+  margin-top: 5px;
   margin-bottom: 20px;
   position: -webkit-sticky;
   position: sticky;
@@ -90,11 +90,12 @@
 
 .chats__sidebarBody > .contactSection {
   -webkit-flex: 1 !important;
-          flex: 1 !important;
+  flex: 1 !important;
   margin-top: 15px;
+  overflow: hidden;
+  overflow-y: auto;
   width: 100%;
 }
-
 
 /*Make it visible after the feature has been implented.*/
 .chats__sidebarFooter {
@@ -102,7 +103,7 @@
   display: none;
   padding-top: 10px;
   -webkit-justify-content: space-between;
-          justify-content: space-between;
+  justify-content: space-between;
   width: 80%;
   height: auto;
   margin-left: 10%;
@@ -112,7 +113,7 @@
 
 .chats__sidebarFooter > .title {
   -webkit-flex: 1;
-          flex: 1;
+  flex: 1;
 }
 
 .chats__sidebarFooter > .MuiSvgIcon-root {

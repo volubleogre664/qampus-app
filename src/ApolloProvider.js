@@ -7,12 +7,12 @@ import { Provider as ReduxProvider } from "react-redux";
 import store from "./Redux/store";
 import App from "./App";
 
-// const serverURL = "server.qampus.co.za/graphql";
-const serverURL = "127.0.0.1:8080/graphql";
+// const serverURL = "https://server.qampus.co.za/graphql";
+const serverURL = "http://127.0.0.1:8080/graphql";
 
 // Rest of features eendpoint
 const httpLink = createHttpLink({
-  uri: `http://${serverURL}`,
+  uri: serverURL,
   credentials: "include",
 });
 
