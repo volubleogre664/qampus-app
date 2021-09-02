@@ -30,6 +30,8 @@
   margin: auto;
   margin-top: 20px;
   margin-bottom: 50px;
+  user-select: none;
+
 }
 
 .home__logo .home__logoImg {
@@ -69,11 +71,13 @@
           filter: drop-shadow(2px 4px 4px #000000);
   border-radius: 0px;
 }
+
 .home__avatar .avatarIcon {
   font-size: 2.1rem;
   color: black;
   margin-right: 5px;
   margin-bottom: 5px;
+  user-select: none;
 }
 
 .home__avatar img.avatarIcon {
@@ -88,6 +92,7 @@
   font-weight: 500;
   padding-bottom: 5px;
   color: black;
+  user-select: none;
 }
 .mbox {
   width: -webkit-fit-content;
@@ -159,7 +164,7 @@
   width: fit-content;
   color: #ffffff;
   text-align: center;
-  /* display: none; */
+  user-select: none;
 }
 
 .home__searchContainer {
