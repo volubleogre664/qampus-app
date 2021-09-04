@@ -16,7 +16,7 @@ function Collection() {
   const [{ bookList: books }, dispatchBook] = useBooksSlice();
   const [
     {
-      user: { studentNumber },
+      user: { id: bookOwner },
     },
   ] = useUserSlice();
   const [edit, setEdit] = useState({
@@ -27,7 +27,7 @@ function Collection() {
   // TODO: Deal with the book component
   // Something is annoying
   const { loading } = useQuery(GET_ALL_BOOKS, {
-    variables: { studentNumber },
+    variables: { bookOwner },
     onCompleted({ getBooks: dbBooks }) {
       dbBooks.forEach((book) => {
         if (!books.find((item) => item.isbn === book.isbn)) {

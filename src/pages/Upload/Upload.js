@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { useMutation } from "@apollo/react-hooks";
-import imageDataUrl from "image-data-uri";
 
 import firebaseApp from "firebase/app";
 

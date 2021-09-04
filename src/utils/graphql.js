@@ -167,7 +167,7 @@ const DELETE_BOOK = gql`
 `;
 
 const GET_ALL_BOOKS = gql`
-  query getBooks($bookOwner: String!) {
+  query getBooks($bookOwner: ID!) {
     getBooks(bookOwner: $bookOwner) {
       id
       isbn
