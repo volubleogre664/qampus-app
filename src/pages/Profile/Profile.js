@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GoVerified } from "react-icons/go";
 import { useMutation } from "@apollo/react-hooks";
 import firebase from "firebase/app";
@@ -20,13 +20,7 @@ function Profile() {
   const [loading, setLoading] = useState(false);
   const [profile, setProfile] = useState(null);
   const firebaseStorage = firebase.storage();
-  const [
-    {
-      user,
-      imgCrop: { croppedImgUrl },
-    },
-    dispatch,
-  ] = useUserSlice();
+  const [{ user, imgCrop }, dispatch] = useUserSlice();
 
   const { onSubmit, onChange, values } = useForm(updateUser, user);
 
@@ -57,9 +51,9 @@ function Profile() {
       `${user.id}/profile/${user.firstName}.jpg`
     );
 
-    if (croppedImgUrl) {
+    if (imgCrop.croppedImgUrl) {
       await storageRef
-        .putString(croppedImgUrl, "data_url")
+        .putString(imgCrop.croppedImgUrl, "data_url")
         .then(() => {
           console.log("Image has been uploaded");
         })
@@ -82,6 +76,23 @@ function Profile() {
   function updateUser() {
     updateProfile();
   }
+
+  useEffect(() => {
+    document.title = "Profile - Qampus";
+
+    return () => {
+      if (imgCrop.croppedImgUrl) {
+        dispatch({
+          type: "SET_CROP_IMG",
+          payload: {
+            imgSrc: "",
+            croppedImgUrl: null,
+            aspect: null,
+          },
+        });
+      }
+    };
+  }, [dispatch, imgCrop]);
 
   return (
     <div className="profile">

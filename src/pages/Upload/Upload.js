@@ -83,6 +83,16 @@ function Upload() {
         message: "",
       });
 
+      dispatchUser({
+        type: "SET_CROP_IMG",
+        payload: {
+          ...imgCrop,
+          imgSrc: "",
+          croppedImgUrl: null,
+          aspect: null,
+        },
+      });
+
       import("../../utils/popUp.js").then((mbox) =>
         mbox.default({
           icon: "success",
@@ -155,7 +165,7 @@ function Upload() {
   }
 
   // Select Image and open the crop tool
-  const openCropTool = (e) => {
+  const openCropTool = () => {
     const [file] = frontCoverInputRef.current.files;
 
     if (!file) return;
@@ -264,7 +274,20 @@ function Upload() {
 
   useEffect(() => {
     document.title = "Upload - Qampus";
-  });
+
+    return () => {
+      if (imgCrop.croppedImgUrl) {
+        dispatchUser({
+          type: "SET_CROP_IMG",
+          payload: {
+            imgSrc: "",
+            croppedImgUrl: null,
+            aspect: null,
+          },
+        });
+      }
+    };
+  }, [dispatchUser, imgCrop]);
 
   if (bookUpload.authors !== "" && values.authors !== bookUpload.authors) {
     onChange({

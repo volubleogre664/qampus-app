@@ -51,8 +51,8 @@ export const CropImage = () => {
 
         <Cropper
           style={{ height: "70%" }}
-          initialAspectRatio={imgCrop.aspect || 1 / 1.4142}
-          aspectRatio={imgCrop.aspect || 1 / 1.4142}
+          initialAspectRatio={imgCrop.aspect || 1}
+          aspectRatio={imgCrop.aspect || 1}
           src={image}
           viewMode={1}
           guides={true}

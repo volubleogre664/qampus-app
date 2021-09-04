@@ -31,7 +31,7 @@ function App() {
   useEffect(() => {
     if (!user?.id) return;
 
-    const socket = io("http://127.0.0.1:8080/graphql", {
+    const socket = io("https://server.qampus.co.za/graphql", {
       query: {
         user: user.id,
       },

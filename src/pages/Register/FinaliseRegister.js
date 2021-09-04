@@ -99,7 +99,20 @@ function CompleteRegistration() {
 
   useEffect(() => {
     document.title = "Finish Signing Up - Qampus";
-  }, []);
+
+    return () => {
+      if (croppedImgUrl) {
+        dispatchUser({
+          type: "SET_CROP_IMG",
+          payload: {
+            imgSrc: "",
+            croppedImgUrl: null,
+            aspect: null,
+          },
+        });
+      }
+    };
+  }, [croppedImgUrl, dispatchUser]);
 
   return (
     <div className="finaliseReg">
