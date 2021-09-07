@@ -1,15 +1,28 @@
 .confirmBook {
   position: absolute;
-  top: 0;
+  top: 15%;
   left: calc(50vw - 225px);
   width: 80%;
   max-width: 450px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   padding: 20px;
   z-index: 100;
   color: white;
   box-sizing: border-box;
+  border-radius: 8px;
   overflow-y: auto;
+}
+
+.confirmBook h2 {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: normal;
+  font-family: "Poiret One";
+  color: #fff;
+  -webkit-filter: drop-shadow(2px 4px 8px #585858);
+  filter: drop-shadow(2px 4px 8px #585858);
 }
 
 .confirmBook__form {
@@ -25,5 +38,30 @@
   width: fit-content;
   display: flex;
   gap: 15px;
+}
+
+@media screen and (max-width: 1000px) {
+  .confirmBook {
+    top: 7%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .confirmBook {
+    left: 10%;
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .confirmBook__formFooter {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .confirmBook__formFooter > * {
+    width: 100% !important;
+  }
 }
 /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkNvbmZpcm1Cb29rLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFrQjtFQUNsQixNQUFNO0VBQ04sd0JBQXdCO0VBQ3hCLFVBQVU7RUFDVixnQkFBZ0I7RUFDaEIsb0NBQW9DO0VBQ3BDLGFBQWE7RUFDYixZQUFZO0VBQ1osWUFBWTtFQUNaLHNCQUFzQjtFQUN0QixnQkFBZ0I7QUFDbEI7O0FBRUE7RUFDRSxnQkFBZ0I7RUFDaEIsYUFBYTtFQUNiLHNCQUFzQjtFQUN0QixTQUFTO0FBQ1g7O0FBRUE7RUFDRSwwQkFBa0I7RUFBbEIsdUJBQWtCO0VBQWxCLGtCQUFrQjtFQUNsQixhQUFhO0VBQ2IsU0FBUztBQUNYIiwiZmlsZSI6IkNvbmZpcm1Cb29rLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jb25maXJtQm9vayB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgdG9wOiAwO1xuICBsZWZ0OiBjYWxjKDUwdncgLSAyMjVweCk7XG4gIHdpZHRoOiA4MCU7XG4gIG1heC13aWR0aDogNDUwcHg7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwgMCwgMCwgMC44KTtcbiAgcGFkZGluZzogMjBweDtcbiAgei1pbmRleDogMTAwO1xuICBjb2xvcjogd2hpdGU7XG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG4gIG92ZXJmbG93LXk6IGF1dG87XG59XG5cbi5jb25maXJtQm9va19fZm9ybSB7XG4gIG1hcmdpbi10b3A6IDE1cHg7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGdhcDogMTVweDtcbn1cblxuLmNvbmZpcm1Cb29rX19mb3JtRm9vdGVyIHtcbiAgd2lkdGg6IGZpdC1jb250ZW50O1xuICBkaXNwbGF5OiBmbGV4O1xuICBnYXA6IDE1cHg7XG59XG4iXX0= */

@@ -9,4 +9,5 @@ export default configureStore({
     book: bookReducer,
     messages: messagesReducer,
   },
+  devTools: true,
 });

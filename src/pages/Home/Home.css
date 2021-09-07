@@ -42,7 +42,8 @@
   -ms-user-select: none;
   user-select: none;
   transition: all ease-in-out 0.2s;
-  padding: 3px;
+  padding: 5px 6px;
+  padding-right: 10px;
   box-sizing: border-box;
   overflow: hidden;
   display: flex;
@@ -52,11 +53,10 @@
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  min-width: 100px;
   border: none;
   border-radius: 5px;
+  height: 40px;
   margin-right: 10%;
-  height: 35px;
   cursor: pointer;
 }
 
@@ -71,32 +71,31 @@
 .home__avatar .avatarIcon {
   font-size: 2.1rem;
   color: black;
-  margin-right: 5px;
-  margin-bottom: 5px;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
 
 .home__avatar img.avatarIcon {
-  height: 35px;
+  height: 100%;
+  width: 100%;
   object-fit: contain;
 }
 
 .home__avatarName {
   font-size: 1.1rem;
   font-weight: 500;
-  padding-bottom: 5px;
   color: black;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  margin-left: 8px;
 }
 
 .avatarIcon__container {
   height: 100%;
   aspect-ratio: 1;
-  border-radius: 50%;
+  border-radius: 5px;
   overflow: hidden;
   display: grid;
   place-items: center;
@@ -365,10 +364,10 @@
   }
 
   .home__avatar {
-    margin-right: initial;
-    min-width: 10px;
-    padding: auto;
-    padding-right: 0;
+    width: 50px;
+    aspect-ratio: 1;
+    height: unset;
+    padding: 4px;
   }
   .home__avatarName {
     display: none;
@@ -390,21 +389,6 @@
 
   .home__searchInput {
     font-size: 1.15rem;
-  }
-
-  .home__avatarIcon {
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
-    margin: 0;
-    padding: 5px;
-  }
-
-  .home__avatarIcon > .avatarIcon {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    margin: 0;
   }
 }
 
