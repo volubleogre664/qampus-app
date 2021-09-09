@@ -94,23 +94,6 @@ function Book({ state, className, book, deleteBookClick, editBookClick }) {
     }
   };
 
-  // TODO: Make this one component have different states.
-  // 1. For when it is in the library or collection page
-  // 2. For when it appears in the search result page
-  // 3. For wehn it appears in the chats page
-
-  // The below TODO: is complete... But still need to debug and see if it works
-  // TODO: Add a book field to the Message table/collection in mongoDB
-  //  --> It won't be a required field because not all messages carry a Book
-  //  --> mongoDB will only carry a book's id.
-  //  --> The GraphQl schema will have the whole Book as a non-required field
-
-  // TODO: Add a isBought field on Book table/collection in mongoDB
-  //  --> it should be required at all times
-
-  // FIXME: Need to work with user variable to actually find ways of delealing
-  //        with the different components of Book
-
   return (
     <div className="book">
       {/* Book body | part with image */}

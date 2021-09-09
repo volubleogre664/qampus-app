@@ -10,8 +10,9 @@ import Bullet from "../../components/Bullet/Bullet";
 import ConfirmBook from "./ConfirmBook";
 
 import { useForm } from "../../utils/hooks";
+// import blobFromURL from "../../utils/imageDataUriToBlob";
 import { UPLOAD_BOOK } from "../../utils/graphql";
-import { useBooksHelpers, useUserHelpers } from "../../Redux/getSlices";
+import { useBooksSlice, useUserSlice } from "../../Redux/getSlices";
 import { upload as uploadBullets } from "../../text_files/bulletPoints";
 
 import "./Upload.css";
@@ -21,8 +22,8 @@ const bookCovers = {};
 
 function Upload() {
   //Data from redux state, dispatch -> function to update redux state
-  const [{ user }] = useUserHelpers();
-  const [, dispatchBooks] = useBooksHelpers();
+  const [{ user, imgCrop }, dispatchUser] = useUserSlice();
+  const [, dispatchBooks] = useBooksSlice();
 
   //References for input[file] to be accessed since it is hidden and cannot be clicked
   const frontCoverInputRef = useRef(null);
@@ -39,22 +40,16 @@ function Upload() {
   const { onChange, onSubmit, values } = useForm(callUploadData, {
     isbn: "",
     title: "",
-    subtitle: "",
     authors: "",
     price: "",
-    description: "",
     moduleCode: "",
-    studentNumber: user?.studentNumber || "",
     frontCover: "",
   });
 
-  // Book cover urls from firebase to send to database
   // Title, subtitle, authors and description will get from google books api
   const [bookUpload, setBookUpload] = useState({
     title: "",
-    subtitle: "",
     authors: "",
-    description: "",
   });
 
   // This is a hook for confirming the book data
@@ -69,8 +64,6 @@ function Upload() {
       authors: values.authors || bookUpload?.authors,
       price: Number(values.price),
       title: values.title || bookUpload.title,
-      subtitle: values.subtitle || bookUpload.subtitle,
-      description: values.description || bookUpload.description,
       frontCover: bookCovers?.frontCover,
     },
     // update -> function to call if api call is successful
@@ -88,6 +81,16 @@ function Upload() {
         ...loading,
         isLoading: false,
         message: "",
+      });
+
+      dispatchUser({
+        type: "SET_CROP_IMG",
+        payload: {
+          ...imgCrop,
+          imgSrc: "",
+          croppedImgUrl: null,
+          aspect: null,
+        },
       });
 
       import("../../utils/popUp.js").then((mbox) =>
@@ -141,12 +144,16 @@ function Upload() {
     });
 
     const frontCoverRef = firebaseStorage.ref(
-      `${user.id}/books/${bookUpload.title.replace(/ /g, "_")}.jpg`
+      `${user.id}/books/${values.title.replace(/ /g, "_")}.jpg`
     );
 
     // Makes sure that files are not uploaded if the already exist
     // If they don't exist then they're uploaded
-    await validateFilesInCloud(frontCoverRef, frontCoverInputRef, "frontCover");
+    await validateFilesInCloud(
+      frontCoverRef,
+      imgCrop.croppedImgUrl,
+      "frontCover"
+    );
 
     // Sends data to the database
     setLoading({
@@ -157,11 +164,33 @@ function Upload() {
     onSubmit(e);
   }
 
+  // Select Image and open the crop tool
+  const openCropTool = () => {
+    const [file] = frontCoverInputRef.current.files;
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = (readerEvent) => {
+      dispatchUser({
+        type: "SET_CROP_IMG",
+        payload: {
+          ...imgCrop,
+          imgSrc: readerEvent.target.result,
+          aspect: 1 / 1.4142,
+        },
+      });
+    };
+
+    reader.readAsDataURL(file);
+  };
+
   // Check if files exist with getMetaData()
   // File exists -> calls .then()
   // File does not exist -> calls .catch()
   // .finally() is always called
-  async function validateFilesInCloud(storageRef, inputRef, urlContainer) {
+  async function validateFilesInCloud(storageRef, imageDataUrl, urlContainer) {
     return storageRef
       .getMetadata()
       .then(async () => {
@@ -169,10 +198,21 @@ function Upload() {
       })
       .catch(async () => {
         // More code splitting here with dynamic imports
-        await import("../../utils/compressFilesAndUpload.js").then(
-          async (module) =>
-            await module.default(inputRef.current.files[0], storageRef)
-        );
+        // await import("../../utils/compressFilesAndUpload.js").then(
+        //   async (module) => {
+        //     let image;
+        //     await module.default(image, storageRef);
+        //   }
+        // );
+
+        await storageRef
+          .putString(imageDataUrl, "data_url")
+          .then(() => {
+            console.log("Image has been uploaded");
+          })
+          .catch((err) => {
+            console.log("Error uploading image: ", err);
+          });
       })
       .finally(async () => {
         // Check if you have image url then get it if its not available alredy
@@ -215,11 +255,14 @@ function Upload() {
           isLoading: false,
           message: "",
         });
+        onChange({
+          target: {
+            name: "title",
+            value: tempBook.title,
+          },
+        });
         setBookUpload({
           ...bookUpload,
-          title: tempBook.title,
-          description: tempBook?.description || "",
-          subtitle: tempBook?.subtitle || "",
           authors: tempBook?.authors.join(", ") || "",
         });
       })
@@ -227,21 +270,39 @@ function Upload() {
         console.log(err);
         setLoading({ ...loading, isLoading: false, message: "" });
       });
-
-    // console.log(bookUpload);
   }
 
   useEffect(() => {
     document.title = "Upload - Qampus";
-  });
 
-  // TODO: Design the whole form for confirming book details and actually make it work the push (-_-)
+    return () => {
+      if (imgCrop.croppedImgUrl) {
+        dispatchUser({
+          type: "SET_CROP_IMG",
+          payload: {
+            imgSrc: "",
+            croppedImgUrl: null,
+            aspect: null,
+          },
+        });
+      }
+    };
+  }, [dispatchUser, imgCrop]);
+
+  if (bookUpload.authors !== "" && values.authors !== bookUpload.authors) {
+    onChange({
+      target: {
+        name: "authors",
+        value: bookUpload.authors,
+      },
+    });
+  }
 
   return (
     <div className="uploadPage">
       {confirmBook && (
         <ConfirmBook
-          values={{ ...values, ...bookUpload }}
+          values={{ ...values }}
           onChange={onChange}
           cancelUpload={cancelUpload}
           uploadBook={confirmBookDetailsAndUpload}
@@ -260,7 +321,7 @@ function Upload() {
               onClick={() => frontCoverInputRef.current.click()}
             >
               <div id="front" className="js--image-preview">
-                <img src={values.frontCover} alt="" className="thumb" />
+                <img src={imgCrop?.croppedImgUrl} alt="" className="thumb" />
               </div>
               <div className="upload-options">
                 <label onClick={(e) => e.stopPropagation()} className="front">
@@ -273,7 +334,7 @@ function Upload() {
                     multiple={false}
                     required={true}
                     ref={frontCoverInputRef}
-                    onChange={onChange}
+                    onChange={openCropTool}
                     style={{ display: "none" }}
                   />
                 </label>
@@ -297,7 +358,7 @@ function Upload() {
             name="moduleCode"
             id="moduleCode"
             onChange={onChange}
-            value={values.moduleCode }
+            value={values.moduleCode}
             label="Module Code"
             placeholder="CSIS1664"
           />
@@ -312,6 +373,9 @@ function Upload() {
             label="Asking Price (R)"
             placeholder="350"
           />
+
+          <input type="hidden" name="title" value={values.title} />
+          <input type="hidden" name="authors" value={values.authors} />
 
           <Button text="Upload" type="submit" />
         </form>

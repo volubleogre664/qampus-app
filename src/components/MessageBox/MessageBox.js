@@ -1,12 +1,12 @@
 import CloseIcon from "@material-ui/icons/Close";
 import { IconButton } from "@material-ui/core";
 
-import { useUserHelpers } from "../../Redux/getSlices";
+import { useUserSlice } from "../../Redux/getSlices";
 
 import "./MessageBox.css";
 
 function MessageBox({ errors, isOpen }) {
-  const [, dispatch] = useUserHelpers();
+  const [, dispatch] = useUserSlice();
 
   const click = (e) => {
     e.preventDefault();

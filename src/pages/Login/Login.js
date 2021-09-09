@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
 
-import { useUserHelpers } from "../../Redux/getSlices";
+import { useUserSlice } from "../../Redux/getSlices";
 import { useForm } from "../../utils/hooks";
 import { LOGIN_USER } from "../../utils/graphql";
 
@@ -16,7 +16,7 @@ import "./Login.css";
 function Login() {
   const history = useHistory();
   const location = useLocation();
-  const [, userDispatch] = useUserHelpers();
+  const [, userDispatch] = useUserSlice();
   const { onChange, onSubmit, values } = useForm(loginUser, {
     studentNumber: "",
     password: "",
@@ -57,7 +57,6 @@ function Login() {
         <hr className="separator" />
       </div>
       <main className="login__main">
-
         <form className="form" onSubmit={onSubmit}>
           <Input
             type="text"
@@ -101,7 +100,10 @@ function Login() {
       <footer className="login__footer">
         <hr className="separator_footer" />
         <p className="top_footer">Qampus &copy; 2020 | All Rights Reserved.</p>
-        <p className="bottom_footer"> Developed by Nuclear Software (Pty) Ltd.</p>
+        <p className="bottom_footer">
+          {" "}
+          Developed by Nuclear Software (Pty) Ltd.
+        </p>
       </footer>
     </div>
   );

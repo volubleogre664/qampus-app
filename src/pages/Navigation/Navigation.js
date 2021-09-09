@@ -1,26 +1,49 @@
 import "./Navigation.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Iframe from "react-iframe";
-import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
+import {
+  building,
+  parking,
+  coordinates,
+} from "../../nav_coordinates/nav_coordinates.json";
+import SelectLocation from "../../components/Select/SelectLocation";
+import { useForm } from "../../utils/hooks";
 
-const fileUrl = '../../text files'
-
-fetch(fileUrl)
-   .then( r => r.text() )
-   .then( t => console.log(t) )
-
-
+// The data for the coordinates is in coordinatesData above
+// Its an object with buildings, parking and coordinates which are arrays with values
+// buildings and parking are the same object with { id, code, buildingName }
+// Coordinates have objects with { id, long, lat }
 
 function Navigation() {
+  const [currentLocation, setCurrentLocation] = useState(getCurrentLocation());
   const [active, setActive] = useState(() => {
     return "https://www.google.com/maps/embed";
   });
-  /*Get these values from the database */
-  var _start_latitude = "29°6’33.75”S";
-  var _start_longitude = "26°11’26.48”E";
-  var _end_latitude = "29°6’19.89”S";
-  var _end_longitude = "26°11’18.08”E";
+  const { onChange, values } = useForm(null, {
+    startLocation: "",
+    destination: (() => {
+      let buildingOne = building[0];
+
+      let buildingOneCoords = coordinates[buildingOne.id - 1];
+      return buildingOneCoords.longitude + "__" + buildingOneCoords.latitude;
+    })(),
+  });
+
+
+  // Set the current location by calling getCurrentLocation()
+  if (!currentLocation) setCurrentLocation(getCurrentLocation());
+
+  // The browser will ask to access the location and if user clicks allow we get the coords
+  function getCurrentLocation() {
+    const coords = {};
+    navigator.geolocation.getCurrentPosition((pos) => {
+      coords.latitude = pos.coords.latitude;
+      coords.longitude = pos.coords.longitude;
+    });
+
+    return coords;
+  }
 
   function GetDirections(
     start_longitude,
@@ -28,10 +51,11 @@ function Navigation() {
     end_longitude,
     end_latitude
   ) {
-    var start_deg_long = GetLong(start_longitude);
-    var start_deg_lat = GetLat(start_latitude);
-    var end_deg_long = GetLong(end_longitude);
-    var end_deg_lat = GetLat(end_latitude);
+    var start_deg_long =
+      Number(start_longitude) || getDecimalDeg(start_longitude);
+    var start_deg_lat = Number(start_latitude) || getDecimalDeg(start_latitude);
+    var end_deg_long = Number(end_longitude) || getDecimalDeg(end_longitude);
+    var end_deg_lat = Number(end_latitude) || getDecimalDeg(end_latitude);
 
     var markerA = btoa(
       unescape(encodeURIComponent(start_latitude + " " + start_longitude))
@@ -58,100 +82,85 @@ function Navigation() {
     return _result;
   }
 
-  function GetLong(longitude) {
-    if (longitude.trim()) {
-    }
-    var parts = longitude.split("°");
-    var deg = parts[0];
-    var min_sec = parts[1].split("’");
-    var min = min_sec[0];
-    var sec_dir = min_sec[0].split("”");
-    var sec = sec_dir[0];
-    var dir = sec_dir[1];
+  // GetLong and GetLat function should have been one function
+  // This is it in one funtion
+  function getDecimalDeg(coordinate) {
+    // "29°6’19.89”S"
+    let [deg, min, sec, dir] = coordinate.split(/[°’”"]/);
 
-    var decimalDegrees = deg + "." + min / 60 + sec / 3600;
+    let decimalDegrees = deg + "." + min / 60 + sec / 3600;
 
-    if (dir === "W") {
+    if (dir === "W" || dir === "S") {
       decimalDegrees = decimalDegrees * -1;
     }
 
     return decimalDegrees;
   }
 
-  function GetLat(latitude) {
-    var parts = latitude.split("°");
-    var deg = parts[0];
-    var min_sec = parts[1].split("’");
-    var min = min_sec[0];
-    var sec_dir = min_sec[0].split("”");
-    var sec = sec_dir[0];
-    var dir = sec_dir[1];
+  // I put this back to onSubmit. No issues with it
+  function changeState(e) {
+    e.preventDefault();
 
-    var decimalDegrees = deg + "." + min / 60 + sec / 3600;
-
-    if (dir === "S") {
-      decimalDegrees = decimalDegrees * -1;
-    }
-    return decimalDegrees;
-  }
-
-  function changeState() {
     setActive(() => {
-      return GetDirections(
-        /*use textbox values*/
-        _start_longitude,
-        _start_latitude,
-        _end_longitude,
-        _end_latitude
-      );
+      let curr = currentLocation.longitude + "__" + currentLocation.latitude;
+      let long =
+        values.startLocation === ""
+          ? curr.split("__")
+          : values.startLocation.split("__");
+      let lat = values.destination.split("__");
+
+      return GetDirections(long[0], long[1], lat[0], lat[1]);
     });
   }
 
+  useEffect(() => {
+    document.title = "Navigation - Qampus";
+  }, []);
+
   return (
     <div className="navigation">
-      <div className="nav_input">
-        <p>Navigator</p>
-        <br />
+      <aside className="navigation__sidebar">
+        <h2 className="navigation__sidebarTitle">Navigator</h2>
         <hr className="sepatator" />
-        <div className="form_and_button">
-        <form className="navigation__form">
-          <Input
-            type="text"
-            label="Starting location"
+        <form className="navigation__sidebarForm" onSubmit={changeState}>
+          <SelectLocation
+            name="startLocation"
             id="startLocation"
-            name="StartLocation"
-            className="formInput"
+            label="Start Location"
+            building={building}
+            coordinates={coordinates}
+            currentlocation={currentLocation}
+            onChange={onChange}
+            value={values.startLocation}
           />
 
-          <Input
-            type="text"
+          <SelectLocation
+            name="destination"
+            coordinates={coordinates}
+            value={values.destination}
+            building={building}
+            onChange={onChange}
             label="Destination"
             id="destination"
-            name="Destination"
-            className="formInput"
           />
 
-         
+          <Button text="Get Directions" type="submit" />
         </form>
+      </aside>
 
-        {/*Removed from form on purpose - onSubmit does not work properly, onClick works better*/}
-        <Button text="Get Directions" onClick={changeState}/>
-        </div>
-      </div>
-
-      <div className="nav_results" id="map">
-        <div className="mapHeader">
-          <p>UFS main capmus</p>
-          <hr/>
-        </div>
+      <main className="navigation__main" id="map">
+        <header className="navigation__mainHeader">
+          <h3>UFS main capmus</h3>
+          <hr />
+        </header>
 
         <Iframe
-          className="frame"
+          className="navigation__mainFrame"
           id="frame"
           url={active}
           loading="lazy"
         ></Iframe>
-      </div>
+      </main>
     </div>
   );
 }

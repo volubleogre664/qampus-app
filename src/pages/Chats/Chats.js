@@ -2,7 +2,6 @@ import { useState, useEffect, useLayoutEffect } from "react";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import SearchIcon from "@material-ui/icons/Search";
 import PersonIcon from "@material-ui/icons/Person";
-import { io } from "socket.io-client";
 
 import { useMutation, useLazyQuery } from "@apollo/react-hooks";
 
@@ -15,21 +14,21 @@ import {
   GET_USER_DATA,
 } from "../../utils/graphql";
 import {
-  useBooksHelpers,
-  useMessagesHelpers,
-  useUserHelpers,
+  useBooksSlice,
+  useMessagesSlice,
+  useUserSlice,
 } from "../../Redux/getSlices.js";
 
 import "./Chats.css";
 
-function Chats({ socket }) {
+function Chats() {
   const [textMsg, setMsg] = useState("");
   const [height, setHeight] = useState(0); //Height given to the chats main and sidebar
   const [windowHeight, setWindowHeigt] = useState(window.innerHeight); //Keeps track of screen height
-  const [messages, messageDispatch] = useMessagesHelpers();
+  const [messages, messageDispatch] = useMessagesSlice();
   const [currentContact, setCurrentContact] = useState(null);
-  const [{ user }, userDispatch] = useUserHelpers();
-  const [{ searchBookList }] = useBooksHelpers();
+  const [{ user }, userDispatch] = useUserSlice();
+  const [{ searchBookList }] = useBooksSlice();
   const [book, setBook] = useState({});
 
   window.onresize = () => setWindowHeigt(window.innerHeight); //keeps track of changes in screen height
@@ -200,39 +199,15 @@ function Chats({ socket }) {
 
     const bookOwner = searchBookList.find(
       (item) => item.id === bookId
-    )?.studentNumber;
+    )?.bookOwner;
 
     setBook({
       bookId,
       bookOwner,
     });
 
-    getUserData({ variables: { studentNumber: bookOwner } });
+    getUserData({ variables: { id: bookOwner } });
   }, [searchBookList, setBook, getUserData, user]);
-
-  // Here we subscribe to oncoming messages from socket IO.
-  // The socket is created in App.js, if it is not we make a new one
-  useEffect(() => {
-    if (!socket) {
-      var socketIO = io("https://server.qampus.co.za", {
-        query: { user: user.id },
-      });
-    }
-
-    // Listen for NEW_MESSAGEs either from the App.js socket or the one we just created
-    // If socket exist then listen from else listen from socketIO
-    (socket || socketIO).on("NEW_MESSAGE", (message) => {
-      messageDispatch({
-        payload: message.newMessage,
-      });
-
-      let chatsDiv = document.querySelector(".chats__mainBody");
-      chatsDiv.scrollTop = chatsDiv.scrollHeight;
-    });
-
-    // When you leave the messages page close the socket connect on socketIO
-    return () => socketIO && socketIO.disconnect();
-  }, [user.id, messageDispatch, socket]);
 
   // The whole chats page below
   return (

@@ -25,6 +25,7 @@
   height: 100%;
   max-width: 250px;
   max-height: 250px;
+  min-height: 250px;
   border-radius: 10px 10px 0 0;
   object-fit:scale-down;
   background: white;

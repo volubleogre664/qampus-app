@@ -1,0 +1,123 @@
+﻿1	102	Abraham Fischer Residence 
+2	10 	Agriculture Builduing 
+3	11	Agriculture Greenhouse
+4	114	Akasia Residence  
+5	42B	Albert Wessels Auditorium
+6	29	Animal Research Centre
+7	26	Architecture 
+8	104	Armentum Residence
+9	141A	Arista Residence
+10	134	Astro Hockey Field  
+11	42C	Badminton Hall
+12	42A	Benedictus Kok Building
+13	43A	Benito Khotseng Building
+14	6	Biology
+15	28	Biotecnology
+16	143	Biotechnology Building
+17	20	Botho Building
+18	19	Callie Human Centre
+19	101	Centenary Complex
+20	2	Chemistry
+21	152	Centre for Financial Planning
+22	13	Claerhout Building
+23	141	Clinical Skills Centre
+24	133	Computer Laboratory
+25	147	ConLaurês Residence
+26	103	CR de Wet Building
+27	44	CR Swart Building  
+28	140	Crêche
+29	65	Cricket Field
+30	101B	DF Malherbe
+31	34	Eagle's Nest
+32	5	Economic & Management Sciences
+33	139	Education Building
+34	109	Emily House Residence
+35	42D	Examination Centre (EXR)
+36	132	Exercise & Sport Sciences Building
+37	22	First University Building
+38	9	ICT Department
+39	30	Medical Faculty (Francois Retief Building)
+40	61	Genmin Lectorium
+41	3	Geography
+42	47	Geology
+43	16	George du Toit Administration Building
+44	27A	Groundwater Studies
+45	18	H vd Merwe Scholtz Hall
+46	17A	Idalia Loots Building
+47	146	Imperium Residence
+48	9F	Information And Communication Technology Services
+49	101C	Institute for Studies in Race Reconciliation and Social Justice
+50	31A	James Moroka Building
+51	106	JBM Hertzog Residence
+52	43	Johannes Brill Building
+53	60B	Johannes Stegmann Gallery
+54	114A	Kagiso Residence
+55	115	Karee Residence
+56	110	Kestell Residence
+57	125	Khayalami Residence
+58	145	Kovsie Church
+59	42E	Student Development & Success Internationalisation
+60	125A	Legatum Residence
+61	136	Mabaleng Building
+62	120	Madelief Residence
+63	1A	Main Building Central Block
+64	1C	Main Building North Block
+65	1B	Main Building South Block
+66	1D	Main Building West Block
+67	109A	Marjolein Residence
+68	118	Marula Residence
+69	5MSB	Mathematical Sciences Building (WWG)
+70	13MSR	Metabolism & Small-Stock Research Building
+71	31B	Muller Potgieter Building
+72	29A	National Control Centre
+73	64	Netball Field
+74	111	NJ vd Merwe Residence
+75	42F	Kovsie Health (Kovsie Counselling)
+76	148	Outeniqua Residence
+77	80	Parexel
+78	35 	Pellies Park
+79	138	Physical Planning
+80	32A	Physical Resources
+81	4	Physics Building
+82	136B	Physiotheraphy and Occupational Therapy
+83	112	Pres. Steyn Residence
+84	45	Protection Services
+85	32B	Provisioning
+86	7	Psychology
+87	79	Quantity Surveying
+88	57	Rag Place
+89	124	Roosmaryn Dining Hall
+90	126	Roosmaryn Residence
+91	38	Rugby & Soccer Fields
+92	21	Scaena
+93	74	Shimla Park
+94	116	Soetdoring Residence
+95	111A	Sonnedou Residence
+96	137	Squash Courts
+97	25	Stabilis
+98	23	Stef Coetzee Building
+99	127	Steyn Annex Housing and Residence Affairs
+100	45A	Steyn Guest Rooms
+101	46	Odeion
+102	33	Swimming Pool
+103	135	Taxi Rank
+104	27B	Technological Education 
+105	37	Tennis Court 
+106	36	Tennis & Basket Ball Courts  
+107	131	Thakaneng Bridge
+108	17B	Theology Building
+109	107	Thuthuka
+110	119	Tswelopele Residence
+111	142	Unilofts
+112	60	Sasol Library
+113	121	Vergeet My Nie Residence
+114	113	Veritas Gazellie
+115	105	Villa Bravado Residence
+116	117	Wag 'n Bietjie Residence
+117	102D	Wekkie Saayman Building
+118	122	Welwitschia Residence
+119	62	Winkie Direko Building
+120	144	Womens' Memorial
+149	HAR	Harmony Residence
+150	EQ1	Equitas Building
+151	FGG1	Flippie Groenewoud Building (FGG)

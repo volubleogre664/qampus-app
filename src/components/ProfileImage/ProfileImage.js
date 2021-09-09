@@ -1,13 +1,13 @@
 import { useRef } from "react";
 import AddAPhotoOutlinedIcon from "@material-ui/icons/AddAPhotoOutlined";
 
-import { useUserHelpers } from "../../Redux/getSlices";
+import { useUserSlice } from "../../Redux/getSlices";
 import defaultImg from "../../account-home.png";
 
 import "./ProfileImage.css";
 
 function ProfileImage({ src }) {
-  const [{ user, imgCrop }, dispatch] = useUserHelpers();
+  const [{ user, imgCrop }, dispatch] = useUserSlice();
   const fileInputRef = useRef(null);
 
   const handleFileInput = (inputEvent) => {

@@ -6,9 +6,9 @@ import MenuItem from "../../components/MenuItem/MenuItem";
 import Book from "../../components/Book/Book.js";
 import Loader from "../../components/Loader/Loader";
 import {
-  useUserHelpers,
-  useBooksHelpers,
-  useMessagesHelpers,
+  useUserSlice,
+  useBooksSlice,
+  useMessagesSlice,
 } from "../../Redux/getSlices";
 import { SEARCH_BOOKS } from "../../utils/graphql";
 import logo from "../../logo.png";
@@ -20,11 +20,11 @@ const ref_link = "https://www.smoorevisuals.com/landscapes/";
 const ref_name = "Spencer Moore";
 
 function Home({ history }) {
-  const [{ user }, dispatchUser] = useUserHelpers();
-  const [{ searchBookList: books }, dispatchBook] = useBooksHelpers();
+  const [{ user }, dispatchUser] = useUserSlice();
+  const [{ searchBookList: books }, dispatchBook] = useBooksSlice();
   const [searchStr, setSearchStr] = useState("");
   const [loading, setLoading] = useState(false);
-  const [, dispatchMessages] = useMessagesHelpers();
+  const [, dispatchMessages] = useMessagesSlice();
 
   // Toggles the results section and the menu section
   const [displays, setDisplays] = useState({

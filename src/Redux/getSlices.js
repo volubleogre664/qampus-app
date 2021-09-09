@@ -24,7 +24,7 @@ import {
 } from "./features/booksSlice";
 
 // Hook for messeges state and all the things related to messages
-function useMessagesHelpers() {
+function useMessagesSlice() {
   const dispatch = useDispatch();
 
   const dispatchMessage = (action) => {
@@ -45,7 +45,7 @@ function useMessagesHelpers() {
 }
 
 //The hook for handling users state information and everything about them
-function useUserHelpers() {
+function useUserSlice() {
   const dispatch = useDispatch();
 
   const dispatchUser = (action) => {
@@ -78,8 +78,7 @@ function useUserHelpers() {
 
       case "REMOVE_USER": {
         localStorage.removeItem("jwtToken");
-        localStorage.removeItem("user");
-        dispatch(setUser(null));
+        dispatch(clearUser());
         break;
       }
 
@@ -100,7 +99,7 @@ function useUserHelpers() {
 }
 
 // Hook for dealing with books state and everything with books around the app
-function useBooksHelpers() {
+function useBooksSlice() {
   const dispatch = useDispatch();
 
   const dispatchBooks = (action) => {
@@ -138,4 +137,4 @@ function useBooksHelpers() {
   return [books, dispatchBooks];
 }
 
-export { useMessagesHelpers, useUserHelpers, useBooksHelpers };
+export { useMessagesSlice, useUserSlice, useBooksSlice };

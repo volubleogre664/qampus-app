@@ -9,16 +9,16 @@ import Button from "../../components/Button/Button";
 import EditBook from "../../components/EditBook/EditBook.js";
 
 import "./Collection.css";
-import { useBooksHelpers, useUserHelpers } from "../../Redux/getSlices.js";
+import { useBooksSlice, useUserSlice } from "../../Redux/getSlices.js";
 
 function Collection() {
   const history = useHistory();
-  const [{ bookList: books }, dispatchBook] = useBooksHelpers();
+  const [{ bookList: books }, dispatchBook] = useBooksSlice();
   const [
     {
-      user: { studentNumber },
+      user: { id: bookOwner },
     },
-  ] = useUserHelpers();
+  ] = useUserSlice();
   const [edit, setEdit] = useState({
     isEdit: false,
     bookInfo: {},
@@ -27,7 +27,7 @@ function Collection() {
   // TODO: Deal with the book component
   // Something is annoying
   const { loading } = useQuery(GET_ALL_BOOKS, {
-    variables: { studentNumber },
+    variables: { bookOwner },
     onCompleted({ getBooks: dbBooks }) {
       dbBooks.forEach((book) => {
         if (!books.find((item) => item.isbn === book.isbn)) {

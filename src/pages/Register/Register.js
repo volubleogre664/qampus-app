@@ -8,7 +8,7 @@ import Bullet from "../../components/Bullet/Bullet";
 
 import { useForm } from "../../utils/hooks";
 import { REGISTER_USER } from "../../utils/graphql";
-import { useUserHelpers } from "../../Redux/getSlices";
+import { useUserSlice } from "../../Redux/getSlices";
 import { register as registerBullets } from "../../text_files/bulletPoints.js";
 
 import logo from "../../logo.png";
@@ -25,7 +25,7 @@ function Register({ history }) {
     password: "",
     confirmPassword: "",
   });
-  const [, dispatch] = useUserHelpers();
+  const [, dispatch] = useUserSlice();
   const [isEmail, setIsEmail] = useState(false);
   const [testCases] = useState({
     hasUppercase: new RegExp(/[A-Z]/),

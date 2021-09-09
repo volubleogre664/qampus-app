@@ -15,15 +15,14 @@ function Help() {
   var [indicator, setIndicator] = useState(() => {
     return "Terms of use";
   });
- 
   function about_click() {
     display = setDisplay(about);
     indicator = setIndicator("About Us");
   }
 
-  function saftey_click() {
+  function safety_click() {
     display = setDisplay(safety);
-    indicator = setIndicator("Saftey tips");
+    indicator = setIndicator("Safety tips");
   }
 
   function tutorial_click() {
@@ -35,6 +34,9 @@ function Help() {
     display = setDisplay(terms);
     indicator = setIndicator("Terms of use");
   }
+  function contact_click() {
+    /*contact pop up goes here*/
+  }
 
   return (
     <div className="help">
@@ -45,8 +47,9 @@ function Help() {
         <div className="buttons">
           <Button text="About us" onClick={about_click} />
           <Button text="Tutorials" onClick={tutorial_click} />
-          <Button text="Saftey tips" onClick={saftey_click} />
+          <Button text="safety tips" onClick={safety_click} />
           <Button text="Terms of use" onClick={terms_click} />
+          <Button text="Contact us" onClick={contact_click} />
         </div>
       </div>
 

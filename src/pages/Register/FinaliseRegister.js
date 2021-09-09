@@ -11,7 +11,7 @@ import ProfileImage from "../../components/ProfileImage/ProfileImage";
 import Loader from "../../components/Loader/Loader";
 
 import appLogo from "../../logo.png";
-import { useUserHelpers } from "../../Redux/getSlices";
+import { useUserSlice } from "../../Redux/getSlices";
 
 import "./FinaliseRegister.css";
 
@@ -29,7 +29,7 @@ function CompleteRegistration() {
       imgCrop: { croppedImgUrl },
     },
     dispatchUser,
-  ] = useUserHelpers();
+  ] = useUserSlice();
 
   const { onChange, onSubmit, values } = useForm(updateUser, {
     picture: "",
@@ -37,6 +37,8 @@ function CompleteRegistration() {
     bio: "",
   });
 
+  // We upload the image URI string to firebase we got from the crop tool
+  // Image is only uploaded if user did select an image
   async function uploadImageUri(e) {
     e.preventDefault();
 
@@ -52,7 +54,7 @@ function CompleteRegistration() {
           console.log("Image has been uploaded");
         })
         .catch((err) => {
-          console.log("Erroruploading image: ", err);
+          console.log("Error uploading image: ", err);
         });
     }
 
@@ -97,7 +99,20 @@ function CompleteRegistration() {
 
   useEffect(() => {
     document.title = "Finish Signing Up - Qampus";
-  }, []);
+
+    return () => {
+      if (croppedImgUrl) {
+        dispatchUser({
+          type: "SET_CROP_IMG",
+          payload: {
+            imgSrc: "",
+            croppedImgUrl: null,
+            aspect: null,
+          },
+        });
+      }
+    };
+  }, [croppedImgUrl, dispatchUser]);
 
   return (
     <div className="finaliseReg">
@@ -126,9 +141,10 @@ function CompleteRegistration() {
               label="Degree"
             />
 
-            <label htmlFor="bio">
+            <label htmlFor="bio" className="formTextareaLabel">
               Bio: <br />
               <textarea
+                className="formTextarea"
                 name="bio"
                 id="bio"
                 onChange={onChange}
