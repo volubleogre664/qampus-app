@@ -23,7 +23,7 @@ const upload = [
   {
     title: "How do I get verified?",
     content:
-      "In order to get verified you must sell 15 books on the platform or get 20 people to create an account - see the HELP tab.",
+      "You have sell 15 books on the platform or get 20 people to create an account - see the HELP tab.",
   },
 ];
 
