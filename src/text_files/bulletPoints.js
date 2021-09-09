@@ -32,7 +32,7 @@ const register = [
   {
     title: "Advertise to the entire campus",
     content:
-      "You can upload your used texbooks and connect with thousands of students who are looking to buy them. When you register you can upload 2 textbooks for FREE.",
+      "You can upload your used texbooks and connect with thousands of students who are looking to buy them. When you register you can upload textbooks for FREE.",
   },
   {
     title: "Spend less on textbooks",

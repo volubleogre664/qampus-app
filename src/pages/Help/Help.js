@@ -2,13 +2,11 @@ import "./Help.css";
 import React, { useState } from "react";
 
 // You need to add the files and change everything accordingly
-import * as terms from "../../text_files/bulletPoints";
-import * as tutorial from "../../text_files/bulletPoints";
-import * as about from "../../text_files/bulletPoints";
-import * as safety from "../../text_files/bulletPoints";
+import * as terms from "../../text_files/terms.json";
+import  * as tutorial from "../../text_files/tutorial.json";
+import *  as about from "../../text_files/about.json";
+import * as safety from "../../text_files/safety.json";
 import Button from "../../components/Button/Button";
-
-let termsUrl = "../../text files/transcript.txt"; // provide file location
 
 function Help() {
   var [display, setDisplay] = useState(() => {
@@ -34,11 +32,6 @@ function Help() {
   }
 
   function terms_click() {
-    fetch(termsUrl)
-      .then((res) => {
-        return res.text();
-      })
-      .then((data) => {});
     display = setDisplay(terms);
     indicator = setIndicator("Terms of use");
   }

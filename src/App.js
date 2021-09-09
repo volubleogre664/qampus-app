@@ -68,7 +68,10 @@ function App() {
             <HeaderMenu />
             <Navigation />
           </Route>
-
+          <Route exact path="/help">
+            <HeaderMenu />
+            <Help />
+          </Route>
           {/* AuthRoute checks if someone is logged in and redirects to home if they are logged in */}
           {/* No one will open login, register and finalise register without loggin out */}
           <AuthRoute exact path="/login" component={Login} />
@@ -100,10 +103,7 @@ function App() {
             <Collection />
           </PrivateRoute>
         </Switch>
-        <Route exact path="/help">
-          <HeaderMenu />
-          <Help />
-        </Route>
+        
       </Router>
     </div>
   );
