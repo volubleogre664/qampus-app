@@ -287,7 +287,8 @@ function Upload() {
         });
       }
     };
-  }, [dispatchUser, imgCrop]);
+    // eslint-disable-next-line
+  }, []);
 
   if (bookUpload.authors !== "" && values.authors !== bookUpload.authors) {
     onChange({

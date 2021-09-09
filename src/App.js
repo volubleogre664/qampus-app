@@ -59,7 +59,6 @@ function App() {
   return (
     <div className="app">
       <Router>
-        {/* <MessageBox errors={errors} /> */}
         {imgCrop.imgSrc && <CropImage />}
         <Switch>
           {/* These are public pages... Accessible to everyone */}

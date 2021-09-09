@@ -29,6 +29,7 @@ function Profile() {
     update(_, { data }) {
       setLoading(false);
       setActive(false);
+      console.logg(data);
       if (data) {
         dispatch({
           type: "SET_USER",
@@ -37,7 +38,6 @@ function Profile() {
       }
     },
     onError(err) {
-      console.log(err);
       setActive(false);
       setLoading(false);
     },
@@ -58,7 +58,7 @@ function Profile() {
           console.log("Image has been uploaded");
         })
         .catch((err) => {
-          console.log("Erroruploading image: ", err);
+          console.log("Error uploading image: ", err);
         });
     }
 
@@ -80,6 +80,39 @@ function Profile() {
   useEffect(() => {
     document.title = "Profile - Qampus";
 
+    if (imgCrop.croppedImgUrl) {
+      const storageRef = firebaseStorage.ref(
+        `${user.id}/profile/${user.firstName}.jpg`
+      );
+
+      (async () => {
+        await storageRef
+          .putString(imgCrop.croppedImgUrl, "data_url")
+          .then(() => {
+            console.log("Image has been uploaded");
+            dispatch({
+              type: "SET_CROP_IMG",
+              payload: {
+                imgSrc: "",
+                croppedImgUrl: null,
+                aspect: null,
+              },
+            });
+          })
+          .catch((err) => {
+            console.log("Error uploading image: ", err);
+          });
+
+        await storageRef
+          .getDownloadURL()
+          .then((url) => {
+            if (url) updateProfile({ variables: { picture: url } });
+            else setProfile("");
+          })
+          .catch((err) => console.log(err));
+      })();
+    }
+
     return () => {
       if (imgCrop.croppedImgUrl) {
         dispatch({
@@ -92,7 +125,14 @@ function Profile() {
         });
       }
     };
-  }, [dispatch, imgCrop]);
+  }, [
+    dispatch,
+    imgCrop,
+    firebaseStorage,
+    user.firstName,
+    user.id,
+    updateProfile,
+  ]);
 
   return (
     <div className="profile">
@@ -112,7 +152,7 @@ function Profile() {
 
         <main className="profile__bodyMain">
           <div
-            style={{ display: active ? "none" : "flex" }}
+            // style={{ display: active ? "none" : "flex" }}
             className="profile__bodyMainInfo"
           >
             <div>

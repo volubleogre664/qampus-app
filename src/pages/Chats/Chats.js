@@ -62,7 +62,7 @@ function Chats() {
   const [getUserData] = useLazyQuery(GET_USER_DATA, {
     onCompleted(data) {
       let userData = user?.contacts?.find(
-        (item) => item?.studentNumber === book.bookOwner
+        (item) => item?.id === book.bookOwner
       );
 
       if (!userData && data.getUserData) {

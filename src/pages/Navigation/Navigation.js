@@ -4,7 +4,6 @@ import Iframe from "react-iframe";
 import Button from "../../components/Button/Button";
 import {
   building,
-  parking,
   coordinates,
 } from "../../nav_coordinates/nav_coordinates.json";
 import SelectLocation from "../../components/Select/SelectLocation";
@@ -29,7 +28,6 @@ function Navigation() {
       return buildingOneCoords.longitude + "__" + buildingOneCoords.latitude;
     })(),
   });
-
 
   // Set the current location by calling getCurrentLocation()
   if (!currentLocation) setCurrentLocation(getCurrentLocation());
@@ -138,7 +136,7 @@ function Navigation() {
             name="destination"
             coordinates={coordinates}
             value={values.destination}
-            building={building}
+            building={[].concat(building)}
             onChange={onChange}
             label="Destination"
             id="destination"

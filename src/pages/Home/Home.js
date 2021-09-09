@@ -96,14 +96,16 @@ function Home({ history }) {
       {loading && <Loader message="Getting books" />}
       <div className="home__header">
         <button className="home__avatar" onClick={handleAvatarClick}>
-          {(user && user?.picture && (
-            <img
-              loading="eager"
-              className="avatarIcon"
-              alt={`${user.firstName} ${user.lastName}`}
-              src={user.picture}
-            />
-          )) || <PersonIcon className="avatarIcon" />}
+          <div className="avatarIcon__container">
+            {(user && user?.picture && (
+              <img
+                loading="eager"
+                className="avatarIcon"
+                alt={`${user.firstName} ${user.lastName}`}
+                src={user.picture}
+              />
+            )) || <PersonIcon className="avatarIcon" />}
+          </div>
           <span className="home__avatarName">{user?.firstName || "Guest"}</span>
         </button>
       </div>
