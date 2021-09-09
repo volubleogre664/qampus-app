@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase/app";
 import { io } from "socket.io-client";
@@ -16,21 +16,22 @@ import HeaderMenu from "./components/HeaderMenu/HeaderMenu.js";
 import CropImage from "./components/CropImage/CropImage.js";
 import AuthRoute from "./utils/AuthRoute.js";
 import PrivateRoute from "./utils/PrivateRoute.js";
-import { useUserHelpers } from "./Redux/getSlices.js";
+import { useMessagesSlice, useUserSlice } from "./Redux/getSlices.js";
 import { firebaseConfig } from "./config.js";
-import "./App.css";
+
 import "firebase/storage";
+import "./App.css";
 
 firebase.initializeApp(firebaseConfig);
 
 function App() {
-  const [{ imgCrop, user }, dispatchUser] = useUserHelpers();
-  const [socket, setSocket] = useState(null);
+  const [{ imgCrop, user }, dispatchUser] = useUserSlice();
+  const [, dispatchMessage] = useMessagesSlice();
 
   useEffect(() => {
     if (!user?.id) return;
 
-    const socket = io("https://server.qampus.co.za", {
+    const socket = io("https://server.qampus.co.za/graphql", {
       query: {
         user: user.id,
       },
@@ -43,10 +44,17 @@ function App() {
       });
     });
 
-    setSocket(socket);
+    socket.on("NEW_MESSAGE", (message) => {
+      dispatchMessage({
+        payload: message.newMessage,
+      });
+
+      let chatsDiv = document.querySelector(".chats__mainBody");
+      chatsDiv.scrollTop = chatsDiv.scrollHeight;
+    });
 
     return () => socket.disconnect();
-  }, [user?.id, setSocket]);
+  }, [user?.id, dispatchUser, dispatchMessage]);
 
   return (
     <div className="app">
@@ -60,7 +68,10 @@ function App() {
             <HeaderMenu />
             <Navigation />
           </Route>
-
+          <Route exact path="/help">
+            <HeaderMenu />
+            <Help />
+          </Route>
           {/* AuthRoute checks if someone is logged in and redirects to home if they are logged in */}
           {/* No one will open login, register and finalise register without loggin out */}
           <AuthRoute exact path="/login" component={Login} />
@@ -68,18 +79,18 @@ function App() {
 
           {/* PrivateRoute is for private pages that needs login to be accessed. */}
           {/* For development purposes just rename PrivateRoute to Route */}
-          <PrivateRoute exact path="/register/finalise">
+          <Route exact path="/register/finalise">
             <FinaliseRegister />
-          </PrivateRoute>
+          </Route>
 
-          <Route exact path="/profile">
+          <PrivateRoute exact path="/profile">
             <HeaderMenu />
             <Profile />
-          </Route>
+          </PrivateRoute>
 
           <PrivateRoute exact path="/chats*">
             <HeaderMenu />
-            <Chats socket={socket} />
+            <Chats />
           </PrivateRoute>
 
           <PrivateRoute exact path="/upload">
@@ -92,10 +103,7 @@ function App() {
             <Collection />
           </PrivateRoute>
         </Switch>
-        <Route exact path="/help">
-          <HeaderMenu />
-          <Help />
-        </Route>
+        
       </Router>
     </div>
   );
