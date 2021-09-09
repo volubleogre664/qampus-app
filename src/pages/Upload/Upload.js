@@ -12,7 +12,7 @@ import ConfirmBook from "./ConfirmBook";
 import { useForm } from "../../utils/hooks";
 import { UPLOAD_BOOK } from "../../utils/graphql";
 import { useBooksHelpers, useUserHelpers } from "../../Redux/getSlices";
-import { upload as uploadBullets } from "../../text files/bulletPoints";
+import { upload as uploadBullets } from "../../text_files/bulletPoints";
 
 import "./Upload.css";
 

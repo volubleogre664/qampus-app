@@ -1,10 +1,11 @@
 import "./Help.css";
 import React, { useState } from "react";
 import Iframe from "react-iframe";
-import {terms} from "../../text files/terms.json";
+import {about} from "../../text_files/about.json";
+import {tutorial} from "../../text_files/tutorial.json";
+import {safety} from "../../text_files/safety.json";
+import {terms} from "../../text_files/terms.json";
 import Button from "../../components/Button/Button";
-
-let termsUrl = '../../text files/transcript.txt' // provide file location
 
 
 function Help() {
@@ -15,18 +16,13 @@ function Help() {
     return "Terms of use";
   });
  
-
-  const about = "This is about us";
-  const tutorial = "This is tutorial";
-  const saftey = "This is saftey";
-
   function about_click() {
     display = setDisplay(about);
     indicator = setIndicator("About Us");
   }
 
   function saftey_click() {
-    display = setDisplay(saftey);
+    display = setDisplay(safety);
     indicator = setIndicator("Saftey tips");
   }
 
@@ -36,11 +32,6 @@ function Help() {
   }
 
   function terms_click() {
-    fetch(termsUrl)
-    .then((res) =>{
-      return res.text();
-    }).then((data) => {
-    });
     display = setDisplay(terms);
     indicator = setIndicator("Terms of use");
   }
