@@ -1,14 +1,12 @@
 import "./Help.css";
 import React, { useState } from "react";
-
-// You need to add the files and change everything accordingly
-import * as terms from "../../text_files/bulletPoints";
-import * as tutorial from "../../text_files/bulletPoints";
-import * as about from "../../text_files/bulletPoints";
-import * as safety from "../../text_files/bulletPoints";
+import Iframe from "react-iframe";
+import {about} from "../../text_files/about.json";
+import {tutorial} from "../../text_files/tutorial.json";
+import {safety} from "../../text_files/safety.json";
+import {terms} from "../../text_files/terms.json";
 import Button from "../../components/Button/Button";
 
-let termsUrl = "../../text files/transcript.txt"; // provide file location
 
 function Help() {
   var [display, setDisplay] = useState(() => {
@@ -17,7 +15,6 @@ function Help() {
   var [indicator, setIndicator] = useState(() => {
     return "Terms of use";
   });
-
   function about_click() {
     display = setDisplay(about);
     indicator = setIndicator("About Us");
@@ -34,13 +31,11 @@ function Help() {
   }
 
   function terms_click() {
-    fetch(termsUrl)
-      .then((res) => {
-        return res.text();
-      })
-      .then((data) => {});
     display = setDisplay(terms);
     indicator = setIndicator("Terms of use");
+  }
+  function contact_click() {
+    /*contact pop up goes here*/
   }
 
   return (
@@ -54,6 +49,7 @@ function Help() {
           <Button text="Tutorials" onClick={tutorial_click} />
           <Button text="safety tips" onClick={safety_click} />
           <Button text="Terms of use" onClick={terms_click} />
+          <Button text="Contact us" onClick={contact_click} />
         </div>
       </div>
 

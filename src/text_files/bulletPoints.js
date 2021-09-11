@@ -23,7 +23,7 @@ const upload = [
   {
     title: "How do I get verified?",
     content:
-      "In order to get verified you must sell 15 books on the platform or get 20 people to create an account - see the HELP tab.",
+      "You have sell 15 books on the platform or get 20 people to create an account - see the HELP tab.",
   },
 ];
 
@@ -32,7 +32,7 @@ const register = [
   {
     title: "Advertise to the entire campus",
     content:
-      "You can upload your used texbooks and connect with thousands of students who are looking to buy them. When you register you can upload 2 textbooks for FREE.",
+      "You can upload your used texbooks and connect with thousands of students who are looking to buy them. When you register you can upload textbooks for FREE.",
   },
   {
     title: "Spend less on textbooks",
