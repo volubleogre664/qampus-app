@@ -104,32 +104,26 @@ const UPLOAD_BOOK = gql`
   mutation uploadBook(
     $isbn: String!
     $title: String!
-    $subtitle: String
     $moduleCode: String
     $authors: String
     $price: Float!
-    $description: String
     $frontCover: String
   ) {
     uploadBook(
       bookInput: {
         isbn: $isbn
         title: $title
-        subtitle: $subtitle
         moduleCode: $moduleCode
         authors: $authors
         price: $price
-        description: $description
         frontCover: $frontCover
       }
     ) {
       id
       isbn
       title
-      subtitle
       authors
       price
-      description
       bookOwner
       moduleCode
       frontCover
@@ -149,10 +143,8 @@ const GET_ONE_BOOK = gql`
       id
       isbn
       title
-      subtitle
       authors
       price
-      description
       bookOwner
       moduleCode
       frontCover
@@ -172,10 +164,8 @@ const GET_ALL_BOOKS = gql`
       id
       isbn
       title
-      subtitle
       authors
       price
-      description
       bookOwner
       moduleCode
       frontCover
@@ -184,15 +174,13 @@ const GET_ALL_BOOKS = gql`
 `;
 
 const EDIT_BOOK = gql`
-  mutation editBook($id: ID!, $price: Float, $isBought: Boolean) {
-    editBook(id: $id, price: $price, isBought: $isBought) {
+  mutation editBook($bookId: ID!, $price: Float, $isBought: Boolean) {
+    editBook(bookId: $bookId, price: $price, isBought: $isBought) {
       id
       isbn
       title
-      subtitle
       authors
       price
-      description
       bookOwner
       moduleCode
       frontCover
@@ -206,10 +194,8 @@ const SEARCH_BOOKS = gql`
       id
       isbn
       title
-      subtitle
       authors
       price
-      description
       bookOwner
       moduleCode
       frontCover
@@ -229,10 +215,8 @@ const ADD_MESSAGE = gql`
         id
         isbn
         title
-        subtitle
         authors
         price
-        description
         bookOwner
         moduleCode
         frontCover
@@ -253,10 +237,8 @@ const MESSAGE_SUBSCRIPTION = gql`
         id
         isbn
         title
-        subtitle
         authors
         price
-        description
         bookOwner
         moduleCode
         frontCover
@@ -277,10 +259,8 @@ const GET_MESSAGES_QUERY = gql`
         id
         isbn
         title
-        subtitle
         authors
         price
-        description
         bookOwner
         moduleCode
         frontCover

@@ -93,9 +93,7 @@ function Profile() {
             dispatch({
               type: "SET_CROP_IMG",
               payload: {
-                imgSrc: "",
                 croppedImgUrl: null,
-                aspect: null,
               },
             });
           })

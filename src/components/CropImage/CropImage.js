@@ -18,6 +18,7 @@ export const CropImage = () => {
       payload: {
         ...imgCrop,
         croppedImgUrl: null,
+        croppedBookImgUrl: null,
         imgSrc: null,
       },
     });
@@ -25,11 +26,16 @@ export const CropImage = () => {
 
   const getCropData = () => {
     if (typeof cropper !== "undefined") {
+      if (imgCrop.aspect === 1 / 1.4142)
+        var croppedBookImgUrl = cropper.getCroppedCanvas().toDataURL();
+      else var croppedImgUrl = cropper.getCroppedCanvas().toDataURL();
+
       dispatch({
         type: "SET_CROP_IMG",
         payload: {
           ...imgCrop,
-          croppedImgUrl: cropper.getCroppedCanvas().toDataURL(),
+          croppedImgUrl: croppedImgUrl || null,
+          croppedBookImgUrl: croppedBookImgUrl || null,
           imgSrc: null,
         },
       });

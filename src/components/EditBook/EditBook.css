@@ -4,7 +4,7 @@
   position: absolute;
   margin-top: auto !important;
   left: calc(50vw - 200px);
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -32,7 +32,7 @@
   font-family: "Poiret One";
   color: #fff;
   -webkit-filter: drop-shadow(2px 4px 8px #585858);
-          filter: drop-shadow(2px 4px 8px #585858);
+  filter: drop-shadow(2px 4px 8px #585858);
 }
 
 .editBook hr {

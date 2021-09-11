@@ -16,8 +16,7 @@
 
 .book__image {
   width: 100%;
-  max-height: 280px;
-  object-fit: fill;
+  object-fit: contain;
 }
 
 .book__details {

@@ -19,10 +19,8 @@ function Collection() {
       user: { id: bookOwner },
     },
   ] = useUserSlice();
-  const [edit, setEdit] = useState({
-    isEdit: false,
-    bookInfo: {},
-  });
+  const [edit, setEdit] = useState(false);
+  const [book, setBook] = useState({ id: null, title: null, price: null });
 
   // TODO: Deal with the book component
   // Something is annoying
@@ -58,10 +56,12 @@ function Collection() {
         })
       );
     },
-    onError() {
+    onError(err) {
+      console.log(err);
+
       import("../../utils/popUp.js").then((mbox) =>
         mbox.default({
-          icon: "success",
+          icon: "warning",
           title: "Book Not Deleted!",
           text: "Unable to delete the book... Please Try again",
           buttons: "okay",
@@ -71,19 +71,13 @@ function Collection() {
   });
 
   const editBookClicked = (id, title, price) => {
-    setEdit({
-      ...edit,
-      isEdit: true,
-      bookInfo: {
-        id,
-        title,
-        price,
-      },
-    });
+    setBook({ id, title, price });
+
+    setTimeout(() => setEdit(true), 50);
   };
 
   const cancelClicked = () => {
-    setEdit({ ...edit, isEdit: false, bookInfo: {} });
+    setEdit(false);
   };
 
   useEffect(() => {
@@ -92,7 +86,7 @@ function Collection() {
 
   return (
     <div className="collection">
-      {edit.isEdit && <EditBook cancel={cancelClicked} {...edit.bookInfo} />}
+      {edit && <EditBook cancel={cancelClicked} {...book} />}
       {loading && <Loader message="Getting your books" />}
       <div className="collection__header">
         <p>Your books</p>

@@ -21,6 +21,7 @@ import {
   setBookCover,
   setBookList,
   setSearchBookList,
+  replaceBook,
 } from "./features/booksSlice";
 
 // Hook for messeges state and all the things related to messages
@@ -125,6 +126,11 @@ function useBooksSlice() {
       }
       case "DELETE_LIBRARY_BOOK": {
         dispatch(deleteBook(action.payload));
+        break;
+      }
+
+      case "REPLACE_LIBRARY_BOOK": {
+        dispatch(replaceBook(action.payload));
         break;
       }
 
