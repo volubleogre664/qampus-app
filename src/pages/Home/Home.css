@@ -13,10 +13,11 @@
 }
 
 .home__header {
-  width: 100%;
+  width: 65%;
   display: flex;
   justify-content: flex-end;
-  margin: 5vh 0 0 auto;
+  margin: auto;
+  margin-top: 5vh;
 }
 
 .home__logo {
@@ -56,16 +57,20 @@
   border: none;
   border-radius: 5px;
   height: 40px;
-  margin-right: 10%;
+  margin-right: 0;
   cursor: pointer;
 }
 
 .home__avatar:hover {
   transition: all ease-in-out 0.2s;
   outline-offset: 15px;
-  -webkit-filter: drop-shadow(2px 4px 4px #000000);
+  /* -webkit-filter: drop-shadow(2px 4px 4px #000000);
   filter: drop-shadow(2px 4px 4px #000000);
-  border-radius: 0px;
+  border-radius: 0px; */
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 10px rgba(255, 255, 255, 0.8);
+  transition: all ease-in-out 0.2s;
+  border-radius: 1px 1px 1px 1px;
 }
 
 .home__avatar .avatarIcon {
@@ -350,6 +355,18 @@
   transition: all ease-in-out 0.2s;
   text-shadow: 0px 1px 1px rgb(81, 182, 240) !important;
 }
+
+@media screen and (max-width: 1900px) {
+  .home__header {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 1500px) {
+  .home__header {
+    width: 90%;
+  }
+}
+
 @media screen and (max-width: 800px) {
   .home__searchContainer {
     width: 80%;

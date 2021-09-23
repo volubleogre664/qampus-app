@@ -15,7 +15,7 @@
   -webkit-filter: drop-shadow(2px 4px 4px #000000);
   filter: drop-shadow(2px 4px 4px #000000);
 }
-
+ 
 .header__button {
   display: none;
 }
@@ -128,7 +128,7 @@
     font-size: 1.4rem;
     padding: 14px;
   }
-
+ 
   .nav__links.opening {
     left: 0%;
     max-width: 450px;

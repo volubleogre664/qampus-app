@@ -3,7 +3,7 @@ const upload = [
   {
     title: "What if I don't remember the module code?",
     content:
-      "You can leave out the module code but your book will be harder to find when someone uses it as a search option.",
+      "You can leave out the module code but your book will be harder to find when someone uses it as a search option. Also, you can have a look at your proof of regisration and find your module code there.",
   },
   {
     title: "How long will my book stay on Qampus?",

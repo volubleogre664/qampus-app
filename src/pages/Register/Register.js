@@ -25,6 +25,7 @@ function Register({ history }) {
     password: "",
     confirmPassword: "",
   });
+  
   const [, dispatch] = useUserSlice();
   const [isEmail, setIsEmail] = useState(false);
   const [testCases] = useState({

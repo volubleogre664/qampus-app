@@ -29,12 +29,12 @@
   transition: -webkit-transform ease-out 0.2s;
   transition: transform ease-out 0.2s;
   transition: transform ease-out 0.2s, -webkit-transform ease-out 0.2s;
-  -webkit-transform: scale(0.95);
-          transform: scale(0.95);
+  -webkit-transform: scale(0.88);
+          transform: scale(0.88);
 }
 
 .menuItem > .menuItem__icon > * {
-  font-size: 2.9rem;
+  font-size: 2.3rem;
   color: rgb(19, 161, 242);
   /* color: rgb(0, 5, 7); */
 }

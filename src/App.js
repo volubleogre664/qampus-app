@@ -18,7 +18,6 @@ import AuthRoute from "./utils/AuthRoute.js";
 import PrivateRoute from "./utils/PrivateRoute.js";
 import { useMessagesSlice, useUserSlice } from "./Redux/getSlices.js";
 import { firebaseConfig } from "./config.js";
-
 import "firebase/storage";
 import "./App.css";
 
@@ -31,7 +30,7 @@ function App() {
   useEffect(() => {
     if (!user?.id) return;
 
-    const socket = io("https://server.qampus.co.za/graphql", {
+    const socket = io("server.qampus.co.za:8080/graphql", {
       query: {
         user: user.id,
       },

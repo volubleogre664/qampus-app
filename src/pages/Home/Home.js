@@ -73,7 +73,7 @@ function Home({ history }) {
               type: "REMOVE_USER",
             });
 
-            dispatchMessages({
+            dispatchMessages({ 
               type: "CLEAR_MESSAGES",
             });
           },
@@ -106,7 +106,7 @@ function Home({ history }) {
               />
             )) || <PersonIcon className="avatarIcon" />}
           </div>
-          <span className="home__avatarName">{user?.firstName || "Guest"}</span>
+          <span className="home__avatarName">{user?.firstName[0] + user?.lastName[0] || "Guest"}</span>
         </button>
       </div>
 
@@ -174,10 +174,10 @@ function Home({ history }) {
 
           <MenuItem
             history={history}
-            path="/profile"
-            icon="settings"
-            title="Settings"
-            subtitle="Change your profile preferences, etc."
+            path="/help"
+            icon="help"
+            title="Help"
+            subtitle="About us, saftey tips, tutorials and terms of use."
           />
         </div>
       </div>

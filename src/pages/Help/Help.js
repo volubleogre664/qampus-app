@@ -1,6 +1,5 @@
 import "./Help.css";
 import React, { useState } from "react";
-import Iframe from "react-iframe";
 import {about} from "../../text_files/about.json";
 import {tutorial} from "../../text_files/tutorial.json";
 import {safety} from "../../text_files/safety.json";

@@ -14,7 +14,7 @@ function HeaderMenu() {
     setClick(!click);
     document.querySelector(".nav__links").classList.toggle("opening");
   };
-
+ 
   const handleLogoutClick = () => {
     handleClick();
     import("../../utils/popUp.js").then((mbox) =>
