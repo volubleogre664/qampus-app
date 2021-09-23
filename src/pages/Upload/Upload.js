@@ -43,7 +43,6 @@ function Upload() {
     authors: "",
     price: "",
     moduleCode: "",
-    frontCover: "",
   });
 
   // Title, subtitle, authors and description will get from google books api
@@ -87,8 +86,7 @@ function Upload() {
         type: "SET_CROP_IMG",
         payload: {
           ...imgCrop,
-          imgSrc: "",
-          croppedImgUrl: null,
+          croppedBookImgUrl: null,
           aspect: null,
         },
       });
@@ -151,7 +149,7 @@ function Upload() {
     // If they don't exist then they're uploaded
     await validateFilesInCloud(
       frontCoverRef,
-      imgCrop.croppedImgUrl,
+      imgCrop.croppedBookImgUrl,
       "frontCover"
     );
 
@@ -184,6 +182,8 @@ function Upload() {
     };
 
     reader.readAsDataURL(file);
+
+    frontCoverInputRef.current.value = "";
   };
 
   // Check if files exist with getMetaData()
@@ -197,14 +197,6 @@ function Upload() {
         await getUploadedUrl(storageRef, urlContainer);
       })
       .catch(async () => {
-        // More code splitting here with dynamic imports
-        // await import("../../utils/compressFilesAndUpload.js").then(
-        //   async (module) => {
-        //     let image;
-        //     await module.default(image, storageRef);
-        //   }
-        // );
-
         await storageRef
           .putString(imageDataUrl, "data_url")
           .then(() => {
@@ -274,20 +266,6 @@ function Upload() {
 
   useEffect(() => {
     document.title = "Upload - Qampus";
-
-    return () => {
-      if (imgCrop.croppedImgUrl) {
-        dispatchUser({
-          type: "SET_CROP_IMG",
-          payload: {
-            imgSrc: "",
-            croppedImgUrl: null,
-            aspect: null,
-          },
-        });
-      }
-    };
-    // eslint-disable-next-line
   }, []);
 
   if (bookUpload.authors !== "" && values.authors !== bookUpload.authors) {
@@ -322,7 +300,11 @@ function Upload() {
               onClick={() => frontCoverInputRef.current.click()}
             >
               <div id="front" className="js--image-preview">
-                <img src={imgCrop?.croppedImgUrl} alt="" className="thumb" />
+                <img
+                  src={imgCrop?.croppedBookImgUrl}
+                  alt=""
+                  className="thumb"
+                />
               </div>
               <div className="upload-options">
                 <label onClick={(e) => e.stopPropagation()} className="front">
@@ -333,7 +315,6 @@ function Upload() {
                     className="image-upload"
                     accept="image/*"
                     multiple={false}
-                    required={true}
                     ref={frontCoverInputRef}
                     onChange={openCropTool}
                     style={{ display: "none" }}

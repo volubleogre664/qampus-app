@@ -4,7 +4,7 @@ const initialState = {
   user: null,
   path: "",
   errors: {},
-  imgCrop: { imgSrc: null, croppedImgUrl: null },
+  imgCrop: { imgSrc: null, croppedImgUrl: null, croppedBookImgUrl: null },
 };
 
 // This is where we get a cookie from the browser

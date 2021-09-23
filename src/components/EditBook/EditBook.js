@@ -4,27 +4,45 @@ import { useMutation } from "@apollo/react-hooks";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
-import { EDIT_BOOK } from "../../utils/graphql";
+import { EDIT_BOOK } from "../../utils/graphql.js";
 
 import "./EditBook.css";
+import { useBooksSlice } from "../../Redux/getSlices";
 
-const EditBook = ({ price = 350, title = "Test Book", id, cancel }) => {
+const EditBook = ({ price, title, id, cancel }) => {
+  const [, dispatchBook] = useBooksSlice();
   const { onChange, onSubmit, values } = useForm(editBookClicked, {
     isBought: false,
     price: price,
   });
 
   const [editBook] = useMutation(EDIT_BOOK, {
-    variables: { id, isBought: values.isBought, price: values.price },
+    onCompleted(data) {
+      dispatchBook({
+        type: "REPLACE_LIBRARY_BOOK",
+        payload: data.editBook,
+      });
+    },
+    onError(err) {
+      console.log(err);
+    },
   });
 
   function editBookClicked() {
-    editBook();
+    editBook({
+      variables: {
+        bookId: id,
+        price: Number(values.price),
+        isBought: values.isBought,
+      },
+    });
+
+    cancel();
   }
 
   return (
     <div className="editBook">
-      <h3 className=".title--light">Edit book</h3>
+      <h3 className="title--light">Edit book</h3>
       <hr />
       <p>Book: {title}</p>
 

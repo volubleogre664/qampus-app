@@ -4,6 +4,7 @@
   flex: 1;
   height: 100%;
   display: flex;
+  gap: 10px;
   box-sizing: border-box !important;
   align-items: center;
   margin: 0 15px;
