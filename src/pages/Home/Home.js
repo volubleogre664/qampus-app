@@ -21,7 +21,8 @@ import "./Home.css";
 //change the background reference here
 const ref_link = "https://www.smoorevisuals.com/landscapes/";
 const ref_name = "Spencer Moore";
-var profileFlag = 0;
+var profileFlag = false;
+var loginMenuText = "Login";
 
 function Home({ history }) {
   const [{ user }, dispatchUser] = useUserSlice();
@@ -65,15 +66,14 @@ function Home({ history }) {
   // Clicking the avatar calls the method
   const handleAvatarClick = () => {
     const menu = document.getElementById("login__menu")
-    menu.focus();
     menu.classList.toggle("active");
 
     //hide the profile opion if user is not logged in
     //use profile flag to keep of track of clicks
-    if (user != null  && profileFlag == 0) {
+    if (user != null  && !profileFlag) {
       const profileItem = document.getElementsByClassName("profile_section")
       profileItem[0].classList.toggle("active");  
-      profileFlag = 1;
+      profileFlag = true;
     }
   };
 
@@ -94,7 +94,9 @@ function Home({ history }) {
               type: "CLEAR_MESSAGES",
             });
 
-            profileFlag = 0;
+            profileFlag = false;
+            var loginMenuText = "Login";
+
           },
         })
       );
@@ -139,7 +141,8 @@ function Home({ history }) {
           <ProfileIcon/> Profile
           </section>
           <section id="menu_item" className="login_section" onClick={handleLoginMenuClick}>
-            <LoginIcon/> Login
+            {profileFlag? <LogoutIcon/>: <LoginIcon/>}
+            {loginMenuText}
           </section>
           <hr/>
           <section id="menu_item" className="close_section" onClick={handleCloseMenuClick}>
