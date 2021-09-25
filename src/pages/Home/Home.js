@@ -11,6 +11,7 @@ import {
   useMessagesSlice,
 } from "../../Redux/getSlices";
 import { SEARCH_BOOKS } from "../../utils/graphql";
+import popUpDialogue from "../../utils/popUp.js";
 import logo from "../../logo.png";
 
 import "./Home.css";
@@ -64,21 +65,19 @@ function Home({ history }) {
     if (!user) {
       history.push("/login");
     } else {
-      import("../../utils/popUp.js").then((mbox) =>
-        mbox.default({
-          title: "Logging out!",
-          text: "Are you sure you want to logout?",
-          callback: () => {
-            dispatchUser({
-              type: "REMOVE_USER",
-            });
+      popUpDialogue({
+        title: "Logging out!",
+        text: "Are you sure you want to logout?",
+        callback: () => {
+          dispatchUser({
+            type: "REMOVE_USER",
+          });
 
-            dispatchMessages({
-              type: "CLEAR_MESSAGES",
-            });
-          },
-        })
-      );
+          dispatchMessages({
+            type: "CLEAR_MESSAGES",
+          });
+        },
+      });
     }
   };
 

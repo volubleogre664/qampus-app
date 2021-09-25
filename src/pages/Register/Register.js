@@ -67,6 +67,8 @@ function Register({ history }) {
         type: "SET_ERRORS",
         payload: err?.graphQLErrors[0]?.extensions?.errors,
       });
+
+      console.log(err);
     },
   });
 
@@ -142,7 +144,7 @@ function Register({ history }) {
               onChange={onEmailChange}
               label="Email Address"
               id="email"
-              isvalid={isEmail}
+              isvalid={String(isEmail)}
             />
 
             <Input
@@ -158,7 +160,7 @@ function Register({ history }) {
               onInput={(e) => e.target.setCustomValidity("")}
               onInvalid={(e) =>
                 e.target.setCustomValidity(
-                  "Sttudent number must be 10 characters(0-9)"
+                  "Student number must be 10 characters(0-9)"
                 )
               }
             />
@@ -187,12 +189,12 @@ function Register({ history }) {
               onChange={onChange}
               label="Confirm password"
               id="confirmPassword"
-              isvalid={values.confirmPassword === values.password}
+              isvalid={(values.confirmPassword === values.password).toString()}
             />
 
-            <div class="checkbox_div">
+            <div className="checkbox_div">
               <input id="checkbox" type="checkbox" />
-              <label for="checkbox">
+              <label htmlFor="checkbox">
                 {" "}
                 I agree to these{" "}
                 <a className="link" target="_blank" href="/help">

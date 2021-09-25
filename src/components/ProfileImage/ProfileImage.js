@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import AddAPhotoOutlinedIcon from "@material-ui/icons/AddAPhotoOutlined";
+import Compressor from "compressorjs";
 
 import { useUserSlice } from "../../Redux/getSlices";
 import defaultImg from "../../account-home.png";
@@ -12,19 +13,32 @@ function ProfileImage({ src }) {
 
   const handleFileInput = (inputEvent) => {
     const [file] = inputEvent.target.files;
+
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (readerEvent) => {
-        dispatch({
-          type: "SET_CROP_IMG",
-          payload: { ...imgCrop, imgSrc: readerEvent.target.result },
-        });
-      };
+      new Compressor(file, {
+        quality: 0.2,
+        success(file) {
+          const reader = new FileReader();
 
-      window.scrollTo(0, 0);
+          reader.onload = (readerEvent) => {
+            dispatch({
+              type: "SET_CROP_IMG",
+              payload: {
+                ...imgCrop,
+                imgSrc: readerEvent.target.result,
+              },
+            });
+          };
 
-      reader.readAsDataURL(file);
+          window.scrollTo(0, 0);
+          reader.readAsDataURL(file);
+        },
+        error(err) {
+          console.log(err.message);
+        },
+      });
     }
+
     fileInputRef.current.value = "";
   };
 

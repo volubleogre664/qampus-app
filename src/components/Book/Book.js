@@ -4,6 +4,8 @@ import PencilIcon from "@material-ui/icons/EditRounded";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useHistory } from "react-router-dom";
 
+import popUpDialogue from "../../utils/popUp.js";
+
 import imgSrc from "./img.jpg";
 
 import "./Book.css";
@@ -16,7 +18,7 @@ function Book({ state, className, book, deleteBookClick, editBookClick }) {
       id: "jdsbjhbsdcjnscb",
       title: "Database Principles",
       isbn: "998844212133",
-      modCode: "CSIS1664",
+      moduleCode: "CSIS1664",
       price: "300.00",
       edition: "2nd",
       dateUploaded: "21 April 2021",
@@ -28,7 +30,7 @@ function Book({ state, className, book, deleteBookClick, editBookClick }) {
   const book_details = {
     title: "Title",
     isbn: "ISBN",
-    modCode: "Module Code",
+    moduleCode: "Module Code",
     price: "Price",
     edition: "Edition",
     dateUploaded: "Date Uploaded",
@@ -45,15 +47,12 @@ function Book({ state, className, book, deleteBookClick, editBookClick }) {
 
   // First parameter of mbox.default is empty string to remove the icon
   const deleteBookClicked = () => {
-    import("../../utils/popUp.js").then((mbox) =>
-      mbox.default({
-        icon: "info",
-        title: "Delete Book!",
-        text:
-          "Are you sure you want to delete this book?\nTitle: " + book?.title,
-        callback: () => deleteBookClick({ variables: { id: book?.id } }),
-      })
-    );
+    popUpDialogue({
+      icon: "info",
+      title: "Delete Book!",
+      text: "Are you sure you want to delete this book?\nTitle: " + book?.title,
+      callback: () => deleteBookClick({ variables: { id: book?.id } }),
+    });
   };
 
   const handleBookState = () => {
