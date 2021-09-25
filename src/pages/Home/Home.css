@@ -61,6 +61,56 @@
   cursor: pointer;
 }
 
+#login__menu {
+  position: fixed;
+  top: 5vh;
+  width: 100px;
+  height: fit-content;
+  background: #fff;
+  color: #333131;
+  border-radius: 5px;
+  padding-top: 5px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#login__menu.active{
+  opacity: 1;
+  visibility: visible;
+}
+
+#login__menu:hover {
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8),
+  0 0 10px rgba(255, 255, 255, 0.8);
+  border-radius: 0px;
+  transition: all ease-in-out 0.2s;
+
+}
+#login__menu > hr{
+  width: 70%;
+  margin: auto;
+}
+
+#menu_item{
+  height: 25px;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5px;
+  margin: auto;
+  cursor: pointer;
+}
+
+#menu_item:hover{
+  color: #03a9f4;
+  transition: all ease-in-out 0.2s;
+}
+
+#login__menu > .profile_section{
+  display:none;
+}
+#login__menu > .profile_section.active{
+  display:flex;
+}
 .home__avatar:hover {
   transition: all ease-in-out 0.2s;
   outline-offset: 15px;
@@ -74,7 +124,7 @@
 }
 
 .home__avatar .avatarIcon {
-  font-size: 2.1rem;
+  font-size: 1.8rem;
   color: black;
   -webkit-user-select: none;
   -ms-user-select: none;

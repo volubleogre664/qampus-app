@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 import { GoVerified } from "react-icons/go";
 import { useMutation } from "@apollo/react-hooks";
 import firebase from "firebase/app";
-
 import Input from "../../components/Input/Input";
 import Loader from "../../components/Loader/Loader";
 import Button from "../../components/Button/Button";
 import ProfileImage from "../../components/ProfileImage/ProfileImage";
-
 import { UPDATE_USER } from "../../utils/graphql";
 import { useUserSlice } from "../../Redux/getSlices";
 import { useForm } from "../../utils/hooks";
@@ -213,6 +211,16 @@ function Profile() {
               name="degree"
               onChange={onChange}
               value={values.degree}
+            />
+            
+            /*Not tested, might not work */
+            <Input
+              label="Password"
+              id="password"
+              type="text"
+              name="password"
+              onChange={onChange}
+              value={values.password}
             />
 
             {/* The style for this is in App.css : Generic for all textareas */}

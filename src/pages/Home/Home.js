@@ -5,6 +5,10 @@ import { SearchOutlined } from "@material-ui/icons";
 import MenuItem from "../../components/MenuItem/MenuItem";
 import Book from "../../components/Book/Book.js";
 import Loader from "../../components/Loader/Loader";
+import LogoutIcon from '@mui/icons-material/LogoutRounded';
+import LoginIcon from '@mui/icons-material/LoginRounded';
+import CancelIcon from '@material-ui/icons/CloseRounded';
+import ProfileIcon from '@mui/icons-material/ManageAccountsRounded';
 import {
   useUserSlice,
   useBooksSlice,
@@ -12,12 +16,12 @@ import {
 } from "../../Redux/getSlices";
 import { SEARCH_BOOKS } from "../../utils/graphql";
 import logo from "../../logo.png";
-
 import "./Home.css";
 
 //change the background reference here
 const ref_link = "https://www.smoorevisuals.com/landscapes/";
 const ref_name = "Spencer Moore";
+var profileFlag = 0;
 
 function Home({ history }) {
   const [{ user }, dispatchUser] = useUserSlice();
@@ -58,9 +62,22 @@ function Home({ history }) {
     // Search for books in the database
     searchBook();
   };
-
   // Clicking the avatar calls the method
   const handleAvatarClick = () => {
+    const menu = document.getElementById("login__menu")
+    menu.focus();
+    menu.classList.toggle("active");
+
+    //hide the profile opion if user is not logged in
+    //use profile flag to keep of track of clicks
+    if (user != null  && profileFlag == 0) {
+      const profileItem = document.getElementsByClassName("profile_section")
+      profileItem[0].classList.toggle("active");  
+      profileFlag = 1;
+    }
+  };
+
+  const handleLoginMenuClick = () => {
     if (!user) {
       history.push("/login");
     } else {
@@ -76,12 +93,20 @@ function Home({ history }) {
             dispatchMessages({ 
               type: "CLEAR_MESSAGES",
             });
+
+            profileFlag = 0;
           },
         })
       );
     }
+  }
+  const handleCloseMenuClick = () => {
+    const menu = document.getElementById("login__menu")
+    menu.classList.toggle("active");
   };
-
+  const handleProfileMenuClick = () => {
+    history.push("/profile")
+  };
   // Helps return back to the menu
   const openMenu = () => {
     setDisplays({ menu: "flex", results: "none" });
@@ -95,7 +120,7 @@ function Home({ history }) {
     <div className="home">
       {loading && <Loader message="Getting books" />}
       <div className="home__header">
-        <button className="home__avatar" onClick={handleAvatarClick}>
+        <button id="avatar" className="home__avatar" onClick={handleAvatarClick}>
           <div className="avatarIcon__container">
             {(user && user?.picture && (
               <img
@@ -108,6 +133,19 @@ function Home({ history }) {
           </div>
           <span className="home__avatarName">{user?.firstName[0] + user?.lastName[0] || "Guest"}</span>
         </button>
+
+        <div id="login__menu">
+          <section id="menu_item" className="profile_section" onClick={handleProfileMenuClick}>
+          <ProfileIcon/> Profile
+          </section>
+          <section id="menu_item" className="login_section" onClick={handleLoginMenuClick}>
+            <LoginIcon/> Login
+          </section>
+          <hr/>
+          <section id="menu_item" className="close_section" onClick={handleCloseMenuClick}>
+            <CancelIcon/> Close
+          </section>
+        </div>
       </div>
 
       <div className="home__searchSection">
@@ -119,7 +157,7 @@ function Home({ history }) {
           here you can sell your texbooks, or buy them from other students
         </h3>
 
-        <p className="home__subtitle">Search for textbooks</p>
+        <p className="home__subtitle">Search for books</p>
 
         <form className="home__searchContainer" onSubmit={handleSearchClick}>
           <input
