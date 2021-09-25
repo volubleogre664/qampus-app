@@ -108,6 +108,7 @@
 #login__menu > .profile_section{
   display:none;
 }
+
 #login__menu > .profile_section.active{
   display:flex;
 }

@@ -21,8 +21,6 @@ import "./Home.css";
 //change the background reference here
 const ref_link = "https://www.smoorevisuals.com/landscapes/";
 const ref_name = "Spencer Moore";
-var profileFlag = false;
-var loginMenuText = "Login";
 
 function Home({ history }) {
   const [{ user }, dispatchUser] = useUserSlice();
@@ -30,7 +28,7 @@ function Home({ history }) {
   const [searchStr, setSearchStr] = useState("");
   const [loading, setLoading] = useState(false);
   const [, dispatchMessages] = useMessagesSlice();
-
+  
   // Toggles the results section and the menu section
   const [displays, setDisplays] = useState({
     menu: "flex",
@@ -67,19 +65,21 @@ function Home({ history }) {
   const handleAvatarClick = () => {
     const menu = document.getElementById("login__menu")
     menu.classList.toggle("active");
-
+    
     //hide the profile opion if user is not logged in
     //use profile flag to keep of track of clicks
-    if (user != null  && !profileFlag) {
+    if (user  && !profileFlag) {
+      profileFlag = setProfileFlag(false);
+      loginText = setLoginText("Logout");
       const profileItem = document.getElementsByClassName("profile_section")
-      profileItem[0].classList.toggle("active");  
-      profileFlag = true;
+      profileItem[0].classList.toggle("active");
     }
   };
 
   const handleLoginMenuClick = () => {
     if (!user) {
       history.push("/login");
+      
     } else {
       import("../../utils/popUp.js").then((mbox) =>
         mbox.default({
@@ -94,10 +94,12 @@ function Home({ history }) {
               type: "CLEAR_MESSAGES",
             });
 
-            profileFlag = false;
-            var loginMenuText = "Login";
+            profileFlag = setProfileFlag(true);
+            loginText = setLoginText("Login");
 
-          },
+            const profileItem = document.getElementsByClassName("profile_section")
+              profileItem[0].classList.toggle("active");
+          },  
         })
       );
     }
@@ -117,6 +119,24 @@ function Home({ history }) {
   useEffect(() => {
     document.title = "Home - Qampus";
   }, []);
+
+  var [loginText, setLoginText] = useState(() => {
+    if(!user){
+      return "Login";
+    }
+    else{
+      return "Logout";
+    }  
+  });
+
+  var [profileFlag, setProfileFlag] = useState(() => {
+    if(!user){
+      return true;
+    }
+    else{
+      return false;
+    }
+  });
 
   return (
     <div className="home">
@@ -141,8 +161,8 @@ function Home({ history }) {
           <ProfileIcon/> Profile
           </section>
           <section id="menu_item" className="login_section" onClick={handleLoginMenuClick}>
-            {profileFlag? <LogoutIcon/>: <LoginIcon/>}
-            {loginMenuText}
+            {profileFlag? <LogoutIcon/> : <LoginIcon/>}
+            {loginText}
           </section>
           <hr/>
           <section id="menu_item" className="close_section" onClick={handleCloseMenuClick}>

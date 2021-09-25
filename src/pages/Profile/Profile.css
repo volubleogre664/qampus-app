@@ -103,7 +103,7 @@
   text-align: left;
   border-radius: 8px;
   background-color: rgba(0, 0, 0, 0.9);
-  position: absolute;
+  position: fixed;
   top: 10px;
   left: calc(50% - 190px);
   z-index: 10;
