@@ -51,9 +51,9 @@ function Upload() {
     authors: "",
   });
 
+  
   // This is a hook for confirming the book data
   const [confirmBook, setConfirmBook] = useState(false);
-
   // Sending data to the backend server
   // calling uploadData initiates the sending of data to server
   const [uploadData] = useMutation(UPLOAD_BOOK, {
@@ -124,7 +124,6 @@ function Upload() {
   // This is called on form submit
   async function uploadImagesToCloud(e) {
     e.preventDefault();
-
     // Get book info from google books api
     await searchForBooks();
 
@@ -206,6 +205,7 @@ function Upload() {
             console.log("Error uploading image: ", err);
           });
       })
+
       .finally(async () => {
         // Check if you have image url then get it if its not available alredy
         if (!Object.keys(bookCovers).includes(urlContainer)) {
@@ -340,7 +340,7 @@ function Upload() {
             name="moduleCode"
             id="moduleCode"
             onChange={onChange}
-            value={values.moduleCode}
+            value = {values.moduleCode}
             label="Module Code"
             placeholder="CSIS1664"
           />

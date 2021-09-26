@@ -70,7 +70,18 @@
   position: relative;
 }
 
+.login__main > .form > .form__passwordLink{
+  color: #fff;
+  text-align: center;
+  font-weight: lighter;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
 
+.login__main > .form > .form__passwordLink:hover {
+  transition: all ease-in-out 0.2s;
+  color: rgb(113, 227, 255);
+}
 .login__main > form > .form__btns {
   width: 100%;
   margin-left: auto;
@@ -85,6 +96,7 @@
   color: #fff;
   font-weight: lighter;
   padding: 2px 7px;
+  margin-top: 10px;
 }
 
 .login__main > form > .form__btns > .links > a:hover {
@@ -99,7 +111,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-top: 5px;
   outline: none;
 }

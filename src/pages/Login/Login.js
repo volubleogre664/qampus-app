@@ -78,7 +78,9 @@ function Login() {
             label="Password"
             onChange={onChange}
           />
-
+          <a className="form__passwordLink" href="/register">
+            Forgot password
+          </a>
           <div className="form__btns">
             <Button type="submit" text="Login" />
 

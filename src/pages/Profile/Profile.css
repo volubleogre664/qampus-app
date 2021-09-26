@@ -17,7 +17,6 @@
   -webkit-backdrop-filter: blur(15px);
   border-radius: 10px;
   padding: 0 50px;
-  position: relative;
   margin-bottom: 20px;
 }
 
@@ -103,7 +102,7 @@
   text-align: left;
   border-radius: 8px;
   background-color: rgba(0, 0, 0, 0.9);
-  position: fixed;
+  position: absolute;
   top: 10px;
   left: calc(50% - 190px);
   z-index: 10;

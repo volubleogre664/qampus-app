@@ -69,8 +69,7 @@ function Home({ history }) {
     //hide the profile opion if user is not logged in
     //use profile flag to keep of track of clicks
     if (user  && !profileFlag) {
-      profileFlag = setProfileFlag(false);
-      loginText = setLoginText("Logout");
+      profileFlag = setProfileFlag(true);
       const profileItem = document.getElementsByClassName("profile_section")
       profileItem[0].classList.toggle("active");
     }
@@ -79,7 +78,6 @@ function Home({ history }) {
   const handleLoginMenuClick = () => {
     if (!user) {
       history.push("/login");
-      
     } else {
       import("../../utils/popUp.js").then((mbox) =>
         mbox.default({
@@ -94,9 +92,7 @@ function Home({ history }) {
               type: "CLEAR_MESSAGES",
             });
 
-            profileFlag = setProfileFlag(true);
-            loginText = setLoginText("Login");
-
+            profileFlag = setProfileFlag(false);
             const profileItem = document.getElementsByClassName("profile_section")
               profileItem[0].classList.toggle("active");
           },  
@@ -119,16 +115,6 @@ function Home({ history }) {
   useEffect(() => {
     document.title = "Home - Qampus";
   }, []);
-
-  var [loginText, setLoginText] = useState(() => {
-    if(!user){
-      return "Login";
-    }
-    else{
-      return "Logout";
-    }  
-  });
-
   var [profileFlag, setProfileFlag] = useState(() => {
     if(!user){
       return true;
@@ -161,8 +147,8 @@ function Home({ history }) {
           <ProfileIcon/> Profile
           </section>
           <section id="menu_item" className="login_section" onClick={handleLoginMenuClick}>
-            {profileFlag? <LogoutIcon/> : <LoginIcon/>}
-            {loginText}
+            {user? <LogoutIcon/> : <LoginIcon/>}
+            {user? "Logout": "Login"}
           </section>
           <hr/>
           <section id="menu_item" className="close_section" onClick={handleCloseMenuClick}>

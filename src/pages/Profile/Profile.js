@@ -212,17 +212,7 @@ function Profile() {
               onChange={onChange}
               value={values.degree}
             />
-            
-            {/*Not tested, might not work */}
-            <Input
-              label="Password"
-              id="password"
-              type="text"
-              name="password"
-              onChange={onChange}
-              value={values.password}
-            />
-
+      
             {/* The style for this is in App.css : Generic for all textareas */}
             <label htmlFor="degree" className="formTextareaLabel">
               Bio:
