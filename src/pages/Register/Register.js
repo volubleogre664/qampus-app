@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
-// import { Link } from "react-router-dom";
 
 import Loader from "../../components/Loader/Loader";
 import Input from "../../components/Input/Input";
