@@ -8,8 +8,9 @@ import Book from "../../components/Book/Book.js";
 import Button from "../../components/Button/Button";
 import EditBook from "../../components/EditBook/EditBook.js";
 
-import "./Collection.css";
 import { useBooksSlice, useUserSlice } from "../../Redux/getSlices.js";
+import popUpDialogue from "../../utils/popUp.js";
+import "./Collection.css";
 
 function Collection() {
   const history = useHistory();
@@ -47,26 +48,20 @@ function Collection() {
         type: "DELETE_LIBRARY_BOOK",
         payload: data.deleteBook,
       });
-      import("../../utils/popUp.js").then((mbox) =>
-        mbox.default({
-          icon: "success",
-          title: "Book Deleted!",
-          text: "Book Deleted Successfully.",
-          buttons: "okay",
-        })
-      );
+      popUpDialogue({
+        icon: "success",
+        title: "Book Deleted!",
+        text: "Book Deleted Successfully.",
+        buttons: "okay",
+      });
     },
-    onError(err) {
-      console.log(err);
-
-      import("../../utils/popUp.js").then((mbox) =>
-        mbox.default({
-          icon: "warning",
-          title: "Book Not Deleted!",
-          text: "Unable to delete the book... Please Try again",
-          buttons: "okay",
-        })
-      );
+    onError() {
+      popUpDialogue({
+        icon: "warning",
+        title: "Book Not Deleted!",
+        text: "Unable to delete the book... Please Try again",
+        buttons: "okay",
+      });
     },
   });
 
