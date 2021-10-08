@@ -1,7 +1,9 @@
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import SearchIcon from "@material-ui/icons/Search";
 import PersonIcon from "@material-ui/icons/Person";
+import EmojiIcon from "@mui/icons-material/EmojiEmotions";
+import Picker from "emoji-picker-react";
 
 import { useMutation, useLazyQuery } from "@apollo/react-hooks";
 
@@ -20,6 +22,7 @@ import {
 } from "../../Redux/getSlices.js";
 
 import "./Chats.css";
+import { setContext } from "apollo-link-context";
 
 function Chats() {
   const [textMsg, setMsg] = useState("");
@@ -30,11 +33,29 @@ function Chats() {
   const [{ user }, userDispatch] = useUserSlice();
   const [{ searchBookList }] = useBooksSlice();
   const [book, setBook] = useState({});
+  const [emoji, setEmoji] = useState(false);
+  const inputRef = useRef(null);
 
   window.onresize = () => setWindowHeigt(window.innerHeight); //keeps track of changes in screen height
 
   // Updates the textMsg hook
   const handleChange = (e) => setMsg(e.target.value);
+
+  // Allows emoji to be inserted in any position
+  const handleEmojiClick = (_, emojiObj) => {
+    inputRef.current.focus();
+
+    let index = inputRef.current.selectionStart;
+    let length = inputRef.current.value.length;
+
+    if (index === 0) {
+      setMsg(emojiObj.emoji + textMsg);
+    } else if (index === length) {
+      setMsg(textMsg + emojiObj.emoji);
+    } else {
+      setMsg(textMsg.substr(0, index) + emojiObj.emoji + textMsg.substr(index));
+    }
+  };
 
   // Sends message to the server
   const [addMessage] = useMutation(ADD_MESSAGE, {
@@ -214,7 +235,7 @@ function Chats() {
     <div className="chats">
       <aside className="chats__sidebar" style={{ height: height + "px" }}>
         <div className="chats__sidebarHeader">
-          <p>Your chats</p>
+          <p>My chats</p>
           <br />
         </div>
 
@@ -279,16 +300,19 @@ function Chats() {
         </div>
 
         <footer className="chats__mainFooter">
+          {emoji && <Picker preload onEmojiClick={handleEmojiClick} />}
           <form onSubmit={onSubmit}>
-            <button className="btnEmoji">
-              <i className="fas fa-grin"></i>
+            <button className="btnEmoji" onClick={() => setEmoji(!emoji)}>
+              <EmojiIcon />
             </button>
 
             <input
               placeholder=""
               className="sendMsgInput"
               value={textMsg}
+              ref={inputRef}
               onChange={handleChange}
+              // onFocus={() => setEmoji(false)}
             />
 
             <button className="btnSend" type="submit">

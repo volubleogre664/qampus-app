@@ -52,7 +52,6 @@ function Upload() {
     authors: "",
   });
 
-  
   // This is a hook for confirming the book data
   const [confirmBook, setConfirmBook] = useState(false);
   // Sending data to the backend server
@@ -361,7 +360,7 @@ function Upload() {
             name="moduleCode"
             id="moduleCode"
             onChange={onChange}
-            value = {values.moduleCode}
+            value={values.moduleCode}
             label="Module Code"
             placeholder="CSIS1664"
           />

@@ -91,6 +91,7 @@
   margin: 1% auto;
   background: rgba(0, 0, 0, 0.4);
   border-radius: 7px;
+  position: relative;
 }
 
 .chats__mainFooter > form {
@@ -117,6 +118,7 @@
   border: none;
   display: grid;
   place-items: center;
+  cursor: pointer;
   outline-width: 0;
 }
 
@@ -137,9 +139,14 @@
   filter: drop-shadow(1px 1px 1px dodgerblue);
 }
 
-/*Hiding emoji button until EMOJI COMPONENT is created*/
-.chats__mainFooter > form > .btnEmoji {
-  display: none;
+.chats__mainFooter > form > button .MuiSvgIcon-root {
+  font-size: 1.3rem !important;
+}
+
+.emoji-picker-react {
+  position: absolute !important;
+  bottom: 110%;
+  left: 15px;
 }
 
 @media screen and (max-width: 550px) {
