@@ -191,16 +191,16 @@ function Home({ history }) {
             history={history}
             path="/upload"
             icon="upload"
-            title="Upload"
-            subtitle="Upload your used textbooks and sell them to other students. "
+            title="Upload Books"
+            subtitle="Sell your books to other students."
           />
 
           <MenuItem
             history={history}
             path="/collection"
             icon="collection"
-            title="Book Collection"
-            subtitle="Have a look at a collection of all the books that you've uploaded."
+            title="My Books"
+            subtitle="Keep track of your uploads."
           />
 
           <MenuItem
@@ -208,15 +208,15 @@ function Home({ history }) {
             path="/chats"
             icon="chats"
             title="Chats"
-            subtitle="Connect with other students who are registered on Qampus."
+            subtitle="Connect with buyers and sellers."
           />
 
           <MenuItem
             history={history}
             path="/navigation"
             icon="navigation"
-            title="Navigation"
-            subtitle="Find your way around campus with Qampus."
+            title="Qampus Navigation"
+            subtitle="Find your way around campus."
           />
 
           <MenuItem
@@ -224,7 +224,7 @@ function Home({ history }) {
             path="/help"
             icon="help"
             title="Help"
-            subtitle="About us, saftey tips, tutorials and terms of use."
+            subtitle="About us, tutortials and more."
           />
         </div>
       </div>

@@ -50,7 +50,9 @@ function Login() {
     <div className="login">
       {loading && <Loader message={"Loggin in"} />}
       <header className="login__header">
+        <a href="/">
         <img className="login__headerLogo" src={logo} alt="qampus logo" />
+        </a>
       </header>
       <div className="welcome__text">
         <p>Welcome</p>
@@ -78,7 +80,7 @@ function Login() {
             label="Password"
             onChange={onChange}
           />
-          <a className="form__passwordLink" href="/register">
+          <a className="form__passwordLink" href="/resetpassword">
             Forgot password
           </a>
           <div className="form__btns">
