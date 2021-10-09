@@ -23,16 +23,20 @@ import "./App.css";
 
 firebase.initializeApp(firebaseConfig);
 
+// const serverUrl = "http://localhost:8080";
+const serverUrl = "https://server.qampus.co.za:8080";
+
 function App() {
   const [{ imgCrop, user }, dispatchUser] = useUserSlice();
   const [, dispatchMessage] = useMessagesSlice();
 
   useEffect(() => {
     if (!user?.id) return;
-
-    const socket = io("server.qampus.co.za:8080/graphql", {
+    const socket = io(serverUrl, {
       query: {
         user: user.id,
+        // origin: "http://localhost:3000",
+        // Credential: true,
       },
     });
 
@@ -101,7 +105,6 @@ function App() {
             <Collection />
           </PrivateRoute>
         </Switch>
-        
       </Router>
     </div>
   );

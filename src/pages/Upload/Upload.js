@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useMutation } from "@apollo/react-hooks";
 
 import firebaseApp from "firebase/app";
+import Compressor from "compressorjs";
 
 import Button from "../../components/Button/Button";
 import Loader from "../../components/Loader/Loader";
@@ -10,7 +11,7 @@ import Bullet from "../../components/Bullet/Bullet";
 import ConfirmBook from "./ConfirmBook";
 
 import { useForm } from "../../utils/hooks";
-// import blobFromURL from "../../utils/imageDataUriToBlob";
+import popUpDialogue from "../../utils/popUp.js";
 import { UPLOAD_BOOK } from "../../utils/graphql";
 import { useBooksSlice, useUserSlice } from "../../Redux/getSlices";
 import { upload as uploadBullets } from "../../text_files/bulletPoints";
@@ -51,7 +52,6 @@ function Upload() {
     authors: "",
   });
 
-  
   // This is a hook for confirming the book data
   const [confirmBook, setConfirmBook] = useState(false);
   // Sending data to the backend server
@@ -91,23 +91,28 @@ function Upload() {
         },
       });
 
-      import("../../utils/popUp.js").then((mbox) =>
-        mbox.default({
-          icon: "success",
-          title: "Book Uploaded!",
-          text: "Book uploaded successfully",
-          buttons: "okay",
-        })
-      );
+      popUpDialogue({
+        icon: "success",
+        title: "Book Uploaded!",
+        text: "Book uploaded successfully",
+        buttons: "okay",
+      });
     },
     // onError -> function to call if api call returns an error
     onError(err) {
-      console.log(err?.graphQLErrors);
-      console.log(err?.message);
+      // console.log(err?.graphQLErrors);
+      // console.log(err?.message);
       setLoading({
         ...loading,
         isLoading: false,
         message: "",
+      });
+
+      popUpDialogue({
+        icon: "alert",
+        title: "Failed to upload!",
+        text: "Error while saving book details\nPlease try again",
+        buttons: "okay",
       });
     },
   });
@@ -162,25 +167,33 @@ function Upload() {
   }
 
   // Select Image and open the crop tool
-  const openCropTool = () => {
+  const openCropTool = async () => {
     const [file] = frontCoverInputRef.current.files;
 
     if (!file) return;
 
-    const reader = new FileReader();
+    new Compressor(file, {
+      quality: 0.2,
+      success(file) {
+        const reader = new FileReader();
 
-    reader.onload = (readerEvent) => {
-      dispatchUser({
-        type: "SET_CROP_IMG",
-        payload: {
-          ...imgCrop,
-          imgSrc: readerEvent.target.result,
-          aspect: 1 / 1.4142,
-        },
-      });
-    };
+        reader.onload = (readerEvent) => {
+          dispatchUser({
+            type: "SET_CROP_IMG",
+            payload: {
+              ...imgCrop,
+              imgSrc: readerEvent.target.result,
+              aspect: 1 / 1.4142,
+            },
+          });
+        };
 
-    reader.readAsDataURL(file);
+        reader.readAsDataURL(file);
+      },
+      error(err) {
+        console.log(err.message);
+      },
+    });
 
     frontCoverInputRef.current.value = "";
   };
@@ -202,6 +215,13 @@ function Upload() {
             console.log("Image has been uploaded");
           })
           .catch((err) => {
+            setLoading({ ...loading, isLoading: false });
+            popUpDialogue({
+              icon: "alert",
+              title: "Failed to upload!",
+              text: "Error while saving book details\nPlease try again",
+              buttons: "okay",
+            });
             console.log("Error uploading image: ", err);
           });
       })
@@ -340,7 +360,7 @@ function Upload() {
             name="moduleCode"
             id="moduleCode"
             onChange={onChange}
-            value = {values.moduleCode}
+            value={values.moduleCode}
             label="Module Code"
             placeholder="CSIS1664"
           />
