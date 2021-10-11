@@ -22,7 +22,6 @@ import {
 } from "../../Redux/getSlices.js";
 
 import "./Chats.css";
-import { setContext } from "apollo-link-context";
 
 function Chats() {
   const [textMsg, setMsg] = useState("");
