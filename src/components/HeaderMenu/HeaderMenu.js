@@ -49,7 +49,7 @@ function HeaderMenu() {
           <NavLink onClick={handleClick} to="/navigation" label="navigation" />
           <NavLink onClick={handleClick} to="/profile" label="profile" />
           <NavLink onClick={handleClick} to="/help" label="help" />
-          <NavLink onClick={handleClick} label="|" />
+          <NavLink label="|"/>
           <NavLink onClick={handleLogoutClick} label="logout" />
         </ul>
       </nav>

@@ -1,10 +1,11 @@
 import ChatIcon from "@material-ui/icons/ChatRounded";
 import PublishIcon from "@material-ui/icons/PublishRounded";
-import LibraryBooksIcon from "@material-ui/icons/ClassRounded";
+import LibraryBooksIcon from "@material-ui/icons/BookRounded";
 import LocationOnIcon from "@material-ui/icons/LocationOnRounded";
 import ErrorIcon from "@material-ui/icons/Error";
 import { useUserSlice } from "../../Redux/getSlices";
 import "./MenuItem.css";
+
 
 function MenuItem({ icon, title, subtitle, path, history }) {
   const [{ user }] = useUserSlice();
@@ -35,7 +36,7 @@ function MenuItem({ icon, title, subtitle, path, history }) {
       <div className="menuItem__icon">{getIcon(icon) ?? <ErrorIcon />}</div>
 
       <div className="menuItem__title">{title}</div>
-
+      <hr/>
       <div className="menuItem__subtitle">{subtitle}</div>
     </div>
   );
