@@ -24,7 +24,7 @@ import "./App.css";
 firebase.initializeApp(firebaseConfig);
 
 // const serverUrl = "http://localhost:8080";
-const serverUrl = "https://qampus-app.herokuapp.com:8080";
+const serverUrl = "http://qampus-app.herokuapp.com:8080";
 
 function App() {
   const [{ imgCrop, user }, dispatchUser] = useUserSlice();

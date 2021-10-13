@@ -39,7 +39,7 @@
 }
 
 .rec > .message__text {
-  background: rgba(29, 161, 242, 0.55) !important;
+  background: #009bf6 !important;
 }
 
 .rec > .message__time {
@@ -51,7 +51,7 @@
 @media only screen and (max-width: 850px) {
   .rec > .message__text {
     font-size: 1em;
-    background: rgba(29, 161, 242, 0.55);
+    background: #009bf6;
     box-shadow: 0 2px 8px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(11px);
     -webkit-backdrop-filter: blur(11px);

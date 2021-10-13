@@ -299,9 +299,15 @@ function Chats() {
         </div>
 
         <footer className="chats__mainFooter">
-          {emoji && <Picker preload onEmojiClick={handleEmojiClick} />}
+          {emoji && <Picker onEmojiClick={handleEmojiClick} />}
           <form onSubmit={onSubmit}>
-            <button className="btnEmoji" onClick={() => setEmoji(!emoji)}>
+            <button
+              className="btnEmoji"
+              onClick={(e) => {
+                e.preventDefault();
+                setEmoji(!emoji);
+              }}
+            >
               <EmojiIcon />
             </button>
 

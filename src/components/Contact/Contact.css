@@ -36,8 +36,8 @@
   font-weight: 300;
   padding-left: 5px;
   -webkit-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   display: -webkit-inline-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;

@@ -30,7 +30,7 @@
 }
 
 .formInput:focus {
-  border: #03a9f4 solid 1px;
+  border: #009bf6 solid 1px;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8),
     0 0 10px rgba(255, 255, 255, 0.8);
   transition: all ease-in-out 0.2s;
@@ -54,11 +54,11 @@
 }
 
 .formInput__button > .passwordOn {
-  color: #03a9f4;
+  color: #009bf6;
 }
 
 .formInput__button > .inputValid {
-  color: #03a9f4;
+  color: #009bf6;
 }
 
 .formInput__button > .inputInvalid {
@@ -147,7 +147,7 @@
 }
 
 .formInput__tipsContent .success {
-  color: #03a9f4;
+  color: #009bf6;
 }
 .passwordOn {
   padding-bottom: 5px;

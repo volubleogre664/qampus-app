@@ -68,7 +68,7 @@
 
 .nav__linksItem > a:hover,
 .nav__linksItem span:hover {
-  color: rgb(21, 161, 242);
+  color: #009bf6;
 }
 
 .nav__linksItem > a {
@@ -80,7 +80,7 @@
 
 /* If highlights the linkk based on page visited */
 .nav__linksItem.active > a {
-  color: rgb(21, 161, 242);
+  color: #009bf6;
 }
 
 @media screen and (max-width: 1110px) {
