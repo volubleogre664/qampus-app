@@ -48,10 +48,10 @@ function Login() {
 
   return (
     <div className="login">
-      {loading && <Loader message={"Loggin in"} />}
+      {loading && <Loader message={"Logging in"} />}
       <header className="login__header">
         <a href="/">
-        <img className="login__headerLogo" src={logo} alt="qampus logo" />
+          <img className="login__headerLogo" src={logo} alt="qampus logo" />
         </a>
       </header>
       <div className="welcome__text">
@@ -59,7 +59,7 @@ function Login() {
         <hr className="separator" />
       </div>
       <main className="login__main">
-        <form className="form" onSubmit={onSubmit}>
+        <form autoComplete="off" className="form" onSubmit={onSubmit}>
           <Input
             type="text"
             name="studentNumber"

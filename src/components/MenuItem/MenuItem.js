@@ -3,40 +3,35 @@ import PublishIcon from "@material-ui/icons/PublishRounded";
 import LibraryBooksIcon from "@material-ui/icons/BookRounded";
 import LocationOnIcon from "@material-ui/icons/LocationOnRounded";
 import ErrorIcon from "@material-ui/icons/Error";
-import { useUserSlice } from "../../Redux/getSlices";
 import "./MenuItem.css";
 
-
-function MenuItem({ icon, title, subtitle, path, history }) {
-  const [{ user }] = useUserSlice();
-
+function MenuItem({ icon, title, subtitle, path, guest, history }) {
   const getIcon = (icon) => {
     switch (icon) {
       case "chats":
-        return <ChatIcon style={{ color: getColor() }} />;
+        return <ChatIcon />;
       case "help":
         return <ErrorIcon />;
       case "navigation":
         return <LocationOnIcon />;
       case "upload":
-        return <PublishIcon style={{ color: getColor() }} />;
+        return <PublishIcon />;
       case "collection":
-        return <LibraryBooksIcon style={{ color: getColor() }} />;
+        return <LibraryBooksIcon />;
       default:
         return undefined;
     }
   };
 
-  const getColor = () => {
-    if (user == null) return "grey";
-  };
-
   return (
-    <div className="menuItem" onClick={() => history.push(path)}>
+    <div
+      className={`menuItem ${(guest === false && "guest__menuItem") || ""}`}
+      onClick={() => history.push(path)}
+    >
       <div className="menuItem__icon">{getIcon(icon) ?? <ErrorIcon />}</div>
 
       <div className="menuItem__title">{title}</div>
-      <hr/>
+      <hr />
       <div className="menuItem__subtitle">{subtitle}</div>
     </div>
   );

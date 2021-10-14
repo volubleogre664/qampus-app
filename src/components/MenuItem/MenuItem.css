@@ -30,13 +30,23 @@
   transition: transform ease-out 0.2s;
   transition: transform ease-out 0.2s, -webkit-transform ease-out 0.2s;
   -webkit-transform: scale(0.92);
-  transform: scale(0.92);
+  transform: scale(0.9);
+}
+
+.guest__menuItem:hover {
+  /* cursor: not-allowed; */
+  transform: unset;
+  -webkit-transform: unset;
 }
 
 .menuItem > .menuItem__icon > * {
   font-size: 2.2rem;
   color: #009bf6;
   /* color: rgb(0, 5, 7); */
+}
+
+.guest__menuItem > .menuItem__icon > * {
+  color: grey;
 }
 
 .menuItem > .menuItem__title {

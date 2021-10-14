@@ -5,10 +5,10 @@ import { SearchOutlined } from "@material-ui/icons";
 import MenuItem from "../../components/MenuItem/MenuItem";
 import Book from "../../components/Book/Book.js";
 import Loader from "../../components/Loader/Loader";
-import LogoutIcon from '@mui/icons-material/LogoutRounded';
-import LoginIcon from '@mui/icons-material/LoginRounded';
-import CancelIcon from '@material-ui/icons/CloseRounded';
-import ProfileIcon from '@mui/icons-material/ManageAccountsRounded';
+import LogoutIcon from "@mui/icons-material/LogoutRounded";
+import LoginIcon from "@mui/icons-material/LoginRounded";
+import CancelIcon from "@material-ui/icons/CloseRounded";
+import ProfileIcon from "@mui/icons-material/ManageAccountsRounded";
 import {
   useUserSlice,
   useBooksSlice,
@@ -29,7 +29,7 @@ function Home({ history }) {
   const [searchStr, setSearchStr] = useState("");
   const [loading, setLoading] = useState(false);
   const [, dispatchMessages] = useMessagesSlice();
-  
+
   // Toggles the results section and the menu section
   const [displays, setDisplays] = useState({
     menu: "flex",
@@ -64,14 +64,14 @@ function Home({ history }) {
   };
   // Clicking the avatar calls the method
   const handleAvatarClick = () => {
-    const menu = document.getElementById("login__menu")
+    const menu = document.getElementById("login__menu");
     menu.classList.toggle("active");
-    
+
     //hide the profile opion if user is not logged in
     //use profile flag to keep of track of clicks
-    if (user  && !profileFlag) {
+    if (user && !profileFlag) {
       profileFlag = setProfileFlag(true);
-      const profileItem = document.getElementsByClassName("profile_section")
+      const profileItem = document.getElementsByClassName("profile_section");
       profileItem[0].classList.toggle("active");
     }
   };
@@ -94,13 +94,13 @@ function Home({ history }) {
         },
       });
     }
-  }
+  };
   const handleCloseMenuClick = () => {
-    const menu = document.getElementById("login__menu")
+    const menu = document.getElementById("login__menu");
     menu.classList.toggle("active");
   };
   const handleProfileMenuClick = () => {
-    history.push("/profile")
+    history.push("/profile");
   };
   // Helps return back to the menu
   const openMenu = () => {
@@ -111,10 +111,9 @@ function Home({ history }) {
     document.title = "Home - Qampus";
   }, []);
   var [profileFlag, setProfileFlag] = useState(() => {
-    if(!user){
+    if (!user) {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   });
@@ -123,7 +122,11 @@ function Home({ history }) {
     <div className="home">
       {loading && <Loader message="Getting books" />}
       <div className="home__header">
-        <button id="avatar" className="home__avatar" onClick={handleAvatarClick}>
+        <button
+          id="avatar"
+          className="home__avatar"
+          onClick={handleAvatarClick}
+        >
           <div className="avatarIcon__container">
             {(user && user?.picture && (
               <img
@@ -134,20 +137,34 @@ function Home({ history }) {
               />
             )) || <PersonIcon className="avatarIcon" />}
           </div>
-          <span className="home__avatarName">{user?.firstName[0] + user?.lastName[0] || "Guest"}</span>
+          <span className="home__avatarName">
+            {user?.firstName[0] + user?.lastName[0] || "Guest"}
+          </span>
         </button>
 
         <div id="login__menu">
-          <section id="menu_item" className="profile_section" onClick={handleProfileMenuClick}>
-          <ProfileIcon/> Profile
+          <section
+            id="menu_item"
+            className="profile_section"
+            onClick={handleProfileMenuClick}
+          >
+            <ProfileIcon /> Profile
           </section>
-          <section id="menu_item" className="login_section" onClick={handleLoginMenuClick}>
-            {user? <LogoutIcon/> : <LoginIcon/>}
-            {user? "Logout": "Login"}
+          <section
+            id="menu_item"
+            className="login_section"
+            onClick={handleLoginMenuClick}
+          >
+            {user ? <LogoutIcon /> : <LoginIcon />}
+            {user ? "Logout" : "Login"}
           </section>
-          <hr/>
-          <section id="menu_item" className="close_section" onClick={handleCloseMenuClick}>
-            <CancelIcon/> Close
+          <hr />
+          <section
+            id="menu_item"
+            className="close_section"
+            onClick={handleCloseMenuClick}
+          >
+            <CancelIcon /> Close
           </section>
         </div>
       </div>
@@ -163,7 +180,11 @@ function Home({ history }) {
 
         <p className="home__subtitle">Search for books</p>
 
-        <form className="home__searchContainer" onSubmit={handleSearchClick}>
+        <form
+          autoComplete="off"
+          className="home__searchContainer"
+          onSubmit={handleSearchClick}
+        >
           <input
             type="text"
             name="searchBook"
@@ -183,6 +204,7 @@ function Home({ history }) {
       <div className="home__menu" style={{ display: displays.menu }}>
         <div className="home__menuItems">
           <MenuItem
+            guest={user !== null ? true : false}
             history={history}
             path="/upload"
             icon="upload"
@@ -191,6 +213,7 @@ function Home({ history }) {
           />
 
           <MenuItem
+            guest={user !== null ? true : false}
             history={history}
             path="/collection"
             icon="collection"
@@ -199,6 +222,7 @@ function Home({ history }) {
           />
 
           <MenuItem
+            guest={user !== null ? true : false}
             history={history}
             path="/chats"
             icon="chats"

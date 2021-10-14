@@ -1,0 +1,41 @@
+.avatarOptions {
+  position: fixed;
+  top: 5vh;
+  width: 100px;
+  height: fit-content;
+  background: #fff;
+  color: #333131;
+  border-radius: 5px;
+  padding-top: 5px;
+  display: flex;
+  outline-width: 0;
+}
+
+.avatarOptions:hover {
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 10px rgba(255, 255, 255, 0.8);
+  border-radius: 0px;
+  transition: all ease-in-out 0.2s;
+}
+
+.avatarOptions__button {
+  height: 25px;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5px;
+  margin: auto;
+  cursor: pointer;
+}
+
+.avatarOptions__button:first-of-type {
+  display: none;
+}
+
+.avatarOptions__button:hover {
+  color: #009bf6;
+  transition: all ease-in-out 0.2s;
+}
+
+.avatarOptions__button.active {
+  display: flex;
+}
