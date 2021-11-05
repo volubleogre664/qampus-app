@@ -2,20 +2,22 @@ import { useEffect, useState } from "react";
 import PersonIcon from "@material-ui/icons/Person";
 import { useMutation } from "@apollo/react-hooks";
 import { SearchOutlined } from "@material-ui/icons";
-import MenuItem from "../../components/MenuItem/MenuItem";
-import Book from "../../components/Book/Book.js";
-import Loader from "../../components/Loader/Loader";
 import LogoutIcon from "@mui/icons-material/LogoutRounded";
 import LoginIcon from "@mui/icons-material/LoginRounded";
 import CancelIcon from "@material-ui/icons/CloseRounded";
 import ProfileIcon from "@mui/icons-material/ManageAccountsRounded";
+
+import MenuItem from "@components/MenuItem";
+import Book from "@components/Book";
+import Loader from "@components/Loader";
+import popUpDialogue from "@utils/popUp.js";
+import { SEARCH_BOOKS } from "@utils/graphql";
 import {
   useUserSlice,
   useBooksSlice,
   useMessagesSlice,
-} from "../../Redux/getSlices";
-import { SEARCH_BOOKS } from "../../utils/graphql";
-import popUpDialogue from "../../utils/popUp.js";
+} from "@redux/getSlices";
+
 import logo from "../../logo.png";
 import "./Home.css";
 

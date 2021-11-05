@@ -1,13 +1,14 @@
-import "./Navigation.css";
 import React, { useState, useEffect } from "react";
 import Iframe from "react-iframe";
-import Button from "../../components/Button/Button";
+import Button from "@components/Button";
+import SelectLocation from "@components/Select";
+import { useForm } from "@utils/hooks";
 import {
   building,
   coordinates,
 } from "../../nav_coordinates/nav_coordinates.json";
-import SelectLocation from "../../components/Select/SelectLocation";
-import { useForm } from "../../utils/hooks";
+
+import "./Navigation.css";
 
 // The data for the coordinates is in coordinatesData above
 // Its an object with buildings, parking and coordinates which are arrays with values

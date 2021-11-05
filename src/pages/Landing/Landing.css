@@ -1,0 +1,108 @@
+.landing {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.landing * {
+  font-family: "Poppins", sans-serif;
+}
+
+.landing__header {
+  padding: 15px 20px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 4px 4px 50px 0 rgba(0, 0, 0, 0.25);
+}
+
+.landing__headerNav ul {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  list-style: none;
+  color: #000;
+}
+
+.landing__headerNav ul a {
+  color: #554468;
+  font-weight: 400;
+  font-size: 1.06rem;
+  text-decoration: none;
+  transition: color ease-in 0.2s;
+}
+
+.landing__headerNav ul a:visited {
+  color: #554468;
+}
+
+.landing__headerNav ul a:hover {
+  color: #009bf6;
+}
+
+.landing__headerNav ul li:last-of-type {
+  width: 150px;
+  display: flex;
+  background-color: transparent;
+  border-radius: 8px;
+  box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.5);
+}
+
+.landing__headerNav ul li:last-of-type a {
+  flex: 0.5;
+  text-align: center;
+  color: #fff;
+  font-weight: 300;
+  font-size: 0.95rem;
+  padding: 9px 0;
+}
+
+.landing__headerNav ul li:last-of-type a:hover {
+  box-shadow: -1px -1px 5px 0px rgba(0, 0, 0, 0.5) inset;
+}
+
+.landing__headerNav ul li:last-of-type a:first-of-type {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background-color: #009bf6;
+}
+
+.landing__headerNav ul li:last-of-type a:last-of-type {
+  background-color: #554468;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.landing__header .logoContainer {
+  display: flex;
+  gap: 5px;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  height: fit-content !important;
+  cursor: pointer;
+  margin: unset;
+}
+
+.landing__header .logoContainer h2 {
+  color: rgba(0, 155, 246, 0.8);
+  font-weight: 700;
+  font-size: 1.6rem;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+}
+
+.landing__header .logoContainer img {
+  width: 35px;
+  object-fit: contain;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+}
+
+.landing__main {
+  flex: 1;
+}
+
+.landing__footer {
+  width: 100%;
+}

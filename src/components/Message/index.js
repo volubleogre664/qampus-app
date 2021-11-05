@@ -1,4 +1,4 @@
-import Book from "../Book/Book";
+import Book from "@components/Book";
 
 import dayjs from "dayjs";
 import "./Message.css";

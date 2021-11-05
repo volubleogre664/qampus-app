@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 
-import Loader from "../../components/Loader/Loader";
-import Input from "../../components/Input/Input";
-import Bullet from "../../components/Bullet/Bullet";
+import Loader from "@components/Loader";
+import Input from "@components/Input";
+import Bullet from "@components/Bullet";
+import Button from "@components/Button";
 
-import { useForm } from "../../utils/hooks";
-import { REGISTER_USER } from "../../utils/graphql";
-import { useUserSlice } from "../../Redux/getSlices";
+import { useForm } from "@utils/hooks";
+import { REGISTER_USER } from "@utils/graphql";
+import { useUserSlice } from "@redux/getSlices";
 import { register as registerBullets } from "../../text_files/bulletPoints.js";
 
 import logo from "../../logo.png";
-import Button from "../../components/Button/Button";
 
 import "./Register.css";
 
@@ -24,7 +24,7 @@ function Register({ history }) {
     password: "",
     confirmPassword: "",
   });
-  
+
   const [, dispatch] = useUserSlice();
   const [isEmail, setIsEmail] = useState(false);
   const [testCases] = useState({

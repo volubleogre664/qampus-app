@@ -2,21 +2,27 @@ import { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase/app";
 import { io } from "socket.io-client";
-import Home from "./pages/Home/Home.js";
-import Chats from "./pages/Chats/Chats.js";
-import Profile from "./pages/Profile/Profile.js";
-import FinaliseRegister from "./pages/Register/FinaliseRegister.js";
-import Login from "./pages/Login/Login.js";
-import Register from "./pages/Register/Register.js";
-import Collection from "./pages/Collection/Collection.js";
-import Navigation from "./pages/Navigation/Navigation.js";
-import Upload from "./pages/Upload/Upload.js";
-import Help from "./pages/Help/Help.js";
-import HeaderMenu from "./components/HeaderMenu/HeaderMenu.js";
-import CropImage from "./components/CropImage/CropImage.js";
-import AuthRoute from "./utils/AuthRoute.js";
-import PrivateRoute from "./utils/PrivateRoute.js";
-import { useMessagesSlice, useUserSlice } from "./Redux/getSlices.js";
+import Home from "@pages/Home/Home.js";
+import Chats from "@pages/Chats/Chats.js";
+import Profile from "@pages/Profile/Profile.js";
+import FinaliseRegister from "@pages/Register/FinaliseRegister.js";
+
+// import Register from "@pages/Register/Register.js";
+// import Login from "@pages/Login/Login.js";
+
+import NewRegister from "@pages/Register/RegisterNew.js";
+import NewLogin from "@pages/Login/LoginNew.js";
+
+import Collection from "@pages/Collection/Collection.js";
+import Navigation from "@pages/Navigation/Navigation.js";
+import Upload from "@pages/Upload/Upload.js";
+import Landing from "@pages/Landing/Landing.js";
+import Help from "@pages/Help/Help.js";
+import HeaderMenu from "@components/HeaderMenu";
+import CropImage from "@components/CropImage";
+import AuthRoute from "@utils/AuthRoute.js";
+import PrivateRoute from "@utils/PrivateRoute.js";
+import { useMessagesSlice, useUserSlice } from "@redux/getSlices.js";
 import { firebaseConfig } from "./config.js";
 import "firebase/storage";
 import "./App.css";
@@ -76,14 +82,16 @@ function App() {
           </Route>
           {/* AuthRoute checks if someone is logged in and redirects to home if they are logged in */}
           {/* No one will open login, register and finalise register without loggin out */}
-          <AuthRoute exact path="/login" component={Login} />
-          <AuthRoute exact path="/register" component={Register} />
+          <AuthRoute exact path="/login" component={NewLogin} />
+          <AuthRoute exact path="/register" component={NewRegister} />
 
           {/* PrivateRoute is for private pages that needs login to be accessed. */}
           {/* For development purposes just rename PrivateRoute to Route */}
           <Route exact path="/register/finalise">
             <FinaliseRegister />
           </Route>
+
+          <Route exact path="/landing" component={Landing} />
 
           <PrivateRoute exact path="/profile">
             <HeaderMenu />

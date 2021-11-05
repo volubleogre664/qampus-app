@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 
-import { DELETE_BOOK, GET_ALL_BOOKS } from "../../utils/graphql.js";
-import Loader from "../../components/Loader/Loader.js";
-import Book from "../../components/Book/Book.js";
-import Button from "../../components/Button/Button";
-import EditBook from "../../components/EditBook/EditBook.js";
+import { DELETE_BOOK, GET_ALL_BOOKS } from "@utils/graphql.js";
+import Loader from "@components/Loader";
+import Book from "@components/Book";
+import Button from "@components/Button";
+import EditBook from "@components/EditBook";
 
-import { useBooksSlice, useUserSlice } from "../../Redux/getSlices.js";
-import popUpDialogue from "../../utils/popUp.js";
+import { useBooksSlice, useUserSlice } from "@redux/getSlices.js";
+import popUpDialogue from "@utils/popUp.js";
 import "./Collection.css";
 
 function Collection() {

@@ -2,17 +2,17 @@ import { useEffect, useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { useHistory, useLocation } from "react-router-dom";
 
-import { UPDATE_USER } from "../../utils/graphql";
-import { useForm } from "../../utils/hooks";
+import { UPDATE_USER } from "@utils/graphql";
+import { useForm } from "@utils/hooks";
 
-import Input from "../../components/Input/Input";
-import Button from "../../components/Button/Button";
-import ProfileImage from "../../components/ProfileImage/ProfileImage";
-import Loader from "../../components/Loader/Loader";
+import Input from "@components/Input";
+import Button from "@components/Button";
+import ProfileImage from "@components/ProfileImage";
+import Loader from "@components/Loader";
+
+import { useUserSlice } from "@redux/getSlices";
 
 import appLogo from "../../logo.png";
-import { useUserSlice } from "../../Redux/getSlices";
-
 import "./FinaliseRegister.css";
 
 import firebase from "firebase/app";

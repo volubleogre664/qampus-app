@@ -1,4 +1,4 @@
-import { useUserSlice } from "../Redux/getSlices";
+import { useUserSlice } from "@redux/getSlices";
 import { Route, Redirect } from "react-router-dom";
 
 const PrivateRoute = ({ children, ...rest }) => {

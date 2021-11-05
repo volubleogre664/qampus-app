@@ -2,7 +2,7 @@ import { useState } from "react";
 import MenuIcon from "@material-ui/icons/MenuRounded";
 import CloseIcon from "@material-ui/icons/CloseRounded";
 import { useRouteMatch, Link } from "react-router-dom";
-import { useUserSlice, useMessagesSlice } from "../../Redux/getSlices";
+import { useUserSlice, useMessagesSlice } from "@redux/getSlices";
 import "./HeaderMenu.css";
 
 function HeaderMenu() {
@@ -14,7 +14,7 @@ function HeaderMenu() {
     setClick(!click);
     document.querySelector(".nav__links").classList.toggle("opening");
   };
- 
+
   const handleLogoutClick = () => {
     handleClick();
     import("../../utils/popUp.js").then((mbox) =>
@@ -49,7 +49,7 @@ function HeaderMenu() {
           <NavLink onClick={handleClick} to="/navigation" label="navigation" />
           <NavLink onClick={handleClick} to="/profile" label="profile" />
           <NavLink onClick={handleClick} to="/help" label="help" />
-          <NavLink label="|"/>
+          <NavLink label="|" />
           <NavLink onClick={handleLogoutClick} label="logout" />
         </ul>
       </nav>

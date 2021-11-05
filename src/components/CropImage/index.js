@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Cropper from "react-cropper";
 
-import { useUserSlice } from "../../Redux/getSlices";
-import Button from "../Button/Button";
+import { useUserSlice } from "@redux/getSlices";
+import Button from "@components/Button";
 
 import "cropperjs/dist/cropper.css";
 import "./CropImage.css";
