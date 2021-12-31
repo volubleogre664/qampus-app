@@ -106,3 +106,10 @@
 .landing__footer {
   width: 100%;
 }
+
+.landing__footerBanner {
+  mask-image: linear-gradient(to top, transparent 60%, #87cef7);
+  height: 400px;
+  width: 100%;
+  background-image: url("./wave.svg");
+}

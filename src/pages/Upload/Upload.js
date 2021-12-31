@@ -297,6 +297,7 @@ function Upload() {
     });
   }
 
+  // The upload page starts here
   return (
     <div className="uploadPage">
       {confirmBook && (

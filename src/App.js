@@ -12,6 +12,7 @@ import FinaliseRegister from "@pages/Register/FinaliseRegister.js";
 
 import NewRegister from "@pages/Register/RegisterNew.js";
 import NewLogin from "@pages/Login/LoginNew.js";
+import NewProfile from "@pages/Profile/NewProfile.js";
 
 import Collection from "@pages/Collection/Collection.js";
 import Navigation from "@pages/Navigation/Navigation.js";
@@ -38,6 +39,7 @@ function App() {
 
   useEffect(() => {
     if (!user?.id) return;
+
     const socket = io(serverUrl, {
       query: {
         user: user.id,
@@ -69,6 +71,7 @@ function App() {
     <div className="app">
       <Router>
         {imgCrop.imgSrc && <CropImage />}
+        <NewProfile />
         <Switch>
           {/* These are public pages... Accessible to everyone */}
           <Route exact path="/" component={Home} />

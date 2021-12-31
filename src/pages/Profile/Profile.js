@@ -10,7 +10,7 @@ import { UPDATE_USER } from "@utils/graphql";
 import { useUserSlice } from "@redux/getSlices";
 import { useForm } from "@utils/hooks";
 
-import "./Profile.css";
+// import "./Profile.css";
 
 function Profile() {
   const [isEmail, setIsEmail] = useState(true);
@@ -27,7 +27,7 @@ function Profile() {
     update(_, { data }) {
       setLoading(false);
       setActive(false);
-      console.logg(data);
+      // console.logg(data);
       if (data) {
         dispatch({
           type: "SET_USER",

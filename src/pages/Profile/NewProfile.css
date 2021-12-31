@@ -1,0 +1,163 @@
+.profile {
+  width: 100%;
+  min-height: 100%;
+  position: absolute;
+  top: 58px;
+  right: -450px;
+  background-color: rgb(248, 248, 248);
+  padding: 0;
+  margin: 0;
+  z-index: 300;
+  color: #000;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px 30px;
+  opacity: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  border-left: 2px solid #009bf6;
+  transition: all ease-in 0.3s;
+  overflow-y: scroll !important;
+}
+
+/* Still need to fix this */
+/* .profile::-webkit-scrollbar {
+  display: initial;
+  background: transparent;
+}
+
+.profile::-webkit-scrollbar-thumb {
+  display: initial;
+  background-color: lightgray;
+} */
+
+.profile.active {
+  opacity: 1;
+  right: 0;
+}
+
+.profile__header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.profile__header h2 {
+  flex: 1;
+  color: #009bf6;
+}
+
+.profile__header .icon-container {
+  color: #009bf6;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #efefef;
+  display: grid;
+  cursor: pointer;
+  place-items: center;
+}
+
+.profile__header .icon-container:hover {
+  background-color: rgb(202, 202, 202);
+}
+
+.profile__main {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.profile__imageContainer {
+  width: 55%;
+  aspect-ratio: 1;
+  border-radius: 15px;
+  align-self: center;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.profile__image {
+  width: 100%;
+  object-fit: contain;
+}
+
+.profile__main header > :last-child {
+  margin: 0 auto;
+  margin-top: 15px;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile__main header > :last-child h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: rgb(39, 39, 39);
+  margin-bottom: 4px;
+}
+
+.profile__main header > :last-child p {
+  font-size: 0.98rem;
+  margin-bottom: 12px;
+  text-align: center;
+  color: rgb(116, 116, 116);
+}
+
+.profile__main header > :last-child button {
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+  font-size: 0.98rem;
+  font-weight: 300;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  gap: 5px;
+  transition: all ease-in 0.25s;
+}
+
+.profile__main header > :last-child button:hover {
+  background-color: rgb(202, 202, 202);
+}
+
+.profile__main main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile__main main div h4 {
+  font-size: 0.88rem;
+  color: #8f8f8f;
+}
+
+.profile__main main div p {
+  font-size: 0.97rem;
+  font-weight: 400;
+}
+
+.profile__footer {
+  margin-top: 35px;
+}
+
+.profile__footerButton {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  font-size: 0.98rem;
+  font-weight: 300;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  gap: 5px;
+  transition: all ease-in 0.25s;
+}
+
+.profile__footerButton:hover {
+  background-color: rgb(202, 202, 202);
+}

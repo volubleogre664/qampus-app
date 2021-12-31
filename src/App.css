@@ -14,7 +14,7 @@
   -webkit-flex-direction: column;
   flex-direction: column;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: hidden;
   background-image: none;
   scroll-behavior: smooth;
 }

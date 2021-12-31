@@ -42,7 +42,19 @@ function Landing() {
 
       <main className="landing__main">Our main page yos</main>
 
-      <footer className="landing__footer">Our footer bro</footer>
+      <footer className="landing__footer">
+        <section className="landing__footerBanner">
+          <h3>Saying something i see</h3>
+
+          <form autoComplete="off">
+            <input type="text" name="university" id="" />
+
+            <button>Get Started</button>
+          </form>
+        </section>
+
+        <section className="landing__footerBottom"></section>
+      </footer>
     </div>
   );
 }
