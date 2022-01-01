@@ -72,8 +72,20 @@ function HeaderMenu() {
       </nav>
 
       <div className="header__user">
-        <button onClick={handleUserClicked} className="header__userButton">
-          {user?.firstName[0] + user?.lastName[0] || "Login"}
+        <button
+          onClick={handleUserClicked}
+          className={`header__userButton ${user && "userLoggedIn"} ${
+            user?.picture && "userPicture"
+          }`}
+        >
+          {(user?.picture ? (
+            <img
+              src={user?.picture}
+              alt={user?.firstName + " " + user?.lastName}
+            />
+          ) : (
+            user?.firstName[0] + user?.lastName[0]
+          )) || "Login"}
         </button>
       </div>
     </header>
