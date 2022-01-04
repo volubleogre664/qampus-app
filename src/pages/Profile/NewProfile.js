@@ -2,6 +2,7 @@ import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { useUserSlice } from "@redux/getSlices";
+import profilePlaceholder from "./profile_placeholder.png";
 
 import "./NewProfile.css";
 
@@ -12,6 +13,13 @@ function NewProfile() {
     e.preventDefault();
 
     document.querySelector(".app > .profile").classList.toggle("active");
+  };
+
+  const handleEditProfile = (e) => {
+    e.preventDefault();
+    document
+      .querySelector(".app > .editProfile__overlay")
+      .classList.toggle("active");
   };
 
   return (
@@ -32,7 +40,7 @@ function NewProfile() {
           <div className="profile__imageContainer">
             <img
               className="profile__image"
-              src={user?.picture}
+              src={user?.picture || profilePlaceholder}
               alt={(user && user.firstName + " " + user.lastName) || ""}
             />
           </div>
@@ -43,7 +51,7 @@ function NewProfile() {
               Bachelor of Science in IT Majouring in Computer Science and
               Business Management
             </p>
-            <button className="profile__edit">
+            <button onClick={handleEditProfile} className="profile__edit">
               <EditOutlinedIcon /> Edit profile
             </button>
           </div>

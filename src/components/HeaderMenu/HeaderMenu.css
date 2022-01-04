@@ -103,8 +103,6 @@
 }
 
 .header__userButton {
-  max-width: 42px;
-  max-height: 42px;
   padding: 5px 15px;
   background-color: #009bf6;
   color: #fff;
@@ -127,6 +125,8 @@
   padding: 8px;
   font-size: 1rem;
   overflow: hidden;
+  max-width: 42px;
+  max-height: 42px;
 }
 
 .header__userButton.userLoggedIn img {

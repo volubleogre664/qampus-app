@@ -1,0 +1,244 @@
+.editProfile__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 301;
+  place-items: center;
+  transition: all ease-in-out 0.25s;
+  display: none;
+}
+
+.editProfile__overlay.active {
+  opacity: 1;
+  display: grid;
+}
+
+.editProfile {
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  background-color: rgb(241, 241, 241);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+  color: #000;
+  /* gap: 10px; */
+}
+
+.editProfile__overlay > .editProfile {
+  opacity: 0;
+}
+
+.editProfile__overlay.active > .editProfile {
+  transition: all ease-in 0.8s;
+  opacity: 1;
+}
+
+.editProfile > * {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.editProfile__header {
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: -1px -1px -1px rgba(0, 0, 0, 0.2);
+}
+
+.editProfile__header h2 {
+  flex: 1;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #009bf6;
+  margin-bottom: 4px;
+}
+
+.editProfile__header .icon-container {
+  color: #009bf6;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  display: grid;
+  cursor: pointer;
+  place-items: center;
+  box-shadow: 1px 1px 0.5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.editProfile__header .icon-container:hover {
+  background-color: rgb(202, 202, 202);
+}
+
+/* The main will be here */
+.editProfile__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 30px;
+  overflow: hidden;
+  overflow-y: auto;
+  margin-bottom: 20px !important;
+}
+
+.editProfile__main > :last-child {
+  margin-bottom: 20px !important;
+}
+
+.editProfile__main::-webkit-scrollbar {
+  width: 8px;
+  display: initial;
+}
+
+.editProfile__main::-webkit-scrollbar-thumb {
+  margin-right: 3px;
+  border-radius: 10px;
+  background-color: rgb(58, 58, 58);
+}
+
+.editProfile__mainForm {
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.editProfile__mainForm label {
+  color: #575757;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+}
+
+.editProfile__mainFormInput {
+  width: calc(100% - 12px);
+  font-size: 1rem;
+  padding: 5px;
+  height: 30px;
+  border-radius: 5px;
+  border: 2px solid rgb(194, 194, 194);
+  transition: all ease-in 0.25s;
+}
+
+.editProfile__mainFormInput:hover {
+  transition: color ease-in 0.2s;
+  border-color: #554468;
+}
+
+.editProfile__mainImage {
+  display: flex;
+  flex-direction: column;
+}
+
+.editProfile__mainImage > span {
+  color: #575757;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+}
+
+.editProfile__mainImage .image-container {
+  max-width: 200px;
+  height: 192px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  box-shadow: 1.4px 1.4px 0.8px 0 rgba(0, 0, 0, 0.15);
+}
+
+.editProfile__mainImage .image-container img {
+  height: 100%;
+  object-fit: contain;
+}
+
+.editProfile__mainImage button:first-of-type {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  padding: 8px 25px;
+  margin-bottom: 10px;
+  font-weight: 300;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  gap: 5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all ease-in 0.25s;
+  border: 1px solid rgb(39, 39, 39);
+  align-self: center;
+}
+
+.editProfile__mainImage button:last-of-type {
+  border: none;
+  background-color: unset;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: red;
+  cursor: pointer;
+}
+
+.editProfile__mainImage button:last-of-type:hover {
+  text-decoration: underline;
+  color: rgba(255, 0, 0, 0.7);
+}
+
+/* The footer here */
+.editProfile__footer {
+  width: 100%;
+  border-top: 1px solid #e0e0e0;
+}
+
+.editProfile__footer > div {
+  width: fit-content;
+  margin-left: auto;
+  gap: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.editProfile__footer > div > button {
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+  font-weight: 300;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  gap: 5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all ease-in 0.25s;
+}
+
+.editProfile__footer > div > :last-child {
+  color: #fff;
+  background-color: rgb(0, 155, 246);
+}
+
+.editProfile__footer > div > :last-child:hover {
+  background-color: rgba(0, 155, 246, 0.8);
+}
+
+.editProfile__footer > div > :first-child {
+  padding: 8px 20px;
+  border: 1px solid rgb(39, 39, 39);
+}
+
+@media screen and (min-width: 500px) {
+  .editProfile {
+    border-radius: 10px;
+    height: 90%;
+    max-height: 900px;
+  }
+
+  .editProfile__main {
+    flex-direction: initial;
+    justify-content: space-evenly;
+  }
+}
