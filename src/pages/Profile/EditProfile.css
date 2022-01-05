@@ -98,11 +98,12 @@
 .editProfile__main {
   flex: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   padding: 20px 30px;
   overflow: hidden;
   overflow-y: auto;
   margin-bottom: 20px;
+  gap: 20px;
 }
 
 .editProfile__main::-webkit-scrollbar {
@@ -166,8 +167,8 @@
 }
 
 .editProfile__mainImage .image-container {
-  max-width: 200px;
   height: 192px;
+  width: 192px;
   overflow: hidden;
   border-radius: 8px;
   margin-bottom: 12px;
@@ -179,20 +180,23 @@
   object-fit: contain;
 }
 
-.editProfile__mainImage button:first-of-type {
-  width: 100%;
-  background-color: transparent;
-  text-align: center;
-  padding: 8px;
-  margin-bottom: 6px;
+.editProfile__mainImage button {
+  width: fit-content;
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
-  border-radius: 4px;
-  border: none;
   cursor: pointer;
   font-size: 0.9rem;
+}
+
+.editProfile__mainImage button:first-of-type {
+  align-self: flex-start;
+  text-align: center;
+  background-color: transparent;
+  padding: 8px 20px;
+  margin-bottom: 6px;
+  border-radius: 4px;
   transition: all ease-in 0.2s;
   border: 1px solid rgb(161, 161, 161);
-  align-self: center;
 }
 
 .editProfile__mainImage button:first-of-type:hover {
@@ -202,8 +206,6 @@
 .editProfile__mainImage button:last-of-type {
   border: none;
   background-color: unset;
-  font-size: 0.95rem;
-  font-weight: 500;
   color: red;
   cursor: pointer;
 }
@@ -306,5 +308,9 @@
   .editProfile__main {
     flex-direction: initial;
     justify-content: space-between;
+  }
+
+  .editProfile__mainImage button {
+    width: 100%;
   }
 }
