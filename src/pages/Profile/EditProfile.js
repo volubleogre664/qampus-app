@@ -1,16 +1,52 @@
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
+import { useUserSlice } from "@redux/getSlices";
+import { useForm } from "@utils/hooks.js";
 import profilePlaceholder from "./profile_placeholder.png";
 
 import "./EditProfile.css";
 
 function EditProfile() {
+  const [{ user }] = useUserSlice();
+
+  const { onChange, onSubmit, values, updateValues } = useForm(null, user);
+
   const handleEditProfileCancel = (e) => {
     e.preventDefault();
+
+    if (JSON.stringify(user) !== JSON.stringify(values)) {
+      // Do stuff here man
+      document
+        .querySelector(".app > .editProfile__overlay > .editProfile")
+        .classList.toggle("save_discard_changes");
+
+      return;
+    }
 
     document
       .querySelector(".app > .editProfile__overlay")
       .classList.toggle("active");
+  };
+
+  const keepEditingClicked = (e) => {
+    e.preventDefault();
+
+    document
+      .querySelector(".app > .editProfile__overlay > .editProfile")
+      .classList.toggle("save_discard_changes");
+  };
+
+  const closeAndDiscardClicked = (e) => {
+    e.preventDefault();
+    document
+      .querySelector(".app > .editProfile__overlay")
+      .classList.toggle("active");
+
+    document
+      .querySelector(".app > .editProfile__overlay > .editProfile")
+      .classList.toggle("save_discard_changes");
+
+    updateValues(user);
   };
 
   return (
@@ -28,12 +64,18 @@ function EditProfile() {
         </header>
 
         <main className="editProfile__main">
-          <form className="editProfile__mainForm">
+          <form
+            autoComplete="off"
+            className="editProfile__mainForm"
+            onSubmit={onSubmit}
+          >
             <div>
               <label htmlFor="firstName">First name</label>
               <input
                 className="editProfile__mainFormInput"
                 name="firstName"
+                value={values?.firstName}
+                onChange={onChange}
                 type="text"
                 id="firstName"
               />
@@ -46,6 +88,8 @@ function EditProfile() {
                 name="lastName"
                 type="text"
                 id="lastName"
+                value={values?.lastName}
+                onChange={onChange}
               />
             </div>
 
@@ -56,17 +100,14 @@ function EditProfile() {
                 name="studentNumber"
                 type="text"
                 id="studentNumber"
+                value={values?.studentNumber}
+                onChange={onChange}
+                disabled
               />
-            </div>
-
-            <div>
-              <label htmlFor="degree">Qualification</label>
-              <input
-                className="editProfile__mainFormInput"
-                name="degree"
-                type="text"
-                id="degree"
-              />
+              <p>
+                Your student number is private. Only you can see it and cannot
+                be changed.
+              </p>
             </div>
 
             <div>
@@ -76,7 +117,26 @@ function EditProfile() {
                 name="email"
                 type="text"
                 id="email"
+                value={values?.email}
+                onChange={onChange}
               />
+              <p>Anyone on Qampus can see your email.</p>
+            </div>
+
+            <div>
+              <label htmlFor="degree">Qualification</label>
+              <input
+                className="editProfile__mainFormInput"
+                name="degree"
+                type="text"
+                id="degree"
+                value={values?.degree}
+                onChange={onChange}
+              />
+              <p>
+                Let others on Qampus know what you're studying. You might get a
+                study partner
+              </p>
             </div>
           </form>
 
@@ -85,7 +145,10 @@ function EditProfile() {
           <div className="editProfile__mainImage">
             <span>Profile Image</span>
             <div className="image-container">
-              <img src={profilePlaceholder} alt="edit your profile" />
+              <img
+                src={user?.picture || profilePlaceholder}
+                alt="edit your profile"
+              />
             </div>
             <button>Upload Image</button>
 
@@ -100,6 +163,19 @@ function EditProfile() {
             <button>Save Changes</button>
           </div>
         </footer>
+
+        <div className="editProfile__saveChanges">
+          <p>
+            You have <b>unsaved changes</b>, closing this window will discard
+            them.
+          </p>
+          <div>
+            <button onClick={keepEditingClicked}>Keep Editing</button>
+            <button onClick={closeAndDiscardClicked}>
+              Close &amp; Discard
+            </button>
+          </div>
+        </div>
       </section>
     </div>
   );

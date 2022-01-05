@@ -12,6 +12,10 @@
   display: none;
 }
 
+* {
+  font-family: "Poppins", sans-serif;
+}
+
 .editProfile__overlay.active {
   opacity: 1;
   display: grid;
@@ -19,15 +23,30 @@
 
 .editProfile {
   width: 100%;
-  max-width: 800px;
+  max-width: 670px;
   height: 100%;
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(252, 252, 252);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   font-family: "Poppins", sans-serif;
   color: #000;
-  /* gap: 10px; */
+  position: relative;
+}
+
+.editProfile.save_discard_changes::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.editProfile.save_discard_changes .editProfile__saveChanges {
+  opacity: 1;
+  bottom: 0;
 }
 
 .editProfile__overlay > .editProfile {
@@ -47,7 +66,7 @@
 .editProfile__header {
   display: flex;
   align-items: center;
-  padding-bottom: 10px;
+  padding: 15px 20px;
   border-bottom: 1px solid #e0e0e0;
   box-shadow: -1px -1px -1px rgba(0, 0, 0, 0.2);
 }
@@ -64,7 +83,7 @@
   color: #009bf6;
   padding: 10px;
   border-radius: 50%;
-  background-color: #e0e0e0;
+  background-color: #ececec;
   display: grid;
   cursor: pointer;
   place-items: center;
@@ -72,7 +91,7 @@
 }
 
 .editProfile__header .icon-container:hover {
-  background-color: rgb(202, 202, 202);
+  background-color: rgb(226, 226, 226);
 }
 
 /* The main will be here */
@@ -83,11 +102,7 @@
   padding: 20px 30px;
   overflow: hidden;
   overflow-y: auto;
-  margin-bottom: 20px !important;
-}
-
-.editProfile__main > :last-child {
-  margin-bottom: 20px !important;
+  margin-bottom: 20px;
 }
 
 .editProfile__main::-webkit-scrollbar {
@@ -98,7 +113,7 @@
 .editProfile__main::-webkit-scrollbar-thumb {
   margin-right: 3px;
   border-radius: 10px;
-  background-color: rgb(58, 58, 58);
+  background-color: rgb(73, 73, 73);
 }
 
 .editProfile__mainForm {
@@ -112,16 +127,25 @@
 .editProfile__mainForm label {
   color: #575757;
   font-family: "Poppins", sans-serif;
-  font-weight: 700;
+  font-weight: 600;
+}
+
+.editProfile__mainForm > div p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  margin-top: 2px;
+  color: rgb(141, 141, 141);
 }
 
 .editProfile__mainFormInput {
   width: calc(100% - 12px);
-  font-size: 1rem;
-  padding: 5px;
-  height: 30px;
+  font-size: 0.98rem;
+  font-weight: 300;
+  padding: 5px 8px;
+  height: 25px;
   border-radius: 5px;
-  border: 2px solid rgb(194, 194, 194);
+  border: 1px solid rgb(161, 161, 161);
   transition: all ease-in 0.25s;
 }
 
@@ -138,7 +162,7 @@
 .editProfile__mainImage > span {
   color: #575757;
   font-family: "Poppins", sans-serif;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .editProfile__mainImage .image-container {
@@ -146,7 +170,7 @@
   height: 192px;
   overflow: hidden;
   border-radius: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   box-shadow: 1.4px 1.4px 0.8px 0 rgba(0, 0, 0, 0.15);
 }
 
@@ -156,21 +180,23 @@
 }
 
 .editProfile__mainImage button:first-of-type {
-  width: fit-content;
-  display: flex;
-  align-items: center;
-  padding: 8px 25px;
-  margin-bottom: 10px;
+  width: 100%;
+  background-color: transparent;
+  text-align: center;
+  padding: 8px;
+  margin-bottom: 6px;
   font-weight: 300;
   border-radius: 4px;
   border: none;
   cursor: pointer;
-  gap: 5px;
   font-size: 0.9rem;
-  font-weight: 600;
-  transition: all ease-in 0.25s;
-  border: 1px solid rgb(39, 39, 39);
+  transition: all ease-in 0.2s;
+  border: 1px solid rgb(161, 161, 161);
   align-self: center;
+}
+
+.editProfile__mainImage button:first-of-type:hover {
+  background-color: rgb(240, 240, 240);
 }
 
 .editProfile__mainImage button:last-of-type {
@@ -190,10 +216,12 @@
 /* The footer here */
 .editProfile__footer {
   width: 100%;
+  padding: 15px 20px;
   border-top: 1px solid #e0e0e0;
 }
 
-.editProfile__footer > div {
+.editProfile__footer > div,
+.editProfile__saveChanges > div {
   width: fit-content;
   margin-left: auto;
   gap: 15px;
@@ -202,18 +230,19 @@
   justify-content: flex-end;
 }
 
-.editProfile__footer > div > button {
+.editProfile__footer > div > button,
+.editProfile__saveChanges > div > button {
   display: flex;
   align-items: center;
   padding: 8px 20px;
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
   border-radius: 4px;
   border: none;
   cursor: pointer;
   gap: 5px;
   font-size: 0.9rem;
-  font-weight: 600;
-  transition: all ease-in 0.25s;
+  transition: all ease-in 0.2s;
 }
 
 .editProfile__footer > div > :last-child {
@@ -225,9 +254,46 @@
   background-color: rgba(0, 155, 246, 0.8);
 }
 
-.editProfile__footer > div > :first-child {
+.editProfile__footer > div > :first-child,
+.editProfile__saveChanges > div > :first-child {
+  font-weight: 300;
   padding: 8px 20px;
-  border: 1px solid rgb(39, 39, 39);
+  background-color: transparent;
+  border: 1px solid rgb(161, 161, 161);
+}
+
+.editProfile__footer > div > :first-child:hover,
+.editProfile__saveChanges > div > :first-child:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+.editProfile__saveChanges {
+  padding: 15px 20px;
+  position: absolute;
+  bottom: -90px;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  opacity: 0;
+  background-color: rgb(252, 252, 252);
+  border-top: 1px solid #e0e0e0;
+  transition: all ease-in 0.2s;
+}
+
+.editProfile__saveChanges p {
+  font-weight: 300;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  color: rgb(80, 80, 80);
+}
+
+.editProfile__saveChanges > div > :last-child {
+  color: #fff;
+  background-color: #d01c54;
+}
+
+.editProfile__saveChanges > div > :last-child:hover {
+  background-color: rgba(208, 28, 84, 0.85);
 }
 
 @media screen and (min-width: 500px) {
@@ -239,6 +305,6 @@
 
   .editProfile__main {
     flex-direction: initial;
-    justify-content: space-evenly;
+    justify-content: space-between;
   }
 }

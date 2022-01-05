@@ -143,6 +143,8 @@
   border-radius: 8px;
   border: none;
   cursor: pointer;
+  color: red;
+  border: 1px solid red;
   gap: 5px;
   transition: all ease-in 0.25s;
 }
