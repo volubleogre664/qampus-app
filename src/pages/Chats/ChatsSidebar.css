@@ -1,3 +1,5 @@
+
+
 .chats__sidebar {
   box-sizing: border-box;
   width: 25%;
@@ -26,7 +28,9 @@
 .chats__sidebarHeader > p {
   font-size: 1.6rem;
   margin-bottom: 15px;
-  font-family: "Poiret One";
+  font-size: 1.6rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 200; 
 }
 
 /* .chats__sidebarHeader > .icon__container > * > .MuiSvgIcon-root {

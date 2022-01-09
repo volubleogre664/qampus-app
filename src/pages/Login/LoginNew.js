@@ -57,7 +57,7 @@ function Login() {
             </div>
 
             <h2 className="login__title">
-              Log In to <span>Qampus</span>
+              Log In to your account
             </h2>
 
             <form

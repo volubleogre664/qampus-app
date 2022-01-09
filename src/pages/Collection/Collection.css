@@ -11,12 +11,14 @@
 }
 
 .collection__header p {
+  display: none;
   font-size: 1.8rem;
   text-align: center;
   font-family: "Poiret One";
 }
 
 .collection__header > .collection__headerSeparator {
+  display: none;
   width: 65%;
   margin: 5px auto 20px auto;
 }

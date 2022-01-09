@@ -66,7 +66,7 @@ function Register() {
             </div>
 
             <h2 className="register__title">
-              Create <span>Qampus</span> Account
+              Create an account
             </h2>
 
             <form

@@ -97,6 +97,7 @@ function Home({ history }) {
       });
     }
   };
+
   const handleCloseMenuClick = () => {
     const menu = document.getElementById("login__menu");
     menu.classList.toggle("active");
@@ -194,7 +195,7 @@ function Home({ history }) {
             onChange={(e) => setSearchStr(e.target.value)}
             className="home__searchInput"
             list="home__books"
-            placeholder="Title, ISBN or Module Code."
+            placeholder="Title, ISBN, module code."
           />
 
           <button type="submit">
