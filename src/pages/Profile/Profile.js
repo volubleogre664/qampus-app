@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import { GoVerified } from "react-icons/go";
 import { useMutation } from "@apollo/react-hooks";
 import firebase from "firebase/app";
-import Input from "../../components/Input/Input";
-import Loader from "../../components/Loader/Loader";
-import Button from "../../components/Button/Button";
-import ProfileImage from "../../components/ProfileImage/ProfileImage";
-import { UPDATE_USER } from "../../utils/graphql";
-import { useUserSlice } from "../../Redux/getSlices";
-import { useForm } from "../../utils/hooks";
+import Input from "@components/Input";
+import Loader from "@components/Loader";
+import Button from "@components/Button";
+import ProfileImage from "@components/ProfileImage";
+import { UPDATE_USER } from "@utils/graphql";
+import { useUserSlice } from "@redux/getSlices";
+import { useForm } from "@utils/hooks";
 
-import "./Profile.css";
+// import "./Profile.css";
 
 function Profile() {
   const [isEmail, setIsEmail] = useState(true);
@@ -27,7 +27,7 @@ function Profile() {
     update(_, { data }) {
       setLoading(false);
       setActive(false);
-      console.logg(data);
+      // console.logg(data);
       if (data) {
         dispatch({
           type: "SET_USER",
@@ -212,7 +212,7 @@ function Profile() {
               onChange={onChange}
               value={values.degree}
             />
-      
+
             {/* The style for this is in App.css : Generic for all textareas */}
             <label htmlFor="degree" className="formTextareaLabel">
               Bio:

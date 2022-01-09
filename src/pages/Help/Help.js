@@ -1,11 +1,12 @@
-import "./Help.css";
 import React, { useState } from "react";
-import {about} from "../../text_files/about.json";
-import {tutorial} from "../../text_files/tutorial.json";
-import {safety} from "../../text_files/safety.json";
-import {terms} from "../../text_files/terms.json";
+import { about } from "../../text_files/about.json";
+import { tutorial } from "../../text_files/tutorial.json";
+import { safety } from "../../text_files/safety.json";
+import { terms } from "../../text_files/terms.json";
 
-import Button from "../../components/Button/Button";
+import Button from "@components/Button";
+
+import "./Help.css";
 
 function Help() {
   const [display, setDisplay] = useState({

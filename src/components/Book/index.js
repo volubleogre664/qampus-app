@@ -4,7 +4,7 @@ import PencilIcon from "@material-ui/icons/EditRounded";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useHistory } from "react-router-dom";
 
-import popUpDialogue from "../../utils/popUp.js";
+import popUpDialogue from "@utils/popUp.js";
 
 import imgSrc from "./img.jpg";
 

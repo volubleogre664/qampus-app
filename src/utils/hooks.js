@@ -44,9 +44,12 @@ export const useForm = (callback, initialState = {}) => {
     callback();
   };
 
+  const updateValues = (_values) => setValues(_values);
+
   return {
     onChange,
     onSubmit,
+    updateValues,
     values,
   };
 };

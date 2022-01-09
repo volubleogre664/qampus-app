@@ -118,6 +118,7 @@ function Input({ label, id, type, testCases, ...rest }) {
                 <div className="formInput__tips">
                   <p>Please enter a valid email!</p>
                 </div>
+                
                 {/* The small arrow pointing to the input element from tips box */}
                 <span className="pointer"></span>
               </>

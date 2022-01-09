@@ -4,7 +4,7 @@ import LoginIcon from "@mui/icons-material/LoginRounded";
 import LogoutIcon from "@mui/icons-material/LogoutRounded";
 import ProfileIcon from "@mui/icons-material/ManageAccountsRounded";
 
-import { useUserSlice } from "../../Redux/getSlices.js";
+import { useUserSlice } from "@redux/getSlices.js";
 
 function Avatar({ userLogout }) {
   const [{ user }] = useUserSlice();

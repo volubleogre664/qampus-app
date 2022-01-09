@@ -4,16 +4,16 @@ import { useMutation } from "@apollo/react-hooks";
 import firebaseApp from "firebase/app";
 import Compressor from "compressorjs";
 
-import Button from "../../components/Button/Button";
-import Loader from "../../components/Loader/Loader";
-import Input from "../../components/Input/Input";
-import Bullet from "../../components/Bullet/Bullet";
+import Button from "@components/Button";
+import Loader from "@components/Loader";
+import Input from "@components/Input";
+import Bullet from "@components/Bullet";
 import ConfirmBook from "./ConfirmBook";
 
-import { useForm } from "../../utils/hooks";
-import popUpDialogue from "../../utils/popUp.js";
-import { UPLOAD_BOOK } from "../../utils/graphql";
-import { useBooksSlice, useUserSlice } from "../../Redux/getSlices";
+import { useForm } from "@utils/hooks";
+import popUpDialogue from "@utils/popUp.js";
+import { UPLOAD_BOOK } from "@utils/graphql";
+import { useBooksSlice, useUserSlice } from "@redux/getSlices";
 import { upload as uploadBullets } from "../../text_files/bulletPoints";
 
 import "./Upload.css";
@@ -297,6 +297,7 @@ function Upload() {
     });
   }
 
+  // The upload page starts here
   return (
     <div className="uploadPage">
       {confirmBook && (

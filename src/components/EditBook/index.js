@@ -1,13 +1,13 @@
-import { useForm } from "../../utils/hooks";
 import { useMutation } from "@apollo/react-hooks";
+import { useForm } from "@utils/hooks";
 
-import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-import Input from "../Input/Input";
-import Button from "../Button/Button";
-import { EDIT_BOOK } from "../../utils/graphql.js";
+import ToggleSwitch from "@components/ToggleSwitch";
+import Input from "@components/Input";
+import Button from "@components/Button";
+import { EDIT_BOOK } from "@utils/graphql.js";
+import { useBooksSlice } from "@redux/getSlices";
 
 import "./EditBook.css";
-import { useBooksSlice } from "../../Redux/getSlices";
 
 const EditBook = ({ price, title, id, cancel }) => {
   const [, dispatchBook] = useBooksSlice();

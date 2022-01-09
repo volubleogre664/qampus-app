@@ -2,7 +2,7 @@ import { useRef } from "react";
 import AddAPhotoOutlinedIcon from "@material-ui/icons/AddAPhotoOutlined";
 import Compressor from "compressorjs";
 
-import { useUserSlice } from "../../Redux/getSlices";
+import { useUserSlice } from "@redux/getSlices";
 import defaultImg from "../../account-home.png";
 
 import "./ProfileImage.css";

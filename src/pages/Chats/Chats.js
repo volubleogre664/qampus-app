@@ -7,19 +7,15 @@ import Picker from "emoji-picker-react";
 
 import { useMutation, useLazyQuery } from "@apollo/react-hooks";
 
-import Contact from "../../components/Contact/Contact.js";
-import Message from "../../components/Message/Message";
+import Contact from "@components/Contact";
+import Message from "@components/Message";
 
-import {
-  ADD_MESSAGE,
-  GET_MESSAGES_QUERY,
-  GET_USER_DATA,
-} from "../../utils/graphql";
+import { ADD_MESSAGE, GET_MESSAGES_QUERY, GET_USER_DATA } from "@utils/graphql";
 import {
   useBooksSlice,
   useMessagesSlice,
   useUserSlice,
-} from "../../Redux/getSlices.js";
+} from "@redux/getSlices.js";
 
 import "./Chats.css";
 

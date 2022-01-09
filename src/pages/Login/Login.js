@@ -2,14 +2,14 @@ import { useEffect } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
 
-import { useUserSlice } from "../../Redux/getSlices";
-import { useForm } from "../../utils/hooks";
-import { LOGIN_USER } from "../../utils/graphql";
+import { useUserSlice } from "@redux/getSlices";
+import { useForm } from "@utils/hooks";
+import { LOGIN_USER } from "@utils/graphql";
 
 import logo from "../../logo.png";
-import Loader from "../../components/Loader/Loader";
-import Input from "../../components/Input/Input";
-import Button from "../../components/Button/Button";
+import Loader from "@components/Loader/Loader";
+import Input from "@components/Input/Input";
+import Button from "@components/Button/Button";
 
 import "./Login.css";
 
@@ -105,7 +105,6 @@ function Login() {
         <hr className="separator_footer" />
         <p className="top_footer">Qampus &copy; 2020 | All Rights Reserved.</p>
         <p className="bottom_footer">
-          {" "}
           Developed by Nuclear Software (Pty) Ltd.
         </p>
       </footer>
