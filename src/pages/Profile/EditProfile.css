@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   opacity: 0;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 301;
@@ -44,11 +44,6 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.editProfile.save_discard_changes .editProfile__saveChanges {
-  opacity: 1;
-  bottom: 0;
-}
-
 .editProfile__overlay > .editProfile {
   opacity: 0;
 }
@@ -59,31 +54,30 @@
 }
 
 .editProfile > * {
-  padding: 20px;
+  padding: 15px;
   box-sizing: border-box;
 }
 
 .editProfile__header {
   display: flex;
   align-items: center;
-  padding: 15px 20px;
+  padding: 10px 15px;
   border-bottom: 1px solid #e0e0e0;
   box-shadow: -1px -1px -1px rgba(0, 0, 0, 0.2);
 }
 
 .editProfile__header h2 {
   flex: 1;
-  font-size: 1.6rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: #009bf6;
-  margin-bottom: 4px;
 }
 
 .editProfile__header .icon-container {
   color: #009bf6;
-  padding: 10px;
+  padding: 8px;
   border-radius: 50%;
-  background-color: #ececec;
+  background-color: #f1f1f1;
   display: grid;
   cursor: pointer;
   place-items: center;
@@ -99,7 +93,7 @@
   flex: 1;
   display: flex;
   flex-direction: column-reverse;
-  padding: 20px 30px;
+  padding: 15px 20px;
   overflow: hidden;
   overflow-y: auto;
   margin-bottom: 20px;
@@ -272,14 +266,19 @@
 .editProfile__saveChanges {
   padding: 15px 20px;
   position: absolute;
-  bottom: -90px;
+  bottom: -200px;
   left: 0;
   z-index: 2;
   width: 100%;
   opacity: 0;
   background-color: rgb(252, 252, 252);
   border-top: 1px solid #e0e0e0;
-  transition: all ease-in 0.2s;
+  transition: all ease-in 0.25s;
+}
+
+.editProfile.save_discard_changes .editProfile__saveChanges {
+  opacity: 1;
+  bottom: 0;
 }
 
 .editProfile__saveChanges p {
@@ -302,10 +301,24 @@
   .editProfile {
     border-radius: 10px;
     height: 90%;
+    width: 90%;
     max-height: 900px;
   }
 
+  .editProfile__header {
+    padding: 15px 20px;
+  }
+
+  .editProfile__header h2 {
+    font-size: 1.5rem;
+  }
+
+  .editProfile__header .icon-container {
+    padding: 10px;
+  }
+
   .editProfile__main {
+    padding: 20px 30px;
     flex-direction: initial;
     justify-content: space-between;
   }
