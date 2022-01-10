@@ -2,6 +2,7 @@ import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import SearchIcon from "@material-ui/icons/Search";
 import PersonIcon from "@material-ui/icons/Person";
+import AttachFileIcon from "@mui/icons-material/AttachFile";
 import EmojiIcon from "@mui/icons-material/EmojiEmotions";
 import Picker from "emoji-picker-react";
 
@@ -225,22 +226,31 @@ function Chats() {
     getUserData({ variables: { id: bookOwner } });
   }, [searchBookList, setBook, getUserData, user]);
 
+  // HANDLE ATTACHMENT
+  const handleAttachment = (e) => {
+    const file = e.target.files[0];
+    // todo: Send file to server
+  };
+  const showFile = () => {
+    document.querySelector(".custom__file__input").click();
+  };
+
   // The whole chats page below
   return (
-    <div className="chats">
-      <aside className="chats__sidebar" style={{ height: height + "px" }}>
-        <div className="chats__sidebarHeader">
+    <div className='chats'>
+      <aside className='chats__sidebar' style={{ height: height + "px" }}>
+        <div className='chats__sidebarHeader'>
           <p>My chats</p>
           <br />
         </div>
 
-        <div className="chats__sidebarBody">
-          <div className="search__container">
-            <input className="search__input" placeholder="" />
+        <div className='chats__sidebarBody'>
+          <div className='search__container'>
+            <input className='search__input' placeholder='' />
             <SearchIcon />
           </div>
 
-          <div className="contactSection">
+          <div className='contactSection'>
             {user?.contacts &&
               user.contacts.map((contact, i) => (
                 <Contact
@@ -252,19 +262,19 @@ function Chats() {
           </div>
         </div>
 
-        <div className="chats__sidebarFooter">
-          <span className="text">Find a study buddy</span>
+        <div className='chats__sidebarFooter'>
+          <span className='text'>Find a study buddy</span>
           <ArrowForwardIosIcon />
         </div>
       </aside>
 
-      <main className="chats__main" style={{ height: height + "px" }}>
-        <header className="chats__mainHeader">
-          <div className="left" onClick={closeChats}>
-            <span className="iconContainer">
+      <main className='chats__main' style={{ height: height + "px" }}>
+        <header className='chats__mainHeader'>
+          <div className='left' onClick={closeChats}>
+            <span className='iconContainer'>
               {(currentContact?.picture && (
                 <img
-                  className="iconContainer__image"
+                  className='iconContainer__image'
                   src={currentContact?.picture || ""}
                   alt={[
                     currentContact?.firstName,
@@ -273,16 +283,16 @@ function Chats() {
                 />
               )) || <PersonIcon />}
             </span>
-            <span className="name">{currentContact?.firstName || "Name"}</span>
+            <span className='name'>{currentContact?.firstName || "Name"}</span>
           </div>
 
-          <div className="right">
-            <label className="online__status">Offline</label>
-            <label className="last__seen">Last seen: Now</label>
+          <div className='right'>
+            <label className='online__status'>Offline</label>
+            <label className='last__seen'>Last seen: Now</label>
           </div>
         </header>
 
-        <div className="chats__mainBody">
+        <div className='chats__mainBody'>
           {messages
             .filter(
               (msg) =>
@@ -294,11 +304,11 @@ function Chats() {
             ))}
         </div>
 
-        <footer className="chats__mainFooter">
+        <footer className='chats__mainFooter'>
           {emoji && <Picker onEmojiClick={handleEmojiClick} />}
           <form onSubmit={onSubmit}>
             <button
-              className="btnEmoji"
+              className='btnEmoji'
               onClick={(e) => {
                 e.preventDefault();
                 setEmoji(!emoji);
@@ -307,17 +317,28 @@ function Chats() {
               <EmojiIcon />
             </button>
 
+            <button onClick={showFile}>
+              <AttachFileIcon />
+            </button>
             <input
-              placeholder=""
-              className="sendMsgInput"
+              type='file'
+              className='custom__file__input'
+              accept='.jpg, .jpeg, .png, .pdf'
+              onChange={handleAttachment}
+              style={{ display: "none" }}
+            />
+
+            <input
+              placeholder=''
+              className='sendMsgInput'
               value={textMsg}
               ref={inputRef}
               onChange={handleChange}
               // onFocus={() => setEmoji(false)}
             />
 
-            <button className="btnSend" type="submit">
-              <i className="fas fa-paper-plane"></i>
+            <button className='btnSend' type='submit'>
+              <i className='fas fa-paper-plane'></i>
             </button>
           </form>
         </footer>
