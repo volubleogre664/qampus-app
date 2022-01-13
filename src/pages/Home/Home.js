@@ -18,7 +18,7 @@ import {
   useMessagesSlice,
 } from "@redux/getSlices";
 
-import logo from "../../logo.png";
+import logo from "../../logo_grey.png";
 import "./Home.css";
 
 //change the background reference here
@@ -174,7 +174,8 @@ function Home({ history }) {
 
       <div className="home__searchSection">
         <div className="home__logo">
-          <img className="home__logoImg logo" src={logo} alt="qampus logo" />
+          <img className="home__logoImg" src={logo} alt="qampus logo"/>
+          <h1>Qampus</h1>
         </div>
         <h4 className="home__title">Welcome</h4>
         <h3 className="home__title2">

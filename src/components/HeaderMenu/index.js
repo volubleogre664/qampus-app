@@ -3,7 +3,7 @@ import MenuIcon from "@material-ui/icons/MenuRounded";
 import CloseIcon from "@material-ui/icons/CloseRounded";
 import { useRouteMatch, Link, useHistory } from "react-router-dom";
 import { useUserSlice, useMessagesSlice } from "@redux/getSlices";
-import logo from "./logo1.png";
+import logo from "./logo_grey.png";
 import "./HeaderMenu.css";
 
 function HeaderMenu() {

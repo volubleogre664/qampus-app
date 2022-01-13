@@ -2,6 +2,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nixie+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Forum&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Fleur+De+Leah&display=swap');
 
 .home {
   flex: 1;
@@ -23,21 +26,32 @@
 .home__logo {
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  margin: auto;
   margin-top: 20px;
   margin-bottom: 50px;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  /* background-color: red; */
+}
+
+.home__logo h1 {
+  color: #00a8f3;
+  font-weight: 500;
+  font-size: 2.2rem;
+  font-family: 'Fleur De Leah', cursive;
+  filter: drop-shadow(1px 2px 2px rgba(139, 139, 139, 0.6));
+  padding: 10px 0 0 5px;
+  /* background-color: green; */
 }
 
 .home__logo .home__logoImg {
-  width: 210px;
-  /* -webkit-filter: drop-shadow(2px 4px 4px #000000);
-  filter: drop-shadow(2px 4px 4px #000000); */
-  -webkit-filter: drop-shadow(1px 2px 2px #000000);
-  filter: drop-shadow(1px 2px 2px #000000);
+  height: 55px;
+    -webkit-filter: drop-shadow(1px 2px 2px #000000);
+  filter: drop-shadow(1px 3px 3px #000000);
 }
 
 .home__avatar {
@@ -52,7 +66,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background: rgb(245, 245, 255);
+  background: #fafafa;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -70,12 +84,15 @@
   top: 5vh;
   width: 100px;
   height: fit-content;
-  background: #fff;
+  background: #fafafa;
   color: #333131;
   border-radius: 5px;
   padding-top: 5px;
   opacity: 0;
   visibility: hidden;
+  -webkit-filter: drop-shadow(1px 2px 2px #000000);
+  filter: drop-shadow(1px 2px 2px #000000);
+  transition: all ease-in-out 0.2s;
 }
 
 #login__menu.active {
@@ -84,10 +101,11 @@
 }
 
 #login__menu:hover {
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8),
-    0 0 10px rgba(255, 255, 255, 0.8);
-  border-radius: 0px;
+  -webkit-filter: drop-shadow(0px 1px 1px #000000);
+  filter: drop-shadow(0px 1px 1px #000000);
   transition: all ease-in-out 0.2s;
+  /* border-radius: 0px; */
+  transition: all ease-in-out 0.1s;
 }
 #login__menu > hr {
   width: 70%;
@@ -240,7 +258,7 @@
   max-width: 700px;
   height: 35px;
   padding: 3px 0px 3px 2px;
-  background: #009bf6;
+  background: #00a8f3;
   display: flex;
   align-items: center;
   justify-content: left;
@@ -269,6 +287,7 @@
     0 0 10px rgba(255, 255, 255, 0.8);
   transition: all ease-in-out 0.2s;
   border-radius: 1px 1px 1px 1px;
+  margin-left: 0.5px;
 }
 .home__searchContainer:focus-within {
   border-radius: 1px;
