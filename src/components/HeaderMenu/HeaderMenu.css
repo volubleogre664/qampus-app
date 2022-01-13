@@ -77,10 +77,10 @@
   margin: auto;
   box-sizing: border-box;
   position: absolute;
-  transition: all ease-in 0.35s;
+  transition: all ease-in 0.38s;
   width: 100%;
   left: 0;
-  top: 0;
+  top: -241px;
   padding: 0;
   z-index: -2;
   opacity: 0;
@@ -196,7 +196,9 @@
 
 @media screen and (min-width: 470px) {
   .header__nav {
+    top: 0;
     padding: 15px;
+    transition: all ease-in 0.35s;
   }
 
   .nav__links {

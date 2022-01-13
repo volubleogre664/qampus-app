@@ -22,6 +22,8 @@ function HeaderMenu() {
   window.onresize = () => setScreenSize(window.innerWidth);
 
   const handleClick = () => {
+    if (screenSize > 800) return;
+
     setClick(!click);
     document.querySelector(".nav__links").classList.toggle("opening");
   };
