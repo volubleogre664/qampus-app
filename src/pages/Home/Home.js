@@ -6,7 +6,6 @@ import LogoutIcon from "@mui/icons-material/LogoutRounded";
 import LoginIcon from "@mui/icons-material/LoginRounded";
 import CancelIcon from "@material-ui/icons/CloseRounded";
 import ProfileIcon from "@mui/icons-material/ManageAccountsRounded";
-
 import MenuItem from "@components/MenuItem";
 import Book from "@components/Book";
 import Loader from "@components/Loader";
@@ -123,7 +122,7 @@ function Home({ history }) {
 
   return (
     <div className="home">
-      {loading && <Loader message="Getting books" />}
+      {loading && <Loader message="Searching..." />}
       <div className="home__header">
         <button
           id="avatar"

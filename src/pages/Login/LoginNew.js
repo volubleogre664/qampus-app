@@ -5,7 +5,7 @@ import Loader from "@components/Loader";
 import { useUserSlice } from "@redux/getSlices.js";
 import { useForm } from "@utils/hooks.js";
 import { LOGIN_USER } from "@utils/graphql.js";
-import logo from "./logo1.png";
+import logo from "./logo_grey.png";
 import "./LoginNew.css";
 
 function Login() {
@@ -47,17 +47,17 @@ function Login() {
 
   return (
     <section className="login">
-      {loading && <Loader message="Logging in" />}
+      {loading && <Loader message="Signing in" />}
       <main className="login__main">
         <section>
           <div>
             <div role="link" onClick={logoClicked} className="logoContainer">
-              <img src={logo} alt="qampus" />
+              <img className="loginLogo" src={logo} alt="qampus"/>
               <h2>Qampus</h2>
             </div>
 
             <h2 className="login__title">
-              Log In to your account
+              Sign in to your account
             </h2>
 
             <form
@@ -95,7 +95,7 @@ function Login() {
               <div>
                 {error && <p>Student number or password incorrect.</p>}
                 <button className="login__mainFormButton" type="submit">
-                  Log In
+                  Sign in
                 </button>
               </div>
 

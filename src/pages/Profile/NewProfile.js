@@ -1,6 +1,6 @@
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import EditOutlinedIcon from "@mui/icons-material/EditRounded";
 import { useUserSlice } from "@redux/getSlices";
 import profilePlaceholder from "./profile_placeholder.png";
 
@@ -52,7 +52,7 @@ function NewProfile() {
               Business Management
             </p>
             <button onClick={handleEditProfile} className="profile__edit">
-              <EditOutlinedIcon /> Edit profile
+              <EditOutlinedIcon/>
             </button>
           </div>
         </header>

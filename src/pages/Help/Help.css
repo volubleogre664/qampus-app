@@ -12,7 +12,7 @@
   flex-direction: column;
   justify-content: center;
   width: 25%;
-  max-width: 350px;
+  max-width: 300px;
   min-width: 300px;
   height: 100%;
   align-items: center;
@@ -26,22 +26,23 @@
 .help_side > p {
   font-size: 1.6rem;
   color: #fff;
-  font-family: "Poiret One";
+  font-family: "Poppins";
   margin-top: 15px;
+  padding-bottom: 10px;
+  text-align: center;
+  border-bottom: 1px solid white;
+  width: 85%;
 }
 .main_header {
   font-size: 1.6rem;
   color: #fff;
-  font-family: "Poiret One";
+  font-family: "Poppins";
+  margin: auto;
   margin-top: 15px;
   text-align: center;
-}
-
-.sepatator {
   width: 85%;
-  margin: auto;
-  margin-top: 0;
-  margin-bottom: 0;
+  border-bottom: 1px solid white;
+  padding-bottom: 10px;
 }
 
 .buttons {
@@ -55,6 +56,35 @@
   margin: auto;
   margin-bottom: 30px;
   margin-top: 20px;
+}
+
+.button{
+  transition: all ease-in-out 0.2s !important;
+  padding: 15px 25px 15px !important;
+  background: #009bf6 !important;
+  text-align: center !important;
+  height: 32px !important;
+  color: #fff !important;
+  text-transform: capitalize !important;
+  border-radius: 3px !important;
+  font: lighter 1rem var(--font) !important;
+  min-width: 160px !important;
+  max-width: 200px;
+  margin-top: 10px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.27);
+  -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.27);
+  -moz-box-shadow: 4px 4px 8px rgba(146, 109, 109, 0.27);
+}
+
+.button:hover {
+  transition: all ease-in-out 0.2s !important;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.27);
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.27);
+  -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.27);
+  outline-color: rgba(255, 255, 255, 0) !important;
+  outline-offset: 15px !important;
+  text-shadow: 1px 1px 2px #427388 !important;
+  border-radius: 1px !important;
 }
 
 .help_main {

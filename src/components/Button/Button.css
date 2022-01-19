@@ -13,7 +13,7 @@
   margin-top: 10px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.27);
   -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.27);
-  -moz-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.27);
+  -moz-box-shadow: 4px 4px 8px rgba(146, 109, 109, 0.27);
 }
 
 .formSubmitBtn:hover {

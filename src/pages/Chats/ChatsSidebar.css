@@ -22,7 +22,7 @@
   align-items: center;
   justify-content: center;
   margin: 15px auto;
-  border-bottom: 2px solid white;
+  border-bottom: 1px solid white;
 }
 
 .chats__sidebarHeader > p {

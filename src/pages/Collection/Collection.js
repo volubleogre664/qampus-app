@@ -100,7 +100,7 @@ function Collection() {
       </section>
 
       <footer className="collection__footer">
-        <Button text="Add New Book" onClick={() => history.push("/upload")} />
+        <Button text="Add Book" onClick={() => history.push("/upload")} />
       </footer>
     </div>
   );

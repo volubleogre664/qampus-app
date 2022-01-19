@@ -42,20 +42,18 @@ function Help() {
       <div className="help_side">
         <p>Help</p>
         <br />
-        <hr className="sepatator" />
         <div className="buttons">
-          <Button text="About us" onClick={() => tabBtnClicked("about")} />
-          <Button text="Tutorials" onClick={() => tabBtnClicked("tutorials")} />
-          <Button text="safety tips" onClick={() => tabBtnClicked("safety")} />
-          <Button text="Terms of use" onClick={() => tabBtnClicked("terms")} />
-          <Button text="Contact us" onClick={() => tabBtnClicked("")} />
+          <Button className="button" text="About us" onClick={() => tabBtnClicked("about")} />
+          <Button className="button" text="Tutorials" onClick={() => tabBtnClicked("tutorials")} />
+          <Button className="button" text="safety tips" onClick={() => tabBtnClicked("safety")} />
+          <Button className="button" text="Terms of use" onClick={() => tabBtnClicked("terms")} />
+          <Button className="button" text="Contact us" onClick={() => tabBtnClicked("")} />
         </div>
       </div>
 
       <div className="help_main">
         <p className="main_header"> {display.title}</p>
         <br />
-        <hr className="sepatator" />
         <div className="main_content">
           <p>{display.content}</p>
         </div>
