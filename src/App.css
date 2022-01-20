@@ -21,7 +21,6 @@
 
 .app > p {
   font-weight: 300;
-  background: url(./bg.jpg);
 }
 
 *::-webkit-scrollbar {
