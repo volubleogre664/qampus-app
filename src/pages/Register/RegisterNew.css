@@ -1,7 +1,7 @@
 .register {
   flex: 1;
   display: flex;
-  background-image: url("./pic.jpeg");
+  background-image: url("../../ufs_main.jpg");
   background-size: cover;
   background-clip: border-box;
   background-attachment: fixed;
@@ -33,11 +33,10 @@
 }
 
 .register__title {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 200;
   color: #554468;
   filter: unset;
-  margin-bottom: 15px;
   text-align: center;
 }
 
@@ -50,9 +49,26 @@
   width: 100%;
 }
 
+.register__main section > div > .logoContainer{
+  margin: auto;
+  margin-bottom: 35px;
+
+}
+
+.register__main section > div > .logoContainer > h2 {
+  color: rgba(0, 155, 246, 0.8);
+  font-weight: 700;
+  font-size: 1.7rem;
+}
+.register__main section > div > .logoContainer > img {
+  min-width: 2.5rem;
+  object-fit: contain;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+}
 .login__mainFormButton {
   margin-top: 10px;
 }
+
 
 @media only screen and (min-width: 1024px) {
   .register__main {

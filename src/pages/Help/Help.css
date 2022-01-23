@@ -5,6 +5,7 @@
   padding-top: 0;
   height: 100%;
   overflow: hidden;
+  margin-top: 15px;
 }
 
 .help_side {
@@ -12,11 +13,11 @@
   flex-direction: column;
   justify-content: center;
   width: 25%;
-  max-width: 300px;
+  max-width: 320px;
   min-width: 300px;
   height: 100%;
   align-items: center;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-radius: 10px;
@@ -84,13 +85,12 @@
   outline-color: rgba(255, 255, 255, 0) !important;
   outline-offset: 15px !important;
   text-shadow: 1px 1px 2px #427388 !important;
-  border-radius: 1px !important;
 }
 
 .help_main {
   width: 85%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-radius: 10px;

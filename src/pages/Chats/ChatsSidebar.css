@@ -3,17 +3,19 @@
 .chats__sidebar {
   box-sizing: border-box;
   width: 25%;
-  max-width: 300px;
-  max-height: 99% !important;
+  max-width: 320px;
+  min-width: 300px;
+    max-height: 98%;
   color: #fff;
   display: flex;
   flex-direction: column;
   padding-bottom: 10px;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-radius: 10px;
   overflow-y: auto;
+  margin-top: 15px;
 }
 
 .chats__sidebarHeader {

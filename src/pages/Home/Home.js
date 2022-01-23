@@ -82,8 +82,8 @@ function Home({ history }) {
       history.push("/login");
     } else {
       popUpDialogue({
-        title: "Logging out!",
-        text: "Are you sure you want to logout?",
+        title: "Signing out!",
+        text: "Are you sure you want to sgin out?",
         callback: () => {
           dispatchUser({
             type: "REMOVE_USER",
@@ -158,7 +158,7 @@ function Home({ history }) {
             onClick={handleLoginMenuClick}
           >
             {user ? <LogoutIcon /> : <LoginIcon />}
-            {user ? "Logout" : "Login"}
+            {user ? "Sign out" : "Sign in"}
           </section>
           <hr />
           <section
@@ -257,9 +257,9 @@ function Home({ history }) {
       >
         <div className="heading">
           <h3>Search results</h3>
-          <button className="btnBack" onClick={openMenu}>
-            X{/*Close search results*/}
-          </button>
+          <div className="btnBack" onClick={openMenu}>
+            <CancelIcon/>{/*Close search results*/}
+          </div>
         </div>
 
         <div className="results">

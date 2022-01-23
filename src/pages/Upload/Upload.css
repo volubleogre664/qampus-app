@@ -2,33 +2,39 @@
   display: flex;
   flex-direction: row;
   gap: 80px;
-  width: 80%;
-  height: 100%;
+  width: 98%;
+  min-height: 88%;
+  max-height: 90%;
   margin: auto;
   overflow-x: hidden;
   overflow-y: auto;
+  height: fit-content;
+  margin-top: 15px;
 }
 
 .upload {
   width: 30vw;
-  max-width: 350px;
+  max-width: 340px;
   min-width: 300px;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  border-radius: 5px;
-  padding: 15px;
-  margin: auto;
-  margin-top: 30px;
+  min-height: 100%;
+  /* height: -webkit-fit-content;
+  height: -moz-fit-content; */
+  /* height: fit-content; */
+  border-radius: 10px;
+  /* padding: 15px; */
+  /* margin-top: 30px;  */
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   justify-content: center;
   align-items: content;
   text-align: center;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.6);
   -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(15px);
+  padding: 15px 10px;
+
+  /* order: 2; */
 }
 
 .upload__title {
@@ -46,7 +52,7 @@
 .upload form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-content: center;
   align-items: center;
   gap: 15px;
@@ -59,7 +65,7 @@
 
 .upload_separator {
   width: 85%;
-  margin: auto;
+  margin: auto;   
 }
 /*begigning book styling*/
 .wrapper {
@@ -84,13 +90,13 @@
   overflow: hidden;
   border: none;
   cursor: pointer;
+  margin-top: 15px;
 }
 
 .box:hover {
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8),
-    0 0 10px rgba(255, 255, 255, 0.8);
+  /* box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 10px rgba(255, 255, 255, 0.8); */
   transition: all ease-in-out 0.2s;
-  border-radius: 1px;
 }
 
 .upload-options {
@@ -139,7 +145,9 @@ label.front {
   color: white;
   flex: 1;
   margin: auto;
-  margin-top: 30px;
+  /* margin-top: 30px; */
+  margin-top: 5%;
+  margin-left: 2%;
 }
 
 .bullets > ul > li > h3 {
@@ -185,7 +193,9 @@ label.front {
 
   .list_tittle {
     font-size: 1.4rem;
+    display: none;
   }
+  
   .upload {
     width: 100%;
     margin: auto;

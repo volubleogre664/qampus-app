@@ -83,7 +83,7 @@ function NewProfile() {
       </main>
 
       <footer className="profile__footer">
-        <button className="profile__footerButton">Change password</button>
+        <button className="profile__footerButton">Sign out</button>
       </footer>
     </aside>
   );

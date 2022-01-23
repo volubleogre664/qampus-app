@@ -10,9 +10,10 @@
   max-height: 60px;
   height: auto;
   width: 100%;
-  background: rgba(255, 255, 255, 0.60);
+  /* background-color: #f8fcff; */
+  background-color: #fff;
   padding: 15px 60px;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
   box-sizing: border-box;
   border-bottom: 2px solid #009bf6;
 }
@@ -27,8 +28,8 @@
   gap: 5px;
   align-items: center;
   justify-content: center;
-  margin-top: 35px;
-  cursor: pointer;
+    cursor: pointer;
+  width: fit-content;
 }
 
 .logoContainer h2 {
@@ -83,20 +84,27 @@
 .nav__linksItem {
   list-style: none;
   cursor: pointer;
+ 
 }
 
 .nav__linksItem > a:hover,
 .nav__linksItem span:hover {
-  color: #009bf6;
+  /* color: #32b4ff; */
+  color: rgb(185, 185, 185);
 }
 
 .nav__linksItem > a {
   transition: color ease-in-out 0.2s;
-  color: black;
+  color: grey;
   text-decoration: none;
   text-transform: capitalize;
-}
+  font-weight:400;
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
+}
+.nav__linksItem > a > * {
+  font-size: 2rem;
+}
 /* If highlights the linkk based on page visited */
 .nav__linksItem.active > a {
   color: #009bf6;
@@ -108,20 +116,24 @@
 
 .header__userButton {
   padding: 5px 15px;
-  background-color: #009bf6;
   color: #fff;
-  border: 2px solid rgb(99, 99, 99);
+  border: none;
+  transition: all ease-in-out 0.2s !important;
+  background: #009bf6 !important;
+  text-align: center !important;
+  color: #fff !important;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.27);
+  -webkit-box-shadow:1px 1px 3px  rgba(0, 0, 0, 0.27);
   border-radius: 6px;
   display: grid;
   place-items: center;
   font-size: 0.95rem;
-  font-weight: bold;
   cursor: pointer;
   transition: all ease-in 0.25s;
 }
 
 .header__userButton:hover {
-  border-color: rgb(185, 185, 185);
+  background-color: #27b0ff;
 }
 
 .header__userButton.userLoggedIn {

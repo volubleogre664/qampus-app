@@ -10,7 +10,8 @@
   max-width: 180px;
   min-height: 170px;
   max-height: 180px;
-  background: #fafafa;
+  background: #fff;
+  /* background: #fafafa; */
   border-radius: 9px;
   display: flex;
   align-items: center;
@@ -56,7 +57,7 @@
   font-weight: normal;
   padding: 0px;
   font-family: "Poppins", sans-serif;
-  font-weight: 300;  
+  font-weight: 300;
   text-align: center;
 }
 .menuItem > hr {

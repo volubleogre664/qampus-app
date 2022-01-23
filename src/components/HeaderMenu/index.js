@@ -1,6 +1,13 @@
 import { useState } from "react";
 import MenuIcon from "@material-ui/icons/MenuRounded";
 import CloseIcon from "@material-ui/icons/CloseRounded";
+import ChatIcon from "@material-ui/icons/ChatRounded";
+import PublishIcon from "@material-ui/icons/PublishRounded";
+import UploadRoundedIcon from '@mui/icons-material/UploadRounded';
+import LibraryBooksIcon from "@material-ui/icons/BookRounded";
+import LocationOnIcon from "@material-ui/icons/LocationOnRounded";
+import HomeIcon from "@material-ui/icons/HomeRounded";
+import ErrorIcon from "@material-ui/icons/Error";
 import { useRouteMatch, Link, useHistory } from "react-router-dom";
 import { useUserSlice, useMessagesSlice } from "@redux/getSlices";
 import logo from "./logo_grey.png";
@@ -59,12 +66,12 @@ function HeaderMenu() {
 
       <nav className="header__nav">
         <ul className="nav__links">
-          <NavLink onClick={handleClick} to="/" label="home" />
-          <NavLink onClick={handleClick} to="/upload" label="upload" />
-          <NavLink onClick={handleClick} to="/collection" label="collection" />
-          <NavLink onClick={handleClick} to="/chats" label="chats" />
-          <NavLink onClick={handleClick} to="/navigation" label="navigation" />
-          <NavLink onClick={handleClick} to="/help" label="help" />
+          <NavLink onClick={handleClick} to="/" label={<HomeIcon />} />
+          <NavLink onClick={handleClick} to="/collection" label={<LibraryBooksIcon />} />
+          {/* <NavLink onClick={handleClick} to="/upload" label={<PublishIcon />} /> */}
+          <NavLink onClick={handleClick} to="/chats" label={<ChatIcon />} />
+          <NavLink onClick={handleClick} to="/navigation" label={<LocationOnIcon />} />
+          <NavLink onClick={handleClick} to="/help" label={<ErrorIcon />}/>
           {/* <NavLink onClick={handleClick} to="/profile" label="profile" /> */}
           {/* <NavLink label="|" /> */}
           {/* <NavLink onClick={handleLogoutClick} label="logout" /> */}
@@ -85,7 +92,7 @@ function HeaderMenu() {
             />
           ) : (
             user?.firstName[0] + user?.lastName[0]
-          )) || "Login"}
+          )) || "Sign in"}
         </button>
       </div>
     </header>

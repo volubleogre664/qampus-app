@@ -384,7 +384,7 @@ function Upload() {
         </form>
       </div>
       <div className="bullets">
-        <p className="list_tittle">Frequently asked questions</p>
+        {/* <p className="list_tittle">Frequently asked questions</p> */}
         <ul className="tilesWrap">
           {uploadBullets.map((item, i) => (
             <Bullet

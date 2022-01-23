@@ -25,7 +25,7 @@
   width: 100%;
   max-width: 670px;
   height: 100%;
-  background-color: rgb(252, 252, 252);
+  background-color: #fbfbfb;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -144,24 +144,28 @@
 
 .editProfile__mainFormInput {
   width: calc(100% - 12px);
-  font-size: 0.98rem;
+  /* font-size: 0.98rem;
   font-weight: 300;
   padding: 5px 8px;
   height: 25px;
   border: 2px solid rgb(161, 161, 161);
   transition: all ease-in 0.25s;
-  border-radius: 6px;
+  border-radius: 6px; */
+  font-size: 1rem;
+  padding: 5px;
+  height: 30px;
+  border-radius: 4px;
+  border: 2px solid rgb(194, 194, 194);
  }
 
-.editProfile__mainFormInput:hover {
+/* .editProfile__mainFormInput:hover {
   transition: color ease-in 0.2s;
   border-radius: 2px;
   border-color: rgb(125, 125, 125);
-}
+} */
 
 .editProfile__mainFormInput:focus {
   transition: color ease-in-out 0.2s;
-  border-radius: 2px;
   border: 2px solid #009bf6;
   outline: none;
 }
@@ -200,19 +204,29 @@
 }
 
 .editProfile__mainImage button:first-of-type {
-  align-self: flex-start;
+  /* align-self: flex-start; */
   text-align: center;
-  background-color: transparent;
   padding: 8px 20px;
-  margin-bottom: 6px;
+  /*margin-bottom: 6px;
   border-radius: 4px;
   transition: all ease-in-out 0.2s;
-  border: 1px solid rgb(161, 161, 161);
+  border: 1px solid rgb(161, 161, 161); */
+  font-size: 0.98rem;
+  font-weight: 300;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.27);
+  -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.27);
+  -moz-box-shadow: 4px 4px 8px rgba(146, 109, 109, 0.27);
+  background: #696969;
+  color: white;
+  transition: all ease-in-out 0.1s;
+  margin-bottom: 20px;
 }
 
 .editProfile__mainImage button:first-of-type:hover {
-  background-color: rgb(161, 161, 161);
-  border-radius: 2px;
+  background: rgb( 120, 120, 120);
   color: white;
 }
 

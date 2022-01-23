@@ -48,7 +48,7 @@
 }
 
 .home__logo .home__logoImg {
-  height: 55px;
+  height: 58px;
     -webkit-filter: drop-shadow(1px 2px 2px #000000);
   filter: drop-shadow(1px 3px 3px #000000);
 }
@@ -65,7 +65,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background: #fafafa;
+  background: #fff;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -83,7 +83,7 @@
   top: 5vh;
   width: 100px;
   height: fit-content;
-  background: #fafafa;
+  background: #fff;
   color: #333131;
   border-radius: 5px;
   padding-top: 5px;
@@ -257,8 +257,8 @@
   width: 55%;
   max-width: 700px;
   height: 35px;
-  padding: 3px 0px 3px 1.65px;
-  background: #00a8f3;
+  padding: 3px 0px 3px 3px;
+  background: #009bf6;
   display: flex;
   align-items: center;
   justify-content: left;
@@ -276,18 +276,18 @@
   border: #009bf6 solid 1px;
   outline: none;
   border-radius: 6.5px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   padding-left: 5px;
 }
 
 .home__searchInput:focus {
   transition: all ease-in-out 0.5s;
-  border: #34b1fa solid 1px;
+  border: #3db8ff solid 1px;
   /* border-radius: 1px 1px 1px 1px; */
   /* margin-left: 0.5px; */
 }
 .home__searchContainer:focus-within {
-  background: #34b1fa ;
+  background: #3db8ff;
 }
 
 .home__searchContainer > button {
@@ -370,34 +370,27 @@
   gap: 20px;
 }
 
-.btnBack {
-  border: none;
-  transition: all ease-in-out 0.2s;
-  background: #009bf6;
-  box-shadow: 12px 13px 13px 0 rgba(0, 0, 0), -2px -3px 3px rgba(87, 87, 87);
-  width: 45px;
-  text-align: center;
-  height: 45px;
+.heading > .btnBack {
+  display: flex;
+  justify-content: center;
+  place-items: center;
   color: #fff;
-  text-transform: uppercase;
-  font-weight: lighter;
-  font-size: 1.9em;
-  border-radius: 10px;
-  font-family: "Quicksand";
-  position: sticky;
-  /* top: 15px; */
-  -webkit-filter: drop-shadow(1px 1px 1px #000000);
-  filter: drop-shadow(1px 1px 1px #000000);
+  background-color: #009bf6;
+  width: 35px;
+  height: 35px;
+  border-radius:10px;
+  cursor: pointer;
+  box-shadow: none;
+  -webkit-filter: drop-shadow(1px 2px 2px #000000);
+  filter: drop-shadow(1px 2px 2px #000000);
+  margin-top: -100px;
 }
 
-.btnBack:hover {
-  transition: all ease-in-out 0.2s;
-  box-shadow: inset 0 0 7px rgba(255, 255, 255, 0.5),
-    0 0 7px rgba(255, 255, 255, 0.5);
-  outline-color: rgba(255, 255, 255, 0);
-  outline-offset: 15px;
-  text-shadow: 1px 1px 2px #427388;
-  border-radius: 5%;
+.heading > .btnBack:hover {
+  background-color: #61c5ff;
+  border-radius:10px;
+  box-shadow: none;
+
 }
 
 .reference {

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useForm } from "@utils/hooks";
-import logo from "./logo1.png";
+import logo from "../Login/logo_grey.png";
 import "./RegisterNew.css";
 
 function Register() {
@@ -135,7 +135,7 @@ function Register() {
 
               <footer className="login__footer">
                 <div>
-                  <p className="top_footer">&copy; Qampus 2021</p>
+                  <p className="top_footer">&copy; Qampus 2022</p>
                 </div>
 
                 <div>

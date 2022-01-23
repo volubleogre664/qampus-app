@@ -103,7 +103,7 @@ function Login() {
 
       <footer className="login__footer">
         <hr className="separator_footer" />
-        <p className="top_footer">Qampus &copy; 2020 | All Rights Reserved.</p>
+        <p className="top_footer">Qampus &copy; 2022 | All Rights Reserved.</p>
         <p className="bottom_footer">
           Developed by Nuclear Software (Pty) Ltd.
         </p>
