@@ -4,8 +4,10 @@ import { useMutation } from "@apollo/react-hooks";
 import { SearchOutlined } from "@material-ui/icons";
 import LogoutIcon from "@mui/icons-material/LogoutRounded";
 import LoginIcon from "@mui/icons-material/LoginRounded";
+import GridIcon from "@mui/icons-material/AppsRounded";
 import CancelIcon from "@material-ui/icons/CloseRounded";
 import ProfileIcon from "@mui/icons-material/ManageAccountsRounded";
+import { Link } from "react-router-dom";
 import MenuItem from "@components/MenuItem";
 import Book from "@components/Book";
 import Loader from "@components/Loader";
@@ -78,29 +80,24 @@ function Home({ history }) {
   };
 
   const handleLoginMenuClick = () => {
-    if (!user) {
-      history.push("/login");
-    } else {
-      popUpDialogue({
-        title: "Signing out!",
-        text: "Are you sure you want to sgin out?",
-        callback: () => {
-          dispatchUser({
-            type: "REMOVE_USER",
-          });
+    if (user) {
+      dispatchUser({
+        type: "REMOVE_USER",
+      });
 
-          dispatchMessages({
-            type: "CLEAR_MESSAGES",
-          });
-        },
+      dispatchMessages({
+        type: "CLEAR_MESSAGES",
       });
     }
+
+    history.push("/login");
   };
 
   const handleCloseMenuClick = () => {
     const menu = document.getElementById("login__menu");
     menu.classList.toggle("active");
   };
+
   const handleProfileMenuClick = () => {
     history.push("/profile");
   };
@@ -124,6 +121,13 @@ function Home({ history }) {
     <div className="home">
       {loading && <Loader message="Searching..." />}
       <div className="home__header">
+        <div className="home__links">
+          <Link href="/navigation">Navigation</Link>
+          <Link href="/upload">Upload</Link>
+        </div>
+        <div className="home__grid">
+          <GridIcon />
+        </div>
         <button
           id="avatar"
           className="home__avatar"
@@ -137,17 +141,24 @@ function Home({ history }) {
                 alt={`${user.firstName} ${user.lastName}`}
                 src={user.picture}
               />
-            )) || <PersonIcon className="avatarIcon" />}
+            )) || <PersonIcon className="avatarIcon"/>}
           </div>
           <span className="home__avatarName">
             {user?.firstName[0] + user?.lastName[0] || "Guest"}
           </span>
+        </button >
+
+        <button
+           id="login"
+           className="home__login"
+           onClick={handleLoginMenuClick}
+        >
+          {user ? <LogoutIcon /> : <LoginIcon />}
+          {user ? "Sign out" : "Sign in"}
         </button>
 
-        <div id="login__menu">
+        {/* <div id="login__menu">
           <section
-            id="menu_item"
-            className="profile_section"
             onClick={handleProfileMenuClick}
           >
             <ProfileIcon /> Profile
@@ -168,7 +179,7 @@ function Home({ history }) {
           >
             <CancelIcon /> Close
           </section>
-        </div>
+        </div> */}
       </div>
 
       <div className="home__searchSection">
@@ -250,7 +261,20 @@ function Home({ history }) {
           />
         </div>
       </div>
-
+      
+      <div className="recent__uploads">
+        <p className="title">Recent uploads</p>
+        <div className="home__books">
+          <Book/>
+          <Book/>
+          <Book/>
+          <Book/>
+          <Book/>
+          <Book/>
+          <Book/>
+          <Book/>
+        </div>
+      </div>
       <div
         className="home__searchResults"
         style={{ display: displays.results }}

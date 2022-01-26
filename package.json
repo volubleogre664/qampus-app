@@ -15,6 +15,7 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
+    "akar-icons": "^1.9.6",
     "apollo-link-context": "^1.0.20",
     "apollo-link-http": "^1.5.17",
     "compressorjs": "^1.0.7",
