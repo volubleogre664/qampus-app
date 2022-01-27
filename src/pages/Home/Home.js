@@ -125,7 +125,9 @@ function Home({ history }) {
           <Link href="/navigation">Navigation</Link>
           <Link href="/upload">Upload</Link>
         </div>
-        <div className="home__grid">
+        <div className="home__grid"
+          onClick={handleAvatarClick}
+        >
           <GridIcon />
         </div>
         <button
@@ -214,7 +216,7 @@ function Home({ history }) {
           </button>
         </form>
       </div>
-
+      
       <div className="home__menu" style={{ display: displays.menu }}>
         <div className="home__menuItems">
           <MenuItem
@@ -263,57 +265,79 @@ function Home({ history }) {
       </div>
       
      <div className="home__body">
-      <div className="recent__uploads">
-          <p className="title">Recent uploads</p>
-          <div className="home__books">
-            <Book/>
-            <Book/>
-            <Book/>
-            <Book/>
-            <Book/>
-            <Book/>
-            <Book/>
-            <Book/>
+        <div className="top__row">
+          <div className="recent__uploads">
+            <p className="caption">Recent uploads</p>
+            <div className="home__books">
+              <Book/>
+              <Book/>
+              <Book/>
+              <Book/>
+              <Book/>
+              <Book/>
+              <Book/>
+              <Book/>
+            </div>
+          </div>
+          
+          <div className="coming__soon">
+          <p className="caption">Coming soon</p>
+          </div>
+
+         
+        </div>
+        <div className="bottom__row">
+          <div class="card">
+            <h2>Bloemfontein</h2>
+            <h3>Cloudy<span>Wind 10km/h <span class="dot">•</span> Precip 0%</span></h3>
+            <h1>23°</h1>
+            <div class="sky">
+                <div class="sun"></div>
+                <div class="cloud">
+                    <div class="circle-small"></div>
+                    <div class="circle-tall"></div>
+                    <div class="circle-medium"></div>
+                </div>
+            </div>
+            <table>
+                <tr>
+                    <td>TUE</td>
+                    <td>WED</td>
+                    <td>THU</td>
+                    <td>FRI</td>
+                    <td>SAT</td>
+                </tr>
+                <tr>
+                    <td>30°</td>
+                    <td>34°</td>
+                    <td>36°</td>
+                    <td>34°</td>
+                    <td>37°</td>
+                </tr>
+                <tr>
+                    <td>17°</td>
+                    <td>22°</td>
+                    <td>19°</td>
+                    <td>23°</td>
+                    <td>19°</td>
+                </tr>
+            </table>
+          </div>
+
+          <div className="book__requests">
+            <p className="caption">Book requests</p>
+          </div>
+
+          <div className="recommended__reads">
+            <p className="caption">Recommended reads</p>
           </div>
         </div>
+  
 
-        <div class="card">
+      
 
-          <h2>Bloemfontein</h2>
-          <h3>Cloudy<span>Wind 10km/h <span class="dot">•</span> Precip 0%</span></h3>
-          <h1>23°</h1>
-          <div class="sky">
-              <div class="sun"></div>
-              <div class="cloud">
-                  <div class="circle-small"></div>
-                  <div class="circle-tall"></div>
-                  <div class="circle-medium"></div>
-              </div>
-          </div>
-          <table>
-              <tr>
-                  <td>TUE</td>
-                  <td>WED</td>
-                  <td>THU</td>
-                  <td>FRI</td>
-                  <td>SAT</td>
-              </tr>
-              <tr>
-                  <td>30°</td>
-                  <td>34°</td>
-                  <td>36°</td>
-                  <td>34°</td>
-                  <td>37°</td>
-              </tr>
-              <tr>
-                  <td>17°</td>
-                  <td>22°</td>
-                  <td>19°</td>
-                  <td>23°</td>
-                  <td>19°</td>
-              </tr>
-          </table>
-      </div>
+
+        
      </div>
 
       <div
