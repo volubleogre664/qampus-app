@@ -3,7 +3,7 @@
   background: #fff;
   position: relative;
   overflow: hidden;
-  height: 219px;
+  height: fit-content;
   border-radius: 10px;
   -webkit-filter: drop-shadow(1px 2px 2px #00000081);
   filter: drop-shadow(1px 2px 2px #00000081);
@@ -94,12 +94,11 @@
 
 .book__footer {
   display: flex;
-  gap: 10px;
+  /* gap: 10px; */
   align-items: center;
-  padding: 10px;
+  padding-left: 10px;
   box-sizing: border-box;
   width: 100%;
-  display: none;
 }
 
 .book__footerLeft h4 {
@@ -113,13 +112,15 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
+  display: none;
+
 }
 
 .book__footerLeft p {
   color: #000;
   font-family: "Poppins";
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 200;
 }
 
 .book__footerRight {
@@ -135,6 +136,7 @@
   font-size: 1.7rem;
   color: #000;
   cursor: pointer;
+  display: none;
 }
 
 .book__footerRight span .MuiSvgIcon-root:hover {
