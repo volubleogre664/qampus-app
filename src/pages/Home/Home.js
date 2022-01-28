@@ -6,6 +6,16 @@ import LogoutIcon from "@mui/icons-material/LogoutRounded";
 import LoginIcon from "@mui/icons-material/LoginRounded";
 import GridIcon from "@mui/icons-material/AppsRounded";
 import CancelIcon from "@material-ui/icons/CloseRounded";
+import PhoneIphoneRoundedIcon from '@mui/icons-material/PhoneIphoneRounded';
+import HailRoundedIcon from '@mui/icons-material/HailRounded';
+import ShoppingBagRoundedIcon from '@mui/icons-material/ShoppingBagRounded';
+import FormatQuoteRoundedIcon from '@mui/icons-material/FormatQuoteRounded';
+import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded';
+import AutoStoriesRoundedIcon from '@mui/icons-material/AutoStoriesRounded';
+import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import { PieChart } from 'react-minimal-pie-chart';
+import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
 import ProfileIcon from "@mui/icons-material/ManageAccountsRounded";
 import { Link } from "react-router-dom";
 import MenuItem from "@components/MenuItem";
@@ -267,7 +277,10 @@ function Home({ history }) {
      <div className="home__body">
         <div className="top__row">
           <div className="recent__uploads">
-            <p className="caption">Recent uploads</p>
+            <div className="card__header">
+              <p className="caption">Recent uploads</p>
+              <RefreshRoundedIcon className="card__header__icon"/>
+            </div>
             <div className="home__books">
               <Book/>
               <Book/>
@@ -281,12 +294,19 @@ function Home({ history }) {
           </div>
           
           <div className="coming__soon">
-          <p className="caption">Coming soon</p>
+            <p className="caption">Coming soon</p>
+              <ul className="home__list">
+                <li><PhoneIphoneRoundedIcon className="list__icon"/><p>Mobile app for iOS and Android devices.</p></li>
+                <li><HailRoundedIcon className="list__icon"/><p>A new feature that will transform the way you travel.</p></li>
+                <li><ShoppingBagRoundedIcon className="list__icon"/><p>The perfect platform to sell everything.</p></li>
+              </ul>
           </div>
 
-         
+
         </div>
         <div className="bottom__row">
+        
+          
           <div class="card">
             <h2>Bloemfontein</h2>
             <h3>Cloudy<span>Wind 10km/h <span class="dot">•</span> Precip 0%</span></h3>
@@ -325,11 +345,52 @@ function Home({ history }) {
           </div>
 
           <div className="book__requests">
-            <p className="caption">Book requests</p>
+            <div className="card__header">
+            < p className="caption">Book requests</p>
+                <AddRoundedIcon className="card__header__icon"/>
+            </div>
+              <div className="home__graph">
+                <ul className="home__list">
+                  <li><BarChartRoundedIcon className="first__icon"/><p>Information Systems in a Business Environment</p></li>
+                  <li><BarChartRoundedIcon className="second__icon"/><p>Business Functions</p></li>
+                  <li><BarChartRoundedIcon className="third__icon"/><p>Digital Marketing</p></li>
+                  <li><BarChartRoundedIcon className="fourth__icon"/><p>Other</p></li>
+                </ul>
+                <PieChart
+                  data={[
+                    { title: 'First', value: 45, color: '#2e4682'},
+                    { title: 'Two', value: 25, color: '#627fac' },
+                    { title: 'Three', value: 20, color: '#8ebdf8' },
+                    { title: 'Other', value: 10, color: '#b3daff' },
+                  ]}
+                  className="book__chart"
+                />
+              </div>
           </div>
-
+          <div className="daily__qoutes">
+            <p className="caption">Daily quotes</p>
+            <ul className="home__list">
+              <li><FormatQuoteRoundedIcon className="list__icon"/><p> The meaning of life is to give life meaning.<br/>
+              - Viktor Frankl</p></li>
+              <li><FormatQuoteRoundedIcon className="list__icon"/><p>To be trusted is a greater complment than being loved.<br/>
+                - George Mcdonald</p></li>
+            </ul>
+            {/* <p className="quote__text">
+              "To be trusted is a greater complment than being loved."<br/>
+              - George Mcdonald
+            </p>
+            <p className="quote__text">
+              "The meaning of life is to give life meaning."<br/>
+              - Viktor Frankl
+            </p> */}
+          </div>
           <div className="recommended__reads">
             <p className="caption">Recommended reads</p>
+            <ul className="home__list">
+              <li><AutoStoriesRoundedIcon className="list__icon"/><p>The 80/20 Principle: The Secret of Achieving More With Less<br/> by Richard Koch</p></li>
+              <li><AutoStoriesRoundedIcon className="list__icon"/><p>The Art of Creative Thinking: How to Be Innovative and Develop Great Ideas<br/> by John Adair</p></li>
+              <li><AutoStoriesRoundedIcon className="list__icon"/><p>The Psychology of Money: Timeless lessons on wealth, greed, and happiness <br/> by Morgan Housel</p></li>
+            </ul>
           </div>
         </div>
   
