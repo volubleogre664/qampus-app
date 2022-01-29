@@ -1,38 +1,42 @@
-import { useState, useEffect, useLayoutEffect, useRef } from "react";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import SearchIcon from "@material-ui/icons/Search";
-import PersonIcon from "@material-ui/icons/Person";
-import AttachFileIcon from "@mui/icons-material/AttachFile";
+import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
+import SendIcon from "@mui/icons-material/Send";
+import SearchIcon from "@mui/icons-material/Search";
+import AttachIcon from "@mui/icons-material/AttachFile";
 import EmojiIcon from "@mui/icons-material/EmojiEmotions";
-import Picker from "emoji-picker-react";
-
+import ChatIcon from "@mui/icons-material/Chat";
+import BackIcon from "@mui/icons-material/ArrowBack";
 import { useMutation, useLazyQuery } from "@apollo/react-hooks";
+import Picker from "emoji-picker-react";
+import personIcon from "@components/Contact/profile.png";
 
 import Contact from "@components/Contact";
-import Message from "@components/Message";
-
 import { ADD_MESSAGE, GET_MESSAGES_QUERY, GET_USER_DATA } from "@utils/graphql";
 import {
-  useBooksSlice,
-  useMessagesSlice,
   useUserSlice,
+  useMessagesSlice,
+  useBooksSlice,
 } from "@redux/getSlices.js";
 
 import "./Chats.css";
+import Message from "@components/Message";
 
-function Chats() {
+function NewChats() {
+  const [{ user }, userDispatch] = useUserSlice();
   const [textMsg, setMsg] = useState("");
-  const [height, setHeight] = useState(0); //Height given to the chats main and sidebar
-  const [windowHeight, setWindowHeigt] = useState(window.innerHeight); //Keeps track of screen height
   const [messages, messageDispatch] = useMessagesSlice();
   const [currentContact, setCurrentContact] = useState(null);
-  const [{ user }, userDispatch] = useUserSlice();
   const [{ searchBookList }] = useBooksSlice();
   const [book, setBook] = useState({});
   const [emoji, setEmoji] = useState(false);
+  const [chatClick, setChatClick] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const inputRef = useRef(null);
+  const attachRef = useRef(null); //keeps track of changes in screen height
 
-  window.onresize = () => setWindowHeigt(window.innerHeight); //keeps track of changes in screen height
+  window.onresize = () => {
+    setScreenWidth(window.innerWidth);
+    if (window.innerWidth > 670) setChatClick(false);
+  };
 
   // Updates the textMsg hook
   const handleChange = (e) => setMsg(e.target.value);
@@ -116,26 +120,24 @@ function Chats() {
             payload: item,
           });
 
-          let chatsDiv = document.querySelector(".chats__mainBody");
+          let chatsDiv = document.querySelector(".chats__mainSectionBody");
           chatsDiv.scrollTop = chatsDiv.scrollHeight;
         }
       });
     },
     onError(err) {
-      console.log(err);
+      console.log(err.graphQLErrors);
     },
   });
 
   // Handles clicking each contact
   const handleContactClick = (contact) => {
+    if (screenWidth < 670) {
+      setChatClick(!chatClick);
+    }
+
     // Change the current selected contact
     setCurrentContact(contact);
-
-    // Handling the closing and opening of the chats main
-    if (window.innerWidth <= 550) {
-      document.querySelector(".chats__sidebar").classList.toggle("fadeOut");
-      document.querySelector(".chats__main").classList.toggle("opening");
-    }
 
     // Get messages for the newly selected contact
     // messagesLength ensures that the current number of messages between user and current contact
@@ -166,17 +168,8 @@ function Chats() {
 
   // For closing the chats
   const closeChats = () => {
-    if (window.innerWidth > 550) return;
-
-    document.querySelector(".chats__main").classList.toggle("opening");
-    document.querySelector(".chats__sidebar").classList.toggle("fadeOut");
+    if (screenWidth < 670) setChatClick(!chatClick);
   };
-
-  // Fix inconsistent CSS with the sidebar and main heights
-  useLayoutEffect(() => {
-    const header = document.querySelector(".app > .header");
-    setHeight(windowHeight - header.clientHeight - 15);
-  }, [setHeight, windowHeight]);
 
   // Runs only once on component render and never runs again
   // Here we set currentContact to the first contact in your list and get the data
@@ -226,125 +219,147 @@ function Chats() {
     getUserData({ variables: { id: bookOwner } });
   }, [searchBookList, setBook, getUserData, user]);
 
-  // HANDLE ATTACHMENT
-  const handleAttachment = (e) => {
-    const file = e.target.files[0];
-    // todo: Send file to server
-  };
-  const showFile = () => {
-    document.querySelector(".custom__file__input").click();
+  // TODO: HANDLE ATTACHMENT
+  // const handleAttachment = (e) => {
+  //   const file = e.target.files[0];
+  //   // todo: Send file to server
+  // };
+
+  const getLastMsg = (contact) => {
+    for (let i = messages.length - 1; i > 0; i--) {
+      if (
+        (user.id === messages[i].from && contact.id === messages[i].to) ||
+        contact.id === messages[i].from
+      ) {
+        return {
+          lastMsg: messages[i].textMsg,
+          time: messages[i].time,
+        };
+      }
+    }
   };
 
-  // The whole chats page below
+  // Fixing some css inconsistencies
+  useLayoutEffect(() => {
+    var padding = 15;
+
+    if (screenWidth > 670) padding = 40;
+    else if (screenWidth > 400) padding = 25;
+
+    let chatsHeader = document.querySelector(".chats__header");
+    let mainHeader = document.querySelector(".app > .header");
+    let searchContainer = document.querySelector(
+      ".chats__mainAside .searchContainer"
+    );
+
+    document.querySelector(".chats__mainSection").style.height =
+      String(
+        window.innerHeight -
+          padding -
+          chatsHeader.clientHeight -
+          mainHeader.clientHeight
+      ) + "px";
+
+    document.querySelector(".chats__mainAside").style.height =
+      String(
+        window.innerHeight -
+          padding -
+          mainHeader.clientHeight -
+          searchContainer.clientHeight
+      ) + "px";
+  }, [screenWidth]);
+
   return (
-    <div className='chats'>
-      <aside className='chats__sidebar' style={{ height: height + "px" }}>
-        <div className='chats__sidebarHeader'>
-          <p>My chats</p>
-          <br />
-        </div>
+    <section className="chats">
+      <header className="chats__header">
+        <h2 className={`${chatClick && "chatsOpen"}`}>
+          <ChatIcon />
+          Messages
+        </h2>
+        <div className={`${chatClick && "chatsOpen"}`}>
+          <button onClick={() => closeChats()}>
+            {screenWidth < 670 && <BackIcon />}
+            <span className="contact__iconContainer">
+              <img
+                className="contact__icon"
+                loading="eager"
+                src={
+                  currentContact?.picture?.length > 0
+                    ? currentContact?.picture
+                    : personIcon
+                }
+                alt={[currentContact?.firstName, currentContact?.lastName].join(
+                  " "
+                )}
+              />
+            </span>
+          </button>
 
-        <div className='chats__sidebarBody'>
-          <div className='search__container'>
-            <input className='search__input' placeholder='' />
-            <SearchIcon />
+          <p>
+            {[currentContact?.firstName, currentContact?.lastName].join(" ")}
+          </p>
+        </div>
+      </header>
+
+      <section className="chats__main">
+        <aside className="chats__mainAside">
+          <div className="searchContainer">
+            <SearchIcon />{" "}
+            <input placeholder="Search for contact" type="text" />
           </div>
 
-          <div className='contactSection'>
+          <div className="contactsContainer">
             {user?.contacts &&
               user.contacts.map((contact, i) => (
                 <Contact
                   onClick={() => handleContactClick(contact)}
                   key={contact?.id + i}
                   contact={contact}
+                  lastMsg={getLastMsg(contact)}
+                  current={currentContact}
                 />
               ))}
           </div>
-        </div>
+        </aside>
 
-        <div className='chats__sidebarFooter'>
-          <span className='text'>Find a study buddy</span>
-          <ArrowForwardIosIcon />
-        </div>
-      </aside>
+        <main className={`chats__mainSection ${chatClick && "chatsOpen"}`}>
+          {/* <header className="chats__mainSectionHeader">Main Header</header> */}
+          <main className="chats__mainSectionBody">
+            {messages
+              .filter(
+                (msg) =>
+                  (msg.from === user?.id && msg.to === currentContact?.id) ||
+                  (msg.from === currentContact?.id && msg.to === user?.id)
+              )
+              .map((msg) => (
+                <Message key={msg?.id} from={user?.id} msg={msg} />
+              ))}
+          </main>
 
-      <main className='chats__main' style={{ height: height + "px" }}>
-        <header className='chats__mainHeader'>
-          <div className='left' onClick={closeChats}>
-            <span className='iconContainer'>
-              {(currentContact?.picture && (
-                <img
-                  className='iconContainer__image'
-                  src={currentContact?.picture || ""}
-                  alt={[
-                    currentContact?.firstName,
-                    currentContact?.lastName,
-                  ].join(" ")}
-                />
-              )) || <PersonIcon />}
-            </span>
-            <span className='name'>{currentContact?.firstName || "Name"}</span>
-          </div>
-
-          <div className='right'>
-            <label className='online__status'>Offline</label>
-            <label className='last__seen'>Last seen: Now</label>
-          </div>
-        </header>
-
-        <div className='chats__mainBody'>
-          {messages
-            .filter(
-              (msg) =>
-                (msg.from === user?.id && msg.to === currentContact?.id) ||
-                (msg.from === currentContact?.id && msg.to === user?.id)
-            )
-            .map((msg) => (
-              <Message key={msg?.id} from={user?.id} msg={msg} />
-            ))}
-        </div>
-
-        <footer className='chats__mainFooter'>
-          {emoji && <Picker onEmojiClick={handleEmojiClick} />}
-          <form onSubmit={onSubmit}>
-            <button
-              className='btnEmoji'
-              onClick={(e) => {
-                e.preventDefault();
-                setEmoji(!emoji);
-              }}
-            >
-              <EmojiIcon />
-            </button>
-
-            <button onClick={showFile}>
-              <AttachFileIcon />
-            </button>
-            <input
-              type='file'
-              className='custom__file__input'
-              accept='.jpg, .jpeg, .png, .pdf'
-              onChange={handleAttachment}
-              style={{ display: "none" }}
-            />
-
-            <input
-              placeholder=''
-              className='sendMsgInput'
-              value={textMsg}
-              ref={inputRef}
-              onChange={handleChange}
-              // onFocus={() => setEmoji(false)}
-            />
-
-            <button className='btnSend' type='submit'>
-              <i className='fas fa-paper-plane'></i>
-            </button>
-          </form>
-        </footer>
-      </main>
-    </div>
+          <footer className="chats__mainSectionFooter">
+            {emoji && <Picker onEmojiClick={handleEmojiClick} />}
+            <div className="msgInputContainer">
+              <button onClick={() => setEmoji(!emoji)} className="emojiIcon">
+                <EmojiIcon />
+              </button>
+              <input
+                placeholder="Type a message"
+                onChange={handleChange}
+                value={textMsg}
+                type="text"
+              />
+              <button ref={attachRef} className="attachIcon">
+                <AttachIcon />
+              </button>
+              <button onClick={onSubmit} className="sendIcon">
+                <SendIcon />
+              </button>
+            </div>
+          </footer>
+        </main>
+      </section>
+    </section>
   );
 }
 
-export default Chats;
+export default NewChats;

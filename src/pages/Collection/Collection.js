@@ -10,6 +10,8 @@ import EditBook from "@components/EditBook";
 
 import { useBooksSlice, useUserSlice } from "@redux/getSlices.js";
 import popUpDialogue from "@utils/popUp.js";
+
+import firebaseApp from "firebase/app";
 import "./Collection.css";
 
 function Collection() {
@@ -22,6 +24,7 @@ function Collection() {
   ] = useUserSlice();
   const [edit, setEdit] = useState(false);
   const [book, setBook] = useState({ id: null, title: null, price: null });
+  const firebaseRef = firebaseApp.app().storage();
 
   // TODO: Deal with the book component
   // Something is annoying
@@ -44,6 +47,14 @@ function Collection() {
 
   const [deleteBook] = useMutation(DELETE_BOOK, {
     onCompleted(data) {
+      let book = books.find((item) => item.id === data.deleteBook);
+
+      firebaseRef
+        .ref(`${bookOwner}/books/${book.title.replace(/ /g, "_")}.jpg`)
+        .delete()
+        .then(() => console.log("Book deleted successfully"))
+        .catch((err) => console.log("Error encountered", err));
+
       dispatchBook({
         type: "DELETE_LIBRARY_BOOK",
         payload: data.deleteBook,
@@ -55,7 +66,9 @@ function Collection() {
         buttons: "okay",
       });
     },
-    onError() {
+    onError(err) {
+      console.log(err?.message);
+
       popUpDialogue({
         icon: "warning",
         title: "Book Not Deleted!",

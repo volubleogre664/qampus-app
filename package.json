@@ -20,7 +20,7 @@
     "compressorjs": "^1.0.7",
     "dayjs": "^1.10.4",
     "emoji-picker-react": "^3.4.8",
-    "firebase": "^8.6.0",
+    "firebase": "^10.1.0",
     "google-maps-react": "^2.0.6",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.12.3",

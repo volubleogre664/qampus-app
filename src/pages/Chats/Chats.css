@@ -1,26 +1,250 @@
-/* I set the app to be display flex. so here no longer set width and height
-   flex: 1; does that for us. */
 .chats {
   flex: 1;
-  height: 100%;
   display: flex;
-  gap: 10px;
-  box-sizing: border-box !important;
-  align-items: center;
-  margin: 0 15px;
-  margin-bottom: 15px;
-  position: relative;
-  overflow: hidden;
+  flex-direction: column;
   box-sizing: border-box;
+  background: rgb(149, 157, 165);
+  background: linear-gradient(
+    to top,
+    rgba(149, 157, 165, 0.2) 0%,
+    rgba(255, 255, 255, 0.5578606442577031) 84%
+  );
 }
 
-@import "./ChatsSidebar.css";
+.chats * {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
 
-@import "./ChatsMain.css";
+.chats__header {
+  margin: 0 20px;
+  padding-bottom: 10px;
+  display: flex;
+  border-bottom: 1px solid #e4e1f0;
+}
 
-@media screen and (max-width: 550px) {
-  .chats {
-    margin: 0 10px;
+.chats__header h2 {
+  width: 100%;
+  color: #009bf6;
+  font-size: 1.1rem;
+  font-weight: 700;
+  gap: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chats__header div {
+  flex: 1;
+  gap: 15px;
+  align-items: center;
+  display: none;
+}
+
+.chats__header div button {
+  display: flex;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  background: transparent;
+}
+
+.chats__header div button .contact__iconContainer {
+  width: 35px !important;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 50%;
+  height: fit-content;
+  background-color: rgb(214, 214, 214);
+}
+
+.chats__header div button .contact__iconContainer .contact__icon {
+  width: 100%;
+  object-fit: contain;
+}
+
+.chats__header div.chatsOpen {
+  display: flex;
+}
+
+.chats__header h2.chatsOpen {
+  display: none;
+}
+
+.chats__header p {
+  color: rgb(63, 63, 63);
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+
+.chats__main {
+  flex: 1;
+  margin: 0;
+  display: flex;
+  margin-bottom: 0;
+  border-radius: 10px;
+  position: relative;
+  background-color: rgb(253, 253, 253);
+  box-shadow: rgba(149, 157, 165, 0.07) 0px 8px 20px;
+}
+
+.chats__mainAside {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+}
+
+.chats__mainAside .searchContainer {
+  display: flex;
+  align-items: center;
+  background-color: #f8f6ff;
+  padding: 15px;
+  gap: 10px;
+  overflow: hidden;
+  margin: 10px 30px;
+  border-radius: 20px;
+}
+
+.chats__mainAside .searchContainer input {
+  flex: 1;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: rgb(63, 63, 63);
+  caret-color: rgb(63, 63, 63);
+  background-color: transparent;
+}
+
+.chats__mainAside .contactsContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+.chats__mainSection {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  position: absolute;
+  top: 0;
+  left: 100vw;
+  z-index: 2;
+  padding-top: 15px;
+  transition: all ease-in 0.25s;
+  background-color: rgb(253, 253, 253);
+}
+
+.chats__mainSection.chatsOpen {
+  left: 0;
+}
+
+.chats__mainSectionBody {
+  flex: 1;
+  padding: 0 15px;
+  display: flex;
+  overflow-y: scroll !important;
+  flex-direction: column;
+}
+
+/* The footer of the chats with input fields */
+.chats__mainSectionFooter {
+  width: 100%;
+  padding: 10px;
+  position: relative;
+}
+
+/* Where all the buttons of chats are mate */
+.msgInputContainer {
+  width: 100%;
+  gap: 10px;
+  display: flex;
+  padding: 10px;
+  border-radius: 15px;
+  align-items: center;
+  background-color: #efecfb;
+}
+
+.msgInputContainer input {
+  flex: 1;
+
+  min-width: 200px !important;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: rgb(63, 63, 63);
+  caret-color: rgb(63, 63, 63);
+  background-color: transparent;
+}
+
+.msgInputContainer button {
+  border: none;
+  color: rgb(63, 63, 63);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  width: 20px;
+  height: 20px;
+  margin-bottom: 4px;
+  transition: all ease-in 0.18s;
+}
+
+.msgInputContainer button:hover {
+  transform: scale(1.2);
+}
+
+@media screen and (min-width: 400px) {
+  .chat {
+    padding-bottom: 20px;
+  }
+
+  .chats__main {
+    margin: 10px 20px;
   }
 }
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkNoYXRzLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTsrQkFDK0I7QUFDL0I7RUFDRSxPQUFPO0VBQ1AsWUFBWTtFQUNaLGFBQWE7RUFDYixpQ0FBaUM7RUFDakMsbUJBQW1CO0VBQ25CLGNBQWM7RUFDZCxtQkFBbUI7RUFDbkIsa0JBQWtCO0VBQ2xCLGdCQUFnQjtFQUNoQixzQkFBc0I7QUFDeEI7O0FBRUEsNEJBQTRCOztBQUU1Qix5QkFBeUI7O0FBRXpCO0VBQ0U7SUFDRSxjQUFjO0VBQ2hCO0FBQ0YiLCJmaWxlIjoiQ2hhdHMuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyogSSBzZXQgdGhlIGFwcCB0byBiZSBkaXNwbGF5IGZsZXguIHNvIGhlcmUgbm8gbG9uZ2VyIHNldCB3aWR0aCBhbmQgaGVpZ2h0XG4gICBmbGV4OiAxOyBkb2VzIHRoYXQgZm9yIHVzLiAqL1xuLmNoYXRzIHtcbiAgZmxleDogMTtcbiAgaGVpZ2h0OiAxMDAlO1xuICBkaXNwbGF5OiBmbGV4O1xuICBib3gtc2l6aW5nOiBib3JkZXItYm94ICFpbXBvcnRhbnQ7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIG1hcmdpbjogMCAxNXB4O1xuICBtYXJnaW4tYm90dG9tOiAxNXB4O1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG59XG5cbkBpbXBvcnQgXCIuL0NoYXRzU2lkZWJhci5jc3NcIjtcblxuQGltcG9ydCBcIi4vQ2hhdHNNYWluLmNzc1wiO1xuXG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA1NTBweCkge1xuICAuY2hhdHMge1xuICAgIG1hcmdpbjogMCAxMHB4O1xuICB9XG59XG4iXX0= */
+
+@media screen and (min-width: 500px) {
+  .chats__main {
+    margin: 10px 50px;
+  }
+}
+
+@media screen and (min-width: 670px) {
+  .chats__header {
+    gap: 15px;
+  }
+
+  .chats__header h2 {
+    flex: 0.4;
+    min-width: 300px;
+    max-width: 450px;
+  }
+
+  .chats__header div {
+    display: flex;
+  }
+
+  .chats__main {
+    margin: 20px;
+  }
+
+  .chats__mainAside {
+    flex: 0.4;
+    min-width: 300px;
+    max-width: 450px;
+  }
+
+  .chats__mainSection {
+    width: unset;
+    flex: 1;
+    border-left: 1px solid #e4e1f0;
+    position: unset;
+  }
+}

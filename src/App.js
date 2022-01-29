@@ -3,15 +3,12 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase/app";
 import { io } from "socket.io-client";
 import Home from "@pages/Home/Home.js";
-import Chats from "@pages/Chats/Chats.js";
 import Profile from "@pages/Profile/Profile.js";
 import FinaliseRegister from "@pages/Register/FinaliseRegister.js";
 
-// import Register from "@pages/Register/Register.js";
-// import Login from "@pages/Login/Login.js";
-
-import NewRegister from "@pages/Register/RegisterNew.js";
-import NewLogin from "@pages/Login/LoginNew.js";
+import NewChats from "@pages/Chats/Chats.js";
+import NewRegister from "@pages/Register/Register.js";
+import NewLogin from "@pages/Login/Login.js";
 import NewProfile from "@pages/Profile/NewProfile.js";
 import EditProfile from "@pages/Profile/EditProfile.js";
 
@@ -105,7 +102,7 @@ function App() {
 
           <PrivateRoute exact path="/chats*">
             <HeaderMenu />
-            <Chats />
+            <NewChats />
           </PrivateRoute>
 
           <PrivateRoute exact path="/upload">

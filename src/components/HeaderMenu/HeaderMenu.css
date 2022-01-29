@@ -12,7 +12,7 @@
   width: 100%;
   background: #fff;
   padding: 10px 20px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   box-sizing: border-box;
   position: relative;
   border-bottom: 2px solid #009bf6;
@@ -83,7 +83,7 @@
   top: -241px;
   padding: 0;
   z-index: -2;
-  opacity: 0;
+  /* opacity: 0; */
   box-shadow: -1px 15px 77px -23px rgba(0, 0, 0, 0.6);
 }
 
@@ -92,8 +92,6 @@
   left: 0;
   opacity: 1;
   top: calc(100% + 2px);
-  /* display: grid; */
-  place-items: center;
 }
 
 .nav__links {

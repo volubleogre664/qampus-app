@@ -6,7 +6,7 @@ import { useUserSlice } from "@redux/getSlices.js";
 import { useForm } from "@utils/hooks.js";
 import { LOGIN_USER } from "@utils/graphql.js";
 import logo from "./logo1.png";
-import "./LoginNew.css";
+import "./Login.css";
 
 function Login() {
   const history = useHistory();
