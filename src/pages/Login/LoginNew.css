@@ -71,18 +71,18 @@
   height: fit-content !important;
   cursor: pointer;
   margin: auto;
-  margin-bottom: 80px;
+  margin-bottom: 60px;
 }
 
 .login__main > section > div> .logoContainer > h2 {
   color: rgba(0, 155, 246, 0.8);
-  font-weight: 700;
-  font-size: 1.7rem;
-  /* filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2)); */
+  font-weight: 500;
+  font-size: 2.1rem;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
 }
 
 .loginLogo {
-  min-width: 2.5rem;
+  min-width: 3rem;
   object-fit: contain;
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
 }
@@ -175,6 +175,7 @@
 }
 
 .login__mainFormButton:hover {
+  background-color: #27b0ff;
   transition: all ease-in 0.2s;
   border:none;
   box-shadow: 1px 1px px rgba(0, 0, 0, 0.27);

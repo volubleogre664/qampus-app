@@ -15,17 +15,20 @@
 }
 
 .home__header {
-  width: 95%;
+  min-width: 98%;
+  width: 98%;
   display: flex;
   justify-content: flex-end;
   margin: auto;
-  margin-top: 2vh;
+  margin-top: 2vh ;
 }
+
+
 
 .home__logo {
   width: 100%;
   height: 100%;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -90,7 +93,7 @@
 .home__grid:hover{
   /* box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
   border-color: rgba(223,225,229,0); */
-  color: #009bf6;
+  background: #1faafb;
   cursor: pointer;
 }
 
@@ -286,7 +289,7 @@
   margin: 0 auto;
   font-family: "Poppins", sans-serif;
   font-weight: 200;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -295,6 +298,8 @@
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  margin-top: 40px;
+  margin-bottom: 15px;
 }
 
 .home__searchContainer {
@@ -303,12 +308,12 @@
   width: 55%;
   max-width: 630px;
   height: 35px;
-  padding: 3px 0px 3px 3px;
+  padding: 2px;
   background: #009bf6;
   display: flex;
   align-items: center;
   justify-content: left;
-  border-radius: 8px;
+  border-radius: 6px;
   transition: all ease-in-out 0.2s;
   -webkit-filter: drop-shadow(0px 1px 1px #5d5d5d2d);
   filter: drop-shadow(0px 1px 1px #5d5d5d2d);
@@ -323,7 +328,7 @@
   font-weight: 300;
   border: #009bf6 solid 1px;
   outline: none;
-  border-radius: 6.5px;
+  border-radius: 5px;
   font-size: 1rem;
   padding-left: 5px;
 }
@@ -407,6 +412,8 @@
   flex-direction: column;
   align-items:flex-start;
   justify-content: center;
+  place-items: center;
+  text-align: center;
   width: 60%; 
   min-height: 260px;
   height: fit-content;
@@ -420,6 +427,7 @@
   gap: 15px;
   box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
   border-color: rgba(223,225,229,0);
+  background: #fff;
 }
 .card__header{
   display: flex;
@@ -429,6 +437,7 @@
   margin-top:0 ;
   margin-bottom:0 ;
 }
+
 .card__header .card__header__icon{
   color: #414141;
   box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
@@ -437,14 +446,16 @@
   padding: 3px;
   transition: ease-in-out 0.1s;
 }
+
 .card__header .card__header__icon:hover{
   color: rgb(0, 185, 0);
   /* color:#009bf6; */
   cursor: pointer;
 }
+
 .caption {
   font-weight: 300;
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-family: "Poppins";
   width: 95%;
   margin: auto;
@@ -461,6 +472,7 @@
 .coming__soon{
   display: flex;
   flex-direction: column;
+  background: #fff;
   width: 250px;
   min-height: 260px;
   height: fit-content;
@@ -497,6 +509,7 @@
   border-radius: 10px;
   box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
   border-color: rgba(223,225,229,0);
+  background: #fff;
 }
 
 .daily__qoutes .quote__text{
@@ -515,13 +528,12 @@
   margin-top: 0;
   width: 35%;
   height: 300px;
-  padding: 20px;
-  padding-top: 15px;
-  padding-bottom: 10px;
+  padding: 10px;
+  padding-left: 20px;
   border-radius: 10px;
   box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
   border-color: rgba(223,225,229,0);
-
+  background: #fff;
 }
 
 .home__graph{
@@ -563,7 +575,7 @@
   border-radius: 10px;
   box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
   border-color: rgba(223,225,229,0);
-
+  background: #fff;
 }
 .recommended__reads .coming__soon_list li{
   gap: 15px;
@@ -575,10 +587,13 @@
 
 .home__books{
   display: flex;
-  width: 95%;
+  width: 97%;
   margin: auto;
   margin-top: 0;
   gap: 15px;
+  overflow: hidden;
+  padding: 10px;
+  padding-top: 0px;
 }
 
 .home__menuItems {
@@ -688,14 +703,9 @@
   text-shadow: 0px 1px 1px #009bf6 !important;
 }
 
-@media screen and (max-width: 1900px) {
-  .home__header {
-    width: 80%;
-  }
-}
-@media screen and (max-width: 1500px) {
-  .home__header {
-    width: 90%;
+@media screen and (max-width: 1920px) {
+  .home__body{
+    width: 98%;
   }
 }
 

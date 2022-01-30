@@ -3,6 +3,7 @@ import MenuIcon from "@material-ui/icons/MenuRounded";
 import CloseIcon from "@material-ui/icons/CloseRounded";
 import ChatIcon from "@material-ui/icons/ChatRounded";
 import PublishIcon from "@material-ui/icons/PublishRounded";
+import LoginIcon from "@mui/icons-material/LoginRounded";
 import UploadRoundedIcon from '@mui/icons-material/UploadRounded';
 import LibraryBooksIcon from "@material-ui/icons/BookRounded";
 import LocationOnIcon from "@material-ui/icons/LocationOnRounded";
@@ -66,12 +67,12 @@ function HeaderMenu() {
 
       <nav className="header__nav">
         <ul className="nav__links">
-          <NavLink onClick={handleClick} to="/" label={<HomeIcon />} />
-          <NavLink onClick={handleClick} to="/collection" label={<LibraryBooksIcon />} />
+          <NavLink tooltip="Home" to="/" label={<HomeIcon />} />
+          <NavLink tooltip="My Books" to="/collection" label={<LibraryBooksIcon />} />
           {/* <NavLink onClick={handleClick} to="/upload" label={<PublishIcon />} /> */}
-          <NavLink onClick={handleClick} to="/chats" label={<ChatIcon />} />
-          <NavLink onClick={handleClick} to="/navigation" label={<LocationOnIcon />} />
-          <NavLink onClick={handleClick} to="/help" label={<ErrorIcon />}/>
+          <NavLink tooltip="My Chats" to="/chats" label={<ChatIcon />} />
+          <NavLink tooltip="Navigator" to="/navigation" label={<LocationOnIcon />} />
+          <NavLink tooltip="Help" to="/help" label={<ErrorIcon />}/>
           {/* <NavLink onClick={handleClick} to="/profile" label="profile" /> */}
           {/* <NavLink label="|" /> */}
           {/* <NavLink onClick={handleLogoutClick} label="logout" /> */}
@@ -99,19 +100,25 @@ function HeaderMenu() {
   );
 }
 
-function NavLink({ to = "", label, ...rest }) {
+function NavLink({ tooltip="",to = "", label, ...rest }) {
   const match = useRouteMatch({
     path: to,
     exact: true,
   });
 
   return (
-    <li
-      className={`nav__linksItem ${match?.isExact ? "active" : ""}`}
-      {...rest}
-    >
-      <Link to={to}>{label}</Link>
-    </li>
+    <Link className="nav__linksItem__link" to={to}>
+      <li     
+        className={`nav__linksItem ${match?.isExact ? "active" : ""}`}
+        {...rest}
+      >
+        {label}
+        <div class="tooltip ">
+          <p>{tooltip}</p>
+        </div>
+      </li>
+
+    </Link>
   );
 }
 

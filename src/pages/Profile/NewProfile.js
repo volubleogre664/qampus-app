@@ -1,17 +1,35 @@
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import EditOutlinedIcon from "@mui/icons-material/EditRounded";
-import { useUserSlice } from "@redux/getSlices";
 import profilePlaceholder from "./profile_placeholder.png";
-
+import LogoutIcon from "@mui/icons-material/LogoutRounded";
 import "./NewProfile.css";
+import {
+  useUserSlice,
+  useBooksSlice,
+  useMessagesSlice,
+} from "@redux/getSlices";
 
 function NewProfile() {
-  const [{ user }] = useUserSlice();
+  const [{ user }, dispatchUser] = useUserSlice();
+  const [, dispatchMessages] = useMessagesSlice();
+
+  const handleLoginMenuClick = () => {
+    document.querySelector(".app > .profile").classList.toggle("active");
+    if (user) {
+      dispatchUser({
+        type: "REMOVE_USER",
+      });
+  
+      dispatchMessages({
+        type: "CLEAR_MESSAGES",
+      });
+    }
+
+  };
 
   const closeProfileClicked = (e) => {
     e.preventDefault();
-
     document.querySelector(".app > .profile").classList.toggle("active");
   };
 
@@ -52,7 +70,7 @@ function NewProfile() {
               Business Management
             </p>
             <button onClick={handleEditProfile} className="profile__edit">
-              <EditOutlinedIcon/>
+              Edit profile<EditOutlinedIcon/>
             </button>
           </div>
         </header>
@@ -83,7 +101,7 @@ function NewProfile() {
       </main>
 
       <footer className="profile__footer">
-        <button className="profile__footerButton">Sign out</button>
+        <button onClick={handleLoginMenuClick} className="profile__footerButton" href="/login">Sign out <LogoutIcon/></button>
       </footer>
     </aside>
   );

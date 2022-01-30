@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import PersonIcon from "@material-ui/icons/Person";
 import { useMutation } from "@apollo/react-hooks";
 import { SearchOutlined } from "@material-ui/icons";
-import LogoutIcon from "@mui/icons-material/LogoutRounded";
-import LoginIcon from "@mui/icons-material/LoginRounded";
 import GridIcon from "@mui/icons-material/AppsRounded";
 import CancelIcon from "@material-ui/icons/CloseRounded";
 import PhoneIphoneRoundedIcon from '@mui/icons-material/PhoneIphoneRounded';
@@ -23,6 +21,7 @@ import Book from "@components/Book";
 import Loader from "@components/Loader";
 import popUpDialogue from "@utils/popUp.js";
 import { SEARCH_BOOKS } from "@utils/graphql";
+import HeaderMenu from "../../components/HeaderMenu";
 import {
   useUserSlice,
   useBooksSlice,
@@ -129,8 +128,9 @@ function Home({ history }) {
 
   return (
     <div className="home">
+      <HeaderMenu className="nav__bar"/>
       {loading && <Loader message="Searching..." />}
-      <div className="home__header">
+      {/* <div className="home__header">
         <div className="home__links">
           <Link href="/navigation">Navigation</Link>
           <Link href="/upload">Upload</Link>
@@ -191,8 +191,8 @@ function Home({ history }) {
           >
             <CancelIcon /> Close
           </section>
-        </div> */}
-      </div>
+        </div> { //close commment here
+      </div> */}
 
       <div className="home__searchSection">
         <div className="home__logo">
@@ -204,7 +204,7 @@ function Home({ history }) {
           here you can sell your texbooks, or buy them from other students
         </h3>
 
-        <p className="home__subtitle">Search for books</p>
+        <p className="home__subtitle">What book are you looking for today?</p>
 
         <form
           autoComplete="off"
@@ -218,7 +218,7 @@ function Home({ history }) {
             onChange={(e) => setSearchStr(e.target.value)}
             className="home__searchInput"
             list="home__books"
-            placeholder="Title, ISBN, module code."
+            placeholder="Search by itle, ISBN, module code."
           />
 
           <button type="submit">
@@ -282,7 +282,6 @@ function Home({ history }) {
               <RefreshRoundedIcon className="card__header__icon"/>
             </div>
             <div className="home__books">
-              <Book/>
               <Book/>
               <Book/>
               <Book/>
@@ -372,7 +371,7 @@ function Home({ history }) {
             <ul className="home__list">
               <li><FormatQuoteRoundedIcon className="list__icon"/><p> The meaning of life is to give life meaning.<br/>
               - Viktor Frankl</p></li>
-              <li><FormatQuoteRoundedIcon className="list__icon"/><p>To be trusted is a greater complment than being loved.<br/>
+              <li><FormatQuoteRoundedIcon className="list__icon"/><p>To be trusted is a greater compliment than being loved.<br/>
                 - George Mcdonald</p></li>
             </ul>
             {/* <p className="quote__text">
@@ -391,7 +390,7 @@ function Home({ history }) {
               <li><AutoStoriesRoundedIcon className="list__icon"/><p>The Art of Creative Thinking: How to Be Innovative and Develop Great Ideas<br/> by John Adair</p></li>
               <li><AutoStoriesRoundedIcon className="list__icon"/><p>The Psychology of Money: Timeless lessons on wealth, greed, and happiness <br/> by Morgan Housel</p></li>
             </ul>
-          </div>
+          </div>                          
         </div>
   
 
