@@ -288,7 +288,7 @@
 .home__subtitle {
   margin: 0 auto;
   font-family: "Poppins", sans-serif;
-  font-weight: 200;
+  font-weight: 400;
   font-size: 1.5rem;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -359,6 +359,8 @@
 }
 .home__searchContainer > button:hover {
   font-size: 2.3;
+  background-color: #18a7fa;
+  border-radius: 5px;
 }
 
 .home__searchContainer > button > .MuiSvgIcon-root {
@@ -665,11 +667,12 @@
   box-shadow: none;
   -webkit-filter: drop-shadow(1px 2px 2px #000000);
   filter: drop-shadow(1px 2px 2px #000000);
-  margin-top: -100px;
+  margin-top: -160px;
+  margin-right: -150px;
 }
 
 .heading > .btnBack:hover {
-  background-color: #61c5ff;
+  background-color: #18a7fa;
   border-radius:10px;
   box-shadow: none;
 

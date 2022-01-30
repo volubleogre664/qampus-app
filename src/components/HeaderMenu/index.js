@@ -1,14 +1,27 @@
 import { useState } from "react";
 import MenuIcon from "@material-ui/icons/MenuRounded";
-import CloseIcon from "@material-ui/icons/CloseRounded";
-import ChatIcon from "@material-ui/icons/ChatRounded";
+import CloseIcon from "@material-ui/icons/Close";
+import ChatIcon from "@material-ui/icons/ChatOutlined";
+import ChatIconA from "@material-ui/icons/ChatRounded";
 import PublishIcon from "@material-ui/icons/PublishRounded";
 import LoginIcon from "@mui/icons-material/LoginRounded";
-import UploadRoundedIcon from '@mui/icons-material/UploadRounded';
-import LibraryBooksIcon from "@material-ui/icons/BookRounded";
-import LocationOnIcon from "@material-ui/icons/LocationOnRounded";
-import HomeIcon from "@material-ui/icons/HomeRounded";
-import ErrorIcon from "@material-ui/icons/Error";
+import LibraryBooksIcon from "@material-ui/icons/BookOutlined";
+import LibraryBooksIconA from "@material-ui/icons/BookRounded";
+import LocationOnIcon from "@material-ui/icons/LocationOnOutlined";
+import LocationOnIconA from "@material-ui/icons/LocationOnRounded";
+import {AiOutlineHome, AiFillHome,AiOutlineBook, AiFillBook} from "react-icons/ai";
+import {RiHome4Line, 
+        RiHome4Fill, 
+        RiMapPinRangeLine, 
+        RiMapPinRangeFill, 
+        RiMessageLine, 
+        RiMessageFill,
+        RiInformationLine,
+        RiInformationFill
+      } from "react-icons/ri";
+import HomeIconA from "@material-ui/icons/HomeRounded";
+import ErrorIcon from "@material-ui/icons/ErrorOutline";
+import ErrorIconA from "@material-ui/icons/ErrorRounded";
 import { useRouteMatch, Link, useHistory } from "react-router-dom";
 import { useUserSlice, useMessagesSlice } from "@redux/getSlices";
 import logo from "./logo_grey.png";
@@ -67,12 +80,11 @@ function HeaderMenu() {
 
       <nav className="header__nav">
         <ul className="nav__links">
-          <NavLink tooltip="Home" to="/" label={<HomeIcon />} />
-          <NavLink tooltip="My Books" to="/collection" label={<LibraryBooksIcon />} />
-          {/* <NavLink onClick={handleClick} to="/upload" label={<PublishIcon />} /> */}
-          <NavLink tooltip="My Chats" to="/chats" label={<ChatIcon />} />
-          <NavLink tooltip="Navigator" to="/navigation" label={<LocationOnIcon />} />
-          <NavLink tooltip="Help" to="/help" label={<ErrorIcon />}/>
+          <NavLink tooltip="Home" to="/" icon={<RiHome4Line />} active_icon={<RiHome4Fill/>}/>
+          <NavLink tooltip="My Books" to="/collection" icon={<LibraryBooksIcon />} active_icon={<LibraryBooksIconA/>}/>
+          <NavLink tooltip="My Chats" to="/chats" icon={<RiMessageLine />} active_icon={<RiMessageFill/>}/>
+          <NavLink tooltip="Navigator" to="/navigation" icon={<RiMapPinRangeLine />} active_icon={<RiMapPinRangeFill/>}  />
+          <NavLink tooltip="Help" to="/help" icon={<RiInformationLine />} active_icon={<RiInformationFill/>}/>
           {/* <NavLink onClick={handleClick} to="/profile" label="profile" /> */}
           {/* <NavLink label="|" /> */}
           {/* <NavLink onClick={handleLogoutClick} label="logout" /> */}
@@ -100,7 +112,7 @@ function HeaderMenu() {
   );
 }
 
-function NavLink({ tooltip="",to = "", label, ...rest }) {
+function NavLink({ tooltip="",to = "", icon, active_icon, ...rest }) {
   const match = useRouteMatch({
     path: to,
     exact: true,
@@ -112,7 +124,8 @@ function NavLink({ tooltip="",to = "", label, ...rest }) {
         className={`nav__linksItem ${match?.isExact ? "active" : ""}`}
         {...rest}
       >
-        {label}
+        <p className="headerMenu__icon">{icon}</p>
+        <p className="headerMenu__iconActive">{active_icon}</p>
         <div class="tooltip ">
           <p>{tooltip}</p>
         </div>

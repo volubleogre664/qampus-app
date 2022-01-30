@@ -9,7 +9,7 @@ import HailRoundedIcon from '@mui/icons-material/HailRounded';
 import ShoppingBagRoundedIcon from '@mui/icons-material/ShoppingBagRounded';
 import FormatQuoteRoundedIcon from '@mui/icons-material/FormatQuoteRounded';
 import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded';
-import AutoStoriesRoundedIcon from '@mui/icons-material/AutoStoriesRounded';
+import AutoStoriesRoundedIcon from '@mui/icons-material/BookmarkOutlined';
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { PieChart } from 'react-minimal-pie-chart';
@@ -116,7 +116,7 @@ function Home({ history }) {
   };
 
   useEffect(() => {
-    document.title = "Home - Qampus";
+    document.title = "Home";
   }, []);
   var [profileFlag, setProfileFlag] = useState(() => {
     if (!user) {
@@ -128,7 +128,7 @@ function Home({ history }) {
 
   return (
     <div className="home">
-      <HeaderMenu className="nav__bar"/>
+      <HeaderMenu/>
       {loading && <Loader message="Searching..." />}
       {/* <div className="home__header">
         <div className="home__links">
@@ -204,7 +204,7 @@ function Home({ history }) {
           here you can sell your texbooks, or buy them from other students
         </h3>
 
-        <p className="home__subtitle">What book are you looking for today?</p>
+        <p className="home__subtitle">Welcome, what book are you looking for?</p>
 
         <form
           autoComplete="off"
@@ -218,7 +218,7 @@ function Home({ history }) {
             onChange={(e) => setSearchStr(e.target.value)}
             className="home__searchInput"
             list="home__books"
-            placeholder="Search by itle, ISBN, module code."
+            placeholder="Search by ISBN, title, or module code."
           />
 
           <button type="submit">
@@ -227,7 +227,7 @@ function Home({ history }) {
         </form>
       </div>
       
-      <div className="home__menu" style={{ display: displays.menu }}>
+      <div className="home__menu" >
         <div className="home__menuItems">
           <MenuItem
             guest={user !== null ? true : false}
@@ -274,7 +274,7 @@ function Home({ history }) {
         </div>
       </div>
       
-     <div className="home__body">
+     <div className="home__body" style={{ display: displays.menu }}>
         <div className="top__row">
           <div className="recent__uploads">
             <div className="card__header">
