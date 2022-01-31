@@ -16,14 +16,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
-  /* height: 100vh; */
+  /* height: 150vh; */
   /* width: 100vw; */
-  /* background: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0)), url("gradient.jpg") no-repeat; */
+  background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.8)), url("White\ Background.svg") no-repeat;
   background-color: #fbfbfb;
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
-  width: 100vw !important;
+  width: 100vw !important;  
 }
 
 code {
