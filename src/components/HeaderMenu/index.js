@@ -17,7 +17,13 @@ import {RiHome4Line,
         RiMessageLine, 
         RiMessageFill,
         RiInformationLine,
-        RiInformationFill
+        RiInformationFill,
+        RiSuitcase2Line,
+        RiSuitcase2Fill,
+        RiTaxiLine,
+        RiTaxiFill,
+        RiBusLine,
+        RiBusFill
       } from "react-icons/ri";
 import HomeIconA from "@material-ui/icons/HomeRounded";
 import ErrorIcon from "@material-ui/icons/ErrorOutline";
@@ -83,9 +89,9 @@ function HeaderMenu() {
           <NavLink tooltip="Home" to="/" icon={<RiHome4Line />} active_icon={<RiHome4Fill/>}/>
           <NavLink tooltip="My Books" to="/collection" icon={<LibraryBooksIcon />} active_icon={<LibraryBooksIconA/>}/>
           <NavLink tooltip="My Chats" to="/chats" icon={<RiMessageLine />} active_icon={<RiMessageFill/>}/>
-          <NavLink tooltip="Navigator" to="/navigation" icon={<RiMapPinRangeLine />} active_icon={<RiMapPinRangeFill/>}  />
+          <NavLink tooltip="My Campus" to="/navigation" icon={<RiMapPinRangeLine />} active_icon={<RiMapPinRangeFill/>}  />
+          <NavLink tooltip="Travel" to="/upload" icon={<RiSuitcase2Line/>} active_icon={<RiSuitcase2Fill/>} />
           <NavLink tooltip="Help" to="/help" icon={<RiInformationLine />} active_icon={<RiInformationFill/>}/>
-          {/* <NavLink onClick={handleClick} to="/profile" label="profile" /> */}
           {/* <NavLink label="|" /> */}
           {/* <NavLink onClick={handleLogoutClick} label="logout" /> */}
         </ul>
