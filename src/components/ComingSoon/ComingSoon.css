@@ -1,0 +1,12 @@
+.coming__soon{
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    width: 250px;
+    min-height: 260px;
+    height: fit-content;
+    padding: 10px;
+    border-radius: 8px;  
+    box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+    border-color: rgba(223,225,229,0);
+  }

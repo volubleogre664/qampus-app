@@ -206,7 +206,7 @@
 .editProfile__mainImage button:first-of-type {
   /* align-self: flex-start; */
   text-align: center;
-  padding: 8px 20px;
+  padding: 10px 15px;
   /*margin-bottom: 6px;
   border-radius: 4px;
   transition: all ease-in-out 0.2s;

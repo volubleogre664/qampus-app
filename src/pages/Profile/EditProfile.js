@@ -53,7 +53,7 @@ function EditProfile() {
     <div className="editProfile__overlay">
       <section className="editProfile">
         <header className="editProfile__header">
-          <h2>Edit your profile</h2>
+          <h2>Profile Settings</h2>
           <span
             role="button"
             onClick={handleEditProfileCancel}

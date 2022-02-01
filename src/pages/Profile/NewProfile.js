@@ -3,6 +3,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import EditOutlinedIcon from "@mui/icons-material/EditRounded";
 import profilePlaceholder from "./profile_placeholder.png";
 import LogoutIcon from "@mui/icons-material/LogoutRounded";
+import { GoVerified } from "react-icons/go";
 import "./NewProfile.css";
 import {
   useUserSlice,
@@ -64,16 +65,16 @@ function NewProfile() {
           </div>
 
           <div className="someInfo">
-            <h3>{`${user?.firstName} ${user?.lastName}`}</h3>
+            <h3>{`${user?.firstName} ${user?.lastName}`} <GoVerified/></h3>
             <p>
-              Bachelor of Science in IT Majouring in Computer Science and
-              Business Management
+              Bachelor of Computer Information Systems
             </p>
             <button onClick={handleEditProfile} className="profile__edit">
-              Edit profile<EditOutlinedIcon/>
+              Edit profile
+              {/* <EditOutlinedIcon/> */}
             </button>
           </div>
-        </header>
+        </header>   
 
         <main>
           <div>
@@ -101,7 +102,7 @@ function NewProfile() {
       </main>
 
       <footer className="profile__footer">
-        <button onClick={handleLoginMenuClick} className="profile__footerButton" href="/login">Sign out <LogoutIcon/></button>
+        <button onClick={handleLoginMenuClick} className="profile__footerButton" href="/login">Sign out</button>
       </footer>
     </aside>
   );

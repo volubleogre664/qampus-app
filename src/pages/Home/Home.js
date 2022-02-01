@@ -4,16 +4,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { SearchOutlined } from "@material-ui/icons";
 import GridIcon from "@mui/icons-material/AppsRounded";
 import CancelIcon from "@material-ui/icons/CloseRounded";
-import PhoneIphoneRoundedIcon from '@mui/icons-material/PhoneIphoneRounded';
-import HailRoundedIcon from '@mui/icons-material/HailRounded';
-import ShoppingBagRoundedIcon from '@mui/icons-material/ShoppingBagRounded';
-import FormatQuoteRoundedIcon from '@mui/icons-material/FormatQuoteRounded';
 import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded';
-import AutoStoriesRoundedIcon from '@mui/icons-material/BookmarkOutlined';
-import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
-import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import { PieChart } from 'react-minimal-pie-chart';
-import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
 import ProfileIcon from "@mui/icons-material/ManageAccountsRounded";
 import { Link } from "react-router-dom";
 import MenuItem from "@components/MenuItem";
@@ -22,6 +13,12 @@ import Loader from "@components/Loader";
 import popUpDialogue from "@utils/popUp.js";
 import { SEARCH_BOOKS } from "@utils/graphql";
 import HeaderMenu from "../../components/HeaderMenu";
+import Recent from "../../components/RecentUploads";
+import Request from "../../components/BookRequests";
+import ComingSoon from "../../components/ComingSoon";
+import DailyQoutes from "../../components/DailyQuotes";
+import RecommendedReads from "../../components/RecommendedReads";
+
 import {
   useUserSlice,
   useBooksSlice,
@@ -130,80 +127,11 @@ function Home({ history }) {
     <div className="home">
       <HeaderMenu/>
       {loading && <Loader message="Searching..." />}
-      {/* <div className="home__header">
-        <div className="home__links">
-          <Link href="/navigation">Navigation</Link>
-          <Link href="/upload">Upload</Link>
-        </div>
-        <div className="home__grid"
-          onClick={handleAvatarClick}
-        >
-          <GridIcon />
-        </div>
-        <button
-          id="avatar"
-          className="home__avatar"
-          onClick={handleAvatarClick}
-        >
-          <div className="avatarIcon__container">
-            {(user && user?.picture && (
-              <img
-                loading="eager"
-                className="avatarIcon"
-                alt={`${user.firstName} ${user.lastName}`}
-                src={user.picture}
-              />
-            )) || <PersonIcon className="avatarIcon"/>}
-          </div>
-          <span className="home__avatarName">
-            {user?.firstName[0] + user?.lastName[0] || "Guest"}
-          </span>
-        </button >
-
-        <button
-           id="login"
-           className="home__login"
-           onClick={handleLoginMenuClick}
-        >
-          {user ? <LogoutIcon /> : <LoginIcon />}
-          {user ? "Sign out" : "Sign in"}
-        </button>
-
-        {/* <div id="login__menu">
-          <section
-            onClick={handleProfileMenuClick}
-          >
-            <ProfileIcon /> Profile
-          </section>
-          <section
-            id="menu_item"
-            className="login_section"
-            onClick={handleLoginMenuClick}
-          >
-            {user ? <LogoutIcon /> : <LoginIcon />}
-            {user ? "Sign out" : "Sign in"}
-          </section>
-          <hr />
-          <section
-            id="menu_item"
-            className="close_section"
-            onClick={handleCloseMenuClick}
-          >
-            <CancelIcon /> Close
-          </section>
-        </div> { //close commment here
-      </div> */}
-
       <div className="home__searchSection">
         <div className="home__logo">
           <img className="home__logoImg" src={logo} alt="qampus logo"/>
           <h1>Qampus</h1>
         </div>
-        <h4 className="home__title">Welcome</h4>
-        <h3 className="home__title2">
-          here you can sell your texbooks, or buy them from other students
-        </h3>
-
         <p className="home__subtitle">Welcome, what book are you looking for?</p>
 
         <form
@@ -226,178 +154,17 @@ function Home({ history }) {
           </button>
         </form>
       </div>
-      
-      <div className="home__menu" >
-        <div className="home__menuItems">
-          <MenuItem
-            guest={user !== null ? true : false}
-            history={history}
-            path="/upload"
-            icon="upload"
-            title="Upload Books"
-            subtitle="Sell your books to other students."
-          />
 
-          <MenuItem
-            guest={user !== null ? true : false}
-            history={history}
-            path="/collection"
-            icon="collection"
-            title="My Books"
-            subtitle="Keep track of your uploads."
-          />
-
-          <MenuItem
-            guest={user !== null ? true : false}
-            history={history}
-            path="/chats"
-            icon="chats"
-            title="Chats"
-            subtitle="Connect with buyers and sellers."
-          />
-
-          <MenuItem
-            history={history}
-            path="/navigation"
-            icon="navigation"
-            title="Qampus Navigation"
-            subtitle="Find your way around campus."
-          />
-
-          <MenuItem
-            history={history}
-            path="/help"
-            icon="help"
-            title="Help"
-            subtitle="About us, tutortials and more."
-          />
-        </div>
-      </div>
-      
      <div className="home__body" style={{ display: displays.menu }}>
         <div className="top__row">
-          <div className="recent__uploads">
-            <div className="card__header">
-              <p className="caption">Recent uploads</p>
-              <RefreshRoundedIcon className="card__header__icon"/>
-            </div>
-            <div className="home__books">
-              <Book/>
-              <Book/>
-              <Book/>
-              <Book/>
-              <Book/>
-              <Book/>
-              <Book/>
-            </div>
-          </div>
-          
-          <div className="coming__soon">
-            <p className="caption">Coming soon</p>
-              <ul className="home__list">
-                <li><PhoneIphoneRoundedIcon className="list__icon"/><p>Mobile app for iOS and Android devices.</p></li>
-                <li><HailRoundedIcon className="list__icon"/><p>A new feature that will transform the way you travel.</p></li>
-                <li><ShoppingBagRoundedIcon className="list__icon"/><p>The perfect platform to sell everything.</p></li>
-              </ul>
-          </div>
-
-
+          <ComingSoon/>
+          <Recent/>
         </div>
         <div className="bottom__row">
-        
-          
-          <div class="card">
-            <h2>Bloemfontein</h2>
-            <h3>Cloudy<span>Wind 10km/h <span class="dot">•</span> Precip 0%</span></h3>
-            <h1>23°</h1>
-            <div class="sky">
-                <div class="sun"></div>
-                <div class="cloud">
-                    <div class="circle-small"></div>
-                    <div class="circle-tall"></div>
-                    <div class="circle-medium"></div>
-                </div>
-            </div>
-            <table>
-                <tr>
-                    <td>TUE</td>
-                    <td>WED</td>
-                    <td>THU</td>
-                    <td>FRI</td>
-                    <td>SAT</td>
-                </tr>
-                <tr>
-                    <td>30°</td>
-                    <td>34°</td>
-                    <td>36°</td>
-                    <td>34°</td>
-                    <td>37°</td>
-                </tr>
-                <tr>
-                    <td>17°</td>
-                    <td>22°</td>
-                    <td>19°</td>
-                    <td>23°</td>
-                    <td>19°</td>
-                </tr>
-            </table>
-          </div>
-
-          <div className="book__requests">
-            <div className="card__header">
-            < p className="caption">Book requests</p>
-                <AddRoundedIcon className="card__header__icon"/>
-            </div>
-              <div className="home__graph">
-                <ul className="home__list">
-                  <li><BarChartRoundedIcon className="first__icon"/><p>Information Systems in a Business Environment</p></li>
-                  <li><BarChartRoundedIcon className="second__icon"/><p>Business Functions</p></li>
-                  <li><BarChartRoundedIcon className="third__icon"/><p>Digital Marketing</p></li>
-                  <li><BarChartRoundedIcon className="fourth__icon"/><p>Other</p></li>
-                </ul>
-                <PieChart
-                  data={[
-                    { title: 'First', value: 45, color: '#2e4682'},
-                    { title: 'Two', value: 25, color: '#627fac' },
-                    { title: 'Three', value: 20, color: '#8ebdf8' },
-                    { title: 'Other', value: 10, color: '#b3daff' },
-                  ]}
-                  className="book__chart"
-                />
-              </div>
-          </div>
-          <div className="daily__qoutes">
-            <p className="caption">Daily quotes</p>
-            <ul className="home__list">
-              <li><FormatQuoteRoundedIcon className="list__icon"/><p> The meaning of life is to give life meaning.<br/>
-              - Viktor Frankl</p></li>
-              <li><FormatQuoteRoundedIcon className="list__icon"/><p>To be trusted is a greater compliment than being loved.<br/>
-                - George Mcdonald</p></li>
-            </ul>
-            {/* <p className="quote__text">
-              "To be trusted is a greater complment than being loved."<br/>
-              - George Mcdonald
-            </p>
-            <p className="quote__text">
-              "The meaning of life is to give life meaning."<br/>
-              - Viktor Frankl
-            </p> */}
-          </div>
-          <div className="recommended__reads">
-            <p className="caption">Recommended reads</p>
-            <ul className="home__list">
-              <li><AutoStoriesRoundedIcon className="list__icon"/><p>The 80/20 Principle: The Secret of Achieving More With Less<br/> by Richard Koch</p></li>
-              <li><AutoStoriesRoundedIcon className="list__icon"/><p>The Art of Creative Thinking: How to Be Innovative and Develop Great Ideas<br/> by John Adair</p></li>
-              <li><AutoStoriesRoundedIcon className="list__icon"/><p>The Psychology of Money: Timeless lessons on wealth, greed, and happiness <br/> by Morgan Housel</p></li>
-            </ul>
-          </div>                          
+          <Request/>
+          <DailyQoutes/>
+          <RecommendedReads/>
         </div>
-  
-
-      
-
-
-        
      </div>
 
       <div
