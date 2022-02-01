@@ -637,6 +637,32 @@
   }
 }
 
+.backToTop{
+  box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+  border-color: rgba(223,225,229,0);
+  background: #fff;
+  margin-left: 50%;
+  border-radius: 50%;
+  padding: 4px;
+  padding-top: 10px;
+  padding-bottom: 0px;
+  text-decoration: none;
+}
+
+.backToTop *{
+  font-size: 1.5rem;
+  color: #000;
+}
+.backToTop:visited *{
+  color: #000;
+}
+.backToTop:hover{
+  background-color: #fafafa;
+  text-decoration: none;
+}
+.backToTop:hover *{
+  color: #009bf6;
+}
 @media screen and (max-width: 550px) {
   .home__searchContainer {
     width: 90%;
@@ -649,4 +675,4 @@
   .home__searchInput {
     font-size: 1.15rem;
   }
-}
+} 

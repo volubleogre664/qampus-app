@@ -18,7 +18,7 @@ import Request from "../../components/BookRequests";
 import ComingSoon from "../../components/ComingSoon";
 import DailyQoutes from "../../components/DailyQuotes";
 import RecommendedReads from "../../components/RecommendedReads";
-
+import {MdKeyboardArrowUp} from "react-icons/md";
 import {
   useUserSlice,
   useBooksSlice,
@@ -125,8 +125,11 @@ function Home({ history }) {
 
   return (
     <div className="home">
+      <a name="top"></a>
       <HeaderMenu/>
+
       {loading && <Loader message="Searching..." />}
+
       <div className="home__searchSection">
         <div className="home__logo">
           <img className="home__logoImg" src={logo} alt="qampus logo"/>
@@ -164,6 +167,7 @@ function Home({ history }) {
           <Request/>
           <DailyQoutes/>
           <RecommendedReads/>
+
         </div>
      </div>
 
@@ -190,6 +194,7 @@ function Home({ history }) {
         </div>
       </div>
 
+      <a className="backToTop" href="#top"><MdKeyboardArrowUp/></a>
       <div className="reference">
         <a
           className="reference_link"

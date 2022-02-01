@@ -90,8 +90,8 @@ function HeaderMenu() {
           <NavLink tooltip="My Books" to="/collection" icon={<LibraryBooksIcon />} active_icon={<LibraryBooksIconA/>}/>
           <NavLink tooltip="My Chats" to="/chats" icon={<RiMessageLine />} active_icon={<RiMessageFill/>}/>
           <NavLink tooltip="My Campus" to="/navigation" icon={<RiMapPinRangeLine />} active_icon={<RiMapPinRangeFill/>}  />
-          <NavLink tooltip="Travel" to="/upload" icon={<RiSuitcase2Line/>} active_icon={<RiSuitcase2Fill/>} />
-          <NavLink tooltip="Travel 2" to="/help" icon={<RiBusLine />} active_icon={<RiBusFill/>}/>
+          {/* <NavLink tooltip="Travel" to="/upload" icon={<RiSuitcase2Line/>} active_icon={<RiSuitcase2Fill/>} /> */}
+          <NavLink tooltip="Travel" to="/upload" icon={<RiBusLine />} active_icon={<RiBusFill/>}/>
           <NavLink tooltip="Help" to="/help" icon={<RiInformationLine />} active_icon={<RiInformationFill/>}/>
           {/* <NavLink label="|" /> */}
           {/* <NavLink onClick={handleLogoutClick} label="logout" /> */}
