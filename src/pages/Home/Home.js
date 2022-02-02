@@ -160,12 +160,12 @@ function Home({ history }) {
 
      <div className="home__body" style={{ display: displays.menu }}>
         <div className="top__row">
-          <ComingSoon/>
+          <DailyQoutes/>
           <Recent/>
         </div>
         <div className="bottom__row">
+          {/* <ComingSoon/> */}
           <Request/>
-          <DailyQoutes/>
           <RecommendedReads/>
 
         </div>
@@ -194,7 +194,7 @@ function Home({ history }) {
         </div>
       </div>
 
-      <a className="backToTop" href="#top"><MdKeyboardArrowUp/></a>
+      {/* <a className="backToTop" href="#top"><MdKeyboardArrowUp/></a> */}
       <div className="reference">
         <a
           className="reference_link"
