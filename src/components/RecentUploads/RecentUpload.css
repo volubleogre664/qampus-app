@@ -5,7 +5,9 @@
     justify-content: center;
     place-items: center;
     text-align: center;
-    width: 60%; 
+    width: fit-content;
+    max-width: 80%;
+    min-width: 50%;
     min-height: 260px;
     height: fit-content;
     margin: auto;
