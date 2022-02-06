@@ -120,7 +120,6 @@ function Book({ state, className, book, deleteBookClick, editBookClick }) {
         <span className="book__detailsToggle">
           <InfoIcon className="infoIcon" />
         </span>
-
         <div className="book__detailsBody">
           {book &&
             Object.keys(book_details).map((key) => {
@@ -142,6 +141,5 @@ function Book({ state, className, book, deleteBookClick, editBookClick }) {
     </div>
   );
 }
-
 
 export default Book;

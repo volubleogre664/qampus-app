@@ -6,7 +6,7 @@
     place-items: center;
     text-align: center;
     width: fit-content;
-    max-width: 80%;
+    max-width: 90%;
     min-width: 50%;
     min-height: 260px;
     height: fit-content;
@@ -21,4 +21,20 @@
     box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
     border-color: rgba(223,225,229,0);
     background: #fff;
+}
+
+.home__books{
+  display: flex;
+  place-items: center;
+  justify-content: center;
+}
+
+#upload{
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 1800px) {
+  .recent__uploads{
+    min-width: 70%;
   }
+}

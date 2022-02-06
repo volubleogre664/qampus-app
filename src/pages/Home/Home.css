@@ -591,7 +591,7 @@
   text-shadow: 0px 1px 1px #009bf6 !important;
 }
 
-@media screen and (max-width: 1920px) {
+@media screen and (max-width: 1800px) {
   .home__body{
     width: 98%;
   }
@@ -600,6 +600,7 @@
 @media screen and (max-width: 800px) {
   .home__searchContainer {
     width: 80%;
+    margin-top: 30px;
   }
 
   .home__header {
@@ -610,6 +611,9 @@
     margin-top: 15px;
   }
 
+  .home__subtitle{
+    display: none;
+  }
   .home__avatar {
     width: 50px;
     aspect-ratio: 1;
@@ -622,6 +626,10 @@
 
   .home__searchResults > .heading {
     width: 100%;
+  }
+
+  .home__body .bottom__row{
+    flex-direction: column;
   }
 }
 

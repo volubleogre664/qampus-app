@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { SEARCH_BOOKS } from "@utils/graphql";
 import { useMutation } from "@apollo/react-hooks";
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import "./RecentUpload.css";
 import {
   useUserSlice,
@@ -41,6 +42,7 @@ function Recent({ history }) {
   return (<div className="recent__uploads">
         <div className="card__header">
             <p className="caption">Recent uploads</p>
+            <AddRoundedIcon id="upload" className="card__header__icon"/>
             <RefreshRoundedIcon onCLick={handlerRefreshClick} className="card__header__icon"/>
         </div>
         <div className="home__books">

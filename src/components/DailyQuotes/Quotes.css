@@ -22,3 +22,9 @@
     font-size: 1.1rem;
     font-style: italic;
   } 
+
+@media screen and (max-width: 800px){
+  .daily__qoutes{
+    width: 90%;
+  }
+}

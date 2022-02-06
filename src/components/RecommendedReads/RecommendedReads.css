@@ -8,4 +8,9 @@
     border-color: rgba(223,225,229,0);
     background: #fff;
   }
-  
+
+  @media screen and (max-width: 800px){
+    .recommended__reads{
+      width: 90%;
+    }
+  }

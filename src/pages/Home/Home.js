@@ -160,12 +160,12 @@ function Home({ history }) {
 
      <div className="home__body" style={{ display: displays.menu }}>
         <div className="top__row">
-          <DailyQoutes/>
           <Recent/>
         </div>
         <div className="bottom__row">
           {/* <ComingSoon/> */}
-          <Request/>
+          <DailyQoutes/>
+          {/* <Request/> */}
           <RecommendedReads/>
 
         </div>
