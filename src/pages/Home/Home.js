@@ -176,7 +176,7 @@ function Home({ history }) {
         style={{ display: displays.results }}
       >
         <div className="heading">
-          <h3>Search results</h3>
+          <h3 className="caption">Search results</h3>
           <div className="btnBack" onClick={openMenu}>
             <CancelIcon/>{/*Close search results*/}
           </div>
@@ -194,7 +194,7 @@ function Home({ history }) {
         </div>
       </div>
 
-      {/* <a className="backToTop" href="#top"><MdKeyboardArrowUp/></a> */}
+      <a className="backToTop" href="#top"><MdKeyboardArrowUp/></a>
       <div className="reference">
         <a
           className="reference_link"

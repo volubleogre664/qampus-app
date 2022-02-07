@@ -1,6 +1,7 @@
 .book {
   width: 120px;
   max-width: 120px;
+  min-width: 120px;
   background: #fff;
   overflow: hidden;
   max-height: fit-content;

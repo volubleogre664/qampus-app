@@ -14,3 +14,10 @@
       width: 90%;
     }
   }
+
+  @media screen and (max-width: 800px){
+    .recommended__reads{
+      width: 90%;
+      display: none;
+    }
+  }

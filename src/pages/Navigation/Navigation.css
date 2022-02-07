@@ -85,8 +85,21 @@
   color: #fff;
   width: 95%;
   margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
-
+.options__icon{
+  color: #2f2f2f;
+  box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+  border-color: rgba(223,225,229,0);
+  border-radius: 50%;
+  padding: 5px;
+  transition: ease-in-out 0.1s;
+  background-color: #fff;
+  font-size: 1.2rem;
+  display: none;
+}
 .navigation__mainHeader > h3 {
   font-size: 1.6rem;
   font-family: "Poppins", sans-serif;
@@ -105,7 +118,9 @@
   .navigation {
     flex-direction: column;
   }
-
+  .navigation__mainHeader > hr {
+    display: none;
+  }
   .navigation__sidebar {
     width: 100%;
     max-width: none;
@@ -114,8 +129,14 @@
     height: -moz-fit-content;
     height: fit-content;
     padding-bottom: 30px;
+    display: none;
   }
-
+  .navigation__mainHeader > h3 {
+    color: #000;
+    text-align: left;
+    font-weight: 200;
+    font-size: 1.4rem;
+  }
   .navigation__sidebarForm {
     flex-direction: column;
     max-width: 70%;
@@ -129,8 +150,11 @@
     width: 100%;
     margin-top: 10px;
     height: 100vh !important;
+    background-color:  transparent;
   }
-
+  .options__icon{
+    display: inline;
+  }
   @media only screen and (max-width: 560px) {
     .navigation__main {
       height: 90vh;

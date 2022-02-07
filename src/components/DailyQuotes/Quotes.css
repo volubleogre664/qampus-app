@@ -26,5 +26,12 @@
 @media screen and (max-width: 800px){
   .daily__qoutes{
     width: 90%;
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1200px){
+  .daily__qoutes{
+    width: 40%;
   }
 }

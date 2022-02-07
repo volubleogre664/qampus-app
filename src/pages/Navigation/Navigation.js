@@ -7,7 +7,7 @@ import {
   building,
   coordinates,
 } from "../../nav_coordinates/nav_coordinates.json";
-
+import {RiNavigationFill} from "react-icons/ri";
 import "./Navigation.css";
 
 // The data for the coordinates is in coordinatesData above
@@ -150,6 +150,7 @@ function Navigation() {
       <main className="navigation__main" id="map">
         <header className="navigation__mainHeader">
           <h3>UFS main capmus</h3>
+          <RiNavigationFill className="options__icon"/>
           <hr />
         </header>
 
