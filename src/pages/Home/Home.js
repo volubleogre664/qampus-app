@@ -149,7 +149,7 @@ function Home({ history }) {
             onChange={(e) => setSearchStr(e.target.value)}
             className="home__searchInput"
             list="home__books"
-            placeholder="Search by ISBN, title, or module code."
+            placeholder="ISBN, title, or module code."
           />
 
           <button type="submit">
