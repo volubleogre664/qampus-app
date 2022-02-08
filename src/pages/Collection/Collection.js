@@ -11,10 +11,10 @@ import EditBook from "@components/EditBook";
 import { useBooksSlice, useUserSlice } from "@redux/getSlices.js";
 import popUpDialogue from "@utils/popUp.js";
 
-import firebaseApp from "firebase/app";
+import { getStorage, deleteObject, ref } from "firebase/storage";
 import "./Collection.css";
 
-function Collection() {
+function Collection({ app }) {
   const history = useHistory();
   const [{ bookList: books }, dispatchBook] = useBooksSlice();
   const [
@@ -24,7 +24,7 @@ function Collection() {
   ] = useUserSlice();
   const [edit, setEdit] = useState(false);
   const [book, setBook] = useState({ id: null, title: null, price: null });
-  const firebaseRef = firebaseApp.app().storage();
+  const firebaseRef = getStorage(app);
 
   // TODO: Deal with the book component
   // Something is annoying
@@ -49,9 +49,12 @@ function Collection() {
     onCompleted(data) {
       let book = books.find((item) => item.id === data.deleteBook);
 
-      firebaseRef
-        .ref(`${bookOwner}/books/${book.title.replace(/ /g, "_")}.jpg`)
-        .delete()
+      let imageRef = ref(
+        firebaseRef,
+        `${bookOwner}/books/${book.title.replace(/ /g, "_")}.jpg`
+      );
+
+      deleteObject(imageRef)
         .then(() => console.log("Book deleted successfully"))
         .catch((err) => console.log("Error encountered", err));
 

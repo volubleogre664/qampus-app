@@ -88,7 +88,7 @@ function Login() {
                   type="password"
                 />
                 <p>
-                  <Link href="/login">Forgot password?</Link>
+                  <Link to="/login">Forgot password?</Link>
                 </p>
               </div>
 

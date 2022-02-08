@@ -8,6 +8,7 @@ import BackIcon from "@mui/icons-material/ArrowBack";
 import { useMutation, useLazyQuery } from "@apollo/react-hooks";
 import Picker from "emoji-picker-react";
 import personIcon from "@components/Contact/profile.png";
+import { getStorage, ref } from "firebase/storage";
 
 import Contact from "@components/Contact";
 import { ADD_MESSAGE, GET_MESSAGES_QUERY, GET_USER_DATA } from "@utils/graphql";
@@ -20,7 +21,7 @@ import {
 import "./Chats.css";
 import Message from "@components/Message";
 
-function NewChats() {
+function Chats({ app }) {
   const [{ user }, userDispatch] = useUserSlice();
   const [textMsg, setMsg] = useState("");
   const [messages, messageDispatch] = useMessagesSlice();
@@ -30,8 +31,10 @@ function NewChats() {
   const [emoji, setEmoji] = useState(false);
   const [chatClick, setChatClick] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  // const [attachment, setAttachment] = useState("");
+  // const firebaseStorage = getStorage(app);
   const inputRef = useRef(null);
-  const attachRef = useRef(null); //keeps track of changes in screen height
+  const attachRef = useRef(null);
 
   window.onresize = () => {
     setScreenWidth(window.innerWidth);
@@ -67,7 +70,7 @@ function NewChats() {
           payload: msg,
         });
 
-        let chatsDiv = document.querySelector(".chats__mainBody");
+        let chatsDiv = document.querySelector(".chats__mainBodySection");
         chatsDiv.scrollTop = chatsDiv.scrollHeight;
       }
 
@@ -164,6 +167,7 @@ function NewChats() {
     if (textMsg === "" || textMsg.replace(regex, "") === "") return;
 
     addMessage({ variables: { to: currentContact?.id, textMsg } });
+    setMsg("");
   };
 
   // For closing the chats
@@ -171,6 +175,19 @@ function NewChats() {
     if (screenWidth < 670) setChatClick(!chatClick);
   };
 
+  const getLastMsg = (contact) => {
+    for (let i = messages.length - 1; i > 0; i--) {
+      if (
+        (user.id === messages[i].from && contact.id === messages[i].to) ||
+        contact.id === messages[i].from
+      ) {
+        return {
+          lastMsg: messages[i].textMsg,
+          time: messages[i].time,
+        };
+      }
+    }
+  };
   // Runs only once on component render and never runs again
   // Here we set currentContact to the first contact in your list and get the data
   useEffect(() => {
@@ -220,28 +237,14 @@ function NewChats() {
   }, [searchBookList, setBook, getUserData, user]);
 
   // TODO: HANDLE ATTACHMENT
-  // const handleAttachment = (e) => {
-  //   const file = e.target.files[0];
-  //   // todo: Send file to server
-  // };
-
-  const getLastMsg = (contact) => {
-    for (let i = messages.length - 1; i > 0; i--) {
-      if (
-        (user.id === messages[i].from && contact.id === messages[i].to) ||
-        contact.id === messages[i].from
-      ) {
-        return {
-          lastMsg: messages[i].textMsg,
-          time: messages[i].time,
-        };
-      }
-    }
+  const handleAttachment = (e) => {
+    const file = e.target.files[0];
+    console.log(file);
   };
 
   // Fixing some css inconsistencies
   useLayoutEffect(() => {
-    var padding = 15;
+    var padding = 20;
 
     if (screenWidth > 670) padding = 40;
     else if (screenWidth > 400) padding = 25;
@@ -315,7 +318,7 @@ function NewChats() {
                   onClick={() => handleContactClick(contact)}
                   key={contact?.id + i}
                   contact={contact}
-                  lastMsg={getLastMsg(contact)}
+                  lastMsg={(messages?.length > 0 && getLastMsg(contact)) || ""}
                   current={currentContact}
                 />
               ))}
@@ -348,9 +351,20 @@ function NewChats() {
                 value={textMsg}
                 type="text"
               />
-              <button ref={attachRef} className="attachIcon">
+              <button
+                onClick={() => attachRef.current.click()}
+                className="attachIcon"
+              >
                 <AttachIcon />
               </button>
+
+              <input
+                type="file"
+                onChange={handleAttachment}
+                style={{ display: "none" }}
+                ref={attachRef}
+              />
+
               <button onClick={onSubmit} className="sendIcon">
                 <SendIcon />
               </button>
@@ -362,4 +376,4 @@ function NewChats() {
   );
 }
 
-export default NewChats;
+export default Chats;

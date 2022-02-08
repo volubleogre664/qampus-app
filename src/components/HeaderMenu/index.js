@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AppsIcon from "@mui/icons-material/Apps";
-import CloseIcon from "@material-ui/icons/CloseRounded";
+import CloseIcon from "@mui/icons-material/CloseRounded";
 import { useRouteMatch, Link, useHistory } from "react-router-dom";
 import { useUserSlice, useMessagesSlice } from "@redux/getSlices";
 import ChatIcon from "@mui/icons-material/ChatRounded";
@@ -67,37 +67,37 @@ function HeaderMenu() {
       <nav className={`header__nav ${click && "active"}`}>
         <ul className="nav__links">
           <NavLink
-            screenSize={screenSize}
+            screensize={screenSize}
             onClick={handleClick}
             to="/"
             label="home"
           />
           <NavLink
-            screenSize={screenSize}
+            screensize={screenSize}
             onClick={handleClick}
             to="/upload"
             label="upload"
           />
           <NavLink
-            screenSize={screenSize}
+            screensize={screenSize}
             onClick={handleClick}
             to="/collection"
             label="collection"
           />
           <NavLink
-            screenSize={screenSize}
+            screensize={screenSize}
             onClick={handleClick}
             to="/chats"
             label="chats"
           />
           <NavLink
-            screenSize={screenSize}
+            screensize={screenSize}
             onClick={handleClick}
             to="/navigation"
             label="navigation"
           />
           <NavLink
-            screenSize={screenSize}
+            screensize={screenSize}
             onClick={handleClick}
             to="/help"
             label="help"
@@ -166,7 +166,7 @@ function NavLink({ to = "", label, ...rest }) {
       className={`nav__linksItem ${match?.isExact ? "active" : ""}`}
       {...rest}
     >
-      {rest.screenSize <= 470 && getIcon(label)}
+      {rest.screensize <= 470 && getIcon(label)}
       <Link to={to}>{label}</Link>
     </li>
   );

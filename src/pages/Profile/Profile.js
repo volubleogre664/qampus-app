@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { GoVerified } from "react-icons/go";
 import { useMutation } from "@apollo/react-hooks";
-import firebase from "firebase/app";
 import Input from "@components/Input";
 import Loader from "@components/Loader";
 import Button from "@components/Button";
@@ -9,16 +8,22 @@ import ProfileImage from "@components/ProfileImage";
 import { UPDATE_USER } from "@utils/graphql";
 import { useUserSlice } from "@redux/getSlices";
 import { useForm } from "@utils/hooks";
+import {
+  getStorage,
+  ref,
+  uploadString,
+  getDownloadURL,
+} from "firebase/storage";
 
 // import "./Profile.css";
 
-function Profile() {
+function Profile({ app }) {
   const [isEmail, setIsEmail] = useState(true);
   const [active, setActive] = useState(false);
   const [loading, setLoading] = useState(false);
   const [profile, setProfile] = useState(null);
-  const firebaseStorage = firebase.storage();
   const [{ user, imgCrop }, dispatch] = useUserSlice();
+  const firebaseStorage = getStorage(app);
 
   const { onSubmit, onChange, values } = useForm(updateUser, user);
 
@@ -45,13 +50,13 @@ function Profile() {
     e.preventDefault();
 
     setLoading(true);
-    const storageRef = firebaseStorage.ref(
+    const storageRef = ref(
+      firebaseStorage,
       `${user.id}/profile/${user.firstName}.jpg`
     );
 
     if (imgCrop.croppedImgUrl) {
-      await storageRef
-        .putString(imgCrop.croppedImgUrl, "data_url")
+      await uploadString(storageRef, imgCrop.croppedImgUrl, "data_url")
         .then(() => {
           console.log("Image has been uploaded");
         })
@@ -60,8 +65,7 @@ function Profile() {
         });
     }
 
-    await storageRef
-      .getDownloadURL()
+    await getDownloadURL(storageRef)
       .then((url) => {
         if (url) setProfile(url);
         else setProfile("");
@@ -79,13 +83,13 @@ function Profile() {
     document.title = "Profile - Qampus";
 
     if (imgCrop.croppedImgUrl) {
-      const storageRef = firebaseStorage.ref(
+      const storageRef = ref(
+        firebaseStorage,
         `${user.id}/profile/${user.firstName}.jpg`
       );
 
       (async () => {
-        await storageRef
-          .putString(imgCrop.croppedImgUrl, "data_url")
+        await uploadString(storageRef, imgCrop.croppedImgUrl, "data_url")
           .then(() => {
             console.log("Image has been uploaded");
             dispatch({
@@ -99,8 +103,7 @@ function Profile() {
             console.log("Error uploading image: ", err);
           });
 
-        await storageRef
-          .getDownloadURL()
+        await getDownloadURL(storageRef)
           .then((url) => {
             if (url) updateProfile({ variables: { picture: url } });
             else setProfile("");

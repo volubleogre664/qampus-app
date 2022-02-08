@@ -1,8 +1,8 @@
-import ChatIcon from "@material-ui/icons/ChatRounded";
-import PublishIcon from "@material-ui/icons/PublishRounded";
-import LibraryBooksIcon from "@material-ui/icons/BookRounded";
-import LocationOnIcon from "@material-ui/icons/LocationOnRounded";
-import ErrorIcon from "@material-ui/icons/Error";
+import ChatIcon from "@mui/icons-material/ChatRounded";
+import PublishIcon from "@mui/icons-material/PublishRounded";
+import BookIcon from "@mui/icons-material/BookRounded";
+import LocationOnIcon from "@mui/icons-material/LocationOnRounded";
+import ErrorIcon from "@mui/icons-material/Error";
 import "./MenuItem.css";
 
 function MenuItem({ icon, title, subtitle, path, guest, history }) {
@@ -17,7 +17,7 @@ function MenuItem({ icon, title, subtitle, path, guest, history }) {
       case "upload":
         return <PublishIcon />;
       case "collection":
-        return <LibraryBooksIcon />;
+        return <BookIcon />;
       default:
         return undefined;
     }

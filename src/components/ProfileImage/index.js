@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import AddAPhotoOutlinedIcon from "@material-ui/icons/AddAPhotoOutlined";
+import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
 import Compressor from "compressorjs";
 
 import { useUserSlice } from "@redux/getSlices";

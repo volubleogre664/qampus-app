@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import firebase from "firebase/app";
+import { initializeApp } from "firebase/app";
 import { io } from "socket.io-client";
 import Home from "@pages/Home/Home.js";
 import Profile from "@pages/Profile/Profile.js";
-import FinaliseRegister from "@pages/Register/FinaliseRegister.js";
+// import FinaliseRegister from "@pages/Register/FinaliseRegister.js";
 
-import NewChats from "@pages/Chats/Chats.js";
+import Chats from "@pages/Chats/Chats.js";
 import NewRegister from "@pages/Register/Register.js";
 import NewLogin from "@pages/Login/Login.js";
 import NewProfile from "@pages/Profile/NewProfile.js";
@@ -23,10 +23,9 @@ import AuthRoute from "@utils/AuthRoute.js";
 import PrivateRoute from "@utils/PrivateRoute.js";
 import { useMessagesSlice, useUserSlice } from "@redux/getSlices.js";
 import { firebaseConfig } from "./config.js";
-import "firebase/storage";
 import "./App.css";
 
-firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
 // const serverUrl = "http://localhost:8080";
 const serverUrl = "http://qampus-app.herokuapp.com:8080";
@@ -89,30 +88,30 @@ function App() {
 
           {/* PrivateRoute is for private pages that needs login to be accessed. */}
           {/* For development purposes just rename PrivateRoute to Route */}
-          <Route exact path="/register/finalise">
+          {/* <Route exact path="/register/finalise">
             <FinaliseRegister />
-          </Route>
+          </Route> */}
 
           <Route exact path="/landing" component={Landing} />
 
           <PrivateRoute exact path="/profile">
             <HeaderMenu />
-            <Profile />
+            <Profile app={app} />
           </PrivateRoute>
 
           <PrivateRoute exact path="/chats*">
             <HeaderMenu />
-            <NewChats />
+            <Chats app={app} />
           </PrivateRoute>
 
           <PrivateRoute exact path="/upload">
             <HeaderMenu />
-            <Upload />
+            <Upload app={app} />
           </PrivateRoute>
 
           <PrivateRoute exact path="/collection">
             <HeaderMenu />
-            <Collection />
+            <Collection app={app} />
           </PrivateRoute>
         </Switch>
       </Router>

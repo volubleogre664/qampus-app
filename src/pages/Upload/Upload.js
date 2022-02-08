@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useMutation } from "@apollo/react-hooks";
 
-import firebaseApp from "firebase/app";
 import Compressor from "compressorjs";
 
 import Button from "@components/Button";
@@ -9,6 +8,13 @@ import Loader from "@components/Loader";
 import Input from "@components/Input";
 import Bullet from "@components/Bullet";
 import ConfirmBook from "./ConfirmBook";
+import {
+  getStorage,
+  ref,
+  uploadString,
+  getDownloadURL,
+  getMetadata,
+} from "firebase/storage";
 
 import { useForm } from "@utils/hooks";
 import popUpDialogue from "@utils/popUp.js";
@@ -21,14 +27,14 @@ import "./Upload.css";
 // I defined this here because it was not persistent
 const bookCovers = {};
 
-function Upload() {
+function Upload({ app }) {
   //Data from redux state, dispatch -> function to update redux state
   const [{ user, imgCrop }, dispatchUser] = useUserSlice();
   const [, dispatchBooks] = useBooksSlice();
 
   //References for input[file] to be accessed since it is hidden and cannot be clicked
   const frontCoverInputRef = useRef(null);
-  const firebaseStorage = firebaseApp.app().storage();
+  const firebaseStorage = getStorage(app);
 
   // control the showing and hiding of loading animation
   const [loading, setLoading] = useState({
@@ -145,7 +151,8 @@ function Upload() {
       message: "Uploading Images",
     });
 
-    const frontCoverRef = firebaseStorage.ref(
+    const frontCoverRef = ref(
+      firebaseStorage,
       `${user.id}/books/${values.title.replace(/ /g, "_")}.jpg`
     );
 
@@ -203,14 +210,12 @@ function Upload() {
   // File does not exist -> calls .catch()
   // .finally() is always called
   async function validateFilesInCloud(storageRef, imageDataUrl, urlContainer) {
-    return storageRef
-      .getMetadata()
+    return getMetadata(storageRef)
       .then(async () => {
         await getUploadedUrl(storageRef, urlContainer);
       })
       .catch(async () => {
-        await storageRef
-          .putString(imageDataUrl, "data_url")
+        await uploadString(storageRef, imageDataUrl, "data_url")
           .then(() => {
             console.log("Image has been uploaded");
           })
@@ -238,8 +243,7 @@ function Upload() {
   // storageRef -> reference to the image in cloud storage
   // urlContainer -> name of variable to send to database
   async function getUploadedUrl(storageRef, urlContainer) {
-    return storageRef
-      .getDownloadURL()
+    return getDownloadURL(storageRef)
       .then((url) => {
         bookCovers[urlContainer] = url;
       })
