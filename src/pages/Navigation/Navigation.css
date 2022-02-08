@@ -7,6 +7,8 @@
   overflow-x: auto;
   gap: 20px;
   margin-top: 15px;
+  padding-top: 50px;
+
 }
 
 .navigation__sidebar {
@@ -86,9 +88,10 @@
   width: 95%;
   margin: auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
 }
+
 .options__icon{
   color: #2f2f2f;
   box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
@@ -117,6 +120,10 @@
 @media only screen and (max-width: 850px) {
   .navigation {
     flex-direction: column;
+    padding-top: 70px;
+  }
+  .navigation__mainHeader {
+    flex-direction: row;
   }
   .navigation__mainHeader > hr {
     display: none;

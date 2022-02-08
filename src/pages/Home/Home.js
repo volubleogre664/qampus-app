@@ -125,7 +125,6 @@ function Home({ history }) {
 
   return (
     <div className="home">
-      <a name="top"></a>
       <HeaderMenu/>
 
       {loading && <Loader message="Searching..." />}
@@ -153,6 +152,7 @@ function Home({ history }) {
           />
 
           <button type="submit">
+          <a name="top"></a>
             <SearchOutlined />
           </button>
         </form>

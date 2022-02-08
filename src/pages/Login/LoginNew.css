@@ -253,6 +253,9 @@
     min-width: 420px;
     width: 100%;
   }
+  .login__main > section > div> .logoContainer{
+    margin-top: 0;
+  }
 }
 
 @media only screen and (min-width: 420px) {

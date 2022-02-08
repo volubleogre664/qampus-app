@@ -6,8 +6,8 @@
     place-items: center;
     text-align: center;
     width: fit-content;
-    max-width: 90%;
-    min-width: 50%;
+    /* max-width: 90%; */
+    min-width: 65%;
     min-height: 260px;
     height: fit-content;
     margin: auto;
@@ -18,8 +18,8 @@
     /* padding-bottom: 30px; */
     border-radius: 8px;  
     gap: 15px;
-    /* box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
-    border-color: rgba(223,225,229,0); */
+    box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+    border-color: rgba(223,225,229,0);
     /* background: #fff; */
     background: #fff;
 }
@@ -35,15 +35,10 @@
 #upload{
   margin-right: 10px;
 }
-
-@media screen and (MIN-width: 1200px) {
-  .recent__uploads{
-    min-width: 80%;
-  }
-}
-
+              
 @media screen and (max-width: 800px) {
   .recent__uploads{
    background-color: transparent;
+   box-shadow: none;
   }
 }

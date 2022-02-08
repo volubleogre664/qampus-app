@@ -12,6 +12,7 @@
   box-sizing: border-box;
   overflow-x: hidden;
   position: relative;
+  padding-top: 60px;
 }
 
 .home__header {
@@ -644,6 +645,7 @@
   text-decoration: none;
   cursor: pointer;
   position: absolute;
+  display: none;
 }
 
 .backToTop *{
@@ -661,11 +663,16 @@
   color: #009bf6;
 }
 
-@media screen and (max-width: 1900px) {
+@media screen and (max-width: 800px) {
   .backToTop{
     display: inline;
+    margin-bottom: 10px;
+  }
+  .home{
+    padding-top: 100px;
   }
 }
+
 @media screen and (max-width: 500px) {
   .home__searchContainer {
     margin-top: 15px;
