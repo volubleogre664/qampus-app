@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Book from "@components/Book";
 import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
@@ -23,9 +23,11 @@ function Recent({ history }) {
         })
       );
     },
+    onError: (err) => {
+      console.log(err.message);
+      console.log(err.graphQLErrors);
+    },
   });
-
-  searchBook();
 
   // Handles click of search button
   const handlerRefreshClick = (e) => {
@@ -33,6 +35,10 @@ function Recent({ history }) {
     // Search for books in the database
     searchBook();
   };
+
+  useEffect(() => {
+    searchBook({ variables: { searchStr: "" } });
+  }, [searchBook]);
 
   return (
     <div className="recent__uploads">

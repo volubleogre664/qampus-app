@@ -7,7 +7,7 @@ import Home from "@pages/Home/Home.js";
 // import FinaliseRegister from "@pages/Register/FinaliseRegister.js";
 
 import Chats from "@pages/Chats/Chats.js";
-import NewRegister from "@pages/Register/Register.js";
+import Register from "@pages/Register/Register.js";
 import NewLogin from "@pages/Login/Login.js";
 import NewProfile from "@pages/Profile/NewProfile.js";
 import EditProfile from "@pages/Profile/EditProfile.js";
@@ -26,8 +26,8 @@ import "./App.css";
 
 const app = initializeApp(firebaseConfig);
 
-// const serverUrl = "http://localhost:8080";
-const serverUrl = "http://qampus-app.herokuapp.com:8080";
+const serverUrl = "http://localhost:8080";
+// const serverUrl = "http://qampus-app.herokuapp.com:8080";
 
 function App() {
   const [{ imgCrop, user }, dispatchUser] = useUserSlice();
@@ -86,7 +86,7 @@ function App() {
           {/* AuthRoute checks if someone is logged in and redirects to home if they are logged in */}
           {/* No one will open login, register and finalise register without loggin out */}
           <AuthRoute exact path="/login" component={NewLogin} />
-          <AuthRoute exact path="/register" component={NewRegister} />
+          <AuthRoute exact path="/register" component={Register} />
 
           {/* PrivateRoute is for private pages that needs login to be accessed. */}
           {/* For development purposes just rename PrivateRoute to Route */}

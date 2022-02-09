@@ -5,7 +5,7 @@ import Loader from "@components/Loader";
 import { useUserSlice } from "@redux/getSlices.js";
 import { useForm } from "@utils/hooks.js";
 import { LOGIN_USER } from "@utils/graphql.js";
-import logo from "./logo1.png";
+import logo from "@assets/logo_grey.png";
 import "./Login.css";
 
 function Login() {
@@ -51,10 +51,12 @@ function Login() {
       <main className="login__main">
         <section>
           <div>
-            <div role="link" onClick={logoClicked} className="logoContainer">
-              <img src={logo} alt="qampus" />
-              <h2>Qampus</h2>
-            </div>
+            <header>
+              <div role="link" onClick={logoClicked} className="logoContainer">
+                <img src={logo} alt="qampus" />
+                <h2>Qampus</h2>
+              </div>
+            </header>
 
             <h2 className="login__title">
               Log In to <span>Qampus</span>
@@ -73,7 +75,6 @@ function Login() {
                   value={values.studentNumber}
                   onChange={onChange}
                   type="text"
-                  id="studentNumber"
                 />
               </div>
 
@@ -88,7 +89,7 @@ function Login() {
                   type="password"
                 />
                 <p>
-                  <Link href="/login">Forgot password?</Link>
+                  <Link to="/login">Forgot password?</Link>
                 </p>
               </div>
 

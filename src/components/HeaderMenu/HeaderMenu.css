@@ -43,7 +43,7 @@
   cursor: pointer;
   width: fit-content;
   flex: 1;
-  margin-bottom: 10px;
+  margin-bottom: 7px;
 }
 
 .logoContainer h2 {
@@ -245,7 +245,7 @@
   top: calc(100% + 2px);
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 430px) {
   .header {
     padding: 5px 40px;
   }
@@ -272,7 +272,7 @@
   }
 
   .nav__linksItem__link li {
-    width: 45px;
+    width: 60px;
     /* width: fit-content; */
   }
 

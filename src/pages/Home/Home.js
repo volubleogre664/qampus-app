@@ -32,7 +32,7 @@ function Home({ history }) {
   const [searchBook] = useMutation(SEARCH_BOOKS, {
     variables: { searchStr },
     onCompleted(data) {
-      setLoading(!loading);
+      setLoading(false);
       data?.searchBook.forEach((book) =>
         dispatchBook({
           type: "SET_SEARCH_BOOK_LIST",
@@ -40,20 +40,25 @@ function Home({ history }) {
         })
       );
     },
+    onError: (err) => {
+      setLoading(false);
+      console.log("Error getting books");
+      // TODO: Show a pop up message to tell the user the problem
+    },
   });
 
   // Handles click of search button
   const handleSearchClick = (e) => {
     e.preventDefault();
 
-    setLoading(!loading);
+    setLoading(true);
 
     if (displays.menu !== "none") {
       setDisplays({ menu: "none", results: "flex" });
     }
 
     // Search for books in the database
-    searchBook();
+    searchBook({ variables: { searchStr } });
   };
   // Clicking the avatar calls the method
   // const handleAvatarClick = () => {

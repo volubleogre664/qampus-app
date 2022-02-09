@@ -1,21 +1,18 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
-
-import Loader from "@components/Loader";
-import Input from "@components/Input";
-import Bullet from "@components/Bullet";
-import Button from "@components/Button";
-
-import { useForm } from "@utils/hooks";
 import { REGISTER_USER } from "@utils/graphql";
 import { useUserSlice } from "@redux/getSlices";
-import { register as registerBullets } from "../../text_files/bulletPoints.js";
-
-import logo from "../../logo.png";
-
+import { useForm } from "@utils/hooks";
+import Loader from "@components/Loader";
+import logo from "@assets/logo_grey.png";
 import "./Register.css";
 
-function Register({ history }) {
+function Register() {
+  const history = useHistory();
+  const [pin, setPin] = useState(false);
+  const [, dispatch] = useUserSlice();
+
   const { onChange, onSubmit, values } = useForm(registerUser, {
     studentNumber: "",
     firstName: "",
@@ -25,31 +22,9 @@ function Register({ history }) {
     confirmPassword: "",
   });
 
-  const [, dispatch] = useUserSlice();
-  const [isEmail, setIsEmail] = useState(false);
-  const [testCases] = useState({
-    hasUppercase: new RegExp(/[A-Z]/),
-    hasLowercase: new RegExp(/[a-z]/),
-    hasNumbers: new RegExp(/[0-9]/),
-  });
-
-  const onSubmitCheck = (event) => {
-    if (
-      testCases.hasUppercase.test(values.password) &&
-      testCases.hasLowercase.test(values.password) &&
-      testCases.hasNumbers.test(values.password) &&
-      isEmail
-    ) {
-      onSubmit(event);
-    }
-  };
-
-  const onEmailChange = (e) => {
-    const emailRegex = new RegExp(
-      /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/
-    );
-    setIsEmail(emailRegex.test(e.target.value));
-    onChange(e);
+  const logoClicked = (e) => {
+    e.preventDefault();
+    history.push("/");
   };
 
   const [register, { loading }] = useMutation(REGISTER_USER, {
@@ -58,8 +33,7 @@ function Register({ history }) {
         type: "SET_USER",
         payload: userData,
       });
-
-      history.push("/register/finalise");
+      setPin(false);
     },
     variables: values,
     onError(err) {
@@ -67,158 +41,158 @@ function Register({ history }) {
         type: "SET_ERRORS",
         payload: err?.graphQLErrors[0]?.extensions?.errors,
       });
-
+      setPin(false);
       console.log(err);
     },
   });
+
+  const setPassword = (e) => {
+    e.preventDefault();
+    setPin(true);
+  };
 
   function registerUser() {
     register();
   }
 
   useEffect(() => {
-    document.title = "Register Account - Qampus";
+    document.title = "Create Account - Qampus";
   }, []);
 
   return (
-    <div className="register">
+    <section className="register">
       {loading && <Loader message="Creating account" />}
-      <section className="page_headers">
-        <a href="/">
-          <img className="logo" src={logo} alt="qampus app register user" />
-        </a>
-        <h1 className="welcome_header">Welcome</h1>
-        <hr className="separator" />
-        <h2 className="title">please register to access all the features</h2>
-      </section>
-
-      <section className="page_content">
-        <div className="register__aside">
-          <p className="list_tittle">Why should I create an account?</p>
-          <ul className="tilesWrap">
-            {registerBullets.map((item, i) => (
-              <Bullet
-                key={`${item.title}_${i}`}
-                index={i + 1}
-                title={item.title}
-                content={item.content}
+      <aside className={`register__aside  ${pin && "open"}`}>
+        <p>Your account will be ready soon, please create a strong password</p>
+        {/* <h3>Create password</h3> */}
+        <main className="register__asideMain">
+          <form onSubmit={onSubmit}>
+            <div>
+              <label htmlFor="password">Password</label>
+              <input
+                className="login__mainFormInput"
+                name="password"
+                required
+                value={values.password}
+                onChange={onChange}
+                type="password"
               />
-            ))}
-          </ul>
-        </div>
-
-        <div className="register__main">
-          <form onSubmit={onSubmitCheck} className="register__mainForm">
-            <Input
-              type="text"
-              name="firstName"
-              required
-              value={values.firstName}
-              onChange={onChange}
-              label="First Name(s)"
-              id="firstName"
-              onInput={(e) => e.target.setCustomValidity("")}
-              onInvalid={(e) =>
-                e.target.setCustomValidity("Your firstname cannot be empty")
-              }
-            />
-
-            <Input
-              type="text"
-              name="lastName"
-              required
-              value={values.lastName}
-              onChange={onChange}
-              label="Last Name"
-              id="lastName"
-              onInput={(e) => e.target.setCustomValidity("")}
-              onInvalid={(e) =>
-                e.target.setCustomValidity("Your lastname cannot be empty")
-              }
-            />
-
-            <Input
-              name="email"
-              type="email"
-              value={values.email}
-              onChange={onEmailChange}
-              label="Email Address"
-              id="email"
-              isvalid={String(isEmail)}
-            />
-
-            <Input
-              type="text"
-              name="studentNumber"
-              required
-              maxLength="10"
-              minLength="10"
-              value={values.studentNumber}
-              onChange={onChange}
-              label="Student Number"
-              id="studentNumber"
-              onInput={(e) => e.target.setCustomValidity("")}
-              onInvalid={(e) =>
-                e.target.setCustomValidity(
-                  "Student number must be 10 characters(0-9)"
-                )
-              }
-            />
-
-            <Input
-              type="password"
-              name="password"
-              required
-              minLength="8"
-              value={values.password}
-              onChange={onChange}
-              testCases={{
-                hasUppercase: testCases.hasUppercase.test(values.password),
-                hasLowercase: testCases.hasLowercase.test(values.password),
-                hasNumber: testCases.hasNumbers.test(values.password),
-              }}
-              label="Password"
-              id="password"
-            />
-
-            <Input
-              type="password"
-              name="confirmPassword"
-              required
-              value={values.confirmPassword}
-              onChange={onChange}
-              label="Confirm password"
-              id="confirmPassword"
-              isvalid={(values.confirmPassword === values.password).toString()}
-            />
-
-            <div className="checkbox_div">
-              <input id="checkbox" type="checkbox" />
-              <label htmlFor="checkbox">
-                {" "}
-                I agree to these{" "}
-                <a className="link" target="_blank" href="/help">
-                  Terms and Conditions
-                </a>
-                .
-              </label>
             </div>
-            <Button type="submit" text="Sign up" />
 
-            {/* Below button for testing */}
-            {/* <Button onClick={onSubmit}>Register</Button>  */}
+            <div>
+              <label htmlFor="confirmPassword">Confirm Password</label>
+              <input
+                className="login__mainFormInput"
+                name="confirmPassword"
+                value={values.confirmPassword}
+                onChange={onChange}
+                required
+                type="password"
+              />
+            </div>
+            <footer className="register__asideFooter">
+              <button type="submit" className="login__mainFormButton">
+                Continue
+              </button>
+            </footer>
           </form>
-        </div>
-      </section>
-      <footer className="register__footer">
-        <hr className="separator_footer" />
-        <p className="top_footer">Qampus &copy; 2020 | All Rights Reserved.</p>
-        <p className="bottom_footer">
-          {" "}
-          Developed by Nuclear Software (Pty) Ltd.
-        </p>
-      </footer>
-    </div>
+        </main>
+      </aside>
+      <div className="register__overlay"></div>
+
+      <main className="register__main">
+        <section>
+          <div>
+            <header>
+              <div role="link" onClick={logoClicked} className="logoContainer">
+                <img src={logo} alt="qampus" />
+                <h2>Qampus</h2>
+              </div>
+            </header>
+
+            <h2 className="register__title">
+              Create <span>Qampus</span> Account
+            </h2>
+
+            <form
+              autoComplete="off"
+              onSubmit={setPassword}
+              className="login__mainForm"
+            >
+              <div>
+                <label htmlFor="firstName">Name</label>
+                <input
+                  className="login__mainFormInput"
+                  name="firstName"
+                  value={values.firstName}
+                  onChange={onChange}
+                  type="text"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="lastName">Surname</label>
+                <input
+                  className="login__mainFormInput"
+                  name="lastName"
+                  value={values.lastName}
+                  onChange={onChange}
+                  required
+                  type="text"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="lastName">Student number</label>
+                <input
+                  className="login__mainFormInput"
+                  name="studentNumber"
+                  value={values.studentNumber}
+                  onChange={onChange}
+                  required
+                  type="text"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="lastName">Email</label>
+                <input
+                  className="login__mainFormInput"
+                  name="email"
+                  value={values.email}
+                  onChange={onChange}
+                  required
+                  type="email"
+                />
+              </div>
+
+              <div>
+                {/* {error && <p>Student number or password incorrect.</p>} */}
+                <button className="login__mainFormButton" type="submit">
+                  Register
+                </button>
+              </div>
+
+              <p>
+                Already have an account? <Link to="/login">Log In.</Link>
+              </p>
+
+              <footer className="login__footer">
+                <div>
+                  <p className="top_footer">&copy; Qampus 2021</p>
+                </div>
+
+                <div>
+                  <Link to="/help">Help</Link>
+                  <Link to="/help">Terms</Link>
+                </div>
+              </footer>
+            </form>
+          </div>
+        </section>
+      </main>
+    </section>
   );
 }
 

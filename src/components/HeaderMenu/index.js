@@ -1,5 +1,4 @@
 import { useState } from "react";
-import MenuIcon from "@mui/icons-material/MenuRounded";
 import CloseIcon from "@mui/icons-material/Close";
 import LibraryBooksIcon from "@mui/icons-material/BookOutlined";
 import LibraryBooksIconA from "@mui/icons-material/BookRounded";
@@ -16,7 +15,7 @@ import {
 } from "react-icons/ri";
 import { useRouteMatch, Link, useHistory } from "react-router-dom";
 import { useUserSlice } from "@redux/getSlices";
-import logo from "./logo_grey.png";
+import logo from "@assets/logo_grey.png";
 import "./HeaderMenu.css";
 
 function HeaderMenu() {
