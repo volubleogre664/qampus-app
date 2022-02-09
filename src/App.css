@@ -27,6 +27,10 @@
   display: none;
 }
 
+.app > * {
+  box-sizing: border-box;
+}
+
 * {
   overflow-x: none;
   outline-color: #009bf6;

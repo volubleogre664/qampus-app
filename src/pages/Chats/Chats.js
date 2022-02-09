@@ -126,6 +126,7 @@ function NewChats() {
       });
     },
     onError(err) {
+      console.log(err);
       console.log(err.graphQLErrors);
     },
   });
@@ -183,7 +184,12 @@ function NewChats() {
   // Runs once on component render
   // Ensures that when chats open we get the messages for the first contact in your list
   useEffect(() => {
-    if (user && user?.contacts?.length && !window.location.search) {
+    if (
+      user &&
+      user?.contacts?.length &&
+      !window.location.search &&
+      messages?.length
+    ) {
       getMessagesQuery({
         variables: {
           to: currentContact?.id,
@@ -237,6 +243,8 @@ function NewChats() {
         };
       }
     }
+
+    return { lastMsg: null, time: null };
   };
 
   // Fixing some css inconsistencies

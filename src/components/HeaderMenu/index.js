@@ -1,31 +1,36 @@
 import { useState } from "react";
-import AppsIcon from "@mui/icons-material/Apps";
-import CloseIcon from "@material-ui/icons/CloseRounded";
+import MenuIcon from "@mui/icons-material/MenuRounded";
+import CloseIcon from "@mui/icons-material/Close";
+import LibraryBooksIcon from "@mui/icons-material/BookOutlined";
+import LibraryBooksIconA from "@mui/icons-material/BookRounded";
+import {
+  RiHome4Line,
+  RiHome4Fill,
+  RiMapPinRangeLine,
+  RiMapPinRangeFill,
+  RiMessageLine,
+  RiMessageFill,
+  RiInformationLine,
+  RiInformationFill,
+  RiMenuLine,
+} from "react-icons/ri";
 import { useRouteMatch, Link, useHistory } from "react-router-dom";
-import { useUserSlice, useMessagesSlice } from "@redux/getSlices";
-import ChatIcon from "@mui/icons-material/ChatRounded";
-import BookIcon from "@mui/icons-material/BookRounded";
-import LocationIcon from "@mui/icons-material/LocationOnRounded";
-import PublishIcon from "@mui/icons-material/PublishRounded";
-import ErrorIcon from "@mui/icons-material/ErrorRounded";
-import HomeIcon from "@mui/icons-material/HomeRounded";
-import logo from "./logo1.png";
+import { useUserSlice } from "@redux/getSlices";
+import logo from "./logo_grey.png";
 import "./HeaderMenu.css";
 
 function HeaderMenu() {
   const [click, setClick] = useState(false);
-  const [screenSize, setScreenSize] = useState(window.innerWidth);
-  const [{ user }, dispatchUser] = useUserSlice();
-  const [, dispatchMessages] = useMessagesSlice();
+  const [{ user }] = useUserSlice();
   const history = useHistory();
 
-  window.onresize = () => setScreenSize(window.innerWidth);
-
   const handleClick = () => {
-    if (screenSize > 800) return;
-
     setClick(!click);
-    document.querySelector(".nav__links").classList.toggle("opening");
+    // document.querySelector(".nav__links").classList.toggle("opening");
+  };
+
+  window.onresize = () => {
+    if (window.innerWidth >= 690) setClick(false);
   };
 
   const handleUserClicked = (e) => {
@@ -38,69 +43,48 @@ function HeaderMenu() {
     }
   };
 
-  const handleLogoutClick = () => {
-    handleClick();
-    import("../../utils/popUp.js").then((mbox) =>
-      mbox.default({
-        title: "Logging out!",
-        text: "Are you sure you want to logout?",
-        callback: () => {
-          dispatchUser({
-            type: "REMOVE_USER",
-          });
-
-          dispatchMessages({
-            type: "CLEAR_MESSAGES",
-          });
-        },
-      })
-    );
-  };
-
   return (
     <header className="header">
+      <button className="header__button" onClick={handleClick}>
+        {click ? <CloseIcon /> : <RiMenuLine />}
+      </button>
+
       <div role="link" className="logoContainer">
         <img src={logo} alt="qampus" />
         <h2>Qampus</h2>
       </div>
 
-      <nav className={`header__nav ${click && "active"}`}>
-        <ul className="nav__links">
+      <nav className={`header__nav ${click && "nav__linksOpen"}`}>
+        <ul className={"nav__links"}>
           <NavLink
-            screenSize={screenSize}
-            onClick={handleClick}
+            tooltip="Home"
             to="/"
-            label="home"
+            icon={<RiHome4Line />}
+            active_icon={<RiHome4Fill />}
           />
           <NavLink
-            screenSize={screenSize}
-            onClick={handleClick}
-            to="/upload"
-            label="upload"
-          />
-          <NavLink
-            screenSize={screenSize}
-            onClick={handleClick}
+            tooltip="My Books"
             to="/collection"
-            label="collection"
+            icon={<LibraryBooksIcon />}
+            active_icon={<LibraryBooksIconA />}
           />
           <NavLink
-            screenSize={screenSize}
-            onClick={handleClick}
+            tooltip="My Chats"
             to="/chats"
-            label="chats"
+            icon={<RiMessageLine />}
+            active_icon={<RiMessageFill />}
           />
           <NavLink
-            screenSize={screenSize}
-            onClick={handleClick}
+            tooltip="My Campus"
             to="/navigation"
-            label="navigation"
+            icon={<RiMapPinRangeLine />}
+            active_icon={<RiMapPinRangeFill />}
           />
           <NavLink
-            screenSize={screenSize}
-            onClick={handleClick}
+            tooltip="Help"
             to="/help"
-            label="help"
+            icon={<RiInformationLine />}
+            active_icon={<RiInformationFill />}
           />
         </ul>
       </nav>
@@ -119,56 +103,36 @@ function HeaderMenu() {
             />
           ) : (
             user?.firstName[0] + user?.lastName[0]
-          )) || "Login"}
+          )) || "Sign in"}
         </button>
-      </div>
-
-      <div className="header__button" onClick={handleClick}>
-        {click ? <CloseIcon /> : <AppsIcon />}
       </div>
     </header>
   );
 }
 
-const getIcon = (label) => {
-  switch (label) {
-    case "home":
-      return <HomeIcon />;
-
-    case "upload":
-      return <PublishIcon />;
-
-    case "collection":
-      return <BookIcon />;
-
-    case "help":
-      return <ErrorIcon />;
-
-    case "navigation":
-      return <LocationIcon />;
-
-    case "chats":
-      return <ChatIcon />;
-
-    default:
-      return undefined;
-  }
-};
-
-function NavLink({ to = "", label, ...rest }) {
+function NavLink({ tooltip = "", to = "", icon, active_icon, ...rest }) {
   const match = useRouteMatch({
     path: to,
     exact: true,
   });
 
   return (
-    <li
-      className={`nav__linksItem ${match?.isExact ? "active" : ""}`}
-      {...rest}
-    >
-      {rest.screenSize <= 470 && getIcon(label)}
-      <Link to={to}>{label}</Link>
-    </li>
+    <Link className="nav__linksItem__link" to={to}>
+      <li
+        className={`nav__linksItem ${match?.isExact ? "active" : ""}`}
+        {...rest}
+      >
+        <p className="headerMenu__icon">
+          {icon} <span>{tooltip}</span>
+        </p>
+        <p className="headerMenu__iconActive">
+          {active_icon} <span>{tooltip}</span>
+        </p>
+        <div class="tooltip ">
+          <p>{tooltip}</p>
+        </div>
+      </li>
+    </Link>
   );
 }
 

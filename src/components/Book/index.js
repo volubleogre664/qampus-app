@@ -1,7 +1,7 @@
-import InfoIcon from "@material-ui/icons/InfoOutlined";
-import DeleteIcon from "@material-ui/icons/DeleteRounded";
-import PencilIcon from "@material-ui/icons/EditRounded";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import InfoIcon from "@mui/icons-material/InfoOutlined";
+import DeleteIcon from "@mui/icons-material/DeleteRounded";
+import PencilIcon from "@mui/icons-material/EditRounded";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useHistory } from "react-router-dom";
 
 import popUpDialogue from "@utils/popUp.js";

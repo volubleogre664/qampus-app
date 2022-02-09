@@ -6,6 +6,8 @@ import "./Contact.css";
 
 function Contact({ contact, onClick, lastMsg: { lastMsg, time }, current }) {
   const getTime = (time) => {
+    if (!time) return "";
+
     const d = dayjs(Date.now());
     let daysDifference = d.diff(dayjs(time).format("YYYY-MM-DD"), "day");
 

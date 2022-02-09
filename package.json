@@ -66,6 +66,7 @@
     "parcel-bundler": "^1.12.5",
     "postcss": "^8.3.6",
     "postcss-cli": "^8.3.1",
-    "react-app-rewired": "^2.1.8"
+    "react-app-rewired": "^2.1.8",
+    "react-error-overlay": "^6.0.9"
   }
 }

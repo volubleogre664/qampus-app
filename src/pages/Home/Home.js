@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import PersonIcon from "@material-ui/icons/Person";
 import { useMutation } from "@apollo/react-hooks";
-import { SearchOutlined } from "@material-ui/icons";
+import PersonIcon from "@mui/icons-material/Person";
+import SearchOutlined from "@mui/icons-material/SearchOutlined";
 import LogoutIcon from "@mui/icons-material/LogoutRounded";
 import LoginIcon from "@mui/icons-material/LoginRounded";
-import CancelIcon from "@material-ui/icons/CloseRounded";
+import CancelIcon from "@mui/icons-material/CloseRounded";
 import ProfileIcon from "@mui/icons-material/ManageAccountsRounded";
 
 import MenuItem from "@components/MenuItem";

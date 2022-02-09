@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useLocation } from "react-router";
-import CheckIcon from "@material-ui/icons/CheckCircleOutlineOutlined";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
-import ErrorIcon from "@material-ui/icons/Error";
+import CheckIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import ErrorIcon from "@mui/icons-material/Error";
 
 import "./Input.css";
 
@@ -118,7 +118,7 @@ function Input({ label, id, type, testCases, ...rest }) {
                 <div className="formInput__tips">
                   <p>Please enter a valid email!</p>
                 </div>
-                
+
                 {/* The small arrow pointing to the input element from tips box */}
                 <span className="pointer"></span>
               </>
