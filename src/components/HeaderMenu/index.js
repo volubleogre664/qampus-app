@@ -128,7 +128,7 @@ function NavLink({ tooltip = "", to = "", icon, active_icon, ...rest }) {
         <p className="headerMenu__iconActive">
           {active_icon} <span>{tooltip}</span>
         </p>
-        <div class="tooltip ">
+        <div className="tooltip ">
           <p>{tooltip}</p>
         </div>
       </li>

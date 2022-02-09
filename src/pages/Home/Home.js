@@ -1,24 +1,17 @@
 import { useEffect, useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
-import PersonIcon from "@mui/icons-material/Person";
 import SearchOutlined from "@mui/icons-material/SearchOutlined";
-import LogoutIcon from "@mui/icons-material/LogoutRounded";
-import LoginIcon from "@mui/icons-material/LoginRounded";
 import CancelIcon from "@mui/icons-material/CloseRounded";
-import ProfileIcon from "@mui/icons-material/ManageAccountsRounded";
-
-import MenuItem from "@components/MenuItem";
 import Book from "@components/Book";
 import Loader from "@components/Loader";
-import popUpDialogue from "@utils/popUp.js";
 import { SEARCH_BOOKS } from "@utils/graphql";
-import {
-  useUserSlice,
-  useBooksSlice,
-  useMessagesSlice,
-} from "@redux/getSlices";
+import Recent from "@components/RecentUploads";
+import DailyQoutes from "@components/DailyQuotes";
+import RecommendedReads from "@components/RecommendedReads";
+import { MdKeyboardArrowUp } from "react-icons/md";
+import { useBooksSlice } from "@redux/getSlices";
 
-import logo from "../../logo.png";
+import logo from "../../logo_grey.png";
 import "./Home.css";
 
 //change the background reference here
@@ -26,11 +19,9 @@ const ref_link = "https://www.smoorevisuals.com/landscapes/";
 const ref_name = "Spencer Moore";
 
 function Home({ history }) {
-  const [{ user }, dispatchUser] = useUserSlice();
   const [{ searchBookList: books }, dispatchBook] = useBooksSlice();
   const [searchStr, setSearchStr] = useState("");
   const [loading, setLoading] = useState(false);
-  const [, dispatchMessages] = useMessagesSlice();
 
   // Toggles the results section and the menu section
   const [displays, setDisplays] = useState({
@@ -65,122 +56,67 @@ function Home({ history }) {
     searchBook();
   };
   // Clicking the avatar calls the method
-  const handleAvatarClick = () => {
-    const menu = document.getElementById("login__menu");
-    menu.classList.toggle("active");
+  // const handleAvatarClick = () => {
+  //   const menu = document.getElementById("login__menu");
+  //   menu.classList.toggle("active");
 
-    //hide the profile opion if user is not logged in
-    //use profile flag to keep of track of clicks
-    if (user && !profileFlag) {
-      profileFlag = setProfileFlag(true);
-      const profileItem = document.getElementsByClassName("profile_section");
-      profileItem[0].classList.toggle("active");
-    }
-  };
+  //   //hide the profile opion if user is not logged in
+  //   //use profile flag to keep of track of clicks
+  //   if (user && !profileFlag) {
+  //     profileFlag = setProfileFlag(true);
+  //     const profileItem = document.getElementsByClassName("profile_section");
+  //     profileItem[0].classList.toggle("active");
+  //   }
+  // };
 
-  const handleLoginMenuClick = () => {
-    if (!user) {
-      history.push("/login");
-    } else {
-      popUpDialogue({
-        title: "Logging out!",
-        text: "Are you sure you want to logout?",
-        callback: () => {
-          dispatchUser({
-            type: "REMOVE_USER",
-          });
+  // const handleLoginMenuClick = () => {
+  //   if (user) {
+  //     dispatchUser({
+  //       type: "REMOVE_USER",
+  //     });
 
-          dispatchMessages({
-            type: "CLEAR_MESSAGES",
-          });
-        },
-      });
-    }
-  };
-  const handleCloseMenuClick = () => {
-    const menu = document.getElementById("login__menu");
-    menu.classList.toggle("active");
-  };
-  const handleProfileMenuClick = () => {
-    history.push("/profile");
-  };
+  //     dispatchMessages({
+  //       type: "CLEAR_MESSAGES",
+  //     });
+  //   }
+
+  //   history.push("/login");
+  // };
+
+  // const handleCloseMenuClick = () => {
+  //   const menu = document.getElementById("login__menu");
+  //   menu.classList.toggle("active");
+  // };
+
   // Helps return back to the menu
   const openMenu = () => {
     setDisplays({ menu: "flex", results: "none" });
   };
 
   useEffect(() => {
-    document.title = "Home - Qampus";
+    document.title = "Home";
   }, []);
-  var [profileFlag, setProfileFlag] = useState(() => {
-    if (!user) {
-      return true;
-    } else {
-      return false;
-    }
-  });
+
+  // var [profileFlag, setProfileFlag] = useState(() => {
+  //   if (!user) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // });
 
   return (
     <div className="home">
-      {loading && <Loader message="Getting books" />}
-      <div className="home__header">
-        <button
-          id="avatar"
-          className="home__avatar"
-          onClick={handleAvatarClick}
-        >
-          <div className="avatarIcon__container">
-            {(user && user?.picture && (
-              <img
-                loading="eager"
-                className="avatarIcon"
-                alt={`${user.firstName} ${user.lastName}`}
-                src={user.picture}
-              />
-            )) || <PersonIcon className="avatarIcon" />}
-          </div>
-          <span className="home__avatarName">
-            {user?.firstName[0] + user?.lastName[0] || "Guest"}
-          </span>
-        </button>
-
-        <div id="login__menu">
-          <section
-            id="menu_item"
-            className="profile_section"
-            onClick={handleProfileMenuClick}
-          >
-            <ProfileIcon /> Profile
-          </section>
-          <section
-            id="menu_item"
-            className="login_section"
-            onClick={handleLoginMenuClick}
-          >
-            {user ? <LogoutIcon /> : <LoginIcon />}
-            {user ? "Logout" : "Login"}
-          </section>
-          <hr />
-          <section
-            id="menu_item"
-            className="close_section"
-            onClick={handleCloseMenuClick}
-          >
-            <CancelIcon /> Close
-          </section>
-        </div>
-      </div>
+      {loading && <Loader message="Searching..." />}
 
       <div className="home__searchSection">
         <div className="home__logo">
-          <img className="home__logoImg logo" src={logo} alt="qampus logo" />
+          <img className="home__logoImg" src={logo} alt="qampus logo" />
+          <h1>Qampus</h1>
         </div>
-        <h4 className="home__title">Welcome</h4>
-        <h3 className="home__title2">
-          here you can sell your texbooks, or buy them from other students
-        </h3>
-
-        <p className="home__subtitle">Search for books</p>
+        <p className="home__subtitle">
+          Welcome, what book are you looking for?
+        </p>
 
         <form
           autoComplete="off"
@@ -194,59 +130,25 @@ function Home({ history }) {
             onChange={(e) => setSearchStr(e.target.value)}
             className="home__searchInput"
             list="home__books"
-            placeholder="Title, ISBN or Module Code."
+            placeholder="ISBN, title, or module code."
           />
 
           <button type="submit">
+            {/* <a name="top"></a> */}
             <SearchOutlined />
           </button>
         </form>
       </div>
 
-      <div className="home__menu" style={{ display: displays.menu }}>
-        <div className="home__menuItems">
-          <MenuItem
-            guest={user !== null ? true : false}
-            history={history}
-            path="/upload"
-            icon="upload"
-            title="Upload Books"
-            subtitle="Sell your books to other students."
-          />
-
-          <MenuItem
-            guest={user !== null ? true : false}
-            history={history}
-            path="/collection"
-            icon="collection"
-            title="My Books"
-            subtitle="Keep track of your uploads."
-          />
-
-          <MenuItem
-            guest={user !== null ? true : false}
-            history={history}
-            path="/chats"
-            icon="chats"
-            title="Chats"
-            subtitle="Connect with buyers and sellers."
-          />
-
-          <MenuItem
-            history={history}
-            path="/navigation"
-            icon="navigation"
-            title="Qampus Navigation"
-            subtitle="Find your way around campus."
-          />
-
-          <MenuItem
-            history={history}
-            path="/help"
-            icon="help"
-            title="Help"
-            subtitle="About us, tutortials and more."
-          />
+      <div className="home__body" style={{ display: displays.menu }}>
+        <div className="top__row">
+          <Recent />
+        </div>
+        <div className="bottom__row">
+          {/* <ComingSoon/> */}
+          <DailyQoutes />
+          {/* <Request/> */}
+          <RecommendedReads />
         </div>
       </div>
 
@@ -255,10 +157,11 @@ function Home({ history }) {
         style={{ display: displays.results }}
       >
         <div className="heading">
-          <h3>Search results</h3>
-          <button className="btnBack" onClick={openMenu}>
-            X{/*Close search results*/}
-          </button>
+          <h3 className="caption">Search results</h3>
+          <div className="btnBack" onClick={openMenu}>
+            <CancelIcon />
+            {/*Close search results*/}
+          </div>
         </div>
 
         <div className="results">
@@ -273,6 +176,9 @@ function Home({ history }) {
         </div>
       </div>
 
+      <a className="backToTop" href="#top">
+        <MdKeyboardArrowUp />
+      </a>
       <div className="reference">
         <a
           className="reference_link"

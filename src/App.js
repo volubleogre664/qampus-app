@@ -6,7 +6,7 @@ import Home from "@pages/Home/Home.js";
 // import Profile from "@pages/Profile/Profile.js";
 // import FinaliseRegister from "@pages/Register/FinaliseRegister.js";
 
-import NewChats from "@pages/Chats/Chats.js";
+import Chats from "@pages/Chats/Chats.js";
 import NewRegister from "@pages/Register/Register.js";
 import NewLogin from "@pages/Login/Login.js";
 import NewProfile from "@pages/Profile/NewProfile.js";
@@ -71,7 +71,10 @@ function App() {
         <EditProfile />
         <Switch>
           {/* These are public pages... Accessible to everyone */}
-          <Route exact path="/" component={Home} />
+          <Route exact path="/">
+            <HeaderMenu />
+            <Home />
+          </Route>
           <Route exact path="/navigation">
             <HeaderMenu />
             <Navigation />
@@ -100,7 +103,7 @@ function App() {
 
           <PrivateRoute exact path="/chats*">
             <HeaderMenu />
-            <NewChats />
+            <Chats />
           </PrivateRoute>
 
           <PrivateRoute exact path="/upload">

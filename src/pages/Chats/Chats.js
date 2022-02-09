@@ -140,6 +140,14 @@ function NewChats() {
     // Change the current selected contact
     setCurrentContact(contact);
 
+    let filteredMsgs = messages?.filter(
+      (item) =>
+        (item?.from === user?.id && item?.to === contact?.id) ||
+        (item?.from === contact?.id && item?.to === user?.id)
+    ).length;
+
+    if (!filteredMsgs) return;
+
     // Get messages for the newly selected contact
     // messagesLength ensures that the current number of messages between user and current contact
     //  -> equals the one in the database.
@@ -147,11 +155,7 @@ function NewChats() {
       variables: {
         to: contact?.id,
         from: user?.id,
-        messagesLength: messages?.filter(
-          (item) =>
-            (item?.from === user?.id && item?.to === contact?.id) ||
-            (item?.from === contact?.id && item?.to === user?.id)
-        ).length,
+        messagesLength: filteredMsgs,
       },
     });
   };
@@ -184,21 +188,20 @@ function NewChats() {
   // Runs once on component render
   // Ensures that when chats open we get the messages for the first contact in your list
   useEffect(() => {
-    if (
-      user &&
-      user?.contacts?.length &&
-      !window.location.search &&
-      messages?.length
-    ) {
+    if (user && user?.contacts?.length && !window.location.search) {
+      let filteredMsgs = messages?.filter(
+        (item) =>
+          (item?.from === user?.id && item?.to === currentContact?.id) ||
+          (item?.from === currentContact?.id && item?.to === user?.id)
+      ).length;
+
+      if (!filteredMsgs) return;
+
       getMessagesQuery({
         variables: {
           to: currentContact?.id,
           from: user?.id,
-          messagesLength: messages?.filter(
-            (item) =>
-              (item?.from === user?.id && item?.to === currentContact?.id) ||
-              (item?.from === currentContact?.id && item?.to === user?.id)
-          ).length,
+          messagesLength: filteredMsgs,
         },
       });
     }

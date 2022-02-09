@@ -1,0 +1,23 @@
+.recommended__reads {
+  width: 40%;
+  min-height: 300px;
+  height: fit-content;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+  border-color: rgba(223, 225, 229, 0);
+  background: #fff;
+}
+
+@media screen and (max-width: 800px) {
+  .recommended__reads {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .recommended__reads {
+    width: 90%;
+    display: none;
+  }
+}

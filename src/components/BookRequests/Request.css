@@ -1,0 +1,44 @@
+.book__requests {
+  margin: auto;
+  margin-right: 0;
+  margin-left: 0;
+  margin-top: 0;
+  width: 40%;
+  min-height: 300px;
+  height: fit-content;
+  padding: 10px;
+  padding-left: 20px;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+  border-color: rgba(223, 225, 229, 0);
+  background: #fff;
+}
+.home__graph {
+  display: flex;
+  margin-top: 15px;
+}
+
+.home__graph .home__list {
+  width: 50%;
+  order: 2;
+}
+
+.first__icon {
+  color: #2e4682;
+}
+.second__icon {
+  color: #627fac;
+}
+.third__icon {
+  color: #8ebdf8;
+}
+.fourth__icon {
+  color: #b3daff;
+}
+
+.book__requests .book__chart {
+  margin: auto;
+  margin-top: 10px;
+  width: 200px;
+  height: fit-content;
+}
