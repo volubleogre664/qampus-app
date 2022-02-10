@@ -2,7 +2,7 @@ import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { useUserSlice } from "@redux/getSlices";
 import { useForm } from "@utils/hooks.js";
-import profilePlaceholder from "./profile_placeholder.png";
+import profilePlaceholder from "@assets/profile.png";
 
 import "./EditProfile.css";
 

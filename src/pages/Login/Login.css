@@ -1,7 +1,7 @@
 .login {
   flex: 1;
   display: flex;
-  background-image: url("./pic.jpeg");
+  background-image: url("../../assets/pic.jpeg");
   background-size: cover;
   background-clip: border-box;
   background-attachment: fixed;

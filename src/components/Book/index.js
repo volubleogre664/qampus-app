@@ -6,26 +6,10 @@ import { useHistory } from "react-router-dom";
 
 import popUpDialogue from "@utils/popUp.js";
 
-import imgSrc from "./img.jpg";
-
 import "./Book.css";
 
 function Book({ state, className, book, deleteBookClick, editBookClick }) {
   const history = useHistory();
-  // * Remove book above and use the one below when testing the component
-  if (!book) {
-    book = {
-      id: "jdsbjhbsdcjnscb",
-      title: "Database Principles",
-      isbn: "998844212133",
-      moduleCode: "CSIS1664",
-      price: "300.00",
-      edition: "2nd",
-      dateUploaded: "21 April 2021",
-      authors: "Steven Morris, Peter Rob",
-      frontCover: imgSrc,
-    };
-  }
 
   const book_details = {
     title: "Title",

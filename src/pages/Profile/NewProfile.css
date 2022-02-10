@@ -53,9 +53,14 @@
 }
 
 .profile__main {
+  gap: 35px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 35px;
+}
+
+.profile__main header {
+  width: 100%;
 }
 
 .profile__imageContainer {

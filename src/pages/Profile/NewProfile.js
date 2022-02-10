@@ -2,7 +2,7 @@ import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { useUserSlice } from "@redux/getSlices";
-import profilePlaceholder from "./profile_placeholder.png";
+import profilePlaceholder from "@assets/profile.png";
 
 import "./NewProfile.css";
 
@@ -47,10 +47,7 @@ function NewProfile() {
 
           <div className="someInfo">
             <h3>{`${user?.firstName} ${user?.lastName}`}</h3>
-            <p>
-              Bachelor of Science in IT Majouring in Computer Science and
-              Business Management
-            </p>
+            <p>{user?.degree || ""}</p>
             <button onClick={handleEditProfile} className="profile__edit">
               <EditOutlinedIcon /> Edit profile
             </button>

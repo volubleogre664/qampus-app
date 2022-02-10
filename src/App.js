@@ -56,7 +56,7 @@ function App() {
         payload: message.newMessage,
       });
 
-      let chatsDiv = document.querySelector(".chats__mainBody");
+      let chatsDiv = document.querySelector(".chats__mainSectionBody");
       chatsDiv.scrollTop = chatsDiv.scrollHeight;
     });
 

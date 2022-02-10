@@ -7,7 +7,7 @@ import ChatIcon from "@mui/icons-material/Chat";
 import BackIcon from "@mui/icons-material/ArrowBack";
 import { useMutation, useLazyQuery } from "@apollo/react-hooks";
 import Picker from "emoji-picker-react";
-import personIcon from "@components/Contact/profile.png";
+import personIcon from "@assets/profile.png";
 
 import Contact from "@components/Contact";
 import { ADD_MESSAGE, GET_MESSAGES_QUERY, GET_USER_DATA } from "@utils/graphql";
@@ -20,7 +20,7 @@ import {
 import "./Chats.css";
 import Message from "@components/Message";
 
-function NewChats() {
+function Chats() {
   const [{ user }, userDispatch] = useUserSlice();
   const [textMsg, setMsg] = useState("");
   const [messages, messageDispatch] = useMessagesSlice();
@@ -290,20 +290,23 @@ function NewChats() {
         <div className={`${chatClick && "chatsOpen"}`}>
           <button onClick={() => closeChats()}>
             {screenWidth < 670 && <BackIcon />}
-            <span className="contact__iconContainer">
-              <img
-                className="contact__icon"
-                loading="eager"
-                src={
-                  currentContact?.picture?.length > 0
-                    ? currentContact?.picture
-                    : personIcon
-                }
-                alt={[currentContact?.firstName, currentContact?.lastName].join(
-                  " "
-                )}
-              />
-            </span>
+            {currentContact && (
+              <span className="contact__iconContainer">
+                <img
+                  className="contact__icon"
+                  loading="eager"
+                  src={
+                    currentContact?.picture?.length > 0
+                      ? currentContact?.picture
+                      : personIcon
+                  }
+                  alt={[
+                    currentContact?.firstName,
+                    currentContact?.lastName,
+                  ].join(" ")}
+                />
+              </span>
+            )}
           </button>
 
           <p>
@@ -373,4 +376,4 @@ function NewChats() {
   );
 }
 
-export default NewChats;
+export default Chats;
