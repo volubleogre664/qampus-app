@@ -2,8 +2,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { useForm } from "@utils/hooks";
 
 import ToggleSwitch from "@components/ToggleSwitch";
-import Input from "@components/Input";
-import Button from "@components/Button";
+import CloseIcon from "@mui/icons-material/Close";
 import { EDIT_BOOK } from "@utils/graphql.js";
 import { useBooksSlice } from "@redux/getSlices";
 
@@ -42,11 +41,31 @@ const EditBook = ({ price, title, id, cancel }) => {
 
   return (
     <div className="editBook">
-      <h3 className="title--light">Edit book</h3>
-      <hr />
-      <p>Book: {title}</p>
+      <header>
+        <h3>Edit your book</h3>
+      </header>
+
+      <p>Title: {title}</p>
+
+      <button onClick={cancel}>
+        <CloseIcon />
+      </button>
 
       <form onSubmit={onSubmit}>
+        <div>
+          <label htmlFor="price">Price (R)</label>
+          <input
+            name="price"
+            className="login__mainFormInput"
+            onChange={onChange}
+            value={values.price}
+            id="price"
+            required={true}
+            type="text"
+            placeholder={values.price}
+          />
+        </div>
+
         <ToggleSwitch
           name="isBought"
           title={title}
@@ -55,20 +74,8 @@ const EditBook = ({ price, title, id, cancel }) => {
           label="Mark book as sold"
         />
 
-        <Input
-          name="price"
-          label="Price (R)"
-          onChange={onChange}
-          value={values.price}
-          id="price"
-          required={true}
-          type="number"
-          placeholder={values.price}
-        />
-
         <div className="editBook__footer">
-          <Button onClick={cancel} text="cancel" />
-          <Button type="submit" text="Edit Book" />
+          <button type="submit">Finish</button>
         </div>
       </form>
     </div>

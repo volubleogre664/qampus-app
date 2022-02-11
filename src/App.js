@@ -26,8 +26,8 @@ import "./App.css";
 
 const app = initializeApp(firebaseConfig);
 
-const serverUrl = "http://localhost:8080";
-// const serverUrl = "http://qampus-app.herokuapp.com:8080";
+// const serverUrl = "http://localhost:8080";
+const serverUrl = "http://qampus-app.herokuapp.com:8080";
 
 function App() {
   const [{ imgCrop, user }, dispatchUser] = useUserSlice();
@@ -65,6 +65,7 @@ function App() {
 
   return (
     <div className="app">
+      <div className="app__overlay"></div>
       <Router>
         {imgCrop.imgSrc && <CropImage />}
         <NewProfile />

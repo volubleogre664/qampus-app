@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { GoVerified } from "react-icons/go";
 import { useMutation } from "@apollo/react-hooks";
-import firebase from "firebase/app";
+import {
+  getStorage,
+  ref,
+  uploadString,
+  getDownloadURL,
+} from "firebase/storage";
 import Input from "@components/Input";
 import Loader from "@components/Loader";
 import Button from "@components/Button";
@@ -12,12 +17,12 @@ import { useForm } from "@utils/hooks";
 
 // import "./Profile.css";
 
-function Profile() {
+function Profile({ app }) {
   const [isEmail, setIsEmail] = useState(true);
   const [active, setActive] = useState(false);
   const [loading, setLoading] = useState(false);
   const [profile, setProfile] = useState(null);
-  const firebaseStorage = firebase.storage();
+  const firebaseStorage = getStorage(app);
   const [{ user, imgCrop }, dispatch] = useUserSlice();
 
   const { onSubmit, onChange, values } = useForm(updateUser, user);
@@ -60,8 +65,7 @@ function Profile() {
         });
     }
 
-    await storageRef
-      .getDownloadURL()
+    await getDownloadURL(storageRef)
       .then((url) => {
         if (url) setProfile(url);
         else setProfile("");
@@ -78,36 +82,36 @@ function Profile() {
   useEffect(() => {
     document.title = "Profile - Qampus";
 
-    if (imgCrop.croppedImgUrl) {
-      const storageRef = firebaseStorage.ref(
-        `${user.id}/profile/${user.firstName}.jpg`
-      );
+    if (!imgCrop.croppedImgUrl) return;
 
-      (async () => {
-        await storageRef
-          .putString(imgCrop.croppedImgUrl, "data_url")
-          .then(() => {
-            console.log("Image has been uploaded");
-            dispatch({
-              type: "SET_CROP_IMG",
-              payload: {
-                croppedImgUrl: null,
-              },
-            });
-          })
-          .catch((err) => {
-            console.log("Error uploading image: ", err);
+    const storageRef = ref(
+      firebaseStorage,
+      `${user.id}/profile/${user.firstName}.jpg`
+    );
+
+    (async () => {
+      await uploadString(storageRef, imgCrop.croppedImgUrl, "data_url")
+        .then(() => {
+          console.log("Image has been uploaded");
+          dispatch({
+            type: "SET_CROP_IMG",
+            payload: {
+              croppedImgUrl: null,
+            },
           });
+        })
+        .catch((err) => {
+          console.log("Error uploading image: ", err);
+        });
 
-        await storageRef
-          .getDownloadURL()
-          .then((url) => {
-            if (url) updateProfile({ variables: { picture: url } });
-            else setProfile("");
-          })
-          .catch((err) => console.log(err));
-      })();
-    }
+      await getDownloadURL(storageRef)
+        .then((url) => {
+          if (url) updateProfile({ variables: { picture: url } });
+          else setProfile("");
+        })
+        .catch((err) => console.log(err));
+    })();
+    // }
 
     return () => {
       if (imgCrop.croppedImgUrl) {

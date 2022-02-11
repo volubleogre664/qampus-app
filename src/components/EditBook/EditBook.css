@@ -4,46 +4,76 @@
   position: absolute;
   margin-top: auto !important;
   left: calc(50vw - 200px);
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: #fff;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  top: 80px;
+  gap: 8px;
   z-index: 20;
-  color: white;
-  padding: 20px;
+  color: rgb(73, 73, 73);
+  padding: 20px 0;
+  padding-top: 10px;
   box-sizing: border-box;
 }
 
-.editBook::after {
-  width: 100%;
-  height: 100%;
+.editBook > button {
   position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgba(255, 255, 255, 0.25);
+  right: 10px;
+  top: 10px;
+  color: #009bf6;
+  padding: 8px;
+  border-radius: 50%;
+  border: none;
+  background-color: #f1f1f1;
+  display: grid;
+  cursor: pointer;
+  place-items: center;
+  box-shadow: 1px 1px 0.5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.editBook > button:hover {
+  background-color: rgb(226, 226, 226);
+}
+
+.editBook header {
+  padding: 0 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgb(226, 226, 226);
+}
+
+.editBook > p {
+  padding: 0 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
 }
 
 .editBook h3 {
-  text-align: center;
   margin-top: 0;
-  font-size: 1.5rem;
-  font-weight: normal;
-  font-family: "Poiret One";
-  color: #fff;
-  -webkit-filter: drop-shadow(2px 4px 8px #585858);
-  filter: drop-shadow(2px 4px 8px #585858);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 5px;
+  font-family: "Poppins", sans-serif;
+  color: #009bf6;
 }
 
 .editBook hr {
   width: 100%;
   margin: auto;
+  background-color: rgb(219, 219, 219);
 }
 
 .editBook form {
   display: flex;
   flex-direction: column;
+  padding: 0 20px;
   gap: 15px;
+}
+
+.editBook form div {
+  gap: 4px;
+  display: flex;
+  flex-direction: column;
 }
 
 .editBook__footer {
@@ -52,7 +82,29 @@
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  margin: auto;
+  margin-left: auto;
+}
+
+.editBook__footer button {
+  display: flex;
+  width: 100px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  gap: 5px;
+  font-size: 0.97rem;
+  transition: all ease-in 0.2s;
+  color: #fff;
+  background-color: rgb(0, 155, 246);
+}
+
+.editBook__footer button:hover {
+  background-color: rgba(0, 155, 246, 0.8);
 }
 
 @media screen and (max-width: 500px) {

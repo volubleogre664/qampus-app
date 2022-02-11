@@ -34,6 +34,7 @@ function Register() {
         payload: userData,
       });
       setPin(false);
+      history.push("/");
     },
     variables: values,
     onError(err) {
@@ -64,7 +65,6 @@ function Register() {
       {loading && <Loader message="Creating account" />}
       <aside className={`register__aside  ${pin && "open"}`}>
         <p>Your account will be ready soon, please create a strong password</p>
-        {/* <h3>Create password</h3> */}
         <main className="register__asideMain">
           <form onSubmit={onSubmit}>
             <div>

@@ -98,6 +98,7 @@ function Collection({ app }) {
   return (
     <div className="collection">
       {edit && <EditBook cancel={cancelClicked} {...book} />}
+      {edit && <div className="overlay" />}
       {loading && <Loader message="Getting your books" />}
       <div className="collection__header">
         <p>Your books</p>
