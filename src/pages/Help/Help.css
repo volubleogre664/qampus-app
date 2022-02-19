@@ -1,11 +1,20 @@
 .help {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   padding: 15px;
   height: 100%;
   overflow: hidden;
+  background: url('../../assets/help_image.jpg') no-repeat;
 }
-
+.help__header{
+  display: flex;
+  justify-content: center;
+}
+.help__body{
+  display: flex;
+  flex-direction: row;
+  min-height: 100%;
+}
 .help_side {
   display: flex;
   flex-direction: column;
@@ -15,25 +24,19 @@
   min-width: 300px;
   height: 100%;
   align-items: center;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-radius: 10px;
-  margin-right: 10px;
+  margin-top: 10px;
+  border-right: 1px solid rgb(206, 206, 206)
 }
 
-.help_side > p {
-  font-size: 1.6rem;
-  color: #fff;
-  font-family: "Poiret One";
-  margin-top: 15px;
-}
+
 .main_header {
-  font-size: 1.6rem;
-  color: #fff;
-  font-family: "Poiret One";
-  margin-top: 15px;
+  font-size: 1.5rem;
+  color: #000;
+  font-family: "Poppins";
   text-align: center;
+  padding-bottom: 10px;
+  border-bottom: solid 1px rgb(206, 206, 206);
+  width: 95%;
 }
 
 .sepatator {
@@ -43,27 +46,48 @@
   margin-bottom: 0;
 }
 
-.buttons {
+.help_side .buttons {
   display: flex;
   flex-direction: column;
-  width: 90%;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
+  width: 100%;
   max-height: 50%;
   margin: auto;
-  margin-bottom: 30px;
-  margin-top: 20px;
+  margin-top: 0;
+  justify-content: center; 
+  place-items: center; 
 }
 
+.help_side .buttons .button{
+  transition: all ease-in-out 0.2s !important;
+  background: #009bf6 !important;
+  text-align: center !important;
+  height: 32px !important;
+  color: #fff !important;
+  border-radius: 3px !important;
+  border: none;
+  font: lighter 1rem var(--font) !important;
+  min-width: 160px !important;
+  max-width: 200px;
+  margin-top: 10px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.27);
+  -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.27);
+  -moz-box-shadow: 4px 4px 8px rgba(146, 109, 109, 0.27);
+}
+
+.help_side .buttons .button:hover{
+  transition: all ease-in-out 0.2s !important;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.27);
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.27);
+  -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.27);
+  cursor: pointer;
+
+}
 .help_main {
   width: 85%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
   margin-right: 10px;
+  backdrop-filter: blur(5px);
 }
 
 .main_content {
@@ -71,7 +95,7 @@
   height: 83%;
   margin: auto;
   margin-top: 20px;
-  color: #fff;
+  color: #000;
   overflow-y: scroll;
   overflow-x: hidden;
   font-weight: 100;

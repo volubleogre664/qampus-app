@@ -283,10 +283,15 @@ function Chats() {
   return (
     <section className="chats">
       <header className="chats__header">
-        <h2 className={`${chatClick && "chatsOpen"}`}>
+        {/* <h2 className={`${chatClick && "chatsOpen"}`}>
           <ChatIcon />
           Messages
-        </h2>
+        </h2> */}
+        <div className="searchContainer">
+            <SearchIcon />{" "}
+            <input placeholder="Search..." type="text" />
+          </div>
+
         <div className={`${chatClick && "chatsOpen"}`}>
           <button onClick={() => closeChats()}>
             {screenWidth < 670 && <BackIcon />}
@@ -318,8 +323,8 @@ function Chats() {
       <section className="chats__main">
         <aside className="chats__mainAside">
           <div className="searchContainer">
-            <SearchIcon />{" "}
-            <input placeholder="Search for contact" type="text" />
+            {/* <SearchIcon />{" "} */}
+            {/* <input placeholder="Search for contact" type="text" /> */}
           </div>
 
           <div className="contactsContainer">

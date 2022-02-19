@@ -22,6 +22,8 @@
   font-size: 1.1rem;
   padding: 0 5px;
   margin-bottom: 5px;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.27);
+
 }
 
 .formInput[type="password"],
@@ -31,10 +33,7 @@
 
 .formInput:focus {
   border: #009bf6 solid 1px;
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8),
-    0 0 10px rgba(255, 255, 255, 0.8);
   transition: all ease-in-out 0.2s;
-  border-radius: 1px;
 }
 
 .formInput__button {

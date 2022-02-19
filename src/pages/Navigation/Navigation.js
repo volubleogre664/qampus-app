@@ -118,14 +118,18 @@ function Navigation() {
 
   return (
     <div className="navigation">
+      <div>
+        <header className="navigation__mainHeader">
+          <h3>UFS main capmus</h3>
+        </header>       
+      </div>
+      <div className="navigation__body">
       <aside className="navigation__sidebar">
-        <h2 className="navigation__sidebarTitle">Navigator</h2>
-        <hr className="sepatator" />
         <form className="navigation__sidebarForm" onSubmit={changeState}>
           <SelectLocation
             name="startLocation"
             id="startLocation"
-            label="Start Location"
+            label="Starting point"
             building={building}
             coordinates={coordinates}
             currentlocation={currentLocation}
@@ -148,11 +152,6 @@ function Navigation() {
       </aside>
 
       <main className="navigation__main" id="map">
-        <header className="navigation__mainHeader">
-          <h3>UFS main capmus</h3>
-          <hr />
-        </header>
-
         <Iframe
           className="navigation__mainFrame"
           id="frame"
@@ -160,6 +159,7 @@ function Navigation() {
           loading="lazy"
         ></Iframe>
       </main>
+      </div>
     </div>
   );
 }

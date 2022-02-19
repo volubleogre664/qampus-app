@@ -100,11 +100,6 @@ function Collection({ app }) {
       {edit && <EditBook cancel={cancelClicked} {...book} />}
       {edit && <div className="overlay" />}
       {loading && <Loader message="Getting your books" />}
-      <div className="collection__header">
-        <p>Your books</p>
-        <hr className="collection__headerSeparator" />
-      </div>
-
       <section className="collection__body">
         {books.map((book, i) => (
           <Book

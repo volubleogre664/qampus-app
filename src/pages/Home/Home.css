@@ -12,6 +12,11 @@
   overflow-x: hidden;
   position: relative;
   padding-top: 0 !important;
+  background: url('../../assets/home_image.jpg') no-repeat;
+  background-attachment: fixed;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .home__header {
@@ -496,14 +501,16 @@
 
 .home__searchResults {
   width: 100%;
+  min-height: 100%;
   box-sizing: border-box;
   padding: 30px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 40px;
+  backdrop-filter: blur(10px);
 }
 
 .home__searchResults > .heading {
@@ -521,6 +528,7 @@
 
 .home__searchResults > .heading > h3 {
   text-align: left;
+  display: none;
 }
 
 .home__searchResults .results {

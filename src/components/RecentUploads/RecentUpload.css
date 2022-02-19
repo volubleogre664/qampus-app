@@ -9,6 +9,7 @@
   /* max-width: 90%; */
   min-width: 65%;
   min-height: 260px;
+  max-height: 120px;
   height: fit-content;
   margin: auto;
   margin-left: 0;
@@ -18,10 +19,10 @@
   /* padding-bottom: 30px; */
   border-radius: 8px;
   gap: 15px;
-  box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+  box-shadow: 0 1px 6px rgb(32 33 36/70%);
   border-color: rgba(223, 225, 229, 0);
-  /* background: #fff; */
-  background: #fff;
+  background: rgba(255, 255, 255, 0.70);
+  backdrop-filter: blur(5px);
 }
 
 .home__books {

@@ -3,15 +3,12 @@ import { about } from "../../text_files/about.json";
 import { tutorial } from "../../text_files/tutorial.json";
 import { safety } from "../../text_files/safety.json";
 import { terms } from "../../text_files/terms.json";
-
-import Button from "@components/Button";
-
 import "./Help.css";
 
 function Help() {
   const [display, setDisplay] = useState({
-    title: "Terms of use",
-    content: terms,
+    title: "About us",
+    content: about,
   });
 
   function tabBtnClicked(tab) {
@@ -39,26 +36,25 @@ function Help() {
 
   return (
     <div className="help">
+      <div className="help__header">
+        <p className="main_header"> {display.title}</p>
+      </div>
+      <div className="help__body">
       <div className="help_side">
-        <p>Help</p>
-        <br />
-        <hr className="sepatator" />
         <div className="buttons">
-          <Button text="About us" onClick={() => tabBtnClicked("about")} />
-          <Button text="Tutorials" onClick={() => tabBtnClicked("tutorials")} />
-          <Button text="safety tips" onClick={() => tabBtnClicked("safety")} />
-          <Button text="Terms of use" onClick={() => tabBtnClicked("terms")} />
-          <Button text="Contact us" onClick={() => tabBtnClicked("")} />
+          <button className="button" onClick={() => tabBtnClicked("about")}>About us</button>
+          <button className="button" onClick={() => tabBtnClicked("tutorials")}>Tutorials</button>
+          <button className="button" onClick={() => tabBtnClicked("safety")}>Safety tips</button>
+          <button className="button" onClick={() => tabBtnClicked("terms")}>Terms of use</button>
+          <button className="button" onClick={() => tabBtnClicked("")}>Contact us</button>
         </div>
       </div>
 
       <div className="help_main">
-        <p className="main_header"> {display.title}</p>
-        <br />
-        <hr className="sepatator" />
         <div className="main_content">
           <p>{display.content}</p>
         </div>
+      </div>
       </div>
     </div>
   );

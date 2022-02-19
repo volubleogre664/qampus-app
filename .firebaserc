@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "qampus-app"
-  }
+    "default": "qampus-demo-redesign",
+    "images_design": "qampus-demo-redesign",
+    " qampus-demo-redesign": "qampus-demo-redesign"
+  },
+  "targets": {}
 }

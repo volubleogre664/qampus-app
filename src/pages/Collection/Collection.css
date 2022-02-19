@@ -5,6 +5,7 @@
   box-sizing: border-box;
   overflow-y: auto;
   position: relative;
+  background: url('../../assets/collection_image.jpg') no-repeat;
 }
 
 .collection .overlay {
@@ -15,10 +16,6 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
-}
-
-.collection__header {
-  color: #000;
 }
 
 .collection__header p {
@@ -42,5 +39,7 @@
 
 .collection__footer {
   margin-top: 30px;
+  display: flex;
+  justify-content: center;
 }
 /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkNvbGxlY3Rpb24uc2NzcyIsIkNvbGxlY3Rpb24uY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBR1MsT0FBRTtFQUNULFdBQVU7RUFDVixrQkFBZ0I7RUNFUixzQkFBc0I7RURDaEMsZ0JBQUE7QUNDQTs7QUFFQTtFREhBLFdBQUE7QUNLQTs7QUFFQTtFREFHLGlCQUFBO0VDRUQsa0JBQWtCO0VEVHBCLHlCQVNPO0FDRVA7O0FBRUE7RUFDRSxVQUFVO0VEQ1osMEJBQWtCO0FDQ2xCOztBQUVBO0VBR0UsYUFBYTtFREdYLGVBQWtCO0VBR1gsbUJBQUk7RUFHSCx1QkFBTztFQU9oQixTQUFBO0FDTkg7O0FBRUE7RURDTSxnQkFBZ0I7QUNDdEIiLCJmaWxlIjoiQ29sbGVjdGlvbi5jc3MifQ== */
