@@ -1,7 +1,7 @@
 .login {
   flex: 1;
   display: flex;
-  background-image: url("../../assets/ufs_main.jpg");
+  background-image: url("../../assets/register_image.jpg");
   background-size: cover;
   background-clip: border-box;
   background-attachment: fixed;
@@ -60,7 +60,11 @@
   padding: 20px;
   display: flex;
   place-items: center;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.93);
+  overflow-y: auto;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.27);
+  -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.27);
+  -moz-box-shadow: 4px 4px 8px rgba(146, 109, 109, 0.27);
 }
 
 .login__main > section > div> .logoContainer {

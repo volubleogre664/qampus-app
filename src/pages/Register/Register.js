@@ -13,6 +13,9 @@ function Register() {
   const [pin, setPin] = useState(false);
   const [, dispatch] = useUserSlice();
 
+  const ref_link = "https://www.vecteezy.com/members/onyxprj_art";
+  const ref_name = "Vecteezy: onyxprj_art";
+
   const { onChange, onSubmit, values } = useForm(registerUser, {
     studentNumber: "",
     firstName: "",
@@ -181,11 +184,13 @@ function Register() {
                 <Link to="/help">Help</Link>
                 <Link to="/help">Terms</Link>
               </div>
+            
             </footer>
           </form>
         </div>
       </section>
     </main>
+    
   </section>
   );
 }
