@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   opacity: 0;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 301;
@@ -25,7 +25,7 @@
   width: 100%;
   max-width: 670px;
   height: 100%;
-  background-color: rgb(252, 252, 252);
+  background-color: #fbfbfb;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -44,6 +44,11 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
+.editProfile.save_discard_changes .editProfile__saveChanges {
+  opacity: 1;
+  bottom: 0;
+}
+
 .editProfile__overlay > .editProfile {
   opacity: 0;
 }
@@ -54,38 +59,42 @@
 }
 
 .editProfile > * {
-  padding: 15px;
+  padding: 20px;
   box-sizing: border-box;
 }
 
 .editProfile__header {
   display: flex;
   align-items: center;
-  padding: 10px 15px;
+  padding: 15px 20px;
   border-bottom: 1px solid #e0e0e0;
   box-shadow: -1px -1px -1px rgba(0, 0, 0, 0.2);
 }
 
 .editProfile__header h2 {
   flex: 1;
-  font-size: 1.35rem;
-  font-weight: 700;
+  font-size: 1.6rem;
+  font-weight: 200;
   color: #009bf6;
+  margin-bottom: 4px;
+
 }
 
 .editProfile__header .icon-container {
   color: #009bf6;
-  padding: 8px;
+  padding: 10px;
   border-radius: 50%;
-  background-color: #f1f1f1;
+  background-color: #ececec;
   display: grid;
   cursor: pointer;
   place-items: center;
-  box-shadow: 1px 1px 0.5px 0 rgba(0, 0, 0, 0.2);
+  /* box-shadow: 1px 1px 0.5px 0 rgba(0, 0, 0, 0.2); */
+  -webkit-filter: drop-shadow(1px 2px 2px #000000);
+  filter: drop-shadow(1px 2px 2px #000000);
 }
 
 .editProfile__header .icon-container:hover {
-  background-color: rgb(226, 226, 226);
+  background-color: #f6f6f6;
 }
 
 /* The main will be here */
@@ -93,7 +102,7 @@
   flex: 1;
   display: flex;
   flex-direction: column-reverse;
-  padding: 15px 20px;
+  padding: 20px 30px;
   overflow: hidden;
   overflow-y: auto;
   margin-bottom: 20px;
@@ -135,18 +144,30 @@
 
 .editProfile__mainFormInput {
   width: calc(100% - 12px);
-  font-size: 0.98rem;
+  /* font-size: 0.98rem;
   font-weight: 300;
   padding: 5px 8px;
   height: 25px;
-  border-radius: 5px;
-  border: 1px solid rgb(161, 161, 161);
+  border: 2px solid rgb(161, 161, 161);
   transition: all ease-in 0.25s;
-}
+  border-radius: 6px; */
+  font-size: 1rem;
+  padding: 5px;
+  height: 30px;
+  border-radius: 4px;
+  border: 2px solid rgb(194, 194, 194);
+ }
 
-.editProfile__mainFormInput:hover {
+/* .editProfile__mainFormInput:hover {
   transition: color ease-in 0.2s;
-  border-color: #554468;
+  border-radius: 2px;
+  border-color: rgb(125, 125, 125);
+} */
+
+.editProfile__mainFormInput:focus {
+  transition: color ease-in-out 0.2s;
+  border: 2px solid #009bf6;
+  outline: none;
 }
 
 .editProfile__mainImage {
@@ -183,18 +204,30 @@
 }
 
 .editProfile__mainImage button:first-of-type {
-  align-self: flex-start;
+  /* align-self: flex-start; */
   text-align: center;
-  background-color: transparent;
-  padding: 8px 20px;
-  margin-bottom: 6px;
+  padding: 10px 15px;
+  /*margin-bottom: 6px;
   border-radius: 4px;
-  transition: all ease-in 0.2s;
-  border: 1px solid rgb(161, 161, 161);
+  transition: all ease-in-out 0.2s;
+  border: 1px solid rgb(161, 161, 161); */
+  font-size: 0.98rem;
+  font-weight: 300;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.27);
+  -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.27);
+  -moz-box-shadow: 4px 4px 8px rgba(146, 109, 109, 0.27);
+  background: #696969;
+  color: white;
+  transition: all ease-in-out 0.1s;
+  margin-bottom: 20px;
 }
 
 .editProfile__mainImage button:first-of-type:hover {
-  background-color: rgb(240, 240, 240);
+  background: rgb( 120, 120, 120);
+  color: white;
 }
 
 .editProfile__mainImage button:last-of-type {
@@ -266,19 +299,14 @@
 .editProfile__saveChanges {
   padding: 15px 20px;
   position: absolute;
-  bottom: -200px;
+  bottom: -90px;
   left: 0;
   z-index: 2;
   width: 100%;
   opacity: 0;
   background-color: rgb(252, 252, 252);
   border-top: 1px solid #e0e0e0;
-  transition: all ease-in 0.25s;
-}
-
-.editProfile.save_discard_changes .editProfile__saveChanges {
-  opacity: 1;
-  bottom: 0;
+  transition: all ease-in 0.2s;
 }
 
 .editProfile__saveChanges p {
@@ -301,24 +329,10 @@
   .editProfile {
     border-radius: 10px;
     height: 90%;
-    width: 90%;
     max-height: 900px;
   }
 
-  .editProfile__header {
-    padding: 15px 20px;
-  }
-
-  .editProfile__header h2 {
-    font-size: 1.5rem;
-  }
-
-  .editProfile__header .icon-container {
-    padding: 10px;
-  }
-
   .editProfile__main {
-    padding: 20px 30px;
     flex-direction: initial;
     justify-content: space-between;
   }

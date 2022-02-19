@@ -6,6 +6,9 @@
   overflow-y: auto;
   position: relative;
   background: url('../../assets/collection_image.jpg') no-repeat;
+  background-attachment: local;
+  background-position: top;
+  background-size: cover;
 }
 
 .collection .overlay {

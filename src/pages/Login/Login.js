@@ -47,19 +47,17 @@ function Login() {
 
   return (
     <section className="login">
-      {loading && <Loader message="Logging in" />}
+      {loading && <Loader message="Signing in" />}
       <main className="login__main">
         <section>
           <div>
-            <header>
-              <div role="link" onClick={logoClicked} className="logoContainer">
-                <img src={logo} alt="qampus" />
-                <h2>Qampus</h2>
-              </div>
-            </header>
+            <div role="link" onClick={logoClicked} className="logoContainer">
+              <img className="loginLogo" src={logo} alt="qampus"/>
+              <h2>Qampus</h2>
+            </div>
 
             <h2 className="login__title">
-              Log In to <span>Qampus</span>
+              Sign in to your account
             </h2>
 
             <form
@@ -75,6 +73,7 @@ function Login() {
                   value={values.studentNumber}
                   onChange={onChange}
                   type="text"
+                  id="studentNumber"
                 />
               </div>
 
@@ -89,14 +88,14 @@ function Login() {
                   type="password"
                 />
                 <p>
-                  <Link to="/login">Forgot password?</Link>
+                  <Link href="/login">Forgot password?</Link>
                 </p>
               </div>
 
               <div>
                 {error && <p>Student number or password incorrect.</p>}
                 <button className="login__mainFormButton" type="submit">
-                  Log In
+                  Sign in
                 </button>
               </div>
 

@@ -5,13 +5,10 @@
   box-sizing: border-box;
   padding-top: 10px;
   background: rgb(149, 157, 165);
-  background: linear-gradient(
-    to top,
-    rgba(149, 157, 165, 0.2) 0%,
-    rgba(255, 255, 255, 0.5578606442577031) 84%
-  );
   background: url('../../assets/chats_image.jpg') no-repeat;
-
+  background-attachment: local;
+  background-position: top;
+  background-size: cover;
 }
 
 .chats * {
@@ -86,7 +83,6 @@
   margin: 0;
   display: flex;
   margin-bottom: 0;
-  margin-top: 0;
   border-radius: 10px;
   position: relative;
   background-color: rgba(253, 253, 253,0.6);

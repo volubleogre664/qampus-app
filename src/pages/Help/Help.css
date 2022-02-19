@@ -5,6 +5,9 @@
   height: 100%;
   overflow: hidden;
   background: url('../../assets/help_image.jpg') no-repeat;
+  background-attachment: local;
+  background-position: center;
+  background-size: cover;
 }
 .help__header{
   display: flex;
@@ -69,6 +72,7 @@
   min-width: 160px !important;
   max-width: 200px;
   margin-top: 10px;
+  padding: 5px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.27);
   -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.27);
   -moz-box-shadow: 4px 4px 8px rgba(146, 109, 109, 0.27);
@@ -87,12 +91,12 @@
   height: 100%;
   background-color: rgba(255, 255, 255, 0.2);
   margin-right: 10px;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(3px);
 }
 
 .main_content {
   width: 87%;
-  height: 83%;
+  height: 88%;
   margin: auto;
   margin-top: 20px;
   color: #000;
