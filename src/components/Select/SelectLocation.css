@@ -6,7 +6,7 @@
   cursor: pointer;
   color: #000;
   font-family: "Poppins";
-  margin-bottom: 5px;
+  padding-bottom: 10px;
 }
 
 .selectInput {
@@ -16,9 +16,8 @@
   background-color: #fff;
   font-size: 1.07rem;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 4px;
   align-items: center;
-  background-color: #efecfb;
   border: 2px solid rgb(206, 206, 206);
 }
 

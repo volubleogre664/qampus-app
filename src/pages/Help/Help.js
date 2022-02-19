@@ -46,7 +46,7 @@ function Help() {
           <button className="button" onClick={() => tabBtnClicked("tutorials")}>Tutorials</button>
           <button className="button" onClick={() => tabBtnClicked("safety")}>Safety tips</button>
           <button className="button" onClick={() => tabBtnClicked("terms")}>Terms of use</button>
-          <button className="button" onClick={() => tabBtnClicked("")}>Contact us</button>
+          {/* <button className="button" onClick={() => tabBtnClicked("")}>Contact us</button> */}
         </div>
       </div>
 
