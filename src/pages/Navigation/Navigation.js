@@ -18,7 +18,7 @@ import "./Navigation.css";
 function Navigation() {
   const [currentLocation, setCurrentLocation] = useState(getCurrentLocation());
   const [active, setActive] = useState(() => {
-    return "https://www.google.com/maps/embed";
+    return "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3485.9351016163523!2d26.190261915093316!3d-29.107597282232803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e8fc52b003394f3%3A0x8dd8523e8f33f2ea!2sUniversity%20of%20the%20Free%20State!5e0!3m2!1sen!2sza!4v1645343640565!5m2!1sen!2sza";
   });
   const { onChange, values } = useForm(null, {
     startLocation: "",
