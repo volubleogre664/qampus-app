@@ -14,7 +14,6 @@ import {
   useUserSlice,
   useUtilsSlice,
 } from "@redux/getSlices.js";
-// import popUpDialogue from "@utils/popUp.js";
 
 import { getStorage, deleteObject, ref } from "firebase/storage";
 import "./Collection.css";
@@ -84,12 +83,18 @@ function Collection({ app }) {
     onError(err) {
       console.log(err?.message);
 
-      // popUpDialogue({
-      //   icon: "warning",
-      //   title: "Book Not Deleted!",
-      //   text: "Unable to delete the book... Please Try again",
-      //   buttons: "okay",
-      // });
+      dispatchUtils({
+        type: "DELETE_BOOK",
+        payload: {
+          title: "Delete Book Failed",
+          subtitle:
+            "An error occured whiilee deleting your bool, please try again",
+          btnCancel: false,
+          btnContinue: true,
+          bookTitle: "",
+          popupShow: true,
+        },
+      });
     },
   });
 

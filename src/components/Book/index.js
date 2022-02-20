@@ -42,13 +42,6 @@ function Book({ state, className, book, deleteBookClick, editBookClick }) {
         popupShow: false,
       },
     });
-
-    // popUpDialogue({
-    //   icon: "info",
-    //   title: "Delete Book!",
-    //   text: "Are you sure you want to delete this book?\nTitle: " + book?.title,
-    //   callback: () => deleteBookClick({ variables: { id: book?.id } }),
-    // });
   };
 
   const handleBookState = () => {

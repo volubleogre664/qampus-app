@@ -17,7 +17,6 @@ import Bullet from "@components/Bullet";
 import ConfirmBook from "./ConfirmBook";
 
 import { useForm } from "@utils/hooks";
-// import popUpDialogue from "@utils/popUp.js";
 import { UPLOAD_BOOK } from "@utils/graphql";
 import { useBooksSlice, useUserSlice, useUtilsSlice } from "@redux/getSlices";
 import { upload as uploadBullets } from "../../text_files/bulletPoints";
