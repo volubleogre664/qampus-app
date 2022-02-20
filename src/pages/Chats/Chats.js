@@ -146,7 +146,7 @@ function Chats() {
         (item?.from === contact?.id && item?.to === user?.id)
     ).length;
 
-    if (!filteredMsgs) return;
+    if (!filteredMsgs) filteredMsgs = 0;
 
     // Get messages for the newly selected contact
     // messagesLength ensures that the current number of messages between user and current contact
@@ -169,6 +169,8 @@ function Chats() {
     if (textMsg === "" || textMsg.replace(regex, "") === "") return;
 
     addMessage({ variables: { to: currentContact?.id, textMsg } });
+
+    setMsg("");
   };
 
   // For closing the chats
@@ -352,22 +354,24 @@ function Chats() {
 
           <footer className="chats__mainSectionFooter">
             {emoji && <Picker onEmojiClick={handleEmojiClick} />}
-            <div className="msgInputContainer">
-              <button onClick={() => setEmoji(!emoji)} className="emojiIcon">
-                <EmojiIcon />
-              </button>
-              <input
-                placeholder="Type a message"
-                onChange={handleChange}
-                value={textMsg}
-                type="text"
-              />
-              <button ref={attachRef} className="attachIcon">
-                <AttachIcon />
-              </button>
-              <button onClick={onSubmit} className="sendIcon">
-                <SendIcon />
-              </button>
+            <div>
+              <form className="msgInputContainer" onSubmit={onSubmit}>
+                <button onClick={() => setEmoji(!emoji)} className="emojiIcon">
+                  <EmojiIcon />
+                </button>
+                <input
+                  placeholder="Type a message"
+                  onChange={handleChange}
+                  value={textMsg}
+                  type="text"
+                />
+                <button ref={attachRef} className="attachIcon">
+                  <AttachIcon />
+                </button>
+                <button type="submit" className="sendIcon">
+                  <SendIcon />
+                </button>
+              </form>
             </div>
           </footer>
         </main>
