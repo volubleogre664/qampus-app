@@ -41,5 +41,6 @@
   .recent__uploads {
     background-color: transparent;
     box-shadow: none;
+    max-height: fit-content;
   }
 }

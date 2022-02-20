@@ -3,14 +3,19 @@ import { about } from "../../text_files/about.json";
 import { tutorial } from "../../text_files/tutorial.json";
 import { safety } from "../../text_files/safety.json";
 import { terms } from "../../text_files/terms.json";
+import {RiCloseLine,  RiMenuLine} from "react-icons/ri";
 import "./Help.css";
 
 function Help() {
+  const [click, setClick] = useState(false);
   const [display, setDisplay] = useState({
     title: "About us",
     content: about,
   });
-
+  const handleClick = () => {
+    setClick(!click);
+    document.querySelector(".help_side").classList.toggle("opening");
+  };
   function tabBtnClicked(tab) {
     switch (tab) {
       case "safety": {
@@ -38,6 +43,9 @@ function Help() {
     <div className="help">
       <div className="help__header">
         <p className="main_header"> {display.title}</p>
+        <button className="btnHeader" onClick={handleClick}>
+          {click ? <RiCloseLine /> : <RiMenuLine />}
+      </button>
       </div>
       <div className="help__body">
       <div className="help_side">

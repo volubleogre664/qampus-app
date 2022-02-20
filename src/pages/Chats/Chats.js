@@ -8,7 +8,6 @@ import BackIcon from "@mui/icons-material/ArrowBack";
 import { useMutation, useLazyQuery } from "@apollo/react-hooks";
 import Picker from "emoji-picker-react";
 import personIcon from "@assets/profile.png";
-
 import Contact from "@components/Contact";
 import { ADD_MESSAGE, GET_MESSAGES_QUERY, GET_USER_DATA } from "@utils/graphql";
 import {
@@ -16,7 +15,6 @@ import {
   useMessagesSlice,
   useBooksSlice,
 } from "@redux/getSlices.js";
-
 import "./Chats.css";
 import Message from "@components/Message";
 
@@ -283,10 +281,6 @@ function Chats() {
   return (
     <section className="chats">
       <header className="chats__header">
-        {/* <h2 className={`${chatClick && "chatsOpen"}`}>
-          <ChatIcon />
-          Messages
-        </h2> */}
         <div className="searchContainer">
             <SearchIcon />{" "}
             <input placeholder="Search..." type="text" />
@@ -319,7 +313,6 @@ function Chats() {
           </p>
         </div>
       </header>
-
       <section className="chats__main">
         <aside className="chats__mainAside">
           <div className="searchContainer">

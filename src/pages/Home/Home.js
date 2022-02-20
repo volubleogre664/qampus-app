@@ -60,6 +60,7 @@ function Home({ history }) {
     // Search for books in the database
     searchBook({ variables: { searchStr } });
   };
+  
   // Clicking the avatar calls the method
   // const handleAvatarClick = () => {
   //   const menu = document.getElementById("login__menu");
