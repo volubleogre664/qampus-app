@@ -4,7 +4,6 @@ import { useMutation } from "@apollo/react-hooks";
 import { REGISTER_USER } from "@utils/graphql";
 import { useUserSlice } from "@redux/getSlices";
 import { useForm } from "@utils/hooks";
-import Loader from "@components/Loader";
 import logo from "@assets/logo_grey.png";
 import "./Register.css";
 
@@ -12,9 +11,6 @@ function Register() {
   const history = useHistory();
   const [pin, setPin] = useState(false);
   const [, dispatch] = useUserSlice();
-
-  const ref_link = "https://www.vecteezy.com/members/onyxprj_art";
-  const ref_name = "Vecteezy: onyxprj_art";
 
   const { onChange, onSubmit, values } = useForm(registerUser, {
     studentNumber: "",
@@ -49,11 +45,6 @@ function Register() {
       console.log(err);
     },
   });
-
-  const setPassword = (e) => {
-    e.preventDefault();
-    setPin(true);
-  };
 
   function registerUser() {
     register();

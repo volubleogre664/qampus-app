@@ -1,4 +1,3 @@
-import { useState } from "react";
 import LibraryBooksIcon from "@mui/icons-material/BookOutlined";
 import LibraryBooksIconA from "@mui/icons-material/BookRounded";
 import {
@@ -9,24 +8,16 @@ import {
   RiMessageLine,
   RiMessageFill,
   RiInformationLine,
-  RiInformationFill,
-  RiMenuLine,
+  RiInformationFill
 } from "react-icons/ri";
 import { useRouteMatch, Link, useHistory } from "react-router-dom";
-import { useUserSlice, useMessagesSlice } from "@redux/getSlices";
+import { useUserSlice  } from "@redux/getSlices";
 import logo from "@assets/logo_grey.png";
 import "./HeaderMenu.css";
 
 function HeaderMenu() {
-  const [click, setClick] = useState(false);
-  const [{ user }, dispatchUser] = useUserSlice();
-  const [, dispatchMessages] = useMessagesSlice();
+  const [{ user }] = useUserSlice();
   const history = useHistory();
-
-  const handleClick = () => {
-    setClick(!click);
-    document.querySelector(".nav__links").classList.toggle("opening");
-  };
 
   const handleUserClicked = (e) => {
     e.preventDefault();
@@ -36,25 +27,6 @@ function HeaderMenu() {
     } else {
       document.querySelector(".app > .profile").classList.toggle("active");
     }
-  };
-
-  const handleLogoutClick = () => {
-    handleClick();
-    import("../../utils/popUp.js").then((mbox) =>
-      mbox.default({
-        title: "Logging out!",
-        text: "Are you sure you want to logout?",
-        callback: () => {
-          dispatchUser({
-            type: "REMOVE_USER",
-          });
-
-          dispatchMessages({
-            type: "CLEAR_MESSAGES",
-          });
-        },
-      })
-    );
   };
 
   return (

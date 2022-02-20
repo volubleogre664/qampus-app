@@ -3,7 +3,6 @@ import SendIcon from "@mui/icons-material/Send";
 import SearchIcon from "@mui/icons-material/Search";
 import AttachIcon from "@mui/icons-material/AttachFile";
 import EmojiIcon from "@mui/icons-material/EmojiEmotions";
-import ChatIcon from "@mui/icons-material/Chat";
 import BackIcon from "@mui/icons-material/ArrowBack";
 import { useMutation, useLazyQuery } from "@apollo/react-hooks";
 import Picker from "emoji-picker-react";
