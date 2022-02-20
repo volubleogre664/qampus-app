@@ -25,7 +25,7 @@ function Profile({ app }) {
   const firebaseStorage = getStorage(app);
   const [{ user, imgCrop }, dispatch] = useUserSlice();
 
-  const { onSubmit, onChange, values } = useForm(updateUser, user);
+  const { onSubmit, onChange, values } = useForm(updateUser, { ...user });
 
   const [updateProfile] = useMutation(UPDATE_USER, {
     variables: { ...values, picture: profile },
@@ -50,13 +50,13 @@ function Profile({ app }) {
     e.preventDefault();
 
     setLoading(true);
-    const storageRef = firebaseStorage.ref(
+    const storageRef = ref(
+      firebaseStorage,
       `${user.id}/profile/${user.firstName}.jpg`
     );
 
     if (imgCrop.croppedImgUrl) {
-      await storageRef
-        .putString(imgCrop.croppedImgUrl, "data_url")
+      await uploadString(storageRef, imgCrop.croppedImgUrl, "data_url")
         .then(() => {
           console.log("Image has been uploaded");
         })
@@ -141,7 +141,7 @@ function Profile({ app }) {
         <p>
           {user?.firstName} {user?.lastName}
           <GoVerified className="profile__headerIcon" />
-        </p>{" "}
+        </p>
         <hr />
       </header>
 

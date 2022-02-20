@@ -1,0 +1,222 @@
+.newUser__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* opacity: 0; */
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 301;
+  place-items: center;
+  transition: all ease-in-out 0.25s;
+  display: grid;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+  /* box-sizing: border-box; */
+}
+
+.newUser {
+  width: 100%;
+  max-width: 670px;
+  height: 100%;
+  background-color: rgb(252, 252, 252);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  color: #000;
+  overflow-y: scroll;
+  position: relative;
+}
+
+.newUser__header {
+  padding: 0 20px;
+  padding-top: 20px;
+}
+
+.newUser__header h2 {
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin: 0;
+  color: rgb(0, 155, 246);
+}
+
+.newUser__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 15px 20px;
+  overflow: hidden;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.newUser__main::-webkit-scrollbar {
+  width: 8px;
+  display: initial;
+}
+
+.newUser__main::-webkit-scrollbar-thumb {
+  margin-right: 3px;
+  border-radius: 10px;
+  background-color: rgb(73, 73, 73);
+}
+
+.newUser__mainForm {
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.newUser__mainForm label {
+  color: #575757;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+.newUser__mainForm > div p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  margin-top: 2px;
+  color: rgb(141, 141, 141);
+}
+
+.newUser__mainFormRadio {
+  gap: 3px;
+  display: flex;
+  padding-left: 8px;
+  flex-direction: column;
+}
+
+.newUser__mainFormRadio label {
+  font-weight: normal;
+  margin-left: 6px;
+}
+
+.newUser__mainImage {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.newUser__mainImage > span {
+  color: #575757;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+.newUser__mainImage .image-container {
+  height: 192px;
+  width: 192px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-shadow: 1.4px 1.4px 0.8px 0 rgba(0, 0, 0, 0.15);
+}
+
+.newUser__mainImage .image-container img {
+  height: 100%;
+  object-fit: contain;
+}
+
+.newUser__mainImage button {
+  width: fit-content;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin: 0 auto;
+}
+
+.newUser__mainImage button:first-of-type {
+  align-self: flex-start;
+  text-align: center;
+  background-color: transparent;
+  padding: 8px 20px;
+  margin-bottom: 6px;
+  border-radius: 4px;
+  transition: all ease-in 0.2s;
+  border: 1px solid rgb(161, 161, 161);
+}
+
+.newUser__mainImage button:first-of-type:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+.newUser__mainImage button:last-of-type {
+  border: none;
+  background-color: unset;
+  color: red;
+  cursor: pointer;
+}
+
+.newUser__mainImage button:last-of-type:hover {
+  text-decoration: underline;
+  color: rgba(255, 0, 0, 0.7);
+}
+
+.newUser__footer {
+  width: 100%;
+  padding: 15px 20px;
+  box-sizing: border-box;
+  border-top: 1px solid #e0e0e0;
+}
+
+.newUser__footer button {
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  margin-left: auto;
+  background-color: rgb(0, 155, 246);
+  font-size: 0.9rem;
+  transition: all ease-in 0.2s;
+}
+
+.newUser__footer button:hover {
+  background-color: rgba(0, 155, 246, 0.8);
+}
+
+@media screen and (min-width: 500px) {
+  .newUser {
+    border-radius: 10px;
+    height: 85%;
+    width: 90%;
+    max-height: 900px;
+  }
+
+  /* .editProfile__header {
+      padding: 15px 20px;
+    } */
+
+  /* .editProfile__header h2 {
+      font-size: 1.5rem;
+    } */
+
+  /* .editProfile__header .icon-container {
+      padding: 10px;
+    } */
+
+  .newUser__main {
+    padding: 20px 30px;
+    flex-direction: initial;
+    justify-content: space-between;
+  }
+
+  .editProfile__mainImage button {
+    margin: 0 auto;
+    /* width: 100%; */
+  }
+}

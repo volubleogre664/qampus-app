@@ -7,9 +7,13 @@ import Loader from "@components/Loader";
 import Book from "@components/Book";
 import Button from "@components/Button";
 import EditBook from "@components/EditBook";
+import MsgBox from "@components/MessageBox";
 
-import { useBooksSlice, useUserSlice } from "@redux/getSlices.js";
-import popUpDialogue from "@utils/popUp.js";
+import {
+  useBooksSlice,
+  useUserSlice,
+  useUtilsSlice,
+} from "@redux/getSlices.js";
 
 import { getStorage, deleteObject, ref } from "firebase/storage";
 import "./Collection.css";
@@ -22,6 +26,7 @@ function Collection({ app }) {
       user: { id: bookOwner },
     },
   ] = useUserSlice();
+  const [{ popup }, dispatchUtils] = useUtilsSlice();
   const [edit, setEdit] = useState(false);
   const [book, setBook] = useState({ id: null, title: null, price: null });
   const firebaseRef = getStorage(app);
@@ -62,21 +67,33 @@ function Collection({ app }) {
         type: "DELETE_LIBRARY_BOOK",
         payload: data.deleteBook,
       });
-      popUpDialogue({
-        icon: "success",
-        title: "Book Deleted!",
-        text: "Book Deleted Successfully.",
-        buttons: "okay",
+
+      dispatchUtils({
+        type: "DELETE_BOOK",
+        payload: {
+          title: "Book Deleted",
+          subtitle: "Your book was deleted successfully.",
+          btnCancel: false,
+          btnContinue: true,
+          bookTitle: "",
+          popupShow: true,
+        },
       });
     },
     onError(err) {
       console.log(err?.message);
 
-      popUpDialogue({
-        icon: "warning",
-        title: "Book Not Deleted!",
-        text: "Unable to delete the book... Please Try again",
-        buttons: "okay",
+      dispatchUtils({
+        type: "DELETE_BOOK",
+        payload: {
+          title: "Delete Book Failed",
+          subtitle:
+            "An error occured whiilee deleting your bool, please try again",
+          btnCancel: false,
+          btnContinue: true,
+          bookTitle: "",
+          popupShow: true,
+        },
       });
     },
   });
@@ -86,6 +103,10 @@ function Collection({ app }) {
 
     setTimeout(() => setEdit(true), 50);
   };
+
+  function deleteBookFinal() {
+    deleteBook({ variables: { id: popup.bookTitle } });
+  }
 
   const cancelClicked = () => {
     setEdit(false);
@@ -100,6 +121,9 @@ function Collection({ app }) {
       {edit && <EditBook cancel={cancelClicked} {...book} />}
       {edit && <div className="overlay" />}
       {loading && <Loader message="Getting your books" />}
+      {popup.title === "Delete Book?" && (
+        <MsgBox oncontinue={deleteBookFinal} />
+      )}
       <section className="collection__body">
         {books.map((book, i) => (
           <Book

@@ -2,14 +2,14 @@ import InfoIcon from "@mui/icons-material/InfoOutlined";
 import DeleteIcon from "@mui/icons-material/DeleteRounded";
 import PencilIcon from "@mui/icons-material/EditRounded";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useUtilsSlice } from "@redux/getSlices";
 import { useHistory } from "react-router-dom";
-
-import popUpDialogue from "@utils/popUp.js";
 
 import "./Book.css";
 
 function Book({ state, className, book, deleteBookClick, editBookClick }) {
   const history = useHistory();
+  const [, dispatch] = useUtilsSlice();
 
   const book_details = {
     title: "Title",
@@ -31,11 +31,16 @@ function Book({ state, className, book, deleteBookClick, editBookClick }) {
 
   // First parameter of mbox.default is empty string to remove the icon
   const deleteBookClicked = () => {
-    popUpDialogue({
-      icon: "info",
-      title: "Delete Book!",
-      text: "Are you sure you want to delete this book?\nTitle: " + book?.title,
-      callback: () => deleteBookClick({ variables: { id: book?.id } }),
+    dispatch({
+      type: "DELETE_BOOK",
+      payload: {
+        title: "Delete Book?",
+        subtitle: "Are you sure you want to delete this book?",
+        btnCancel: true,
+        btnContinue: true,
+        bookTitle: book.id,
+        popupShow: false,
+      },
     });
   };
 

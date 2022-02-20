@@ -11,6 +11,8 @@ import Register from "@pages/Register/Register.js";
 import NewLogin from "@pages/Login/Login.js";
 import NewProfile from "@pages/Profile/NewProfile.js";
 import EditProfile from "@pages/Profile/EditProfile.js";
+import NewUser from "@components/NewUser";
+import MsgBox from "@components/MessageBox";
 
 import Collection from "@pages/Collection/Collection.js";
 import Navigation from "@pages/Navigation/Navigation.js";
@@ -20,7 +22,11 @@ import HeaderMenu from "@components/HeaderMenu";
 import CropImage from "@components/CropImage";
 import AuthRoute from "@utils/AuthRoute.js";
 import PrivateRoute from "@utils/PrivateRoute.js";
-import { useMessagesSlice, useUserSlice } from "@redux/getSlices.js";
+import {
+  useMessagesSlice,
+  useUserSlice,
+  useUtilsSlice,
+} from "@redux/getSlices.js";
 import { firebaseConfig } from "./config.js";
 import "./App.css";
 
@@ -31,6 +37,11 @@ const serverUrl = "http://qampus-app.herokuapp.com:8080";
 
 function App() {
   const [{ imgCrop, user }, dispatchUser] = useUserSlice();
+  const [
+    {
+      popup: { popupShow },
+    },
+  ] = useUtilsSlice();
   const [, dispatchMessage] = useMessagesSlice();
 
   useEffect(() => {
@@ -65,14 +76,15 @@ function App() {
 
   return (
     <div className="app">
-      <div className="app__overlay"></div>
       <Router>
         {imgCrop.imgSrc && <CropImage />}
+        {popupShow && <MsgBox />}
         <NewProfile />
-        <EditProfile />
+        <EditProfile app={app} />
         <Switch>
           {/* These are public pages... Accessible to everyone */}
           <Route exact path="/">
+            {/* <NewUser /> */}
             <HeaderMenu />
             <Home />
           </Route>

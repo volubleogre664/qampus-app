@@ -17,9 +17,8 @@ import Bullet from "@components/Bullet";
 import ConfirmBook from "./ConfirmBook";
 
 import { useForm } from "@utils/hooks";
-import popUpDialogue from "@utils/popUp.js";
 import { UPLOAD_BOOK } from "@utils/graphql";
-import { useBooksSlice, useUserSlice } from "@redux/getSlices";
+import { useBooksSlice, useUserSlice, useUtilsSlice } from "@redux/getSlices";
 import { upload as uploadBullets } from "../../text_files/bulletPoints";
 
 import "./Upload.css";
@@ -31,6 +30,7 @@ function Upload({ app }) {
   //Data from redux state, dispatch -> function to update redux state
   const [{ user, imgCrop }, dispatchUser] = useUserSlice();
   const [, dispatchBooks] = useBooksSlice();
+  const [, dispatchUtils] = useUtilsSlice();
 
   //References for input[file] to be accessed since it is hidden and cannot be clicked
   const frontCoverInputRef = useRef(null);
@@ -97,11 +97,16 @@ function Upload({ app }) {
         },
       });
 
-      popUpDialogue({
-        icon: "success",
-        title: "Book Uploaded!",
-        text: "Book uploaded successfully",
-        buttons: "okay",
+      dispatchUtils({
+        type: "DELETE_BOOK",
+        payload: {
+          title: "Book Uploaded",
+          subtitle: "Your book was uploaded successfully.",
+          btnCancel: false,
+          btnContinue: true,
+          bookTitle: "",
+          popupShow: true,
+        },
       });
     },
     // onError -> function to call if api call returns an error
@@ -114,11 +119,17 @@ function Upload({ app }) {
         message: "",
       });
 
-      popUpDialogue({
-        icon: "alert",
-        title: "Failed to upload!",
-        text: "Error while saving book details\nPlease try again",
-        buttons: "okay",
+      dispatchUtils({
+        type: "DELETE_BOOK",
+        payload: {
+          title: "Book uploading failed",
+          subtitle:
+            "An error occured while saving your book, please try again.",
+          btnCancel: false,
+          btnContinue: true,
+          bookTitle: "",
+          popupShow: true,
+        },
       });
     },
   });
@@ -215,17 +226,23 @@ function Upload({ app }) {
         await getUploadedUrl(storageRef, urlContainer);
       })
       .catch(async () => {
-        await uploadString(imageDataUrl, "data_url")
+        await uploadString(storageRef, imageDataUrl, "data_url")
           .then(() => {
             console.log("Image has been uploaded");
           })
           .catch((err) => {
             setLoading({ ...loading, isLoading: false });
-            popUpDialogue({
-              icon: "alert",
-              title: "Failed to upload!",
-              text: "Error while saving book details\nPlease try again",
-              buttons: "okay",
+            dispatchUtils({
+              type: "DELETE_BOOK",
+              payload: {
+                title: "Book Uploading Failed",
+                subtitle:
+                  "An error occured while uploading a book, please try again.",
+                btnCancel: false,
+                btnContinue: true,
+                bookTitle: "",
+                popupShow: true,
+              },
             });
             console.log("Error uploading image: ", err);
           });

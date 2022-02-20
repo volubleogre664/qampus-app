@@ -1,32 +1,32 @@
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import EditOutlinedIcon from "@mui/icons-material/EditRounded";
-import {useUserSlice,useMessagesSlice,} from "@redux/getSlices";
+import { useUserSlice, useUtilsSlice } from "@redux/getSlices";
 import profilePlaceholder from "@assets/profile.png";
 
 import "./NewProfile.css";
 
 function NewProfile() {
-  const [{ user }, dispatchUser] = useUserSlice();
-  const [, dispatchMessages] = useMessagesSlice();
+  const [{ user }] = useUserSlice();
+  const [, dispatch] = useUtilsSlice();
 
-  const handleLoginMenuClick = () => {
-    document.querySelector(".app > .profile").classList.toggle("active");
-    if (user) {
-      dispatchUser({
-        type: "REMOVE_USER",
-      });
-  
-      dispatchMessages({
-        type: "CLEAR_MESSAGES",
-      });
-    }
-
-  };
   const closeProfileClicked = (e) => {
     e.preventDefault();
-
     document.querySelector(".app > .profile").classList.toggle("active");
+  };
+
+  const logoutClicked = () => {
+    dispatch({
+      type: "LOGOUT",
+      payload: {
+        title: "Logout?",
+        subtitle: "Are you sure you want to logout?",
+        btnCancel: true,
+        btnContinue: true,
+        bookTitle: "",
+        popupShow: true,
+      },
+    });
   };
 
   const handleEditProfile = (e) => {
@@ -94,7 +94,12 @@ function NewProfile() {
       </main>
 
       <footer className="profile__footer">
-        <button onClick={handleLoginMenuClick} className="profile__footerButton" href="/login">Sign out</button>
+        <button
+          onClick={() => logoutClicked()}
+          className="profile__footerButton"
+        >
+          Sign Out
+        </button>
       </footer>
     </aside>
   );

@@ -24,6 +24,8 @@ import {
   replaceBook,
 } from "./features/booksSlice";
 
+import { setPopupData, clearPopupData, getUtils } from "./features/utilsSlice";
+
 // Hook for messeges state and all the things related to messages
 function useMessagesSlice() {
   const dispatch = useDispatch();
@@ -143,4 +145,30 @@ function useBooksSlice() {
   return [books, dispatchBooks];
 }
 
-export { useMessagesSlice, useUserSlice, useBooksSlice };
+function useUtilsSlice() {
+  const dispatch = useDispatch();
+  const utils = useSelector(getUtils);
+
+  const dispatchUtils = (action) => {
+    switch (action.type) {
+      case "LOGOUT": {
+        dispatch(setPopupData(action.payload));
+        break;
+      }
+
+      case "DELETE_BOOK": {
+        dispatch(setPopupData(action.payload));
+        break;
+      }
+
+      default: {
+        dispatch(clearPopupData({}));
+        break;
+      }
+    }
+  };
+
+  return [utils, dispatchUtils];
+}
+
+export { useMessagesSlice, useUserSlice, useBooksSlice, useUtilsSlice };

@@ -1,15 +1,84 @@
-import React from "react";
+import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { useUserSlice } from "@redux/getSlices";
 import { useForm } from "@utils/hooks.js";
+import { UPDATE_USER } from "@utils/graphql";
+import { useMutation } from "@apollo/react-hooks";
+import {
+  getStorage,
+  ref,
+  uploadString,
+  getDownloadURL,
+} from "firebase/storage";
 import profilePlaceholder from "@assets/profile.png";
 
 import "./EditProfile.css";
 
-function EditProfile() {
-  const [{ user }] = useUserSlice();
+function EditProfile({ app }) {
+  const [{ user, imgCrop }, dispatch] = useUserSlice();
+  const firebaseStorage = getStorage(app);
+  const [profile, setProfile] = useState(null);
 
-  const { onChange, onSubmit, values, updateValues } = useForm(null, user);
+  const { onChange, onSubmit, values, updateValues } = useForm(updateUser, {
+    user,
+  });
+
+  const [updateProfile] = useMutation(
+    UPDATE_USER,
+    { ...user },
+    {
+      variables: { ...values, picture: profile },
+      update(_, { data }) {
+        // setLoading(false);
+        // setActive(false);
+        // console.logg(data);
+        if (data) {
+          dispatch({
+            type: "SET_USER",
+            payload: data.updateUser,
+          });
+        }
+      },
+      onError(err) {
+        console.log("An error occured while changing data");
+        // setActive(false);
+        // setLoading(false);
+      },
+    }
+  );
+
+  async function uploadImageUri(e) {
+    e.preventDefault();
+
+    // setLoading(true);s
+    const storageRef = ref(
+      firebaseStorage,
+      `${user.id}/profile/${user.firstName}.jpg`
+    );
+
+    if (imgCrop.croppedImgUrl) {
+      await uploadString(storageRef, imgCrop.croppedImgUrl, "data_url")
+        .then(() => {
+          console.log("Image has been uploaded");
+        })
+        .catch((err) => {
+          console.log("Error uploading image: ", err);
+        });
+
+      await getDownloadURL(storageRef)
+        .then((url) => {
+          if (url) setProfile(url);
+          else setProfile("");
+        })
+        .catch((err) => console.log(err));
+    }
+
+    onSubmit(e);
+  }
+
+  function updateUser() {
+    updateProfile();
+  }
 
   const handleEditProfileCancel = (e) => {
     e.preventDefault();
@@ -67,7 +136,7 @@ function EditProfile() {
           <form
             autoComplete="off"
             className="editProfile__mainForm"
-            onSubmit={onSubmit}
+            onSubmit={uploadImageUri}
           >
             <div>
               <label htmlFor="firstName">First name</label>
@@ -140,8 +209,6 @@ function EditProfile() {
             </div>
           </form>
 
-          {/* The image that will float on the left */}
-          {/* Turns out I am attached with flex lol */}
           <div className="editProfile__mainImage">
             <span>Profile Image</span>
             <div className="image-container">
