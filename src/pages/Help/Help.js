@@ -45,7 +45,7 @@ function Help() {
         <p className="main_header"> {display.title}</p>
         <button className="btnHeader" onClick={handleClick}>
           {click ? <RiCloseLine /> : <RiMenuLine />}
-      </button>
+        </button>
       </div>
       <div className="help__body">
       <div className="help_side">

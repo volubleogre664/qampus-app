@@ -8,7 +8,7 @@ import Book from "@components/Book";
 import Button from "@components/Button";
 import EditBook from "@components/EditBook";
 import MsgBox from "@components/MessageBox";
-
+import UploadBook from "@components/Upload";
 import {
   useBooksSlice,
   useUserSlice,
@@ -115,7 +115,13 @@ function Collection({ app }) {
   useEffect(() => {
     document.title = "Book Collections - Qampus";
   }, []);
+  const [click, setClick] = useState(false);
 
+  const handleClick = () => {
+    setClick(!click);
+    document.querySelector(".collection").classList.toggle("opening");
+    document.querySelector(".collection__upload").classList.toggle("opening");
+  };
   return (
     <div className="collection">
       {edit && <EditBook cancel={cancelClicked} {...book} />}
@@ -134,10 +140,12 @@ function Collection({ app }) {
           />
         ))}
       </section>
-
-      <footer className="collection__footer">
-        <Button text="Add New Book" onClick={() => history.push("/upload")} />
-      </footer>
+      <section className="collection__upload">
+        <UploadBook />
+      </section>
+      <button className="btnUpload" onClick={handleClick}>
+          {click ? "Cancel" : "Add book"}
+      </button>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import { SEARCH_BOOKS } from "@utils/graphql";
 import { useMutation } from "@apollo/react-hooks";
 import { useBooksSlice } from "@redux/getSlices";
+import { Link } from "react-router-dom";
 import "./RecentUpload.css";
 
 function Recent({ history }) {
@@ -44,7 +45,9 @@ function Recent({ history }) {
     <div className="recent__uploads">
       <div className="card__header">
         <p className="caption">Recent uploads</p>
-        <AddRoundedIcon id="upload" className="card__header__icon" />
+        <Link className="nav__linksItem__link" to={"/collection"}>
+          <AddRoundedIcon id="upload" className="card__header__icon"/>
+        </Link>
         <RefreshRoundedIcon
           onClick={handlerRefreshClick}
           className="card__header__icon"

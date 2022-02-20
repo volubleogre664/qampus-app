@@ -46,7 +46,7 @@
 
 .editProfile.save_discard_changes .editProfile__saveChanges {
   opacity: 1;
-  bottom: 0;
+  bottom: 45vh;
 }
 
 .editProfile__overlay > .editProfile {
@@ -107,6 +107,7 @@
   overflow-y: auto;
   margin-bottom: 20px;
   gap: 20px;
+  justify-content: flex-end;
 }
 
 .editProfile__main::-webkit-scrollbar {
@@ -173,6 +174,9 @@
 .editProfile__mainImage {
   display: flex;
   flex-direction: column;
+  place-items: center;
+  margin-top: 0;
+
 }
 
 .editProfile__mainImage > span {
@@ -339,5 +343,8 @@
 
   .editProfile__mainImage button {
     width: 100%;
+  }
+  .editProfile.save_discard_changes .editProfile__saveChanges {
+    bottom: 0;
   }
 }
