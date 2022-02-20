@@ -108,7 +108,7 @@
   }
 }
 
-@media screen and (max-height: 720px) {
+@media screen and (max-height: 500px) {
   .btnUpload{
     margin-top: 10px;
     margin-top: 20px;
