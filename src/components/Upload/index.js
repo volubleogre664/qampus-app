@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { useMutation } from "@apollo/react-hooks";
-
 import {
   getStorage,
   ref,
@@ -9,25 +8,21 @@ import {
   getMetadata,
 } from "firebase/storage";
 import Compressor from "compressorjs";
-
 import Button from "@components/Button";
 import Loader from "@components/Loader";
 import Input from "@components/Input";
 import Bullet from "@components/Bullet";
 import ConfirmBook from "./ConfirmBook";
-
 import { useForm } from "@utils/hooks";
 import { UPLOAD_BOOK } from "@utils/graphql";
 import { useBooksSlice, useUserSlice, useUtilsSlice } from "@redux/getSlices";
 import { upload as uploadBullets } from "../../text_files/bulletPoints";
-
-import "./Upload.css";
+import "./UploadBook.css";
 
 // I defined this here because it was not persistent
 const bookCovers = {};
 
-function Upload({ app }) {
-  //Data from redux state, dispatch -> function to update redux state
+function UploadBook({app}) {
   const [{ user, imgCrop }, dispatchUser] = useUserSlice();
   const [, dispatchBooks] = useBooksSlice();
   const [, dispatchUtils] = useUtilsSlice();
@@ -271,7 +266,7 @@ function Upload({ app }) {
   async function searchForBooks() {
     setLoading({
       isLoading: true,
-      message: "Finding book data",
+      message: "Fetching book data",
     });
     // Now to deal with getting book info from books API
     // Need to set storage rules in firebase
@@ -404,21 +399,8 @@ function Upload({ app }) {
           <Button text="Upload" type="submit" />
         </form>
       </div>
-      <div className="bullets">
-        <p className="list_tittle">Frequently asked questions</p>
-        <ul className="tilesWrap">
-          {uploadBullets.map((item, i) => (
-            <Bullet
-              key={`${item.title}_${i}`}
-              index={i + 1}
-              title={item.title}
-              content={item.content}
-            />
-          ))}
-        </ul>
-      </div>
     </div>
   );
 }
 
-export default Upload;
+export default UploadBook;

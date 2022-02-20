@@ -8,9 +8,6 @@ import { LOGIN_USER } from "@utils/graphql.js";
 import logo from "@assets/logo_grey.png";
 import "./Login.css";
 
-const ref_link = "https://www.smoorevisuals.com/landscapes/";
-const ref_name = "Spencer Moore";
-
 function Login() {
   const history = useHistory();
   const location = useLocation();

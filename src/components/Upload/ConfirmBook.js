@@ -71,7 +71,7 @@ function ConfirmBook({ values, uploadBook, onChange, cancelUpload }) {
         />
 
         <div className="confirmBook__formFooter">
-          <Button text="Cancel Upload" onClick={cancelUpload} />
+          <Button text="Discard" onClick={cancelUpload} />
           <Button type="submit" text="Confirm Book" />
         </div>
       </form>

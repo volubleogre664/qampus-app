@@ -16,7 +16,6 @@ import MsgBox from "@components/MessageBox";
 
 import Collection from "@pages/Collection/Collection.js";
 import Navigation from "@pages/Navigation/Navigation.js";
-import Upload from "@pages/Upload/Upload.js";
 import Help from "@pages/Help/Help.js";
 import HeaderMenu from "@components/HeaderMenu";
 import CropImage from "@components/CropImage";
@@ -96,32 +95,13 @@ function App() {
             <HeaderMenu />
             <Help />
           </Route>
-          {/* AuthRoute checks if someone is logged in and redirects to home if they are logged in */}
-          {/* No one will open login, register and finalise register without loggin out */}
+  
           <AuthRoute exact path="/login" component={NewLogin} />
           <AuthRoute exact path="/register" component={Register} />
-
-          {/* PrivateRoute is for private pages that needs login to be accessed. */}
-          {/* For development purposes just rename PrivateRoute to Route */}
-          {/* <Route exact path="/register/finalise">
-            <FinaliseRegister />
-          </Route> */}
-
-          {/* <Route exact path="/landing" component={Landing} /> */}
-
-          {/* <PrivateRoute exact path="/profile">
-            <HeaderMenu />
-            <Profile />
-          </PrivateRoute> */}
 
           <PrivateRoute exact path="/chats*">
             <HeaderMenu />
             <Chats />
-          </PrivateRoute>
-
-          <PrivateRoute exact path="/upload">
-            <HeaderMenu />
-            <Upload app={app} />
           </PrivateRoute>
 
           <PrivateRoute exact path="/collection">

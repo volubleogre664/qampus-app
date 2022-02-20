@@ -1,0 +1,67 @@
+.confirmBook {
+  position: absolute;
+  top: 15%;
+  left: calc(50vw - 225px);
+  width: 80%;
+  max-width: 450px;
+  background-color: rgb(27, 27, 27);
+  padding: 20px;
+  z-index: 100;
+  color: white;
+  box-sizing: border-box;
+  border-radius: 8px;
+  overflow-y: auto;
+}
+
+.confirmBook h2 {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: 200;
+  font-family: "Poppins";
+  color: #fff;
+  -webkit-filter: drop-shadow(2px 4px 8px #585858);
+  filter: drop-shadow(2px 4px 8px #585858);
+}
+
+.confirmBook__form {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.confirmBook__formFooter {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 15px;
+  margin: auto;
+}
+
+@media screen and (max-width: 1000px) {
+  .confirmBook {
+    top: 7%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .confirmBook {
+    left: 10%;
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .confirmBook__formFooter {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .confirmBook__formFooter > * {
+    width: 100% !important;
+  }
+}
