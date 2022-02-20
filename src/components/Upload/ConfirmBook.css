@@ -1,13 +1,15 @@
 .confirmBook {
   position: absolute;
-  top: 15%;
+  top: 10%;
   left: calc(50vw - 225px);
   width: 80%;
+  min-height: 65%;
   max-width: 450px;
-  background-color: rgb(27, 27, 27);
+  background-color: rgb(253, 253, 253);
+  box-shadow: 0 1px 6px rgb(32 33 36 / 15%);  
   padding: 20px;
   z-index: 100;
-  color: white;
+  color: rgb(29, 29, 29);
   box-sizing: border-box;
   border-radius: 8px;
   overflow-y: auto;
@@ -20,9 +22,7 @@
   font-size: 1.5rem;
   font-weight: 200;
   font-family: "Poppins";
-  color: #fff;
-  -webkit-filter: drop-shadow(2px 4px 8px #585858);
-  filter: drop-shadow(2px 4px 8px #585858);
+  color: rgb(29, 29, 29);
 }
 
 .confirmBook__form {
@@ -39,8 +39,29 @@
   display: flex;
   gap: 15px;
   margin: auto;
+  margin-top: 5%;
 }
 
+.confirmBook__formFooter > .discard__button{
+  display: flex;
+  justify-content: center;
+  padding: 8px 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  gap: 5px;
+  font-size: 0.9rem;
+  transition: all ease-in-out 0.2s;
+  min-width: 160px;
+  color: #fff;
+  background-color: #d01c54;
+}
+
+.confirmBook__formFooter > .discard__button:hover{
+  background-color: rgba(208, 28, 84, 0.85);
+}
 @media screen and (max-width: 1000px) {
   .confirmBook {
     top: 7%;

@@ -66,18 +66,9 @@
 .editProfile__header {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   padding: 15px 20px;
   border-bottom: 1px solid #e0e0e0;
-  box-shadow: -1px -1px -1px rgba(0, 0, 0, 0.2);
-}
-
-.editProfile__header h2 {
-  flex: 1;
-  font-size: 1.6rem;
-  font-weight: 200;
-  color: #009bf6;
-  margin-bottom: 4px;
-
 }
 
 .editProfile__header .icon-container {
@@ -208,13 +199,8 @@
 }
 
 .editProfile__mainImage button:first-of-type {
-  /* align-self: flex-start; */
   text-align: center;
   padding: 10px 15px;
-  /*margin-bottom: 6px;
-  border-radius: 4px;
-  transition: all ease-in-out 0.2s;
-  border: 1px solid rgb(161, 161, 161); */
   font-size: 0.98rem;
   font-weight: 300;
   border-radius: 8px;
@@ -276,6 +262,8 @@
   gap: 5px;
   font-size: 0.9rem;
   transition: all ease-in 0.2s;
+  min-width: 140px;
+  justify-content: center;
 }
 
 .editProfile__footer > div > :last-child {

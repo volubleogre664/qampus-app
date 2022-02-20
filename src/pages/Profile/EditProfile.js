@@ -122,7 +122,6 @@ function EditProfile({ app }) {
     <div className="editProfile__overlay">
       <section className="editProfile">
         <header className="editProfile__header">
-          <h2>Edit your profile</h2>
           <span
             role="button"
             onClick={handleEditProfileCancel}

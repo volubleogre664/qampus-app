@@ -19,8 +19,8 @@ function NewProfile() {
     dispatch({
       type: "LOGOUT",
       payload: {
-        title: "Logout?",
-        subtitle: "Are you sure you want to logout?",
+        title: "Signing out?",
+        subtitle: "Are you sure you want to sign out?",
         btnCancel: true,
         btnContinue: true,
         bookTitle: "",
