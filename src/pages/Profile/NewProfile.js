@@ -1,6 +1,6 @@
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import EditOutlinedIcon from "@mui/icons-material/EditRounded";
 import { useUserSlice, useUtilsSlice } from "@redux/getSlices";
 import profilePlaceholder from "@assets/profile.png";
 

@@ -7,6 +7,7 @@ import {
   building,
   coordinates,
 } from "../../nav_coordinates/nav_coordinates.json";
+import {RiNavigationFill, RiCloseLine} from "react-icons/ri";
 
 import "./Navigation.css";
 
@@ -18,7 +19,7 @@ import "./Navigation.css";
 function Navigation() {
   const [currentLocation, setCurrentLocation] = useState(getCurrentLocation());
   const [active, setActive] = useState(() => {
-    return "https://www.google.com/maps/embed";
+    return "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3485.9351016163523!2d26.190261915093316!3d-29.107597282232803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e8fc52b003394f3%3A0x8dd8523e8f33f2ea!2sUniversity%20of%20the%20Free%20State!5e0!3m2!1sen!2sza!4v1645343640565!5m2!1sen!2sza";
   });
   const { onChange, values } = useForm(null, {
     startLocation: "",
@@ -115,17 +116,29 @@ function Navigation() {
   useEffect(() => {
     document.title = "Navigation - Qampus";
   }, []);
+  const [click, setClick] = useState(false);
 
+  const handleClick = () => {
+    setClick(!click);
+    document.querySelector(".navigation__sidebar").classList.toggle("opening");
+  };
   return (
     <div className="navigation">
+      <div>
+        <header className="navigation__mainHeader">
+          <h3>UFS main capmus</h3>
+        </header>       
+      </div>
+      <div className="navigation__body">
+        <button className="btnNav" onClick={handleClick}>
+          {click ? <RiCloseLine /> : <RiNavigationFill />}
+        </button>
       <aside className="navigation__sidebar">
-        <h2 className="navigation__sidebarTitle">Navigator</h2>
-        <hr className="sepatator" />
-        <form className="navigation__sidebarForm" onSubmit={changeState}>
+        <form className="navigation__sidebarForm" id="options" onSubmit={changeState}>
           <SelectLocation
             name="startLocation"
             id="startLocation"
-            label="Start Location"
+            label="Starting point"
             building={building}
             coordinates={coordinates}
             currentlocation={currentLocation}
@@ -148,11 +161,6 @@ function Navigation() {
       </aside>
 
       <main className="navigation__main" id="map">
-        <header className="navigation__mainHeader">
-          <h3>UFS main capmus</h3>
-          <hr />
-        </header>
-
         <Iframe
           className="navigation__mainFrame"
           id="frame"
@@ -160,6 +168,7 @@ function Navigation() {
           loading="lazy"
         ></Iframe>
       </main>
+      </div>
     </div>
   );
 }

@@ -4,28 +4,26 @@
   width: fit-content;
   font-size: 1.07rem;
   cursor: pointer;
+  color: #000;
+  font-family: "Poppins";
+  padding-bottom: 10px;
 }
 
 .selectInput {
   width: 100%;
-  min-width: 250px !important;
+  min-width: 280px !important;
   margin-bottom: 5px;
   background-color: #fff;
   font-size: 1.07rem;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  padding: 6px;
-  padding-right: 10px;
-  cursor: pointer;
+  padding: 10px;
+  border-radius: 4px;
+  align-items: center;
+  border: 2px solid rgb(206, 206, 206);
 }
 
 .selectInput:focus {
-  border: #03a9f4 solid 1px;
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8),
-    0 0 10px rgba(255, 255, 255, 0.8);
+  border: #03a9f4 solid 2px;
   transition: all ease-in-out 0.2s;
-  border-radius: 1px;
 }
 
 .selectInput option {

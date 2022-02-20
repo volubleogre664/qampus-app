@@ -124,11 +124,6 @@ function Collection({ app }) {
       {popup.title === "Delete Book?" && (
         <MsgBox oncontinue={deleteBookFinal} />
       )}
-      <div className="collection__header">
-        <p>Your books</p>
-        <hr className="collection__headerSeparator" />
-      </div>
-
       <section className="collection__body">
         {books.map((book, i) => (
           <Book
