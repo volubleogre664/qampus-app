@@ -1,23 +1,21 @@
 .formSubmitBtn {
-  transition: all ease-in-out 0.2s !important;
-  background: #009bf6 !important;
-  text-align: center !important;
-  height: 32px !important;
-  color: #fff !important;
-  border-radius: 3px !important;
+  display: flex;
+  justify-content: center;
+  padding: 8px 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  border-radius: 4px;
   border: none;
-  font: lighter 1rem var(--font) !important;
-  min-width: 160px !important;
-  max-width: 200px;
-  margin-top: 10px;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.27);
-  -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.27);
-  -moz-box-shadow: 4px 4px 8px rgba(146, 109, 109, 0.27);
+  cursor: pointer;
+  gap: 5px;
+  font-size: 0.9rem;
+  transition: all ease-in-out 0.2s;
+  min-width: 160px;
+  background-color: rgb(0, 155, 246);
+  color: #fff;
 }
 
 .formSubmitBtn:hover {
-  transition: all ease-in-out 0.2s !important;
-  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.27);
-  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.27);
-  -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.27);
+  background-color: rgba(0, 155, 246, 0.8);
+  box-shadow: none;
 }

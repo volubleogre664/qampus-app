@@ -7,6 +7,7 @@ import {
   building,
   coordinates,
 } from "../../nav_coordinates/nav_coordinates.json";
+import {RiNavigationFill} from "react-icons/ri";
 
 import "./Navigation.css";
 
@@ -116,6 +117,10 @@ function Navigation() {
     document.title = "Navigation - Qampus";
   }, []);
 
+  const HandleNavOptionClick = () => {
+    const nav_menu = document.getElementById('options');
+    nav_menu.classList.toggle("active");
+  }
   return (
     <div className="navigation">
       <div>
@@ -124,8 +129,9 @@ function Navigation() {
         </header>       
       </div>
       <div className="navigation__body">
+        <RiNavigationFill className="options__icon" onCLick={HandleNavOptionClick}/>
       <aside className="navigation__sidebar">
-        <form className="navigation__sidebarForm" onSubmit={changeState}>
+        <form className="navigation__sidebarForm" id="options" onSubmit={changeState}>
           <SelectLocation
             name="startLocation"
             id="startLocation"
