@@ -4,7 +4,7 @@ import "./Quotes.css";
 function DailyQoutes() {
   return (
     <div className="daily__qoutes">
-      <p className="caption">Daily quotes</p>
+      <p className="caption">Weekly quotes</p>
       <ul className="home__list">
         <li>
           <FormatQuoteRoundedIcon className="list__icon" />
