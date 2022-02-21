@@ -117,7 +117,7 @@
     display: none;
     flex-direction: column;
     align-content: center;
-    width: 100%;
+    max-width: 90%;
     border-right: none;
     z-index: 5;
   }

@@ -87,6 +87,8 @@
   -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
   margin-top: 30px;
+  margin-bottom: 50px;
+
 }
 
 .btnUpload:hover{
@@ -104,14 +106,12 @@
   }
   .btnUpload{
     margin-top: 10px;
-    margin-top: 20px;
   }
 }
 
 @media screen and (max-height: 500px) {
   .btnUpload{
     margin-top: 10px;
-    margin-top: 20px;
     bottom: 10px;
   }
 }
