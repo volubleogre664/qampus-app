@@ -108,7 +108,7 @@
 .profile__main header > :last-child button {
   display: flex;
   align-items: center;
-  padding: 8px 10px;
+  padding: 8px 15px;
   font-size: 0.98rem;
   font-weight: 300;
   border-radius: 8px;
@@ -118,6 +118,8 @@
   background: #009bf6;
   transition: all ease-in 0.1s;
   color: #ffff;
+  min-width: 140px;
+  justify-content: space-around;
   -webkit-filter: drop-shadow(0px 1px 1px #5d5d5d2d);
   filter: drop-shadow(0px 1px 1px #5d5d5d2d);
 }
@@ -166,6 +168,8 @@
   gap: 5px;
   transition: all ease-in 0.25s;
   margin-bottom: 20px;
+  min-width: 140px;
+  justify-content: center;
 }
 
 .profile__footerButton:hover {

@@ -11,7 +11,7 @@ function ConfirmBook({ values, uploadBook, onChange, cancelUpload }) {
 
   return (
     <div className="confirmBook">
-      <h2>Confirm Book Details</h2>
+      <h2>Confirm book details</h2>
       <hr />
 
       <form onSubmit={confirmBookInfo} className="confirmBook__form">
@@ -22,7 +22,7 @@ function ConfirmBook({ values, uploadBook, onChange, cancelUpload }) {
           required={true}
           onChange={onChange}
           value={values.isbn}
-          label="Book ISBN"
+          label="ISBN"
           placeholder="9789544007737"
         />
 
@@ -33,7 +33,7 @@ function ConfirmBook({ values, uploadBook, onChange, cancelUpload }) {
           required={true}
           onChange={onChange}
           value={values.title}
-          label="Book Title"
+          label="Title"
           placeholder="Enter book title"
         />
 
@@ -44,7 +44,7 @@ function ConfirmBook({ values, uploadBook, onChange, cancelUpload }) {
           required={true}
           onChange={onChange}
           value={values.authors}
-          label="Book Author(s)"
+          label="Author(s)"
           placeholder="Enter book author(s)"
         />
 
@@ -55,7 +55,7 @@ function ConfirmBook({ values, uploadBook, onChange, cancelUpload }) {
           required={true}
           onChange={onChange}
           value={values.price}
-          label="Book Price"
+          label="Price"
           placeholder="300"
         />
 
@@ -66,13 +66,13 @@ function ConfirmBook({ values, uploadBook, onChange, cancelUpload }) {
           required={true}
           onChange={onChange}
           value={values.moduleCode}
-          label="Module Code"
+          label="Module code"
           placeholder="CSIS1664"
         />
 
         <div className="confirmBook__formFooter">
-          <Button text="Discard" onClick={cancelUpload} />
-          <Button type="submit" text="Confirm Book" />
+          <Button text="Discard" onClick={cancelUpload} className="discard__button"/>
+          <Button type="submit" text="Continue" />
         </div>
       </form>
     </div>
