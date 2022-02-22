@@ -12,8 +12,8 @@
   overflow-x: hidden;
   position: relative;
   padding-top: 0 !important;
-  background: url('../../assets/home_image.jpg') no-repeat;
-  background-attachment:local;
+  background: url("../../assets/login_image.jpg") no-repeat;
+  background-attachment: local;
   background-position: top;
   background-size: cover;
 }

@@ -19,6 +19,11 @@ function MessageBox({ oncontinue }) {
     dispatch({
       type: "",
     });
+
+    dispatchUser({
+      type: "SET_EDIT_PROFILE",
+      payload: { edit: false },
+    });
   };
 
   const handleYesClick = () => {

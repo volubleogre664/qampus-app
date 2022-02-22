@@ -12,6 +12,8 @@ import {
   setErrors,
   setImgSrc,
   addUserContact,
+  setEditUser,
+  setNewUser,
 } from "./features/userSlice";
 
 import {
@@ -87,6 +89,16 @@ function useUserSlice() {
 
       case "ADD_USER_CONTACT": {
         dispatch(addUserContact(action.payload));
+        break;
+      }
+
+      case "SET_EDIT_PROFILE": {
+        dispatch(setEditUser(action.payload));
+        break;
+      }
+
+      case "SET_NEW_USER": {
+        dispatch(setNewUser(action.payload));
         break;
       }
 

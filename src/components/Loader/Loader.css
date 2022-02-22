@@ -6,8 +6,8 @@
   place-items: center;
   top: 0;
   left: 0;
-  z-index: 200;
-  background: rgba(0, 0, 0, 0.6);
+  z-index: 5000;
+  background: rgba(0, 0, 0, 0.45);
 }
 
 .loader__message {

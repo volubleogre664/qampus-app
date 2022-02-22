@@ -7,7 +7,7 @@ import profilePlaceholder from "@assets/profile.png";
 import "./NewProfile.css";
 
 function NewProfile() {
-  const [{ user }] = useUserSlice();
+  const [{ user }, dispatchUser] = useUserSlice();
   const [, dispatch] = useUtilsSlice();
 
   const closeProfileClicked = (e) => {
@@ -31,9 +31,10 @@ function NewProfile() {
 
   const handleEditProfile = (e) => {
     e.preventDefault();
-    document
-      .querySelector(".app > .editProfile__overlay")
-      .classList.toggle("active");
+    dispatchUser({
+      type: "SET_EDIT_PROFILE",
+      payload: { edit: true },
+    });
   };
 
   return (
@@ -70,26 +71,37 @@ function NewProfile() {
 
         <main>
           <div>
-            <h4>Student number</h4>
-            <p>{user?.studentNumber}</p>
-          </div>
-
-          <div>
             <h4>Email</h4>
             <p>{user?.email}</p>
           </div>
 
-          <div>
-            <h4>School</h4>
-            <p>University of the Free State</p>
-          </div>
-
-          {user?.bio && (
+          {user?.university && (
             <div>
-              <h4>About you</h4>
-              <p>{user?.bio}</p>
+              <h4>School</h4>
+              <p>{user?.university}</p>
             </div>
           )}
+
+          {user?.campus && (
+            <div>
+              <h4>Your campus</h4>
+              <p>{user?.campus}</p>
+            </div>
+          )}
+
+          {user?.gender && (
+            <div>
+              <h4>Gender</h4>
+              <p>{user?.gender}</p>
+            </div>
+          )}
+
+          {/* {user?.campus && (
+            <div>
+              <h4>Your campus</h4>
+              <p>{user?.campus}</p>
+            </div>
+          )} */}
         </main>
       </main>
 

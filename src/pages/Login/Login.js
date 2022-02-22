@@ -14,7 +14,7 @@ function Login() {
   const [error, setError] = useState(false);
   const [, userDispatch] = useUserSlice();
   const { onChange, onSubmit, values } = useForm(loginUser, {
-    studentNumber: "",
+    email: "",
     password: "",
   });
 
@@ -52,13 +52,11 @@ function Login() {
         <section>
           <div>
             <div role="link" onClick={logoClicked} className="logoContainer">
-              <img className="loginLogo" src={logo} alt="qampus"/>
+              <img className="loginLogo" src={logo} alt="qampus" />
               <h2>Qampus</h2>
             </div>
 
-            <h2 className="login__title">
-              Sign in to your account
-            </h2>
+            <h2 className="login__title">Sign in to your account</h2>
 
             <form
               autoComplete="off"
@@ -66,14 +64,14 @@ function Login() {
               className="login__mainForm"
             >
               <div>
-                <label htmlFor="email">Student number</label>
+                <label htmlFor="email">Email</label>
                 <input
                   className="login__mainFormInput"
-                  name="studentNumber"
-                  value={values.studentNumber}
+                  name="email"
+                  value={values.email}
                   onChange={onChange}
                   type="text"
-                  id="studentNumber"
+                  id="email"
                 />
               </div>
 
@@ -88,12 +86,12 @@ function Login() {
                   type="password"
                 />
                 <p>
-                  <Link href="/login">Forgot password?</Link>
+                  <Link to="/login">Forgot password?</Link>
                 </p>
               </div>
 
               <div>
-                {error && <p>Student number or password incorrect.</p>}
+                {error && <p>Email or password is incorrect.</p>}
                 <button className="login__mainFormButton" type="submit">
                   Sign in
                 </button>

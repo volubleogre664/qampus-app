@@ -79,11 +79,11 @@ function App() {
         {imgCrop.imgSrc && <CropImage />}
         {popupShow && <MsgBox />}
         <NewProfile />
-        <EditProfile app={app} />
+        {user?.edit && <EditProfile app={app} />}
         <Switch>
           {/* These are public pages... Accessible to everyone */}
           <Route exact path="/">
-            {/* <NewUser /> */}
+            {user?.newUser && <NewUser app={app} />}
             <HeaderMenu />
             <Home />
           </Route>
@@ -95,7 +95,7 @@ function App() {
             <HeaderMenu />
             <Help />
           </Route>
-  
+
           <AuthRoute exact path="/login" component={NewLogin} />
           <AuthRoute exact path="/register" component={Register} />
 
