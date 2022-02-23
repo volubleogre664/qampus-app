@@ -227,7 +227,7 @@ function Chats() {
 
     getUserData({ variables: { id: bookOwner } });
 
-    return () => (window.location.href = "chats");
+    // return () => (window.location.href = "chats");
   }, [searchBookList, setBook, getUserData, user]);
 
   // TODO: HANDLE ATTACHMENT
@@ -265,17 +265,17 @@ function Chats() {
     //   ".chats__mainAside .searchContainer"
     // );
 
-    document.querySelector(".chats__mainSection").style.height =
-      String(
-        window.innerHeight -
-          padding -
-          chatsHeader.clientHeight -
-          mainHeader.clientHeight
-      ) + "px";
+    // document.querySelector(".chats__mainSection").style.height =
+    //   String(
+    //     window.innerHeight -
+    //       padding -
+    //       chatsHeader.clientHeight -
+    //       mainHeader.clientHeight
+    //   ) + "px";
 
-    document.querySelector(".chats__mainAside").style.height =
-      String(window.innerHeight - padding - mainHeader.clientHeight + 20) +
-      "px";
+    // document.querySelector(".chats__mainAside").style.height =
+    //   String(window.innerHeight - padding - mainHeader.clientHeight + 20) +
+    //   "px";
   }, [screenWidth]);
 
   return (

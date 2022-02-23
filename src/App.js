@@ -78,7 +78,7 @@ function App() {
       <Router>
         {imgCrop.imgSrc && <CropImage />}
         {popupShow && <MsgBox />}
-        <NewProfile />
+        {user && <NewProfile />}
         {user?.edit && <EditProfile app={app} />}
         <Switch>
           {/* These are public pages... Accessible to everyone */}

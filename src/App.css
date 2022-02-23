@@ -2,7 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  height: 100vh;
+  height: 100%;
+  max-height: 100% !important;
   width: 100% !important;
   max-width: 1922px;
   position: relative;
@@ -122,22 +123,4 @@
   color: #fff;
   -webkit-filter: drop-shadow(2px 4px 8px #585858);
   filter: drop-shadow(2px 4px 8px #585858);
-}
-
-@media only screen and (max-width: 1370) and (min-width: 550px) {
-  .app {
-    height: auto;
-    width: auto;
-    min-width: 100vw;
-    min-height: 100vh;
-  }
-}
-
-@media only screen and (max-width: 550px) {
-  .app {
-    height: auto;
-    width: auto;
-    min-width: 100vw;
-    min-height: 100vh;
-  }
 }
