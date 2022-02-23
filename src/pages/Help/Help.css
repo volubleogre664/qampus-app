@@ -4,16 +4,16 @@
   padding: 15px;
   height: 100%;
   overflow: hidden;
-  background: url('../../assets/help_image.jpg') no-repeat;
+  background: url("../../assets/help_image.jpg") no-repeat;
   background-attachment: local;
   background-position: center;
   background-size: cover;
 }
-.help__header{
+.help__header {
   display: flex;
   justify-content: center;
 }
-.help__body{
+.help__body {
   display: flex;
   flex-direction: row;
   min-height: 100%;
@@ -28,9 +28,8 @@
   height: 100%;
   align-items: center;
   margin-top: 20px;
-  border-right: 1px solid rgb(206, 206, 206)
+  border-right: 1px solid rgb(206, 206, 206);
 }
-
 
 .main_header {
   font-size: 1.5rem;
@@ -56,11 +55,11 @@
   max-height: 50%;
   margin: auto;
   margin-top: 0;
-  justify-content: center; 
-  place-items: center; 
+  justify-content: center;
+  place-items: center;
 }
 
-.help_side .buttons .button{
+.help_side .buttons .button {
   display: flex;
   justify-content: center;
   padding: 8px 20px;
@@ -75,7 +74,7 @@
   min-width: 160px;
 }
 
-.help_side .buttons .button:hover{
+.help_side .buttons .button:hover {
   background-color: rgba(0, 155, 246, 0.8);
   box-shadow: none;
 }
@@ -84,6 +83,7 @@
   height: 100%;
   background-color: rgba(255, 255, 255, 0.2);
   margin-right: 10px;
+  -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
 }
 
@@ -103,7 +103,7 @@
 .main_content p {
   white-space: pre-wrap;
 }
-.btnHeader{
+.btnHeader {
   display: none;
 }
 
@@ -127,7 +127,7 @@
     margin-top: 10px;
     border-radius: 10px;
   }
-  .btnHeader{
+  .btnHeader {
     display: inline;
     width: 30px;
     background-color: transparent;
@@ -138,17 +138,18 @@
     right: 25px;
   }
 
-  .help_side.opening{
+  .help_side.opening {
     display: inline;
     position: absolute;
     width: 100%;
     background-color: #fff;
     border-radius: 10px;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
     height: fit-content;
-    padding-bottom: 10px; 
+    padding-bottom: 10px;
     box-shadow: 0 1px 6px rgb(32 33 36 / 50%);
     padding-top: 10px;
     margin-top: 10px;
-  } 
-
+  }
 }

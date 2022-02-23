@@ -6,7 +6,7 @@
   min-height: 65%;
   max-width: 450px;
   background-color: rgb(253, 253, 253);
-  box-shadow: 0 1px 6px rgb(32 33 36 / 15%);  
+  box-shadow: 0 1px 6px rgb(32 33 36 / 15%);
   padding: 20px;
   z-index: 100;
   color: rgb(29, 29, 29);
@@ -42,7 +42,7 @@
   margin-top: 5%;
 }
 
-.confirmBook__formFooter > .discard__button{
+.confirmBook__formFooter > .discard__button {
   display: flex;
   justify-content: center;
   padding: 8px 20px;
@@ -59,7 +59,7 @@
   background-color: #d01c54;
 }
 
-.confirmBook__formFooter > .discard__button:hover{
+.confirmBook__formFooter > .discard__button:hover {
   background-color: rgba(208, 28, 84, 0.85);
 }
 @media screen and (max-width: 1000px) {

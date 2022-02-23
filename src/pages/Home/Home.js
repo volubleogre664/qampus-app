@@ -60,39 +60,6 @@ function Home({ history }) {
     // Search for books in the database
     searchBook({ variables: { searchStr } });
   };
-  
-  // Clicking the avatar calls the method
-  // const handleAvatarClick = () => {
-  //   const menu = document.getElementById("login__menu");
-  //   menu.classList.toggle("active");
-
-  //   //hide the profile opion if user is not logged in
-  //   //use profile flag to keep of track of clicks
-  //   if (user && !profileFlag) {
-  //     profileFlag = setProfileFlag(true);
-  //     const profileItem = document.getElementsByClassName("profile_section");
-  //     profileItem[0].classList.toggle("active");
-  //   }
-  // };
-
-  // const handleLoginMenuClick = () => {
-  //   if (user) {
-  //     dispatchUser({
-  //       type: "REMOVE_USER",
-  //     });
-
-  //     dispatchMessages({
-  //       type: "CLEAR_MESSAGES",
-  //     });
-  //   }
-
-  //   history.push("/login");
-  // };
-
-  // const handleCloseMenuClick = () => {
-  //   const menu = document.getElementById("login__menu");
-  //   menu.classList.toggle("active");
-  // };
 
   // Helps return back to the menu
   const openMenu = () => {
@@ -102,14 +69,6 @@ function Home({ history }) {
   useEffect(() => {
     document.title = "Home";
   }, []);
-
-  // var [profileFlag, setProfileFlag] = useState(() => {
-  //   if (!user) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // });
 
   return (
     <div className="home">

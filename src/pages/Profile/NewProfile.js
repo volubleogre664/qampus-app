@@ -95,13 +95,6 @@ function NewProfile() {
               <p>{user?.gender}</p>
             </div>
           )}
-
-          {/* {user?.campus && (
-            <div>
-              <h4>Your campus</h4>
-              <p>{user?.campus}</p>
-            </div>
-          )} */}
         </main>
       </main>
 

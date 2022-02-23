@@ -232,6 +232,7 @@ function EditProfile({ app }) {
           </div>
         )}
         <header className="editProfile__header">
+          <h2>Edit Profile</h2>
           <span
             role="button"
             onClick={handleEditProfileCancel}

@@ -56,7 +56,7 @@ function MessageBox({ oncontinue }) {
   };
 
   function handleCases() {
-    if (popup.title.toLowerCase().includes("logout")) {
+    if (popup.title.toLowerCase().includes("signing")) {
       handleLogoutClick();
     }
   }

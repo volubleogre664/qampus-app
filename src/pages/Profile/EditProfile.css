@@ -84,7 +84,6 @@
   display: grid;
   cursor: pointer;
   place-items: center;
-  /* box-shadow: 1px 1px 0.5px 0 rgba(0, 0, 0, 0.2); */
   -webkit-filter: drop-shadow(1px 2px 2px #000000);
   filter: drop-shadow(1px 2px 2px #000000);
 }
@@ -182,6 +181,8 @@
 }
 
 .editProfile__mainImage button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
@@ -230,6 +231,8 @@
 
 .editProfile__footer > div,
 .editProfile__saveChanges > div {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   margin-left: auto;
   gap: 15px;

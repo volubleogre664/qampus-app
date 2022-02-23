@@ -308,9 +308,9 @@ const GET_USER_DATA = gql`
   query getUserData($id: ID!) {
     getUserData(id: $id) {
       id
-      studentNumber
       firstName
       lastName
+      email
       picture
     }
   }
