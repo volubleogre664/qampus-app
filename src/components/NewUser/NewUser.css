@@ -101,6 +101,8 @@
 }
 
 .newUser__mainImage {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   display: flex;
   flex-direction: column;
@@ -127,6 +129,8 @@
 }
 
 .newUser__mainImage button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
@@ -197,18 +201,6 @@
     max-height: 900px;
   }
 
-  /* .editProfile__header {
-      padding: 15px 20px;
-    } */
-
-  /* .editProfile__header h2 {
-      font-size: 1.5rem;
-    } */
-
-  /* .editProfile__header .icon-container {
-      padding: 10px;
-    } */
-
   .newUser__main {
     padding: 20px 30px;
     flex-direction: initial;
@@ -217,6 +209,5 @@
 
   .editProfile__mainImage button {
     margin: 0 auto;
-    /* width: 100%; */
   }
 }

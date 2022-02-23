@@ -1,22 +1,24 @@
 import { gql } from "@apollo/client";
 
 const LOGIN_USER = gql`
-  mutation loginUser($studentNumber: String!, $password: String!) {
-    login(studentNumber: $studentNumber, password: $password) {
+  mutation loginUser($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
       id
-      studentNumber
       firstName
       lastName
       email
       picture
       degree
-      bio
+      university
+      campus
+      gender
       contacts {
         id
         firstName
         lastName
-        studentNumber
         picture
+        degree
+        campus
       }
       token
     }
@@ -25,16 +27,14 @@ const LOGIN_USER = gql`
 
 const REGISTER_USER = gql`
   mutation register(
-    $studentNumber: String!
     $firstName: String!
     $lastName: String!
-    $email: String
+    $email: String!
     $password: String!
     $confirmPassword: String!
   ) {
     register(
       registerInput: {
-        studentNumber: $studentNumber
         firstName: $firstName
         lastName: $lastName
         email: $email
@@ -43,19 +43,21 @@ const REGISTER_USER = gql`
       }
     ) {
       id
-      studentNumber
       firstName
       lastName
       email
       picture
       degree
-      bio
+      university
+      campus
+      gender
       contacts {
         id
         firstName
         lastName
-        studentNumber
         picture
+        degree
+        campus
       }
       token
     }
@@ -66,10 +68,11 @@ const UPDATE_USER = gql`
   mutation updateUser(
     $firstName: String
     $lastName: String
-    $email: String
     $picture: String
     $degree: String
-    $bio: String
+    $university: String
+    $campus: String
+    $gender: String
     $newPassword: String
     $confirmNewPassword: String
     $password: String
@@ -78,23 +81,33 @@ const UPDATE_USER = gql`
       updateInput: {
         firstName: $firstName
         lastName: $lastName
-        email: $email
         picture: $picture
         degree: $degree
-        bio: $bio
+        campus: $campus
+        gender: $gender
+        university: $university
         newPassword: $newPassword
         confirmNewPassword: $confirmNewPassword
         password: $password
       }
     ) {
       id
-      studentNumber
       firstName
       lastName
       email
       picture
       degree
-      bio
+      university
+      campus
+      gender
+      contacts {
+        id
+        firstName
+        lastName
+        picture
+        degree
+        campus
+      }
       token
     }
   }
@@ -295,9 +308,9 @@ const GET_USER_DATA = gql`
   query getUserData($id: ID!) {
     getUserData(id: $id) {
       id
-      studentNumber
       firstName
       lastName
+      email
       picture
     }
   }

@@ -39,8 +39,8 @@ export const useForm = (callback, initialState = {}) => {
     }
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = (e = undefined) => {
+    e?.preventDefault();
     callback();
   };
 

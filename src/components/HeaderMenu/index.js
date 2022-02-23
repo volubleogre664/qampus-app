@@ -8,10 +8,10 @@ import {
   RiMessageLine,
   RiMessageFill,
   RiInformationLine,
-  RiInformationFill
+  RiInformationFill,
 } from "react-icons/ri";
 import { useRouteMatch, Link, useHistory } from "react-router-dom";
-import { useUserSlice  } from "@redux/getSlices";
+import { useUserSlice } from "@redux/getSlices";
 import logo from "@assets/logo_grey.png";
 import "./HeaderMenu.css";
 
@@ -31,7 +31,6 @@ function HeaderMenu() {
 
   return (
     <header className="header">
-     
       <div role="link" className="logoContainer">
         <img src={logo} alt="qampus" />
         <h2>Qampus</h2>
@@ -39,11 +38,36 @@ function HeaderMenu() {
 
       <nav className="header__nav">
         <ul className="nav__links">
-          <NavLink tooltip="Home" to="/" icon={<RiHome4Line />} active_icon={<RiHome4Fill/>}/>
-          <NavLink tooltip="My Books" to="/collection" icon={<LibraryBooksIcon />} active_icon={<LibraryBooksIconA/>}/>
-          <NavLink tooltip="My Chats" to="/chats" icon={<RiMessageLine />} active_icon={<RiMessageFill/>}/>
-          <NavLink tooltip="My Campus" to="/navigation" icon={<RiMapPinRangeLine />} active_icon={<RiMapPinRangeFill/>}  />
-          <NavLink tooltip="Help" to="/help" icon={<RiInformationLine />} active_icon={<RiInformationFill/>}/>
+          <NavLink
+            tooltip="Home"
+            to="/"
+            icon={<RiHome4Line />}
+            active_icon={<RiHome4Fill />}
+          />
+          <NavLink
+            tooltip="My Books"
+            to="/collection"
+            icon={<LibraryBooksIcon />}
+            active_icon={<LibraryBooksIconA />}
+          />
+          <NavLink
+            tooltip="My Chats"
+            to="/chats"
+            icon={<RiMessageLine />}
+            active_icon={<RiMessageFill />}
+          />
+          <NavLink
+            tooltip="My Campus"
+            to="/navigation"
+            icon={<RiMapPinRangeLine />}
+            active_icon={<RiMapPinRangeFill />}
+          />
+          <NavLink
+            tooltip="Help"
+            to="/help"
+            icon={<RiInformationLine />}
+            active_icon={<RiInformationFill />}
+          />
         </ul>
       </nav>
 
@@ -68,7 +92,7 @@ function HeaderMenu() {
   );
 }
 
-function NavLink({ tooltip="",to = "", icon, active_icon, ...rest }) {
+function NavLink({ tooltip = "", to = "", icon, active_icon, ...rest }) {
   const match = useRouteMatch({
     path: to,
     exact: true,
@@ -76,20 +100,18 @@ function NavLink({ tooltip="",to = "", icon, active_icon, ...rest }) {
 
   return (
     <Link className="nav__linksItem__link" to={to}>
-      <li     
+      <li
         className={`nav__linksItem ${match?.isExact ? "active" : ""}`}
         {...rest}
       >
         <p className="headerMenu__icon">{icon}</p>
         <p className="headerMenu__iconActive">{active_icon}</p>
-        <div class="tooltip ">
+        <div className="tooltip ">
           <p>{tooltip}</p>
         </div>
       </li>
-
     </Link>
   );
 }
 
 export default HeaderMenu;
-

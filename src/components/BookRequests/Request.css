@@ -5,6 +5,8 @@
   margin-top: 0;
   width: 40%;
   min-height: 300px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   padding: 10px;
   padding-left: 20px;
@@ -40,5 +42,7 @@
   margin: auto;
   margin-top: 10px;
   width: 200px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
 }

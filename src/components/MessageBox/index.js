@@ -19,6 +19,11 @@ function MessageBox({ oncontinue }) {
     dispatch({
       type: "",
     });
+
+    dispatchUser({
+      type: "SET_EDIT_PROFILE",
+      payload: { edit: false },
+    });
   };
 
   const handleYesClick = () => {
@@ -51,7 +56,7 @@ function MessageBox({ oncontinue }) {
   };
 
   function handleCases() {
-    if (popup.title.toLowerCase().includes("logout")) {
+    if (popup.title.toLowerCase().includes("signing")) {
       handleLogoutClick();
     }
   }

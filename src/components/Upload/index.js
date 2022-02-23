@@ -11,18 +11,16 @@ import Compressor from "compressorjs";
 import Button from "@components/Button";
 import Loader from "@components/Loader";
 import Input from "@components/Input";
-import Bullet from "@components/Bullet";
 import ConfirmBook from "./ConfirmBook";
 import { useForm } from "@utils/hooks";
 import { UPLOAD_BOOK } from "@utils/graphql";
 import { useBooksSlice, useUserSlice, useUtilsSlice } from "@redux/getSlices";
-import { upload as uploadBullets } from "../../text_files/bulletPoints";
 import "./UploadBook.css";
 
 // I defined this here because it was not persistent
 const bookCovers = {};
 
-function UploadBook({app}) {
+function UploadBook({ app }) {
   const [{ user, imgCrop }, dispatchUser] = useUserSlice();
   const [, dispatchBooks] = useBooksSlice();
   const [, dispatchUtils] = useUtilsSlice();

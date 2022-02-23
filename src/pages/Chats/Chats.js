@@ -105,6 +105,7 @@ function Chats() {
     },
     onError(err) {
       console.log(err.message);
+      console.log(err);
     },
   });
 
@@ -225,6 +226,8 @@ function Chats() {
     });
 
     getUserData({ variables: { id: bookOwner } });
+
+    return () => (window.location.href = "chats");
   }, [searchBookList, setBook, getUserData, user]);
 
   // TODO: HANDLE ATTACHMENT
@@ -258,9 +261,9 @@ function Chats() {
 
     let chatsHeader = document.querySelector(".chats__header");
     let mainHeader = document.querySelector(".app > .header");
-    let searchContainer = document.querySelector(
-      ".chats__mainAside .searchContainer"
-    );
+    // let searchContainer = document.querySelector(
+    //   ".chats__mainAside .searchContainer"
+    // );
 
     document.querySelector(".chats__mainSection").style.height =
       String(
@@ -271,21 +274,18 @@ function Chats() {
       ) + "px";
 
     document.querySelector(".chats__mainAside").style.height =
-      String(
-        window.innerHeight -
-          padding -
-          mainHeader.clientHeight -
-          searchContainer.clientHeight
-      ) + "px";
+      String(window.innerHeight - padding - mainHeader.clientHeight + 20) +
+      "px";
   }, [screenWidth]);
 
   return (
     <section className="chats">
       <header className="chats__header">
-        <div className="searchContainer">
-            <SearchIcon />{" "}
-            <input placeholder="Search..." type="text" />
+        {!chatClick && (
+          <div className="searchContainer">
+            <SearchIcon /> <input placeholder="Search..." type="text" />
           </div>
+        )}
 
         <div className={`${chatClick && "chatsOpen"}`}>
           <button onClick={() => closeChats()}>
@@ -316,10 +316,10 @@ function Chats() {
       </header>
       <section className="chats__main">
         <aside className="chats__mainAside">
-          <div className="searchContainer">
-            {/* <SearchIcon />{" "} */}
-            {/* <input placeholder="Search for contact" type="text" /> */}
-          </div>
+          {/* <div className="searchContainer">
+            <SearchIcon />{" "} 
+            <input placeholder="Search for contact" type="text" />
+          </div> */}
 
           <div className="contactsContainer">
             {user?.contacts &&

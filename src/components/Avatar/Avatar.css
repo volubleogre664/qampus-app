@@ -2,6 +2,8 @@
   position: fixed;
   top: 5vh;
   width: 100px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   background: #fff;
   color: #333131;

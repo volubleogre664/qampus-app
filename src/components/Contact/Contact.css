@@ -20,6 +20,7 @@
 }
 
 .contact:hover {
+  -webkit-transform: scale(0.98);
   transform: scale(0.98);
   border: 2px solid #009bf6;
 }
@@ -34,6 +35,8 @@
   aspect-ratio: 1;
   overflow: hidden;
   border-radius: 50%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   background-color: rgb(214, 214, 214);
 }

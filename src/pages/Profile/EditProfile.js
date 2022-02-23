@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import { useUserSlice } from "@redux/getSlices";
+import { useUserSlice, useUtilsSlice } from "@redux/getSlices";
 import { useForm } from "@utils/hooks.js";
 import { UPDATE_USER } from "@utils/graphql";
 import { useMutation } from "@apollo/react-hooks";
+import Compressor from "compressorjs";
 import {
   getStorage,
   ref,
@@ -16,68 +17,68 @@ import "./EditProfile.css";
 
 function EditProfile({ app }) {
   const [{ user, imgCrop }, dispatch] = useUserSlice();
+  const [profile, setProfile] = useState(user?.picture);
+  const [loading, setLoading] = useState({ isLoading: false, message: "" });
+  const [, dispatchUtils] = useUtilsSlice();
   const firebaseStorage = getStorage(app);
-  const [profile, setProfile] = useState(null);
+  const fileInputRef = useRef(null);
 
   const { onChange, onSubmit, values, updateValues } = useForm(updateUser, {
-    user,
+    ...user,
   });
 
-  const [updateProfile] = useMutation(
-    UPDATE_USER,
-    { ...user },
-    {
-      variables: { ...values, picture: profile },
-      update(_, { data }) {
-        // setLoading(false);
-        // setActive(false);
-        // console.logg(data);
-        if (data) {
-          dispatch({
-            type: "SET_USER",
-            payload: data.updateUser,
-          });
-        }
-      },
-      onError(err) {
-        console.log("An error occured while changing data");
-        // setActive(false);
-        // setLoading(false);
-      },
-    }
-  );
-
-  async function uploadImageUri(e) {
-    e.preventDefault();
-
-    // setLoading(true);s
-    const storageRef = ref(
-      firebaseStorage,
-      `${user.id}/profile/${user.firstName}.jpg`
-    );
-
-    if (imgCrop.croppedImgUrl) {
-      await uploadString(storageRef, imgCrop.croppedImgUrl, "data_url")
-        .then(() => {
-          console.log("Image has been uploaded");
-        })
-        .catch((err) => {
-          console.log("Error uploading image: ", err);
+  const [updateProfile] = useMutation(UPDATE_USER, {
+    variables: { ...values, picture: profile },
+    update(_, { data }) {
+      setLoading({ isLoading: false, message: "" });
+      // setActive(false);
+      // console.logg(data);
+      if (data) {
+        dispatch({
+          type: "SET_USER",
+          payload: data.updateUser,
         });
+      }
 
-      await getDownloadURL(storageRef)
-        .then((url) => {
-          if (url) setProfile(url);
-          else setProfile("");
-        })
-        .catch((err) => console.log(err));
-    }
-
-    onSubmit(e);
-  }
+      dispatchUtils({
+        type: "DELETE_BOOK",
+        payload: {
+          title: "Details Updated",
+          subtitle: "Your details were updated successfully.",
+          btnCancel: false,
+          btnContinue: true,
+          bookTitle: "",
+          popupShow: true,
+        },
+      });
+    },
+    onError(err) {
+      console.log("An error occured while changing data");
+      console.log(err.message, err);
+      // setActive(false);
+      setLoading({ isLoading: false, message: "" });
+    },
+  });
 
   function updateUser() {
-    updateProfile();
+    // console.log(values);
+    setLoading({
+      isLoading: true,
+      message: "We're are updating your information",
+    });
+
+    updateProfile({
+      variables: {
+        firstName: values.firstName,
+        lastName: values.lastName,
+        email: values.email,
+        picture: profile,
+        university: values.university,
+        degree: values.degree,
+        campus: values.campus,
+        gender: values.gender,
+      },
+    });
   }
 
   const handleEditProfileCancel = (e) => {
@@ -92,9 +93,10 @@ function EditProfile({ app }) {
       return;
     }
 
-    document
-      .querySelector(".app > .editProfile__overlay")
-      .classList.toggle("active");
+    dispatch({
+      type: "SET_EDIT_PROFILE",
+      payload: { edit: false },
+    });
   };
 
   const keepEditingClicked = (e) => {
@@ -107,21 +109,130 @@ function EditProfile({ app }) {
 
   const closeAndDiscardClicked = (e) => {
     e.preventDefault();
-    document
-      .querySelector(".app > .editProfile__overlay")
-      .classList.toggle("active");
 
     document
       .querySelector(".app > .editProfile__overlay > .editProfile")
       .classList.toggle("save_discard_changes");
 
+    dispatch({
+      type: "SET_EDIT_PROFILE",
+      payload: { edit: false },
+    });
+
     updateValues(user);
   };
+
+  const handleFileInput = (inputEvent) => {
+    const [file] = inputEvent.target.files;
+
+    if (file) {
+      new Compressor(file, {
+        quality: 0.2,
+        success(file) {
+          const reader = new FileReader();
+
+          reader.onload = (readerEvent) => {
+            document.querySelector(".editProfile__overlay").style.zIndex = -301;
+            document.querySelector(".app > .profile").style.zIndex = -100;
+            document.querySelector(".app > .profile").style.visibility =
+              "hidden";
+            document.querySelector(".editProfile__overlay").style.visibility =
+              "hidden";
+
+            dispatch({
+              type: "SET_CROP_IMG",
+              payload: {
+                ...imgCrop,
+                imgSrc: readerEvent.target.result,
+              },
+            });
+          };
+
+          window.scrollTo(0, 0);
+          reader.readAsDataURL(file);
+        },
+        error(err) {
+          console.log(err.message);
+        },
+      });
+    }
+
+    fileInputRef.current.value = "";
+  };
+
+  useEffect(() => {
+    document.title = "Profile - Qampus";
+
+    if (!imgCrop.croppedImgUrl) return;
+
+    document.querySelector(".editProfile__overlay").style.zIndex = 301;
+    document.querySelector(".app > .profile").style.zIndex = 100;
+    document.querySelector(".app > .profile").style.visibility = "initial";
+    document.querySelector(".editProfile__overlay").style.visibility =
+      "initial";
+
+    const storageRef = ref(
+      firebaseStorage,
+      `${user.id}/profile/${user.firstName}.jpg`
+    );
+
+    (async () => {
+      await uploadString(storageRef, imgCrop.croppedImgUrl, "data_url")
+        .then(() => {
+          console.log("Image has been uploaded");
+          dispatch({
+            type: "SET_CROP_IMG",
+            payload: {
+              croppedImgUrl: null,
+            },
+          });
+        })
+        .catch((err) => {
+          console.log("Error uploading image: ", err);
+        });
+
+      await getDownloadURL(storageRef)
+        .then((url) => {
+          if (url) updateProfile({ variables: { picture: url } });
+          else setProfile("");
+        })
+        .catch((err) => console.log(err));
+    })();
+    // }
+
+    return () => {
+      if (imgCrop.croppedImgUrl) {
+        setLoading({ isLoading: false, message: "" });
+        dispatch({
+          type: "SET_CROP_IMG",
+          payload: {
+            imgSrc: "",
+            croppedImgUrl: null,
+            aspect: null,
+          },
+        });
+      }
+    };
+  }, [
+    dispatch,
+    imgCrop,
+    firebaseStorage,
+    user.firstName,
+    user.id,
+    updateProfile,
+    setLoading,
+  ]);
 
   return (
     <div className="editProfile__overlay">
       <section className="editProfile">
+        {loading.isLoading && (
+          <div className="editProfile__loading">
+            <span>{loading.message}</span>
+          </div>
+        )}
         <header className="editProfile__header">
+          <h2>Edit Profile</h2>
           <span
             role="button"
             onClick={handleEditProfileCancel}
@@ -132,11 +243,7 @@ function EditProfile({ app }) {
         </header>
 
         <main className="editProfile__main">
-          <form
-            autoComplete="off"
-            className="editProfile__mainForm"
-            onSubmit={uploadImageUri}
-          >
+          <form autoComplete="off" className="editProfile__mainForm">
             <div>
               <label htmlFor="firstName">First name</label>
               <input
@@ -162,19 +269,48 @@ function EditProfile({ app }) {
             </div>
 
             <div>
-              <label htmlFor="studentNumber">Student number</label>
-              <input
-                className="editProfile__mainFormInput"
-                name="studentNumber"
-                type="text"
-                id="studentNumber"
-                value={values?.studentNumber}
-                onChange={onChange}
-                disabled
-              />
+              <label htmlFor="degree">Gender</label>
+              <div className="newUser__mainFormRadio">
+                <span>
+                  <input
+                    name="gender"
+                    type="radio"
+                    id="male"
+                    value="Male"
+                    onChange={onChange}
+                    checked={values?.gender === "Male" && "checked"}
+                  />
+                  <label htmlFor="male">Male</label>
+                </span>
+
+                <span>
+                  <input
+                    name="gender"
+                    type="radio"
+                    id="female"
+                    value="Female"
+                    onChange={onChange}
+                    checked={values?.gender === "Female" ? "checked" : ""}
+                  />
+                  <label htmlFor="female">Female</label>
+                </span>
+
+                <span>
+                  <input
+                    name="gender"
+                    type="radio"
+                    id="notSay"
+                    value="Rather not say"
+                    onChange={onChange}
+                    checked={
+                      values?.gender === "Rather not say" ? "checked" : ""
+                    }
+                  />
+                  <label htmlFor="notSay">Rather not say</label>
+                </span>
+              </div>
               <p>
-                Your student number is private. Only you can see it and cannot
-                be changed.
+                Optional - Just select rather not say if you don't feel like it
               </p>
             </div>
 
@@ -187,8 +323,35 @@ function EditProfile({ app }) {
                 id="email"
                 value={values?.email}
                 onChange={onChange}
+                disabled
               />
-              <p>Anyone on Qampus can see your email.</p>
+              <p>Anyone on Qampus can see your email and cannot be changed.</p>
+            </div>
+
+            <div>
+              <label htmlFor="university">University</label>
+              <input
+                className="editProfile__mainFormInput"
+                name="university"
+                type="text"
+                id="university"
+                value={values?.university}
+                onChange={onChange}
+              />
+              <p>Help us show you things relavant to your school</p>
+            </div>
+
+            <div>
+              <label htmlFor="campus">Campus</label>
+              <input
+                className="editProfile__mainFormInput"
+                name="campus"
+                type="text"
+                id="campus"
+                value={values?.campus}
+                onChange={onChange}
+              />
+              <p>Which campus of your school are you on</p>
             </div>
 
             <div>
@@ -215,8 +378,16 @@ function EditProfile({ app }) {
                 src={user?.picture || profilePlaceholder}
                 alt="edit your profile"
               />
+              <input
+                type="file"
+                onChange={handleFileInput}
+                ref={fileInputRef}
+                style={{ display: "none" }}
+              />
             </div>
-            <button>Upload Image</button>
+            <button onClick={() => fileInputRef.current.click()}>
+              Upload Image
+            </button>
 
             {/* If user image exists the we remove it and show the person default */}
             <button>Remove Image</button>
@@ -226,7 +397,7 @@ function EditProfile({ app }) {
         <footer className="editProfile__footer">
           <div>
             <button onClick={handleEditProfileCancel}>Cancel</button>
-            <button>Save Changes</button>
+            <button onClick={onSubmit}>Save Changes</button>
           </div>
         </footer>
 

@@ -12,8 +12,8 @@
   overflow-x: hidden;
   position: relative;
   padding-top: 0 !important;
-  background: url('../../assets/home_image.jpg') no-repeat;
-  background-attachment:local;
+  background: url("../../assets/login_image.jpg") no-repeat;
+  background-attachment: local;
   background-position: top;
   background-size: cover;
 }
@@ -67,8 +67,6 @@
 }
 
 .home__grid:hover {
-  /* box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
-  border-color: rgba(223,225,229,0); */
   background: #1faafb;
   cursor: pointer;
 }
@@ -159,13 +157,9 @@
 .home__avatar:hover {
   transition: all ease-in-out 0.2s;
   outline-offset: 15px;
-  /* -webkit-filter: drop-shadow(2px 4px 4px #000000);
-  filter: drop-shadow(2px 4px 4px #000000);
-  border-radius: 0px; */
   -webkit-filter: drop-shadow(0px 1px 1px #000000);
   filter: drop-shadow(0px 1px 1px #000000);
   transition: all ease-in-out 0.2s;
-  /* border-radius: 1px 1px 1px 1px; */
 }
 
 .home__avatar .avatarIcon {
@@ -309,12 +303,8 @@
 .home__searchInput:focus {
   transition: all ease-in-out 0.5s;
   border: #3db8ff solid 1px;
-
-  /* border-radius: 1px 1px 1px 1px; */
-  /* margin-left: 0.5px; */
 }
 .home__searchContainer:focus-within {
-  /* background: #3db8ff; */
   box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
   border-color: rgba(223, 225, 229, 0);
 }
@@ -375,6 +365,8 @@
   gap: 15px;
   width: 100%;
   margin: auto;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   margin-top: 15px;
   align-items: center;
@@ -416,9 +408,6 @@
   margin-bottom: 0;
   text-align: center;
   color: #000;
-  /* color: rgb(68, 67, 67); */
-  /* border-bottom: 1px solid rgb(68, 67, 67); */
-  /* padding-bottom: 5px; */
 }
 .recent__uploads .caption,
 .book__requests .caption {
@@ -440,10 +429,6 @@
   gap: 5px;
   color: #414141;
 }
-
-/* .list__icon:hover{
-  color: #009bf6;
-} */
 
 .home__books {
   display: flex;
@@ -479,6 +464,7 @@
   align-items: center;
   justify-content: flex-start;
   gap: 40px;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 
@@ -491,6 +477,7 @@
   margin-bottom: 0;
   width: 60%;
   padding: 0;
+  position: -webkit-sticky;
   position: sticky;
   z-index: 5;
 }
@@ -549,6 +536,7 @@
   text-align: center;
   display: none;
 }
+
 :root {
   --neon-text-color: #008799;
 }
@@ -639,6 +627,7 @@
     display: inline;
     margin-bottom: 10px;
   }
+
   .home {
     padding-top: 100px;
   }
@@ -649,9 +638,11 @@
     margin-top: 15px;
     max-width: 400px;
   }
+
   .home__searchInput {
     max-width: 85%;
   }
+
   .home__body {
     margin-top: 15px;
   }

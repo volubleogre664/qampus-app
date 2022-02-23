@@ -2,23 +2,17 @@
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0;
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 301;
   place-items: center;
   transition: all ease-in-out 0.25s;
-  display: none;
+  display: grid;
 }
 
 * {
   font-family: "Poppins", sans-serif;
-}
-
-.editProfile__overlay.active {
-  opacity: 1;
-  display: grid;
 }
 
 .editProfile {
@@ -32,6 +26,18 @@
   font-family: "Poppins", sans-serif;
   color: #000;
   position: relative;
+}
+
+.editProfile__loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 .editProfile.save_discard_changes::after {
@@ -49,15 +55,6 @@
   bottom: 45vh;
 }
 
-.editProfile__overlay > .editProfile {
-  opacity: 0;
-}
-
-.editProfile__overlay.active > .editProfile {
-  transition: all ease-in 0.8s;
-  opacity: 1;
-}
-
 .editProfile > * {
   padding: 20px;
   box-sizing: border-box;
@@ -71,6 +68,14 @@
   border-bottom: 1px solid #e0e0e0;
 }
 
+.editProfile__header h2 {
+  flex: 1;
+  font-size: 1.6rem;
+  font-weight: 200;
+  color: #009bf6;
+  margin-bottom: 4px;
+}
+
 .editProfile__header .icon-container {
   color: #009bf6;
   padding: 10px;
@@ -79,7 +84,6 @@
   display: grid;
   cursor: pointer;
   place-items: center;
-  /* box-shadow: 1px 1px 0.5px 0 rgba(0, 0, 0, 0.2); */
   -webkit-filter: drop-shadow(1px 2px 2px #000000);
   filter: drop-shadow(1px 2px 2px #000000);
 }
@@ -136,25 +140,12 @@
 
 .editProfile__mainFormInput {
   width: calc(100% - 12px);
-  /* font-size: 0.98rem;
-  font-weight: 300;
-  padding: 5px 8px;
-  height: 25px;
-  border: 2px solid rgb(161, 161, 161);
-  transition: all ease-in 0.25s;
-  border-radius: 6px; */
   font-size: 1rem;
   padding: 5px;
   height: 30px;
   border-radius: 4px;
   border: 2px solid rgb(194, 194, 194);
- }
-
-/* .editProfile__mainFormInput:hover {
-  transition: color ease-in 0.2s;
-  border-radius: 2px;
-  border-color: rgb(125, 125, 125);
-} */
+}
 
 .editProfile__mainFormInput:focus {
   transition: color ease-in-out 0.2s;
@@ -167,7 +158,6 @@
   flex-direction: column;
   place-items: center;
   margin-top: 0;
-
 }
 
 .editProfile__mainImage > span {
@@ -191,6 +181,8 @@
 }
 
 .editProfile__mainImage button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
@@ -206,18 +198,16 @@
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.27);
-  -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.27);
-  -moz-box-shadow: 4px 4px 8px rgba(146, 109, 109, 0.27);
-  background: #696969;
-  color: white;
+  box-shadow: 1px 1px 1.5px rgba(0, 0, 0, 0.27);
+  -webkit-box-shadow: 1px 1px 1.5px rgba(0, 0, 0, 0.27);
+  -moz-box-shadow: 1px 1px 1.5px rgba(146, 109, 109, 0.27);
+  color: rgb(80, 80, 80);
   transition: all ease-in-out 0.1s;
   margin-bottom: 20px;
 }
 
 .editProfile__mainImage button:first-of-type:hover {
-  background: rgb( 120, 120, 120);
-  color: white;
+  background-color: rgb(248, 248, 248);
 }
 
 .editProfile__mainImage button:last-of-type {
@@ -241,6 +231,8 @@
 
 .editProfile__footer > div,
 .editProfile__saveChanges > div {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   margin-left: auto;
   gap: 15px;

@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 
 import { DELETE_BOOK, GET_ALL_BOOKS } from "@utils/graphql.js";
 import Loader from "@components/Loader";
 import Book from "@components/Book";
-import Button from "@components/Button";
 import EditBook from "@components/EditBook";
 import MsgBox from "@components/MessageBox";
 import UploadBook from "@components/Upload";
@@ -19,7 +17,6 @@ import { getStorage, deleteObject, ref } from "firebase/storage";
 import "./Collection.css";
 
 function Collection({ app }) {
-  const history = useHistory();
   const [{ bookList: books }, dispatchBook] = useBooksSlice();
   const [
     {
@@ -144,7 +141,7 @@ function Collection({ app }) {
         <UploadBook />
       </section>
       <button className="btnUpload" onClick={handleClick}>
-          {click ? "Cancel" : "Add book"}
+        {click ? "Cancel" : "Add book"}
       </button>
     </div>
   );

@@ -66,11 +66,17 @@ const userSlice = createSlice({
       document.cookie = "user=;max-age=0";
       document.cookie = "contacts=;max-age=0";
     },
+    setEditUser(state, action) {
+      state.user.edit = action.payload.edit;
+    },
     setPath(state, action) {
       state.path = action.payload;
     },
     setErrors(state, action) {
       state.errors = action.payload;
+    },
+    setNewUser(state, action) {
+      state.user.newUser = action.payload.newUser;
     },
     setImgSrc(state, action) {
       state.imgCrop = action.payload;
@@ -98,6 +104,8 @@ export const {
   setErrors,
   setImgSrc,
   addUserContact,
+  setEditUser,
+  setNewUser,
 } = userSlice.actions;
 export const selectUser = (state) => state?.user;
 export default userSlice.reducer;
