@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import SendIcon from "@mui/icons-material/Send";
 import SearchIcon from "@mui/icons-material/Search";
 import AttachIcon from "@mui/icons-material/AttachFile";
@@ -251,32 +251,6 @@ function Chats() {
 
     return { lastMsg: null, time: null };
   };
-
-  // Fixing some css inconsistencies
-  useLayoutEffect(() => {
-    var padding = 15;
-
-    if (screenWidth > 670) padding = 40;
-    else if (screenWidth > 400) padding = 25;
-
-    let chatsHeader = document.querySelector(".chats__header");
-    let mainHeader = document.querySelector(".app > .header");
-    // let searchContainer = document.querySelector(
-    //   ".chats__mainAside .searchContainer"
-    // );
-
-    // document.querySelector(".chats__mainSection").style.height =
-    //   String(
-    //     window.innerHeight -
-    //       padding -
-    //       chatsHeader.clientHeight -
-    //       mainHeader.clientHeight
-    //   ) + "px";
-
-    // document.querySelector(".chats__mainAside").style.height =
-    //   String(window.innerHeight - padding - mainHeader.clientHeight + 20) +
-    //   "px";
-  }, [screenWidth]);
 
   return (
     <section className="chats">
