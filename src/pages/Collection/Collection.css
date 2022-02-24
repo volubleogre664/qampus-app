@@ -3,8 +3,8 @@
   width: 100%;
   box-sizing: border-box;
   padding-bottom: 60px;
-  overflow-y: auto;
-  background: url("../../assets/collection_image.jpg") no-repeat;
+  overflow-y: scroll;
+  background: linear-gradient(rgba(255,255,255,0.0),rgba(255,255,255,0.3)), url("../../assets/collection_image.jpg") no-repeat;
   background-attachment: local;
   background-position: top;
   background-size: cover;
@@ -78,20 +78,19 @@
   border-radius: 4px;
   border: none;
   cursor: pointer;
-  gap: 5px;
   font-size: 0.9rem;
   transition: all ease-in-out 0.2s;
   min-width: 160px;
   background-color: rgb(0, 155, 246);
   color: #fff;
-  position: absolute;
-  right: calc(50vw - 80px);
+  position: relative;
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
   -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
-  margin-top: 30px;
-  margin-bottom: 50px;
-
+ 
 }
 
 .btnUpload:hover {
@@ -109,14 +108,5 @@
     height: -moz-fit-content;
     height: fit-content;
   }
-  .btnUpload {
-    margin-top: 10px;
-  }
 }
 
-@media screen and (max-height: 500px) {
-  .btnUpload {
-    margin-top: 10px;
-    bottom: 10px;
-  }
-}

@@ -64,8 +64,8 @@
   margin: 0;
   text-align: start;
   font-size: 1.4rem;
-  font-weight: 200;
-  color: rgb(29, 29, 29);
+  font-weight: 300;
+  color: #009bf6;
   font-family: "Poppins";
 }
 
@@ -182,7 +182,7 @@ label.front {
 }
 
 .upload__formFooter > * {
-  margin-left: auto;
+  margin:auto;
 }
 
 @media screen and (min-width: 500px) {

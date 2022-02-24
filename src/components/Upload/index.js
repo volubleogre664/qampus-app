@@ -331,7 +331,7 @@ function UploadBook({ app, callback }) {
       {loading.isLoading && <Loader message={loading.message} />}
       <div className="upload">
         <header className="upload__header">
-          <h1 className="upload__title">Upload a book</h1>
+          <h1 className="upload__title">Book details</h1>
           <span
             role="button"
             onClick={handleUploadCancel}
