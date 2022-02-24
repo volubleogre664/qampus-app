@@ -74,7 +74,7 @@ function Home({ history }) {
     <div className="home">
       {loading && <Loader message="Searching..." />}
 
-      <div className="home__searchSection">
+      <div className="home__searchSection" id="search">
         <div className="home__logo">
           <img className="home__logoImg" src={logo} alt="qampus logo" />
           <h1>Qampus</h1>
@@ -141,7 +141,7 @@ function Home({ history }) {
         </div>
       </div>
 
-      <a className="backToTop" href="#top">
+      <a className="backToTop" href="#search">
         <MdKeyboardArrowUp />
       </a>
       <div className="reference">
