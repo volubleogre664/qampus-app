@@ -243,6 +243,28 @@ function EditProfile({ app }) {
         </header>
 
         <main className="editProfile__main">
+          <div className="editProfile__mainImage">
+            <span>Profile Image</span>
+            <div className="image-container">
+              <img
+                src={user?.picture || profilePlaceholder}
+                alt="edit your profile"
+              />
+              <input
+                type="file"
+                onChange={handleFileInput}
+                ref={fileInputRef}
+                style={{ display: "none" }}
+              />
+            </div>
+            <button onClick={() => fileInputRef.current.click()}>
+              Upload Image
+            </button>
+
+            {/* If user image exists the we remove it and show the person default */}
+            <button>Remove Image</button>
+          </div>
+
           <form autoComplete="off" className="editProfile__mainForm">
             <div>
               <label htmlFor="firstName">First name</label>
@@ -370,28 +392,6 @@ function EditProfile({ app }) {
               </p>
             </div>
           </form>
-
-          <div className="editProfile__mainImage">
-            <span>Profile Image</span>
-            <div className="image-container">
-              <img
-                src={user?.picture || profilePlaceholder}
-                alt="edit your profile"
-              />
-              <input
-                type="file"
-                onChange={handleFileInput}
-                ref={fileInputRef}
-                style={{ display: "none" }}
-              />
-            </div>
-            <button onClick={() => fileInputRef.current.click()}>
-              Upload Image
-            </button>
-
-            {/* If user image exists the we remove it and show the person default */}
-            <button>Remove Image</button>
-          </div>
         </main>
 
         <footer className="editProfile__footer">

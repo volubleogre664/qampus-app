@@ -68,6 +68,10 @@
   -moz-box-shadow: 4px 4px 8px rgba(146, 109, 109, 0.27);
 }
 
+.login__main > section > div {
+  width: 100% !important;
+}
+
 .login__main > section > div > .logoContainer {
   display: flex;
   gap: 5px;

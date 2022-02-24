@@ -12,6 +12,7 @@ import Button from "@components/Button";
 import Loader from "@components/Loader";
 import Input from "@components/Input";
 import ConfirmBook from "./ConfirmBook";
+import CloseIcon from "@mui/icons-material/Close";
 import { useForm } from "@utils/hooks";
 import { UPLOAD_BOOK } from "@utils/graphql";
 import { useBooksSlice, useUserSlice, useUtilsSlice } from "@redux/getSlices";
@@ -20,7 +21,7 @@ import "./UploadBook.css";
 // I defined this here because it was not persistent
 const bookCovers = {};
 
-function UploadBook({ app }) {
+function UploadBook({ app, callback }) {
   const [{ user, imgCrop }, dispatchUser] = useUserSlice();
   const [, dispatchBooks] = useBooksSlice();
   const [, dispatchUtils] = useUtilsSlice();
@@ -298,6 +299,10 @@ function UploadBook({ app }) {
       });
   }
 
+  const handleUploadCancel = () => {
+    callback();
+  };
+
   useEffect(() => {
     document.title = "Upload - Qampus";
   }, []);
@@ -325,8 +330,16 @@ function UploadBook({ app }) {
 
       {loading.isLoading && <Loader message={loading.message} />}
       <div className="upload">
-        <h1 className="upload__title">Upload a book</h1>
-        <hr className="upload_separator" />
+        <header className="upload__header">
+          <h1 className="upload__title">Upload a book</h1>
+          <span
+            role="button"
+            onClick={handleUploadCancel}
+            className="icon-container"
+          >
+            <CloseIcon />
+          </span>
+        </header>
         <form onSubmit={uploadImagesToCloud} className="upload__form">
           <div className="wrapper">
             <div
@@ -359,42 +372,46 @@ function UploadBook({ app }) {
             </div>
           </div>
 
-          <Input
-            type="text"
-            name="isbn"
-            id="isbn"
-            required={true}
-            onChange={onChange}
-            value={values.isbn}
-            label="Book ISBN"
-            placeholder="9789544007737"
-          />
+          <div className="inputs">
+            <Input
+              type="text"
+              name="isbn"
+              id="isbn"
+              required={true}
+              onChange={onChange}
+              value={values.isbn}
+              label="Book ISBN"
+              placeholder="9789544007737"
+            />
 
-          <Input
-            type="text"
-            name="moduleCode"
-            id="moduleCode"
-            onChange={onChange}
-            value={values.moduleCode}
-            label="Module Code"
-            placeholder="CSIS1664"
-          />
+            <Input
+              type="text"
+              name="moduleCode"
+              id="moduleCode"
+              onChange={onChange}
+              value={values.moduleCode}
+              label="Module Code"
+              placeholder="CSIS1664"
+            />
 
-          <Input
-            type="number"
-            name="price"
-            id="price"
-            required={true}
-            onChange={onChange}
-            value={values.price}
-            label="Asking Price (R)"
-            placeholder="350"
-          />
+            <Input
+              type="number"
+              name="price"
+              id="price"
+              required={true}
+              onChange={onChange}
+              value={values.price}
+              label="Asking Price (R)"
+              placeholder="350"
+            />
+          </div>
 
           <input type="hidden" name="title" value={values.title} />
           <input type="hidden" name="authors" value={values.authors} />
 
-          <Button text="Upload" type="submit" />
+          <footer className="upload__formFooter">
+            <Button text="Upload" type="submit" />
+          </footer>
         </form>
       </div>
     </div>
