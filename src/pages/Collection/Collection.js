@@ -18,15 +18,16 @@ import "./Collection.css";
 
 function Collection({ app }) {
   const [{ bookList: books }, dispatchBook] = useBooksSlice();
+  const [{ popup }, dispatchUtils] = useUtilsSlice();
+  const [edit, setEdit] = useState(false);
+  const [upload, setUpload] = useState(false);
+  const [book, setBook] = useState({ id: null, title: null, price: null });
+  const firebaseRef = getStorage(app);
   const [
     {
       user: { id: bookOwner },
     },
   ] = useUserSlice();
-  const [{ popup }, dispatchUtils] = useUtilsSlice();
-  const [edit, setEdit] = useState(false);
-  const [book, setBook] = useState({ id: null, title: null, price: null });
-  const firebaseRef = getStorage(app);
 
   // TODO: Deal with the book component
   // Something is annoying
@@ -109,24 +110,25 @@ function Collection({ app }) {
     setEdit(false);
   };
 
+  const handleAddNewBookClick = () => {
+    setUpload(true);
+    console.log("Yeap");
+  };
+
   useEffect(() => {
     document.title = "Book Collections - Qampus";
   }, []);
-  const [click, setClick] = useState(false);
 
-  const handleClick = () => {
-    setClick(!click);
-    document.querySelector(".collection").classList.toggle("opening");
-    document.querySelector(".collection__upload").classList.toggle("opening");
-  };
   return (
     <div className="collection">
       {edit && <EditBook cancel={cancelClicked} {...book} />}
-      {edit && <div className="overlay" />}
+      {(edit || upload) && <div className="overlay" />}
       {loading && <Loader message="Getting your books" />}
+      {upload && <UploadBook app={app} callback={() => setUpload(false)} />}
       {popup.title === "Delete Book?" && (
         <MsgBox oncontinue={deleteBookFinal} />
       )}
+
       <section className="collection__body">
         {books.map((book, i) => (
           <Book
@@ -137,11 +139,9 @@ function Collection({ app }) {
           />
         ))}
       </section>
-      <section className="collection__upload">
-        <UploadBook />
-      </section>
-      <button className="btnUpload" onClick={handleClick}>
-        {click ? "Cancel" : "Add book"}
+
+      <button className="btnUpload" onClick={() => handleAddNewBookClick()}>
+        Add Book
       </button>
     </div>
   );
