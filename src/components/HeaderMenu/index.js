@@ -12,7 +12,8 @@ import {
 } from "react-icons/ri";
 import { useRouteMatch, Link, useHistory } from "react-router-dom";
 import { useUserSlice } from "@redux/getSlices";
-import logo from "@assets/logo_grey.png";
+// import logo from "@assets/logo_grey.png";
+import logo from "@assets/Qampus_logo_grey.png";
 import "./HeaderMenu.css";
 
 function HeaderMenu() {

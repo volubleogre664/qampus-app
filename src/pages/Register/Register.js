@@ -6,7 +6,7 @@ import { useUserSlice } from "@redux/getSlices";
 import { useForm } from "@utils/hooks";
 // import DoneIcon from "@mui/icons-material/Done";
 import Loader from "@components/Loader";
-import logo from "@assets/logo_grey.png";
+import logo from "@assets/Qampus_logo_grey.png";
 import "./Register.css";
 
 function Register() {

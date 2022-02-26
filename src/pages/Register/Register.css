@@ -87,10 +87,8 @@
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
 }
 .register__main section > div > .logoContainer > img {
-  min-width: 2.5rem;
+  min-height: 3.2rem;
   object-fit: contain;
-  -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
-  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
 }
 .login__mainFormButton {
   margin-top: 10px;

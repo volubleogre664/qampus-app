@@ -5,7 +5,7 @@ import Loader from "@components/Loader";
 import { useUserSlice } from "@redux/getSlices.js";
 import { useForm } from "@utils/hooks.js";
 import { LOGIN_USER } from "@utils/graphql.js";
-import logo from "@assets/logo_grey.png";
+import logo from "@assets/Qampus_logo_grey.png";
 import "./Login.css";
 
 function Login() {
