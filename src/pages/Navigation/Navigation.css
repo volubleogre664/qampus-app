@@ -50,11 +50,10 @@
 .navigation__sidebarForm {
   display: flex;
   flex-direction: column;
-  width: 90% !important;
+  width: 90%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  max-height: 50%;
   margin: auto;
   margin-top: 0px;
   gap: 15px;
@@ -129,8 +128,8 @@
     z-index: 100;
     position: absolute;
     font-size: 1.8rem;
-    right: 0px;
-    top: -10px;
+    right: 5px;
+    top: -5px;
   }
 
   .navigation__sidebar {
@@ -140,26 +139,27 @@
   .navigation__sidebar.opening {
     width: 100%;
     justify-content: center;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
+    height: max-content;
     position: absolute;
     background-color: #fff;
-    padding-top: 10px;
-    padding-bottom: 30px;
+    padding: 15px;
     border-radius: 10px;
     border-right: none;
+    box-sizing: border-box;
     box-shadow: 0 1px 6px rgb(32 33 36 / 50%);
     display: inline;
     z-index: 4;
   }
 
   .navigation__sidebarForm {
+    width: 100%;
     flex-direction: column;
     flex-wrap: nowrap;
     align-self: center;
     flex-wrap: nowrap;
     align-self: center;
+    margin: 0;
+    gap: 0;
   }
 
   .navigation__main {
