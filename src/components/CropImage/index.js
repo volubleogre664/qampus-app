@@ -47,7 +47,6 @@ export const CropImage = () => {
       <div
         style={{
           width: "100vw",
-          height: "100vh",
           paddingLeft: "20px",
           paddingRight: "20px",
           boxSizing: "border-box",
