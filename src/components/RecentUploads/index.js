@@ -24,10 +24,7 @@ function Recent({ history }) {
         })
       );
     },
-    onError: (err) => {
-      console.log(err.message);
-      console.log(err.graphQLErrors);
-    },
+    onError: (err) => {},
   });
 
   // Handles click of search button
@@ -43,16 +40,17 @@ function Recent({ history }) {
 
   return (
     <div className="recent__uploads">
-      <div className="card__header">
+      <header className="card__header">
         <p className="caption">Recent uploads</p>
-        <Link className="nav__linksItem__link" to={"/collection"}>
-          <AddRoundedIcon id="upload" className="card__header__icon"/>
+        <Link className="nav__linksItem__link" to="/collection">
+          <AddRoundedIcon id="upload" className="card__header__icon" />
         </Link>
         <RefreshRoundedIcon
           onClick={handlerRefreshClick}
           className="card__header__icon"
         />
-      </div>
+      </header>
+
       <div className="home__books">
         {books.map((book) => (
           <Book

@@ -43,9 +43,7 @@ function Collection({ app }) {
         }
       });
     },
-    onError(err) {
-      console.log(err);
-    },
+    onError(err) {},
   });
 
   const [deleteBook] = useMutation(DELETE_BOOK, {
@@ -59,7 +57,7 @@ function Collection({ app }) {
 
       deleteObject(imageRef)
         .then(() => console.log("Book deleted successfully"))
-        .catch((err) => console.log("Error encountered", err));
+        .catch((err) => console.log("Error encountered"));
 
       dispatchBook({
         type: "DELETE_LIBRARY_BOOK",
@@ -79,8 +77,6 @@ function Collection({ app }) {
       });
     },
     onError(err) {
-      console.log(err?.message);
-
       dispatchUtils({
         type: "DELETE_BOOK",
         payload: {
@@ -112,7 +108,6 @@ function Collection({ app }) {
 
   const handleAddNewBookClick = () => {
     setUpload(true);
-    console.log("Yeap");
   };
 
   useEffect(() => {

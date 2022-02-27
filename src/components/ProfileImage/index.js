@@ -33,9 +33,7 @@ function ProfileImage({ src }) {
           window.scrollTo(0, 0);
           reader.readAsDataURL(file);
         },
-        error(err) {
-          console.log(err.message);
-        },
+        error(err) {},
       });
     }
 

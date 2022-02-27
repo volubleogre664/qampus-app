@@ -1,8 +1,19 @@
+#crop {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.85);
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  width: 100vw;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+
 .cropImg {
   width: 100vw;
-  height: 100vh;
+  height: fit-content;
   max-height: 100vh;
-  background-color: rgba(255, 255, 255, 0.85);
   padding: 10px;
   box-sizing: border-box;
   overflow: hidden !important;
@@ -21,7 +32,7 @@ h1 {
   color: #fff;
 }
 
-.buttons {
+#crop .buttons {
   margin: auto;
   margin-top: 20px;
   width: -webkit-fit-content;
@@ -31,7 +42,7 @@ h1 {
   gap: 20px;
 }
 
-.buttons > button {
+#crop .buttons > button {
   display: flex;
   justify-content: center;
   padding: 8px 20px;
@@ -48,7 +59,15 @@ h1 {
   color: #fff;
 }
 
-.buttons > button:hover {
+#crop .buttons > button:first-of-type {
+  background-color: #d01c54;
+}
+
+#crop .buttons > button:hover {
   background-color: rgb(35, 174, 255);
   box-shadow: none;
+}
+
+#crop .buttons > button:first-of-type:hover {
+  background-color: rgba(208, 28, 84, 0.8);
 }

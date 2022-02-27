@@ -27,7 +27,6 @@ function Login() {
     },
     variables: values,
     onError(err) {
-      console.log(err?.graphQLErrors);
       setError(true);
     },
   });

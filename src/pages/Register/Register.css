@@ -109,6 +109,9 @@
   place-items: center;
   background-color: #fff;
   overflow-y: auto;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.35);
+  -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 4px 4px 8px rgba(146, 109, 109, 0.35);
 }
 
 .register__title {
@@ -136,7 +139,18 @@
 
 @media screen and (min-width: 400px) {
   .register__aside {
+    top: calc(50vh - 147.5px);
     left: calc(50% - 200px);
+  }
+
+  .register__main {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .register__main section {
+    height: fit-content;
+    border-radius: 8px;
   }
 
   .register__aside > p {

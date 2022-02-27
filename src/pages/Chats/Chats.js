@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import SendIcon from "@mui/icons-material/Send";
 import SearchIcon from "@mui/icons-material/Search";
-import AttachIcon from "@mui/icons-material/AttachFile";
+// import AttachIcon from "@mui/icons-material/AttachFile";
 import EmojiIcon from "@mui/icons-material/EmojiEmotions";
 import BackIcon from "@mui/icons-material/ArrowBack";
 import { useMutation, useLazyQuery } from "@apollo/react-hooks";
@@ -28,7 +28,7 @@ function Chats() {
   const [chatClick, setChatClick] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const inputRef = useRef(null);
-  const attachRef = useRef(null); //keeps track of changes in screen height
+  // const attachRef = useRef(null);
 
   window.onresize = () => {
     setScreenWidth(window.innerWidth);
@@ -70,9 +70,7 @@ function Chats() {
 
       setMsg("");
     },
-    onError(err) {
-      console.log(err);
-    },
+    onError(err) {},
   });
 
   // * Getting user data from data base after buying the book from them
@@ -103,10 +101,7 @@ function Chats() {
         });
       }
     },
-    onError(err) {
-      console.log(err.message);
-      console.log(err);
-    },
+    onError(err) {},
   });
 
   // Get messages as you move between contacts
@@ -123,10 +118,7 @@ function Chats() {
         }
       });
     },
-    onError(err) {
-      console.log(err);
-      console.log(err.graphQLErrors);
-    },
+    onError(err) {},
   });
 
   // Handles clicking each contact
@@ -162,6 +154,7 @@ function Chats() {
   // Runs when sending the messages
   const onSubmit = (e) => {
     e.preventDefault();
+    e.stopPropagation();
 
     const regex = / /gi;
     if (textMsg === "" || textMsg.replace(regex, "") === "") return;
@@ -324,7 +317,12 @@ function Chats() {
           </main>
 
           <footer className="chats__mainSectionFooter">
-            {emoji && <Picker onEmojiClick={handleEmojiClick} />}
+            {emoji && (
+              <Picker
+                onEmojiClick={(_, emojiObj) => handleEmojiClick(_, emojiObj)}
+                pickerStyle={{ width: "100%" }}
+              />
+            )}
             <div>
               <form className="msgInputContainer" onSubmit={onSubmit}>
                 <button onClick={() => setEmoji(!emoji)} className="emojiIcon">
@@ -336,9 +334,10 @@ function Chats() {
                   value={textMsg}
                   type="text"
                 />
-                <button ref={attachRef} className="attachIcon">
+                {/* <button ref={attachRef} className="attachIcon">
                   <AttachIcon />
-                </button>
+                </button> */}
+
                 <button type="submit" className="sendIcon">
                   <SendIcon />
                 </button>

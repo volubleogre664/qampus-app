@@ -4,9 +4,9 @@ import EditOutlinedIcon from "@mui/icons-material/EditRounded";
 import { useUserSlice, useUtilsSlice } from "@redux/getSlices";
 import profilePlaceholder from "@assets/profile.png";
 
-import "./NewProfile.css";
+import "./Profile.css";
 
-function NewProfile() {
+function Profile() {
   const [{ user }, dispatchUser] = useUserSlice();
   const [, dispatch] = useUtilsSlice();
 
@@ -110,4 +110,4 @@ function NewProfile() {
   );
 }
 
-export default NewProfile;
+export default Profile;

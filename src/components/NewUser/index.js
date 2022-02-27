@@ -57,9 +57,8 @@ function NewUser({ app }) {
     },
     onError(err) {
       // setActive(false);
+      // Still nneew to handle these errors
       setLoading(false);
-      console.log("An error ooccured: ", err);
-      console.log(err?.graphQLErrors);
     },
   });
 
@@ -73,10 +72,6 @@ function NewUser({ app }) {
           const reader = new FileReader();
 
           reader.onload = (readerEvent) => {
-            document.querySelector(".newUser__overlay").style.zIndex = -100;
-            document.querySelector(".newUser__overlay").style.visibility =
-              "hidden";
-
             dispatch({
               type: "SET_CROP_IMG",
               payload: {
@@ -89,9 +84,7 @@ function NewUser({ app }) {
           window.scrollTo(0, 0);
           reader.readAsDataURL(file);
         },
-        error(err) {
-          console.log(err.message);
-        },
+        error(err) {},
       });
     }
 
@@ -109,11 +102,9 @@ function NewUser({ app }) {
     if (!imgCrop.croppedImgUrl) return;
 
     setLoading(true);
-    document.querySelector(".newUser__overlay").style.zIndex = 301;
-    document.querySelector(".newUser__overlay").style.visibility = "initial";
     const storageRef = ref(
       firebaseStorage,
-      `${user.id}/profile/${user.firstName}.jpg`
+      `${user.id}/profile/${user.firstName}.webp`
     );
 
     (async () => {
@@ -127,9 +118,7 @@ function NewUser({ app }) {
             },
           });
         })
-        .catch((err) => {
-          console.log("Error uploading image: ", err);
-        });
+        .catch((err) => {});
 
       await getDownloadURL(storageRef)
         .then((url) => {
@@ -270,6 +259,7 @@ function NewUser({ app }) {
               />
               <input
                 type="file"
+                accept="image/*"
                 onChange={handleFileInput}
                 ref={fileInputRef}
                 style={{ display: "none" }}

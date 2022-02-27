@@ -4,7 +4,6 @@ import { useMutation } from "@apollo/react-hooks";
 import { REGISTER_USER } from "@utils/graphql";
 import { useUserSlice } from "@redux/getSlices";
 import { useForm } from "@utils/hooks";
-// import DoneIcon from "@mui/icons-material/Done";
 import Loader from "@components/Loader";
 import logo from "@assets/Qampus_logo_grey.png";
 import "./Register.css";
@@ -14,11 +13,6 @@ function Register() {
   const [pin, setPin] = useState(false);
   const [pwdMatch, setPwdMatch] = useState(null);
   const [, dispatch] = useUserSlice();
-  // const [pwdValid, setPwdValid] = useState({
-  //   hasLowercase: false,
-  //   hasNumber: false,
-  //   hasUppercase: false,
-  // });
 
   const { onChange, onSubmit, values } = useForm(registerUser, {
     firstName: "",
@@ -49,8 +43,6 @@ function Register() {
         payload: err?.graphQLErrors[0]?.extensions?.errors,
       });
       setPin(false);
-      console.log(err);
-      console.log(err?.graphQLErrors[0]?.extensions?.errors);
     },
   });
 
@@ -97,35 +89,6 @@ function Register() {
                 type="password"
                 id="passsword"
               />
-
-              {/* <div className="formInput__tips">
-                <h4 className="formInput__tipsTitle">
-                  Password must be at least 8 characters long and contain the
-                  following
-                </h4>
-
-                <div className="formInput__tipsContent">
-                  <span>
-                    <DoneIcon
-                      className={(pwdValid.hasUppercase && "success") || "fail"}
-                    />
-                    <span>Uppercase Letters</span>
-                  </span>
-                  <span>
-                    <DoneIcon
-                      className={(pwdValid.hasLowercase && "success") || "fail"}
-                    />
-                    <span>Lowercase Letters</span>
-                  </span>
-                  <span>
-                    <DoneIcon
-                      className={(pwdValid.hasNumber && "success") || "fail"}
-                    />
-                    <span>Numbers</span>
-                  </span>
-                </div>
-              </div>
-              <span className="pointer"></span> */}
             </div>
 
             <div>

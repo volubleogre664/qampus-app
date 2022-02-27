@@ -27,6 +27,22 @@
   font-style: italic;
 }
 
+.home__list {
+  margin: auto;
+  margin-top: 20px;
+  width: 80%;
+  font-size: 1.1rem;
+  font-style: italic;
+  list-style-type: none;
+}
+
+.home__list li {
+  padding-bottom: 10px;
+  display: flex;
+  gap: 5px;
+  color: #414141;
+}
+
 @media screen and (max-width: 800px) {
   .daily__qoutes {
     width: 90%;
