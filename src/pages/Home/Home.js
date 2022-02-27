@@ -15,8 +15,8 @@ import logo from "@assets/logo_grey.png";
 import "./Home.css";
 
 //change the background reference here
-const ref_link = "https://www.smoorevisuals.com/landscapes/";
-const ref_name = "Spencer Moore";
+// const ref_link = "https://www.smoorevisuals.com/landscapes/";
+// const ref_name = "Spencer Moore";
 
 function Home({ history }) {
   const [{ searchBookList: books }, dispatchBook] = useBooksSlice();
@@ -125,7 +125,6 @@ function Home({ history }) {
           <h3 className="caption">Search results</h3>
           <div className="btnBack" onClick={openMenu}>
             <CancelIcon />
-            {/*Close search results*/}
           </div>
         </div>
 
@@ -144,7 +143,7 @@ function Home({ history }) {
       <a className="backToTop" href="#search">
         <MdKeyboardArrowUp />
       </a>
-      <div className="reference">
+      {/* <div className="reference">
         <a
           className="reference_link"
           target="_blank"
@@ -153,7 +152,7 @@ function Home({ history }) {
         >
           Do you like this photo? <br /> [ by<u> {ref_name} </u>]
         </a>
-      </div>
+      </div> */}
     </div>
   );
 }

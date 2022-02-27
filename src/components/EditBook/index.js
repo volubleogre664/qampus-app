@@ -23,7 +23,7 @@ const EditBook = ({ price, title, id, cancel }) => {
       });
     },
     onError(err) {
-      console.log(err);
+      // Still need to handle this
     },
   });
 

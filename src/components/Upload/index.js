@@ -105,8 +105,6 @@ function UploadBook({ app, callback }) {
     },
     // onError -> function to call if api call returns an error
     onError(err) {
-      // console.log(err?.graphQLErrors);
-      // console.log(err?.message);
       setLoading({
         ...loading,
         isLoading: false,
@@ -202,9 +200,7 @@ function UploadBook({ app, callback }) {
 
         reader.readAsDataURL(file);
       },
-      error(err) {
-        console.log(err.message);
-      },
+      error(err) {},
     });
 
     frontCoverInputRef.current.value = "";
@@ -238,7 +234,6 @@ function UploadBook({ app, callback }) {
                 popupShow: true,
               },
             });
-            console.log("Error uploading image: ", err);
           });
       })
 
@@ -294,7 +289,6 @@ function UploadBook({ app, callback }) {
         });
       })
       .catch((err) => {
-        console.log(err);
         setLoading({ ...loading, isLoading: false, message: "" });
       });
   }

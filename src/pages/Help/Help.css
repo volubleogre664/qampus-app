@@ -1,28 +1,35 @@
 .help {
+  flex: 1;
   display: flex;
   flex-direction: column;
   padding: 15px;
   height: 100%;
   overflow: hidden;
-  background: linear-gradient(rgba(255 , 255, 255, 0.7), rgba(255, 255, 255, 0.7)),url("../../assets/help_image.jpg") no-repeat;
-  background-attachment: local;
+  box-sizing: border-box;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.7),
+      rgba(255, 255, 255, 0.7)
+    ),
+    url("../../assets/help_image.jpg") no-repeat;
+  background-attachment: fixed;
   background-position: center;
   background-size: cover;
-  
 }
+
 .help__header {
   display: flex;
   justify-content: center;
   border-bottom: solid 1px rgb(206, 206, 206);
-
 }
+
 .help__body {
+  flex: 1;
   display: flex;
   flex-direction: row;
-  min-height: 100%;
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
 }
+
 .help_side {
   display: flex;
   flex-direction: column;
@@ -56,11 +63,15 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-height: 50%;
+  height: fit-content;
   margin: auto;
   margin-top: 0;
   justify-content: center;
   place-items: center;
+}
+
+.help_side .buttons * + * {
+  margin-top: 15px;
 }
 
 .help_side .buttons .button {
@@ -71,9 +82,10 @@
   font-weight: 300;
   border-radius: 4px;
   border: none;
+  color: #fff;
   cursor: pointer;
-  gap: 5px;
   font-size: 0.9rem;
+  background-color: rgba(0, 155, 246);
   transition: all ease-in-out 0.1s;
   min-width: 160px;
 }
@@ -82,12 +94,12 @@
   background-color: rgba(0, 155, 246, 0.8);
   box-shadow: none;
 }
+
 .help_main {
   width: 85%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.2);
   margin-right: 10px;
-
 }
 
 .main_content {
@@ -111,16 +123,12 @@
 }
 
 @media only screen and (max-width: 850px) {
-  .help {
-    background-size: cover;
-    height: 100%;
-    min-height: 90vh;
-  }
-  .help__header{
+  .help__header {
     display: flex;
     padding: 0 20px;
     align-items: center;
   }
+
   .help_side {
     display: none;
     flex-direction: column;
@@ -135,6 +143,7 @@
     margin-top: 10px;
     border-radius: 10px;
   }
+
   .btnHeader {
     display: inline;
     width: 30px;
@@ -148,15 +157,18 @@
   .help_side.opening {
     display: inline;
     position: absolute;
-    width: 100%;
+    width: fit-content;
     background-color: #fff;
     border-radius: 10px;
+    padding: 20px 0;
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
-    padding-bottom: 10px;
     box-shadow: 0 1px 6px rgb(32 33 36 / 50%);
-    padding-top: 10px;
     margin-top: 10px;
+  }
+
+  .help_side > div {
+    width: fit-content;
   }
 }

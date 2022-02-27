@@ -3,7 +3,7 @@ import { about } from "../../text_files/about.json";
 import { tutorial } from "../../text_files/tutorial.json";
 import { safety } from "../../text_files/safety.json";
 import { terms } from "../../text_files/terms.json";
-import {RiCloseLine,  RiMenuLine} from "react-icons/ri";
+import { RiCloseLine, RiMenuLine } from "react-icons/ri";
 import "./Help.css";
 
 function Help() {
@@ -14,9 +14,11 @@ function Help() {
   });
   const handleClick = () => {
     setClick(!click);
-    document.querySelector(".help_side").classList.toggle("opening");
   };
+
   function tabBtnClicked(tab) {
+    if (window.innerWidth <= 850) setClick(!click);
+
     switch (tab) {
       case "safety": {
         setDisplay({ title: "Safety tips", content: safety });
@@ -47,22 +49,34 @@ function Help() {
           {click ? <RiCloseLine /> : <RiMenuLine />}
         </button>
       </div>
-      <div className="help__body">
-      <div className="help_side">
-        <div className="buttons">
-          <button className="button" onClick={() => tabBtnClicked("about")}>About us</button>
-          <button className="button" onClick={() => tabBtnClicked("tutorials")}>Tutorials</button>
-          <button className="button" onClick={() => tabBtnClicked("safety")}>Safety tips</button>
-          <button className="button" onClick={() => tabBtnClicked("terms")}>Terms of use</button>
-          {/* <button className="button" onClick={() => tabBtnClicked("")}>Contact us</button> */}
-        </div>
-      </div>
 
-      <div className="help_main">
-        <div className="main_content">
-          <p>{display.content}</p>
+      <div className="help__body">
+        <div className={`help_side ${click && "opening"}`}>
+          <div className="buttons">
+            <button className="button" onClick={() => tabBtnClicked("about")}>
+              About us
+            </button>
+            <button
+              className="button"
+              onClick={() => tabBtnClicked("tutorials")}
+            >
+              Tutorials
+            </button>
+            <button className="button" onClick={() => tabBtnClicked("safety")}>
+              Safety tips
+            </button>
+            <button className="button" onClick={() => tabBtnClicked("terms")}>
+              Terms of use
+            </button>
+            {/* <button className="button" onClick={() => tabBtnClicked("")}>Contact us</button> */}
+          </div>
         </div>
-      </div>
+
+        <div className="help_main">
+          <div className="main_content">
+            <p>{display.content}</p>
+          </div>
+        </div>
       </div>
     </div>
   );

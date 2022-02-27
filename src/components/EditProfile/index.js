@@ -54,14 +54,11 @@ function EditProfile({ app }) {
     },
     onError(err) {
       console.log("An error occured while changing data");
-      console.log(err.message, err);
-      // setActive(false);
       setLoading({ isLoading: false, message: "" });
     },
   });
 
   function updateUser() {
-    // console.log(values);
     setLoading({
       isLoading: true,
       message: "We're are updating your information",
@@ -132,13 +129,6 @@ function EditProfile({ app }) {
           const reader = new FileReader();
 
           reader.onload = (readerEvent) => {
-            document.querySelector(".editProfile__overlay").style.zIndex = -301;
-            document.querySelector(".app > .profile").style.zIndex = -100;
-            document.querySelector(".app > .profile").style.visibility =
-              "hidden";
-            document.querySelector(".editProfile__overlay").style.visibility =
-              "hidden";
-
             dispatch({
               type: "SET_CROP_IMG",
               payload: {
@@ -151,9 +141,7 @@ function EditProfile({ app }) {
           window.scrollTo(0, 0);
           reader.readAsDataURL(file);
         },
-        error(err) {
-          console.log(err.message);
-        },
+        error(err) {},
       });
     }
 
@@ -165,15 +153,9 @@ function EditProfile({ app }) {
 
     if (!imgCrop.croppedImgUrl) return;
 
-    document.querySelector(".editProfile__overlay").style.zIndex = 301;
-    document.querySelector(".app > .profile").style.zIndex = 100;
-    document.querySelector(".app > .profile").style.visibility = "initial";
-    document.querySelector(".editProfile__overlay").style.visibility =
-      "initial";
-
     const storageRef = ref(
       firebaseStorage,
-      `${user.id}/profile/${user.firstName}.jpg`
+      `${user.id}/profile/${user.firstName}.webp`
     );
 
     (async () => {
@@ -188,7 +170,7 @@ function EditProfile({ app }) {
           });
         })
         .catch((err) => {
-          console.log("Error uploading image: ", err);
+          console.log("Error uploading image: ");
         });
 
       await getDownloadURL(storageRef)
@@ -196,7 +178,7 @@ function EditProfile({ app }) {
           if (url) updateProfile({ variables: { picture: url } });
           else setProfile("");
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(""));
     })();
     // }
 
@@ -253,6 +235,7 @@ function EditProfile({ app }) {
               <input
                 type="file"
                 onChange={handleFileInput}
+                accept="image/*"
                 ref={fileInputRef}
                 style={{ display: "none" }}
               />

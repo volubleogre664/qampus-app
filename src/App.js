@@ -3,14 +3,12 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { io } from "socket.io-client";
 import Home from "@pages/Home/Home.js";
-// import Profile from "@pages/Profile/Profile.js";
-// import FinaliseRegister from "@pages/Register/FinaliseRegister.js";
 
 import Chats from "@pages/Chats/Chats.js";
 import Register from "@pages/Register/Register.js";
-import NewLogin from "@pages/Login/Login.js";
-import NewProfile from "@pages/Profile/NewProfile.js";
-import EditProfile from "@pages/Profile/EditProfile.js";
+import Login from "@pages/Login/Login.js";
+import Profile from "@components/Profile";
+import EditProfile from "@components/EditProfile";
 import NewUser from "@components/NewUser";
 import MsgBox from "@components/MessageBox";
 
@@ -78,7 +76,7 @@ function App() {
       <Router>
         {imgCrop.imgSrc && <CropImage />}
         {popupShow && <MsgBox />}
-        {user && <NewProfile />}
+        {user && <Profile />}
         {user?.edit && <EditProfile app={app} />}
         <Switch>
           {/* These are public pages... Accessible to everyone */}
@@ -96,7 +94,7 @@ function App() {
             <Help />
           </Route>
 
-          <AuthRoute exact path="/login" component={NewLogin} />
+          <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/register" component={Register} />
 
           <PrivateRoute exact path="/chats*">
