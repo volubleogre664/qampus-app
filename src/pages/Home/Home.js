@@ -10,8 +10,6 @@ import DailyQoutes from "@components/DailyQuotes";
 import RecommendedReads from "@components/RecommendedReads";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import { useBooksSlice } from "@redux/getSlices";
-
-import logo from "@assets/logo_grey.png";
 import "./Home.css";
 
 //change the background reference here
@@ -75,10 +73,6 @@ function Home({ history }) {
       {loading && <Loader message="Searching..." />}
 
       <div className="home__searchSection" id="search">
-        <div className="home__logo">
-          <img className="home__logoImg" src={logo} alt="qampus logo" />
-          <h1>Qampus</h1>
-        </div>
         <p className="home__subtitle">
           Welcome, what book are you looking for?
         </p>

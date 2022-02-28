@@ -133,7 +133,7 @@
     display: none;
     flex-direction: column;
     align-content: center;
-    max-width: 90%;
+    min-width: 100%;
     border-right: none;
     z-index: 5;
   }
