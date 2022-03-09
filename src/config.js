@@ -1,11 +1,11 @@
 const firebaseConfig = {
-  apiKey: "AIzaSyBUNj5x0wWh852pqyPApWTr9usWv8kv7ls",
-  authDomain: "qampus-app.firebaseapp.com",
-  projectId: "qampus-app",
-  storageBucket: "qampus-app.appspot.com",
-  messagingSenderId: "406842241267",
-  appId: "1:406842241267:web:aa42bdec295b051d344786",
-  measurementId: "G-C0YR6CH6CQ",
+  apiKey: "AIzaSyCG9RxUrLuToPUZoq4Qs8ZeH7xm6mdBPM0",
+  authDomain: "qampus-app-4f577.firebaseapp.com",
+  projectId: "qampus-app-4f577",
+  storageBucket: "qampus-app-4f577.appspot.com",
+  messagingSenderId: "235277490352",
+  appId: "1:235277490352:web:510bf32336916d4e094375",
+  measurementId: "G-BKBWY5JRCQ",
 };
 
 export { firebaseConfig };

@@ -124,7 +124,10 @@
   max-width: 350px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+}
+
+.editProfile__mainForm > * + * {
+  margin-top: 15px;
 }
 
 .editProfile__mainForm label {
@@ -133,12 +136,41 @@
   font-weight: 600;
 }
 
-.editProfile__mainForm > div p {
+.editProfile__mainForm > div p,
+.editProfile__changePasswords > div p {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-size: 0.85rem;
   margin-top: 2px;
   color: rgb(141, 141, 141);
+}
+
+.editProfile__changePasswords > * + * {
+  margin-top: 15px;
+}
+
+.editProfile__mainForm > div button {
+  display: flex;
+  align-items: center;
+  padding: 8px 15px;
+  font-size: 0.98rem;
+  font-weight: 300;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  gap: 5px;
+  background: #009bf6;
+  transition: all ease-in 0.1s;
+  color: #ffff;
+  min-width: 140px;
+  margin: auto;
+  justify-content: space-around;
+  -webkit-filter: drop-shadow(0px 1px 1px #5d5d5d2d);
+  filter: drop-shadow(0px 1px 1px #5d5d5d2d);
+}
+
+.editProfile__mainForm > div button:hover {
+  background: #1faafb;
 }
 
 .editProfile__mainFormInput {

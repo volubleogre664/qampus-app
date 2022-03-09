@@ -325,12 +325,17 @@ function Chats() {
             )}
             <div>
               <form className="msgInputContainer" onSubmit={onSubmit}>
-                <button onClick={() => setEmoji(!emoji)} className="emojiIcon">
+                <button
+                  type="button"
+                  onClick={() => setEmoji(!emoji)}
+                  className="emojiIcon"
+                >
                   <EmojiIcon />
                 </button>
                 <input
                   placeholder="Type a message"
                   onChange={handleChange}
+                  ref={inputRef}
                   value={textMsg}
                   type="text"
                 />

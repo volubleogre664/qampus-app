@@ -9,7 +9,7 @@ const initialState = {
 
 // This is where we get a cookie from the browser
 // For getting cookies that have been encoded
-const getCookie = (cookieName) => {
+const getCookie = (cookieName, isObj = true) => {
   let cookie = document.cookie;
   cookieName = cookieName + "=";
 
@@ -27,7 +27,10 @@ const getCookie = (cookieName) => {
 
   savedItem = new Uint8Array(savedItem.split(","));
   savedItem = new TextDecoder().decode(savedItem);
-  savedItem = savedItem.replace("", "{");
+  savedItem = isObj
+    ? "{" + savedItem.substring(1, savedItem.length - 1) + "}"
+    : "[" + savedItem.substring(1, savedItem.length - 1) + "]";
+
   return JSON.parse(savedItem);
 };
 
@@ -47,7 +50,7 @@ const setCookie = (cookieName, value, expires = 2) => {
 // Get the user data from cookies if it is available
 initialState.user = getCookie("user");
 if (initialState.user) {
-  initialState.user.contacts = getCookie("contacts");
+  initialState.user.contacts = getCookie("contacts", false);
 }
 
 const userSlice = createSlice({

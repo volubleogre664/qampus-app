@@ -33,12 +33,11 @@ function Home({ history }) {
     variables: { searchStr },
     onCompleted(data) {
       setLoading(false);
-      data?.searchBook.forEach((book) =>
-        dispatchBook({
-          type: "SET_SEARCH_BOOK_LIST",
-          payload: book,
-        })
-      );
+      console.log(data);
+      dispatchBook({
+        type: "SET_SEARCH_BOOK_LIST",
+        payload: data?.searchBook,
+      });
     },
     onError: (err) => {
       setLoading(false);
@@ -50,6 +49,11 @@ function Home({ history }) {
   // Handles click of search button
   const handleSearchClick = (e) => {
     e.preventDefault();
+
+    dispatchBook({
+      type: "SET_SEARCH_BOOK_LIST",
+      payload: [],
+    });
 
     setLoading(true);
 
@@ -129,7 +133,7 @@ function Home({ history }) {
         </div>
 
         <div className="results">
-          {books.map((book) => (
+          {books?.map((book) => (
             <Book
               key={book?.id}
               state="home_book_result"

@@ -49,11 +49,13 @@ function Collection({ app }) {
   const [deleteBook] = useMutation(DELETE_BOOK, {
     onCompleted(data) {
       let book = books.find((item) => item.id === data.deleteBook);
+      let bookImage = `${bookOwner}/books/${book.title.replace(
+        / /g,
+        "_"
+      )}.webp`;
+      if (bookImage.includes("jpg")) bookImage.replace("webp", "jpg");
 
-      let imageRef = ref(
-        firebaseRef,
-        `${bookOwner}/books/${book.title.replace(/ /g, "_")}.jpg`
-      );
+      let imageRef = ref(firebaseRef, bookImage);
 
       deleteObject(imageRef)
         .then(() => console.log("Book deleted successfully"))

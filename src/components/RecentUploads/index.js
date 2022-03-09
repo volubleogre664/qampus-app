@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import "./RecentUpload.css";
 
 function Recent({ history }) {
-  const [{ searchBookList: books }, dispatchBook] = useBooksSlice();
+  const [{ recentBooksList: books }, dispatchBook] = useBooksSlice();
   const [loading, setLoading] = useState(false);
   const [searchStr] = useState("");
 
@@ -17,12 +17,10 @@ function Recent({ history }) {
     variables: { searchStr },
     onCompleted(data) {
       setLoading(!loading);
-      data?.searchBook.forEach((book) =>
-        dispatchBook({
-          type: "SET_SEARCH_BOOK_LIST",
-          payload: book,
-        })
-      );
+      dispatchBook({
+        type: "SET_RECENT_BOOKS",
+        payload: data?.searchBook,
+      });
     },
     onError: (err) => {},
   });

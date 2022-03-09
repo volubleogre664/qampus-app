@@ -6,7 +6,6 @@
   z-index: 9999;
   width: 100vw;
   display: grid;
-  place-items: center;
   height: 100vh;
 }
 

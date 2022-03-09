@@ -19,7 +19,7 @@ import { useBooksSlice, useUserSlice, useUtilsSlice } from "@redux/getSlices";
 import "./UploadBook.css";
 
 // I defined this here because it was not persistent
-const bookCovers = {};
+let bookCovers = {};
 
 function UploadBook({ app, callback }) {
   const [{ user, imgCrop }, dispatchUser] = useUserSlice();
@@ -91,6 +91,9 @@ function UploadBook({ app, callback }) {
         },
       });
 
+      bookCovers = {};
+      callback();
+
       dispatchUtils({
         type: "DELETE_BOOK",
         payload: {
@@ -153,6 +156,9 @@ function UploadBook({ app, callback }) {
       isLoading: true,
       message: "Uploading Images",
     });
+
+    console.log(values);
+    console.log(bookCovers);
 
     const frontCoverRef = ref(
       firebaseStorage,

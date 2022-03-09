@@ -30,7 +30,7 @@ import "./App.css";
 const app = initializeApp(firebaseConfig);
 
 // const serverUrl = "http://localhost:8080";
-const serverUrl = "http://qampus-app.herokuapp.com:8080";
+const serverUrl = "https://server.qampus.co.za/";
 
 function App() {
   const [{ imgCrop, user }, dispatchUser] = useUserSlice();
@@ -47,7 +47,7 @@ function App() {
     const socket = io(serverUrl, {
       query: {
         user: user.id,
-        // origin: "http://localhost:3000",
+        origin: "https://qampus.co.za",
         // Credential: true,
       },
     });
@@ -67,8 +67,6 @@ function App() {
       let chatsDiv = document.querySelector(".chats__mainSectionBody");
       chatsDiv.scrollTop = chatsDiv.scrollHeight;
     });
-
-    return () => socket.disconnect();
   }, [user?.id, dispatchUser, dispatchMessage]);
 
   return (

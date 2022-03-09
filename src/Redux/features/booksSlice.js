@@ -4,6 +4,7 @@ const initialState = {
   book: null, // The book that is currently being uploaded
   bookList: [], // Books in your collection
   searchBookList: [], // Books from your search results
+  recentBooksList: [],
 };
 
 const booksSlice = createSlice({
@@ -26,9 +27,11 @@ const booksSlice = createSlice({
       }
     },
     setSearchBookList(state, action) {
-      if (!state.searchBookList.find((item) => item.id === action.payload.id)) {
-        state.searchBookList.push(action.payload);
-      }
+      // if (!state.searchBookList.find((item) => item.id === action.payload.id)) {
+      state.searchBookList = action.payload;
+    },
+    setRecentBook(state, action) {
+      state.recentBooksList = action.payload;
     },
     deleteBook(state, action) {
       let index = state.bookList.findIndex(
@@ -56,6 +59,7 @@ export const {
   setBookCover,
   deleteBook,
   replaceBook,
+  setRecentBook,
 } = booksSlice.actions;
 export const selectBooks = (state) => state.book;
 export default booksSlice.reducer;

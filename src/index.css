@@ -5,7 +5,8 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-html {
+html,
+* {
   scroll-behavior: smooth;
 }
 

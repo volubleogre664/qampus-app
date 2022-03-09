@@ -8,7 +8,7 @@ import {
 
 import "./MessageBox.css";
 
-function MessageBox({ oncontinue }) {
+function MessageBox({ oncontinue = null }) {
   const [{ popup }, dispatch] = useUtilsSlice();
   const [, dispatchMessages] = useMessagesSlice();
   const [, dispatchUser] = useUserSlice();
@@ -27,7 +27,7 @@ function MessageBox({ oncontinue }) {
   };
 
   const handleYesClick = () => {
-    if (popup.title.toLowerCase().includes("delete book?")) {
+    if (oncontinue !== null) {
       oncontinue();
       return;
     }

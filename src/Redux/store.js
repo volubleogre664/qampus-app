@@ -11,5 +11,5 @@ export default configureStore({
     messages: messagesReducer,
     utils: utilsReducer,
   },
-  devTools: false,
+  // devTools: false,
 });

@@ -1,34 +1,45 @@
 import { useState, useRef, useEffect } from "react";
 import CloseIcon from "@mui/icons-material/Close";
+import EditOutlinedIcon from "@mui/icons-material/EditRounded";
 import { useUserSlice, useUtilsSlice } from "@redux/getSlices";
 import { useForm } from "@utils/hooks.js";
 import { UPDATE_USER } from "@utils/graphql";
 import { useMutation } from "@apollo/react-hooks";
+import MsgBox from "@components/MessageBox";
 import Compressor from "compressorjs";
 import {
   getStorage,
   ref,
+  deleteObject,
   uploadString,
   getDownloadURL,
 } from "firebase/storage";
 import profilePlaceholder from "@assets/profile.png";
 
 import "./EditProfile.css";
+let picture = "";
 
 function EditProfile({ app }) {
   const [{ user, imgCrop }, dispatch] = useUserSlice();
   const [profile, setProfile] = useState(user?.picture);
   const [loading, setLoading] = useState({ isLoading: false, message: "" });
-  const [, dispatchUtils] = useUtilsSlice();
+  const [{ popup }, dispatchUtils] = useUtilsSlice();
+  const [editPassword, setEditPassword] = useState(false);
+  const [message, setMessage] = useState("");
   const firebaseStorage = getStorage(app);
   const fileInputRef = useRef(null);
 
   const { onChange, onSubmit, values, updateValues } = useForm(updateUser, {
     ...user,
+    password: "",
+    newPassword: "",
+    confirmNewPassword: "",
   });
 
+  if (picture === "" && values.picture !== "") picture = values.picture;
+
   const [updateProfile] = useMutation(UPDATE_USER, {
-    variables: { ...values, picture: profile },
+    variables: { ...values, picture },
     update(_, { data }) {
       setLoading({ isLoading: false, message: "" });
       // setActive(false);
@@ -37,6 +48,18 @@ function EditProfile({ app }) {
         dispatch({
           type: "SET_USER",
           payload: data.updateUser,
+        });
+      }
+
+      if (imgCrop.croppedImgUrl) {
+        setLoading({ isLoading: false, message: "" });
+        dispatch({
+          type: "SET_CROP_IMG",
+          payload: {
+            imgSrc: "",
+            croppedImgUrl: null,
+            aspect: null,
+          },
         });
       }
 
@@ -78,10 +101,104 @@ function EditProfile({ app }) {
     });
   }
 
+  const saveChanges = (e) => {
+    if (
+      values.password !== "" ||
+      values.newPassword !== "" ||
+      values.confirmNewPassword !== ""
+    ) {
+      let isPass = values.password !== "";
+      let isNewPass =
+        values.newPassword !== "" &&
+        values.password === values.confirmNewPassword;
+
+      if (isPass && isNewPass) {
+        setMessage(
+          "To change password, please provide current password and confirm new password must match new password."
+        );
+
+        document
+          .querySelector(".app > .editProfile__overlay > .editProfile")
+          .classList.toggle("save_discard_changes");
+
+        return;
+      }
+    }
+
+    onSubmit(e);
+  };
+
+  const removeProfileImage = async () => {
+    if (user.picture === "") return;
+
+    let userProfile = `${user.id}/profile/${user.firstName}.webp`;
+    if (userProfile.includes("jpg")) userProfile.replace("webp", "jpg");
+
+    let imageRef = ref(firebaseStorage, userProfile);
+
+    await deleteObject(imageRef)
+      .then(() => {
+        updateProfile({ variables: { picture: "" } });
+      })
+      .catch((err) => console.log("Error encountered"));
+  };
+
+  const saveImageToCloud = (e) => {
+    if (imgCrop.croppedImgUrl) {
+      const storageRef = ref(
+        firebaseStorage,
+        `${user.id}/profile/${user.firstName}.webp`
+      );
+
+      (async () => {
+        await uploadString(storageRef, imgCrop.croppedImgUrl, "data_url")
+          .then(() => {
+            console.log("Image has been uploaded");
+            dispatch({
+              type: "SET_CROP_IMG",
+              payload: {
+                croppedImgUrl: null,
+              },
+            });
+          })
+          .catch((err) => {
+            console.log("Error uploading image: ");
+          });
+
+        await getDownloadURL(storageRef)
+          .then((url) => {
+            if (url) setProfile(url);
+            else setProfile("");
+          })
+          .catch((err) => console.log(""));
+      })();
+    }
+
+    saveChanges(e);
+  };
+
+  const removeImageClicked = () =>
+    dispatchUtils({
+      type: "DELETE_BOOK",
+      payload: {
+        title: "Remove Profile Image?",
+        subtitle: "Are you sure you want to remove the profile image?",
+        btnCancel: true,
+        btnContinue: true,
+        bookTitle: "",
+        popupShow: false,
+      },
+    });
+
   const handleEditProfileCancel = (e) => {
     e.preventDefault();
 
-    if (JSON.stringify(user) !== JSON.stringify(values)) {
+    let { password, newPassword, confirmNewPassword, ...data } = values;
+
+    if (
+      JSON.stringify(user) !== JSON.stringify(data) ||
+      profile !== values.picture
+    ) {
       // Do stuff here man
       document
         .querySelector(".app > .editProfile__overlay > .editProfile")
@@ -117,6 +234,7 @@ function EditProfile({ app }) {
     });
 
     updateValues(user);
+    picture = user.picture;
   };
 
   const handleFileInput = (inputEvent) => {
@@ -149,64 +267,26 @@ function EditProfile({ app }) {
   };
 
   useEffect(() => {
-    document.title = "Profile - Qampus";
-
     if (!imgCrop.croppedImgUrl) return;
-
-    const storageRef = ref(
-      firebaseStorage,
-      `${user.id}/profile/${user.firstName}.webp`
-    );
-
-    (async () => {
-      await uploadString(storageRef, imgCrop.croppedImgUrl, "data_url")
-        .then(() => {
-          console.log("Image has been uploaded");
-          dispatch({
-            type: "SET_CROP_IMG",
-            payload: {
-              croppedImgUrl: null,
-            },
-          });
-        })
-        .catch((err) => {
-          console.log("Error uploading image: ");
-        });
-
-      await getDownloadURL(storageRef)
-        .then((url) => {
-          if (url) updateProfile({ variables: { picture: url } });
-          else setProfile("");
-        })
-        .catch((err) => console.log(""));
-    })();
-    // }
+    setProfile(imgCrop.croppedImgUrl);
 
     return () => {
-      if (imgCrop.croppedImgUrl) {
-        setLoading({ isLoading: false, message: "" });
-        dispatch({
-          type: "SET_CROP_IMG",
-          payload: {
-            imgSrc: "",
-            croppedImgUrl: null,
-            aspect: null,
-          },
-        });
-      }
+      dispatch({
+        type: "SET_CROP_IMG",
+        payload: {
+          imgSrc: "",
+          croppedImgUrl: null,
+          aspect: null,
+        },
+      });
     };
-  }, [
-    dispatch,
-    imgCrop,
-    firebaseStorage,
-    user.firstName,
-    user.id,
-    updateProfile,
-    setLoading,
-  ]);
+  }, [imgCrop, setProfile, dispatch]);
 
   return (
     <div className="editProfile__overlay">
+      {popup.title === "Remove Profile Image?" && (
+        <MsgBox oncontinue={removeProfileImage} />
+      )}
       <section className="editProfile">
         {loading.isLoading && (
           <div className="editProfile__loading">
@@ -229,7 +309,7 @@ function EditProfile({ app }) {
             <span>Profile Image</span>
             <div className="image-container">
               <img
-                src={user?.picture || profilePlaceholder}
+                src={profile || profilePlaceholder}
                 alt="edit your profile"
               />
               <input
@@ -245,7 +325,7 @@ function EditProfile({ app }) {
             </button>
 
             {/* If user image exists the we remove it and show the person default */}
-            <button>Remove Image</button>
+            <button onClick={() => removeImageClicked()}>Remove Image</button>
           </div>
 
           <form autoComplete="off" className="editProfile__mainForm">
@@ -374,20 +454,88 @@ function EditProfile({ app }) {
                 study partner
               </p>
             </div>
+
+            <div>
+              {editPassword ? (
+                <hr />
+              ) : (
+                <button
+                  className="profile__edit"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setEditPassword(true);
+                  }}
+                >
+                  <EditOutlinedIcon /> Change Password
+                </button>
+              )}
+            </div>
+
+            {editPassword && (
+              <section className="editProfile__changePasswords">
+                <div>
+                  <label htmlFor="password">Current Password</label>
+                  <input
+                    className="editProfile__mainFormInput"
+                    name="password"
+                    type="password"
+                    id="password"
+                    value={values?.password}
+                    onChange={onChange}
+                  />
+                  <p>
+                    Verify it's you requsting a password change by entering
+                    current password.
+                  </p>
+                </div>
+
+                <div>
+                  <label htmlFor="newPassword">New Password</label>
+                  <input
+                    className="editProfile__mainFormInput"
+                    name="newPassword"
+                    type="password"
+                    id="newPassword"
+                    value={values?.newPassword}
+                    onChange={onChange}
+                  />
+                  <p>
+                    Make sure your password is strong, you can remember it and
+                    no one can guess it
+                  </p>
+                </div>
+
+                <div>
+                  <label htmlFor="confirmNewPassword">
+                    Confirm New Password
+                  </label>
+                  <input
+                    className="editProfile__mainFormInput"
+                    name="confirmNewPassword"
+                    type="password"
+                    id="confirmNewPassword"
+                    value={values?.confirmNewPassword}
+                    onChange={onChange}
+                  />
+                  <p>This must match your new password</p>
+                </div>
+              </section>
+            )}
           </form>
         </main>
 
         <footer className="editProfile__footer">
           <div>
             <button onClick={handleEditProfileCancel}>Cancel</button>
-            <button onClick={onSubmit}>Save Changes</button>
+            <button onClick={saveImageToCloud}>Save Changes</button>
           </div>
         </footer>
 
         <div className="editProfile__saveChanges">
           <p>
-            You have <b>unsaved changes</b>, closing this window will discard
-            them.
+            {message ||
+              "You have <b>unsaved changes</b>, closing this window will discard them."}
           </p>
           <div>
             <button onClick={keepEditingClicked}>Keep Editing</button>

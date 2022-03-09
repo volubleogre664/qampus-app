@@ -24,6 +24,7 @@ import {
   setBookList,
   setSearchBookList,
   replaceBook,
+  setRecentBook,
 } from "./features/booksSlice";
 
 import { setPopupData, clearPopupData, getUtils } from "./features/utilsSlice";
@@ -140,6 +141,11 @@ function useBooksSlice() {
       }
       case "DELETE_LIBRARY_BOOK": {
         dispatch(deleteBook(action.payload));
+        break;
+      }
+
+      case "SET_RECENT_BOOKS": {
+        dispatch(setRecentBook(action.payload));
         break;
       }
 
