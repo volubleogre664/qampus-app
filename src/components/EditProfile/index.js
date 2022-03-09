@@ -391,11 +391,11 @@ function EditProfile({ app }) {
                       values?.gender === "Rather not say" ? "checked" : ""
                     }
                   />
-                  <label htmlFor="notSay">Rather not say</label>
+                  <label htmlFor="notSay">I'd rather not say</label>
                 </span>
               </div>
               <p>
-                Optional - Just select rather not say if you don't feel like it
+                You can choose to not specify your gender.
               </p>
             </div>
 

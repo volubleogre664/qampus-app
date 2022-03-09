@@ -34,6 +34,7 @@
 .profile__header h2 {
   flex: 1;
   color: #009bf6;
+  font-weight: 400;
 }
 
 .profile__header .icon-container {
@@ -111,7 +112,7 @@
   align-items: center;
   padding: 8px 15px;
   font-size: 0.98rem;
-  font-weight: 300;
+  font-weight: 370;
   border-radius: 8px;
   border: none;
   cursor: pointer;
@@ -138,6 +139,7 @@
 .profile__main main div h4 {
   font-size: 0.88rem;
   color: #8f8f8f;
+  font-weight: 500;
 }
 
 .profile__main main div p {
@@ -157,7 +159,7 @@
   align-items: center;
   padding: 10px 15px;
   font-size: 0.98rem;
-  font-weight: 300;
+  font-weight: 370;
   border-radius: 8px;
   border: none;
   cursor: pointer;
