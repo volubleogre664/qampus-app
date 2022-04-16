@@ -15,6 +15,7 @@
     "@testing-library/user-event": "^12.6.0",
     "apollo-link-context": "^1.0.20",
     "apollo-link-http": "^1.5.17",
+    "browser-image-compression": "^1.0.17",
     "compressorjs": "^1.0.7",
     "dayjs": "^1.10.4",
     "emoji-picker-react": "^3.4.8",
@@ -34,7 +35,19 @@
     "react-scripts": "4.0.1",
     "socket.io-client": "^4.1.3",
     "sweetalert": "^2.1.2",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "workbox-background-sync": "^5.1.4",
+    "workbox-broadcast-update": "^5.1.4",
+    "workbox-cacheable-response": "^5.1.4",
+    "workbox-core": "^5.1.4",
+    "workbox-expiration": "^5.1.4",
+    "workbox-google-analytics": "^5.1.4",
+    "workbox-navigation-preload": "^5.1.4",
+    "workbox-precaching": "^5.1.4",
+    "workbox-range-requests": "^5.1.4",
+    "workbox-routing": "^5.1.4",
+    "workbox-strategies": "^5.1.4",
+    "workbox-streams": "^5.1.4"
   },
   "scripts": {
     "start": "react-app-rewired start",

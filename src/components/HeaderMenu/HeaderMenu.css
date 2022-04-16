@@ -59,7 +59,7 @@
   justify-content: center;
   place-items: center;
   margin: auto;
-  padding-right: 60px;
+  /* padding-right: ; */
 }
 
 .gap {
@@ -87,7 +87,7 @@
   text-align: center;
   list-style: none;
   cursor: pointer;
-  width: 85px;
+  width: 80px;
   height: 40px;
   padding: 5px;
   padding-bottom: 3px;
@@ -149,9 +149,9 @@
 }
 
 .header__user {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
 }
 
 .header__userButton {
@@ -161,6 +161,7 @@
   padding: 5px 15px 8px 15px;
   font-size: 1rem;
   min-width: 80px;
+  width: fit-content;
   font-weight: 300;
   border-radius: 8px;
   border: none;
@@ -228,9 +229,8 @@
 
   .logoContainer {
     align-items: flex-start;
-    padding-top: 5px;
+    margin-bottom: 8px;
   }
-
 
   .nav__linksItem:hover .tooltip {
     display: none;

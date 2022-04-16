@@ -11,6 +11,7 @@ import Profile from "@components/Profile";
 import EditProfile from "@components/EditProfile";
 import NewUser from "@components/NewUser";
 import MsgBox from "@components/MessageBox";
+import InstallPrompt from "@components/InstallPrompt";
 
 import Collection from "@pages/Collection/Collection.js";
 import Navigation from "@pages/Navigation/Navigation.js";
@@ -33,7 +34,7 @@ const app = initializeApp(firebaseConfig);
 const serverUrl = "https://server.qampus.co.za/";
 
 function App() {
-  const [{ imgCrop, user }, dispatchUser] = useUserSlice();
+  const [{ imgCrop, user, installPrompt }, dispatchUser] = useUserSlice();
   const [
     {
       popup: { popupShow },
@@ -76,6 +77,7 @@ function App() {
         {popupShow && <MsgBox />}
         {user && <Profile />}
         {user?.edit && <EditProfile app={app} />}
+        {installPrompt && <InstallPrompt />}
         <Switch>
           {/* These are public pages... Accessible to everyone */}
           <Route exact path="/">

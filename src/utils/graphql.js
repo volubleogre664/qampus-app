@@ -316,6 +316,12 @@ const GET_USER_DATA = gql`
   }
 `;
 
+const FORGOT_PASSWORD = gql`
+  mutation forgotPassword($email: String!) {
+    forgotPassword(email: $email)
+  }
+`;
+
 export {
   LOGIN_USER,
   REGISTER_USER,
@@ -325,6 +331,7 @@ export {
   GET_ONE_BOOK,
   GET_ALL_BOOKS,
   DELETE_BOOK,
+  FORGOT_PASSWORD,
   EDIT_BOOK,
   SEARCH_BOOKS,
   ADD_MESSAGE,

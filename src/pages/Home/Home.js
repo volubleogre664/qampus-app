@@ -31,7 +31,6 @@ function Home({ history }) {
     variables: { searchStr },
     onCompleted(data) {
       setLoading(false);
-      console.log(data);
       dispatchBook({
         type: "SET_SEARCH_BOOK_LIST",
         payload: data?.searchBook,

@@ -29,6 +29,32 @@
   background-color: #fff;
 }
 
+.register__aside .closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.register__aside .closeBtn .icon-container .MuiSvgIcon-root {
+  color: #009bf6 !important;
+}
+
+.register__aside .closeBtn .icon-container {
+  padding: 5px;
+  border-radius: 50%;
+  background-color: #efefef;
+  display: grid;
+  cursor: pointer;
+  place-items: center;
+  /* box-shadow: 1px 1px 0.5px 0 rgba(0, 0, 0, 0.2); */
+  -webkit-filter: drop-shadow(1px 2px 2px #000000);
+  filter: drop-shadow(1px 2px 2px #000000);
+}
+
+.register__aside .closeBtn .icon-container:hover {
+  background-color: #f6f6f6;
+}
+
 .register__aside.open ~ .register__overlay {
   position: absolute;
   top: 0;

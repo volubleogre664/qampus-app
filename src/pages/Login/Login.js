@@ -2,36 +2,111 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
 import Loader from "@components/Loader";
-import { useUserSlice } from "@redux/getSlices.js";
+import jwtDecode from "jwt-decode";
+import CloseIcon from "@mui/icons-material/Close";
+import { useUserSlice, useUtilsSlice } from "@redux/getSlices.js";
 import { useForm } from "@utils/hooks.js";
-import { LOGIN_USER } from "@utils/graphql.js";
+import { LOGIN_USER, FORGOT_PASSWORD } from "@utils/graphql.js";
 import logo from "@assets/Qampus_logo_grey.png";
 import "./Login.css";
 
 function Login() {
   const history = useHistory();
   const location = useLocation();
-  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [, userDispatch] = useUserSlice();
+  const [error, setError] = useState(false);
+  const [, dispatchUtils] = useUtilsSlice();
+  const [forgotPassword, setForgotPassword] = useState(false);
   const { onChange, onSubmit, values } = useForm(loginUser, {
     email: "",
     password: "",
   });
 
-  const [login, { loading }] = useMutation(LOGIN_USER, {
+  let [login] = useMutation(LOGIN_USER, {
+    variables: values,
     update(_, { data: { login: userData } }) {
       setError(false);
-      userDispatch({ type: "SET_USER", payload: userData });
+      setLoading(false);
+      let jwt = jwtDecode(userData.token);
+      let isSecureAuth = jwt.permissions.includes("auth:secure_password");
+
+      userDispatch({
+        type: "SET_USER",
+        payload: { ...userData, edit: isSecureAuth, secure: isSecureAuth },
+      });
       const { from } = location.state || { from: { pathname: "/" } };
+
+      if (isSecureAuth) {
+        dispatchUtils({
+          type: "DELETE_BOOK",
+          payload: {
+            title: "Change password",
+            subtitle:
+              "You just logged in with a secure password, please make a new password on your profile",
+            btnCancel: false,
+            btnContinue: true,
+            bookTitle: "",
+            popupShow: true,
+          },
+        });
+
+        userDispatch({
+          type: "SET_SECURE_LOGIN",
+          payload: { secure: true },
+        });
+      }
+
       history.replace(from);
     },
-    variables: values,
     onError(err) {
       setError(true);
+      console.log(err);
+      setLoading(false);
     },
   });
 
+  const [sendForgotPasswordReq] = useMutation(FORGOT_PASSWORD, {
+    variables: { email: values.email },
+    update() {
+      // Tell the user next steps to follow
+      setLoading(false);
+      setForgotPassword(false);
+      dispatchUtils({
+        type: "DELETE_BOOK",
+        payload: {
+          title: "Check your email",
+          subtitle:
+            "We sent you an email with a one use secure password. Use it to login then change your password in your profile to something you can remember.",
+          btnCancel: false,
+          btnContinue: true,
+          bookTitle: "",
+          popupShow: true,
+        },
+      });
+    },
+    onError(err) {
+      // I wonder what too do here mate
+      console.log("Yooo", err);
+      setLoading(false);
+    },
+  });
+
+  const forgotPasswordRequest = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    sendForgotPasswordReq();
+    setLoading(true);
+  };
+
+  const forgotPasswordClicked = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setForgotPassword(true);
+  };
+
   function loginUser() {
+    setLoading(true);
     login();
   }
 
@@ -46,7 +121,37 @@ function Login() {
 
   return (
     <section className="login">
-      {loading && <Loader message="Signing in" />}
+      {loading && <Loader />}
+      {forgotPassword && <div className="login__overlay" />}
+      {forgotPassword && (
+        <div className="forgotPassword">
+          <div className="close">
+            <span
+              role="button"
+              onClick={() => setForgotPassword(false)}
+              className="icon-container"
+            >
+              <CloseIcon />
+            </span>
+          </div>
+
+          <h4>Forgot your password?</h4>
+          <p>Enter your email and press continue</p>
+          <input
+            type="email"
+            name="email"
+            value={values.email}
+            onChange={onChange}
+            className="login__mainFormInput"
+          />
+          <button
+            onClick={forgotPasswordRequest}
+            className="login__mainFormButton"
+          >
+            Continue
+          </button>
+        </div>
+      )}
       <main className="login__main">
         <section>
           <div>
@@ -85,7 +190,9 @@ function Login() {
                   type="password"
                 />
                 <p>
-                  <Link to="/login">Forgot password?</Link>
+                  <Link to="" role="button" onClick={forgotPasswordClicked}>
+                    Forgotten password?
+                  </Link>
                 </p>
               </div>
 
@@ -97,7 +204,7 @@ function Login() {
               </div>
 
               <p>
-                New to Qampus? <Link to="/register">Create account.</Link>
+                New to Qampus? <Link to="/register">Create an account.</Link>
               </p>
             </form>
 

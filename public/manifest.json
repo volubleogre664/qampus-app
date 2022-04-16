@@ -1,15 +1,26 @@
 {
+  "name": "Qampus",
   "short_name": "Qampus",
-  "name": "Qampus, your number one campus companion",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/png"
+      "src": "logo_grey_outlined.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "logo_grey_outlined.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://www.qampus.co.za/manifest.json"
+    }
+  ]
 }

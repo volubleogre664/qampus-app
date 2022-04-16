@@ -154,18 +154,6 @@
   background-color: rgb(240, 240, 240);
 }
 
-.newUser__mainImage button:last-of-type {
-  border: none;
-  background-color: unset;
-  color: red;
-  cursor: pointer;
-}
-
-.newUser__mainImage button:last-of-type:hover {
-  text-decoration: underline;
-  color: rgba(255, 0, 0, 0.7);
-}
-
 .newUser__footer {
   width: 100%;
   padding: 15px 20px;

@@ -11,7 +11,7 @@ import "./MessageBox.css";
 function MessageBox({ oncontinue = null }) {
   const [{ popup }, dispatch] = useUtilsSlice();
   const [, dispatchMessages] = useMessagesSlice();
-  const [, dispatchUser] = useUserSlice();
+  const [user, dispatchUser] = useUserSlice();
   const history = useHistory();
 
   const handleNoClick = () => {
@@ -20,10 +20,12 @@ function MessageBox({ oncontinue = null }) {
       type: "",
     });
 
-    dispatchUser({
-      type: "SET_EDIT_PROFILE",
-      payload: { edit: false },
-    });
+    if (user?.edit) {
+      dispatchUser({
+        type: "SET_EDIT_PROFILE",
+        payload: { edit: false },
+      });
+    }
   };
 
   const handleYesClick = () => {

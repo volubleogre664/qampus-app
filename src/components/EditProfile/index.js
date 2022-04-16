@@ -6,18 +6,18 @@ import { useForm } from "@utils/hooks.js";
 import { UPDATE_USER } from "@utils/graphql";
 import { useMutation } from "@apollo/react-hooks";
 import MsgBox from "@components/MessageBox";
-import Compressor from "compressorjs";
+import imageCompression from "browser-image-compression";
 import {
   getStorage,
   ref,
+  uploadBytes,
   deleteObject,
-  uploadString,
   getDownloadURL,
 } from "firebase/storage";
 import profilePlaceholder from "@assets/profile.png";
 
 import "./EditProfile.css";
-let picture = "";
+var picture = "";
 
 function EditProfile({ app }) {
   const [{ user, imgCrop }, dispatch] = useUserSlice();
@@ -31,7 +31,7 @@ function EditProfile({ app }) {
 
   const { onChange, onSubmit, values, updateValues } = useForm(updateUser, {
     ...user,
-    password: "",
+    password: user?.secure ? "secure" : "",
     newPassword: "",
     confirmNewPassword: "",
   });
@@ -47,7 +47,7 @@ function EditProfile({ app }) {
       if (data) {
         dispatch({
           type: "SET_USER",
-          payload: data.updateUser,
+          payload: { ...data.updateUser, secure: false },
         });
       }
 
@@ -92,7 +92,7 @@ function EditProfile({ app }) {
         firstName: values.firstName,
         lastName: values.lastName,
         email: values.email,
-        picture: profile,
+        picture: picture,
         university: values.university,
         degree: values.degree,
         campus: values.campus,
@@ -110,9 +110,10 @@ function EditProfile({ app }) {
       let isPass = values.password !== "";
       let isNewPass =
         values.newPassword !== "" &&
-        values.password === values.confirmNewPassword;
+        values.newPassword === values.confirmNewPassword;
 
-      if (isPass && isNewPass) {
+      if (!(isPass && isNewPass)) {
+        console.log(isPass, isNewPass);
         setMessage(
           "To change password, please provide current password and confirm new password must match new password."
         );
@@ -143,35 +144,54 @@ function EditProfile({ app }) {
       .catch((err) => console.log("Error encountered"));
   };
 
-  const saveImageToCloud = (e) => {
-    if (imgCrop.croppedImgUrl) {
+  const saveImageToCloud = async (e) => {
+    if (profile !== values.picture) {
+      setLoading({
+        isLoading: true,
+        message: "Saving image to cloud",
+      });
+
       const storageRef = ref(
         firebaseStorage,
-        `${user.id}/profile/${user.firstName}.webp`
+        `${user.id}/profile/${user.firstName}.png`
       );
 
-      (async () => {
-        await uploadString(storageRef, imgCrop.croppedImgUrl, "data_url")
-          .then(() => {
-            console.log("Image has been uploaded");
-            dispatch({
-              type: "SET_CROP_IMG",
-              payload: {
-                croppedImgUrl: null,
-              },
-            });
-          })
-          .catch((err) => {
-            console.log("Error uploading image: ");
-          });
+      let options = {
+        maxSizeMB: 0.2,
+        maxWidthOrHeight: 1024,
+        useWebWorker: true,
+      };
 
-        await getDownloadURL(storageRef)
-          .then((url) => {
-            if (url) setProfile(url);
-            else setProfile("");
-          })
-          .catch((err) => console.log(""));
-      })();
+      const file = await imageCompression.getFilefromDataUrl(
+        profile,
+        user.firstName + ".png"
+      );
+
+      let newFile = await imageCompression(file, options);
+
+      await uploadBytes(storageRef, newFile)
+        .then(() => {
+          console.log("Image has been uploaded");
+          dispatch({
+            type: "SET_CROP_IMG",
+            payload: {
+              imgSrc: "",
+              croppedImgUrl: null,
+              aspect: null,
+            },
+          });
+        })
+        .catch((err) => {
+          console.log("Error uploading image: ");
+        });
+
+      await getDownloadURL(storageRef)
+        .then((url) => {
+          if (url) {
+            setProfile(url);
+          } else setProfile("");
+        })
+        .catch((err) => console.log(""));
     }
 
     saveChanges(e);
@@ -237,30 +257,29 @@ function EditProfile({ app }) {
     picture = user.picture;
   };
 
-  const handleFileInput = (inputEvent) => {
+  const handleFileInput = async (inputEvent) => {
     const [file] = inputEvent.target.files;
-
     if (file) {
-      new Compressor(file, {
-        quality: 0.2,
-        success(file) {
-          const reader = new FileReader();
-
-          reader.onload = (readerEvent) => {
-            dispatch({
-              type: "SET_CROP_IMG",
-              payload: {
-                ...imgCrop,
-                imgSrc: readerEvent.target.result,
-              },
-            });
-          };
-
-          window.scrollTo(0, 0);
-          reader.readAsDataURL(file);
-        },
-        error(err) {},
+      let newFile = await imageCompression(file, {
+        maxSizeMB: 0.2,
+        maxWidthOrHeight: 1024,
+        useWebWorker: true,
       });
+
+      const reader = new FileReader();
+
+      reader.onload = (readerEvent) => {
+        dispatch({
+          type: "SET_CROP_IMG",
+          payload: {
+            ...imgCrop,
+            imgSrc: readerEvent.target.result,
+          },
+        });
+      };
+
+      window.scrollTo(0, 0);
+      reader.readAsDataURL(newFile);
     }
 
     fileInputRef.current.value = "";
@@ -325,7 +344,14 @@ function EditProfile({ app }) {
             </button>
 
             {/* If user image exists the we remove it and show the person default */}
-            <button onClick={() => removeImageClicked()}>Remove Image</button>
+            {values.picture !== "" && (
+              <button
+                className="removeImageBtn"
+                onClick={() => removeImageClicked()}
+              >
+                Remove Image
+              </button>
+            )}
           </div>
 
           <form autoComplete="off" className="editProfile__mainForm">
@@ -394,9 +420,7 @@ function EditProfile({ app }) {
                   <label htmlFor="notSay">I'd rather not say</label>
                 </span>
               </div>
-              <p>
-                You can choose to not specify your gender.
-              </p>
+              <p>You can choose to not specify your gender.</p>
             </div>
 
             <div>
@@ -414,7 +438,7 @@ function EditProfile({ app }) {
             </div>
 
             <div>
-              <label htmlFor="university">University</label>
+              <label htmlFor="university">Institution</label>
               <input
                 className="editProfile__mainFormInput"
                 name="university"
@@ -474,21 +498,23 @@ function EditProfile({ app }) {
 
             {editPassword && (
               <section className="editProfile__changePasswords">
-                <div>
-                  <label htmlFor="password">Current Password</label>
-                  <input
-                    className="editProfile__mainFormInput"
-                    name="password"
-                    type="password"
-                    id="password"
-                    value={values?.password}
-                    onChange={onChange}
-                  />
-                  <p>
-                    Verify it's you requsting a password change by entering
-                    current password.
-                  </p>
-                </div>
+                {user?.secure === false && (
+                  <div>
+                    <label htmlFor="password">Current Password</label>
+                    <input
+                      className="editProfile__mainFormInput"
+                      name="password"
+                      type="password"
+                      id="password"
+                      value={values?.password}
+                      onChange={onChange}
+                    />
+                    <p>
+                      Verify it's you requsting a password change by entering
+                      current password.
+                    </p>
+                  </div>
+                )}
 
                 <div>
                   <label htmlFor="newPassword">New Password</label>
@@ -535,7 +561,7 @@ function EditProfile({ app }) {
         <div className="editProfile__saveChanges">
           <p>
             {message ||
-              "You have <b>unsaved changes</b>, closing this window will discard them."}
+              "You have unsaved changes, closing this window will discard them."}
           </p>
           <div>
             <button onClick={keepEditingClicked}>Keep Editing</button>
