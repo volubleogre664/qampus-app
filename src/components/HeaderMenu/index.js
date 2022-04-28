@@ -3,13 +3,14 @@ import LibraryBooksIconA from "@mui/icons-material/BookRounded";
 import {
   RiHome4Line,
   RiHome4Fill,
-  RiMapPinRangeLine,
-  RiMapPinRangeFill,
+  RiMap2Line,
+  RiMap2Fill,
   RiMessageLine,
   RiMessageFill,
   RiInformationLine,
   RiInformationFill,
 } from "react-icons/ri";
+import {VscAccount} from "react-icons/vsc";
 import { useRouteMatch, Link, useHistory } from "react-router-dom";
 import { useUserSlice } from "@redux/getSlices";
 import logo from "@assets/Qampus_logo_grey.png";
@@ -59,8 +60,8 @@ function HeaderMenu() {
           <NavLink
             tooltip="My Campus"
             to="/navigation"
-            icon={<RiMapPinRangeLine />}
-            active_icon={<RiMapPinRangeFill />}
+            icon={<RiMap2Line />}
+            active_icon={<RiMap2Fill />}
           />
           <NavLink
             tooltip="Help"
@@ -85,7 +86,7 @@ function HeaderMenu() {
             />
           ) : (
             user?.firstName[0] + user?.lastName[0]
-          )) || "Sign in"}
+          )) || <VscAccount/>}
         </button>
       </div>
     </header>

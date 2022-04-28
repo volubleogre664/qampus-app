@@ -8,6 +8,8 @@ import {
   coordinates,
 } from "../../nav_coordinates/nav_coordinates.json";
 import {RiNavigationFill, RiCloseLine} from "react-icons/ri";
+import {MdAssistantNavigation} from "react-icons/md";
+
 
 import "./Navigation.css";
 
@@ -124,14 +126,9 @@ function Navigation() {
   };
   return (
     <div className="navigation">
-      <div>
-        <header className="navigation__mainHeader">
-          <h3>UFS main capmus</h3>
-        </header>       
-      </div>
       <div className="navigation__body">
         <button className="btnNav" onClick={handleClick}>
-          {click ? <RiCloseLine /> : <RiNavigationFill />}
+          {click ? <RiCloseLine /> : <MdAssistantNavigation />}
         </button>
       <aside className="navigation__sidebar">
         <form className="navigation__sidebarForm" id="options" onSubmit={changeState}>
