@@ -109,9 +109,9 @@ function Home({ history }) {
         </div>
         <div className="bottom__row">
           {/* <ComingSoon/> */}
-          <DailyQoutes />
+          {/* <DailyQoutes /> */}
           {/* <Request/> */}
-          <RecommendedReads />
+          {/* <RecommendedReads /> */}
         </div>
       </div>
 

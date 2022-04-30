@@ -125,8 +125,67 @@ function Navigation() {
     document.querySelector(".navigation__sidebar").classList.toggle("opening");
     document.querySelector(".btnNav").classList.toggle("opening");
   };
+
+  /*Map Categories*/
+      
+  function tabBtnClicked(tab) {
+    switch (tab) {
+      case "safety": {
+        document.querySelector("#ter").style.background = '#8F8F8F';
+        document.querySelector("#abt").style.background = '#8F8F8F';
+        document.querySelector("#tut").style.background = '#8F8F8F';
+        document.querySelector("#saf").style.background = '#009BF6';
+        document.querySelector(".main_content").style.overflowY = 'hidden';
+        break;
+      }
+
+      case "tutorials": {
+        document.querySelector("#ter").style.background = '#8F8F8F';
+        document.querySelector("#saf").style.background = '#8F8F8F';
+        document.querySelector("#abt").style.background = '#8F8F8F';
+        document.querySelector("#tut").style.background = '#009BF6';
+        document.querySelector(".main_content").style.overflowY = 'scroll';
+        break;
+      }
+
+      case "about": {
+        document.querySelector("#ter").style.background = '#8F8F8F';
+        document.querySelector("#saf").style.background = '#8F8F8F';
+        document.querySelector("#tut").style.background = '#8F8F8F';
+        document.querySelector("#abt").style.background = '#009BF6';
+        document.querySelector(".main_content").style.overflowY = 'hidden';
+        break;
+      }
+
+      default: {
+        document.querySelector("#saf").style.background = '#8F8F8F';
+        document.querySelector("#abt").style.background = '#8F8F8F';
+        document.querySelector("#tut").style.background = '#8F8F8F';
+        document.querySelector("#ter").style.background = '#009BF6';
+        document.querySelector(".main_content").style.overflowY = 'scroll';
+      }
+    }
+  }
+ 
   return (
     <div className="navigation">
+        <div className="nav__header">
+          <div className="buttons">
+            <button id="abt" className="button" onClick={() => tabBtnClicked("about")} >
+              All Categories
+            </button>
+            <button id="tut" className="button" onClick={() => tabBtnClicked("tutorials")}>
+              Buidlings
+            </button>
+            <button id="saf" className="button" onClick={() => tabBtnClicked("safety")}>
+              Gates
+            </button>
+            <button id="ter" className="button" onClick={() => tabBtnClicked("terms")}>
+              Sports fields
+            </button>
+            {/* <button className="button" onClick={() => tabBtnClicked("")}>Contact us</button> */}
+          </div>
+      </div>
       <div className="navigation__body">
         <button className="btnNav" onClick={handleClick}>
           {click ? <RiCloseLine /> : <MdAssistantNavigation />}
@@ -167,11 +226,6 @@ function Navigation() {
         ></Iframe>
       </main>
       </div>
-      <footer>
-        <div className="categories">
-          
-        </div>
-      </footer>
     </div>
   );
 }
