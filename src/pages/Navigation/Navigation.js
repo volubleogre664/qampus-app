@@ -166,6 +166,11 @@ function Navigation() {
         ></Iframe>
       </main>
       </div>
+      <footer>
+        <div className="categories">
+          
+        </div>
+      </footer>
     </div>
   );
 }
