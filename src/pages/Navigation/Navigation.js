@@ -123,6 +123,7 @@ function Navigation() {
   const handleClick = () => {
     setClick(!click);
     document.querySelector(".navigation__sidebar").classList.toggle("opening");
+    document.querySelector(".btnNav").classList.toggle("opening");
   };
   return (
     <div className="navigation">
@@ -161,7 +162,7 @@ function Navigation() {
         <Iframe
           className="navigation__mainFrame"
           id="frame"
-          url={active}
+          url={active}                                        
           loading="lazy"
         ></Iframe>
       </main>

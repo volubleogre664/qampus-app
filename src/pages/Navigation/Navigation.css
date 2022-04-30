@@ -1,15 +1,13 @@
 .navigation {
   display: flex;
   flex-direction: column;
-  padding: 15px;
-  padding-top: 15px;
+  padding: 12px;
   height: 100%;
   overflow-x: auto;
-  gap: 20px;
-  /* background: url("../../assets/navigation_image.jpg") no-repeat; */
   background-attachment: fixed;
   background-position: bottom;
   background-size: cover;
+  width: 100%;
 }
 
 .navigation__body {
@@ -28,8 +26,8 @@
   justify-content: flex-start;
   align-items: center;
   width: 25%;
-  max-width: 400px;
-  min-width: 300px;
+  max-width: 300px;
+  min-width: 100px;
   height: 100%;
   box-sizing: border-box;
   border-right: 1px solid rgb(206, 206, 206);
@@ -80,42 +78,61 @@
   margin: auto;
   margin-top: 0;
   width: 100%;
-  border-radius: 5px;
+  height: 100%;
+  border-radius: 10px;
   border: 2px solid #009cf6a9;
   -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(15px);
 }
 
 .btnNav {
-  color: #2f2f2f;
-  box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
-  border-color: rgba(223, 225, 229, 0);
+  color: #1972E7;
+  box-shadow: 0 1px 6px rgb(32 33 36 / 80%);
+  border-color:#009cf6a9;
   border-radius: 50%;
   transition: ease-in-out 0.1s;
   background-color: #fff;
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   display: flex;
   z-index: 100;
   position: absolute;
   justify-content: center;
   align-items: center;
-  font-size: 1.9rem;
+  font-size: 2rem;
   right: 10px;
   top: 10px;
+  animation: color-change 5s ease-in-out infinite;
 }
 
-/*break*/
-.navigation {
-  flex-direction: column;
-  width: 100%;
-}
+@keyframes color-change {
+  0%,100%{
+    /* border-color:#458CFF; */
+    -webkit-transform: rotate(0deg);
+  }
 
+  25%{
+    /* border-color:#00F700; */
+    -webkit-transform: rotate(70deg);
+  }
+  
+  50%{
+    /* border-color:#E5C311; */
+    -webkit-transform: rotate(150deg);
+  }
+  
+  75%{
+    /* border-color:#E34437; */
+    -webkit-transform: rotate(-150deg);
+  }
+}
 .navigation__sidebar {
   display: none;
 }
-
+.btnNav.opening{
+  animation: none ease-in-out;
+}
 .navigation__sidebar.opening {
   width: 99%;
   justify-content: center;
@@ -127,7 +144,7 @@
   box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
   border-color: rgba(223, 225, 229, 0);  display: inline;
   z-index: 4;
-  right: 0px;
+  right: 10px;
   top: 55px;
 }
 

@@ -271,7 +271,7 @@
     margin-top: -100px;
   }
   .home__searchContainer {
-    width: 90%;
+    width: 100%;
     max-width: 600px;
   }
   .home__header {
@@ -280,6 +280,10 @@
     margin-left: 0;
     padding: 0 20px;
     margin-top: 15px;
+  }
+
+  .home__body {
+    width: 100%;
   }
 
   .home__subtitle {
