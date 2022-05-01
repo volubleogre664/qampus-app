@@ -47,7 +47,7 @@ function App() {
     const socket = io(serverUrl, {
       query: {
         user: user.id,
-        origin: "https://qampus-demo-redesign.web.app/",
+        origin: "https://qampus.co.za",
         // Credential: true,
       },
     });
