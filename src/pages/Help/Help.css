@@ -2,8 +2,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 15px;
   height: 100%;
+  width: 100%;
   overflow: hidden;
   box-sizing: border-box;
   background: linear-gradient(
@@ -18,8 +18,12 @@
 
 .help__header {
   display: flex;
-  justify-content: center;
-  border-bottom: solid 1px rgb(206, 206, 206);
+  justify-content: flex-start;
+  border-bottom: 1px solid #D9D9D9;
+  width: 95%;
+  padding-top: 30px;
+  padding-bottom: 5px;
+  margin: auto;
 }
 
 .help__body {
@@ -28,88 +32,60 @@
   flex-direction: row;
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
-}
-
-.help_side {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 25%;
-  max-width: 350px;
-  min-width: 300px;
-  height: 100%;
-  align-items: center;
-  margin-top: 20px;
-  border-right: 1px solid rgb(206, 206, 206);
+  width: 100%;
+  height: fit-content;
 }
 
 .main_header {
   font-size: 1.5rem;
-  color: #000;
-  font-family: "Poppins";
-  text-align: center;
-  padding-bottom: 10px;
-  width: 95%;
+  width: 100%;
 }
 
-.sepatator {
-  width: 85%;
-  margin: auto;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.help_side .buttons {
+.help__header .buttons {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
   height: fit-content;
-  margin: auto;
-  margin-top: 0;
   justify-content: center;
   place-items: center;
+  padding: 10px;
+  padding-top: 0px;
+
 }
 
-.help_side .buttons * + * {
-  margin-top: 15px;
-}
-
-.help_side .buttons .button {
+.help__header .buttons .button {
   display: flex;
   justify-content: center;
-  padding: 8px 20px;
+  padding: 4px 10px;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
-  border-radius: 4px;
+  border-radius: 25px;
   border: none;
   color: #fff;
   cursor: pointer;
   font-size: 0.9rem;
-  background-color: rgba(0, 155, 246);
+  background-color: #8F8F8F;
   transition: all ease-in-out 0.1s;
-  min-width: 160px;
-}
-
-.help_side .buttons .button:hover {
-  background-color: rgba(0, 155, 246, 0.8);
-  box-shadow: none;
+  min-width: fit-content;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .help_main {
-  width: 85%;
+  width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.2);
-  margin-right: 10px;
 }
 
 .main_content {
   width: 87%;
   height: 88%;
   margin: auto;
-  margin-top: 20px;
+  padding-right: 100px;
+  padding-left: 100px;
+  margin-top: 0px;
   color: #000;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: hidden;
   font-weight: 100;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -126,10 +102,13 @@
 @media only screen and (max-width: 850px) {
   .help__header {
     display: flex;
-    padding: 0 20px;
     align-items: center;
+    width: 100%;
+    margin-bottom: 1px;
   }
-
+  .help__header .buttons {
+    overflow-x: scroll;
+  }
   .help_side {
     display: none;
     flex-direction: column;
@@ -141,35 +120,16 @@
 
   .help_main {
     width: 100%;
-    margin-top: 10px;
     border-radius: 10px;
   }
-
-  .btnHeader {
-    display: inline;
-    width: 30px;
-    background-color: transparent;
-    border: none;
-    font-size: 2rem;
-    color: rgb(51, 54, 54);
-    position: relative;
+  .main_content {
+    padding-right: 0px;
+    padding-left: 0px;
   }
 
-  .help_side.opening {
-    display: inline;
-    position: absolute;
-    width: fit-content;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px 0;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
-    box-shadow: 0 1px 6px rgb(32 33 36 / 50%);
-    margin-top: 10px;
-  }
-
-  .help_side > div {
-    width: fit-content;
+  @media screen and (max-width: 400px) {
+    .help__header .buttons {
+      padding-left: 50px;
+    }
   }
 }

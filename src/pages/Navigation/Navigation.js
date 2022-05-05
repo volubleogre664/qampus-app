@@ -8,6 +8,8 @@ import {
   coordinates,
 } from "../../nav_coordinates/nav_coordinates.json";
 import {RiNavigationFill, RiCloseLine} from "react-icons/ri";
+import {MdAssistantNavigation} from "react-icons/md";
+
 
 import "./Navigation.css";
 
@@ -121,17 +123,72 @@ function Navigation() {
   const handleClick = () => {
     setClick(!click);
     document.querySelector(".navigation__sidebar").classList.toggle("opening");
+    document.querySelector(".btnNav").classList.toggle("opening");
   };
+
+  /*Map Categories*/
+      
+  function tabBtnClicked(tab) {
+    switch (tab) {
+      case "safety": {
+        document.querySelector("#ter").style.background = '#8F8F8F';
+        document.querySelector("#abt").style.background = '#8F8F8F';
+        document.querySelector("#tut").style.background = '#8F8F8F';
+        document.querySelector("#saf").style.background = '#009BF6';
+        document.querySelector(".main_content").style.overflowY = 'hidden';
+        break;
+      }
+
+      case "tutorials": {
+        document.querySelector("#ter").style.background = '#8F8F8F';
+        document.querySelector("#saf").style.background = '#8F8F8F';
+        document.querySelector("#abt").style.background = '#8F8F8F';
+        document.querySelector("#tut").style.background = '#009BF6';
+        document.querySelector(".main_content").style.overflowY = 'scroll';
+        break;
+      }
+
+      case "about": {
+        document.querySelector("#ter").style.background = '#8F8F8F';
+        document.querySelector("#saf").style.background = '#8F8F8F';
+        document.querySelector("#tut").style.background = '#8F8F8F';
+        document.querySelector("#abt").style.background = '#009BF6';
+        document.querySelector(".main_content").style.overflowY = 'hidden';
+        break;
+      }
+
+      default: {
+        document.querySelector("#saf").style.background = '#8F8F8F';
+        document.querySelector("#abt").style.background = '#8F8F8F';
+        document.querySelector("#tut").style.background = '#8F8F8F';
+        document.querySelector("#ter").style.background = '#009BF6';
+        document.querySelector(".main_content").style.overflowY = 'scroll';
+      }
+    }
+  }
+ 
   return (
     <div className="navigation">
-      <div>
-        <header className="navigation__mainHeader">
-          <h3>UFS main capmus</h3>
-        </header>       
+        <div className="nav__header">
+          <div className="buttons">
+            <button id="abt" className="button" onClick={() => tabBtnClicked("about")} >
+              All Categories
+            </button>
+            <button id="tut" className="button" onClick={() => tabBtnClicked("tutorials")}>
+              Buidlings
+            </button>
+            <button id="saf" className="button" onClick={() => tabBtnClicked("safety")}>
+              Gates
+            </button>
+            <button id="ter" className="button" onClick={() => tabBtnClicked("terms")}>
+              Sports fields
+            </button>
+            {/* <button className="button" onClick={() => tabBtnClicked("")}>Contact us</button> */}
+          </div>
       </div>
       <div className="navigation__body">
         <button className="btnNav" onClick={handleClick}>
-          {click ? <RiCloseLine /> : <RiNavigationFill />}
+          {click ? <RiCloseLine /> : <MdAssistantNavigation />}
         </button>
       <aside className="navigation__sidebar">
         <form className="navigation__sidebarForm" id="options" onSubmit={changeState}>
@@ -164,7 +221,7 @@ function Navigation() {
         <Iframe
           className="navigation__mainFrame"
           id="frame"
-          url={active}
+          url={active}                                        
           loading="lazy"
         ></Iframe>
       </main>

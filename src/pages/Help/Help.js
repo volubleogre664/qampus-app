@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import { about } from "../../text_files/about.json";
 import { tutorial } from "../../text_files/tutorial.json";
 import { safety } from "../../text_files/safety.json";
@@ -7,71 +7,81 @@ import { RiCloseLine, RiMenuLine } from "react-icons/ri";
 import "./Help.css";
 
 function Help() {
-  const [click, setClick] = useState(false);
   const [display, setDisplay] = useState({
     title: "About us",
     content: about,
   });
-  const handleClick = () => {
-    setClick(!click);
-  };
-
+    
   function tabBtnClicked(tab) {
-    if (window.innerWidth <= 850) setClick(!click);
-
     switch (tab) {
       case "safety": {
         setDisplay({ title: "Safety tips", content: safety });
+        document.querySelector("#ter").style.background = '#8F8F8F';
+        document.querySelector("#abt").style.background = '#8F8F8F';
+        document.querySelector("#tut").style.background = '#8F8F8F';
+        document.querySelector("#saf").style.background = '#009BF6';
+        document.querySelector(".main_content").style.overflowY = 'hidden';
         break;
       }
 
       case "tutorials": {
         setDisplay({ title: "Tutorials", content: tutorial });
+        document.querySelector("#ter").style.background = '#8F8F8F';
+        document.querySelector("#saf").style.background = '#8F8F8F';
+        document.querySelector("#abt").style.background = '#8F8F8F';
+        document.querySelector("#tut").style.background = '#009BF6';
+        document.querySelector(".main_content").style.overflowY = 'scroll';
         break;
       }
 
       case "about": {
         setDisplay({ title: "About us", content: about });
+        document.querySelector("#ter").style.background = '#8F8F8F';
+        document.querySelector("#saf").style.background = '#8F8F8F';
+        document.querySelector("#tut").style.background = '#8F8F8F';
+        document.querySelector("#abt").style.background = '#009BF6';
+        document.querySelector(".main_content").style.overflowY = 'hidden';
         break;
       }
 
       default: {
         setDisplay({ title: "Terms of use", content: terms });
+        document.querySelector("#saf").style.background = '#8F8F8F';
+        document.querySelector("#abt").style.background = '#8F8F8F';
+        document.querySelector("#tut").style.background = '#8F8F8F';
+        document.querySelector("#ter").style.background = '#009BF6';
+        document.querySelector(".main_content").style.overflowY = 'scroll';
       }
     }
   }
-
+    useEffect(() => {
+      tabBtnClicked("about");
+    }, []);
   return (
     <div className="help">
       <div className="help__header">
-        <p className="main_header"> {display.title}</p>
+        {/* <p className="main_header"> {display.title}</p>
         <button className="btnHeader" onClick={handleClick}>
           {click ? <RiCloseLine /> : <RiMenuLine />}
-        </button>
-      </div>
-
-      <div className="help__body">
-        <div className={`help_side ${click && "opening"}`}>
+        </button> */}
           <div className="buttons">
-            <button className="button" onClick={() => tabBtnClicked("about")}>
+            <button id="abt" className="button" onClick={() => tabBtnClicked("about")} >
               About us
             </button>
-            <button
-              className="button"
-              onClick={() => tabBtnClicked("tutorials")}
-            >
+            <button id="tut" className="button" onClick={() => tabBtnClicked("tutorials")}>
               Tutorials
             </button>
-            <button className="button" onClick={() => tabBtnClicked("safety")}>
+            <button id="saf" className="button" onClick={() => tabBtnClicked("safety")}>
               Safety tips
             </button>
-            <button className="button" onClick={() => tabBtnClicked("terms")}>
+            <button id="ter" className="button" onClick={() => tabBtnClicked("terms")}>
               Terms of use
             </button>
             {/* <button className="button" onClick={() => tabBtnClicked("")}>Contact us</button> */}
           </div>
-        </div>
+      </div>
 
+      <div className="help__body">
         <div className="help_main">
           <div className="main_content">
             <p>{display.content}</p>
@@ -80,6 +90,7 @@ function Help() {
       </div>
     </div>
   );
+
 }
 
 export default Help;
