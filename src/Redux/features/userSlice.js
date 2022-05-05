@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-(async function () {
-  const relatedApps = await navigator.getInstalledRelatedApps();
-  console.log(relatedApps);
-  console.log("");
-  relatedApps.forEach((app) => {
-    console.log(app.id, app.platform, app.url);
-  });
-})();
+// (async function () {
+//   const relatedApps = await navigator.getInstalledRelatedApps();
+//   console.log(relatedApps);
+//   console.log("");
+//   relatedApps.forEach((app) => {
+//     console.log(app.id, app.platform, app.url);
+//   });
+// })();
 
 // window.open("http://localhost:3000");
 

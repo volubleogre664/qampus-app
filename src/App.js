@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { io } from "socket.io-client";
-import Home from "@pages/Home/Home.js";
 
+import Home from "@pages/Home/Home.js";
 import Chats from "@pages/Chats/Chats.js";
 import Register from "@pages/Register/Register.js";
 import Login from "@pages/Login/Login.js";
@@ -69,6 +69,10 @@ function App() {
       chatsDiv.scrollTop = chatsDiv.scrollHeight;
     });
   }, [user?.id, dispatchUser, dispatchMessage]);
+
+  // useEffect(() => {
+  //   const apps = navigator?.getInstalledRelatedApps();
+  // }, []);
 
   return (
     <div className="app">

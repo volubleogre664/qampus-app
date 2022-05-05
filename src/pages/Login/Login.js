@@ -77,7 +77,7 @@ function Login() {
         payload: {
           title: "Check your email",
           subtitle:
-            "We sent you an email with a one use secure password. Use it to login then change your password in your profile to something you can remember.",
+            "We sent you an email with a one time use secure password. Use it to login then change your password in your profile to something you can remember.",
           btnCancel: false,
           btnContinue: true,
           bookTitle: "",
@@ -86,8 +86,8 @@ function Login() {
       });
     },
     onError(err) {
-      // I wonder what too do here mate
-      console.log("Yooo", err);
+      // TODO: I wonder what to do here mate
+      // console.log("Yooo", err);
       setLoading(false);
     },
   });

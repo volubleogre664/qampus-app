@@ -7,6 +7,7 @@ import Loader from "@components/Loader";
 import imageCompression from "browser-image-compression";
 import profilePlaceholder from "@assets/profile.png";
 import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import institutions from "@text-files/institutions.json";
 
 import "./NewUser.css";
 
@@ -18,11 +19,13 @@ function NewUser({ app }) {
   const firebaseStorage = getStorage(app);
   const fileInputRef = useRef(null);
   const { onSubmit, onChange, values } = useForm(updateUserData, {
-    university: user?.university,
-    campus: user?.campus,
-    gender: user?.gender,
-    degree: user?.degree,
+    university: user?.university || "",
+    campus: user?.campus || "",
+    gender: user?.gender || "",
+    degree: user?.degree || "",
   });
+
+  console.log(institutions);
 
   const [updateProfile] = useMutation(UPDATE_USER, {
     variables: { ...values, picture: profile },
@@ -181,8 +184,15 @@ function NewUser({ app }) {
                 id="university"
                 value={values?.university}
                 onChange={onChange}
+                list="institutions"
               />
               <p>Helps us show you things relavant only to your university</p>
+
+              <datalist id="institutions">
+                {institutions.map((item) => (
+                  <option value={item.name}>{item.name}</option>
+                ))}
+              </datalist>
             </div>
 
             <div>
@@ -194,8 +204,17 @@ function NewUser({ app }) {
                 id="campusName"
                 value={values?.campus}
                 onChange={onChange}
+                list="campuses"
               />
               <p>Which {values?.university || "UFS"} campus are you on?</p>
+
+              <datalist id="campuses">
+                {institutions
+                  .find((item) => item.name === values.university)
+                  ?.campuses?.map((campus) => (
+                    <option value={campus} />
+                  ))}
+              </datalist>
             </div>
 
             <div>
