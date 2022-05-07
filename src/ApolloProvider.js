@@ -13,7 +13,7 @@ const serverURL = "https://server.qampus.co.za/graphql";
 // Rest of features eendpoint
 const httpLink = createHttpLink({
   uri: serverURL,
-  credentials: "include",
+  // credentials: "include",
 });
 
 const authLink = setContext(() => {

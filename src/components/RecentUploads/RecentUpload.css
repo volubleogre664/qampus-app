@@ -12,10 +12,13 @@
   height: fit-content;
   padding: 15px;
   border-radius: 8px;
-  gap: 15px;
   background: transparent;
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
+}
+
+.recent__uploads > * + * {
+  margin-top: 15px;
 }
 
 .home__books {

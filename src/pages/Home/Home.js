@@ -9,7 +9,7 @@ import Recent from "@components/RecentUploads";
 import DailyQoutes from "@components/DailyQuotes";
 import RecommendedReads from "@components/RecommendedReads";
 import { MdKeyboardArrowUp } from "react-icons/md";
-import { useBooksSlice } from "@redux/getSlices";
+import { useBooksSlice, useUtilsSlice } from "@redux/getSlices";
 import "./Home.css";
 
 //change the background reference here
@@ -18,6 +18,7 @@ import "./Home.css";
 
 function Home({ history }) {
   const [{ searchBookList: books }, dispatchBook] = useBooksSlice();
+  const [, dispatchUtils] = useUtilsSlice();
   const [searchStr, setSearchStr] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -31,16 +32,46 @@ function Home({ history }) {
     variables: { searchStr },
     onCompleted(data) {
       setLoading(false);
-      console.log(data);
+
+      // Show the book results screen or component
+      if (data?.searchBook.length !== 0 && displays.menu !== "none") {
+        setDisplays({ menu: "none", results: "flex" });
+      }
+
       dispatchBook({
         type: "SET_SEARCH_BOOK_LIST",
         payload: data?.searchBook,
       });
+
+      if (data?.searchBook.length === 0) {
+        dispatchUtils({
+          type: "DELETE_BOOK",
+          payload: {
+            title: "Book Not Found",
+            subtitle:
+              "We could not find the book you are looking for. The book might not be available or you can try to edit your search input.",
+            btnCancel: false,
+            btnContinue: true,
+            bookTitle: "",
+            popupShow: true,
+          },
+        });
+      }
     },
     onError: (err) => {
       setLoading(false);
-      console.log("Error getting books");
-      // TODO: Show a pop up message to tell the user the problem
+      dispatchUtils({
+        type: "DELETE_BOOK",
+        payload: {
+          title: "Error Searching For Books",
+          subtitle:
+            "An error occured while trying to find your book, please try again later.",
+          btnCancel: false,
+          btnContinue: true,
+          bookTitle: "",
+          popupShow: true,
+        },
+      });
     },
   });
 
@@ -54,10 +85,6 @@ function Home({ history }) {
     });
 
     setLoading(true);
-
-    if (displays.menu !== "none") {
-      setDisplays({ menu: "none", results: "flex" });
-    }
 
     // Search for books in the database
     searchBook({ variables: { searchStr } });

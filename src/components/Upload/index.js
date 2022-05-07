@@ -1,13 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import {
-  getStorage,
   ref,
-  uploadString,
-  getDownloadURL,
+  getStorage,
   getMetadata,
+  uploadBytes,
+  getDownloadURL,
 } from "firebase/storage";
-import Compressor from "compressorjs";
+import imageCompression from "browser-image-compression";
 import Button from "@components/Button";
 import Loader from "@components/Loader";
 import Input from "@components/Input";
@@ -54,6 +54,7 @@ function UploadBook({ app, callback }) {
 
   // This is a hook for confirming the book data
   const [confirmBook, setConfirmBook] = useState(false);
+
   // Sending data to the backend server
   // calling uploadData initiates the sending of data to server
   const [uploadData] = useMutation(UPLOAD_BOOK, {
@@ -162,7 +163,7 @@ function UploadBook({ app, callback }) {
 
     const frontCoverRef = ref(
       firebaseStorage,
-      `${user.id}/books/${values.title.replace(/ /g, "_")}.jpg`
+      `${user.id}/books/${values.title.replace(/ /g, "_")}.png`
     );
 
     // Makes sure that files are not uploaded if the already exist
@@ -187,27 +188,28 @@ function UploadBook({ app, callback }) {
     const [file] = frontCoverInputRef.current.files;
 
     if (!file) return;
+    const reader = new FileReader();
 
-    new Compressor(file, {
-      quality: 0.2,
-      success(file) {
-        const reader = new FileReader();
+    let options = {
+      maxSizeMB: 0.2,
+      maxWidthOrHeight: 1024,
+      useWebWorker: true,
+    };
 
-        reader.onload = (readerEvent) => {
-          dispatchUser({
-            type: "SET_CROP_IMG",
-            payload: {
-              ...imgCrop,
-              imgSrc: readerEvent.target.result,
-              aspect: 1 / 1.4142,
-            },
-          });
-        };
+    const newFile = await imageCompression(file, options);
 
-        reader.readAsDataURL(file);
-      },
-      error(err) {},
-    });
+    reader.onload = (readerEvent) => {
+      dispatchUser({
+        type: "SET_CROP_IMG",
+        payload: {
+          ...imgCrop,
+          imgSrc: readerEvent.target.result,
+          aspect: 1 / 1.4142,
+        },
+      });
+    };
+
+    reader.readAsDataURL(newFile);
 
     frontCoverInputRef.current.value = "";
   };
@@ -222,7 +224,18 @@ function UploadBook({ app, callback }) {
         await getUploadedUrl(storageRef, urlContainer);
       })
       .catch(async () => {
-        await uploadString(storageRef, imageDataUrl, "data_url")
+        let file = await imageCompression.getFilefromDataUrl(
+          imageDataUrl,
+          "bookCover.png"
+        );
+
+        file = await imageCompression(file, {
+          maxSizeMB: 0.2,
+          maxWidthOrHeight: 1024,
+          useWebWorker: true,
+        });
+
+        await uploadBytes(storageRef, file)
           .then(() => {
             console.log("Image has been uploaded");
           })

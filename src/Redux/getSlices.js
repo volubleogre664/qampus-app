@@ -14,6 +14,8 @@ import {
   addUserContact,
   setEditUser,
   setNewUser,
+  setSecureLogin,
+  setInstallPrompt,
 } from "./features/userSlice";
 
 import {
@@ -95,6 +97,16 @@ function useUserSlice() {
 
       case "SET_EDIT_PROFILE": {
         dispatch(setEditUser(action.payload));
+        break;
+      }
+
+      case "SET_SECURE_LOGIN": {
+        dispatch(setSecureLogin(action.payload));
+        break;
+      }
+
+      case "SET_INSTALL_PROMPT": {
+        dispatch(setInstallPrompt(action.payload));
         break;
       }
 

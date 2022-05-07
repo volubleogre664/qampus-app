@@ -77,7 +77,7 @@ function Profile() {
 
           {user?.university && (
             <div>
-              <h4>University</h4>
+              <h4>Institution</h4>
               <p>{user?.university}</p>
             </div>
           )}

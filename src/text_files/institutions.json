@@ -1,0 +1,37 @@
+[
+  {
+    "name": "University of The Free State",
+    "campuses": ["South Campus", "Bloemfontein Campus", "Qwaqwa Campus"]
+  },
+  {
+    "name": "University of KwaZulu Natal",
+    "campuses": [
+      "Edgewood",
+      "Howard College",
+      "Medical School",
+      "Pietermaritzburg",
+      "Westville"
+    ]
+  },
+  {
+    "name": "University of Cape Town",
+    "campuses": [
+      "Groote Schuur Campus",
+      "Medical Campus",
+      "Hiddingh Campus",
+      "Breakwater Campus"
+    ]
+  },
+  {
+    "name": "University of Pretoria",
+    "campuses": [
+      "Hatfield Campus",
+      "Hillcrest Campus",
+      "Groenkloof Campus",
+      "Prinshof Campus",
+      "Onderstepoort Campus",
+      "Mamelodi Campus",
+      "Gordon Institute of Business Science"
+    ]
+  }
+]

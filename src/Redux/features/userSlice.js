@@ -1,7 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// (async function () {
+//   const relatedApps = await navigator.getInstalledRelatedApps();
+//   console.log(relatedApps);
+//   console.log("");
+//   relatedApps.forEach((app) => {
+//     console.log(app.id, app.platform, app.url);
+//   });
+// })();
+
+// window.open("http://localhost:3000");
+
 const initialState = {
   user: null,
+  installPrompt: false,
   path: "",
   errors: {},
   imgCrop: { imgSrc: null, croppedImgUrl: null, croppedBookImgUrl: null },
@@ -59,8 +71,7 @@ const userSlice = createSlice({
   reducers: {
     setUser(state, action) {
       state.user = action.payload;
-
-      const { token, contacts, ...userData } = state.user;
+      const { token, contacts, ...userData } = action.payload;
       setCookie("user", userData);
       contacts.length && setCookie("contacts", contacts);
     },
@@ -71,6 +82,9 @@ const userSlice = createSlice({
     },
     setEditUser(state, action) {
       state.user.edit = action.payload.edit;
+    },
+    setSecureLogin(state, action) {
+      state.user.secure = action.payload.edit;
     },
     setPath(state, action) {
       state.path = action.payload;
@@ -83,6 +97,9 @@ const userSlice = createSlice({
     },
     setImgSrc(state, action) {
       state.imgCrop = action.payload;
+    },
+    setInstallPrompt(state, action) {
+      state.installPrompt = action.payload.installPrompt;
     },
     addUserContact(state, action) {
       if (!action.payload) {
@@ -108,7 +125,9 @@ export const {
   setImgSrc,
   addUserContact,
   setEditUser,
+  setInstallPrompt,
   setNewUser,
+  setSecureLogin,
 } = userSlice.actions;
 export const selectUser = (state) => state?.user;
 export default userSlice.reducer;

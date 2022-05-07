@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { io } from "socket.io-client";
-import Home from "@pages/Home/Home.js";
 
+import Home from "@pages/Home/Home.js";
 import Chats from "@pages/Chats/Chats.js";
 import Register from "@pages/Register/Register.js";
 import Login from "@pages/Login/Login.js";
@@ -11,6 +11,7 @@ import Profile from "@components/Profile";
 import EditProfile from "@components/EditProfile";
 import NewUser from "@components/NewUser";
 import MsgBox from "@components/MessageBox";
+import InstallPrompt from "@components/InstallPrompt";
 
 import Collection from "@pages/Collection/Collection.js";
 import Navigation from "@pages/Navigation/Navigation.js";
@@ -33,7 +34,7 @@ const app = initializeApp(firebaseConfig);
 const serverUrl = "https://server.qampus.co.za/";
 
 function App() {
-  const [{ imgCrop, user }, dispatchUser] = useUserSlice();
+  const [{ imgCrop, user, installPrompt }, dispatchUser] = useUserSlice();
   const [
     {
       popup: { popupShow },
@@ -69,6 +70,10 @@ function App() {
     });
   }, [user?.id, dispatchUser, dispatchMessage]);
 
+  // useEffect(() => {
+  //   const apps = navigator?.getInstalledRelatedApps();
+  // }, []);
+
   return (
     <div className="app">
       <Router>
@@ -76,6 +81,7 @@ function App() {
         {popupShow && <MsgBox />}
         {user && <Profile />}
         {user?.edit && <EditProfile app={app} />}
+        {installPrompt && <InstallPrompt />}
         <Switch>
           {/* These are public pages... Accessible to everyone */}
           <Route exact path="/">

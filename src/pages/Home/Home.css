@@ -133,7 +133,6 @@
   flex-direction: row;
   justify-content: center;
   overflow: wrap;
-  gap: 15px;
   width: 100%;
   margin: auto;
   height: -webkit-fit-content;
@@ -142,6 +141,10 @@
   margin-top: 15px;
   align-items: center;
   height: fit-content;
+}
+
+.bottom__row > * + * {
+  margin-left: 15px;
 }
 
 .card__header {
@@ -250,16 +253,6 @@
   --neon-text-color: #008799;
 }
 
-@supports not (gap: 20px) {
-  .bottom__row {
-    margin-top: 20px;
-  }
-
-  .bottom__row > * + * {
-    margin-left: 8rem;
-  }
-}
-
 @media screen and (max-width: 1800px) {
   .home__body {
     width: 98%;
@@ -267,7 +260,7 @@
 }
 
 @media screen and (max-width: 800px) {
-  .home__searchSection{
+  .home__searchSection {
     margin-top: -100px;
   }
   .home__searchContainer {
@@ -309,6 +302,11 @@
   }
   .home__body .bottom__row {
     flex-direction: column;
+  }
+
+  .bottom__row > * + * {
+    margin-left: 0;
+    margin-top: 15px;
   }
 }
 

@@ -10,7 +10,7 @@
   background-color: rgba(255, 255, 255, 0.99);
   padding: 5px 20px;
   box-sizing: border-box;
-  border-bottom: 2px solid #D9D9D9;
+  border-bottom: 2px solid #d9d9d9;
   box-shadow: 0 1px 6px rgb(0 168 243/50%);
 }
 
@@ -60,7 +60,7 @@
   justify-content: center;
   place-items: center;
   margin: auto;
-  padding-right: 60px;
+  /* padding-right: ; */
 }
 
 .gap {
@@ -88,7 +88,7 @@
   text-align: center;
   list-style: none;
   cursor: pointer;
-  width: 85px;
+  width: 80px;
   height: 40px;
   padding: 5px;
   padding-bottom: 3px;
@@ -99,7 +99,7 @@
 .nav__linksItem__link {
   transition: color ease-in-out 0.2s;
   /* color: rgb(143, 143, 143); */
-  color: #00A8F3;
+  color: #00a8f3;
   text-decoration: none;
   text-transform: capitalize;
 }
@@ -108,7 +108,7 @@
 }
 
 .nav__linksItem:hover {
-  background-color: #E8F7F7;
+  background-color: #e8f7f7;
 }
 
 .nav__linksItem:hover .tooltip {
@@ -135,7 +135,7 @@
 }
 
 .nav__linksItem.active {
-  color: #00A8F3;
+  color: #00a8f3;
 }
 
 .headerMenu__iconActive {
@@ -151,9 +151,9 @@
 }
 
 .header__user {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
 }
 
 .header__userButton {
@@ -167,11 +167,11 @@
   border: none;
   cursor: pointer;
   /* background: #009bf6; */
-  background: #27B0FF;
+  background: #27b0ff;
   transition: all ease-in 0.1s;
-  color: #F7F7F7;
+  color: #f7f7f7;
   box-shadow: 0 1px 6px rgb(32 33 36 / 8%);
-  border-color: rgba(223, 225, 229, 0); 
+  border-color: rgba(223, 225, 229, 0);
 }
 
 .header__userButton:hover {
@@ -233,7 +233,6 @@
     padding-top: 0px;
   }
 
-
   .nav__linksItem:hover .tooltip {
     display: none;
   }
@@ -259,7 +258,7 @@
     text-align: center;
     justify-content: space-around;
     background-color: #ffff;
-    border: solid #FBFBFB 1px; 
+    border: solid #fbfbfb 1px;
   }
 
   .nav__linksItem {

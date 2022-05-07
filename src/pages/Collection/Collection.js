@@ -84,7 +84,7 @@ function Collection({ app }) {
         payload: {
           title: "Delete Book Failed",
           subtitle:
-            "An error occured whiilee deleting your bool, please try again",
+            "An error occured while deleting your book, please try again",
           btnCancel: false,
           btnContinue: true,
           bookTitle: "",

@@ -4,14 +4,10 @@ import { useMutation } from "@apollo/react-hooks";
 import { UPDATE_USER } from "@utils/graphql.js";
 import { useUserSlice, useUtilsSlice } from "@redux/getSlices";
 import Loader from "@components/Loader";
-import Compressor from "compressorjs";
+import imageCompression from "browser-image-compression";
 import profilePlaceholder from "@assets/profile.png";
-import {
-  getStorage,
-  ref,
-  uploadString,
-  getDownloadURL,
-} from "firebase/storage";
+import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import institutions from "@text-files/institutions.json";
 
 import "./NewUser.css";
 
@@ -23,11 +19,13 @@ function NewUser({ app }) {
   const firebaseStorage = getStorage(app);
   const fileInputRef = useRef(null);
   const { onSubmit, onChange, values } = useForm(updateUserData, {
-    university: user?.university,
-    campus: user?.campus,
-    gender: user?.gender,
-    degree: user?.degree,
+    university: user?.university || "",
+    campus: user?.campus || "",
+    gender: user?.gender || "",
+    degree: user?.degree || "",
   });
+
+  console.log(institutions);
 
   const [updateProfile] = useMutation(UPDATE_USER, {
     variables: { ...values, picture: profile },
@@ -62,34 +60,82 @@ function NewUser({ app }) {
     },
   });
 
-  const handleFileInput = (inputEvent) => {
+  const handleFileInput = async (inputEvent) => {
     const [file] = inputEvent.target.files;
 
     if (file) {
-      new Compressor(file, {
-        quality: 0.2,
-        success(file) {
-          const reader = new FileReader();
+      const reader = new FileReader();
+      let options = {
+        maxSizeMB: 0.2,
+        maxWidthOrHeight: 1024,
+        useWebWorker: true,
+      };
+      let newFile = await imageCompression(file, options);
 
-          reader.onload = (readerEvent) => {
-            dispatch({
-              type: "SET_CROP_IMG",
-              payload: {
-                ...imgCrop,
-                imgSrc: readerEvent.target.result,
-              },
-            });
-          };
+      reader.onload = (readerEvent) => {
+        dispatch({
+          type: "SET_CROP_IMG",
+          payload: {
+            ...imgCrop,
+            imgSrc: readerEvent.target.result,
+          },
+        });
+      };
 
-          window.scrollTo(0, 0);
-          reader.readAsDataURL(file);
-        },
-        error(err) {},
-      });
+      window.scrollTo(0, 0);
+      reader.readAsDataURL(newFile);
     }
 
     fileInputRef.current.value = "";
   };
+
+  async function saveImage(e) {
+    setLoading(true);
+
+    if (profile === values.picture || profile === "") {
+      onSubmit(e);
+      return;
+    }
+
+    const storageRef = ref(
+      firebaseStorage,
+      `${user.id}/profile/${user.firstName}.png`
+    );
+
+    let options = {
+      maxSizeMB: 0.2,
+      maxWidthOrHeight: 1024,
+      useWebWorker: true,
+    };
+
+    const file = await imageCompression.getFilefromDataUrl(
+      profile,
+      user.firstName + ".png"
+    );
+
+    let newFile = await imageCompression(file, options);
+
+    await uploadBytes(storageRef, newFile)
+      .then(() => {
+        console.log("Image has been uploaded");
+        dispatch({
+          type: "SET_CROP_IMG",
+          payload: {
+            croppedImgUrl: null,
+          },
+        });
+      })
+      .catch((err) => {});
+
+    await getDownloadURL(storageRef)
+      .then((url) => {
+        if (url) updateProfile({ variables: { picture: url } });
+        else setProfile("");
+      })
+      .catch((err) => console.log(err));
+
+    onSubmit(e);
+  }
 
   function updateUserData() {
     setLoading(true);
@@ -97,37 +143,8 @@ function NewUser({ app }) {
   }
 
   useEffect(() => {
-    document.title = "Profile - Qampus";
-
     if (!imgCrop.croppedImgUrl) return;
-
-    setLoading(true);
-    const storageRef = ref(
-      firebaseStorage,
-      `${user.id}/profile/${user.firstName}.webp`
-    );
-
-    (async () => {
-      await uploadString(storageRef, imgCrop.croppedImgUrl, "data_url")
-        .then(() => {
-          console.log("Image has been uploaded");
-          dispatch({
-            type: "SET_CROP_IMG",
-            payload: {
-              croppedImgUrl: null,
-            },
-          });
-        })
-        .catch((err) => {});
-
-      await getDownloadURL(storageRef)
-        .then((url) => {
-          if (url) updateProfile({ variables: { picture: url } });
-          else setProfile("");
-        })
-        .catch((err) => console.log(err));
-    })();
-    // }
+    setProfile(imgCrop.croppedImgUrl);
 
     return () => {
       if (imgCrop.croppedImgUrl) {
@@ -142,15 +159,7 @@ function NewUser({ app }) {
         });
       }
     };
-  }, [
-    dispatch,
-    imgCrop,
-    firebaseStorage,
-    user.firstName,
-    user.id,
-    updateProfile,
-    setLoading,
-  ]);
+  }, [dispatch, imgCrop, setLoading]);
 
   return (
     <div className="newUser__overlay">
@@ -167,7 +176,7 @@ function NewUser({ app }) {
             // onSubmit={onSubmit}
           >
             <div>
-              <label htmlFor="university">University</label>
+              <label htmlFor="university">Institution</label>
               <input
                 className="editProfile__mainFormInput"
                 name="university"
@@ -175,8 +184,15 @@ function NewUser({ app }) {
                 id="university"
                 value={values?.university}
                 onChange={onChange}
+                list="institutions"
               />
               <p>Helps us show you things relavant only to your university</p>
+
+              <datalist id="institutions">
+                {institutions.map((item) => (
+                  <option value={item.name}>{item.name}</option>
+                ))}
+              </datalist>
             </div>
 
             <div>
@@ -188,8 +204,17 @@ function NewUser({ app }) {
                 id="campusName"
                 value={values?.campus}
                 onChange={onChange}
+                list="campuses"
               />
               <p>Which {values?.university || "UFS"} campus are you on?</p>
+
+              <datalist id="campuses">
+                {institutions
+                  .find((item) => item.name === values.university)
+                  ?.campuses?.map((campus) => (
+                    <option value={campus} />
+                  ))}
+              </datalist>
             </div>
 
             <div>
@@ -268,14 +293,11 @@ function NewUser({ app }) {
             <button onClick={() => fileInputRef.current.click()}>
               Upload Image
             </button>
-
-            {/* If user image exists the we remove it and show the person default */}
-            <button>Remove Image</button>
           </div>
         </main>
 
         <footer className="newUser__footer">
-          <button onClick={onSubmit}>Continue</button>
+          <button onClick={saveImage}>Continue</button>
         </footer>
       </section>
     </div>
