@@ -135,7 +135,7 @@
   font-size: 2rem;
   right: 20px;
   top: -50px;
-  animation: color-change 5s ease-in-out infinite;
+  animation: color-change 5s ease-in-out;
 }
 
 @keyframes color-change {
@@ -204,16 +204,18 @@
  }
  .nav_header {
   display: flex;
-  align-items: center;
-  width: 100%;
 }
  .nav_header .buttons {
     padding-bottom: 20px;  
-    overflow-x: scroll;
     margin-left: 50px;
-
+    align-items: center;
+    overflow-y: scroll;
+    width: 100%;
+    padding-left: 120px;
   }
-
+  .navigation__mainFrame{
+    max-height: 92%;
+  }
   .navigation__sidebar.opening {
     right: 15px;
     top: 60px;
