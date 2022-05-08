@@ -6,6 +6,7 @@ import { useForm } from "@utils/hooks";
 import {
   building,
   coordinates,
+  parking,
 } from "../../nav_coordinates/nav_coordinates.json";
 import {RiNavigationFill, RiCloseLine} from "react-icons/ri";
 import {MdAssistantNavigation} from "react-icons/md";
@@ -127,63 +128,97 @@ function Navigation() {
   };
 
   /*Map Categories*/
-      
+  const [array, setArray] = useState({
+    title: "All content",
+    content: [].concat(building, parking),
+    //content should return an array with the location name 
+  })
   function tabBtnClicked(tab) {
     switch (tab) {
-      case "safety": {
-        document.querySelector("#ter").style.background = '#8F8F8F';
-        document.querySelector("#abt").style.background = '#8F8F8F';
-        document.querySelector("#tut").style.background = '#8F8F8F';
-        document.querySelector("#saf").style.background = '#009BF6';
-        document.querySelector(".main_content").style.overflowY = 'hidden';
+      case "all": {
+        // document.querySelector("#all").style.background = '#009BF6';
+        // document.querySelector("#bld").style.background = '#8F8F8F';
+        // document.querySelector("#gts").style.background = '#8F8F8F';
+        // document.querySelector("#prk").style.background = '#8F8F8F';
+        // document.querySelector("#res").style.background = '#8F8F8F';
+        // document.querySelector("#spt").style.background = '#8F8F8F';
         break;
       }
 
-      case "tutorials": {
-        document.querySelector("#ter").style.background = '#8F8F8F';
-        document.querySelector("#saf").style.background = '#8F8F8F';
-        document.querySelector("#abt").style.background = '#8F8F8F';
-        document.querySelector("#tut").style.background = '#009BF6';
-        document.querySelector(".main_content").style.overflowY = 'scroll';
+      case "building": {
+        document.querySelector("#all").style.background = '#8F8F8F';
+        document.querySelector("#bld").style.background = '#009BF6';
+        document.querySelector("#gts").style.background = '#8F8F8F';
+        document.querySelector("#prk").style.background = '#8F8F8F';
+        document.querySelector("#res").style.background = '#8F8F8F';
+        document.querySelector("#spt").style.background = '#8F8F8F';
         break;
       }
 
-      case "about": {
-        document.querySelector("#ter").style.background = '#8F8F8F';
-        document.querySelector("#saf").style.background = '#8F8F8F';
-        document.querySelector("#tut").style.background = '#8F8F8F';
-        document.querySelector("#abt").style.background = '#009BF6';
-        document.querySelector(".main_content").style.overflowY = 'hidden';
+      case "gates": {
+        // document.querySelector("#all").style.background = '#8F8F8F';
+        // document.querySelector("#bld").style.background = '#8F8F8F';
+        // document.querySelector("#gts").style.background = '#009BF6';
+        // document.querySelector("#prk").style.background = '#8F8F8F';
+        // document.querySelector("#res").style.background = '#8F8F8F';
+        // document.querySelector("#spt").style.background = '#8F8F8F';
+        break;
+      }
+      
+      case "parking": {
+        // document.querySelector("#all").style.background = '#8F8F8F';
+        // document.querySelector("#bld").style.background = '#8F8F8F';
+        // document.querySelector("#gts").style.background = '#8F8F8F';
+        // document.querySelector("#prk").style.background = '#009BF6';
+        // document.querySelector("#res").style.background = '#8F8F8F';
+        // document.querySelector("#spt").style.background = '#8F8F8F';
         break;
       }
 
+      case "residences": {
+        // document.querySelector("#all").style.background = '#8F8F8F';
+        // document.querySelector("#bld").style.background = '#8F8F8F';
+        // document.querySelector("#gts").style.background = '#8F8F8F';
+        // document.querySelector("#prk").style.background = '#8F8F8F';
+        // document.querySelector("#res").style.background = '#009BF6';
+        // document.querySelector("#spt").style.background = '#8F8F8F';
+        break;
+      }
       default: {
-        document.querySelector("#saf").style.background = '#8F8F8F';
-        document.querySelector("#abt").style.background = '#8F8F8F';
-        document.querySelector("#tut").style.background = '#8F8F8F';
-        document.querySelector("#ter").style.background = '#009BF6';
-        document.querySelector(".main_content").style.overflowY = 'scroll';
+        // document.querySelector("#all").style.background = '#8F8F8F';
+        // document.querySelector("#bld").style.background = '#8F8F8F';
+        // document.querySelector("#gts").style.background = '#8F8F8F';
+        // document.querySelector("#prk").style.background = '#8F8F8F';
+        // document.querySelector("#res").style.background = '#8F8F8F';
+        // document.querySelector("#spt").style.background = '#009BF6';
       }
     }
   }
- 
+  useEffect(() => {
+    tabBtnClicked("building");
+  }, []);
   return (
     <div className="navigation">
         <div className="nav__header">
           <div className="buttons">
-            <button id="abt" className="button" onClick={() => tabBtnClicked("about")} >
+            <button id="all" className="button" onClick={() => tabBtnClicked("all")} >
               All Categories
             </button>
-            <button id="tut" className="button" onClick={() => tabBtnClicked("tutorials")}>
+            <button id="bld" className="button" onClick={() => tabBtnClicked("building")}>
               Buidlings
             </button>
-            <button id="saf" className="button" onClick={() => tabBtnClicked("safety")}>
+            <button id="gts" className="button" onClick={() => tabBtnClicked("gates")}>
               Gates
             </button>
-            <button id="ter" className="button" onClick={() => tabBtnClicked("terms")}>
+            <button id="prk" className="button" onClick={() => tabBtnClicked("parking")}>
+              Parking
+            </button>
+            <button id="res" className="button" onClick={() => tabBtnClicked("residences")}>
+              Residences
+            </button>
+            <button id="spt" className="button" onClick={() => tabBtnClicked("sports")}>
               Sports fields
             </button>
-            {/* <button className="button" onClick={() => tabBtnClicked("")}>Contact us</button> */}
           </div>
       </div>
       <div className="navigation__body">
