@@ -160,7 +160,7 @@ function Login() {
               <h2>Qampus</h2>
             </div>
 
-            <h2 className="login__title">Sign in to your account</h2>
+            <h2 className="login__title">Welcome back...</h2>
 
             <form
               autoComplete="off"

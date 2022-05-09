@@ -29,6 +29,7 @@
   width: -moz-fit-content;
   width: fit-content;
   height: 100%;
+  user-select: none;
 }
 
 .logoContainer h2 {
@@ -44,7 +45,7 @@
 .logoContainer img {
   height: 50px;
   object-fit: contain;
-  -webkit-filter: drop-shadow(1px 2px 1px rgb(10 10 10 / 25%));
+  -webkit-filter: drop-shadow(1px 2px 1px rgb(10 10 10 / 28%));
 }
 
 .header__button {

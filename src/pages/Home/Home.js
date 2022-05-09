@@ -105,7 +105,7 @@ function Home({ history }) {
 
       <div className="home__searchSection" id="search">
         <p className="home__subtitle">
-          Welcome, what book are you looking for?
+          What book are you looking for?
         </p>
 
         <form
