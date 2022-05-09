@@ -11,13 +11,13 @@
 .nav__header {
   display: flex;
   justify-content: flex-start;
+  width: 100%;
   padding-top: 30px;
   padding-bottom: 5px;
   margin: auto;
-  width: 100%;
 }
 
-.nav__header .buttons {
+/* .nav__header .buttons {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -44,7 +44,7 @@
   min-width: fit-content;
   margin-left: 5px;
   margin-right: 5px;
-}
+} */
 
 .navigation__body {
   display: flex;
@@ -202,17 +202,13 @@
    top: 15px;
    right: 15px;
  }
+
  .nav_header {
-  display: flex;
+  padding-left: 100px;
 }
- .nav_header .buttons {
-    padding-bottom: 20px;  
-    margin-left: 50px;
-    align-items: center;
-    overflow-y: scroll;
-    width: 100%;
-    padding-left: 120px;
-  }
+ /* .nav_header .buttons {
+    overflow: scroll;
+  }  */
   .navigation__mainFrame{
     max-height: 92%;
   }

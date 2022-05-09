@@ -41,7 +41,8 @@
   width: 100%;
 }
 
-.help__header .buttons {
+
+ .buttons {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -53,7 +54,8 @@
 
 }
 
-.help__header .buttons .button {
+
+ .buttons .button {
   display: flex;
   justify-content: center;
   padding: 4px 10px;
@@ -106,7 +108,7 @@
     width: 100%;
     margin-bottom: 1px;
   }
-  .help__header .buttons {
+  .buttons {
     overflow-x: scroll;
   }
   .help_side {
