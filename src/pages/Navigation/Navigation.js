@@ -136,24 +136,24 @@ function Navigation() {
   function tabBtnClicked(tab) {
     switch (tab) {
       case "all": {
-        // document.querySelector("#all").style.background = '#009BF6';
-        // document.querySelector("#bld").style.background = '#8F8F8F';
-        // document.querySelector("#gts").style.background = '#8F8F8F';
-        // document.querySelector("#prk").style.background = '#8F8F8F';
-        // document.querySelector("#res").style.background = '#8F8F8F';
-        // document.querySelector("#spt").style.background = '#8F8F8F';
-        break;
-      }
-
-      case "building": {
-        document.querySelector("#all").style.background = '#8F8F8F';
-        document.querySelector("#bld").style.background = '#009BF6';
+        document.querySelector("#all").style.background = '#009BF6';
+        document.querySelector("#bld").style.background = '#8F8F8F';
         document.querySelector("#gts").style.background = '#8F8F8F';
         document.querySelector("#prk").style.background = '#8F8F8F';
         document.querySelector("#res").style.background = '#8F8F8F';
         document.querySelector("#spt").style.background = '#8F8F8F';
         break;
       }
+
+      // case "building": {
+      //   document.querySelector("#all").style.background = '#8F8F8F';
+      //   document.querySelector("#bld").style.background = '#009BF6';
+      //   document.querySelector("#gts").style.background = '#8F8F8F';
+      //   document.querySelector("#prk").style.background = '#8F8F8F';
+      //   document.querySelector("#res").style.background = '#8F8F8F';
+      //   document.querySelector("#spt").style.background = '#8F8F8F';
+      //   break;
+      // }
 
       case "gates": {
         // document.querySelector("#all").style.background = '#8F8F8F';
@@ -195,11 +195,11 @@ function Navigation() {
     }
   }
   useEffect(() => {
-    tabBtnClicked("building");
+    tabBtnClicked("all");
   }, []);
   return (
     <div className="navigation">
-        <div className="nav__header">
+      <div className="nav__header">
           <div className="buttons">
             <button id="all" className="button" onClick={() => tabBtnClicked("all")} >
               All Categories
