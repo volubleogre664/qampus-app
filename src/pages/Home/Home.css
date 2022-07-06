@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Oxygen&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Nixie+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Forum&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&display=swap");
 
 .home {
@@ -13,7 +11,7 @@
   position: relative;
   padding: 15px;
   padding-top: 0;
-  /* background: url("../../assets/35.jpg") repeat-y; */
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.33)), url("../../assets/reading.jpg") repeat-y;
   background-attachment: fixed;
   background-position: top;
   background-size: cover;
@@ -26,13 +24,14 @@
 .home__subtitle {
   margin: 0 auto;
   font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-size: 1.5rem;
+  font-weight: 300;
+  font-size: 1.3rem;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   color: #003f64;
   text-align: center;
+  text-transform: uppercase;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;

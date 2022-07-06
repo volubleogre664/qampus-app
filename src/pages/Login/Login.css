@@ -1,7 +1,7 @@
 .login {
   flex: 1;
   display: flex;
-  background-image: url("../../assets/register_image.jpg");
+  background-image: url("../../assets/login.jpg");
   background-size: cover;
   background-clip: border-box;
   background-attachment: fixed;
@@ -92,7 +92,7 @@
   padding: 20px;
   display: flex;
   place-items: center;
-  background-color: rgba(255, 255, 255, 0.93);
+  background-color: rgba(255, 255, 255, 0.9);
   overflow-x: hidden;
   overflow-y: auto;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.35);
@@ -135,6 +135,7 @@
   font-weight: 200;
   color: #554468;
   -webkit-filter: unset;
+  text-transform: capitalize;
   filter: unset;
   margin-bottom: 15px;
   text-align: center;

@@ -30,6 +30,7 @@
   width: fit-content;
   height: 100%;
   user-select: none;
+  margin-right: -95px;
 }
 
 .logoContainer h2 {
@@ -79,7 +80,6 @@
 .nav__links {
   display: flex;
   width: 100%;
-  /* gap: 10px; */
   margin: auto;
   margin-top: 0;
 }
@@ -213,7 +213,6 @@
 
 @media screen and (max-width: 800px) {
   .header {
-    justify-content: space-between;
     align-items: flex-start;
     min-height: 100px;
     border-bottom: 1px solid #009bf6;

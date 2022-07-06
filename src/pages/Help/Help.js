@@ -54,16 +54,16 @@ function Help() {
       }
     }
   }
+
+  function openInNewTab(url) {
+    window.open(url, '_blank').focus();
+   }
     useEffect(() => {
       tabBtnClicked("about");
     }, []);
   return (
     <div className="help">
       <div className="help__header">
-        {/* <p className="main_header"> {display.title}</p>
-        <button className="btnHeader" onClick={handleClick}>
-          {click ? <RiCloseLine /> : <RiMenuLine />}
-        </button> */}
           <div className="buttons">
             <button id="abt" className="button" onClick={() => tabBtnClicked("about")} >
               About us
@@ -74,7 +74,7 @@ function Help() {
             <button id="saf" className="button" onClick={() => tabBtnClicked("safety")}>
               Safety tips
             </button>
-            <button id="ter" className="button" onClick={() => tabBtnClicked("terms")}>
+            <button id="ter" className="button" onClick={() => openInNewTab('https://nuclearsoftware.co.za/terms.html')}>
               Terms of use
             </button>
             {/* <button className="button" onClick={() => tabBtnClicked("")}>Contact us</button> */}
