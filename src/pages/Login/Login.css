@@ -1,7 +1,7 @@
 .login {
   flex: 1;
   display: flex;
-  background-image: url("../../assets/login.jpg");
+  background-image: url("../../assets/ufs.jpg");
   background-size: cover;
   background-clip: border-box;
   background-attachment: fixed;
@@ -92,7 +92,7 @@
   padding: 20px;
   display: flex;
   place-items: center;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255,0.98);
   overflow-x: hidden;
   overflow-y: auto;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.35);
@@ -131,7 +131,7 @@
 }
 
 .login__title {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 200;
   color: #554468;
   -webkit-filter: unset;
@@ -140,6 +140,7 @@
   margin-bottom: 15px;
   text-align: center;
   user-select: none;
+  text-transform: uppercase;
 }
 
 .login__title span {

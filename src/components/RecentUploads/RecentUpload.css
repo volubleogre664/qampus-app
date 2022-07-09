@@ -13,8 +13,8 @@
   padding: 15px;
   border-radius: 8px;
   background: transparent;
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
   padding: 20px;
     box-shadow: 0 1px 6px rgb(32 33 36/70%);
     background: rgba(255, 255, 255, 0.85);
@@ -30,6 +30,7 @@
   grid-gap: 15px;
   align-items: center;
   justify-content: center;
+  min-height: 380px;
   grid-template-columns: repeat(auto-fit, 130px);
 }
 

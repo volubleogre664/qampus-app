@@ -1,7 +1,7 @@
 .register {
   flex: 1;
   display: flex;
-  background-image: url("../../assets/register_image.jpg");
+  background-image: url("../../assets/login.jpg");
   background-size: cover;
   background-clip: border-box;
   background-attachment: fixed;
@@ -141,13 +141,14 @@
 }
 
 .register__title {
-  font-size: 1.4rem;
+  font-size: 1.15rem;
   font-weight: 200;
   color: #554468;
   -webkit-filter: unset;
   filter: unset;
   margin-bottom: 15px;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .register__title span {

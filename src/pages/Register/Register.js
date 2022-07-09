@@ -180,7 +180,7 @@ function Register() {
               <h2>Qampus</h2>
             </div>
 
-            <h2 className="register__title">Create new account.</h2>
+            <h2 className="register__title">Create a new account</h2>
 
             <form
               autoComplete="off"
@@ -242,7 +242,7 @@ function Register() {
                   className="login__mainFormButton"
                   onClick={addPasswords}
                 >
-                  Register
+                  Register Account
                 </button>
               </div>
 
