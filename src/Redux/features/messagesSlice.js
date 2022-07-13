@@ -18,7 +18,13 @@ const messagesSlice = createSlice({
       if (state.messages.find((item) => item.id === action.payload.id)) return;
 
       if (Array.isArray(action.payload)) {
-        state.messages = [...state.messages, ...action.payload];
+        action.payload.forEach((msg) => {
+          if (!state.messages.find((item) => item.id === msg.id)) {
+            state.messages.push(msg);
+          }
+        });
+
+        // state.messages = [...state.messages, ...action.payload];
       } else {
         state.messages.push(action.payload);
       }

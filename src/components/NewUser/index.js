@@ -19,13 +19,11 @@ function NewUser({ app }) {
   const firebaseStorage = getStorage(app);
   const fileInputRef = useRef(null);
   const { onSubmit, onChange, values } = useForm(updateUserData, {
-    university: user?.university || "",
+    university: "University of The Free State",
     campus: user?.campus || "",
     gender: user?.gender || "",
     degree: user?.degree || "",
   });
-
-  console.log(institutions);
 
   const [updateProfile] = useMutation(UPDATE_USER, {
     variables: { ...values, picture: profile },
@@ -170,11 +168,7 @@ function NewUser({ app }) {
         </header>
 
         <main className="newUser__main">
-          <form
-            autoComplete="off"
-            className="newUser__mainForm"
-            // onSubmit={onSubmit}
-          >
+          <form autoComplete="off" className="newUser__mainForm">
             <div>
               <label htmlFor="university">Institution</label>
               <input
@@ -183,6 +177,7 @@ function NewUser({ app }) {
                 type="text"
                 id="university"
                 value={values?.university}
+                disabled
                 onChange={onChange}
                 list="institutions"
               />
@@ -206,7 +201,7 @@ function NewUser({ app }) {
                 onChange={onChange}
                 list="campuses"
               />
-              <p>Which {values?.university || "UFS"} campus are you on?</p>
+              <p>Which {values?.university} campus are you on?</p>
 
               <datalist id="campuses">
                 {institutions
@@ -279,7 +274,7 @@ function NewUser({ app }) {
             <span>Profile Image</span>
             <div className="image-container">
               <img
-                src={user?.picture || profilePlaceholder}
+                src={profile || profilePlaceholder}
                 alt="edit your profile"
               />
               <input

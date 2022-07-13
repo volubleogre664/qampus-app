@@ -295,6 +295,29 @@ const GET_MESSAGES_QUERY = gql`
   }
 `;
 
+const GET_ALL_USER_MESSAGES = gql`
+  query getAllUserMessages($userId: ID!) {
+    getAllUserMessages(userId: $userId) {
+      id
+      to
+      from
+      time
+      textMsg
+      attachment
+      book {
+        id
+        isbn
+        title
+        authors
+        price
+        bookOwner
+        moduleCode
+        frontCover
+      }
+    }
+  }
+`;
+
 const GET_BOOK_TITLES = gql`
   query getBookTitles {
     getBookTitles {
@@ -339,4 +362,5 @@ export {
   GET_MESSAGES_QUERY,
   GET_BOOK_TITLES,
   GET_USER_DATA,
+  GET_ALL_USER_MESSAGES,
 };

@@ -17,7 +17,6 @@ import {
 import profilePlaceholder from "@assets/profile.png";
 
 import "./EditProfile.css";
-var picture = "";
 
 function EditProfile({ app }) {
   const [{ user, imgCrop }, dispatch] = useUserSlice();
@@ -29,21 +28,19 @@ function EditProfile({ app }) {
   const firebaseStorage = getStorage(app);
   const fileInputRef = useRef(null);
 
-  const { onChange, onSubmit, values, updateValues } = useForm(updateUser, {
+  const { onChange, values, updateValues } = useForm(updateUser, {
     ...user,
     password: user?.secure ? "secure" : "",
     newPassword: "",
     confirmNewPassword: "",
   });
 
-  if (picture === "" && values.picture !== "") picture = values.picture;
-
   const [updateProfile] = useMutation(UPDATE_USER, {
-    variables: { ...values, picture },
+    variables: { ...values, picture: profile },
     update(_, { data }) {
       setLoading({ isLoading: false, message: "" });
       // setActive(false);
-      // console.logg(data);
+      console.log(data);
       if (data) {
         dispatch({
           type: "SET_USER",
@@ -92,7 +89,7 @@ function EditProfile({ app }) {
         firstName: values.firstName,
         lastName: values.lastName,
         email: values.email,
-        picture: picture,
+        picture: profile,
         university: values.university,
         degree: values.degree,
         campus: values.campus,
@@ -101,7 +98,7 @@ function EditProfile({ app }) {
     });
   }
 
-  const saveChanges = (e) => {
+  const saveChanges = async (e) => {
     if (
       values.password !== "" ||
       values.newPassword !== "" ||
@@ -113,7 +110,6 @@ function EditProfile({ app }) {
         values.newPassword === values.confirmNewPassword;
 
       if (!(isPass && isNewPass)) {
-        console.log(isPass, isNewPass);
         setMessage(
           "To change password, please provide current password and confirm new password must match new password."
         );
@@ -126,75 +122,105 @@ function EditProfile({ app }) {
       }
     }
 
-    onSubmit(e);
+    let imageUrl = await saveImageToCloud(e);
+
+    if (!imageUrl) imageUrl = values.picture;
+
+    setLoading({
+      isLoading: true,
+      message: "We're are updating your information",
+    });
+
+    updateProfile({
+      variables: {
+        firstName: values.firstName,
+        lastName: values.lastName,
+        email: values.email,
+        picture: imageUrl,
+        university: values.university,
+        degree: values.degree,
+        campus: values.campus,
+        gender: values.gender,
+      },
+    });
   };
 
   const removeProfileImage = async () => {
     if (user.picture === "") return;
 
-    let userProfile = `${user.id}/profile/${user.firstName}.webp`;
-    if (userProfile.includes("jpg")) userProfile.replace("webp", "jpg");
+    console.log("Yeah we got here mate");
+
+    let userProfile = `${user.id}/profile/${user.firstName}.png`;
+    if (userProfile.includes("jpg")) userProfile.replace("jpg", "png");
 
     let imageRef = ref(firebaseStorage, userProfile);
 
     await deleteObject(imageRef)
       .then(() => {
-        updateProfile({ variables: { picture: "" } });
+        updateProfile({ variables: { ...values, picture: "" } });
       })
       .catch((err) => console.log("Error encountered"));
   };
 
   const saveImageToCloud = async (e) => {
-    if (profile !== values.picture) {
-      setLoading({
-        isLoading: true,
-        message: "Saving image to cloud",
-      });
-
-      const storageRef = ref(
-        firebaseStorage,
-        `${user.id}/profile/${user.firstName}.png`
-      );
-
-      let options = {
-        maxSizeMB: 0.2,
-        maxWidthOrHeight: 1024,
-        useWebWorker: true,
-      };
-
-      const file = await imageCompression.getFilefromDataUrl(
-        profile,
-        user.firstName + ".png"
-      );
-
-      let newFile = await imageCompression(file, options);
-
-      await uploadBytes(storageRef, newFile)
-        .then(() => {
-          console.log("Image has been uploaded");
-          dispatch({
-            type: "SET_CROP_IMG",
-            payload: {
-              imgSrc: "",
-              croppedImgUrl: null,
-              aspect: null,
-            },
-          });
-        })
-        .catch((err) => {
-          console.log("Error uploading image: ");
-        });
-
-      await getDownloadURL(storageRef)
-        .then((url) => {
-          if (url) {
-            setProfile(url);
-          } else setProfile("");
-        })
-        .catch((err) => console.log(""));
+    if (profile === values.picture) {
+      return;
     }
 
-    saveChanges(e);
+    setLoading({
+      isLoading: true,
+      message: "Saving image to cloud",
+    });
+
+    const storageRef = ref(
+      firebaseStorage,
+      `${user.id}/profile/${user.firstName}.png`
+    );
+
+    let options = {
+      maxSizeMB: 0.2,
+      maxWidthOrHeight: 1024,
+      useWebWorker: true,
+    };
+
+    const file = await imageCompression.getFilefromDataUrl(
+      profile,
+      user.firstName + ".png"
+    );
+
+    let newFile = await imageCompression(file, options);
+
+    await uploadBytes(storageRef, newFile)
+      .then(() => {
+        console.log("Image has been uploaded");
+        dispatch({
+          type: "SET_CROP_IMG",
+          payload: {
+            imgSrc: "",
+            croppedImgUrl: null,
+            aspect: null,
+          },
+        });
+      })
+      .catch((err) => {
+        console.log("Error uploading image: ");
+        return;
+      });
+
+    let picture_store = "";
+
+    await getDownloadURL(storageRef)
+      .then((url) => {
+        if (url) {
+          picture_store = url;
+        } else setProfile("");
+      })
+      .catch((err) => {
+        console.log("");
+        return;
+      });
+
+    return picture_store;
   };
 
   const removeImageClicked = () =>
@@ -254,7 +280,6 @@ function EditProfile({ app }) {
     });
 
     updateValues(user);
-    picture = user.picture;
   };
 
   const handleFileInput = async (inputEvent) => {
@@ -554,7 +579,7 @@ function EditProfile({ app }) {
         <footer className="editProfile__footer">
           <div>
             <button onClick={handleEditProfileCancel}>Cancel</button>
-            <button onClick={saveImageToCloud}>Save Changes</button>
+            <button onClick={saveChanges}>Save Changes</button>
           </div>
         </footer>
 

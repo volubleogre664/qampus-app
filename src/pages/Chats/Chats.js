@@ -16,6 +16,7 @@ import {
 } from "@redux/getSlices.js";
 import "./Chats.css";
 import Message from "@components/Message";
+import { GET_ALL_USER_MESSAGES } from "../../utils/graphql";
 
 function Chats() {
   const [{ user }, userDispatch] = useUserSlice();
@@ -69,6 +70,16 @@ function Chats() {
       }
 
       setMsg("");
+    },
+    onError(err) {},
+  });
+
+  // Gets all chats that include the user (Whether they were the receiver or the sender)
+  const [getAllChats] = useLazyQuery(GET_ALL_USER_MESSAGES, {
+    onCompleted({ getAllUserMessages: userChats }) {
+      messageDispatch({
+        payload: userChats,
+      });
     },
     onError(err) {},
   });
@@ -223,11 +234,12 @@ function Chats() {
     // return () => (window.location.href = "chats");
   }, [searchBookList, setBook, getUserData, user]);
 
-  // TODO: HANDLE ATTACHMENT
-  // const handleAttachment = (e) => {
-  //   const file = e.target.files[0];
-  //   // todo: Send file to server
-  // };
+  // Runs when chats open the first time to download them
+  useEffect(() => {
+    if (messages.length !== 0) return;
+
+    getAllChats({ variables: { userId: user.id } });
+  }, [messages, user.id, getAllChats]);
 
   const getLastMsg = (contact) => {
     for (let i = messages.length - 1; i > 0; i--) {

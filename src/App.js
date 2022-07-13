@@ -70,10 +70,6 @@ function App() {
     });
   }, [user?.id, dispatchUser, dispatchMessage]);
 
-  // useEffect(() => {
-  //   const apps = navigator?.getInstalledRelatedApps();
-  // }, []);
-
   return (
     <div className="app">
       <Router>
