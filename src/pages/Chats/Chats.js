@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import SendIcon from "@mui/icons-material/Send";
 import SearchIcon from "@mui/icons-material/Search";
-// import AttachIcon from "@mui/icons-material/AttachFile";
 import EmojiIcon from "@mui/icons-material/EmojiEmotions";
 import BackIcon from "@mui/icons-material/ArrowBack";
 import { useMutation, useLazyQuery } from "@apollo/react-hooks";
@@ -295,11 +294,6 @@ function Chats() {
       </header>
       <section className="chats__main">
         <aside className="chats__mainAside">
-          {/* <div className="searchContainer">
-            <SearchIcon />{" "} 
-            <input placeholder="Search for contact" type="text" />
-          </div> */}
-
           <div className="contactsContainer">
             {user?.contacts &&
               user.contacts.map((contact, i) => (
@@ -315,7 +309,6 @@ function Chats() {
         </aside>
 
         <main className={`chats__mainSection ${chatClick && "chatsOpen"}`}>
-          {/* <header className="chats__mainSectionHeader">Main Header</header> */}
           <main className="chats__mainSectionBody">
             {messages
               .filter(
@@ -351,9 +344,6 @@ function Chats() {
                   value={textMsg}
                   type="text"
                 />
-                {/* <button ref={attachRef} className="attachIcon">
-                  <AttachIcon />
-                </button> */}
 
                 <button type="submit" className="sendIcon">
                   <SendIcon />

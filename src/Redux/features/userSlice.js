@@ -1,19 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// (async function () {
-//   const relatedApps = await navigator.getInstalledRelatedApps();
-//   console.log(relatedApps);
-//   console.log("");
-//   relatedApps.forEach((app) => {
-//     console.log(app.id, app.platform, app.url);
-//   });
-// })();
-
-// window.open("http://localhost:3000");
-
 const initialState = {
   user: null,
-  installPrompt: false,
+  installPrompt: localStorage.getItem("pwaInstalled") === null ? true : false,
   path: "",
   errors: {},
   imgCrop: { imgSrc: null, croppedImgUrl: null, croppedBookImgUrl: null },
@@ -99,7 +88,10 @@ const userSlice = createSlice({
       state.imgCrop = action.payload;
     },
     setInstallPrompt(state, action) {
-      state.installPrompt = action.payload.installPrompt;
+      state.installPrompt = false;
+
+      if (action.payload.installPrompt)
+        localStorage.setItem("pwaInstalled", true);
     },
     addUserContact(state, action) {
       if (!action.payload) {

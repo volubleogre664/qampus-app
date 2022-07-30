@@ -20,6 +20,12 @@ const InstallPrompt = () => {
     console.log(outcome);
 
     setInstallEvent(null);
+
+    if (outcome?.outcome !== "dismissed")
+      dispatch({
+        type: "SET_INSTALL_PROMPT",
+        payload: { installPrompt: true },
+      });
   };
 
   const handleCloseClick = () => {

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 generate_vendor_prefixes() {
   for file in $1/*; do
