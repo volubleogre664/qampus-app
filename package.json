@@ -5,6 +5,8 @@
   "dependencies": {
     "@apollo/client": "^3.3.13",
     "@apollo/react-hooks": "^4.0.0",
+    "@capacitor/android": "4.0.1",
+    "@capacitor/core": "^4.0.1",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.0.1",
@@ -76,6 +78,7 @@
     ]
   },
   "devDependencies": {
+    "@capacitor/cli": "^4.0.1",
     "autoprefixer": "^10.3.1",
     "babel-plugin-module-resolver": "^4.1.0",
     "customize-cra": "^1.0.0",

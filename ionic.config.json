@@ -1,0 +1,7 @@
+{
+  "name": "qampus",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

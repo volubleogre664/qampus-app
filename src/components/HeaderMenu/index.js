@@ -10,7 +10,7 @@ import {
   RiInformationLine,
   RiInformationFill,
 } from "react-icons/ri";
-import {VscAccount} from "react-icons/vsc";
+import { VscAccount } from "react-icons/vsc";
 import { useRouteMatch, Link, useHistory } from "react-router-dom";
 import { useUserSlice } from "@redux/getSlices";
 import logo from "@assets/Qampus_logo_grey.png";
@@ -30,9 +30,11 @@ function HeaderMenu() {
     }
   };
 
+  const logoClicked = () => history.push("/");
+
   return (
     <header className="header">
-      <div role="link" className="logoContainer">
+      <div onClick={logoClicked} role="button" className="logoContainer">
         <img src={logo} alt="qampus" />
         <h2>Qampus</h2>
       </div>
@@ -86,7 +88,7 @@ function HeaderMenu() {
             />
           ) : (
             user?.firstName[0] + user?.lastName[0]
-          )) || <VscAccount/>}
+          )) || <VscAccount />}
         </button>
       </div>
     </header>
