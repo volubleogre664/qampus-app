@@ -3,6 +3,7 @@ import SendIcon from "@mui/icons-material/Send";
 import SearchIcon from "@mui/icons-material/Search";
 import EmojiIcon from "@mui/icons-material/EmojiEmotions";
 import BackIcon from "@mui/icons-material/ArrowBack";
+import useGQL from "../../utils/graphqlHooks";
 import { useMutation, useLazyQuery } from "@apollo/react-hooks";
 import Picker from "emoji-picker-react";
 import personIcon from "@assets/profile.png";
@@ -55,9 +56,11 @@ function Chats() {
   };
 
   // Sends message to the server
-  const [addMessage] = useMutation(ADD_MESSAGE, {
+  const [addMessage] = useGQL({
+    type: "mutation",
+    query: ADD_MESSAGE,
     varaibles: { to: currentContact?.id, textMsg: textMsg },
-    update(_, { data: { addMessage: msg } }) {
+    onSuccess: (_, { data: { addMessage: msg } }) => {
       // if (window.location.search.length) window.location.search = "";
       if (!messages.find((m) => m.id === msg.id)) {
         messageDispatch({
@@ -70,7 +73,7 @@ function Chats() {
 
       setMsg("");
     },
-    onError(err) {},
+    onError: (err) => {},
   });
 
   // Gets all chats that include the user (Whether they were the receiver or the sender)
@@ -105,6 +108,7 @@ function Chats() {
         addMessage({
           variables: {
             to: userData?.id,
+            from: user?.id,
             textMsg: `Hi ${userData?.firstName} I would like to purchase this book`,
             book: book.bookId,
           },
@@ -169,7 +173,9 @@ function Chats() {
     const regex = / /gi;
     if (textMsg === "" || textMsg.replace(regex, "") === "") return;
 
-    addMessage({ variables: { to: currentContact?.id, textMsg } });
+    addMessage({
+      variables: { to: currentContact?.id, textMsg, from: user.id },
+    });
 
     setMsg("");
   };

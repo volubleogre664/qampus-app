@@ -20,7 +20,6 @@ const LOGIN_USER = gql`
         degree
         campus
       }
-      token
     }
   }
 `;
@@ -59,7 +58,6 @@ const REGISTER_USER = gql`
         degree
         campus
       }
-      token
     }
   }
 `;
@@ -108,7 +106,6 @@ const UPDATE_USER = gql`
         degree
         campus
       }
-      token
     }
   }
 `;
@@ -219,12 +216,14 @@ const SEARCH_BOOKS = gql`
 const ADD_MESSAGE = gql`
   mutation addMessage(
     $to: ID!
+    $from: ID!
     $textMsg: String
     $attachment: String
     $book: ID
   ) {
     addMessage(
       to: $to
+      from: $from
       textMsg: $textMsg
       attachment: $attachment
       book: $book

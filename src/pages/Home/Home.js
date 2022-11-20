@@ -6,8 +6,10 @@ import Book from "@components/Book";
 import Loader from "@components/Loader";
 import { SEARCH_BOOKS } from "@utils/graphql";
 import Recent from "@components/RecentUploads";
+import jwtDecode from "jwt-decode";
 import DailyQoutes from "@components/DailyQuotes";
 import RecommendedReads from "@components/RecommendedReads";
+import { useAuth0 } from "@auth0/auth0-react";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import { useBooksSlice, useUtilsSlice } from "@redux/getSlices";
 import "./Home.css";
@@ -21,6 +23,7 @@ function Home({ history }) {
   const [, dispatchUtils] = useUtilsSlice();
   const [searchStr, setSearchStr] = useState("");
   const [loading, setLoading] = useState(false);
+  const { isAuthenticated, getAccessTokenSilently, getRe } = useAuth0();
 
   // Toggles the results section and the menu section
   const [displays, setDisplays] = useState({
@@ -99,14 +102,24 @@ function Home({ history }) {
     document.title = "Home";
   }, []);
 
+  // useEffect(async () => {
+  //   if (isAuthenticated) {
+  //     const token = await getAccessTokenSilently();
+
+  //     if (token) {
+  //       console.log(token);
+  //       const decodedToken = await jwtDecode(token);
+  //       console.log(decodedToken);
+  //     }
+  //   }
+  // }, [isAuthenticated, getAccessTokenSilently]);
+
   return (
     <div className="home">
       {loading && <Loader message="Searching..." />}
 
       <div className="home__searchSection" id="search">
-        <p className="home__subtitle">
-          What book are you looking for?
-        </p>
+        <p className="home__subtitle">What book are you looking for?</p>
 
         <form
           autoComplete="off"
