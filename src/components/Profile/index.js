@@ -2,7 +2,6 @@ import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import EditOutlinedIcon from "@mui/icons-material/EditRounded";
 import { useUserSlice, useUtilsSlice } from "@redux/getSlices";
-import { useAuth0 } from "@auth0/auth0-react";
 import profilePlaceholder from "@assets/profile.png";
 
 import "./Profile.css";
@@ -10,7 +9,6 @@ import "./Profile.css";
 function Profile() {
   const [{ user }, dispatchUser] = useUserSlice();
   const [, dispatch] = useUtilsSlice();
-  const { logout } = useAuth0();
 
   const closeProfileClicked = (e) => {
     e.preventDefault();

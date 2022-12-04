@@ -16,11 +16,14 @@ import {
 } from "@redux/getSlices.js";
 import "./Chats.css";
 import Message from "@components/Message";
+import ChatSearchResult from "@components/ChatSearchResult";
 import { GET_ALL_USER_MESSAGES } from "../../utils/graphql";
 
 function Chats() {
   const [{ user }, userDispatch] = useUserSlice();
   const [textMsg, setMsg] = useState("");
+  const [searchText, setSearchText] = useState("");
+  const [searchData, setSearchData] = useState({ contacts: [], chats: [] });
   const [messages, messageDispatch] = useMessagesSlice();
   const [currentContact, setCurrentContact] = useState(null);
   const [{ searchBookList }] = useBooksSlice();
@@ -135,6 +138,75 @@ function Chats() {
     onError(err) {},
   });
 
+  const handleSearchChatClick = (item) => {
+    let contact = user.contacts.find((contact) => contact.id === item.from);
+
+    if (!contact) {
+      return;
+    }
+
+    handleContactClick(contact);
+
+    document.getElementById(item.id).scrollIntoView();
+  };
+
+  // Search for messages and contacts based on the search input
+  const handleSearch = (e) => {
+    setSearchText(e.target.value.toLowerCase());
+    let search = e.target.value.toLowerCase();
+
+    if (!search.length) {
+      setSearchData({ contacts: [], chats: [] });
+      return;
+    }
+
+    // Get all chats comming from others and get all the contacts as well
+    // Search through the contacts first then the chats
+    // The ui must be separated into two sections, one for contacts and one for chats
+    // Clicking on a contact will show the chats between the user and the contact
+    // Clicking message will show the message in the main section
+
+    let contacts = user?.contacts?.filter((item) => {
+      let name = item.firstName + item.lastName;
+      return name.toLowerCase().includes(search);
+    });
+
+    let chats = messages
+      .filter((item) => item.from !== user.id)
+      .filter((item) => {
+        return item.textMsg.toLowerCase().includes(search);
+      });
+
+    // TODO: To be continued
+    const data = {};
+
+    data.contacts = contacts.map((item) => {
+      return {
+        contact: item,
+        onClick: () => handleContactClick(item),
+        lastMsg: getLastMsg(item.id),
+      };
+    });
+
+    data.chats = chats.map((item) => {
+      let from = user.contacts.find((con) => con.id === item.from);
+
+      return {
+        name: [from.firstName, from.lastName].join(" "),
+        textMsg: item.textMsg,
+        id: item.id,
+        time: item.time,
+        onClick: () => handleSearchChatClick(item),
+      };
+    });
+
+    setSearchData({
+      ...searchData,
+      contacts: data.contacts,
+      chats: data.chats,
+    });
+  };
+
   // Handles clicking each contact
   const handleContactClick = (contact) => {
     if (screenWidth < 670) {
@@ -171,7 +243,8 @@ function Chats() {
     e.stopPropagation();
 
     const regex = / /gi;
-    if (textMsg === "" || textMsg.replace(regex, "") === "") return;
+    if (textMsg === "" || textMsg.replace(regex, "") === "") {
+    }
 
     addMessage({
       variables: { to: currentContact?.id, textMsg, from: user.id },
@@ -246,11 +319,11 @@ function Chats() {
     getAllChats({ variables: { userId: user.id } });
   }, [messages, user.id, getAllChats]);
 
-  const getLastMsg = (contact) => {
+  function getLastMsg(contact) {
     for (let i = messages.length - 1; i > 0; i--) {
       if (
-        (user.id === messages[i].from && contact.id === messages[i].to) ||
-        contact.id === messages[i].from
+        (user.id === messages[i].from && contact === messages[i].to) ||
+        contact === messages[i].from
       ) {
         return {
           lastMsg: messages[i].textMsg,
@@ -260,18 +333,34 @@ function Chats() {
     }
 
     return { lastMsg: null, time: null };
-  };
+  }
 
   return (
     <section className="chats">
       <header className="chats__header">
         {!chatClick && (
-          <div className="searchContainer">
-            <SearchIcon /> <input placeholder="Search..." type="text" />
+          <div className="searchContainer active">
+            {searchText.length > 0 ? (
+              <BackIcon
+                role="button"
+                onClick={() => {
+                  setSearchText("");
+                  setSearchData({ contacts: [], chats: [] });
+                }}
+              />
+            ) : (
+              <SearchIcon />
+            )}
+            <input
+              onChange={handleSearch}
+              value={searchText}
+              placeholder="Search..."
+              type="text"
+            />
           </div>
         )}
 
-        <div className={`${chatClick && "chatsOpen"}`}>
+        <div className={`chats__headerProfile ${chatClick && "chatsOpen"}`}>
           <button onClick={() => closeChats()}>
             {screenWidth < 670 && <BackIcon />}
             {currentContact && (
@@ -298,20 +387,25 @@ function Chats() {
           </p>
         </div>
       </header>
+
       <section className="chats__main">
         <aside className="chats__mainAside">
-          <div className="contactsContainer">
-            {user?.contacts &&
-              user.contacts.map((contact, i) => (
-                <Contact
-                  onClick={() => handleContactClick(contact)}
-                  key={contact?.id + i}
-                  contact={contact}
-                  lastMsg={getLastMsg(contact)}
-                  current={currentContact}
-                />
-              ))}
-          </div>
+          {(searchText.length > 0 && (
+            <ChatSearchResult data={searchData} />
+          )) || (
+            <div className="contactsContainer">
+              {user?.contacts &&
+                user.contacts.map((contact, i) => (
+                  <Contact
+                    onClick={() => handleContactClick(contact)}
+                    key={contact?.id + i}
+                    contact={contact}
+                    lastMsg={getLastMsg(contact.id)}
+                    current={currentContact}
+                  />
+                ))}
+            </div>
+          )}
         </aside>
 
         <main className={`chats__mainSection ${chatClick && "chatsOpen"}`}>

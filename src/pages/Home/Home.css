@@ -11,11 +11,11 @@
   position: relative;
   padding: 15px;
   padding-top: 0;
-  /* background: url("../../assets/reading.jpg"); */
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.0), rgba(0, 168, 246, 0.015)), url("../../assets/reading.jpg") repeat-y;
-  background-attachment: fixed;
+  background-color: transparent !important;
+  /* background-image: linear-gradient(toright, #fffbd5, #b20a2c); */
+  /* background-attachment: fixed;
   background-position: top;
-  background-size: cover;
+  background-size: cover; */
 }
 
 .home__logo {

@@ -15,7 +15,7 @@ import useGQL from "../../utils/graphqlHooks";
 function Login() {
   const history = useHistory();
   const location = useLocation();
-  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
   const [loading, setLoading] = useState(false);
   const [, userDispatch] = useUserSlice();
   const [error, setError] = useState(false);
@@ -114,12 +114,6 @@ function Login() {
     e.preventDefault();
     e.stopPropagation();
     loginWithRedirect({ redirectUri: window.location.href });
-  };
-
-  const logoutClicked = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    logout();
   };
 
   function loginUser() {
@@ -225,13 +219,6 @@ function Login() {
                   type="submit"
                 >
                   Sign in
-                </button>
-                <button
-                  onClick={logoutClicked}
-                  className="login__mainFormButton"
-                  type="submit"
-                >
-                  Sign out
                 </button>
               </div>
 
