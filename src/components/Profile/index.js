@@ -7,11 +7,17 @@ import profilePlaceholder from "@assets/profile.png";
 import "./Profile.css";
 
 function Profile() {
-  const [{ user }, dispatchUser] = useUserSlice();
+  const [{ user: loggedInUser, currentProfile }, dispatchUser] = useUserSlice();
   const [, dispatch] = useUtilsSlice();
+
+  const user = currentProfile ?? loggedInUser;
 
   const closeProfileClicked = (e) => {
     e.preventDefault();
+    dispatchUser({
+      type: "SET_CURRENT_PROFILE",
+      payload: { currentProfile: null },
+    });
     document.querySelector(".app > .profile").classList.toggle("active");
   };
 
@@ -63,9 +69,12 @@ function Profile() {
           <div className="someInfo">
             <h3>{`${user?.firstName} ${user?.lastName}`}</h3>
             <p>{user?.degree || ""}</p>
-            <button onClick={handleEditProfile} className="profile__edit">
-              <EditOutlinedIcon /> Edit profile
-            </button>
+
+            {user?.id === loggedInUser?.id && (
+              <button onClick={handleEditProfile} className="profile__edit">
+                <EditOutlinedIcon /> Edit profile
+              </button>
+            )}
           </div>
         </header>
 
@@ -84,7 +93,7 @@ function Profile() {
 
           {user?.campus && (
             <div>
-              <h4>Your campus</h4>
+              <h4>Campus</h4>
               <p>{user?.campus}</p>
             </div>
           )}
@@ -99,12 +108,14 @@ function Profile() {
       </main>
 
       <footer className="profile__footer">
-        <button
-          onClick={() => logoutClicked()}
-          className="profile__footerButton"
-        >
-          Sign Out
-        </button>
+        {user?.id === loggedInUser?.id && (
+          <button
+            onClick={() => logoutClicked()}
+            className="profile__footerButton"
+          >
+            Sign Out
+          </button>
+        )}
       </footer>
     </aside>
   );

@@ -12,19 +12,22 @@ const InstallPrompt = () => {
     e.preventDefault();
 
     installEvent.prompt();
-    // console.log(installEvent);
 
-    const outcome = await installEvent.userChoice;
+    document
+      .getElementById("installApp__btn")
+      .addEventListener("click", async (btnEvent) => {
+        btnEvent.preventDefault();
 
-    console.log(`User responded with: `);
-    console.log(outcome);
-
-    setInstallEvent(null);
-
-    if (outcome?.outcome !== "dismissed")
-      dispatch({
-        type: "SET_INSTALL_PROMPT",
-        payload: { installPrompt: true },
+        window.addEventListener("beforeinstallprompt", async (e) => {
+          e.preventDefault();
+          e.prompt();
+          const outcome = await e.userChoice;
+          if (outcome?.outcome !== "dismissed")
+            dispatch({
+              type: "SET_INSTALL_PROMPT",
+              payload: { installPrompt: true },
+            });
+        });
       });
   };
 
@@ -36,12 +39,14 @@ const InstallPrompt = () => {
   };
 
   useEffect(() => {
+    console.log("wHY ARE YOU NOT BEING CALLED MATE");
     window.addEventListener("beforeinstallprompt", (e) => {
       // Prevent the mini-infobar from appearing on mobile
       e.preventDefault();
       // Stash the event so it can be triggered later.
       // console.log(e);
       setInstallEvent(e);
+
       // Optionally, send analytics event that PWA install promo was shown.
       console.log(`'beforeinstallprompt' event was fired.`);
     });
@@ -49,14 +54,16 @@ const InstallPrompt = () => {
     window.addEventListener("appinstalled", (event) => {
       localStorage.setItem("pwaInstalled", "1");
     });
-  }, [setInstallEvent]);
+  }, [setInstallEvent, dispatch]);
 
   return (
     <div className="installApp__overlay">
       <div className="installApp">
         <h4>Install Qampus</h4>
         <p>Install Qampus on your device for a better experience</p>
-        <button onClick={handleInstallClick}>Install App</button>
+        <button id="installApp__btn" onClick={handleInstallClick}>
+          Install App
+        </button>
         <div className="closeBtn">
           <span
             role="button"

@@ -5,6 +5,9 @@
   "dependencies": {
     "@apollo/client": "^3.3.13",
     "@apollo/react-hooks": "^4.0.0",
+    "@auth0/auth0-react": "^1.12.0",
+    "@capacitor/android": "4.0.1",
+    "@capacitor/core": "^4.0.1",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.0.1",
@@ -55,12 +58,24 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   },
   "browserslist": {
@@ -76,6 +91,17 @@
     ]
   },
   "devDependencies": {
+    "@capacitor/cli": "^4.0.1",
+    "@storybook/addon-actions": "^6.5.13",
+    "@storybook/addon-essentials": "^6.5.13",
+    "@storybook/addon-interactions": "^6.5.13",
+    "@storybook/addon-links": "^6.5.13",
+    "@storybook/builder-webpack4": "^6.5.13",
+    "@storybook/manager-webpack4": "^6.5.13",
+    "@storybook/node-logger": "^6.5.13",
+    "@storybook/preset-create-react-app": "^3.2.0",
+    "@storybook/react": "^6.5.13",
+    "@storybook/testing-library": "^0.0.13",
     "autoprefixer": "^10.3.1",
     "babel-plugin-module-resolver": "^4.1.0",
     "customize-cra": "^1.0.0",

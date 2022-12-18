@@ -1,0 +1,8 @@
+{
+  "appId": "io.ionic.qampus",
+  "appName": "qampus",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "cordova": {}
+}

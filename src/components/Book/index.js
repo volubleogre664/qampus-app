@@ -2,7 +2,7 @@ import InfoIcon from "@mui/icons-material/InfoOutlined";
 import DeleteIcon from "@mui/icons-material/DeleteRounded";
 import PencilIcon from "@mui/icons-material/EditRounded";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { useUtilsSlice } from "@redux/getSlices";
+import { useUtilsSlice } from "../../Redux/getSlices";
 import { useHistory } from "react-router-dom";
 
 import "./Book.css";

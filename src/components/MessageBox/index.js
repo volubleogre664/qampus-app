@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import {
   useUtilsSlice,
   useUserSlice,
@@ -12,6 +13,7 @@ function MessageBox({ oncontinue = null }) {
   const [{ popup }, dispatch] = useUtilsSlice();
   const [, dispatchMessages] = useMessagesSlice();
   const [user, dispatchUser] = useUserSlice();
+  const { logout } = useAuth0();
   const history = useHistory();
 
   const handleNoClick = () => {
@@ -55,6 +57,7 @@ function MessageBox({ oncontinue = null }) {
     document.querySelector(".app > .profile").classList.toggle("active");
     history.push("/");
     dispatch({});
+    logout();
   };
 
   function handleCases() {

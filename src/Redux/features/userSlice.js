@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: null,
+  currentProfile: null,
   installPrompt: localStorage.getItem("pwaInstalled") === null ? true : false,
   path: "",
   errors: {},
@@ -49,7 +50,7 @@ const setCookie = (cookieName, value, expires = 2) => {
 };
 
 // Get the user data from cookies if it is available
-initialState.user = getCookie("user");
+// initialState.user = getCookie("user");
 if (initialState.user) {
   initialState.user.contacts = getCookie("contacts", false);
 }
@@ -61,7 +62,7 @@ const userSlice = createSlice({
     setUser(state, action) {
       state.user = action.payload;
       const { token, contacts, ...userData } = action.payload;
-      setCookie("user", userData);
+      // setCookie("user", userData);
       contacts.length && setCookie("contacts", contacts);
     },
     clearUser(state) {
@@ -83,6 +84,9 @@ const userSlice = createSlice({
     },
     setNewUser(state, action) {
       state.user.newUser = action.payload.newUser;
+    },
+    setCurrentProfile(state, action) {
+      state.currentProfile = action.payload;
     },
     setImgSrc(state, action) {
       state.imgCrop = action.payload;
@@ -120,6 +124,7 @@ export const {
   setInstallPrompt,
   setNewUser,
   setSecureLogin,
+  setCurrentProfile,
 } = userSlice.actions;
 export const selectUser = (state) => state?.user;
 export default userSlice.reducer;

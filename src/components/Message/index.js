@@ -1,4 +1,4 @@
-import Book from "@components/Book";
+import Book from "../../components/Book";
 
 import dayjs from "dayjs";
 import "./Message.css";
@@ -6,6 +6,7 @@ import "./Message.css";
 function Message({ msg, from }) {
   return (
     <div
+      id={msg.id}
       key={msg.id}
       className={msg?.from === from ? "message rec" : "message"}
     >

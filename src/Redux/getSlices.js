@@ -16,6 +16,7 @@ import {
   setNewUser,
   setSecureLogin,
   setInstallPrompt,
+  setCurrentProfile,
 } from "./features/userSlice";
 
 import {
@@ -112,6 +113,11 @@ function useUserSlice() {
 
       case "SET_NEW_USER": {
         dispatch(setNewUser(action.payload));
+        break;
+      }
+
+      case "SET_CURRENT_PROFILE": {
+        dispatch(setCurrentProfile(action.payload.user));
         break;
       }
 

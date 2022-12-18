@@ -6,10 +6,14 @@ import Book from "@components/Book";
 import Loader from "@components/Loader";
 import { SEARCH_BOOKS } from "@utils/graphql";
 import Recent from "@components/RecentUploads";
-import DailyQoutes from "@components/DailyQuotes";
-import RecommendedReads from "@components/RecommendedReads";
+// import jwtDecode from "jwt-decode";
+// import DailyQoutes from "@components/DailyQuotes";
+// import RecommendedReads from "@components/RecommendedReads";
+import { LOGIN_USER } from "@utils/graphql.js";
+import useGQL from "../../utils/graphqlHooks";
+import { useAuth0 } from "@auth0/auth0-react";
 import { MdKeyboardArrowUp } from "react-icons/md";
-import { useBooksSlice, useUtilsSlice } from "@redux/getSlices";
+import { useBooksSlice, useUtilsSlice, useUserSlice } from "@redux/getSlices";
 import "./Home.css";
 
 //change the background reference here
@@ -19,8 +23,10 @@ import "./Home.css";
 function Home({ history }) {
   const [{ searchBookList: books }, dispatchBook] = useBooksSlice();
   const [, dispatchUtils] = useUtilsSlice();
+  const [{ user }, userDispatch] = useUserSlice();
   const [searchStr, setSearchStr] = useState("");
   const [loading, setLoading] = useState(false);
+  const { isAuthenticated, user: authUser } = useAuth0();
 
   // Toggles the results section and the menu section
   const [displays, setDisplays] = useState({
@@ -95,18 +101,12 @@ function Home({ history }) {
     setDisplays({ menu: "flex", results: "none" });
   };
 
-  useEffect(() => {
-    document.title = "Home";
-  }, []);
-
   return (
     <div className="home">
       {loading && <Loader message="Searching..." />}
 
       <div className="home__searchSection" id="search">
-        <p className="home__subtitle">
-          What book are you looking for?
-        </p>
+        <p className="home__subtitle">What book are you looking for?</p>
 
         <form
           autoComplete="off"

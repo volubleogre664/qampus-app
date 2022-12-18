@@ -7,14 +7,17 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useUserSlice, useUtilsSlice } from "@redux/getSlices.js";
 import { useForm } from "@utils/hooks.js";
 import { LOGIN_USER, FORGOT_PASSWORD } from "@utils/graphql.js";
+import { useAuth0 } from "@auth0/auth0-react";
 import logo from "@assets/Qampus_logo_grey.png";
 import "./Login.css";
+import useGQL from "../../utils/graphqlHooks";
 
 function Login() {
   const history = useHistory();
   const location = useLocation();
+  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
   const [loading, setLoading] = useState(false);
-  const [, userDispatch] = useUserSlice();
+  const [{ user: userData }, userDispatch] = useUserSlice();
   const [error, setError] = useState(false);
   const [, dispatchUtils] = useUtilsSlice();
   const [forgotPassword, setForgotPassword] = useState(false);
@@ -23,19 +26,22 @@ function Login() {
     password: "",
   });
 
-  let [login] = useMutation(LOGIN_USER, {
-    variables: values,
-    update(_, { data: { login: userData } }) {
+  const [getUserData] = useGQL({
+    type: "mutation",
+    query: LOGIN_USER,
+    onSuccess: (_, { data: { login: userData } }) => {
       setError(false);
       setLoading(false);
-      let jwt = jwtDecode(userData.token);
-      let isSecureAuth = jwt.permissions.includes("auth:secure_password");
+      console.log("Yeap");
+      // let jwt = jwtDecode(userData.token);
+      // let isSecureAuth = jwt.permissions.includes("auth:secure_password");
+      let isSecureAuth = false;
 
       userDispatch({
         type: "SET_USER",
         payload: { ...userData, edit: isSecureAuth, secure: isSecureAuth },
       });
-      const { from } = location.state || { from: { pathname: "/" } };
+      // const { from } = location.state || { from: { pathname: "/" } };
 
       if (isSecureAuth) {
         dispatchUtils({
@@ -57,9 +63,9 @@ function Login() {
         });
       }
 
-      history.replace(from);
+      history.push("/");
     },
-    onError(err) {
+    onError: (err) => {
       setError(true);
       console.log(err);
       setLoading(false);
@@ -105,14 +111,24 @@ function Login() {
     setForgotPassword(true);
   };
 
+  const loginClicked = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    loginWithRedirect({ redirectUri: window.location.href });
+  };
+
   function loginUser() {
     setLoading(true);
-    login();
+    // login();
   }
 
   useEffect(() => {
     document.title = "Log In - Qampus";
-  }, []);
+
+    if (isAuthenticated && user !== null) {
+      getUserData({ variables: { email: user?.email, password: "sdsds" } });
+    }
+  }, [getUserData, isAuthenticated, userData]);
 
   const logoClicked = (e) => {
     e.preventDefault();
@@ -198,7 +214,11 @@ function Login() {
 
               <div>
                 {error && <p>Email or password is incorrect.</p>}
-                <button className="login__mainFormButton" type="submit">
+                <button
+                  onClick={loginClicked}
+                  className="login__mainFormButton"
+                  type="submit"
+                >
                   Sign in
                 </button>
               </div>
