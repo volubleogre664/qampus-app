@@ -16,9 +16,12 @@ const LOGIN_USER = gql`
         id
         firstName
         lastName
+        email
         picture
         degree
+        university
         campus
+        gender
       }
     }
   }
@@ -54,9 +57,12 @@ const REGISTER_USER = gql`
         id
         firstName
         lastName
+        email
         picture
         degree
+        university
         campus
+        gender
       }
     }
   }
@@ -64,6 +70,7 @@ const REGISTER_USER = gql`
 
 const UPDATE_USER = gql`
   mutation updateUser(
+    $id: ID!
     $firstName: String
     $lastName: String
     $picture: String
@@ -77,6 +84,7 @@ const UPDATE_USER = gql`
   ) {
     updateUser(
       updateInput: {
+        id: $id
         firstName: $firstName
         lastName: $lastName
         picture: $picture
@@ -102,9 +110,12 @@ const UPDATE_USER = gql`
         id
         firstName
         lastName
+        email
         picture
         degree
+        university
         campus
+        gender
       }
     }
   }
@@ -117,7 +128,8 @@ const UPLOAD_BOOK = gql`
     $moduleCode: String
     $authors: String
     $price: Float!
-    $frontCover: String
+    $frontCover: String!
+    $bookOwner: ID!
   ) {
     uploadBook(
       bookInput: {
@@ -127,6 +139,7 @@ const UPLOAD_BOOK = gql`
         authors: $authors
         price: $price
         frontCover: $frontCover
+        bookOwner: $bookOwner
       }
     ) {
       id
@@ -163,8 +176,8 @@ const GET_ONE_BOOK = gql`
 `;
 
 const DELETE_BOOK = gql`
-  mutation deleteBook($id: ID!) {
-    deleteBook(bookId: $id)
+  mutation deleteBook($id: ID!, $bookOwner: ID!) {
+    deleteBook(bookId: $id, bookOwner: $bookOwner)
   }
 `;
 
@@ -334,6 +347,10 @@ const GET_USER_DATA = gql`
       lastName
       email
       picture
+      degree
+      university
+      campus
+      gender
     }
   }
 `;

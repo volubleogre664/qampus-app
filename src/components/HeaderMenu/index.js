@@ -32,6 +32,30 @@ function HeaderMenu() {
 
   const logoClicked = () => history.push("/");
 
+  const setProfilePicture = () => {
+    if (user?.picture) {
+      return (
+        <img src={user.picture} alt={user.firstName + " " + user.lastName} />
+      );
+    } else if (user?.firstName !== undefined) {
+      return user.firstName[0] + user.lastName[0];
+    } else {
+      return <VscAccount />;
+    }
+
+    // return user?.picture ? (
+    //   <img src={user?.picture} alt={user?.firstName + " " + user?.lastName} />
+    // ) : user ? (
+    //   firstName[0] && user?.lastName[0] ? (
+    //     user?.firstName[0] + user?.lastName[0]
+    //   ) : (
+    //     <VscAccount />
+    //   )
+    // ) : (
+    //   <VscAccount />
+    // );
+  };
+
   return (
     <header className="header">
       <div onClick={logoClicked} role="button" className="logoContainer">
@@ -81,14 +105,7 @@ function HeaderMenu() {
             user?.picture && "userPicture"
           }`}
         >
-          {(user?.picture ? (
-            <img
-              src={user?.picture}
-              alt={user?.firstName + " " + user?.lastName}
-            />
-          ) : (
-            user?.firstName[0] + user?.lastName[0]
-          )) || <VscAccount />}
+          {setProfilePicture()}
         </button>
       </div>
     </header>

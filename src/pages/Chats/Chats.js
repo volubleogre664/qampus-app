@@ -14,10 +14,12 @@ import {
   useMessagesSlice,
   useBooksSlice,
 } from "@redux/getSlices.js";
-import "./Chats.css";
+import CloseIcon from "@mui/icons-material/Close";
 import Message from "@components/Message";
 import ChatSearchResult from "@components/ChatSearchResult";
 import { GET_ALL_USER_MESSAGES } from "../../utils/graphql";
+
+import "./Chats.css";
 
 function Chats() {
   const [{ user }, userDispatch] = useUserSlice();
@@ -26,7 +28,7 @@ function Chats() {
   const [searchData, setSearchData] = useState({ contacts: [], chats: [] });
   const [messages, messageDispatch] = useMessagesSlice();
   const [currentContact, setCurrentContact] = useState(null);
-  const [{ searchBookList }] = useBooksSlice();
+  const [{ searchBookList, recentBooksList }] = useBooksSlice();
   const [book, setBook] = useState({});
   const [emoji, setEmoji] = useState(false);
   const [chatClick, setChatClick] = useState(false);
@@ -64,14 +66,12 @@ function Chats() {
     query: ADD_MESSAGE,
     varaibles: { to: currentContact?.id, textMsg: textMsg },
     onSuccess: (_, { data: { addMessage: msg } }) => {
-      // if (window.location.search.length) window.location.search = "";
       if (!messages.find((m) => m.id === msg.id)) {
         messageDispatch({
           payload: msg,
         });
 
-        let chatsDiv = document.querySelector(".chats__mainBody");
-        chatsDiv.scrollTop = chatsDiv.scrollHeight;
+        document.getElementById(msg.id).scrollIntoView();
       }
 
       setMsg("");
@@ -106,7 +106,6 @@ function Chats() {
       }
 
       if (userData.id) {
-        setCurrentContact(userData);
         handleContactClick(userData);
         addMessage({
           variables: {
@@ -117,6 +116,8 @@ function Chats() {
           },
         });
       }
+
+      console.log(data);
     },
     onError(err) {},
   });
@@ -146,8 +147,6 @@ function Chats() {
     }
 
     handleContactClick(contact);
-
-    document.getElementById(item.id).scrollIntoView();
   };
 
   // Search for messages and contacts based on the search input
@@ -192,7 +191,7 @@ function Chats() {
       let from = user.contacts.find((con) => con.id === item.from);
 
       return {
-        name: [from.firstName, from.lastName].join(" "),
+        name: [from?.firstName, from?.lastName].join(" "),
         textMsg: item.textMsg,
         id: item.id,
         time: item.time,
@@ -207,8 +206,20 @@ function Chats() {
     });
   };
 
+  const openUserProfile = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    userDispatch({
+      type: "SET_CURRENT_PROFILE",
+      payload: { user: currentContact },
+    });
+
+    document.querySelector(".app > .profile").classList.toggle("active");
+  };
+
   // Handles clicking each contact
-  const handleContactClick = (contact) => {
+  const handleContactClick = (contact, messageId = null) => {
     if (screenWidth < 670) {
       setChatClick(!chatClick);
     }
@@ -223,6 +234,10 @@ function Chats() {
     ).length;
 
     if (!filteredMsgs) filteredMsgs = 0;
+
+    if (messageId) {
+      document.getElementById(messageId).scrollIntoView();
+    }
 
     // Get messages for the newly selected contact
     // messagesLength ensures that the current number of messages between user and current contact
@@ -254,7 +269,9 @@ function Chats() {
   };
 
   // For closing the chats
-  const closeChats = () => {
+  const closeChats = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (screenWidth < 670) setChatClick(!chatClick);
   };
 
@@ -297,10 +314,13 @@ function Chats() {
     }
 
     const bookId = window.location.search.substring(1);
+    console.log("Got here mate");
 
-    const bookOwner = searchBookList.find(
-      (item) => item.id === bookId
-    )?.bookOwner;
+    let bookList = searchBookList.length ? searchBookList : recentBooksList;
+
+    const bookOwner = bookList.find((item) => item.id === bookId)?.bookOwner;
+
+    console.log(bookOwner);
 
     setBook({
       bookId,
@@ -361,10 +381,13 @@ function Chats() {
         )}
 
         <div className={`chats__headerProfile ${chatClick && "chatsOpen"}`}>
-          <button onClick={() => closeChats()}>
-            {screenWidth < 670 && <BackIcon />}
+          <button>
+            {screenWidth < 670 && <BackIcon onClick={(e) => closeChats(e)} />}
             {currentContact && (
-              <span className="contact__iconContainer">
+              <span
+                onClick={openUserProfile}
+                className="contact__iconContainer"
+              >
                 <img
                   className="contact__icon"
                   loading="eager"
@@ -382,7 +405,7 @@ function Chats() {
             )}
           </button>
 
-          <p>
+          <p role="button" onClick={openUserProfile}>
             {[currentContact?.firstName, currentContact?.lastName].join(" ")}
           </p>
         </div>
@@ -435,11 +458,12 @@ function Chats() {
                   onClick={() => setEmoji(!emoji)}
                   className="emojiIcon"
                 >
-                  <EmojiIcon />
+                  {emoji ? <CloseIcon /> : <EmojiIcon />}
                 </button>
                 <input
                   placeholder="Type a message"
                   onChange={handleChange}
+                  onClick={() => setEmoji(false)}
                   ref={inputRef}
                   value={textMsg}
                   type="text"

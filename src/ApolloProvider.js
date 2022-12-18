@@ -8,8 +8,8 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import store from "./Redux/store";
 import App from "./App";
 
-const serverURL = "https://server.qampus.co.za/graphql";
-// const serverURL = "http://127.0.0.1:8080/graphql";
+// const serverURL = "https://server.qampus.co.za/graphql";
+const serverURL = "http://127.0.0.1:8080/graphql";
 
 // Rest of features endpoint
 const httpLink = createHttpLink({
@@ -21,7 +21,7 @@ const authLink = setContext(() => {
   const token = localStorage.getItem("jwtToken");
   return {
     headers: {
-      Authorization: `Bearer ${token || ""}`,
+      Authorization: "Bearer ",
     },
   };
 });

@@ -40,7 +40,6 @@ function EditProfile({ app }) {
     update(_, { data }) {
       setLoading({ isLoading: false, message: "" });
       // setActive(false);
-      console.log(data);
       if (data) {
         dispatch({
           type: "SET_USER",
@@ -133,6 +132,7 @@ function EditProfile({ app }) {
 
     updateProfile({
       variables: {
+        id: user.id,
         firstName: values.firstName,
         lastName: values.lastName,
         email: values.email,

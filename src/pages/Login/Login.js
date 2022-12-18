@@ -17,7 +17,7 @@ function Login() {
   const location = useLocation();
   const { loginWithRedirect, isAuthenticated, user } = useAuth0();
   const [loading, setLoading] = useState(false);
-  const [, userDispatch] = useUserSlice();
+  const [{ user: userData }, userDispatch] = useUserSlice();
   const [error, setError] = useState(false);
   const [, dispatchUtils] = useUtilsSlice();
   const [forgotPassword, setForgotPassword] = useState(false);
@@ -32,6 +32,7 @@ function Login() {
     onSuccess: (_, { data: { login: userData } }) => {
       setError(false);
       setLoading(false);
+      console.log("Yeap");
       // let jwt = jwtDecode(userData.token);
       // let isSecureAuth = jwt.permissions.includes("auth:secure_password");
       let isSecureAuth = false;
@@ -40,7 +41,7 @@ function Login() {
         type: "SET_USER",
         payload: { ...userData, edit: isSecureAuth, secure: isSecureAuth },
       });
-      const { from } = location.state || { from: { pathname: "/" } };
+      // const { from } = location.state || { from: { pathname: "/" } };
 
       if (isSecureAuth) {
         dispatchUtils({
@@ -124,10 +125,10 @@ function Login() {
   useEffect(() => {
     document.title = "Log In - Qampus";
 
-    if (isAuthenticated) {
+    if (isAuthenticated && user !== null) {
       getUserData({ variables: { email: user?.email, password: "sdsds" } });
     }
-  }, [getUserData, isAuthenticated, user]);
+  }, [getUserData, isAuthenticated, userData]);
 
   const logoClicked = (e) => {
     e.preventDefault();

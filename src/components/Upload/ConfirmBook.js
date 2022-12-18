@@ -41,10 +41,9 @@ function ConfirmBook({ values, uploadBook, onChange, cancelUpload }) {
           type="text"
           name="authors"
           id="authors"
-          required={true}
           onChange={onChange}
           value={values.authors}
-          label="Author(s)"
+          label="Authors (Optional)"
           placeholder="Enter book author(s)"
         />
 
@@ -63,15 +62,18 @@ function ConfirmBook({ values, uploadBook, onChange, cancelUpload }) {
           type="text"
           name="moduleCode"
           id="moduleCode"
-          required={true}
           onChange={onChange}
           value={values.moduleCode}
-          label="Module code"
+          label="Module code (Optional)"
           placeholder="CSIS1664"
         />
 
         <div className="confirmBook__formFooter">
-          <Button text="Discard" onClick={cancelUpload} className="discard__button"/>
+          <Button
+            text="Discard"
+            onClick={cancelUpload}
+            className="discard__button"
+          />
           <Button type="submit" text="Continue" />
         </div>
       </form>

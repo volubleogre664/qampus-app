@@ -49,11 +49,7 @@ function Collection({ app }) {
   const [deleteBook] = useMutation(DELETE_BOOK, {
     onCompleted(data) {
       let book = books.find((item) => item.id === data.deleteBook);
-      let bookImage = `${bookOwner}/books/${book.title.replace(
-        / /g,
-        "_"
-      )}.webp`;
-      if (bookImage.includes("jpg")) bookImage.replace("webp", "jpg");
+      let bookImage = `${bookOwner}/books/${book.title.replace(/ /g, "_")}.png`;
 
       let imageRef = ref(firebaseRef, bookImage);
 
@@ -101,7 +97,7 @@ function Collection({ app }) {
   };
 
   function deleteBookFinal() {
-    deleteBook({ variables: { id: popup.bookTitle } });
+    deleteBook({ variables: { id: popup.bookTitle, bookOwner: bookOwner } });
   }
 
   const cancelClicked = () => {

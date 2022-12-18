@@ -44,6 +44,7 @@ function UploadBook({ app, callback }) {
     authors: "",
     price: "",
     moduleCode: "",
+    bookOwner: user.id,
   });
 
   // Title, subtitle, authors and description will get from google books api
@@ -132,17 +133,58 @@ function UploadBook({ app, callback }) {
 
   // Callback passed to useForm hook
   function callUploadData() {
-    uploadData();
+    let vals = {
+      ...values,
+      authors: values.authors || bookUpload?.authors,
+      price: Number(values.price),
+      title: values.title || bookUpload.title,
+      frontCover: bookCovers?.frontCover,
+      bookOwner: user.id,
+    };
+
+    uploadData({
+      variables: {
+        ...vals,
+      },
+    });
   }
 
   // Cancel book upload
-  const cancelUpload = () => setConfirmBook(false);
+  const cancelUpload = () => {
+    onChange({
+      target: {
+        name: "title",
+        value: "",
+      },
+    });
+    setBookUpload({
+      ...bookUpload,
+      authors: "",
+    });
+    setConfirmBook(false);
+  };
 
   // Uploading images to firebase and getting image urls
   // This is called on form submit
   async function uploadImagesToCloud(e) {
     e.preventDefault();
     // Get book info from google books api
+
+    if (imgCrop.croppedBookImgUrl === null) {
+      dispatchUtils({
+        type: "DELETE_BOOK",
+        payload: {
+          title: "Book uploading failed",
+          subtitle: "Please upload a book cover.",
+          btnCancel: false,
+          btnContinue: true,
+          bookTitle: "",
+          popupShow: true,
+        },
+      });
+      return;
+    }
+
     await searchForBooks();
 
     setConfirmBook(true);
@@ -313,6 +355,14 @@ function UploadBook({ app, callback }) {
   }
 
   const handleUploadCancel = () => {
+    dispatchUser({
+      type: "SET_CROP_IMG",
+      payload: {
+        ...imgCrop,
+        croppedBookImgUrl: null,
+        aspect: null,
+      },
+    });
     callback();
   };
 
@@ -403,7 +453,7 @@ function UploadBook({ app, callback }) {
               id="moduleCode"
               onChange={onChange}
               value={values.moduleCode}
-              label="Module Code"
+              label="Module Code (Optional)"
               placeholder="CSIS1664"
             />
 
