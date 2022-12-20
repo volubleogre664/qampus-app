@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
 import Loader from "@components/Loader";
-import jwtDecode from "jwt-decode";
 import CloseIcon from "@mui/icons-material/Close";
 import { useUserSlice, useUtilsSlice } from "@redux/getSlices.js";
 import { useForm } from "@utils/hooks.js";
@@ -14,10 +13,9 @@ import useGQL from "../../utils/graphqlHooks";
 
 function Login() {
   const history = useHistory();
-  const location = useLocation();
   const { loginWithRedirect, isAuthenticated, user } = useAuth0();
   const [loading, setLoading] = useState(false);
-  const [{ user: userData }, userDispatch] = useUserSlice();
+  const [, userDispatch] = useUserSlice();
   const [error, setError] = useState(false);
   const [, dispatchUtils] = useUtilsSlice();
   const [forgotPassword, setForgotPassword] = useState(false);
@@ -32,7 +30,6 @@ function Login() {
     onSuccess: (_, { data: { login: userData } }) => {
       setError(false);
       setLoading(false);
-      console.log("Yeap");
       // let jwt = jwtDecode(userData.token);
       // let isSecureAuth = jwt.permissions.includes("auth:secure_password");
       let isSecureAuth = false;
@@ -128,7 +125,7 @@ function Login() {
     if (isAuthenticated && user !== null) {
       getUserData({ variables: { email: user?.email, password: "sdsds" } });
     }
-  }, [getUserData, isAuthenticated, userData]);
+  }, [getUserData, isAuthenticated, user]);
 
   const logoClicked = (e) => {
     e.preventDefault();

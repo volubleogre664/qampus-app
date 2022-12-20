@@ -57,7 +57,7 @@ function MessageBox({ oncontinue = null }) {
     document.querySelector(".app > .profile").classList.toggle("active");
     history.push("/");
     dispatch({});
-    logout();
+    logout({ returnTo: window.location.origin });
   };
 
   function handleCases() {

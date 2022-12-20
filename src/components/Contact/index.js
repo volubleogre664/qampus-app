@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import personIcon from "@assets/profile.png";
 import { getTime } from "@utils/helperFunctions";
 

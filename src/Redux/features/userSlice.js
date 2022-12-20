@@ -61,7 +61,7 @@ const userSlice = createSlice({
   reducers: {
     setUser(state, action) {
       state.user = action.payload;
-      const { token, contacts, ...userData } = action.payload;
+      const { contacts } = action.payload;
       // setCookie("user", userData);
       contacts.length && setCookie("contacts", contacts);
     },

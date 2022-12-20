@@ -4,7 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import EmojiIcon from "@mui/icons-material/EmojiEmotions";
 import BackIcon from "@mui/icons-material/ArrowBack";
 import useGQL from "../../utils/graphqlHooks";
-import { useMutation, useLazyQuery } from "@apollo/react-hooks";
+import { useLazyQuery } from "@apollo/react-hooks";
 import Picker from "emoji-picker-react";
 import personIcon from "@assets/profile.png";
 import Contact from "@components/Contact";
@@ -146,7 +146,7 @@ function Chats() {
       return;
     }
 
-    handleContactClick(contact);
+    handleContactClick(contact, item.id);
   };
 
   // Search for messages and contacts based on the search input
@@ -225,7 +225,7 @@ function Chats() {
     }
 
     // Change the current selected contact
-    setCurrentContact(contact);
+    setCurrentContact({ ...contact, messageId });
 
     let filteredMsgs = messages?.filter(
       (item) =>
@@ -234,10 +234,6 @@ function Chats() {
     ).length;
 
     if (!filteredMsgs) filteredMsgs = 0;
-
-    if (messageId) {
-      document.getElementById(messageId).scrollIntoView();
-    }
 
     // Get messages for the newly selected contact
     // messagesLength ensures that the current number of messages between user and current contact
@@ -285,6 +281,15 @@ function Chats() {
   }, [user, setCurrentContact]);
 
   // Runs once on component render
+  // Ensures that when a user clicks on chats search result the message is shown on screen
+  useEffect(() => {
+    if (currentContact?.messageId) {
+      let msg = document.getElementById(currentContact?.messageId);
+      if (msg) msg.scrollIntoView();
+    }
+  }, [currentContact?.messageId]);
+
+  // Runs once on component render
   // Ensures that when chats open we get the messages for the first contact in your list
   useEffect(() => {
     if (user && user?.contacts?.length && !window.location.search) {
@@ -330,7 +335,7 @@ function Chats() {
     getUserData({ variables: { id: bookOwner } });
 
     // return () => (window.location.href = "chats");
-  }, [searchBookList, setBook, getUserData, user]);
+  }, [searchBookList, setBook, getUserData, user, recentBooksList]);
 
   // Runs when chats open the first time to download them
   useEffect(() => {

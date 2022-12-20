@@ -14,11 +14,10 @@ const serverURL = "http://127.0.0.1:8080/graphql";
 // Rest of features endpoint
 const httpLink = createHttpLink({
   uri: serverURL,
-  // credentials: "include",
+  credentials: "include",
 });
 
 const authLink = setContext(() => {
-  const token = localStorage.getItem("jwtToken");
   return {
     headers: {
       Authorization: "Bearer ",
