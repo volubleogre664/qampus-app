@@ -57,6 +57,7 @@ function MessageBox({ oncontinue = null }) {
     document.querySelector(".app > .profile").classList.toggle("active");
     history.push("/");
     dispatch({});
+    localStorage.setItem("auth", "no");
     logout({ returnTo: window.location.origin });
   };
 

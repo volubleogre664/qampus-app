@@ -101,6 +101,10 @@ function Home({ history }) {
     setDisplays({ menu: "flex", results: "none" });
   };
 
+  useEffect(() => {
+    document.title = "Qampus";
+  });
+
   return (
     <div className="home">
       {loading && <Loader message="Searching..." />}

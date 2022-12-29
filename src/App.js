@@ -21,6 +21,7 @@ import HeaderMenu from "@components/HeaderMenu";
 import CropImage from "@components/CropImage";
 import AuthRoute from "@utils/AuthRoute.js";
 import PrivateRoute from "@utils/PrivateRoute.js";
+import { config } from "./config.js";
 // import useGQL from "./utils/graphqlHooks.js";
 // import { LOGIN_USER } from "./utils/graphql.js";
 import {
@@ -28,16 +29,12 @@ import {
   useUserSlice,
   useUtilsSlice,
 } from "@redux/getSlices.js";
-import { firebaseConfig } from "./config.js";
 import "./App.css";
 
-const app = initializeApp(firebaseConfig);
-
-// const serverUrl = "http://localhost:8080";
-const serverUrl = "https://server.qampus.co.za/";
+const app = initializeApp(config.firebaseConfig);
 
 function App() {
-  // const { isAuthenticated, user: authUser } = useAuth0();
+  const { isAuthenticated } = useAuth0();
   const [{ imgCrop, user, installPrompt }, dispatchUser] = useUserSlice();
   const [
     {
@@ -75,10 +72,10 @@ function App() {
   useEffect(() => {
     if (!user?.id) return;
 
-    const socket = io(serverUrl, {
+    const socket = io(config.serverUrl, {
       query: {
         user: user.id,
-        origin: "https://qampus.co.za",
+        origin: config.clientUrl,
         // Credential: true,
       },
     });
@@ -95,23 +92,21 @@ function App() {
         payload: message.newMessage,
       });
 
+      console.log(message);
+
       let chatsDiv = document.querySelector(".chats__mainSectionBody");
       chatsDiv.scrollTop = chatsDiv.scrollHeight;
 
-      document.getElementById(message.id).scrollIntoView();
+      // document.getElementById(message.id).scrollIntoView();
     });
   }, [user?.id, dispatchUser, dispatchMessage]);
 
-  // useEffect(() => {
-  //   console.log("The user mate", user);
-
-  //   if (!isAuthenticated && user === null) return;
-  //   else if (isAuthenticated && user === null) {
-  //     console.log("we got here");
-  //     // setLoading(true);
-  //     getUserData({ variables: { email: authUser.email, password: "1234" } });
-  //   }
-  // }, [getUserData, isAuthenticated, user]);
+  useEffect(() => {
+    let auth = localStorage.getItem("auth");
+    if (!isAuthenticated && auth === "yes") {
+      localStorage.removeItem("auth");
+    }
+  }, [isAuthenticated]);
 
   return (
     <div className="app">

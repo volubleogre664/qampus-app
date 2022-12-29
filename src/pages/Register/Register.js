@@ -7,6 +7,7 @@ import { useForm } from "@utils/hooks";
 import CloseIcon from "@mui/icons-material/Close";
 import Loader from "@components/Loader";
 import logo from "@assets/Qampus_logo_grey.png";
+import Input from "@components/Input";
 import "./Register.css";
 
 function Register() {
@@ -125,7 +126,7 @@ function Register() {
           <form>
             <div>
               <label htmlFor="password">Password</label>
-              <input
+              <Input
                 className="login__mainFormInput passwordInput"
                 name="password"
                 value={values.password}
@@ -137,7 +138,7 @@ function Register() {
 
             <div>
               <label htmlFor="confirmPassword">Confirm Password</label>
-              <input
+              <Input
                 className="login__mainFormInput"
                 name="confirmPassword"
                 value={values.confirmPassword}
@@ -189,7 +190,7 @@ function Register() {
             >
               <div>
                 <label htmlFor="firstName">Name</label>
-                <input
+                <Input
                   className="login__mainFormInput"
                   name="firstName"
                   value={values.firstName}
@@ -204,7 +205,7 @@ function Register() {
 
               <div>
                 <label htmlFor="lastName">Surname</label>
-                <input
+                <Input
                   className="login__mainFormInput"
                   name="lastName"
                   required
@@ -219,7 +220,7 @@ function Register() {
 
               <div>
                 <label htmlFor="lastName">Email</label>
-                <input
+                <Input
                   className="login__mainFormInput"
                   name="email"
                   required

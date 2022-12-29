@@ -7,16 +7,7 @@ function Loader({ message }) {
     // Copy their loader code, replace the one inside main
     <main className="loader">
       <section>
-        <div className="lds-spinner">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+        <div className="lds-facebook">
           <div></div>
           <div></div>
           <div></div>

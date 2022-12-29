@@ -14,7 +14,7 @@ import useGQL from "../../utils/graphqlHooks";
 function Login() {
   const history = useHistory();
   const { loginWithRedirect, isAuthenticated, user } = useAuth0();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [, userDispatch] = useUserSlice();
   const [error, setError] = useState(false);
   const [, dispatchUtils] = useUtilsSlice();
@@ -89,8 +89,6 @@ function Login() {
       });
     },
     onError(err) {
-      // TODO: I wonder what to do here mate
-      // console.log("Yooo", err);
       setLoading(false);
     },
   });
@@ -108,10 +106,8 @@ function Login() {
     setForgotPassword(true);
   };
 
-  const loginClicked = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    loginWithRedirect({ redirectUri: window.location.href });
+  const loginClicked = () => {
+    // localStorage.setItem("auth", "yes");
   };
 
   function loginUser() {
@@ -122,10 +118,16 @@ function Login() {
   useEffect(() => {
     document.title = "Log In - Qampus";
 
-    if (isAuthenticated && user !== null) {
+    if (isAuthenticated) localStorage.setItem("auth", "yes");
+
+    let auth = localStorage.getItem("auth");
+
+    if (auth && auth === "yes") {
       getUserData({ variables: { email: user?.email, password: "sdsds" } });
+    } else {
+      loginWithRedirect({ redirectUri: window.location.href });
     }
-  }, [getUserData, isAuthenticated, user]);
+  }, [getUserData, isAuthenticated, user, loginWithRedirect]);
 
   const logoClicked = (e) => {
     e.preventDefault();
@@ -135,7 +137,7 @@ function Login() {
   return (
     <section className="login">
       {loading && <Loader />}
-      {forgotPassword && <div className="login__overlay" />}
+      {/* {forgotPassword && <div className="login__overlay" />}
       {forgotPassword && (
         <div className="forgotPassword">
           <div className="close">
@@ -237,7 +239,7 @@ function Login() {
             </footer>
           </div>
         </section>
-      </main>
+      </main> */}
     </section>
   );
 }
