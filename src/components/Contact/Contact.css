@@ -1,16 +1,18 @@
 .contact {
   width: 100%;
   padding: 14px;
-  overflow: hidden;
+  /* overflow: hidden; */
   border-radius: 10px;
   display: flex;
   align-items: center;
   gap: 10px;
+  z-index: 1;
+  /* position: relative; */
   min-height: 70px !important;
   max-height: 70px !important;
   cursor: pointer;
   border: 2px solid transparent;
-  transition: all ease-in 0.2s;
+  transition: all ease-in 0.1s;
   background-color: #f0eff3;
   border: 1px solid rgb(215, 215, 215);
 }
@@ -76,4 +78,41 @@
   font-size: 0.75rem;
   font-style: oblique;
   font-variant-numeric: tabular-nums;
+}
+
+.contact__menu {
+  position: absolute;
+  display: none;
+  /* top: 50%;
+  left: 70%; */
+  z-index: 1000 !important;
+  border-radius: 5px;
+  background-color: #009bf6;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+}
+
+.contact__menuButton {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  background-color: black;
+  color: #fff;
+  cursor: pointer;
+}
+
+.contact__menuButton:hover {
+  background-color: #f0eff3;
+}
+
+.contact.contact__menuActive {
+  z-index: 10;
+}
+
+.contact.contact__menuActive .contact__menu {
+  display: block;
 }

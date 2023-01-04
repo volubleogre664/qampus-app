@@ -2,7 +2,16 @@ import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import EditOutlinedIcon from "@mui/icons-material/EditRounded";
 import { useUserSlice, useUtilsSlice } from "@redux/getSlices";
+import useGQL from "@utils/graphqlHooks.js";
+import {
+  BLOCK_CONTACT,
+  DELETE_CONTACT,
+  UNBLOCK_CONTACT,
+} from "../../utils/graphql";
 import profilePlaceholder from "@assets/profile.png";
+import BlockIcon from "@mui/icons-material/Block";
+import DeleteIcon from "@mui/icons-material/Delete";
+import RestoreIcon from "@mui/icons-material/Restore";
 
 import "./Profile.css";
 
@@ -11,6 +20,116 @@ function Profile() {
   const [, dispatch] = useUtilsSlice();
 
   const user = currentProfile ?? loggedInUser;
+
+  const [blockUserContact] = useGQL({
+    type: "mutation",
+    query: BLOCK_CONTACT,
+    variables: { userId: loggedInUser?.id, contactId: currentProfile?.id },
+    onSuccess: (_, data) => {
+      dispatch({
+        type: "SET_POPUP",
+        payload: {
+          title: "Contact blocked",
+          subtitle: "You have blocked this contact.",
+          btnCancel: false,
+          btnContinue: true,
+          bookTitle: "",
+          popupShow: true,
+        },
+      });
+
+      dispatchUser({
+        type: "SET_CURRENT_PROFILE",
+        payload: { currentProfile: null },
+      });
+
+      document.querySelector(".app > .profile").classList.toggle("active");
+
+      let blocked = loggedInUser?.blockedContacts ?? [];
+
+      dispatchUser({
+        type: "SET_USER",
+        payload: {
+          ...loggedInUser,
+          blockedContacts: [...blocked, currentProfile?.id],
+        },
+      });
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const [unblockUserContact] = useGQL({
+    type: "mutation",
+    query: UNBLOCK_CONTACT,
+    variables: { userId: loggedInUser?.id, contactId: currentProfile?.id },
+    onSuccess: (_, data) => {
+      dispatch({
+        type: "SET_POPUP",
+        payload: {
+          title: "Contact unblocked",
+          subtitle: "The contact has been unblocked.",
+          btnCancel: false,
+          btnContinue: true,
+          bookTitle: "",
+          popupShow: true,
+        },
+      });
+
+      dispatchUser({
+        type: "SET_USER",
+        payload: {
+          ...loggedInUser,
+          blockedContacts: loggedInUser?.blockedContacts?.filter(
+            (contact) => contact !== currentProfile?.id
+          ),
+        },
+      });
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const [deleteUserContact] = useGQL({
+    type: "mutation",
+    query: DELETE_CONTACT,
+    variables: { userId: loggedInUser?.id, contactId: currentProfile?.id },
+    onSuccess: (_, data) => {
+      dispatch({
+        type: "SET_POPUP",
+        payload: {
+          title: "Contact deleted",
+          subtitle: "You have deleted this contact.",
+          btnCancel: false,
+          btnContinue: true,
+          bookTitle: "",
+          popupShow: true,
+        },
+      });
+
+      dispatchUser({
+        type: "SET_CURRENT_PROFILE",
+        payload: { currentProfile: null },
+      });
+
+      document.querySelector(".app > .profile").classList.toggle("active");
+
+      dispatchUser({
+        type: "SET_USER",
+        payload: {
+          ...loggedInUser,
+          contacts: loggedInUser.contacts.filter(
+            (contact) => contact?.id !== currentProfile?.id
+          ),
+        },
+      });
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
 
   const closeProfileClicked = (e) => {
     e.preventDefault();
@@ -42,6 +161,24 @@ function Profile() {
       payload: { edit: true },
     });
   };
+
+  function deleteContact() {
+    deleteUserContact({
+      variables: { userId: loggedInUser?.id, contactId: currentProfile?.id },
+    });
+  }
+
+  function blockContact() {
+    blockUserContact({
+      variables: { userId: loggedInUser?.id, contactId: currentProfile?.id },
+    });
+  }
+
+  function unblockContact() {
+    unblockUserContact({
+      variables: { userId: loggedInUser?.id, contactId: currentProfile?.id },
+    });
+  }
 
   return (
     <aside className="profile">
@@ -115,6 +252,36 @@ function Profile() {
           >
             Sign Out
           </button>
+        )}
+
+        {user?.id !== loggedInUser?.id && (
+          <>
+            <button
+              onClick={() => deleteContact()}
+              className="profile__btn-red"
+            >
+              <DeleteIcon />
+              <span>Delete {user?.firstName}</span>
+            </button>
+
+            {loggedInUser?.blockedContacts?.includes(user?.id) ? (
+              <button
+                onClick={() => unblockContact()}
+                className="profile__btn-red restore"
+              >
+                <RestoreIcon />
+                <span>Unblock {user?.firstName}</span>
+              </button>
+            ) : (
+              <button
+                onClick={() => blockContact()}
+                className="profile__btn-red"
+              >
+                <BlockIcon />
+                <span>Block {user?.firstName}</span>
+              </button>
+            )}
+          </>
         )}
       </footer>
     </aside>

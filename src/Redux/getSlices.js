@@ -8,6 +8,7 @@ import {
   selectUser,
   setUser,
   clearUser,
+  setContacts,
   setPath,
   setErrors,
   setImgSrc,
@@ -113,6 +114,11 @@ function useUserSlice() {
 
       case "SET_NEW_USER": {
         dispatch(setNewUser(action.payload));
+        break;
+      }
+
+      case "SET_CONTACTS": {
+        dispatch(setContacts(action.payload));
         break;
       }
 

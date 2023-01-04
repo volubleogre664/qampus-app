@@ -17,7 +17,7 @@ import logo from "@assets/Qampus_logo_grey.png";
 import "./HeaderMenu.css";
 
 function HeaderMenu() {
-  const [{ user }] = useUserSlice();
+  const [{ user, currentProfile }, dispatchUser] = useUserSlice();
   const history = useHistory();
 
   const handleUserClicked = (e) => {
@@ -26,7 +26,20 @@ function HeaderMenu() {
     if (!user) {
       history.push("/login");
     } else {
-      document.querySelector(".app > .profile").classList.toggle("active");
+      if (currentProfile) {
+        dispatchUser({
+          type: "SET_CURRENT_PROFILE",
+          payload: { currentProfile: null },
+        });
+
+        let profile = document.querySelector(".app > .profile");
+
+        if (!profile.classList.contains("active")) {
+          profile.classList.toggle("active");
+        }
+      } else {
+        document.querySelector(".app > .profile").classList.toggle("active");
+      }
     }
   };
 

@@ -361,6 +361,24 @@ const FORGOT_PASSWORD = gql`
   }
 `;
 
+const BLOCK_CONTACT = gql`
+  mutation blockContact($contactId: ID!, $userId: ID!) {
+    blockContact(contactId: $contactId, userId: $userId)
+  }
+`;
+
+const DELETE_CONTACT = gql`
+  mutation deleteContact($contactId: ID!, $userId: ID!) {
+    deleteContact(contactId: $contactId, userId: $userId)
+  }
+`;
+
+const UNBLOCK_CONTACT = gql`
+  mutation unblockContact($contactId: ID!, $userId: ID!) {
+    unblockContact(contactId: $contactId, userId: $userId)
+  }
+`;
+
 export {
   LOGIN_USER,
   REGISTER_USER,
@@ -379,4 +397,7 @@ export {
   GET_BOOK_TITLES,
   GET_USER_DATA,
   GET_ALL_USER_MESSAGES,
+  BLOCK_CONTACT,
+  DELETE_CONTACT,
+  UNBLOCK_CONTACT,
 };

@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import SendIcon from "@mui/icons-material/Send";
 import SearchIcon from "@mui/icons-material/Search";
 import EmojiIcon from "@mui/icons-material/EmojiEmotions";
+import DeleteIcon from "@mui/icons-material/Delete";
 import BackIcon from "@mui/icons-material/ArrowBack";
 import useGQL from "../../utils/graphqlHooks";
-import { useLazyQuery } from "@apollo/react-hooks";
 import Picker from "emoji-picker-react";
 import personIcon from "@assets/profile.png";
 import Contact from "@components/Contact";
@@ -80,19 +80,26 @@ function Chats() {
   });
 
   // Gets all chats that include the user (Whether they were the receiver or the sender)
-  const [getAllChats] = useLazyQuery(GET_ALL_USER_MESSAGES, {
-    onCompleted({ getAllUserMessages: userChats }) {
+  const [getAllChats] = useGQL({
+    type: "lazyQuery",
+    query: GET_ALL_USER_MESSAGES,
+    onSuccess: ({ getAllUserMessages: userChats }) => {
+      console.log("userChats", userChats);
       messageDispatch({
         payload: userChats,
       });
     },
-    onError(err) {},
+    onError(err) {
+      console.log(err);
+    },
   });
 
   // * Getting user data from data base after buying the book from them
   // * This is part of preparing of sending the book
-  const [getUserData] = useLazyQuery(GET_USER_DATA, {
-    onCompleted(data) {
+  const [getUserData] = useGQL({
+    type: "lazyQuery",
+    query: GET_USER_DATA,
+    onSuccess(data) {
       let userData = user?.contacts?.find(
         (item) => item?.id === book.bookOwner
       );
@@ -123,8 +130,10 @@ function Chats() {
   });
 
   // Get messages as you move between contacts
-  const [getMessagesQuery] = useLazyQuery(GET_MESSAGES_QUERY, {
-    onCompleted(data) {
+  const [getMessagesQuery] = useGQL({
+    type: "lazyQuery",
+    query: GET_MESSAGES_QUERY,
+    onSuccess(data) {
       data.getMessages.forEach((item) => {
         if (!messages.find((msg) => msg.id === item.id)) {
           messageDispatch({
@@ -255,6 +264,7 @@ function Chats() {
 
     const regex = / /gi;
     if (textMsg === "" || textMsg.replace(regex, "") === "") {
+      return;
     }
 
     addMessage({
@@ -362,62 +372,30 @@ function Chats() {
 
   return (
     <section className="chats">
-      <header className="chats__header">
-        {!chatClick && (
-          <div className="searchContainer active">
-            {searchText.length > 0 ? (
-              <BackIcon
-                role="button"
-                onClick={() => {
-                  setSearchText("");
-                  setSearchData({ contacts: [], chats: [] });
-                }}
-              />
-            ) : (
-              <SearchIcon />
-            )}
-            <input
-              onChange={handleSearch}
-              value={searchText}
-              placeholder="Search..."
-              type="text"
-            />
-          </div>
-        )}
-
-        <div className={`chats__headerProfile ${chatClick && "chatsOpen"}`}>
-          <button>
-            {screenWidth < 670 && <BackIcon onClick={(e) => closeChats(e)} />}
-            {currentContact && (
-              <span
-                onClick={openUserProfile}
-                className="contact__iconContainer"
-              >
-                <img
-                  className="contact__icon"
-                  loading="eager"
-                  src={
-                    currentContact?.picture?.length > 0
-                      ? currentContact?.picture
-                      : personIcon
-                  }
-                  alt={[
-                    currentContact?.firstName,
-                    currentContact?.lastName,
-                  ].join(" ")}
-                />
-              </span>
-            )}
-          </button>
-
-          <p role="button" onClick={openUserProfile}>
-            {[currentContact?.firstName, currentContact?.lastName].join(" ")}
-          </p>
-        </div>
-      </header>
-
       <section className="chats__main">
         <aside className="chats__mainAside">
+          <header className="chats__header">
+            <div className="searchContainer active">
+              {searchText.length > 0 ? (
+                <BackIcon
+                  role="button"
+                  onClick={() => {
+                    setSearchText("");
+                    setSearchData({ contacts: [], chats: [] });
+                  }}
+                />
+              ) : (
+                <SearchIcon />
+              )}
+              <input
+                onChange={handleSearch}
+                value={searchText}
+                placeholder="Search..."
+                type="text"
+              />
+            </div>
+          </header>
+
           {(searchText.length > 0 && (
             <ChatSearchResult data={searchData} />
           )) || (
@@ -437,6 +415,48 @@ function Chats() {
         </aside>
 
         <main className={`chats__mainSection ${chatClick && "chatsOpen"}`}>
+          <header className="chats__header">
+            <div className="chats__headerProfile">
+              <button>
+                {screenWidth < 670 && (
+                  <BackIcon onClick={(e) => closeChats(e)} />
+                )}
+                {currentContact && (
+                  <span
+                    onClick={openUserProfile}
+                    className="contact__iconContainer"
+                  >
+                    <img
+                      className="contact__icon"
+                      loading="eager"
+                      src={
+                        currentContact?.picture?.length > 0
+                          ? currentContact?.picture
+                          : personIcon
+                      }
+                      alt={[
+                        currentContact?.firstName,
+                        currentContact?.lastName,
+                      ].join(" ")}
+                    />
+                  </span>
+                )}
+              </button>
+
+              <p role="button" onClick={openUserProfile}>
+                {[currentContact?.firstName, currentContact?.lastName].join(
+                  " "
+                )}
+              </p>
+            </div>
+
+            <div className="chats__headerIcons">
+              <button>
+                <DeleteIcon />
+              </button>
+            </div>
+          </header>
+
           <main className="chats__mainSectionBody">
             {messages
               .filter(
@@ -447,9 +467,23 @@ function Chats() {
               .map((msg) => (
                 <Message key={msg?.id} from={user?.id} msg={msg} />
               ))}
+
+            {user?.blockedContacts?.includes(currentContact?.id) && (
+              <div className="blockedContact">
+                <p>
+                  You blocked{" "}
+                  {[currentContact?.firstName, currentContact?.lastName].join(
+                    " "
+                  )}
+                </p>
+              </div>
+            )}
           </main>
 
           <footer className="chats__mainSectionFooter">
+            {user?.blockedContacts?.includes(currentContact?.id) && (
+              <div className="chats__mainSectionFooterOverlay"></div>
+            )}
             {emoji && (
               <Picker
                 onEmojiClick={(_, emojiObj) => handleEmojiClick(_, emojiObj)}

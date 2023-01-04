@@ -61,6 +61,9 @@ const userSlice = createSlice({
   reducers: {
     setUser(state, action) {
       state.user = action.payload;
+      state.user.contacts = state.user.contacts.filter(
+        (contact) => contact.id !== state.user.id
+      );
       const { contacts } = action.payload;
       // setCookie("user", userData);
       contacts.length && setCookie("contacts", contacts);
@@ -69,6 +72,10 @@ const userSlice = createSlice({
       state.user = null;
       document.cookie = "user=;max-age=0";
       document.cookie = "contacts=;max-age=0";
+    },
+    setContacts(state, action) {
+      state.user.contacts = action.payload.contacts;
+      // setCookie("contacts", action.payload);
     },
     setEditUser(state, action) {
       state.user.edit = action.payload.edit;
@@ -123,6 +130,7 @@ export const {
   setEditUser,
   setInstallPrompt,
   setNewUser,
+  setContacts,
   setSecureLogin,
   setCurrentProfile,
 } = userSlice.actions;
