@@ -1,24 +1,16 @@
 import { useEffect, useState } from "react";
-import { useMutation } from "@apollo/react-hooks";
 import SearchOutlined from "@mui/icons-material/SearchOutlined";
 import CancelIcon from "@mui/icons-material/CloseRounded";
 import Book from "@components/Book";
 import Loader from "@components/Loader";
 import { SEARCH_BOOKS } from "@utils/graphql";
 import Recent from "@components/RecentUploads";
-// import jwtDecode from "jwt-decode";
-// import DailyQoutes from "@components/DailyQuotes";
-// import RecommendedReads from "@components/RecommendedReads";
 import { LOGIN_USER } from "@utils/graphql.js";
 import useGQL from "../../utils/graphqlHooks";
 import { useAuth0 } from "@auth0/auth0-react";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import { useBooksSlice, useUtilsSlice, useUserSlice } from "@redux/getSlices";
 import "./Home.css";
-
-//change the background reference here
-// const ref_link = "https://www.smoorevisuals.com/landscapes/";
-// const ref_name = "Spencer Moore";
 
 function Home({ history }) {
   const [{ searchBookList: books }, dispatchBook] = useBooksSlice();
@@ -34,22 +26,41 @@ function Home({ history }) {
     results: "none",
   });
 
-  const [searchBook] = useMutation(SEARCH_BOOKS, {
+  const [getUserData] = useGQL({
+    type: "mutation",
+    query: LOGIN_USER,
+    onSuccess: (_, { data: { login: userData } }) => {
+      setLoading(false);
+
+      userDispatch({
+        type: "SET_USER",
+        payload: { ...userData },
+      });
+    },
+    onError: (err) => {
+      console.log(err);
+      setLoading(false);
+    },
+  });
+
+  const [searchBook] = useGQL({
+    type: "mutation",
+    query: SEARCH_BOOKS,
     variables: { searchStr },
-    onCompleted(data) {
+    onSuccess(_, { data }) {
       setLoading(false);
 
       // Show the book results screen or component
-      if (data?.searchBook.length !== 0 && displays.menu !== "none") {
+      if (data.searchBook.length !== 0 && displays.menu !== "none") {
         setDisplays({ menu: "none", results: "flex" });
       }
 
       dispatchBook({
         type: "SET_SEARCH_BOOK_LIST",
-        payload: data?.searchBook,
+        payload: data.searchBook,
       });
 
-      if (data?.searchBook.length === 0) {
+      if (data.searchBook.length === 0) {
         dispatchUtils({
           type: "DELETE_BOOK",
           payload: {
@@ -104,6 +115,20 @@ function Home({ history }) {
   useEffect(() => {
     document.title = "Qampus";
   });
+
+  useEffect(() => {
+    document.title = "Log In - Qampus";
+
+    if (user !== null) return;
+
+    if (isAuthenticated) localStorage.setItem("auth", "yes");
+
+    let auth = localStorage.getItem("auth");
+
+    if (auth && auth === "yes" && user === null) {
+      getUserData({ variables: { email: authUser.email, password: "sdsds" } });
+    }
+  }, [getUserData, isAuthenticated, user, authUser]);
 
   return (
     <div className="home">

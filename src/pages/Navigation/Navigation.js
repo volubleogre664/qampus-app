@@ -6,11 +6,9 @@ import { useForm } from "@utils/hooks";
 import {
   building,
   coordinates,
-  parking,
 } from "../../nav_coordinates/nav_coordinates.json";
-import {RiNavigationFill, RiCloseLine} from "react-icons/ri";
-import {MdAssistantNavigation} from "react-icons/md";
-
+import { RiCloseLine } from "react-icons/ri";
+import { MdAssistantNavigation } from "react-icons/md";
 
 import "./Navigation.css";
 
@@ -126,22 +124,15 @@ function Navigation() {
     document.querySelector(".navigation__sidebar").classList.toggle("opening");
     document.querySelector(".btnNav").classList.toggle("opening");
   };
-
-  /*Map Categories*/
-  const [array, setArray] = useState({
-    title: "All content",
-    content: [].concat(building, parking),
-    //content should return an array with the location name 
-  })
   function tabBtnClicked(tab) {
     switch (tab) {
       case "all": {
-        document.querySelector("#all").style.background = '#009BF6';
-        document.querySelector("#bld").style.background = '#8F8F8F';
-        document.querySelector("#gts").style.background = '#8F8F8F';
-        document.querySelector("#prk").style.background = '#8F8F8F';
-        document.querySelector("#res").style.background = '#8F8F8F';
-        document.querySelector("#spt").style.background = '#8F8F8F';
+        document.querySelector("#all").style.background = "#009BF6";
+        document.querySelector("#bld").style.background = "#8F8F8F";
+        document.querySelector("#gts").style.background = "#8F8F8F";
+        document.querySelector("#prk").style.background = "#8F8F8F";
+        document.querySelector("#res").style.background = "#8F8F8F";
+        document.querySelector("#spt").style.background = "#8F8F8F";
         break;
       }
 
@@ -164,7 +155,7 @@ function Navigation() {
         // document.querySelector("#spt").style.background = '#8F8F8F';
         break;
       }
-      
+
       case "parking": {
         // document.querySelector("#all").style.background = '#8F8F8F';
         // document.querySelector("#bld").style.background = '#8F8F8F';
@@ -200,66 +191,94 @@ function Navigation() {
   return (
     <div className="navigation">
       <div className="nav__header">
-          <div className="buttons">
-            <button id="all" className="button" onClick={() => tabBtnClicked("all")} >
-              All Categories
-            </button>
-            <button id="bld" className="button" onClick={() => tabBtnClicked("building")}>
-              Buidlings
-            </button>
-            <button id="gts" className="button" onClick={() => tabBtnClicked("gates")}>
-              Gates
-            </button>
-            <button id="prk" className="button" onClick={() => tabBtnClicked("parking")}>
-              Parking
-            </button>
-            <button id="res" className="button" onClick={() => tabBtnClicked("residences")}>
-              Residences
-            </button>
-            <button id="spt" className="button" onClick={() => tabBtnClicked("sports")}>
-              Sports fields
-            </button>
-          </div>
+        <div className="buttons">
+          <button
+            id="all"
+            className="button"
+            onClick={() => tabBtnClicked("all")}
+          >
+            All Categories
+          </button>
+          <button
+            id="bld"
+            className="button"
+            onClick={() => tabBtnClicked("building")}
+          >
+            Buidlings
+          </button>
+          <button
+            id="gts"
+            className="button"
+            onClick={() => tabBtnClicked("gates")}
+          >
+            Gates
+          </button>
+          <button
+            id="prk"
+            className="button"
+            onClick={() => tabBtnClicked("parking")}
+          >
+            Parking
+          </button>
+          <button
+            id="res"
+            className="button"
+            onClick={() => tabBtnClicked("residences")}
+          >
+            Residences
+          </button>
+          <button
+            id="spt"
+            className="button"
+            onClick={() => tabBtnClicked("sports")}
+          >
+            Sports fields
+          </button>
+        </div>
       </div>
       <div className="navigation__body">
         <button className="btnNav" onClick={handleClick}>
           {click ? <RiCloseLine /> : <MdAssistantNavigation />}
         </button>
-      <aside className="navigation__sidebar">
-        <form className="navigation__sidebarForm" id="options" onSubmit={changeState}>
-          <SelectLocation
-            name="startLocation"
-            id="startLocation"
-            label="Starting point"
-            building={building}
-            coordinates={coordinates}
-            currentlocation={currentLocation}
-            onChange={onChange}
-            value={values.startLocation}
-          />
+        <aside className="navigation__sidebar">
+          <form
+            className="navigation__sidebarForm"
+            id="options"
+            onSubmit={changeState}
+          >
+            <SelectLocation
+              name="startLocation"
+              id="startLocation"
+              label="Starting point"
+              building={building}
+              coordinates={coordinates}
+              currentlocation={currentLocation}
+              onChange={onChange}
+              value={values.startLocation}
+            />
 
-          <SelectLocation
-            name="destination"
-            coordinates={coordinates}
-            value={values.destination}
-            building={[].concat(building)}
-            onChange={onChange}
-            label="Destination"
-            id="destination"
-          />
+            <SelectLocation
+              name="destination"
+              coordinates={coordinates}
+              value={values.destination}
+              building={[].concat(building)}
+              onChange={onChange}
+              label="Destination"
+              id="destination"
+            />
 
-          <Button text="Get Directions" type="submit" />
-        </form>
-      </aside>
+            <Button text="Get Directions" type="submit" />
+          </form>
+        </aside>
 
-      <main className="navigation__main" id="map">
-        <Iframe
-          className="navigation__mainFrame"
-          id="frame"
-          url={active}                                        
-          loading="lazy"
-        ></Iframe>
-      </main>
+        <main className="navigation__main" id="map">
+          <Iframe
+            className="navigation__mainFrame"
+            id="frame"
+            url={active}
+            loading="lazy"
+          ></Iframe>
+        </main>
       </div>
     </div>
   );

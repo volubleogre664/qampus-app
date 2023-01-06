@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import SendIcon from "@mui/icons-material/Send";
 import SearchIcon from "@mui/icons-material/Search";
 import EmojiIcon from "@mui/icons-material/EmojiEmotions";
-import DeleteIcon from "@mui/icons-material/Delete";
 import BackIcon from "@mui/icons-material/ArrowBack";
 import useGQL from "../../utils/graphqlHooks";
 import Picker from "emoji-picker-react";
@@ -448,12 +447,6 @@ function Chats() {
                   " "
                 )}
               </p>
-            </div>
-
-            <div className="chats__headerIcons">
-              <button>
-                <DeleteIcon />
-              </button>
             </div>
           </header>
 

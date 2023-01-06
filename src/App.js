@@ -12,8 +12,6 @@ import Profile from "@components/Profile";
 import EditProfile from "@components/EditProfile";
 import NewUser from "@components/NewUser";
 import MsgBox from "@components/MessageBox";
-// import InstallPrompt from "@components/InstallPrompt";
-
 import Collection from "@pages/Collection/Collection.js";
 import Navigation from "@pages/Navigation/Navigation.js";
 import Help from "@pages/Help/Help.js";
@@ -22,8 +20,6 @@ import CropImage from "@components/CropImage";
 import AuthRoute from "@utils/AuthRoute.js";
 import PrivateRoute from "@utils/PrivateRoute.js";
 import { config } from "./config.js";
-// import useGQL from "./utils/graphqlHooks.js";
-// import { LOGIN_USER } from "./utils/graphql.js";
 import {
   useMessagesSlice,
   useUserSlice,
@@ -35,39 +31,13 @@ const app = initializeApp(config.firebaseConfig);
 
 function App() {
   const { isAuthenticated } = useAuth0();
-  const [{ imgCrop, user, installPrompt }, dispatchUser] = useUserSlice();
+  const [{ imgCrop, user }, dispatchUser] = useUserSlice();
   const [
     {
       popup: { popupShow },
     },
-    dispatchUtils,
   ] = useUtilsSlice();
   const [, dispatchMessage] = useMessagesSlice();
-
-  // const [getUserData] = useGQL({
-  //   type: "mutation",
-  //   query: LOGIN_USER,
-  //   onSuccess: (_, { data: { login: userData } }) => {
-  //     // setError(false);
-  //     // setLoading(false);
-  //     // let jwt = jwtDecode(userData.token);
-  //     // let isSecureAuth = jwt.permissions.includes("auth:secure_password");
-
-  //     dispatchUser({
-  //       type: "SET_USER",
-  //       payload: { ...userData, edit: false, secure: false },
-  //     });
-
-  //     console.log("The data from the server", userData);
-
-  //     // history.push("/");
-  //   },
-  //   onError: (err) => {
-  //     // setError(true);
-  //     console.log(err);
-  //     // setLoading(false);
-  //   },
-  // });
 
   useEffect(() => {
     if (!user?.id) return;
@@ -88,18 +58,21 @@ function App() {
     });
 
     socket.on("NEW_MESSAGE", (message) => {
+      if (
+        user?.blockedContacts &&
+        user.blockedContacts.includes(message.from)
+      ) {
+        return;
+      }
+
       dispatchMessage({
         payload: message.newMessage,
       });
 
-      console.log(message);
-
       let chatsDiv = document.querySelector(".chats__mainSectionBody");
       chatsDiv.scrollTop = chatsDiv.scrollHeight;
-
-      // document.getElementById(message.id).scrollIntoView();
     });
-  }, [user?.id, dispatchUser, dispatchMessage]);
+  }, [user?.id, dispatchUser, dispatchMessage, user?.blockedContacts]);
 
   useEffect(() => {
     let auth = localStorage.getItem("auth");
