@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import SearchOutlined from "@mui/icons-material/SearchOutlined";
 import CancelIcon from "@mui/icons-material/CloseRounded";
 import Book from "@components/Book";
-import Loader from "@components/Loader";
 import { SEARCH_BOOKS } from "@utils/graphql";
 import Recent from "@components/RecentUploads";
 import { LOGIN_USER } from "@utils/graphql.js";
@@ -50,30 +49,10 @@ function Home({ history }) {
     onSuccess(_, { data }) {
       setLoading(false);
 
-      // Show the book results screen or component
-      if (data.searchBook.length !== 0 && displays.menu !== "none") {
-        setDisplays({ menu: "none", results: "flex" });
-      }
-
       dispatchBook({
         type: "SET_SEARCH_BOOK_LIST",
         payload: data.searchBook,
       });
-
-      if (data.searchBook.length === 0) {
-        dispatchUtils({
-          type: "DELETE_BOOK",
-          payload: {
-            title: "Book Not Found",
-            subtitle:
-              "We could not find the book you are looking for. The book might not be available or you can try to edit your search input.",
-            btnCancel: false,
-            btnContinue: true,
-            bookTitle: "",
-            popupShow: true,
-          },
-        });
-      }
     },
     onError: (err) => {
       setLoading(false);
@@ -92,6 +71,16 @@ function Home({ history }) {
     },
   });
 
+  const searchValueChanged = (e) => {
+    let searchText = e.target.value;
+
+    setSearchStr(searchText);
+
+    if (searchText.trim() === "") return;
+
+    searchBook({ variables: { searchStr: searchText } });
+  };
+
   // Handles click of search button
   const handleSearchClick = (e) => {
     e.preventDefault();
@@ -101,7 +90,7 @@ function Home({ history }) {
       payload: [],
     });
 
-    setLoading(true);
+    // setLoading(true);
 
     // Search for books in the database
     searchBook({ variables: { searchStr } });
@@ -117,11 +106,18 @@ function Home({ history }) {
   });
 
   useEffect(() => {
+    if (searchStr === "" && !books.length) {
+      searchBook({ variables: { searchStr } });
+    }
+  }, [searchStr, searchBook, books]);
+
+  useEffect(() => {
     document.title = "Log In - Qampus";
 
     if (user !== null) return;
 
     if (isAuthenticated) localStorage.setItem("auth", "yes");
+    else localStorage.setItem("auth", "no");
 
     let auth = localStorage.getItem("auth");
 
@@ -132,8 +128,6 @@ function Home({ history }) {
 
   return (
     <div className="home">
-      {loading && <Loader message="Searching..." />}
-
       <div className="home__searchSection" id="search">
         <p className="home__subtitle">What book are you looking for?</p>
 
@@ -145,8 +139,7 @@ function Home({ history }) {
           <input
             type="text"
             name="searchBook"
-            value={searchStr}
-            onChange={(e) => setSearchStr(e.target.value)}
+            onChange={searchValueChanged}
             className="home__searchInput"
             list="home__books"
             placeholder="Search by title or ISBN"
@@ -161,7 +154,7 @@ function Home({ history }) {
 
       <div className="home__body" style={{ display: displays.menu }}>
         <div className="top__row">
-          <Recent />
+          <Recent books={books} searchText={searchStr} loading={loading} />
         </div>
         <div className="bottom__row">
           {/* <ComingSoon/> */}
@@ -197,16 +190,6 @@ function Home({ history }) {
       <a className="backToTop" href="#search">
         <MdKeyboardArrowUp />
       </a>
-      {/* <div className="reference">
-        <a
-          className="reference_link"
-          target="_blank"
-          rel="noreferrer"
-          href={ref_link}
-        >
-          Do you like this photo? <br /> [ by<u> {ref_name} </u>]
-        </a>
-      </div> */}
     </div>
   );
 }

@@ -11,10 +11,16 @@ const useGQL = ({
 }) => {
   const auth0 = useAuth0();
 
+  let token = "";
+
+  if (auth0.isAuthenticated) {
+    token = auth0.getAccessTokenSilently();
+  }
+
   // Set access token for auth0
   const context = {
     headers: {
-      Authorization: `Bearer ${auth0.getAccessTokenSilently()}`,
+      Authorization: `Bearer ${token}`,
     },
   };
 

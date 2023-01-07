@@ -16,19 +16,42 @@
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
   padding: 20px;
-    box-shadow: 0 1px 6px rgb(32 33 36/70%);
-    background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 1px 6px rgb(32 33 36/70%);
+  background: rgba(255, 255, 255, 0.85);
 }
 
 .recent__uploads > * + * {
   margin-top: 15px;
 }
 
+.recent__uploads .card__header a {
+  position: relative;
+}
+
+.recent__uploads .card__header a span {
+  position: absolute;
+  top: calc(100% + 3px);
+  right: 0;
+  display: none;
+  z-index: 10;
+  width: max-content;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: #3b3b3b;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+}
+
+.recent__uploads .card__header a:hover span {
+  display: block;
+}
+
 .home__books {
   width: 100%;
   display: grid;
   grid-gap: 15px;
-  align-items: center;
   justify-content: center;
   min-height: 380px;
   grid-template-columns: repeat(auto-fit, 130px);

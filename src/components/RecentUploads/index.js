@@ -1,62 +1,27 @@
-import { useState, useEffect } from "react";
 import Book from "@components/Book";
-import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import { SEARCH_BOOKS } from "@utils/graphql";
-import { useMutation } from "@apollo/react-hooks";
-import { useBooksSlice } from "@redux/getSlices";
 import { Link } from "react-router-dom";
 import "./RecentUpload.css";
 
-function Recent({ history }) {
-  const [{ recentBooksList: books }, dispatchBook] = useBooksSlice();
-  const [loading, setLoading] = useState(false);
-  const [searchStr] = useState("");
-
-  const [searchBook] = useMutation(SEARCH_BOOKS, {
-    variables: { searchStr },
-    onCompleted(data) {
-      setLoading(!loading);
-      dispatchBook({
-        type: "SET_RECENT_BOOKS",
-        payload: data?.searchBook,
-      });
-    },
-    onError: (err) => {},
-  });
-
-  // Handles click of search button
-  const handlerRefreshClick = (e) => {
-    e.preventDefault();
-    // Search for books in the database
-    searchBook();
-  };
-
-  useEffect(() => {
-    searchBook({ variables: { searchStr: "" } });
-  }, [searchBook]);
-
+function Recent({ books, searchText, loading }) {
   return (
     <div className="recent__uploads">
       <header className="card__header">
-        <p className="caption">Recent uploads</p>
+        <p className="caption">
+          {(searchText && "Search results for: " + searchText) ||
+            "Recent uploads"}
+        </p>
         <Link className="nav__linksItem__link" to="/collection">
           <AddRoundedIcon id="upload" className="card__header__icon" />
+          <span>Uplaod book</span>
         </Link>
-        <RefreshRoundedIcon
-          onClick={handlerRefreshClick}
-          className="card__header__icon"
-        />
+
+        {/* <RefreshRoundedIcon className="card__header__icon" /> */}
       </header>
 
       <div className="home__books">
         {books.map((book) => (
-          <Book
-            key={book?.id}
-            state="home_book_result"
-            book={book}
-            history={history}
-          />
+          <Book key={book?.id} state="home_book_result" book={book} />
         ))}
       </div>
     </div>
