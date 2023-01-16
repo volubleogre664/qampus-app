@@ -1,3 +1,5 @@
+import { initializeApp } from "firebase/app";
+
 let serverUrl, clientUrl;
 
 if (process.env.NODE_ENV === "development") {
@@ -21,3 +23,5 @@ export const config = {
   serverUrl,
   clientUrl,
 };
+
+export const app = initializeApp(config.firebaseConfig);

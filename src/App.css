@@ -9,16 +9,10 @@
   position: relative;
   display: -webkit-flex;
   display: flex;
-
-  /* From https://css.glass */
   background: rgba(66, 66, 66, 0.11);
-  /* border-radius: 16px; */
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(0.8px);
   -webkit-backdrop-filter: blur(0.8px);
-
-  /* background: radial-gradient(circle at center, white, #cccccc, #0087d4), 100%;
-  -webkit-flex-direction: column; */
   flex-direction: column;
   overflow-x: hidden;
   overflow-y: hidden;

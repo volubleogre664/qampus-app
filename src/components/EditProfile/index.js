@@ -3,8 +3,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import EditOutlinedIcon from "@mui/icons-material/EditRounded";
 import { useUserSlice, useUtilsSlice } from "@redux/getSlices";
 import { useForm } from "@utils/hooks.js";
+import useGQL from "@utils/graphqlHooks";
 import { UPDATE_USER } from "@utils/graphql";
-import { useMutation } from "@apollo/react-hooks";
 import MsgBox from "@components/MessageBox";
 import imageCompression from "browser-image-compression";
 import {
@@ -35,9 +35,11 @@ function EditProfile({ app }) {
     confirmNewPassword: "",
   });
 
-  const [updateProfile] = useMutation(UPDATE_USER, {
+  const [updateProfile] = useGQL({
+    type: "mutation",
+    query: UPDATE_USER,
     variables: { ...values, picture: profile },
-    update(_, { data }) {
+    onSuccess(_, { data }) {
       setLoading({ isLoading: false, message: "" });
       // setActive(false);
       if (data) {

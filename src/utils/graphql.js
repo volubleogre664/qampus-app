@@ -32,16 +32,22 @@ const REGISTER_USER = gql`
     $firstName: String!
     $lastName: String!
     $email: String!
-    $password: String!
-    $confirmPassword: String!
+    $university: String
+    $campus: String
+    $picture: String
+    $degree: String
+    $gender: String
   ) {
     register(
       registerInput: {
         firstName: $firstName
         lastName: $lastName
         email: $email
-        password: $password
-        confirmPassword: $confirmPassword
+        university: $university
+        campus: $campus
+        degree: $degree
+        gender: $gender
+        picture: $picture
       }
     ) {
       id
@@ -78,9 +84,6 @@ const UPDATE_USER = gql`
     $university: String
     $campus: String
     $gender: String
-    $newPassword: String
-    $confirmNewPassword: String
-    $password: String
   ) {
     updateUser(
       updateInput: {
@@ -92,9 +95,6 @@ const UPDATE_USER = gql`
         campus: $campus
         gender: $gender
         university: $university
-        newPassword: $newPassword
-        confirmNewPassword: $confirmNewPassword
-        password: $password
       }
     ) {
       id

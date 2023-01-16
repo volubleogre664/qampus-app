@@ -195,11 +195,12 @@ label.front {
     flex-direction: row-reverse;
     flex-wrap: wrap;
     margin-top: 0;
+    gap: 30px;
     justify-content: center;
   }
 
   .inputs {
-    margin-right: 30px;
+    /* margin-right: 30px; */
   }
 
   .wrapper {
