@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { about } from "../../text_files/about.json";
-import { tutorial } from "../../text_files/tutorial.json";
-import { safety } from "../../text_files/safety.json";
-import { terms } from "../../text_files/terms.json";
+import aboutData from '../../text_files/about.json';
+import tutorialData from '../../text_files/tutorial.json';
+import safetyData from '../../text_files/safety.json';
+import termsData from '../../text_files/terms.json';
 import "./Help.css";
 
 function Help() {
+  const { about } = aboutData;
+  const { tutorial } = tutorialData;
+  const { safety } = safetyData;
+  const { terms } = termsData;
   const [display, setDisplay] = useState({
     title: "About us",
     content: about,
