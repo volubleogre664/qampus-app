@@ -18,13 +18,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
   background-color: #fff;
-  background-position: center;
-  background-size: cover;
+  background-position: left;
+  background-size: 85%;
   background-attachment: fixed;
   width: 100vw !important;
   height: 100vh;
   max-height: 100vh;
   background-image: url("./assets/reading.jpg") !important;
+  mix-blend-mode: lighten;
+  background-blend-mode: multiply;
+  background-repeat: no-repeat;
 }
 
 #root {
