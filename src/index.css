@@ -18,16 +18,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
   background-color: #fff;
-  background-position: left;
-  background-size: 85%;
+  background-position: top;
+  background-size: cover;
   background-attachment: fixed;
   width: 100vw !important;
   height: 100vh;
-  max-height: 100vh;
-  background-image: url("./assets/reading.jpg") !important;
-  mix-blend-mode: lighten;
+  max-height: 100vh; 
+  background-image: linear-gradient(to top, rgb(255, 255, 255,0.5), rgba(255, 255, 255,1)),url("./assets/reading.jpg");
+ /* mix-blend-mode: lighten;
   background-blend-mode: multiply;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat;*/
 }
 
 #root {
