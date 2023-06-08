@@ -5,7 +5,7 @@
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.8);
-  z-index: 301;
+  z-index: 500;
   place-items: center;
   overflow-y: hidden;
   transition: all ease-in-out 0.25s;
@@ -124,8 +124,7 @@
 .editProfile__mainForm {
   width: 100%;
   max-width: 350px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
 }
 
 .editProfile__mainForm > * + * {

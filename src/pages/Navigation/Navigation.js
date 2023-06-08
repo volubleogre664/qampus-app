@@ -64,19 +64,19 @@ function Navigation() {
     );
 
     var _result =
-      "https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d0!2d26.187284!3d-29.107376!2m3!1f0!2f0" +
-      "!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m4!2z" +
-      markerA +
-      "!3m2!1d" +
-      start_deg_lat +
-      "!2d" +
-      start_deg_long +
-      "!4m4!2z" +
-      markerB +
-      "!3m2!1d" +
-      end_deg_lat +
-      "!2d" +
-      end_deg_long +
+      "https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d0!2d26.187284!3d-29.107376!2m3!1f0!2f0" + 
+      "!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m4!2z" + 
+      markerA + 
+      "!3m2!1d" + 
+      start_deg_lat + 
+      "!2d" + 
+      start_deg_long + 
+      "!4m4!2z" + 
+      markerB + 
+      "!3m2!1d" + 
+      end_deg_lat + 
+      "!2d" + 
+      end_deg_long + 
       "!5e0!3m2!1sen!2sza!4v1625379191755!5m2!1sen!2sza";
     return _result;
   }
@@ -134,52 +134,52 @@ function Navigation() {
         break;
       }
 
-      // case "building": {
-      //   document.querySelector("#all").style.background = '#8F8F8F';
-      //   document.querySelector("#bld").style.background = '#009BF6';
-      //   document.querySelector("#gts").style.background = '#8F8F8F';
-      //   document.querySelector("#prk").style.background = '#8F8F8F';
-      //   document.querySelector("#res").style.background = '#8F8F8F';
-      //   document.querySelector("#spt").style.background = '#8F8F8F';
-      //   break;
-      // }
+      case "building": {
+        document.querySelector("#all").style.background = '#8F8F8F';
+        document.querySelector("#bld").style.background = '#009BF6';
+        document.querySelector("#gts").style.background = '#8F8F8F';
+        document.querySelector("#prk").style.background = '#8F8F8F';
+        document.querySelector("#res").style.background = '#8F8F8F';
+        document.querySelector("#spt").style.background = '#8F8F8F';
+        break;
+      }
 
       case "gates": {
-        // document.querySelector("#all").style.background = '#8F8F8F';
-        // document.querySelector("#bld").style.background = '#8F8F8F';
-        // document.querySelector("#gts").style.background = '#009BF6';
-        // document.querySelector("#prk").style.background = '#8F8F8F';
-        // document.querySelector("#res").style.background = '#8F8F8F';
-        // document.querySelector("#spt").style.background = '#8F8F8F';
+        document.querySelector("#all").style.background = '#8F8F8F';
+        document.querySelector("#bld").style.background = '#8F8F8F';
+        document.querySelector("#gts").style.background = '#009BF6';
+        document.querySelector("#prk").style.background = '#8F8F8F';
+        document.querySelector("#res").style.background = '#8F8F8F';
+        document.querySelector("#spt").style.background = '#8F8F8F';
         break;
       }
 
       case "parking": {
-        // document.querySelector("#all").style.background = '#8F8F8F';
-        // document.querySelector("#bld").style.background = '#8F8F8F';
-        // document.querySelector("#gts").style.background = '#8F8F8F';
-        // document.querySelector("#prk").style.background = '#009BF6';
-        // document.querySelector("#res").style.background = '#8F8F8F';
-        // document.querySelector("#spt").style.background = '#8F8F8F';
+      document.querySelector("#all").style.background = '#8F8F8F';
+      document.querySelector("#bld").style.background = '#8F8F8F';
+      document.querySelector("#gts").style.background = '#8F8F8F';
+      document.querySelector("#prk").style.background = '#009BF6';
+      document.querySelector("#res").style.background = '#8F8F8F';
+      document.querySelector("#spt").style.background = '#8F8F8F';
         break;
       }
 
       case "residences": {
-        // document.querySelector("#all").style.background = '#8F8F8F';
-        // document.querySelector("#bld").style.background = '#8F8F8F';
-        // document.querySelector("#gts").style.background = '#8F8F8F';
-        // document.querySelector("#prk").style.background = '#8F8F8F';
-        // document.querySelector("#res").style.background = '#009BF6';
-        // document.querySelector("#spt").style.background = '#8F8F8F';
+        document.querySelector("#all").style.background = '#8F8F8F';
+        document.querySelector("#bld").style.background = '#8F8F8F';
+        document.querySelector("#gts").style.background = '#8F8F8F';
+        document.querySelector("#prk").style.background = '#8F8F8F';
+        document.querySelector("#res").style.background = '#009BF6';
+        document.querySelector("#spt").style.background = '#8F8F8F';
         break;
       }
       default: {
-        // document.querySelector("#all").style.background = '#8F8F8F';
-        // document.querySelector("#bld").style.background = '#8F8F8F';
-        // document.querySelector("#gts").style.background = '#8F8F8F';
-        // document.querySelector("#prk").style.background = '#8F8F8F';
-        // document.querySelector("#res").style.background = '#8F8F8F';
-        // document.querySelector("#spt").style.background = '#009BF6';
+        document.querySelector("#all").style.background = '#8F8F8F';
+        document.querySelector("#bld").style.background = '#8F8F8F';
+        document.querySelector("#gts").style.background = '#8F8F8F';
+        document.querySelector("#prk").style.background = '#8F8F8F';
+        document.querySelector("#res").style.background = '#8F8F8F';
+        document.querySelector("#spt").style.background = '#009BF6';
       }
     }
   }

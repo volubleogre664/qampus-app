@@ -24,7 +24,7 @@ body {
   width: 100vw !important;
   height: 100vh;
   max-height: 100vh; 
-  background-image: linear-gradient(to top, rgb(255, 255, 255,0.5), rgba(255, 255, 255,1)),url("./assets/reading.jpg");
+  background-image: linear-gradient(to top, rgb(255, 255, 255,0.2), rgba(255, 255, 255,.5)),url("./assets/reading.jpg");
  /* mix-blend-mode: lighten;
   background-blend-mode: multiply;
   background-repeat: no-repeat;*/

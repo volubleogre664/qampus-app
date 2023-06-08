@@ -11,15 +11,16 @@
 .nav__header {
   display: flex;
   justify-content: flex-start;
+  position: relative;
   width: 100%;
-  padding-top: 30px;
   padding-bottom: 5px;
   margin: auto;
 }
 
-/* .nav__header .buttons {
-  display: flex;
-  flex-direction: row;
+.nav__header .buttons {
+  display: none;
+}
+/*  flex-direction: row;
   width: 100%;
   height: fit-content;
   justify-content: center;
@@ -51,7 +52,6 @@
   flex-direction: row;
   height: 100%;
   position: relative;
-  background-color: rgba(255, 255, 255, 0.5);
   -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
   padding: 10px;
@@ -67,6 +67,8 @@
   max-width: 300px;
   min-width: 100px;
   height: 100%;
+  margin-top: 50px;
+  margin-right: 30px;
   box-sizing: border-box;
   border-right: 1px solid rgb(206, 206, 206);
 }
@@ -128,13 +130,13 @@
   height: 40px;
   cursor: pointer;
   display: flex;
-  z-index: 100;
+  z-index: 1000;
   position: absolute;
   justify-content: center;
   align-items: center;
   font-size: 2rem;
-  right: 20px;
-  top: -50px;
+  right: 25px;
+  top: 20px;
   animation: color-change 5s ease-in-out;
 }
 

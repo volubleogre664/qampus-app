@@ -1,22 +1,22 @@
 import React, { useState, useRef, useEffect } from "react";
+import useGQL from "../../utils/graphqlHooks";
 import SendIcon from "@mui/icons-material/Send";
 import SearchIcon from "@mui/icons-material/Search";
 import EmojiIcon from "@mui/icons-material/EmojiEmotions";
 import BackIcon from "@mui/icons-material/ArrowBack";
-import useGQL from "../../utils/graphqlHooks";
+import CloseIcon from "@mui/icons-material/Close";
 import Picker from "emoji-picker-react";
 import personIcon from "@assets/profile.png";
-import Contact from "@components/Contact";
 import { ADD_MESSAGE, GET_MESSAGES_QUERY, GET_USER_DATA } from "@utils/graphql";
+import { GET_ALL_USER_MESSAGES } from "../../utils/graphql";
 import {
   useUserSlice,
   useMessagesSlice,
   useBooksSlice,
 } from "@redux/getSlices.js";
-import CloseIcon from "@mui/icons-material/Close";
+import Contact from "@components/Contact";
 import Message from "@components/Message";
 import ChatSearchResult from "@components/ChatSearchResult";
-import { GET_ALL_USER_MESSAGES } from "../../utils/graphql";
 
 import "./Chats.css";
 
@@ -32,7 +32,7 @@ function Chats() {
   const [emoji, setEmoji] = useState(false);
   const [chatClick, setChatClick] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const inputRef = useRef(null);
+  const inputRef = useRef(null)
   // const attachRef = useRef(null);
 
   window.onresize = () => {

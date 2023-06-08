@@ -203,19 +203,32 @@ function Profile() {
             />
           </div>
 
-          <div className="someInfo">
+          <div className="some__info">
             <h3>{`${user?.firstName} ${user?.lastName}`}</h3>
             <p>{user?.degree || ""}</p>
 
-            {user?.id === loggedInUser?.id && (
-              <button onClick={handleEditProfile} className="profile__edit">
-                <EditOutlinedIcon /> Edit profile
-              </button>
-            )}
+            <div className="profile__buttons">
+              {user?.id === loggedInUser?.id && (
+                <button onClick={handleEditProfile} className="profile__edit">
+                  {/* <EditOutlinedIcon /> */}
+                  Edit profile
+                </button>
+              )}
+              
+              {user?.id === loggedInUser?.id && (
+                <button
+                    onClick={() => logoutClicked()}
+                    className="profile__footerButton"
+                  >
+                Sign Out
+                </button>
+              )}
+            </div>
+
           </div>
         </header>
 
-        <main>
+        {/* <main>
           <div>
             <h4>Email</h4>
             <p>{user?.email}</p>
@@ -241,19 +254,10 @@ function Profile() {
               <p>{user?.gender}</p>
             </div>
           )}
-        </main>
+        </main> */}
       </main>
 
       <footer className="profile__footer">
-        {user?.id === loggedInUser?.id && (
-          <button
-            onClick={() => logoutClicked()}
-            className="profile__footerButton"
-          >
-            Sign Out
-          </button>
-        )}
-
         {user?.id !== loggedInUser?.id && (
           <>
             <button
