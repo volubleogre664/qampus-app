@@ -23,7 +23,7 @@ function Help() {
         document.querySelector("#abt").style.background = "#8F8F8F";
         document.querySelector("#tut").style.background = "#8F8F8F";
         document.querySelector("#saf").style.background = "#009BF6";
-        document.querySelector(".main_content").style.overflowY = "hidden";
+        document.querySelector(".main_content").style.overflowY = "scroll";
         break;
       }
 
@@ -43,7 +43,7 @@ function Help() {
         document.querySelector("#saf").style.background = "#8F8F8F";
         document.querySelector("#tut").style.background = "#8F8F8F";
         document.querySelector("#abt").style.background = "#009BF6";
-        document.querySelector(".main_content").style.overflowY = "hidden";
+        document.querySelector(".main_content").style.overflowY = "scroll";
         break;
       }
 

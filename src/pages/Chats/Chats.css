@@ -23,7 +23,7 @@
   display: flex;
   gap: 20px;
   max-height: 50px;
-  border-bottom: 1px solid #d5d5d5;
+  border-bottom: 2px solid #eaeaeab5;
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
 }
@@ -284,7 +284,7 @@
     width: 100%;
     flex: 1;
     background-color: transparent;
-    border-left: 1px solid #cecece;
+    border-left: 2px solid #cecece;
     position: unset;
   }
 

@@ -80,8 +80,8 @@
 }
 
 .main_content {
-  width: 87%;
-  height: 88%;
+  width: 88%;
+  height: 90%;
   margin: auto;
   padding-right: 100px;
   padding-left: 100px;
@@ -95,6 +95,7 @@
 
 .main_content p {
   white-space: pre-wrap;
+  min-height: 100%;
 }
 
 .btnHeader {

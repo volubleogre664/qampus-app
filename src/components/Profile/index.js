@@ -24,7 +24,7 @@ function Profile() {
   const user = currentProfile ?? loggedInUser;  
   
   const handleTextVisibility = () => {
-    if(currentProfile !== loggedInUser)/*Fix this condittion*/
+    if(currentProfile !== loggedInUser) /*Fix this condittion*/
       document.querySelector("#text__section").style.display = 'none';
     else
       document.querySelector("#text__section").style.display = 'none';
@@ -189,7 +189,7 @@ function Profile() {
     });
   }
 
-  handleTextVisibility();
+  // handleTextVisibility(); fix this too)
 
   return (
     <aside className="profile">

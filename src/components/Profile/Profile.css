@@ -190,6 +190,10 @@
   transition: all ease-in 0.015s;
 }
 
+#text__section{
+  width: 85%;
+  margin: auto;
+}
 .profile__btn-red span {
   font-weight: 400;
 }
