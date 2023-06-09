@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import useGQL from "../../utils/graphqlHooks";
 import SendIcon from "@mui/icons-material/Send";
+import useGQL from "../../utils/graphqlHooks";
 import SearchIcon from "@mui/icons-material/Search";
 import EmojiIcon from "@mui/icons-material/EmojiEmotions";
 import BackIcon from "@mui/icons-material/ArrowBack";
@@ -377,11 +377,12 @@ function Chats() {
             <div className="searchContainer active">
               {searchText.length > 0 ? (
                 <BackIcon
-                  role="button"
-                  onClick={() => {
-                    setSearchText("");
-                    setSearchData({ contacts: [], chats: [] });
-                  }}
+                    role="button"
+                    onClick={() => {
+                      setSearchText("");
+                      setSearchData({ contacts: [], chats: [] });
+                    }
+                  }
                 />
               ) : (
                 <SearchIcon />

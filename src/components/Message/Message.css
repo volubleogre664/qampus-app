@@ -26,14 +26,15 @@
 
 .message > .message__text {
   padding: 10px 15px;
-  border-radius: 20px;
-  border-bottom-left-radius: 0;
+  border-radius: 50px;
+  border-bottom-left-radius: 15px;
   overflow-wrap: break-word;
   font-size: 1.05rem;
   letter-spacing: 0.5px;
   font-weight: 300;
-  background: #f0eff3;
   box-sizing: border-box;
+  background: #8be8ff;
+  box-shadow: 0 2px 8px 0 #1f26871a;
 }
 
 .message > .message__time {
@@ -46,9 +47,10 @@
 }
 
 .rec > .message__text {
-  border-radius: 20px;
-  border-bottom-right-radius: 0;
-  background: #44b4f5 !important;
+  border-radius: 50px;
+  border-bottom-right-radius: 15px;
+  background: #5dc3ff !important;
+  box-shadow: 0 2px 8px 0 #1f26871a;
 }
 
 .rec > .message__time {

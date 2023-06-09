@@ -9,7 +9,7 @@
   place-items: center;
   overflow-y: hidden;
   transition: all ease-in-out 0.25s;
-  display: grid;
+  display: flex;
 }
 
 * {

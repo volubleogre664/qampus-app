@@ -23,7 +23,7 @@
   display: flex;
   gap: 20px;
   max-height: 50px;
-  border-bottom: 2px solid #e4e1f0;
+  border-bottom: 1px solid #d5d5d5;
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
 }
@@ -63,7 +63,7 @@
 }
 
 .chats__header p {
-  color: rgb(63, 63, 63);
+  color: #3f3f3f;
   font-weight: 600;
   font-size: 1.15rem;
 }
@@ -76,8 +76,8 @@
   width: 100%;
   overflow: hidden;
   margin-bottom: 5px;
-  border-radius: 10px;
-  border: 2px solid rgb(206, 206, 206);
+  border-radius: 50px;
+  border: 2px solid #c5c5c5;
 }
 
 .chats__header .searchContainer .MuiSvgIcon-root {
@@ -103,10 +103,10 @@
   border-radius: 10px;
   position: relative;
   overflow-y: hidden;
-  background-color: rgba(253, 253, 253, 0.8);
+  background-color: rgba(253, 253, 253, 0.85);
   box-shadow: rgba(149, 157, 165, 0.07) 0px 8px 20px;
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
 
 .chats__mainAside {
@@ -152,7 +152,7 @@
 .chats__mainSectionBody {
   flex: 1;
   height: 100% !important;
-  padding: 10px 15px;
+  padding: 10px 30px 40px;
   display: flex;
   overflow-y: scroll !important;
   flex-direction: column;
@@ -193,14 +193,19 @@
 
 /* Where all the buttons of chats are mate */
 .msgInputContainer {
-  width: 100%;
+  width: 98%;
   gap: 10px;
   display: flex;
   padding: 10px;
-  border-radius: 15px;
+  border-radius:50px;
   align-items: center;
-  background-color: #efecfb;
-  border: 1px solid #009bf6;
+  position: absolute;
+  bottom: 10px;
+  background: rgba( 255, 255, 255, 0.8);
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.01  );
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur( 30px );
+  border: 2px solid #3db8ff;
 }
 
 .msgInputContainer input {
@@ -225,11 +230,12 @@
   height: 20px;
   margin-bottom: 4px;
   transition: all ease-in 0.18s;
+  background-color: transparent;
 }
 
 .msgInputContainer button:hover {
-  -webkit-transform: scale(1.2);
-  transform: scale(1.2);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 @media screen and (min-width: 400px) {
@@ -256,7 +262,7 @@
   .chats__header .searchContainer {
     flex: 0.4;
     box-sizing: border-box;
-    min-width: 340px !important;
+    min-width: 360px !important;
     display: flex;
   }
 
@@ -275,12 +281,13 @@
   }
 
   .chats__mainSection {
-    width: unset;
+    width: 100%;
     flex: 1;
     background-color: transparent;
-    border-left: 1px solid #e4e1f0;
+    border-left: 1px solid #cecece;
     position: unset;
   }
+
 }
 
 @media screen and (min-width: 800px) {

@@ -1,33 +1,28 @@
 .contact {
-  width: 100%;
+  width: 95%;
   padding: 14px;
   padding-bottom: 25px;
-  /* overflow: hidden; */
+  margin: auto; 
+  margin-top: 5px;
+  margin-bottom: 0;
   display: flex;
   align-items: center;
   gap: 10px;
   z-index: 1;
-  /* position: relative; */
   max-height: 55px !important;
   cursor: pointer;
   transition: all ease-in 0.1s;
-  /* background: rgba( 0, 155, 246, 0.25 );
-  border-radius: 10px;
-  backdrop-filter: blur( 12.5px );
-  -webkit-backdrop-filter: blur( 12.5px );
-  border-radius: 10px;
-  box-shadow: 0 1px 6px rgb(32 33 36 / 10%);
-  border: 1px solid #a6deff; */
-  border-bottom: solid 1px #ededed;
+  border-bottom: solid 1px #d5d5d5;
   
 }
 
 .contact.currentContact {
-  box-shadow: 0px 8px 10px -5px rgba(0, 157, 255, 0.12);
+  /* box-shadow: 0px 8px 10px -5px #9090902e; */
+  border-bottom: solid 2px #45bafd;
 }
 
 .contact:hover {
-  box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 8px 10px -5px #00a2ff2e;
 }
 
 .contact * {

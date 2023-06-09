@@ -15,12 +15,21 @@ import RestoreIcon from "@mui/icons-material/Restore";
 
 import "./Profile.css";
 
+
+
 function Profile() {
   const [{ user: loggedInUser, currentProfile }, dispatchUser] = useUserSlice();
   const [, dispatch] = useUtilsSlice();
-
-  const user = currentProfile ?? loggedInUser;
-
+  
+  const user = currentProfile ?? loggedInUser;  
+  
+  const handleTextVisibility = () => {
+    if(currentProfile !== loggedInUser)/*Fix this condittion*/
+      document.querySelector("#text__section").style.display = 'none';
+    else
+      document.querySelector("#text__section").style.display = 'none';
+  };
+  
   const [blockUserContact] = useGQL({
     type: "mutation",
     query: BLOCK_CONTACT,
@@ -180,6 +189,8 @@ function Profile() {
     });
   }
 
+  handleTextVisibility();
+
   return (
     <aside className="profile">
       <header className="profile__header">
@@ -228,7 +239,7 @@ function Profile() {
           </div>
         </header>
 
-        {/* <main>
+        <main id="text__section">
           <div>
             <h4>Email</h4>
             <p>{user?.email}</p>
@@ -254,7 +265,7 @@ function Profile() {
               <p>{user?.gender}</p>
             </div>
           )}
-        </main> */}
+        </main>
       </main>
 
       <footer className="profile__footer">

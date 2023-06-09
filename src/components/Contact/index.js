@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import personIcon from "@assets/profile.png";
 import { getTime } from "@utils/helperFunctions";
 
@@ -7,6 +8,7 @@ function Contact({ contact, onClick, lastMsg: { lastMsg, time }, current }) {
   return (
     <div
       className={`contact ${current?.id === contact.id && "currentContact"}`}
+      onClick={onClick}
     >
       <span className="contact__iconContainer">
         <img

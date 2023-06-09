@@ -3,7 +3,6 @@
   width: 100%;
   box-sizing: border-box;
   padding-bottom: 60px;
-  margin-top: 20px;
   overflow-y: scroll;
   background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.3)),
     url("../../assets/collection_image.jpg") no-repeat;
