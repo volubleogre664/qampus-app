@@ -7,6 +7,7 @@
   align-items: center;
   font-family: Arial, sans-serif;
   box-sizing: border-box;
+  padding: 5px 8px;
 }
 
 .input > * {
@@ -20,11 +21,11 @@
 }
 
 .input__element {
-  height: 60px;
+  height: 40px;
   font-size: 16px;
   padding: 13px 15px;
   border-radius: 4px;
-  border: 1px solid grey;
+  border: 2px solid #c2c2c2;
   width: 100%;
   z-index: 5 !important;
   outline: none;
@@ -51,31 +52,27 @@ input.password ~ .input__showPassword {
 }
 
 input.password ~ .input__showPassword:hover * {
-  color: #009bf6;
+  color: #3db8ff;
 }
 
 .input__element:focus {
-  border-color: #009bf6;
-  border-width: 3px;
+  border-color: #3db8ff;
 }
 
 .input__element:focus ~ .placeholder,
 .placeholder.content {
   font-weight: 400;
   z-index: 10;
-  color: #009bf6 !important;
-  top: -9px;
+  color: #3db8ff !important;
 }
 
 .placeholder {
-  position: absolute;
-  top: 20px;
-  left: 8px;
-  padding: 0 8px;
-  background-color: rgba(253, 253, 253, 0.95);
-  color: grey !important;
+  padding: 0 2px;
+  background-color: #fdfdfdf2;
+  color: #151515;
   z-index: 0;
   font-family: "Poppins" sans-serif;
+  font-size: 1rem;
   text-align: start;
   font-size: medium;
   font-weight: 400;
@@ -83,5 +80,5 @@ input.password ~ .input__showPassword:hover * {
 }
 
 .placeholder.content {
-  color: gray !important;
+  color: #151515 !important;
 }

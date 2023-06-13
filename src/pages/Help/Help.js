@@ -64,6 +64,8 @@ function Help() {
   useEffect(() => {
     tabBtnClicked("about");
   }, []);
+
+  //text for different selected options
   return (
     <div className="help">
       <div className="help__header">

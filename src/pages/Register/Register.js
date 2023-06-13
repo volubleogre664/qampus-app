@@ -100,78 +100,73 @@ function Register() {
       </header>
 
       <main className="register__main">
-        <h1 className="register__title">Create Account</h1>
+        <h1 className="register__title">Account details</h1>
 
         <form className="register__form" onSubmit={onSubmit}>
           <header className="register__formHeader">
-            <div>
-              <div>
-                <Input
-                  type="text"
-                  name="firstName"
-                  label="First Name"
-                  id="firstName"
-                  value={values.firstName}
-                  onChange={onChange}
-                  required
-                />
-              </div>
+            <div className="main__info">
+              <Input
+                type="text"
+                name="firstName"
+                label="First Name"
+                id="firstName"
+                value={values.firstName}
+                onChange={onChange}
+                required
+              />
 
-              <div>
-                <Input
-                  type="text"
-                  name="lastName"
-                  label="Last Name"
-                  id="lastName"
-                  value={values.lastName}
-                  onChange={onChange}
-                  required
-                />
-              </div>
+              <Input
+                type="text"
+                name="lastName"
+                label="Last Name"
+                id="lastName"
+                value={values.lastName}
+                onChange={onChange}
+                required
+              />
+
+              <Input
+                type="email"
+                name="email"
+                id="email"
+                label="Email"
+                value={values.email}
+                onChange={onChange}
+                required
+              />
+
+              <Input
+                type="text"
+                name="university"
+                id="university"
+                label="University"
+                value={values.university}
+                onChange={onChange}
+              />
+
+              <Input
+                type="text"
+                name="degree"
+                id="degree"
+                label="Field of Study"
+                value={values.degree}
+                onChange={onChange}
+              />
+
+              <Input
+                type="text"
+                name="campus"
+                id="campus"
+                label="University Campus"
+                value={values.campus}
+                onChange={onChange}
+              />
             </div>
-
-            <Input
-              type="email"
-              name="email"
-              id="email"
-              label="Email"
-              value={values.email}
-              onChange={onChange}
-              required
-            />
           </header>
 
           <main className="register__formMain">
-            <Input
-              type="text"
-              name="university"
-              id="university"
-              label="University"
-              value={values.university}
-              onChange={onChange}
-            />
-
-            <Input
-              type="text"
-              name="degree"
-              id="degree"
-              label="Qualification of Study"
-              value={values.degree}
-              onChange={onChange}
-            />
-
-            <Input
-              type="text"
-              name="campus"
-              id="campus"
-              label="University Campus"
-              value={values.campus}
-              onChange={onChange}
-            />
-
             <fieldset>
               <legend>Gender</legend>
-
               <div>
                 <div>
                   <input
@@ -242,16 +237,16 @@ function Register() {
             </div>
 
             <div className="register__formMain__footer">
+              <button className="register__form__button" type="submit">
+                Create Account
+              </button>
+
               <p className="register__form__text">
                 Already have an account?{" "}
                 <Link to="/login" className="register__form__link">
                   Sign in
                 </Link>
               </p>
-
-              <button className="register__form__button" type="submit">
-                Create Account
-              </button>
             </div>
           </main>
         </form>
@@ -277,16 +272,12 @@ function Register() {
           >
             Privacy Policy
           </a>
-          .
-        </p>
-
-        <p className="register__form__text">
-          We use cookies to improve your experience on our site and to show you
+          . We use cookies to improve your experience on our site and to show you
           relevant advertising. To find out more, read our{" "}
           <Link to="/help" className="register__form__link">
             updated privacy policy
           </Link>
-          .
+          .          
         </p>
       </footer>
     </section>

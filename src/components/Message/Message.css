@@ -26,8 +26,8 @@
 
 .message > .message__text {
   padding: 10px 15px;
-  border-radius: 50px;
-  border-bottom-left-radius: 15px;
+  border-radius: 25px;
+  border-bottom-left-radius: 5px;
   overflow-wrap: break-word;
   font-size: 1.05rem;
   letter-spacing: 0.5px;

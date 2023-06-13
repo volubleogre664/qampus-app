@@ -1,17 +1,20 @@
 .register {
   flex: 1;
   width: 100%;
-  max-width: 768px;
   display: flex;
   margin: 0 auto;
   flex-direction: column;
   overflow: hidden;
   overflow-y: auto;
   position: relative;
-  background-color: #fff;
   background-size: cover;
   background-clip: border-box;
   background-attachment: fixed;
+  max-width: 700px;
+  width: 100%;
+  background: #fefefe;
+  padding: 25px 30px;
+  border-radius: 5px;
 }
 
 .register * {
@@ -29,26 +32,40 @@ a {
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 40px 20px;
+  padding: 20px;
   padding-bottom: 20px;
   box-sizing: border-box;
 }
 
+.register__header {
+  display: none;
+}
 .register__logo > img {
-  width: 180px;
-  height: 80px;
+  height: 60px;
   object-fit: contain;
   margin: 0 auto;
-  -webkit-filter: drop-shadow(1px 2px 2px #000000);
-  filter: drop-shadow(1px 2px 2px #000000);
+  -webkit-filter: drop-shadow(0px 1px 1px #393939);
+  filter: drop-shadow(0px 1px 1px #393939);
 }
 
 .register__title {
-  padding: 0 20px;
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 25px;
+  font-weight: 500;
+  text-align: left;
   margin-top: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
+  color: #151515;
+  padding-left: 22px;
+}
+
+.register__title::before {
+  content: '';
+  position: absolute;
+  margin-top: 32px;
+  width: 70px; /* Adjust the width of the line */
+  height: 4px; /* Adjust the height of the line */
+  background: linear-gradient(to right, #3db8ff, #a4dcfc); /* Customize the gradient colors */
+
 }
 
 .register__form {
@@ -57,7 +74,8 @@ a {
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 20px;
+  padding: 10px;
+  padding-top: 0;
   box-sizing: border-box;
 }
 
@@ -66,23 +84,24 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  gap: 25px;
+  min-width: 100%;
+  gap: 10px;
   padding: 20px;
+  padding-top: 0;
   box-sizing: border-box;
 }
 
-.register__formHeader > div:first-of-type {
-  width: 100%;
+.register__formHeader > .main__info {
   display: flex;
-  gap: 20px;
-  align-items: center;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
 }
 
 .register__formHeader > div:first-of-type > div {
   width: 100%;
 }
+
 
 .register__formMain {
   display: flex;
@@ -99,24 +118,26 @@ a {
 .register__formMain fieldset {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: left;
   gap: 20px;
-  padding: 10px;
-  border: 1px solid gray;
+  padding: 0px 10px;
+  border: none;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
 .register__formMain fieldset legend {
-  font-weight: 200;
-  font-size: 1.2rem;
+  font-weight: 400;
+  font-size: 1.1rem;
 }
 
 .register__formMain fieldset > div {
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 5px 10px;
+  gap: 20px;
 }
 
 .register__formMain fieldset > div > div {
@@ -136,17 +157,20 @@ a {
   width: 100%;
   gap: 10px;
   padding: 10px 0;
+  padding-bottom: 25px;
   box-sizing: border-box;
+  border-bottom: solid 1px #adadad;
 }
 
 .register__form__terms > input {
   width: 30px;
-  height: 30px;
+  max-height: 30px;
   border-radius: 50%;
-  border: 3px solid #000;
+  border: 1px solid #000;
   outline: none;
   cursor: pointer;
   border-radius: 3px;
+  background-color: transparent;
 }
 
 .register__form__terms > label {
@@ -171,22 +195,21 @@ a {
   padding: 10px;
   border: none;
   border-radius: 8px;
-  background-color: #000;
+  background-color: #3db8ff;
   color: #fff;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.7xs ease-in-out;
 }
 
 .register__formMain__footer p {
   font-weight: 200;
-  order: 1;
   text-align: center;
 }
 
 .register__form__button:hover {
-  background-color: #3b3b3b;
+  background-color: #1faafb;
 }
 
 .register__footer {
@@ -212,12 +235,7 @@ a {
 
 @media screen and (min-width: 590px) {
   .register__formMain__footer {
-    flex-direction: row;
     align-items: center;
-  }
-
-  .register__formMain__footer p {
-    order: 0;
   }
 
   .register__form__button {

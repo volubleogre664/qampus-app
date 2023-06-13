@@ -12,6 +12,13 @@ function Input({ label, id, type, placeholder, ...rest }) {
   return (
     <div className="input">
       <div className="input__container">
+      <label
+          htmlFor={id}
+          className={`placeholder ${rest?.value && "content"}`}
+        >
+          {label}
+        </label>
+        
         <input
           className={`input__element ${isPassword && "password"}`}
           ref={inputRef}
@@ -19,13 +26,6 @@ function Input({ label, id, type, placeholder, ...rest }) {
           type={type}
           {...rest}
         />
-
-        <label
-          htmlFor={id}
-          className={`placeholder ${rest?.value && "content"}`}
-        >
-          {label}
-        </label>
 
         {type === "password" && (
           <button

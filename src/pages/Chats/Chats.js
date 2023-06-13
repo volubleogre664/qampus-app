@@ -376,7 +376,7 @@ function Chats() {
           <header className="chats__header">
             <div className="searchContainer active">
               {searchText.length > 0 ? (
-                <BackIcon
+                <BackIcon 
                     role="button"
                     onClick={() => {
                       setSearchText("");
@@ -419,7 +419,7 @@ function Chats() {
             <div className="chats__headerProfile">
               <button>
                 {screenWidth < 670 && (
-                  <BackIcon onClick={(e) => closeChats(e)} />
+                  <BackIcon className="mobileBackButton" onClick={(e) => closeChats(e)} />
                 )}
                 {currentContact && (
                   <span
@@ -481,7 +481,7 @@ function Chats() {
             {emoji && (
               <Picker
                 onEmojiClick={(_, emojiObj) => handleEmojiClick(_, emojiObj)}
-                pickerStyle={{ width: "100%" }}
+                pickerStyle={{ width: "95%", borderRadius: "10px 10px 30px 30px", margin: "auto"}}
               />
             )}
             <div>

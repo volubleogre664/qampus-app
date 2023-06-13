@@ -10,6 +10,7 @@
   overflow-y: hidden;
   transition: all ease-in-out 0.25s;
   display: flex;
+  justify-content: center;
 }
 
 * {
@@ -160,18 +161,18 @@
   border: none;
   cursor: pointer;
   gap: 5px;
-  background: #009bf6;
+  background: #1faafb;
   transition: all ease-in 0.1s;
   color: #ffff;
   min-width: 140px;
   margin: auto;
   justify-content: space-around;
-  -webkit-filter: drop-shadow(0px 1px 1px #5d5d5d2d);
-  filter: drop-shadow(0px 1px 1px #5d5d5d2d);
+  -webkit-filter: drop-shadow(0px 2px 2px #5d5d5d2d);
+  filter: drop-shadow(0px 2px 2px #5d5d5d2d);;
 }
 
 .editProfile__mainForm > div button:hover {
-  background: #1faafb;
+  background: #009bf6;
 }
 
 .editProfile__mainFormInput {
@@ -180,7 +181,7 @@
   padding: 5px;
   height: 30px;
   border-radius: 4px;
-  border: 2px solid rgb(194, 194, 194);
+  border: 2px solid #c2c2c2;
   font-weight: 400;
 }
 
@@ -209,7 +210,7 @@
   overflow: hidden;
   border-radius: 8px;
   margin-bottom: 12px;
-  box-shadow: 1.4px 1.4px 0.8px 0 rgba(0, 0, 0, 0.15);
+  /* box-shadow: 1.4px 1.4px 0.8px 0 rgba(0, 0, 0, 0.15); */
 }
 
 .editProfile__mainImage .image-container img {
@@ -225,6 +226,7 @@
   font-weight: 300;
   cursor: pointer;
   font-size: 0.9rem;
+  max-width: 150px;
 }
 
 .editProfile__mainImage button:first-of-type {
@@ -235,16 +237,18 @@
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  box-shadow: 1px 1px 1.5px rgba(0, 0, 0, 0.27);
-  -webkit-box-shadow: 1px 1px 1.5px rgba(0, 0, 0, 0.27);
-  -moz-box-shadow: 1px 1px 1.5px rgba(146, 109, 109, 0.27);
-  color: rgb(80, 80, 80);
+  -webkit-filter: drop-shadow(2px 2px 2px #5d5d5d2d);
+  filter: drop-shadow(2px 2px 2px #5d5d5d2d);
+  background-color: #009bf6;
+  color: #fff;
   transition: all ease-in-out 0.1s;
   margin-bottom: 20px;
 }
 
 .editProfile__mainImage button:first-of-type:hover {
-  background-color: rgb(248, 248, 248);
+   -webkit-filter:none;
+  filter: none;
+  background: #1faafb;
 }
 
 .editProfile__mainImage button.removeImageBtn {

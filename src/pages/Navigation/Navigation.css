@@ -151,12 +151,12 @@
     /* border-color:#00F700; */
     -webkit-transform: rotate(-70deg);
   }
-  
+
   50%{
     /* border-color:#E5C311; */
     -webkit-transform: rotate(90deg);
   }
-  
+
   75%{
     /* border-color:#E34437; */
     -webkit-transform: rotate(-150deg);
@@ -216,7 +216,6 @@
     max-height: 92%;
   }
   .navigation__sidebar.opening {
-    right: 15px;
-    top: 60px;
+    right: 5px;
   }
 }

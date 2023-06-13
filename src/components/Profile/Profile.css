@@ -77,7 +77,6 @@
   align-self: center;
   margin: 0 auto;
   overflow: hidden;
-  border: solid 1px #f0f0f0;
   -webkit-filter: drop-shadow(0px 1px 1px #5d5d5d2d);
   filter: drop-shadow(0px 1px 1px #5d5d5d2d);
 }
