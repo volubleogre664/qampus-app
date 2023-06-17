@@ -481,14 +481,14 @@ function Chats() {
             {emoji && (
               <Picker
                 onEmojiClick={(_, emojiObj) => handleEmojiClick(_, emojiObj)}
-                pickerStyle={{ width: "95%", borderRadius: "10px 10px 30px 30px", margin: "auto"}}
+                pickerStyle={{ width: "100%", borderRadius: "10px 10px 30px 30px", margin: "auto"}}
               />
             )}
             <div>
               <form className="msgInputContainer" onSubmit={onSubmit}>
                 <button
                   type="button"
-                  onClick={() => setEmoji(!emoji)}
+                  onClick={() => setEmoji(!emoji)} 
                   className="emojiIcon"
                 >
                   {emoji ? <CloseIcon /> : <EmojiIcon />}

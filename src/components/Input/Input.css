@@ -37,6 +37,7 @@
 .input__element ~ label {
   user-select: none;
   cursor: text;
+  background-color: transparent;
 }
 
 input.password ~ .input__showPassword {

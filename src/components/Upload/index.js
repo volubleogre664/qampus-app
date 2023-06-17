@@ -444,7 +444,7 @@ function UploadBook({ app, callback }) {
               onChange={onChange}
               value={values.isbn}
               label="Book ISBN"
-              placeholder="9789544007737"
+              placeholder="978...."
             />
 
             <Input

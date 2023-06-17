@@ -299,6 +299,10 @@
     position: unset;
   }
 
+  .msgInputContainer{
+    width: 99%;
+  }
+
 }
 
 @media screen and (min-width: 800px) {

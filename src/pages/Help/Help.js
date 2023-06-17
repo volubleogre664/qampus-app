@@ -107,7 +107,9 @@ function Help() {
       <div className="help__body">
         <div className="help_main">
           <div className="main_content">
-            <p>{display.content}</p>
+            <p>{display.content}
+            <br/><br/><br/><br/>
+            </p>
           </div>
         </div>
       </div>
