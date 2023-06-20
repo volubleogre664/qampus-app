@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { useAuth0 } from "@auth0/auth0-react";
 import { io } from "socket.io-client";
-
+import packageJson from "../package.json";
 import Home from "@pages/Home/Home.js";
 import Chats from "@pages/Chats/Chats.js";
 import Register from "@pages/Register/Register.js";
@@ -28,8 +28,29 @@ import {
 import "./App.css";
 
 const app = initializeApp(config.firebaseConfig);
+const caching = ()=> {
+  let version = localStorage.getItem('version');
+      if(version!=packageJson.version)
+      {
+        if('caches' in window){
+          caches.keys().then((names) => {
+        // Delete all the cache files
+        names.forEach(name => {
+            caches.delete(name);
+        })
+      });
+  
+      // Makes sure the page reloads. Changes are only visible after you refresh.
+      window.location.reload(true);
+  }
+  
+      localStorage.clear();
+      localStorage.setItem('version',packageJson.version);
+    }
+};
 
 function App() {
+  caching();
   const { isAuthenticated } = useAuth0();
   const [{ imgCrop, user }, dispatchUser] = useUserSlice();
   const [
