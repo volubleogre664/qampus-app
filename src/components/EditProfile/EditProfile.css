@@ -29,6 +29,7 @@
   color: #000;
   position: relative;
   overflow-y: hidden;
+  margin: auto;
 }
 
 .editProfile__loading {
