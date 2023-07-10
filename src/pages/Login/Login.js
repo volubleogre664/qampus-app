@@ -45,20 +45,17 @@ function Login() {
           payload: { secure: true },
         });
       }
-
       history.push("/");
     },
     onError: (err) => {
       let returnedErr = err.graphQLErrors[0];
-
       console.log(returnedErr);
-
       if (returnedErr?.extensions?.error === "invalid_email") {
-        setLoading(false);
-        history.push("/register");
+      setLoading(false);
+      history.push("/register");
       } else {
         setLoading(false);
-      }
+       }
     },
   });
 
@@ -70,7 +67,7 @@ function Login() {
     let auth = localStorage.getItem("auth");
 
     if (auth && auth === "yes") {
-      getUserData({ variables: { email: user?.email, password: "sdsds" } });
+      getUserData({ variables: {username: user?.username, email: user?.email, password: "sdsds" } });
     } else {
       loginWithRedirect({ redirectUri: window.location.href });
     }

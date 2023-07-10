@@ -28,30 +28,27 @@ import {
 import "./App.css";
 
 const app = initializeApp(config.firebaseConfig);
-const caching = ()=> {
-  let version = localStorage.getItem('version');
-      if(version!=packageJson.version)
-      {
-        if('caches' in window){
-          caches.keys().then((names) => {
-        // Delete all the cache files
-        names.forEach(name => {
-            caches.delete(name);
-        })
-      });
-  
-      // Makes sure the page reloads. Changes are only visible after you refresh.
-      window.location.reload(true);
-  }
-  
-      localStorage.clear();
-      localStorage.setItem('version',packageJson.version);
-    }
-};
 
 function App() {
-  caching();
-  const { isAuthenticated } = useAuth0();
+  // useEffect(() => {
+  //   const clearCacheAndRefresh = () => {
+  //     if ('caches' in window) {
+  //       caches.keys().then((names) => {
+  //         // Delete all the cache files
+  //         names.forEach(name => {
+  //           caches.delete(name);
+  //         });
+  //       });
+  //     }
+
+  //     // Perform a hard refresh to load the new changes
+  //     window.location.reload(true);
+  //   };
+
+  //   clearCacheAndRefresh();
+  // }, []);
+
+  var { isAuthenticated } = useAuth0();
   const [{ imgCrop, user }, dispatchUser] = useUserSlice();
   const [
     {
@@ -99,7 +96,7 @@ function App() {
     let auth = localStorage.getItem("auth");
     if (!isAuthenticated && auth === "yes") {
       localStorage.removeItem("auth");
-    }
+    } 
   }, [isAuthenticated]);
 
   return (
@@ -135,7 +132,7 @@ function App() {
           </PrivateRoute>
 
           <PrivateRoute exact path="/collection">
-            <HeaderMenu />
+            <HeaderMenu /> 
             <Collection app={app} />
           </PrivateRoute>
         </Switch>

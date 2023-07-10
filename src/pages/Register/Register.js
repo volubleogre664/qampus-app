@@ -142,6 +142,7 @@ function Register() {
                 label="University"
                 value={values.university}
                 onChange={onChange}
+                
               />
 
               <Input
@@ -186,6 +187,7 @@ function Register() {
                     onChange={onChange}
                     name="gender"
                     value="Female"
+
                   />
                   <label htmlFor="gender__female">Female</label>
                 </div>
@@ -240,13 +242,12 @@ function Register() {
               <button className="register__form__button" type="submit">
                 Create Account
               </button>
-
-              <p className="register__form__text">
+              {/* <p className="register__form__text">
                 Already have an account?{" "}
                 <Link to="/login" className="register__form__link">
                   Sign in
                 </Link>
-              </p>
+              </p> */}
             </div>
           </main>
         </form>
